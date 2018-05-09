@@ -44,12 +44,12 @@ Modeling Around Queries and Not Around Relations
 
   Even in cases with multiple partitions, if the operations involve only small inserts or updates, you’ll be fine with batching those operations to ensure consistency.
 
-[151]
+[p151]
 
 It’s a good idea to have a separate keyspace per application.
 
 
-[156]
+[p156]
 
 DataStax recommends that you use a small number of seeds, such as three nodes per datacenter. You should specify the same list of nodes
 for all nodes in a cluster. If your cluster has multiple datacenters, include at least one node from each datacenter as seed providers.
