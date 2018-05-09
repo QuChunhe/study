@@ -26,6 +26,12 @@ Cassandra Data Modeling Rules
 * Spreading Data Evenly Across the Cluster
 * Minimizing the Number of Partitions to Be Read
    
+[p107]
+
+Modeling Around Queries and Not Around Relations
+* Find out the queries the database must support
+* Create appropriate tables.
+   
 [p114]
 
   In a multiple partition batch operation, the coordinator node can turn out to be a bottleneck during a batch operation. The higher the number of partitions in a batch operation, the higher the latency due to batching.
