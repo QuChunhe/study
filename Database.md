@@ -48,3 +48,10 @@ Modeling Around Queries and Not Around Relations
 
 It’s a good idea to have a separate keyspace per application.
 
+
+[156]
+
+DataStax recommends that you use a small number of seeds, such as three nodes per datacenter. You should specify the same list of nodes
+for all nodes in a cluster. If your cluster has multiple datacenters, include at least one node from each datacenter as seed providers.
+
+
