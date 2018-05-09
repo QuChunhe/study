@@ -8,7 +8,7 @@
 
 #### Cassandra
 
--Expert Apache Cassandra Adminitration, Apress, 2018.
+#-Expert Apache Cassandra Adminitration, Apress, 2018.
 
 [p100]
   Data modeling in a relational database is driven entirely by data. You can also say that
@@ -43,3 +43,8 @@ Modeling Around Queries and Not Around Relations
 [p146]   
 
   Even in cases with multiple partitions, if the operations involve only small inserts or updates, you’ll be fine with batching those operations to ensure consistency.
+
+[151]
+
+It’s a good idea to have a separate keyspace per application.
+
