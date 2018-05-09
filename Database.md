@@ -54,4 +54,7 @@ It’s a good idea to have a separate keyspace per application.
 DataStax recommends that you use a small number of seeds, such as three nodes per datacenter. You should specify the same list of nodes
 for all nodes in a cluster. If your cluster has multiple datacenters, include at least one node from each datacenter as seed providers.
 
+[p169]
 
+DataStax recommends that you use the parallel and partitioner range options during a repair wherever it’s possible to do so.
+        $ nodetool repair -dc DC1
