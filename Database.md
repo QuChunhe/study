@@ -23,8 +23,8 @@ duplication as quite normal, as a side effect of nesting data.
 [p105]
 
 Cassandra Data Modeling Rules
-*Spreading Data Evenly Across the Cluster
-*Minimizing the Number of Partitions to Be Read
+*[Spreading Data Evenly Across the Cluster]
+*[Minimizing the Number of Partitions to Be Read]
    
 [p114]
 
