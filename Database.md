@@ -58,3 +58,4 @@ for all nodes in a cluster. If your cluster has multiple datacenters, include at
 
 DataStax recommends that you use the parallel and partitioner range options during a repair wherever it’s possible to do so.
 		$nodetool repair -pr hosts 10.2.2.30 10.2.2.31
+
