@@ -8,7 +8,7 @@
 
 #### Cassandra
 
-#-Expert Apache Cassandra Adminitration, Apress, 2018.
+##-Expert Apache Cassandra Adminitration, Apress, 2018.
 
 [p100]
   Data modeling in a relational database is driven entirely by data. You can also say that
