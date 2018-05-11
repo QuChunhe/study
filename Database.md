@@ -62,3 +62,13 @@ DataStax recommends that you use the parallel and partitioner range options duri
 [170] 
 
 Ideally, you should run incremental repairs every day and a full repair less frequently, like every month, unless you believe you need to do it more often.
+
+[p183]
+
+Tip The Murmur3Partitioner is 3-5 times faster in performance than the RandomPartitioner.
+
+[185]
+The choice of a snitch affects where Cassandra places replicas. The
+purpose of a snitch is to route requests efficiently and to distribute replicas evenly.
+
+DataStax recommends GossipingPropertyFileSnitch for production usage.
