@@ -11,6 +11,7 @@
 ##-Expert Apache Cassandra Adminitration, Apress, 2018.
 
 [p100]
+
   Data modeling in a relational database is driven entirely by data. You can also say that
 relational data modeling is table-driven. Normalization theory rules the roost, and this
 theory requires that you not duplicate data.
@@ -68,6 +69,7 @@ Ideally, you should run incremental repairs every day and a full repair less fre
 Tip The Murmur3Partitioner is 3-5 times faster in performance than the RandomPartitioner.
 
 [185]
+
 The choice of a snitch affects where Cassandra places replicas. The
 purpose of a snitch is to route requests efficiently and to distribute replicas evenly.
 
@@ -75,5 +77,26 @@ DataStax recommends GossipingPropertyFileSnitch for production usage.
 
 
 [190]
+
 A keyspace is a logical structure where Cassandra stores not only table data, but also all other entities that you create for an application, such as materialized views, functions, aggregates, and UDTs.
+
+[199]
+
+By default, the replication factor for the system-auth keyspace is set to 1. DataStax recommends that you set the replication factor for the system-auth tablespace to the number of nodes in each of the datacenters. However, you can set the replication factor for this keyspace to 5 or 7, which offers plenty of redundancy.
+
+[201]
+
+Note A primary key consists of two things: the first column or columns is the mandatory partition key, followed by one or more clustering columns.
+
+[202]
+
+Here’s what the two parts mean:
+*Cassandra uses the first part of the definition of a primary key, the
+partition key, to distribute the data in the table across the cluster’s
+nodes. The partition key determines which node will store a specific
+row of the table. A compound partition key can split the data to store
+related data on separate partitions.
+*The database uses the second part of the key definition, called the
+clustering key or clustering column (or columns), to order or sort the
+data within the partition.
 
