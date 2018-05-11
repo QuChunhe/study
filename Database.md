@@ -72,3 +72,8 @@ The choice of a snitch affects where Cassandra places replicas. The
 purpose of a snitch is to route requests efficiently and to distribute replicas evenly.
 
 DataStax recommends GossipingPropertyFileSnitch for production usage.
+
+
+[190]
+A keyspace is a logical structure where Cassandra stores not only table data, but also all other entities that you create for an application, such as materialized views, functions, aggregates, and UDTs.
+
