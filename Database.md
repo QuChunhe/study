@@ -91,12 +91,12 @@ Note A primary key consists of two things: the first column or columns is the ma
 [202]
 
 Here’s what the two parts mean:
-*Cassandra uses the first part of the definition of a primary key, the
+* Cassandra uses the first part of the definition of a primary key, the
 partition key, to distribute the data in the table across the cluster’s
 nodes. The partition key determines which node will store a specific
 row of the table. A compound partition key can split the data to store
 related data on separate partitions.
-*The database uses the second part of the key definition, called the
+* The database uses the second part of the key definition, called the
 clustering key or clustering column (or columns), to order or sort the
 data within the partition.
 
