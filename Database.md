@@ -97,3 +97,6 @@ Here’s what the two parts mean:
 [203]
 
 Note A partition key groups rows in the same replica set. The clustering columns dictate how rows are stored in the replica.
+
+[209]
+You set the gc_grace_seconds property when creating a table. This property specifies the number of seconds after Cassandra marks data with a tombstone before the data becomes eligible for garbage collection.
