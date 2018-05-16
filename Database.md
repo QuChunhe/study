@@ -107,4 +107,24 @@ a table for which you’ve configured the default_time_to_live property.
 
 [305]
 
-The nodetool rebuild command is useful when you’re adding a datacenter to your cluster. You can rebuild a single keyspace at a time or specify multiple keyspaces, each separated by a comma. Here’s an example:
+The nodetool rebuild command is useful when you’re adding a datacenter to your cluster. You can rebuild a single keyspace at a time or specify multiple keyspaces, each separated by a comma.
+
+[306]
+
+You don’t have to manually clean up after every such change in a cluster. However, if for any reason you wish to reclaim disk space faster, you can run the nodetool cleanup command.
+
+[326]
+
+In situations such as when you’re getting ready to upgrade Cassandra, you want to ensure that you flush all memtables to disk, into the SSTables. You run the nodetool drain command to flush memtables to SSTables on disk.
+
+
+ [337]
+ 
+ The nodetool proxyhistograms command shows the network statistics in a cluster.
+ 
+ [338]
+ 
+ Run the nodetool tablestats (formerly nodetool cfstats) command to get statistics about one or more tables.
+
+You run the nodetool decommission command to make a node send all its data to the next node in the ring. Decommissioning a node is the opposite of bootstrapping a node.
+
