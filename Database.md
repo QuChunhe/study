@@ -103,3 +103,8 @@ Note A partition key groups rows in the same replica set. The clustering columns
 You set the gc_grace_seconds property when creating a table. This property specifies the number of seconds after Cassandra marks data with a tombstone before the data becomes eligible for garbage collection.
 
 a table for which you’ve configured the default_time_to_live property.
+
+
+[305]
+
+The nodetool rebuild command is useful when you’re adding a datacenter to your cluster. You can rebuild a single keyspace at a time or specify multiple keyspaces, each separated by a comma. Here’s an example:
