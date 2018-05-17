@@ -117,6 +117,12 @@ You don’t have to manually clean up after every such change in a cluster. Howe
 
 In situations such as when you’re getting ready to upgrade Cassandra, you want to ensure that you flush all memtables to disk, into the SSTables. You run the nodetool drain command to flush memtables to SSTables on disk.
 
+[341]
+
+Key nodetool commands that you’ll often use for checking a cluster’s health are the following:
+* nodetool status
+* nodetool info
+*nodetool tpstats
 
  [337]
  
@@ -128,3 +134,13 @@ In situations such as when you’re getting ready to upgrade Cassandra, you want
 
 You run the nodetool decommission command to make a node send all its data to the next node in the ring. Decommissioning a node is the opposite of bootstrapping a node.
 
+
+[379]
+
+You can set the bloom_filter_fp_chance attribute for a table to a value between 0 and 1. As you go from 0 to 1, you use less memory. A value of 0 means you set the largest value for the Bloom filter and use the highest amount of memory. Setting it to 1 means that
+you’ve disabled Bloom filters.
+
+[422]
+
+There are two good nodetool commands that help you identify performance issues in a cluster: nodetool proxyhistograms and nodetool tablehistograms. Both commands present performance statistics captured by the database in the form of histograms, hence
+the command names.
