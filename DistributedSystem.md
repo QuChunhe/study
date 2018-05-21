@@ -15,5 +15,11 @@ Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algo
 
 clock consistency condition v.t. strongly consistent
 
+[52] Implementation of logical clocks requires addressing two issues [19]: data structures local to every process to represent logical time and a protocol (set of rules) to update the data structures to ensure the consistency condition.
+
+
+A local logical clock v.t. A logical global clock,
+
+
 
 #### Course
