@@ -26,9 +26,27 @@ netstat -antp
 
 netstat -nltp
 
+//System Activity Reporter
 
 sar -n TCP,ETCP 1
 
 sar -n UDP 1
 
 sar -n DEV 1
+
+ps -ef f
+
+
+
+strace –tttT –p 313
+
+tcpdump -i eth0 -w /tmp/out.tcpdump
+
+lsof -iTCP -sTCP:ESTABLISHED
+
+lscpu
+
+more /proc/cpuinfo
+
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+
