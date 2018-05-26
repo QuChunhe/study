@@ -8,9 +8,15 @@ The	USE	Method
 - Utilization: busy time
 - Saturation: queue length or queued time
 - Errors: easy to interpret (objective)
-  
 
-### Command
+# Setting
+  
+/etc/sysctl.conf
+		vm.swappiness=1
+		vm.dirty_background_ratio=5
+		vm.dirty_ratio
+
+# Command
 
 top -Hp pid
 
