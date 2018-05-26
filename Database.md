@@ -11,7 +11,7 @@
 #### Book
 ###### Expert Apache Cassandra Adminitration, Apress, 2018.
 
-- [p100]
+[p100]
 
   Data modeling in a relational database is driven entirely by data. You can also say that
 relational data modeling is table-driven. Normalization theory rules the roost, and this
@@ -22,7 +22,7 @@ you organize your data based on the queries you expect that data to serve. You d
 your queries first and create your tables to satisfy those queries. You consider data
 duplication as quite normal, as a side effect of nesting data.
 
-- [p105]
+[p105]
 
 Cassandra Data Modeling Rules
 * Spreading Data Evenly Across the Cluster
