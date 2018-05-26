@@ -16,6 +16,7 @@ The	USE	Method
 		vm.dirty_background_ratio=5
 		vm.dirty_ratio
 
+
 # Command
 
 top -Hp pid
