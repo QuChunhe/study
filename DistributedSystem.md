@@ -63,5 +63,8 @@ srvr
 
 ### Broker Configuration
 
+		zookeeper.connect
+		broker.id
+		
 
 
