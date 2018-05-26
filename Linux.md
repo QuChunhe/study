@@ -44,7 +44,6 @@ sar -n DEV 1
 ps -ef f
 
 
-
 strace –tttT –p 313
 
 tcpdump -i eth0 -w /tmp/out.tcpdump
