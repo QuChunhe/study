@@ -37,18 +37,25 @@ srvr
 
 ###### configuration
 
-			tickTime=2000
-			dataDir=/var/lib/zookeeper
-			clientPort=2181
+		tickTime=2000
+		dataDir=/var/lib/zookeeper
+		clientPort=2181
+		#the initLimit is the amount of time to allow followers to connect with a leader.
+		initLimit=20
+		#The syncLimit value limits how out-of-sync followers can be with the leader.
+		syncLimit=5
+		
+		#server.X=hostname:peerPort:leaderPort
+		server.1=zoo1.example.com:2888:3888
+		server.2=zoo2.example.com:2888:3888
+		server.3=zoo3.example.com:2888:3888
 
-initLimit=20
 
-syncLimit=5
 
-#server.X=hostname:peerPort:leaderPort
 
-server.1=zoo1.example.com:2888:3888
+#### Kafka
 
-server.2=zoo2.example.com:2888:3888
+###### Broker Configuration
 
-server.3=zoo3.example.com:2888:3888
+
+
