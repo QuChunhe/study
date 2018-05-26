@@ -37,9 +37,9 @@ srvr
 
 ###### configuration
 
-  tickTime=2000
-  dataDir=/var/lib/zookeeper
-  clientPort=2181
+			tickTime=2000
+			dataDir=/var/lib/zookeeper
+			clientPort=2181
 
 initLimit=20
 
