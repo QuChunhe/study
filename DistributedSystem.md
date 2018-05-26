@@ -37,11 +37,18 @@ srvr
 
 ###### configuration
 
-tickTime=2000
-dataDir=/var/lib/zookeeper
-clientPort=2181
+  tickTime=2000
+  dataDir=/var/lib/zookeeper
+  clientPort=2181
+
 initLimit=20
+
 syncLimit=5
+
+#server.X=hostname:peerPort:leaderPort
+
 server.1=zoo1.example.com:2888:3888
+
 server.2=zoo2.example.com:2888:3888
+
 server.3=zoo3.example.com:2888:3888
