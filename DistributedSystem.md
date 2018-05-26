@@ -1,14 +1,14 @@
 # idea
 
-## Papers
+# Papers
 [1] Patrick O'Neil, Edward Cheng, Dieter Gawlick, Elizabetch O'Neil. The log-structured merge-tree (LSM-tree). Acta Informatica, 1996, 33(4): 351-385.
 
 
 
 
-## Books
+# Books
 
-#### Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algorithms, and Systems. Cambridge University Press. 2008
+## Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algorithms, and Systems. Cambridge University Press. 2008
 
 [51] The timestamps assigned to events obey the fundamental monotonicity property; that is, if an event a causally affects an event b, then the timestamp of a is smaller than the timestamp of b.
 
@@ -24,20 +24,20 @@ A local logical clock v.t. A logical global clock,
 
 
 
-## Course
+# Course
 
 
 
 
-## Open Source
+# Open Source
 
-#### Zookeeper
+## Zookeeper
 
-###### command
+### command
 
 srvr
 
-###### configuration
+### configuration
 
 		tickTime=2000
 		dataDir=/var/lib/zookeeper
@@ -55,9 +55,9 @@ srvr
 
 
 
-#### Kafka
+## Kafka
 
-###### Broker Configuration
+### Broker Configuration
 
 
 
