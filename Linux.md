@@ -17,6 +17,12 @@ The	USE	Method
 		vm.dirty_background_ratio=5
 		vm.dirty_ratio
 
+cat /proc/vmstat | egrep "dirty|writeback"
+
+		nr_dirty 3875
+		nr_writeback 29
+	nr_writeback_temp 0
+
 
 # Command
 
