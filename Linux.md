@@ -13,14 +13,14 @@ The	USE	Method
   
 /etc/sysctl.conf
 
-		vm.swappiness=1
-		vm.dirty_background_ratio=5
-		vm.dirty_ratio
+	vm.swappiness=1
+	vm.dirty_background_ratio=5
+	vm.dirty_ratio
 
 cat /proc/vmstat | egrep "dirty|writeback"
 
-		nr_dirty 3875
-		nr_writeback 29
+	nr_dirty 3875
+	nr_writeback 29
 	nr_writeback_temp 0
 
 
