@@ -66,4 +66,6 @@ zookeeper.connect
 broker.id
 ```	
 
-
+There are three primary methods of sending messages:
+- Fire-and-forget
+- Synchronous send
