@@ -61,8 +61,9 @@ server.3=zoo3.example.com:2888:3888
 ## Kafka
 
 ### Broker Configuration
-	zookeeper.connect
-	broker.id
-		
+```
+zookeeper.connect
+broker.id
+```	
 
 
