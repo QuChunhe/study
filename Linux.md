@@ -41,6 +41,7 @@ vm.max_map_count = 1048575
 ```
 ```
  sysctl -p
+ sysctl -p --system
 ```
 cat /proc/vmstat | egrep "dirty|writeback"
 
