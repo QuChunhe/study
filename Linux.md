@@ -52,6 +52,15 @@ cat /proc/vmstat | egrep "dirty|writeback"
 
 # Command
 
+[The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
+```
+ perf stat -a -- sleep 10
+```
+For real-world applications, here's how I'd interpret the IPC:
+* IPC < 1: likely stall cycle bound, also likely memory bound (more PMCs can confirm). Stall cycles are when the CPU isn't making forward progress, likely because it's waiting on memory I/O. In this case, look to tune memory usage: allocate fewer or smaller objects, do zero copy, look at NUMA and memory placement tuning. A CPU flame graph will show which code is on-CPU during these stall cycles, and should be clues for were to look for memory usage.
+* IPC > 1: likely instruction bound. Look to tune instructions: a CPU flame graph will show which code is on-CPU doing instructions: find ways to reduce executed code.
+
+
 top -Hp pid
 
 pidstat 1
