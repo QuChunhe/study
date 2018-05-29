@@ -4,10 +4,6 @@
 [Linux Performance Analysis in 60,000 Milliseconds](https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55)
 
 
-The	USE	Method	
-- Utilization: busy time
-- Saturation: queue length or queued time
-- Errors: easy to interpret (objective)
 
 # Setting
 
@@ -50,7 +46,17 @@ cat /proc/vmstat | egrep "dirty|writeback"
 	nr_writeback_temp 0
 
 
-# Command
+# Performance
+
+[The USE Method](http://www.brendangregg.com/usemethod.html)
+The USE Method can be summarized as:  For every resource, check utilization, saturation, and errors.
+
+Terminology definitions:
+* resource: all physical server functional components (CPUs, disks, busses, ...) [1]
+* utilization: the average time that the resource was busy servicing work [2]
+* saturation: the degree to which the resource has extra work which it can't service, often queued
+* errors: the count of error events
+
 
 [The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
 ```
