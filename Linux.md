@@ -54,6 +54,7 @@ cat /proc/vmstat | egrep "dirty|writeback"
 
 [The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
 ```
+ yum install perf.x86_64
  perf stat -a -- sleep 10
 ```
 For real-world applications, here's how I'd interpret the IPC:
