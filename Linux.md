@@ -53,6 +53,7 @@ cat /proc/vmstat | egrep "dirty|writeback"
 
 # Performance
 
+## Methodologies  
 [The USE Method](http://www.brendangregg.com/usemethod.html)
 The USE Method can be summarized as:  For every resource, check utilization, saturation, and errors.
 
@@ -62,6 +63,10 @@ Terminology definitions:
 * saturation: the degree to which the resource has extra work which it can't service, often queued
 * errors: the count of error events
 
+
+### Monitoring
+
+#### CPU
 
 [The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
 ```
@@ -86,6 +91,8 @@ vmstat -s
 
 iostat -xz 1
 
+
+#### Network
 netstat -antp
 
 netstat -nltp
@@ -112,6 +119,13 @@ lscpu
 more /proc/cpuinfo
 
 cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+
+
+#### IO
+
+#### Memory
+
+
 
 # Command
 
