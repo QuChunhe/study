@@ -75,6 +75,9 @@ pidstat 1
 mpstat -P ALL 1
 
 free -h
+cat /proc/meminfo
+vmstat -s
+
 
 iostat -xz 1
 
@@ -109,4 +112,10 @@ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
 
 ```
 systemctl enable iptables.service
+```
+
+```
+lscpu
+
+lsof
 ```
