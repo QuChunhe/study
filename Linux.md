@@ -140,6 +140,11 @@ cat /proc/meminfo
 
 ```
 systemctl enable iptables.service
+systemctl disable rabbitmq-server.service
+systemctl list-unit-files --state=enabled
+
+systemctl stop rabbitmq-server.service
+
 ```
 
 ```
