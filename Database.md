@@ -3,7 +3,21 @@
 
 -[Spider Server System Variables](https://mariadb.com/kb/en/library/spider-server-status-variables/)
 
+```
+SHOW SLAVE STATUS\G;
+START SLAVE;
+STOP SLAVE;
 
+SHOW BINARY LOGS
+
+SHOW BINLOG EVENTS
+
+SHOW MASTER STATUS
+
+SHOW SLAVE HOSTS 
+
+
+```
 
 
 ## NoSQL
