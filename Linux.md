@@ -80,7 +80,7 @@ For real-world applications, here's how I'd interpret the IPC:
 * IPC < 1: likely stall cycle bound, also likely memory bound (more PMCs can confirm). Stall cycles are when the CPU isn't making forward progress, likely because it's waiting on memory I/O. In this case, look to tune memory usage: allocate fewer or smaller objects, do zero copy, look at NUMA and memory placement tuning. A CPU flame graph will show which code is on-CPU during these stall cycles, and should be clues for were to look for memory usage.
 * IPC > 1: likely instruction bound. Look to tune instructions: a CPU flame graph will show which code is on-CPU doing instructions: find ways to reduce executed code.
 
-
+```
 top -Hp pid
 
 pidstat 1
@@ -92,10 +92,13 @@ cat /proc/meminfo
 vmstat -s
 vmstat -w 1
 
-iostat -xz 1
 
+
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+```
 
 #### Network
+```
 netstat -antp
 
 netstat -nltp
@@ -121,8 +124,10 @@ lscpu
 
 more /proc/cpuinfo
 
-cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+ethtool eth0 
 
+ iotop –d 5 -P
+```
 
 #### IO
 
@@ -131,6 +136,10 @@ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
 /usr/bin/time -v date
 
 cat /proc/meminfo
+
+iostat -xz 1
+
+iotop –d 5 -P
 ```
 #### Memory
 
