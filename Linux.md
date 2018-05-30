@@ -6,6 +6,9 @@
 
 [Linux System and Performance Monitoring](http://www.ufsdump.org/papers/linuxcon2010-linux-monitoring.pdf)
 
+应用类型
+* IO密集型(IO Bound)
+* CPU密集型(CPU Bound)
 
 [宋宝华：网上坑爹的Linux资料汇总之内存管理](https://mp.weixin.qq.com/s/4N6MxrR3t68WqJhaOcDJ2Q)  
 以文件系统中文件为背景的称为cache，以裸分区/dev/sdax等为背景称为buffer
@@ -87,7 +90,7 @@ mpstat -P ALL 1
 free -h
 cat /proc/meminfo
 vmstat -s
-
+vmstat -w 1
 
 iostat -xz 1
 
@@ -123,6 +126,12 @@ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
 
 #### IO
 
+```
+#page size
+/usr/bin/time -v date
+
+cat /proc/meminfo
+```
 #### Memory
 
 
