@@ -72,3 +72,6 @@ There are three primary methods of sending messages:
 - Asynchronous send
 
 
+Setting session.timeout.ms lower than the default will allow consumer groups to detect and recover from failure
+sooner, but may also cause unwanted rebalances as a result of consumers taking longer to complete the poll loop or garbage collection. Setting session.timeout.ms higher will reduce the chance of accidental rebalance, but also means it will take
+longer to detect a real failure.
