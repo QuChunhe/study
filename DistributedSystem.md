@@ -71,7 +71,15 @@ There are three primary methods of sending messages:
 - Synchronous send
 - Asynchronous send
 
-
+[73]
 Setting session.timeout.ms lower than the default will allow consumer groups to detect and recover from failure
 sooner, but may also cause unwanted rebalances as a result of consumers taking longer to complete the poll loop or garbage collection. Setting session.timeout.ms higher will reduce the chance of accidental rebalance, but also means it will take
 longer to detect a real failure.
+
+
+[75]
+receive.buffer.bytes and send.buffer.bytes: It can be a good idea to increase those when producers or consumers communicate with brokers in a different datacenter, because those network links typically have higher latency and lower bandwidth.
+
+
+[77]
+By setting auto.commit.offset=false, offsets will only be committed when the application explicitly chooses to do so. The simplest and most reliable of the commit APIs is commitSync().
