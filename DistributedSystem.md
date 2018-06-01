@@ -66,6 +66,8 @@ zookeeper.connect
 broker.id
 ```	
 
+#### Neha Narkhede, Gwen Shapira, and Todd Palino. Kafka: The Definitive Guide. O’Reilly Media, Inc. 2017
+
 There are three primary methods of sending messages:
 - Fire-and-forget
 - Synchronous send
