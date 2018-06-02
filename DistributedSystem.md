@@ -85,3 +85,10 @@ receive.buffer.bytes and send.buffer.bytes: It can be a good idea to increase th
 
 [77]
 By setting auto.commit.offset=false, offsets will only be committed when the application explicitly chooses to do so. The simplest and most reliable of the commit APIs is commitSync().
+
+
+[78]~[80]  
+Combining Synchronous and Asynchronous Commits
+- commitSync() will retry the commit until it either succeeds or encounters a nonretriable failure,
+- commitAsync() will not retry
+
