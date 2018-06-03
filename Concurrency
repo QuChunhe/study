@@ -1,7 +1,5 @@
 
 
-[Spider Server System Variables](https://mariadb.com/kb/en/library/spider-server-status-variables/)
-
 # Books
 
 [Allen B. Downey. The Little Book of Semaphores. Second Edition. 2007](http://linuxinsight.com/files/downey05semaphores.pdf)  
@@ -20,7 +18,8 @@ the order of events
 * cache，数据不一致
 
 # Web
-[Spider Server System Variables](https://mariadb.com/kb/en/library/spider-server-status-variables/)
+
+
 [Effective Concurrency](https://herbsutter.com/category/effective-concurrency/)
 
 [The Pillars of Concurrency](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985)
