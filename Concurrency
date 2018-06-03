@@ -2,7 +2,7 @@
 
 # Books
 
-[Allen B. Downey. The Little Book of Semaphores. Second Edition. 2007](http://linuxinsight.com/files/downey05semaphores.pdf)  
+ 
 
 [1]
 “synchronization” refers to relationships among events—any number of events, and any kind of relationship (before, during,
@@ -18,7 +18,7 @@ the order of events
 * cache，数据不一致
 
 # Web
-
+[sina](https://github.com/QuChunhe/study/edit/master/Database.md)
 
 [Effective Concurrency](https://herbsutter.com/category/effective-concurrency/)
 
