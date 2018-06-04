@@ -22,6 +22,12 @@ SHOW SLAVE HOSTS
 
 ## NoSQL
 
+### Cassandra
+
+
+[Data Types](http://cassandra.apache.org/doc/latest/cql/types.html)
+
+
 #### Book
 ###### Expert Apache Cassandra Adminitration, Apress, 2018.
 
