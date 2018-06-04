@@ -92,3 +92,7 @@ Combining Synchronous and Asynchronous Commits
 - commitSync() will retry the commit until it either succeeds or encounters a nonretriable failure,
 - commitAsync() will not retry
 
+[86]  
+Note that consumer.wakeup() is the only consumer method that is safe to call from a different thread.  
+Before exiting the thread, you must call consumer.close().
+
