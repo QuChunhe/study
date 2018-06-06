@@ -60,6 +60,9 @@ server.3=zoo3.example.com:2888:3888
 
 ## Kafka
 
+
+https://github.com/gwenshap/kafka-examples
+
 ### Broker Configuration
 ```
 zookeeper.connect
