@@ -24,4 +24,4 @@ the order of events
 
 [The Pillars of Concurrency](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985)
 
-![](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985?pgno=2)
+![fundamental concurrency requirements and techniques](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985?pgno=2)
