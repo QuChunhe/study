@@ -33,12 +33,6 @@ the order of events
 [How Much Scalability Do You Have or Need?](http://www.drdobbs.com/parallel/how-much-scalability-do-you-have-or-need/201202924)
 
 
-
-| 左对齐 | 居中  | 右对齐 | |
-| :------------ |:---------------:| -----:|
-
-
-
 |Order  |O(1): Single-Core|O(K): Fixed|O(N): Scalable
 | :------------ | :------------ | :------------ | :------------| 
 |Tagline |	One thing at a time |	Explicit threading |	Re-enable the free lunch|
