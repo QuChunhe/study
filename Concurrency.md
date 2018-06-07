@@ -36,7 +36,7 @@ the order of events
 |Order  |O(1): Single-Core|O(K): Fixed|O(N): Scalable
 | :------------ | :------------ | :------------ | :------------| 
 |Tagline |	One thing at a time |	Explicit threading |	Re-enable the free lunch|
-|Summary |	Sequential applications, and bottlenecked parallel applications |	Explicitly express how much work can be done in parallel 	|Express lots of latent concurrency in a way that can be efficiently mapped to N cores|  
+|Summary |	Sequential applications, and bottlenecked parallel applications |	Explicitly express how much work can be done in parallel|Express lots of latent concurrency in a way that can be efficiently mapped to N cores|  
 |Examples |Multithreaded code convoyed on a global lock or message queue, occasional or intermittent background work | Pipelining, hardwired division of tasks, regular or continuous background computation |Tree traversal, quicksort, compilation|  
 |Applicability |	Single-core hardware, single-threaded OS, or nonCPU-bound app |	Hardware with fixed concurrency, or app whose CPU-bound parts have limited scalability |	Hardware with variable (esp. growing) concurrency, and app with CPU-bound parts that are scalably parallelizable|
 |Examples |	Code targeting legacy hardware, small embedded systems, single-core game consoles; simple text processor |	Game targeting one multicore game console generation; code whose key operations are order-sensitive (e.g., can be pipelined but not fully parallelized) |	Mainstream desktop or server software with CPU-bound features and targeting commodity hardware or future upgradeable game consoles|
