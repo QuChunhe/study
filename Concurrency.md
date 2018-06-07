@@ -20,9 +20,12 @@ the order of events
 
 
 # Web
+
+http://www.gotw.ca/publications/index.htm
+
 [Effective Concurrency](https://herbsutter.com/category/effective-concurrency/)
 
-[The Pillars of Concurrency](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985)
+[1 The Pillars of Concurrency](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985)
 
 ![fundamental concurrency requirements and techniques](https://github.com/QuChunhe/study/blob/master/pics/the-pillars-of-concurrency-table1.gif)
 
@@ -30,7 +33,7 @@ the order of events
 * Pillar 2: Throughput and Scalability Via Concurrent Collections
 * Pillar 3: Consistency Via Safely Shared Resources
 
-[How Much Scalability Do You Have or Need?](http://www.drdobbs.com/parallel/how-much-scalability-do-you-have-or-need/201202924)
+[2 How Much Scalability Do You Have or Need?](http://www.drdobbs.com/parallel/how-much-scalability-do-you-have-or-need/201202924)
 
 
 |Order  |O(1): Single-Core|O(K): Fixed|O(N): Scalable
@@ -46,3 +49,6 @@ the order of events
  * Exploit parallelism in data structures: For example, tree traversal can often exploit the independence in each node's subtrees. Compilation can exploit independence at several levels in the structure of source code, from coarse-grained independence among source files to finer-grained independence among classes or methods within a file.
 
 
+[3 Use Critical Sections (Preferably Locks) to Eliminate Races](http://www.drdobbs.com/cpp/use-critical-sections-preferably-locks-t/201804238)
+
+A "critical section" is a region of code that shall execute in isolation with respect to some or all other code in the program, and every kind of synchronization you've ever heard of is a way to express critical sections.
