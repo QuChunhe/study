@@ -23,3 +23,5 @@ the order of events
 [Effective Concurrency](https://herbsutter.com/category/effective-concurrency/)
 
 [The Pillars of Concurrency](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985)
+
+![](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985?pgno=2)
