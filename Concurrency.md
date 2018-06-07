@@ -25,3 +25,7 @@ the order of events
 [The Pillars of Concurrency](http://www.drdobbs.com/parallel/the-pillars-of-concurrency/200001985)
 
 ![fundamental concurrency requirements and techniques](https://github.com/QuChunhe/study/blob/master/pics/the-pillars-of-concurrency-table1.gif)
+
+* Pillar 1: Responsiveness and Isolation Via Asynchronous Agents
+* Pillar 2: Throughput and Scalability Via Concurrent Collections
+* Pillar 3: Consistency Via Safely Shared Resources
