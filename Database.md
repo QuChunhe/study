@@ -24,6 +24,7 @@ SHOW SLAVE HOSTS
 
 ### Cassandra
 
+[CQL COPY](https://docs.datastax.com/en/cql/3.3/cql/cql_reference/cqlshCopy.html?hl=copy)
 
 [Data Types](http://cassandra.apache.org/doc/latest/cql/types.html)
 
