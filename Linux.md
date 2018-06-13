@@ -48,11 +48,16 @@ vm.max_map_count = 1048575
  sysctl -p --system
 ```
 cat /proc/vmstat | egrep "dirty|writeback"
+```
+nr_dirty 3875
+nr_writeback 29
+nr_writeback_temp 0
+```
+```
+ulimit -a
 
-	nr_dirty 3875
-	nr_writeback 29
-	nr_writeback_temp 0
-
+/etc/security/limits.conf
+```
 
 # Performance
 
