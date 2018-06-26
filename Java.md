@@ -32,4 +32,17 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:206)
 	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:206)
 
+fix OutOfMemoryError problems
+
+try (Connection conn = mysqlDataSource.getConnection();
+     Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                                           ResultSet.CONCUR_READ_ONLY)) {
+    stmt.setFetchSize(fetchSize);
+    try (ResultSet rs = stmt.executeQuery(sql)) {
+        rs.setFetchSize(fetchSize);
+	// read rs
+    }
+} catch (SQLException e) {
+    //process error
+}
 ```
