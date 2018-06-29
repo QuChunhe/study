@@ -31,13 +31,28 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
 	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:206)
 	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:206)
-
+```
 fix OutOfMemoryError problems
-
+* 设置连接属性useCursorFetch=true ,statement以TYPE_FORWARD_ONLY打开，再设置fetch size参数，表示采用服务器端游标，每次从服务器取fetch_size条数据
+```java
 try (Connection conn = mysqlDataSource.getConnection();
      Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
                                            ResultSet.CONCUR_READ_ONLY)) {
     stmt.setFetchSize(fetchSize);
+    try (ResultSet rs = stmt.executeQuery(sql)) {
+        rs.setFetchSize(fetchSize);
+	// read rs
+    }
+} catch (SQLException e) {
+    //process error
+}
+```
+* stmt.setFetchSize(Integer.MIN_VALUE);
+```java
+try (Connection conn = mysqlDataSource.getConnection();
+     Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                                           ResultSet.CONCUR_READ_ONLY)) {
+    stmt.setFetchSize(Integer.MIN_VALUE);
     try (ResultSet rs = stmt.executeQuery(sql)) {
         rs.setFetchSize(fetchSize);
 	// read rs
