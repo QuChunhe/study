@@ -100,6 +100,9 @@ vmstat -w 1
 
 
 cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+tuned-adm list
+tuned-adm active
+tuned-adm profile latency-performance
 ```
 
 #### Network
