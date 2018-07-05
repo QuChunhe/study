@@ -69,6 +69,15 @@ zookeeper.connect
 broker.id
 ```	
 
+kafka-run-class.sh
+```
+LOG_DIR="/home/admkafka/logs"
+```
+
+```
+nohup /usr/local/kafka_2.12-1.1.0/bin/kafka-server-start.sh /usr/local/kafka_2.12-1.1.0/config/server.properties &
+nohup /usr/local/kafka_2.12-1.1.0/bin/zookeeper-server-start.sh /usr/local/kafka_2.12-1.1.0/config/zookeeper.properties &
+```
 #### Neha Narkhede, Gwen Shapira, and Todd Palino. Kafka: The Definitive Guide. O’Reilly Media, Inc. 2017
 
 There are three primary methods of sending messages:
