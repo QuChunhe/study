@@ -299,4 +299,12 @@ firewall-cmd --zone=public --remove-port=80/tcp --permanent
 ```
 #列出所有zone
 firewall-cmd --get-zones
+#增加一个zone
+firewall-cmd --new-zone=kafka --permanet 
+#重启防火墙
+firewall-cmd --complete-reload 
+#设置默认为kafka
+firewall-cmd --set-default-zone=kafka
+#查看默认的zone
+firewall-cmd --get-default-zone
 ```
