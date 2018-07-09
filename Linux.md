@@ -252,6 +252,8 @@ lsof
 
 # Firewall
 
+[firewall-cmd](https://firewalld.org/documentation/man-pages/firewall-cmd.html)
+
 
 
 1、firewalld的基本使用  
@@ -286,7 +288,8 @@ lsof
  
 那怎么开启一个端口呢  
 添加  
-firewall-cmd --zone=public --add-port=80/tcp --permanent    （--permanent永久生效，没有此参数重启后失效）   
+firewall-cmd --zone=public --add-port=80/tcp --permanent    （--permanent永久生效，没有此参数重启后失效）  
+firewall-cmd --zone=public --add-service=http --permanent
 重新载入  
 firewall-cmd --reload  
 查看  
@@ -294,7 +297,11 @@ firewall-cmd --zone=public --query-port=80/tcp
 删除  
 firewall-cmd --zone=public --remove-port=80/tcp --permanent  
 
+```
+firewall-cmd --zone=public --list-all
+firewall-cmd --get-active-zones
 
+```
 
 ```
 #列出所有zone
@@ -307,4 +314,36 @@ firewall-cmd --complete-reload
 firewall-cmd --set-default-zone=kafka
 #查看默认的zone
 firewall-cmd --get-default-zone
+#要得到所有区域的配置
+firewall-cmd --list-all-zones
+
+#要查看默认的可用服务
+firewall-cmd --get-services
+
+#在同一台服务器上将 80 端口的流量转发到 12345 端口
+firewall-cmd --zone="public" --add-forward-port=port=80:proto=tcp:toport=12345
+
+将端口转发到另外一台服务器上
+firewall-cmd --zone=public --add-masquerade
+firewall-cmd --zone="public" --add-forward-port=port=80:proto=tcp:toport=8080:toaddr=123.456.78.9
+
+```
+
+
+[firewalld.richlanguage](https://jpopelka.fedorapeople.org/firewalld/doc/firewalld.richlanguage.html)
+```
+firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address=192.168.0.14 accept'
+
+firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.10" port port=22 protocol=tcp reject'
+
+firewall-cmd --zone=public --add-rich-rule 'rule family=ipv4 source address=10.1.0.3 forward-port port=80 protocol=tcp to-port=6532'
+
+firewall-cmd --zone=public --add-rich-rule 'rule family=ipv4 forward-port port=80 protocol=tcp to-port=8080 to-addr=172.31.4.2'
+
+
+firewall-cmd --list-rich-rules
+
+firewall-cmd --direct --get-all-chains
+firewall-cmd --direct --get-all-rules
+
 ```
