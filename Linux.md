@@ -293,3 +293,10 @@ firewall-cmd --reload
 firewall-cmd --zone=public --query-port=80/tcp  
 删除  
 firewall-cmd --zone=public --remove-port=80/tcp --permanent  
+
+
+
+```
+#列出所有zone
+firewall-cmd --get-zones
+```
