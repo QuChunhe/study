@@ -41,6 +41,9 @@ net.ipv4.tcp_wmem = 4096 65536 16777216
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_max_syn_backlog = 4096
 
+# Increase number of incoming connections
+net.core.somaxconn = 4096
+
 vm.max_map_count = 1048575
 ```
 ```
