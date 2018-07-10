@@ -350,3 +350,11 @@ firewall-cmd --direct --get-all-chains
 firewall-cmd --direct --get-all-rules
 
 ```
+
+# iptables
+
+```
+vim /etc/sysconfig/iptables
+systemctl restart iptables.service
+systemctl status iptables.service
+```
