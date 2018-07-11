@@ -248,7 +248,10 @@ lscpu
 lsof
 ```
 
-
+```
+groupadd mariadb
+useradd -s /sbin/nologin mariadb -g mariadb
+```
 
 
 
