@@ -397,4 +397,7 @@ systemctl status iptables.service
 yum install epel-release
 yum install ntfs-3g
 efibootmgr -v
+
+sudo grub-install /dev/sda
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
