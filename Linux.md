@@ -391,3 +391,10 @@ vim /etc/sysconfig/iptables
 systemctl restart iptables.service
 systemctl status iptables.service
 ```
+# Install
+
+```
+yum install epel-release
+yum install ntfs-3g
+efibootmgr -v
+```
