@@ -18,3 +18,6 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009
 
 Three principal approaches to inference guide modern data analysis: frequentist, Bayesian, and likelihood.
+
+
+empirical Bayes (EB)
