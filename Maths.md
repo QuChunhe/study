@@ -11,3 +11,10 @@ a = sigma algebra induced by  outer measure
 B belongs  to a
 
 metric outer measure => Borel  subset  of R^n are Lebesgue measurable
+
+
+# Bayesian Statistics
+
+Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009
+
+Three principal approaches to inference guide modern data analysis: frequentist, Bayesian, and likelihood.
