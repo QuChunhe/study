@@ -21,3 +21,7 @@ Three principal approaches to inference guide modern data analysis: frequentist,
 
 
 empirical Bayes (EB)
+
+
+
+K. Krishnamoorthy， Handbook of Statistical Distributions with Applications Second Edition，CRC Press， 2016
