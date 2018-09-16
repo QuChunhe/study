@@ -15,13 +15,15 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 # Bayesian Statistics
 
-Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009
+Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
 
-Three principal approaches to inference guide modern data analysis: frequentist, Bayesian, and likelihood.
-
-
-empirical Bayes (EB)
+Three principal approaches to inference guide modern data analysis: frequentist, Bayesian, and likelihood.  
 
 
+empirical Bayes (EB)  
 
-K. Krishnamoorthy， Handbook of Statistical Distributions with Applications Second Edition，CRC Press， 2016
+In a nutshell, the Likelihood Principle states that once the data value x has been observed, the likelihood function L(θ|x) contains all relevant experimental information delivered by x about the unknown parameter θ.  
+
+
+
+K. Krishnamoorthy， Handbook of Statistical Distributions with Applications Second Edition，CRC Press， 2016  
