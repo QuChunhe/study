@@ -24,6 +24,8 @@ empirical Bayes (EB)
 
 In a nutshell, the Likelihood Principle states that once the data value x has been observed, the likelihood function L(θ|x) contains all relevant experimental information delivered by x about the unknown parameter θ.  
 
+Many of these advantages are presented in detail in the popular textbook by Berger
+* Bayesian methods provide the user with the ability to formally incorporate prior information.
 
 
 K. Krishnamoorthy， Handbook of Statistical Distributions with Applications Second Edition，CRC Press， 2016  
