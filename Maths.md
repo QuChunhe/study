@@ -26,6 +26,11 @@ In a nutshell, the Likelihood Principle states that once the data value x has be
 
 Many of these advantages are presented in detail in the popular textbook by Berger
 * Bayesian methods provide the user with the ability to formally incorporate prior information.
-
+* Inferences are conditional on the actual data.
+* The reason for stopping the experimentation does not affect Bayesian inference.
+* Bayesian answers are more easily interpretable by nonspecialists.
+* All Bayesian analyses follow directly from the posterior; no separate theories of estimation, testing, multiple comparisons, etc. are needed.
+* Any question can be directly answered through Bayesian analysis.
+* Bayes and EB procedures possess numerous optimality properties.
 
 K. Krishnamoorthy， Handbook of Statistical Distributions with Applications Second Edition，CRC Press， 2016  
