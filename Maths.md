@@ -33,4 +33,7 @@ Many of these advantages are presented in detail in the popular textbook by Berg
 * Any question can be directly answered through Bayesian analysis.
 * Bayes and EB procedures possess numerous optimality properties.
 
+
+The most basic Bayesian model has two stages, with a likelihood specification Y |θ ∼ f(y|θ) and a prior specification θ ∼ π(θ), where either Y or θ can be vectors.
+
 K. Krishnamoorthy， Handbook of Statistical Distributions with Applications Second Edition，CRC Press， 2016  
