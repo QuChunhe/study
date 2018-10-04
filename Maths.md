@@ -39,4 +39,7 @@ The most basic Bayesian model has two stages, with a likelihood specification Y 
 K. Krishnamoorthy， Handbook of Statistical Distributions with Applications Second Edition，CRC Press， 2016  
 
 
-Peter D. Hoff，A First Course in Bayesian Statistical Methods，Springer， 2009
+Peter D. Hoff，A First Course in Bayesian Statistical Methods，Springer， 2009  
+
+
+Bradley Efron and Trevor Hastie, Computer Age Statistical Inference: Algorithms, Evidence, and Data Science, Cambridge University Press, 2016
