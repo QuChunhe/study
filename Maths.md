@@ -43,3 +43,6 @@ Peter D. Hoff，A First Course in Bayesian Statistical Methods，Springer， 200
 
 
 Bradley Efron and Trevor Hastie, Computer Age Statistical Inference: Algorithms, Evidence, and Data Science, Cambridge University Press, 2016
+
+
+Bayesian Inference(http://www.stat.cmu.edu/~larry/=sml/Bayes.pdf)
