@@ -133,3 +133,15 @@ hadoop fs -copyFromLocal spark-2.4.0-bin-custom-spark.tgz  hdfs://master.hadoop:
 ### Configuration
 
 vim conf/spark-env.sh
+```
+MESOS_NATIVE_JAVA_LIBRARY=/usr/local/mesos/lib/libmesos.so
+SPARK_EXECUTOR_URI=hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-spark.tgz
+SPARK_LOG_DIR=hdfs://master.hadoop:10000/spark/logs
+```
+
+vim conf/spark-defaults.conf
+```
+spark.executor.uri  hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-spark.tgz
+spark.master        mesos://192.168.1.5:5050
+spark.eventLog.dir  hdfs://master.hadoop:10000/spark/logs
+```
