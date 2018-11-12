@@ -127,3 +127,9 @@ Before exiting the thread, you must call consumer.close().
 build/mvn -Pmesos -DskipTests clean package
 
 [Running Spark on Mesos](https://spark.apache.org/docs/latest/running-on-mesos.html)
+
+hadoop fs -copyFromLocal spark-2.4.0-bin-custom-spark.tgz  hdfs://master.hadoop:10000/spark/lib/
+
+### Configuration
+
+vim conf/spark-env.sh
