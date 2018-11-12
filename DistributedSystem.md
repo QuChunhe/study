@@ -134,9 +134,17 @@ hadoop fs -copyFromLocal spark-2.4.0-bin-custom-spark.tgz  hdfs://master.hadoop:
 
 vim conf/spark-env.sh
 ```
+# Options read by executors and drivers running inside the cluster
+# - SPARK_LOCAL_IP, to set the IP address Spark binds to on this node
+# - SPARK_PUBLIC_DNS, to set the public DNS name of the driver program
+# - SPARK_CLASSPATH, default classpath entries to append
+# - SPARK_LOCAL_DIRS, storage directories to use on this node for shuffle and RDD data
+# - MESOS_NATIVE_JAVA_LIBRARY, to point to your libmesos.so if you use Mesos
 MESOS_NATIVE_JAVA_LIBRARY=/usr/local/mesos/lib/libmesos.so
 SPARK_EXECUTOR_URI=hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-spark.tgz
 SPARK_LOG_DIR=hdfs://master.hadoop:10000/spark/logs
+SPARK_LOCAL_IP=192.168.1.5
+SPARK_LOCAL_DIRS=/home/hadoop/spark
 ```
 
 vim conf/spark-defaults.conf
