@@ -108,3 +108,18 @@ Combining Synchronous and Asynchronous Commits
 Note that consumer.wakeup() is the only consumer method that is safe to call from a different thread.  
 Before exiting the thread, you must call consumer.close().
 
+
+
+
+
+
+## Spark
+
+### Build
+
+#if use scala 2.12
+./dev/change-scala-version.sh 2.12
+
+build/mvn -Pmesos -DskipTests clean package
+
+Running Spark on Mesos(https://spark.apache.org/docs/latest/running-on-mesos.html)
