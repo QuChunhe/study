@@ -145,3 +145,11 @@ spark.executor.uri  hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-
 spark.master        mesos://192.168.1.5:7077
 spark.eventLog.dir  hdfs://master.hadoop:10000/spark/logs
 ```
+
+### Run
+
+```
+/usr/local/spark/sbin/start-mesos-dispatcher.sh -m mesos://192.168.1.5:5050 -h 192.168.1.5 --webui-port 8087 --name SparkFramework
+
+http://192.168.1.5:8087/
+```
