@@ -16,7 +16,10 @@
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
-  
+ 
+```
+sysctl -a
+```
 /etc/sysctl.conf
 ```
 vm.swappiness = 1
