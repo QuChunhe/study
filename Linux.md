@@ -53,8 +53,6 @@ vm.max_map_count = 1048575
  sysctl -p
  sysctl -p --system
  
- admweb           hard    memlock         256
-admweb           soft    memlock         256
 ```
 
 
@@ -141,6 +139,13 @@ nr_writeback_temp 0
 ulimit -a
 
 /etc/security/limits.conf
+
+admweb      soft   nofile           655360
+admweb      hard   nofile           655360
+
+admweb           hard    memlock         256
+admweb           soft    memlock         256
+
 ```
 
 # Performance
