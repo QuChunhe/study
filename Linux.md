@@ -143,8 +143,8 @@ ulimit -a
 admweb      soft   nofile           655360
 admweb      hard   nofile           655360
 
-admweb           hard    memlock         256
-admweb           soft    memlock         256
+admweb           hard    memlock         4194304
+admweb           soft    memlock         4194304
 
 ```
 
