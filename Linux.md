@@ -52,6 +52,9 @@ vm.max_map_count = 1048575
 ```
  sysctl -p
  sysctl -p --system
+ 
+ admweb           hard    memlock         256
+admweb           soft    memlock         256
 ```
 
 
