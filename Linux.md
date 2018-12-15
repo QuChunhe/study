@@ -149,6 +149,24 @@ admweb           soft    memlock         67108864
 
 ```
 
+```
+grep Hugepagesize /proc/meminfo
+
+$ grep Hugepagesize /proc/meminfo
+Hugepagesize:     2048 kB
+$
+
+The output shows that the size of a Huge Page on this system is 2MB. This means if a 1GB Huge Pages pool should be allocated, then 512 Huge Pages need to be allocated. The number of Huge Pages can be configured and activated by setting nr_hugepages in the proc file system. For example, to allocate 512 Huge Pages, execute: 
+
+
+# sysctl -w vm.nr_hugepages=512
+
+# grep HugePages_Total /proc/meminfo
+
+
+
+```
+
 # Performance
 
 ## Methodologies  
