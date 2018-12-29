@@ -153,6 +153,33 @@ spark.executor.uri  hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-
 spark.master        mesos://192.168.1.5:7077
 spark.eventLog.dir  hdfs://master.hadoop:10000/spark/logs
 ```
+vim /etc/profile
+```
+SPARK_HOME=/usr/local/spark
+EXPORT SPARK_HOME
+```
+
+configure hostname for every nodes
+vim /etc/hostname
+```
+node7.beijing
+```
+vim /etc/sysconfig/network
+```
+HOSTNAME=node7.beijing
+```
+vim /etc/hosts
+```
+192.168.1.7 node7.beijing
+192.168.1.6 node6.beijing
+192.168.1.5 node5.beijing
+192.168.1.3 node3.beijing
+192.168.1.2 node2.beijing
+```
+
+```
+hostname node5.beijing
+```
 
 ### Run
 
