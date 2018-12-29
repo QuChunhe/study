@@ -159,7 +159,8 @@ SPARK_HOME=/usr/local/spark
 EXPORT SPARK_HOME
 ```
 
-configure hostname for every nodes
+configure hostname for every nodes   
+
 vim /etc/hostname
 ```
 node7.beijing
