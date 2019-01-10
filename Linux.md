@@ -420,6 +420,9 @@ firewall-cmd --direct --get-all-rules
 vim /etc/sysconfig/iptables
 systemctl restart iptables.service
 systemctl status iptables.service
+
+systemctl enable iptables.service
+systemctl disable iptables.service
 ```
 # Install
 
