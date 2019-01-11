@@ -169,6 +169,11 @@ The output shows that the size of a Huge Page on this system is 2MB. This means 
 
 # Performance
 
+```
+yum install sysstat
+yum install iotop
+```
+
 ## Methodologies  
 [The USE Method](http://www.brendangregg.com/usemethod.html)
 The USE Method can be summarized as:  For every resource, check utilization, saturation, and errors.
