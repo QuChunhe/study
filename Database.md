@@ -32,6 +32,17 @@ SHOW SLAVE HOSTS
 [Data Types](http://cassandra.apache.org/doc/latest/cql/types.html)
 
 
+```
+nodetool help
+
+#Rebuild data by streaming from other nodes (similarly to bootstrap)
+nodetool rebuild 
+
+#Repair one or more tables
+nodetool repair
+
+```
+
 #### Book
 ###### Expert Apache Cassandra Adminitration, Apress, 2018.
 
