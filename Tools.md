@@ -1,5 +1,5 @@
 
-# git
+# Git
 
 ```
 git init
@@ -12,4 +12,10 @@ git push -u origin master
 
 git remote add origin git@github.com:QuChunhe/blogs.git
 git push -u origin master
+```
+
+# Maven
+
+```
+ mvn dependency:tree
 ```
