@@ -82,6 +82,21 @@ LOG_DIR="/home/admkafka/logs"
 nohup /usr/local/kafka_2.12-1.1.0/bin/kafka-server-start.sh /usr/local/kafka_2.12-1.1.0/config/server.properties &
 nohup /usr/local/kafka_2.12-1.1.0/bin/zookeeper-server-start.sh /usr/local/kafka_2.12-1.1.0/config/zookeeper.properties &
 ```
+
+Command
+```
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --replication-factor 1 --partitions 1 --topic mysql
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --delete --topic mysql
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --alter --topic mysql --partitions 5
+
+kafka-consumer-groups.sh --bootstrap-server 127.0.0.1:9092  --list
+kafka-consumer-groups.sh --bootstrap-server 127.0.0.1:9092  --describe --group trader
+
+kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic reports --from-beginning
+
+kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic service-request --property print.key=true
+```
 #### Neha Narkhede, Gwen Shapira, and Todd Palino. Kafka: The Definitive Guide. O’Reilly Media, Inc. 2017
 
 There are three primary methods of sending messages:
