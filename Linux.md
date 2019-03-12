@@ -318,7 +318,9 @@ groupadd mariadb
 useradd -s /sbin/nologin mariadb -g mariadb
 ```
 
-
+```
+ssh-keygen -t ecdsa -b 521
+```
 
 
 # Firewall
