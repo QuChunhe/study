@@ -204,3 +204,7 @@ hostname node5.beijing
 
 http://192.168.1.5:8087/
 ```
+
+```
+export PYSPARK_PYTHON=/usr/local/anaconda3/bin/python3
+```
