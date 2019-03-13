@@ -154,3 +154,4 @@ You run the nodetool decommission command to make a node send all its data to th
 [422]  
   There are two good nodetool commands that help you identify performance issues in a cluster: nodetool proxyhistograms and nodetool tablehistograms. Both commands present performance statistics captured by the database in the form of histograms, hence
 the command names.
+
