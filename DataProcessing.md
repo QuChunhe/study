@@ -20,12 +20,21 @@ A. G. Psaltis. Streaming Data: Understanding the real-time pipeline. Manning Pub
 
 ```
 import os
-del os.environ['PYSPARK_SUBMIT_ARGS']
+if 'PYSPARK_SUBMIT_ARGS' in os.environ:
+    del os.environ['PYSPARK_SUBMIT_ARGS']
 
-from pyspark import SparkContext
+from pyspark import SparkContext, SparkConf
 import random
 
-sc =  SparkContext("local", "Pi")
+sc_conf = SparkConf()
+sc_conf.setAppName("Pi")
+sc_conf.setMaster('local')
+sc_conf.set('spark.executor.memory', '1g')
+sc_conf.set('spark.executor.cores', '8')
+sc_conf.set('spark.cores.max', '10')
+sc_conf.set('spark.logConf', True)
+
+sc =  SparkContext(conf=sc_conf)
 
 num_samples = 100000000
 def inside(p):     
