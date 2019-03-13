@@ -45,3 +45,25 @@ pi = 4 * count / num_samples
 print(pi)
 sc.stop()
 ```
+
+
+
+```
+from cassandra.cluster import Cluster
+from cassandra.policies import DCAwareRoundRobinPolicy
+from cassandra.cluster import EXEC_PROFILE_DEFAULT
+from cassandra.cluster import ExecutionProfile
+
+profile = ExecutionProfile(request_timeout=3000)
+cluster = Cluster(contact_points=['192.168.*.*','192.168.*.*'],\
+                  execution_profiles={EXEC_PROFILE_DEFAULT: profile})
+session = cluster.connect()
+session.set_keyspace('revenue_report')
+rows = session.execute("SELECT date, SUM(revenue)\
+                        FROM * \
+                        WHERE date>'2019-02-27'\
+                        GROUP BY date ALLOW FILTERING ")
+for row in rows :
+    print(row[0], " ",row[1])
+cluster.shutdown()
+```
