@@ -13,6 +13,8 @@ B belongs  to a
 metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 
+<<实变函数理论和方法>>
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
