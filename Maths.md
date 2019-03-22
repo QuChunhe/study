@@ -15,6 +15,16 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 <<实变函数理论和方法>>
 
+
+# Statistics
+
+<<统计学方法与数据分析引论>>(<<An Introduction to Statistical Methods and Data Analysis>>)
+  
+  总体：所有测量值的集合 
+  样本：从总体中挑选出来的测量值集合 
+  
+  
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
