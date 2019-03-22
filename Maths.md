@@ -20,8 +20,8 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 <<统计学方法与数据分析引论>>(<<An Introduction to Statistical Methods and Data Analysis>>)
   
-  总体：所有测量值的集合 
-  样本：从总体中挑选出来的测量值集合 
+  总体：所有测量值的集合   
+  样本：从总体中挑选出来的测量值集合   
   
   
 
