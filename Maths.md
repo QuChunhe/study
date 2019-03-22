@@ -23,7 +23,9 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
   总体：所有测量值的集合   
   样本：从总体中挑选出来的测量值集合   
   
+  统计学的目标在于基于从感兴趣的总体抽得的样本的测量信息，对该总体作出推断。
   
+  数据收集方案的设计，数据的概括和统计分析，解释研究结果
 
 # Bayesian Statistics
 
