@@ -28,6 +28,10 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
   数据收集方案的设计，数据的概括和统计分析，解释研究结果
   
   That is, statistics is the science of Learning from Data.
+  
+  Learning from Data: (1) defining the problem, (2) collecting the data, (3) summarizing
+the data, and (4) analyzing the data, interpreting the analyses, and communicating
+the results.
 
 # Bayesian Statistics
 
