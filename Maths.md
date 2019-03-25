@@ -33,6 +33,13 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 the data, and (4) analyzing the data, interpreting the analyses, and communicating
 the results.
 
+
+someone has defined the problem to be examined (Step 1), developed a plan for collecting
+data to address the problem (Step 2), and summarized the data and prepared the
+data for analysis (Step 3). Then following the analysis of the data, the results of the
+analysis must be interpreted and communicated either verbally or in written form
+to the intended audience (Step 4).
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
