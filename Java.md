@@ -1,4 +1,9 @@
 
+# Architecture
+
+架构是系统的梳理和分解，用于更好地构建系统
+
+
 
 [Correct way to find rowcount in Java JDBC](https://stackoverflow.com/questions/13103067/correct-way-to-find-rowcount-in-java-jdbc)
 
