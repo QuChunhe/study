@@ -40,6 +40,10 @@ data for analysis (Step 3). Then following the analysis of the data, the results
 analysis must be interpreted and communicated either verbally or in written form
 to the intended audience (Step 4).
 
+A population is the set of all measurements of interest to the sample collector.
+
+A sample is any subset of measurements selected from the population.
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
