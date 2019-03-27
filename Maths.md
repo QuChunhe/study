@@ -18,6 +18,8 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 # Statistics
 
+[What Educated Citizens Should Know About Statistics and Probability](https://www.ics.uci.edu/~jutts/AmerStat2003.pdf)
+
 <<统计学方法与数据分析引论>>(《An Introduction to Statistical Methods and Data Analysis》)
   
   总体：所有测量值的集合   
