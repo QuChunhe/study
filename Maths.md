@@ -27,7 +27,7 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 4. Common sources of bias in surveys and experiments, such as poor wording of questions, volunteer response, and socially desirable answers.
 5. The idea that coincidences and seemingly very improbable events are not uncommon because there are so many possibilities.
 6. "Confusion of the inverse" in which a conditional probability in one direction is confused with the conditional probability in the other direction.
-7. Understading that variability is natural, and that "normal" is not the same as "averge".
+7. Understading that variability is natural, and that "normal" is not the same as "average".
 
 
 
