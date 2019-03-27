@@ -64,6 +64,12 @@ A population is the set of all measurements of interest to the sample collector.
 
 A sample is any subset of measurements selected from the population.
 
+
+The patterns and trends discovered in the analysis of the data are defined
+as data mining models.
+
+
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
