@@ -24,6 +24,10 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 * A type II error (or error of the second kind) is the failure to reject a false null hypothesis. Examples of type II errors would be a blood test failing to detect the disease it was designed to detect, in a patient who really has the disease; a fire breaking out and the fire alarm does not ring; or a clinical trial of a medical treatment failing to show that the treatment works when really it does.
 
 
+Type I error (False Positive) (Probability = α) 
+
+Type II error(False Negative) (Probability = β)
+
 [What Educated Citizens Should Know About Statistics and Probability](https://www.ics.uci.edu/~jutts/AmerStat2003.pdf)
 
 
