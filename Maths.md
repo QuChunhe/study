@@ -42,7 +42,7 @@ Type II error(False Negative) (Probability = β)
 
 
 
-<<统计学方法与数据分析引论>>(《An Introduction to Statistical Methods and Data Analysis》)
+<<统计学方法与数据分析引论>>(R. Lyman Ott and Michael Longnecker， An Introduction to Statistical Methods and Data Analysis Seventh Edition,Texas A&M University, 2016)
   
   总体：所有测量值的集合   
   样本：从总体中挑选出来的测量值集合 
