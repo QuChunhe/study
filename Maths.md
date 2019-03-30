@@ -88,7 +88,7 @@ In an observational study, the researcher records information concerning the sub
 Observational studies may be dichotomized into either a comparative study or a descriptive study. In a comparative study, two or more methods of achieving a result are compared for effectiveness. In a descriptive study, the major purpose is to characterize
 a population or process based on certain attributes in that population or process.
 
-A problem that may occur in observational studies is assigning causeand-effect relationships to spurious associations between factors.
+A problem that may occur in observational studies is assigning cause-and-effect relationships to spurious associations between factors.
 
 
 
