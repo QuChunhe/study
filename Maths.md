@@ -103,6 +103,9 @@ Observational studies are of three basic types:
 * A retrospective study is a study that observes a population in the present using a sample survey and also collects information about the subjects in the sample regarding the occurrence of specific outcomes that have already taken place.
 
 
+Both prospective and retrospective studies are often comparative in nature. Two specific types of such studies are cohort studies and case-control studies.
+
+
 
 
 
