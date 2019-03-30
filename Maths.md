@@ -97,7 +97,10 @@ a population or process based on certain attributes in that population or proces
 
 A problem that may occur in observational studies is assigning cause-and-effect relationships to spurious associations between factors.
 
-
+Observational studies are of three basic types:
+* A sample survey is a study that provides information about a population at a particular point in time (current information).
+* A prospective study is a study that observes a population in the present using a sample survey and proceeds to follow the subjects in the sample forward in time in order to record the occurrence of specific outcomes.
+* A retrospective study is a study that observes a population in the present using a sample survey and also collects information about the subjects in the sample regarding the occurrence of specific outcomes that have already taken place.
 
 
 
