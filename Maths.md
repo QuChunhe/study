@@ -73,8 +73,11 @@ A population is the set of all measurements of interest to the sample collector.
 A sample is any subset of measurements selected from the population.
 
 
-The patterns and trends discovered in the analysis of the data are defined
-as data mining models.
+The patterns and trends discovered in the analysis of the data are defined as data mining models.
+
+Data collection processes include surveys, experiments, and the examination of existing data from business records, censuses,
+government records, and previous studies. The theory of sample surveys and the theory of experimental designs
+provide excellent methodology for data collection.
 
 
 
