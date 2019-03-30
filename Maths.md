@@ -80,6 +80,9 @@ government records, and previous studies. The theory of sample surveys and the t
 provide excellent methodology for data collection.
 
 
+We will also make a distinction between an experimentalstudy and an observational study.
+
+
 
 # Bayesian Statistics
 
