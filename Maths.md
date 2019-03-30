@@ -84,6 +84,19 @@ We will also make a distinction between an experimentalstudy and an observationa
 
 In an observational study, the researcher records information concerning the subjects under study without any interference with the process that is generating the information. The researcher is a passive observer of the transpiring events. In an experimental study, the researcher actively manipulates certain variables associated with the study, called the explanatory variables, and then records their effects on the response variables associated with the experimental subjects. A severe limitation of observational studies is that the recorded values of the response variables may be affected by variables other than the explanatory variables. These variables are not under the control of the researcher. They are called confounding variables. The effects of the confounding variables and the explanatory variables on the response variable cannot be separated due to the lack of control the researcher has over the physical setting in which the observations are made.
 
+
+Observational studies may be dichotomized into either a comparative study or a descriptive study. In a comparative study, two or more methods of achieving a result are compared for effectiveness. In a descriptive study, the major purpose is to characterize
+a population or process based on certain attributes in that population or process.
+
+
+
+
+
+
+
+
+
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
