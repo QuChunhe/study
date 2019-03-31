@@ -20,6 +20,21 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 [An Exploration of the Cantor Set](https://missouriwestern.edu/orgs/momaa/ChrisShaver-CantorSetPaper4.pdf)
 
+
+
+Properties of the Cantor ternary set C3
+* C3 has uncountably many elements.
+* C3 contains no intervals.
+* C3 is compact.
+* C3 is perfect.
+* C3 is nowhere dense.
+
+So far we have that the Cantor set is a subset of the interval [0, 1] that has uncountably many elementsyet contains no intervals.  It has the cardinality of the real numbers, yet it has zero length.
+
+
+
+
+
 # Statistics
 
 [Type I and type II errors](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)
