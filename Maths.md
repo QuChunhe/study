@@ -16,6 +16,10 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 <<实变函数理论和方法>>
 
 
+[THE CANTOR SET-ABRIEF INTRODUCTION](https://wwwmpa.mpa-garching.mpg.de/~dnelson/storage/dnelson.cantor-set.pdf)
+
+[An Exploration of the Cantor Set](https://missouriwestern.edu/orgs/momaa/ChrisShaver-CantorSetPaper4.pdf)
+
 # Statistics
 
 [Type I and type II errors](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)
