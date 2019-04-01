@@ -163,6 +163,15 @@ Problems Associated with Surveys
 * Survey nonresponse
 * Measurement problems
 
+The most commonly used methods of data collection in sample surveys
+* personal interviews
+* telephone interviews
+* self-administered questionnaire
+* direct observation
+
+
+
+
 
 
 
