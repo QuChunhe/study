@@ -131,14 +131,13 @@ Observational studies are of three basic types:
 * A prospective study is a study that observes a population in the present using a sample survey and proceeds to follow the subjects in the sample forward in time in order to record the occurrence of specific outcomes.
 * A retrospective study is a study that observes a population in the present using a sample survey and also collects information about the subjects in the sample regarding the occurrence of specific outcomes that have already taken place.
 
-
 Both prospective and retrospective studies are often comparative in nature. Two specific types of such studies are cohort studies and case-control studies.
 
+A crucial element in any survey is the manner in which the sample is selected from the population.
 
-
-
-
-
+Target population: The complete collection of objects whose description is the major goal of the study.  
+Sample: A subset of the target population.   
+Sampled population: The complete collection of objects that have the potential of being selected in the sample; the population from which the sample is actually selected.   
 
 
 # Bayesian Statistics
