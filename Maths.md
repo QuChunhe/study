@@ -41,6 +41,9 @@ So far we have that the Cantor set is a subset of the interval [0, 1] that has u
 
 # Statistics
 
+
+Sampling: Design and Analysis by Sharon L. Lohr (1999).
+
 [Type I and type II errors](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)
 
 * A type I error occurs when the null hypothesis (H0) is true, but is rejected. It is asserting something that is absent, a false hit. A type I error may be likened to a so-called false positive (a result that indicates that a given condition is present when it actually is not present).The type I error rate or significance level is the probability of rejecting the null hypothesis given that it is true. It is denoted by the Greek letter α (alpha) and is also called the alpha level. Often, the significance level is set to 0.05 (5%), implying that it is acceptable to have a 5% probability of incorrectly rejecting the null hypothesis
@@ -144,12 +147,21 @@ Sampling frame: The list of sampling units.
 
 
 
+* simple random sampling: The basic design (simple random sampling) consists of selecting a group of n units in such a way that each sample of size n has the same chance of being selected.
+* stratified random sample:
+* Ratio estimation
+* cluster sampling
+* systematic sample
+
+Although we divide the population into groups for both cluster sampling and stratified random sampling, the techniques differ. In
+stratified random sampling, we take a simple random sample within each group, whereas in cluster sampling, we take a simple random sample of groups and then sample all items within the selected groups (clusters).
+
+[What Is a Survey](https://www.whatisasurvey.info/downloads/pamphlet_current.pdf)
 
 
-
-
-
-
+Problems Associated with Surveys
+* Survey nonresponse
+* Measurement problems
 
 
 
