@@ -20,7 +20,11 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 [An Exploration of the Cantor Set](https://missouriwestern.edu/orgs/momaa/ChrisShaver-CantorSetPaper4.pdf)
 
+A set S is said to be perfect if S = S', where S' is the set of all the limit points of S. Inother words, S is perfect if S is a closed set in which every point is a limit point of S.
 
+A set S is said to be nowhere dense if the interior of the closure of S is empty.
+
+a set is perfect if the set is closed and all the points of the set are limit points of the set.
 
 Properties of the Cantor ternary set C3
 * C3 has uncountably many elements.
