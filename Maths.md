@@ -61,13 +61,13 @@ Causality (also referred to as causation, or cause and effect) is what connects 
 [What Educated Citizens Should Know About Statistics and Probability](https://www.ics.uci.edu/~jutts/AmerStat2003.pdf)
 
 
-1. When it can be concluded that a relationship is one of cause and effect, and when it cannot, including the difference between randomized experiments and observational studies.
-2. The difference between statistical signicance and practical importance, especially when using large sample sizes
-3. The difference between finding "no effect" or "no difference" and finding no statistically significant effect or difference, expecially when using small sample size.
-4. Common sources of bias in surveys and experiments, such as poor wording of questions, volunteer response, and socially desirable answers.
-5. The idea that coincidences and seemingly very improbable events are not uncommon because there are so many possibilities.
-6. "Confusion of the inverse" in which a conditional probability in one direction is confused with the conditional probability in the other direction.
-7. Understading that variability is natural, and that "normal" is not the same as "average".
+1. Cause and Effect: When it can be concluded that a relationship is one of cause and effect, and when it cannot, including the difference between randomized experiments and observational studies.
+2. Statistical Significance and Practival Importance: The difference between statistical signicance and practical importance, especially when using large sample sizes
+3. Low Power versus No Effect: The difference between finding "no effect" or "no difference" and finding no statistically significant effect or difference, expecially when using small sample size.
+4. Biases In Surveys: Common sources of bias in surveys and experiments, such as poor wording of questions, volunteer response, and socially desirable answers.
+5.Probable conincidences: The idea that coincidences and seemingly very improbable events are not uncommon because there are so many possibilities.
+6. Confusion of the Inverse: "Confusion of the inverse" in which a conditional probability in one direction is confused with the conditional probability in the other direction.
+7. Averge versus Normal: Understading that variability is natural, and that "normal" is not the same as "average".
 
 
 
