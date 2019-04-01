@@ -138,6 +138,22 @@ A crucial element in any survey is the manner in which the sample is selected fr
 Target population: The complete collection of objects whose description is the major goal of the study.  
 Sample: A subset of the target population.   
 Sampled population: The complete collection of objects that have the potential of being selected in the sample; the population from which the sample is actually selected.   
+Observation unit: The object about which data are collected.   
+Sampling unit: The object that is actually sampled.
+Sampling frame: The list of sampling units.     
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Bayesian Statistics
