@@ -178,6 +178,24 @@ There are two types of variables in a experimental study.
 researcher. 
 The controlled variables form the comparison groups defined by the research hypothesis.
 
+The treatments in an experimental study are the conditions constructed from the factors.
+
+In most cases, we will have several factors, and the treatments are formed by combining levels of the factors. This type of treatment design is called a factorial treatment design.   
+
+This type of experiment has a fractional factorial treatment structure, since only a fraction of the possible treatments are actually used in the experiment.
+
+A special treatment is called the control treatment. This treatment is the benchmark to which the effectiveness of each remaining treatment is compared.
+
+The experimental unit is the physical entity to which the treatment is randomly assigned or the subject that is randomly selected from one of the treatment populations.
+
+Distinct from the experimental unit is the measurement unit. This is the physical entity upon which a measurement is taken. In many experiments, the experimental and measurement units are identical.
+
+The term experimental error is used to describe the variation in the responses among experimental units that are assigned the same treatment and are observed under the same experimental conditions.
+
+
+
+
+
 
 
 
