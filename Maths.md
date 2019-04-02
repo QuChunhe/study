@@ -170,9 +170,13 @@ The most commonly used methods of data collection in sample surveys
 * direct observation
 
 
+designed experiment: A designed experiment is an investigation in which a specified framework is provided in order to observe, measure, and evaluate groups with respect to a designated response.
 
-
-
+There are two types of variables in a experimental study.
+* Controlled variables called factors are selected by the researcher for comparison. 
+* Response variables are measurements or observations that are recorded but not controlled by the
+researcher. 
+The controlled variables form the comparison groups defined by the research hypothesis.
 
 
 
