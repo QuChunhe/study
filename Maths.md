@@ -200,6 +200,15 @@ A design having two blocking variables is called a Latin square design.
 
 The randomized block and Latin square designs are both extensions of the completely randomized design in which the objective is to compare t treatments. The analysis of data for a completely randomized design and for block designs and
 
+One approach for examining the effects of two or more factors on a response is called the one-at-a-time approach. To examine the effect of a single variable, an experimenter varies the levels of this variable while holding the levels of the other independent variables fixed. This process is continued until the effect of each variable on the response has been examined.
+
+Thus, this type of experimentation may produce incorrect results whenever the effect of one factor on the response does not remain the same at all levels of the second factor. In this situation, the factors are said to interact.
+
+When interaction exists among the factors, the lines will either cross or diverge.
+
+Factorial treatment structures are useful for examining the effects of two or more factors on a response, whether or not interaction exists. As before, the choice of the number of levels of each variable and the actual settings of these variables is important.
+
+
 
 
 
