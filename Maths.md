@@ -218,6 +218,7 @@ Factorial treatment structures are useful for examining the effects of two or mo
 
 
 
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
