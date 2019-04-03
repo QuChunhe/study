@@ -209,7 +209,9 @@ When interaction exists among the factors, the lines will either cross or diverg
 Factorial treatment structures are useful for examining the effects of two or more factors on a response, whether or not interaction exists. As before, the choice of the number of levels of each variable and the actual settings of these variables is important.
 
 
+A covariate is a variable that is related to the response variable.
 
+The covariate needs to have a relationship to the response variable, it must be measurable, and it cannot be affected by the treatment.
 
 
 
