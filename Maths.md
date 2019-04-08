@@ -455,9 +455,9 @@ factor analysis 因子分析
 
 factor score 因子得分
 
-factorial designs 析因设计
+factorial designs 析因设计/因子设计
 
-factorial experiment 析因试验
+factorial experiment 析因试验/因子实验
 
 fit 拟合
 
