@@ -316,6 +316,8 @@ case 个案
 
 category 类别
 
+causal factors 因果要素
+
 center of gravity 重心
 
 central tendency 中心趋势
