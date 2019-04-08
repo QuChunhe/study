@@ -15,16 +15,24 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 <<实变函数理论和方法>>
 
+
+[Inverse images and direct images](https://web.northeastern.edu/suciu/U565/MATH4565-sp10-handout1.pdf)
+
+
 [CHAPTER 3 Measurable functions](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes_ch3.pdf)
 
-Measurable functions in measure theory are analogous to continuous functions in  topology.   A  continuous  function  pulls  back  open  sets  to  open  sets,  while  a measurable function pulls back measurable sets to measurable sets
+Measurable functions in measure theory are analogous to continuous functions in  topology. A continuous function pulls back open  sets  to  open  sets,  while  a measurable function pulls back measurable sets to measurable sets
+
+
+
 
 
 [THE CANTOR SET-ABRIEF INTRODUCTION](https://wwwmpa.mpa-garching.mpg.de/~dnelson/storage/dnelson.cantor-set.pdf)
 
 [An Exploration of the Cantor Set](https://missouriwestern.edu/orgs/momaa/ChrisShaver-CantorSetPaper4.pdf)
 
-A set S is said to be perfect if S = S', where S' is the set of all the limit points of S. Inother words, S is perfect if S is a closed set in which every point is a limit point of S.
+A set S is said to be perfect if S = S', where S' is the set of all the limit points of S. Inother words, 
+S is perfect if S is a closed set in which every point is a limit point of S.
 
 A set S is said to be nowhere dense if the interior of the closure of S is empty.
 
@@ -37,7 +45,8 @@ Properties of the Cantor ternary set C3
 * C3 is perfect.
 * C3 is nowhere dense.
 
-So far we have that the Cantor set is a subset of the interval [0, 1] that has uncountably many elementsyet contains no intervals.  It has the cardinality of the real numbers, yet it has zero length.
+So far we have that the Cantor set is a subset of the interval [0, 1] that has uncountably many elementsyet contains no 
+intervals.  It has the cardinality of the real numbers, yet it has zero length.
 
 
 
