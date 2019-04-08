@@ -12,8 +12,11 @@ B belongs  to a
 
 metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
-
 <<实变函数理论和方法>>
+
+[CHAPTER 3 Measurable functions](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes_ch3.pdf)
+
+
 
 
 [THE CANTOR SET-ABRIEF INTRODUCTION](https://wwwmpa.mpa-garching.mpg.de/~dnelson/storage/dnelson.cantor-set.pdf)
