@@ -192,7 +192,7 @@ Distinct from the experimental unit is the measurement unit. This is the physica
 
 The term experimental error is used to describe the variation in the responses among experimental units that are assigned the same treatment and are observed under the same experimental conditions.   
 
-In general, a completely randomized design is used when we are interested n comparing t “treatments” . For each of the treatments, we obtain a sample of observations. The sample sizes ould be different for the individual treatments.   
+In general, a completely randomized design is used when we are interested n comparing t “treatments” . For each of the treatments, we obtain a sample of observations. The sample sizes would be different for the individual treatments.   
 
 In a randomized block design, each treatment appears in every block.  
 
@@ -220,6 +220,18 @@ analysis of covariance
 The field of statistics can be divided into two major branches: descriptive statistics and inferential statistics.
 
 Good descriptive statistics enable us to make sense of the data by reducing a large set of measurements to a few summary measures that provide a good, rough picture of the original measurements.
+
+sampling error
+
+nonsampling error
+
+
+Whether we are describing an observed population or using sampled data to draw an inference from the sample to the population, an insightful description of the data is an important step in drawing conclusions from it.
+
+The two major methods for describing a set of measurements are graphical techniques and numerical descriptive techniques.
+
+
+
 
 
 
