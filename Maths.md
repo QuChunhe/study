@@ -198,7 +198,7 @@ In a randomized block design, each treatment appears in every block.
 
 A design having two blocking variables is called a Latin square design.   
 
-The randomized block and Latin square designs are both extensions of the completely randomized design in which the objective is to compare t treatments. The analysis of data for a completely randomized design and for block designs and
+The randomized block and Latin square designs are both extensions of the completely randomized design in which the objective is to compare t treatments. The analysis of data for a completely randomized design and for block designs.
 
 One approach for examining the effects of two or more factors on a response is called the one-at-a-time approach. To examine the effect of a single variable, an experimenter varies the levels of this variable while holding the levels of the other independent variables fixed. This process is continued until the effect of each variable on the response has been examined.
 
@@ -214,7 +214,12 @@ A covariate is a variable that is related to the response variable.
 The covariate needs to have a relationship to the response variable, it must be measurable, and it cannot be affected by the treatment.
 
 
+analysis of covariance
 
+
+The field of statistics can be divided into two major branches: descriptive statistics and inferential statistics.
+
+Good descriptive statistics enable us to make sense of the data by reducing a large set of measurements to a few summary measures that provide a good, rough picture of the original measurements.
 
 
 
