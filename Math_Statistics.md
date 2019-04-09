@@ -191,6 +191,36 @@ Whether we are describing an observed population or using sampled data to draw a
 The two major methods for describing a set of measurements are graphical techniques and numerical descriptive techniques.
 
 
+pie chart. It is used to display the percentage of the total number of measurements falling into each of the categories of the variable by partitioning a circle. The pie chart can be used to display percentages associated with each category of the variable. 
+* Choose a small number (five or six) of categories for the variable because too many make the pie chart difficult to interpret.
+* Whenever possible, construct the pie chart so that percentages are in either ascending or descending order.
+
+bar chart
+* Label frequencies on one axis and categories of the variable on the other axis.
+* Construct a rectangle at each category of the variable with a height equal to the frequency (number of observations) in the category.
+* Leave a space between each category to connote distinct, separate categories and to clarify the presentation.
+
+
+frequency histogram and the relative frequency histogram
+
+
+There are several comments that should be made concerning histograms. First, the distinction between bar charts and histograms is based on the distinction between qualitative and quantitative variables. Pie charts and bar charts are used to display
+frequency data from qualitative variables; histograms are appropriate for displaying frequency data for quantitative variables.
+
+
+Histograms are most useful for describing data sets when the number of data points is fairly large—say, 50 or more.
+
+* unimodal
+* bimodal
+* uniform
+* symmetric
+* skewed to the right
+* skewed to the left
+
+
+
+
+
 
 
 
