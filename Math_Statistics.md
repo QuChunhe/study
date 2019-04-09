@@ -1,6 +1,9 @@
 
 # Statistics
 
+[Experimental Design and Analysis](https://www.stat.cmu.edu/~hseltman/309/Book/Book.pdf)
+
+[Handbook of Statistical Methods](https://www.itl.nist.gov/div898/handbook/index.htm)
 
 Sampling: Design and Analysis by Sharon L. Lohr (1999).
 
@@ -218,10 +221,9 @@ Histograms are most useful for describing data sets when the number of data poin
 * skewed to the left
 
 
+exploratory data analysis
 
-
-
-
+stem-and-leaf plot
 
 
 
