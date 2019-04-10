@@ -18,6 +18,10 @@ Type I error (False Positive) (Probability = α)
 Type II error(False Negative) (Probability = β)
 
 
+[Null Hypothesis (原假设) and Alternative Hypothesis (备择假设)](https://www.thoughtco.com/null-hypothesis-vs-alternative-hypothesis-3126413)
+
+
+
 [Causality](https://en.wikipedia.org/wiki/Causality)
 
 Causality (also referred to as causation, or cause and effect) is what connects one process, the cause, with another process or state, the effect, where the cause is wholly or partially responsible for the effect; the former is hence said to be a cause of the latter. In general, a process has many causes, which are also said to be causal factors for it, and all lie in its past. An effect can in turn be a cause of, or causal factor for, many other effects, which all lie in its future.
