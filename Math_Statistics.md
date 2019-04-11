@@ -1,6 +1,8 @@
 
 # Statistics
 
+
+[Difference Between Time Series and Cross Sectional Data](https://www.differencebetween.com/difference-between-time-series-and-cross-sectional-data/)
 Panel Data,面板数据,“纵向数据(Longitudinal Data)”，“平行数据”，“TS-CS数据(Time Series-Cross Section)”
 
 Cross-sectional data,截面数据 
