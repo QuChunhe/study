@@ -1,6 +1,15 @@
 
 # Statistics
 
+Panel Data,面板数据,“纵向数据(Longitudinal Data)”，“平行数据”，“TS-CS数据(Time Series-Cross Section)”
+
+Cross-sectional data,截面数据 
+
+
+Time-series data,时序数据
+
+
+
 [Experimental Design and Analysis](https://www.stat.cmu.edu/~hseltman/309/Book/Book.pdf)
 
 [Handbook of Statistical Methods](https://www.itl.nist.gov/div898/handbook/index.htm)
