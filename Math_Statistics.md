@@ -277,15 +277,20 @@ However, we may use the definition of median for small sets of measurements by u
 grouped data median
 
 
-![](https://github.com/QuChunhe/study/blob/master/pics/grouped_data_median.jpg)
+![grouped data median](https://github.com/QuChunhe/study/blob/master/pics/grouped_data_median.jpg)
 
 
+The arithmetic mean, or mean, of a set of measurements is defined to be the sum of the measurements divided by the total number of measurements.
 
 
+The population mean is denoted by the Greek letter m (read “mu’’), and the sample mean is denoted by the symbol y (read
+“y-bar’’).
 
+![grouped data mean](https://github.com/QuChunhe/study/blob/master/pics/grouped_data_mean.jpg)
 
+the extreme values (called outliers) pull the mean in the direction of the outliers to find the balancing point, thus distorting the mean as a measure of the central value.
 
-
+A variation of the mean, called a trimmed mean, drops the highest and lowest extreme values and averages the rest.
 
 # Bayesian Statistics
 
