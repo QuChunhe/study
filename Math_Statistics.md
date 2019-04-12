@@ -251,6 +251,29 @@ blues and purples and help to stimulate enthusiasm by the viewer. On the other h
 6. Don’t underestimate the effectiveness of a simple, straightforward graph.
 
 
+* graphical descriptive measures
+* Numerical descriptive measures
+
+Describing Data on a Single Variable: Measures of Central Tendency
+
+The two most common numerical descriptive measures are measures of central tendency and measures of variability; that is, we seek to describe the center of the distribution of measurements and also how the measurements vary about the center of the distribution. 
+
+We will draw a distinction between numerical descriptive measures for a population, called parameters, and numerical descriptive
+measures for a sample, called statistics.In problems requiring statistical inference, we will not be able to calculate values for various parameters, but we will be able to compute corresponding statistics from the sample and use these quantities to estimate
+the corresponding population parameters.
+
+
+The mode（众数） of a set of measurements is defined to be the measurement that occurs most often (with the highest frequency).
+
+The mode is also commonly used as a measure of popularity that reflects central tendency or opinion.
+
+The median(中位数) of a set of measurements is defined to be the middle value when the measurements are arranged from lowest to highest.
+
+The median is most often used to measure the midpoint of a large set of measurements.
+
+
+
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
