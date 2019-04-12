@@ -322,6 +322,17 @@ central tendency for the data.
 5. It is applicable to quantitative data only.
 
 
+Describing Data on a Single Variable: Measures of Variability
+
+The simplest but least useful measure of data variation is the range.
+
+The pth percentile of a set of n measurements arranged in order of magnitude is that value that has at most p% of the measurements below it and at most (100-p)% above it.
+
+Specific percentiles of interest are the 25th, 50th, and 75th percentiles, often called the lower quartile, the middle quartile (median), and the upper quartile, respectively
+
+The interquartile range (IQR)(四分位间距或者四分差) of a set of measurements is defined to be the difference between the upper and lower quartiles;
+
+IQR = 75th percentile - 25th percentile
 
 
 # Bayesian Statistics
