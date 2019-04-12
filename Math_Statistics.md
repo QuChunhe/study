@@ -277,7 +277,7 @@ However, we may use the definition of median for small sets of measurements by u
 grouped data median
 
 
-
+![](https://github.com/QuChunhe/study/blob/master/pics/grouped_data_median.jpg)
 
 
 
