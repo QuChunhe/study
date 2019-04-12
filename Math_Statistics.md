@@ -29,7 +29,7 @@ Type I error (False Positive) (Probability = α)
 Type II error(False Negative) (Probability = β)
 
 
-[Null Hypothesis (原假设) and Alternative Hypothesis (备择假设)](https://www.thoughtco.com/null-hypothesis-vs-alternative-hypothesis-3126413)
+[Null Hypothesis (原假设或者零假设) and Alternative Hypothesis (备择假设)](https://www.thoughtco.com/null-hypothesis-vs-alternative-hypothesis-3126413)
 
 
 
@@ -241,8 +241,14 @@ exploratory data analysis
 stem-and-leaf plot
 
 
-
-
+General Guidelines for Developing Successful Graphics
+1. Before constructing a graph, set your priorities. What messages should the viewer get?
+2. Choose the type of graph (pie chart, bar graph, histogram, and so on).
+3. Pay attention to the title. One of the most important aspects of a graph is its title. The title should immediately inform the viewer of the point of the graph and draw the eye toward the most important elements of the graph.
+4. Fight the urge to use many type sizes, styles, and colors. The indiscriminate and excessive use of different type sizes, styles, and colors will confuse the viewer. Generally, we recommend using only two typefaces; color changes and italics should be used in only one or two places.
+5. Convey the tone of your graph by using colors and patterns. Intense, warm colors (yellows, oranges, reds) are more dramatic than the
+blues and purples and help to stimulate enthusiasm by the viewer. On the other hand, pastels (particularly grays) convey a conservative, businesslike tone. Similarly, simple patterns convey a conservative tone, whereas busier patterns stimulate more excitement.
+6. Don’t underestimate the effectiveness of a simple, straightforward graph.
 
 
 # Bayesian Statistics
