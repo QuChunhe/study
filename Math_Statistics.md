@@ -292,6 +292,38 @@ the extreme values (called outliers) pull the mean in the direction of the outli
 
 A variation of the mean, called a trimmed mean, drops the highest and lowest extreme values and averages the rest.
 
+
+The answer depends on the skewness of the data. If the distribution is mound-shaped and symmetrical about a single peak, the mode (Mo), median (Md), mean (m), and trimmed mean (TM) will all be the same.
+
+If the distribution is skewed, having a long tail in one direction and a single peak, the mean is pulled in the direction of the tail; the median falls between the mode and the mean; and depending on the degree of trimming, the trimmed mean usually falls between
+the median and the mean.
+
+For some data sets, it will be necessary to use more than one of these measures to provide an accurate descriptive summary of
+central tendency for the data.
+* Mode
+1. It is the most frequent or probable measurement in the data set.
+2. There can be more than one mode for a data set.
+3. It is not influenced by extreme measurements.
+4. Modes of subsets cannot be combined to determine the mode of the complete data set.
+5. For grouped data, its value can change depending on the categories used.
+6. It is applicable for both qualitative and quantitative data.
+* Median
+1. It is the central value; 50% of the measurements lie above it and 50% fall below it.
+2. There is only one median for a data set.
+3. It is not influenced by extreme measurements.
+4. Medians of subsets cannot be combined to determine the median of the complete data set.
+5. For grouped data, its value is rather stable even when the data are organized into different categories.
+6. It is applicable to quantitative data only.
+* Mean
+1. It is the arithmetic average of the measurements in a data set.
+2. There is only one mean for a data set.
+3. Its value is influenced by extreme measurements; trimming can help to reduce the degree of influence.
+4. Means of subsets can be combined to determine the mean of the complete data set.
+5. It is applicable to quantitative data only.
+
+
+
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
