@@ -271,6 +271,19 @@ The median(中位数) of a set of measurements is defined to be the middle value
 
 The median is most often used to measure the midpoint of a large set of measurements.
 
+However, we may use the definition of median for small sets of measurements by using the following convention: The median for an even number of measurements is the average of the two middle values when the measurements are arranged from lowest to highest. When there are an odd number of measurements, the median is still the middle value.
+
+
+grouped data median
+
+
+
+
+
+
+
+
+
 
 
 
