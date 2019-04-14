@@ -55,5 +55,5 @@ So far we have that the Cantor set is a subset of the interval [0, 1] that has u
 intervals.  It has the cardinality of the real numbers, yet it has zero length.
 
 
-
+[The Cantor function](https://warwick.ac.uk/fac/sci/maths/people/staff/oleg_zaboronski/analysisiii/cantor.pdf)
 
