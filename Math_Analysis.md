@@ -26,7 +26,7 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 [CHAPTER 3 Measurable functions](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes_ch3.pdf)
 
-Measurable functions in measure theory are analogous to continuous functions in  topology. A continuous function pulls back open  sets  to  open  sets,  while  a measurable function pulls back measurable sets to measurable sets
+Measurable functions in measure theory are analogous to continuous functions in  topology. A continuous function pulls back open  sets  to  open sets,  while  a measurable function pulls back measurable sets to measurable sets
 
 
 
@@ -51,7 +51,7 @@ Properties of the Cantor ternary set C3
 * C3 is perfect.
 * C3 is nowhere dense.
 
-So far we have that the Cantor set is a subset of the interval [0, 1] that has uncountably many elementsyet contains no 
+So far we have that the Cantor set is a subset of the interval [0, 1] that has uncountably many elements yet contains no 
 intervals.  It has the cardinality of the real numbers, yet it has zero length.
 
 
