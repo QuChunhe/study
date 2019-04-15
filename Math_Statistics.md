@@ -10,7 +10,7 @@ Cross-sectional data,截面数据
 
 Time-series data,时序数据
 
-
+The key difference between time series and cross sectional data is that the time series data focuses on the same variable over a period of time while the cross sectional data focuses on several variables at the same point of time. Furthermore, the time series data consist of observations of a single subject at multiple time intervals whereas, the cross sectional data consist of observations of many subjects at the same point in time.
 
 [Experimental Design and Analysis](https://www.stat.cmu.edu/~hseltman/309/Book/Book.pdf)
 
