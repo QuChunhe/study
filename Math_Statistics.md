@@ -73,7 +73,7 @@ the data, and (4) analyzing the data, interpreting the analyses, and communicati
 the results.
 
 
-someone has defined the problem to be examined (Step 1), developed a plan for collecting
+Someone has defined the problem to be examined (Step 1), developed a plan for collecting
 data to address the problem (Step 2), and summarized the data and prepared the
 data for analysis (Step 3). Then following the analysis of the data, the results of the
 analysis must be interpreted and communicated either verbally or in written form
