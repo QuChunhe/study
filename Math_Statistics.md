@@ -227,17 +227,17 @@ frequency data from qualitative variables; histograms are appropriate for displa
 
 Histograms are most useful for describing data sets when the number of data points is fairly large—say, 50 or more.
 
-* unimodal
-* bimodal
-* uniform
-* symmetric
-* skewed to the right
-* skewed to the left
+* unimodal(单峰)
+* bimodal(双峰)
+* uniform（均匀）
+* symmetric(对称)
+* skewed to the right(偏向右边)
+* skewed to the left(偏向左边)
 
 
-exploratory data analysis
+exploratory data analysis(探索性数据分析)
 
-stem-and-leaf plot
+stem-and-leaf plot(茎叶图)
 
 
 General Guidelines for Developing Successful Graphics
@@ -250,12 +250,12 @@ blues and purples and help to stimulate enthusiasm by the viewer. On the other h
 6. Don’t underestimate the effectiveness of a simple, straightforward graph.
 
 
-* graphical descriptive measures
-* Numerical descriptive measures
+* graphical descriptive measures(图形描述方法)
+* Numerical descriptive measures(数字描述方法)
 
 Describing Data on a Single Variable: Measures of Central Tendency
 
-The two most common numerical descriptive measures are measures of central tendency and measures of variability; that is, we seek to describe the center of the distribution of measurements and also how the measurements vary about the center of the distribution. 
+The two most common numerical descriptive measures are measures of central tendency(集中趋势) and measures of variability(波动性); that is, we seek to describe the center of the distribution of measurements and also how the measurements vary about the center of the distribution. 
 
 We will draw a distinction between numerical descriptive measures for a population, called parameters, and numerical descriptive
 measures for a sample, called statistics.In problems requiring statistical inference, we will not be able to calculate values for various parameters, but we will be able to compute corresponding statistics from the sample and use these quantities to estimate
@@ -279,7 +279,7 @@ grouped data median
 ![grouped data median](https://github.com/QuChunhe/study/blob/master/pics/grouped_data_median.jpg)
 
 
-The arithmetic mean, or mean, of a set of measurements is defined to be the sum of the measurements divided by the total number of measurements.
+The arithmetic mean, or mean(均值), of a set of measurements is defined to be the sum of the measurements divided by the total number of measurements.
 
 
 The population mean is denoted by the Greek letter m (read “mu’’), and the sample mean is denoted by the symbol y (read
@@ -289,7 +289,7 @@ The population mean is denoted by the Greek letter m (read “mu’’), and the
 
 the extreme values (called outliers) pull the mean in the direction of the outliers to find the balancing point, thus distorting the mean as a measure of the central value.
 
-A variation of the mean, called a trimmed mean, drops the highest and lowest extreme values and averages the rest.
+A variation of the mean, called a trimmed mean(切尾均值), drops the highest and lowest extreme values and averages the rest.
 
 
 The answer depends on the skewness of the data. If the distribution is mound-shaped and symmetrical about a single peak, the mode (Mo), median (Md), mean (m), and trimmed mean (TM) will all be the same.
