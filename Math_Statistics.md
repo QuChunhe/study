@@ -323,9 +323,9 @@ central tendency for the data.
 
 Describing Data on a Single Variable: Measures of Variability
 
-The simplest but least useful measure of data variation is the range.
+The simplest but least useful measure of data variation is the range(范围/幅度).
 
-The pth percentile of a set of n measurements arranged in order of magnitude is that value that has at most p% of the measurements below it and at most (100-p)% above it.
+The pth percentile(第p百分位数) of a set of n measurements arranged in order of magnitude is that value that has at most p% of the measurements below it and at most (100-p)% above it.
 
 Specific percentiles of interest are the 25th, 50th, and 75th percentiles, often called the lower quartile, the middle quartile (median), and the upper quartile, respectively
 
