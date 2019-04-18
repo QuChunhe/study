@@ -95,7 +95,7 @@ We will also make a distinction between an experimental study and an observation
 
 In an observational study, the researcher records information concerning the subjects under study without any interference with the process that is generating the information. The researcher is a passive observer of the transpiring events. In an experimental study, the researcher actively manipulates certain variables associated with the study, called the explanatory variables, and then records their effects on the response variables associated with the experimental subjects. A severe limitation of observational studies is that the recorded values of the response variables may be affected by variables other than the explanatory variables. These variables are not under the control of the researcher. They are called confounding variables. The effects of the confounding variables and the explanatory variables on the response variable cannot be separated due to the lack of control the researcher has over the physical setting in which the observations are made.
 
-* explanatory variables:Explanatory variable (or independentvariable) is one that may explain or may cause differences in a responsevariable (or outcomeor dependentvariable)
+* explanatory variables:Explanatory variable (or independent variable) is one that may explain or may cause differences in a response variable (or outcomeor dependent variable)
 * response variables
 * confounding variables: A confounding variable is a variable that: Affects the response variable and also is related to the explanatory variable.A potential confounding variable not measured in the study is called a lurking variable.
 
@@ -152,8 +152,7 @@ designed experiment: A designed experiment is an investigation in which a specif
 
 There are two types of variables in a experimental study.
 * Controlled variables called factors are selected by the researcher for comparison. 
-* Response variables are measurements or observations that are recorded but not controlled by the
-researcher. 
+* Response variables are measurements or observations that are recorded but not controlled by the researcher. 
 The controlled variables form the comparison groups defined by the research hypothesis.
 
 The treatments in an experimental study are the conditions constructed from the factors.
@@ -209,17 +208,17 @@ Whether we are describing an observed population or using sampled data to draw a
 The two major methods for describing a set of measurements are graphical techniques and numerical descriptive techniques.
 
 
-pie chart. It is used to display the percentage of the total number of measurements falling into each of the categories of the variable by partitioning a circle. The pie chart can be used to display percentages associated with each category of the variable. 
+pie chart(饼图). It is used to display the percentage of the total number of measurements falling into each of the categories of the variable by partitioning a circle. The pie chart can be used to display percentages associated with each category of the variable. 
 * Choose a small number (five or six) of categories for the variable because too many make the pie chart difficult to interpret.
 * Whenever possible, construct the pie chart so that percentages are in either ascending or descending order.
 
-bar chart
+bar chart(条形图)和column chart(柱形图)
 * Label frequencies on one axis and categories of the variable on the other axis.
 * Construct a rectangle at each category of the variable with a height equal to the frequency (number of observations) in the category.
 * Leave a space between each category to connote distinct, separate categories and to clarify the presentation.
 
 
-frequency histogram and the relative frequency histogram
+frequency histogram(频率直方图)and the relative frequency histogram(相对频率直方图)
 
 
 There are several comments that should be made concerning histograms. First, the distinction between bar charts and histograms is based on the distinction between qualitative and quantitative variables. Pie charts and bar charts are used to display
