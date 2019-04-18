@@ -334,6 +334,14 @@ The interquartile range (IQR)(四分位间距或者四分差) of a set of measur
 IQR = 75th percentile - 25th percentile
 
 
+In most data sets, we would typically need a minimum of five summary values to provide a minimal description of the data set: smallest value, y(1); lower quartile, Q(.25); median; upper quartile, Q(.75); and largest value, y(n).
+
+To do this, we work with the deviation y_i - ybar of a measurement y_i from the mean y of the set of measurements
+
+The variance of a set of n measurements y1, y2, . . . , yn with mean ybar is the sum of the squared deviations divided by n-1:
+
+
+
 # Bayesian Statistics
 
 Bradley P. Carlin and Thomas A. Louis,  Bayesian Methods for Data Analysis third edition, Taylor & Francis Group 2009  
