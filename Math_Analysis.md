@@ -13,9 +13,13 @@ B belongs  to a
 
 metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
+
+[Modes of Convergence](http://www.prime.sdu.edu.cn/__local/2/0D/5E/684A4CDDEF2D69A81B84B71E0C2_E677655A_264C6.pdf)
+
+
 <<实变函数理论和方法>>
 
-[ompleteness](http://www.maths.qmul.ac.uk/~mj/MTH6126/note6.pdf)
+[completeness](http://www.maths.qmul.ac.uk/~mj/MTH6126/note6.pdf)
 
 
 [Sigma-algebra](https://en.wikipedia.org/wiki/Sigma-algebra)
