@@ -100,3 +100,13 @@ java.sql.SQLException: Value '0000-00-00 00:00:00' can not be represented as jav
 connectionProperties=useUnicode=true;characterEncoding=UTF-8;zeroDateTimeBehavior=convertToNull
 
 ```
+
+# Books
+
+Richard Warburton, Java 8 Lambdas: Functional Programming for the Masses, O'Reilly, 2014
+
+At the heart of functional programming is thinking about your problem domain in terms of immutable values and functions that translate between them.
+
+This is actually an example of using code as data—we’re giving the button an object that represents an action
+
+A functional interface is an interface with a single abstract method that is used as the type of a lambda expression.
