@@ -110,3 +110,18 @@ At the heart of functional programming is thinking about your problem domain in 
 This is actually an example of using code as data—we’re giving the button an object that represents an action
 
 A functional interface is an interface with a single abstract method that is used as the type of a lambda expression.
+
+
+[Package java.util.stream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
+
+Streams differ from collections in several ways: 
+* No storage. 
+* Functional in nature. 
+* Laziness-seeking. 
+* Possibly unbounded. 
+* Consumable. 
+
+Stream operations are divided into intermediate and terminal operations, and are combined to form stream pipelines. A stream pipeline consists of a source (such as a Collection, an array, a generator function, or an I/O channel); followed by zero or more intermediate operations such as Stream.filter or Stream.map; and a terminal operation such as Stream.forEach or Stream.reduce.
+
+Intermediate operations are further divided into stateless and stateful operations. Stateless operations, such as filter and map, retain no state from previously seen element when processing a new element -- each element can be processed independently of operations on other elements. Stateful operations, such as distinct and sorted, may incorporate state from previously seen elements when processing new elements. 
+
