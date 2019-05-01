@@ -13,6 +13,30 @@
 [宋宝华：网上坑爹的Linux资料汇总之内存管理](https://mp.weixin.qq.com/s/4N6MxrR3t68WqJhaOcDJ2Q)  
 以文件系统中文件为背景的称为cache，以裸分区/dev/sdax等为背景称为buffer
 
+
+The field of performance includes the following activities, listed in an ideal order of execution:
+1. Setting performance objectives and performance modeling
+2. Performance characterization of prototype software or hardware
+3. Performance analysis of development code, pre-integration
+4. Performing non-regression testing of software builds, pre- or post-release
+5. Benchmarking/benchmarketing for software releases
+6. Proof-of-concept testing in the target environment
+7. Configuration optimization for production deployment
+8. Monitoring of running production software
+9. Performance analysis of issues
+
+
+capacity planning
+
+Two perspectives for performance analysis
+* workload analysis
+* resource analysis
+
+Performance Is Challenging
+* Performance Is Subjective
+* 
+* 
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
