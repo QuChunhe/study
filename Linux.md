@@ -14,6 +14,20 @@
 以文件系统中文件为背景的称为cache，以裸分区/dev/sdax等为背景称为buffer
 
 
+* 编写代码
+* 优化性能
+* 排除bug
+
+静态(jstack)，死锁或者阻塞分析
+
+动态(perf)，性能热点，耗时分析
+
+整体的系统视角和局部的子系统视角，比如MySQL和Java优化
+
+资源和程序
+
+
+
 The field of performance includes the following activities, listed in an ideal order of execution:
 1. Setting performance objectives and performance modeling
 2. Performance characterization of prototype software or hardware
@@ -34,8 +48,11 @@ Two perspectives for performance analysis
 
 Performance Is Challenging
 * Performance Is Subjective
+* Systems Are Complex
 * 
-* 
+
+This can occur due to a cascading failure, when one failed component causes performance issues in others.
+
 
 # Setting
 
