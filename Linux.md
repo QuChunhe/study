@@ -59,6 +59,16 @@ Latency
 
 Dynamic Tracing
 
+Terminology
+* IOPS: Input/output operations per second
+* Throughput: 
+* Latency: This includes any time spent waiting and time spent being serviced (service time), including the time to transfer the result.
+* Utilization: For resources that service requests, utilization is a measure of how busy a resource
+is, based on how much time in a given interval it was actively performing work.
+* Saturation: the degree to which a resource has queued work it cannot service.
+* Workload: The input to the system or the load applied is the workload. For a database, the workload consists of the database queries and commands sent by the clients.
+
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
