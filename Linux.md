@@ -25,8 +25,10 @@
 整体的系统视角和局部的子系统视角，比如MySQL和Java优化
 
 资源和程序
+* 资源，CPU，内存，网络和硬盘 
+* 程序，MySQL和Java
 
-
+性能瓶颈涉及多个因素，比较负载和资源等，难于复现。
 
 The field of performance includes the following activities, listed in an ideal order of execution:
 1. Setting performance objectives and performance modeling
@@ -49,10 +51,13 @@ Two perspectives for performance analysis
 Performance Is Challenging
 * Performance Is Subjective
 * Systems Are Complex
-* 
+* There Can Be Multiple Performance Issues
 
 This can occur due to a cascading failure, when one failed component causes performance issues in others.
 
+Latency
+
+Dynamic Tracing
 
 # Setting
 
