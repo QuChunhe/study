@@ -74,6 +74,12 @@ Utilization can be time-based or capacity-based.　Time-Based Time-based utiliza
 This defines utilization in terms of capacity instead of time. It implies that a disk at 100% utilization cannot accept any more work. With the time-based definition, 100% utilization only means it is busy
 100% of the time. 100% busy does not mean 100% capacity.
 
+Saturation begins to occur at 100% utilization (capacity-based), as extra work cannot be processed and begins to queue.
+
+In the field of computing performance, profiling is typically performed by sampling the state of the system at timed intervals,
+and then studying the set of samples.
+Unlike the previous metrics covered, including IOPS and throughput, the use of sampling provides
+a coarse view of the target’s activity, depending on the rate of sampling.
 
 # Setting
 
