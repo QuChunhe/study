@@ -30,6 +30,11 @@
 
 性能瓶颈涉及多个因素，比较负载和资源等，难于复现。
 
+优化的分类：
+* confiuration 配置，包括硬件组件、操作系统、系统软件(MySQL)和应用系统
+* 架构，增加缓存等
+* 代码优化
+
 The field of performance includes the following activities, listed in an ideal order of execution:
 1. Setting performance objectives and performance modeling
 2. Performance characterization of prototype software or hardware
@@ -107,6 +112,14 @@ Metrics best suited for resource analysis include
 * Utilization
 * Saturation
 
+Workload analysis examines the performance of the applications: the workload applied and how the application is responding.
+The targets for workload analysis are
+* Requests: the workload applied
+* Latency: the response time of the application
+* Completion: looking for errors
+
+Studying workload requests typically involves checking and summarizing their attributes: the
+process of workload characterization
 
 # Setting
 
