@@ -121,6 +121,12 @@ The targets for workload analysis are
 Studying workload requests typically involves checking and summarizing their attributes: the
 process of workload characterization
 
+
+Latency (response time) is the most important metric for expressing application performance.
+
+To investigate latency usually involves drilling down deeper into the application,
+libraries, and the operating system (kernel).
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
