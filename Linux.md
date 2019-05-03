@@ -150,6 +150,26 @@ Scientific Method
 
 observational or experimental test
 
+Diagnosis Cycle: hypothesis → instrumentation → data → hypothesis
+
+
+The utilization, saturation, and errors (USE) method should be used early in a performance investigation, to identify systemic bottlenecks.
+
+The utilization, saturation, and errors (USE) method should be used early in a performance investigation, to identify systemic bottlenecks.
+* Resource: all physical server functional components (CPUs, busses, . . .). Some software resources can also be examined, provided the metrics make sense.
+* Utilization: for a set time interval, the percentage of time that the resource was busy servicing work. While busy, the resource may still be able to accept more work; the degree to which it cannot do so is identified by saturation.
+* Saturation: the degree to which the resource has extra work that it can’t service, often waiting on a queue.
+* Errors: the count of error events.
+
+
+a generic list of server hardware resources
+* CPUs: sockets, cores, hardware threads (virtual CPUs)
+* Main memory: DRAM
+* Network interfaces: Ethernet ports
+* Storage devices: disks
+* Controllers: storage, network
+* Interconnects: CPU, memory, I/O
+
 
 
 # Setting
