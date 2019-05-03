@@ -25,7 +25,7 @@
 整体的系统视角和局部的子系统视角，比如MySQL和Java优化
 
 资源和程序
-* 资源，CPU，内存，网络和硬盘 
+* 资源，CPU，Memeory,Network,Disk, Cache 
 * 程序，MySQL和Java
 
 性能瓶颈涉及多个因素，比较负载和资源等，难于复现。
@@ -80,6 +80,33 @@ In the field of computing performance, profiling is typically performed by sampl
 and then studying the set of samples.
 Unlike the previous metrics covered, including IOPS and throughput, the use of sampling provides
 a coarse view of the target’s activity, depending on the rate of sampling.
+
+
+Most recently used (MRU) refers to a cache retention policy, which decides what to favor keeping in the cache: the objects that have been used most recently. Least recently used (LRU) can refer to an equivalent cache eviction policy, deciding what objects to remove from the cache when more space is needed. There are also most frequently used (MFU) and least frequently used (LFU)
+policies.
+
+
+These words are commonly used to describe the state of the cache:
+* Cold: A cold cache is empty, or populated with unwanted data. The hit ratio for a cold cache is
+zero (or near zero as it begins to warm up).
+* Hot: A hot cache is populated with commonly requested data and has a high hit ratio, for
+example, over 99%.
+* Warm: A warm cache is one that is populated with useful data but doesn’t have a high enough
+hit ratio to be considered hot.
+* Warmth: Cache warmth describes how hot or cold a cache is. An activity that improves cache
+warmth is one that aims to improve the cache hit ratio.
+
+There are two common perspectives for performance analysis, each with different audiences, metrics, and approaches. They are workload analysis and resource analysis. They can be thought of as either top-down or bottom-up analysis of the operating system software stack
+
+Resource analysis begins with analysis of the system resources: CPUs, memory, disks, network interfaces, busses, and interconnects.This perspective focuses on utilization, to identify when resources are at or approaching their limit.
+Some resource types, such as CPUs, have utilization metrics readily available.
+
+Metrics best suited for resource analysis include
+* IOPS
+* Throughput
+* Utilization
+* Saturation
+
 
 # Setting
 
