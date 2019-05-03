@@ -69,6 +69,12 @@ is, based on how much time in a given interval it was actively performing work.
 * Workload: The input to the system or the load applied is the workload. For a database, the workload consists of the database queries and commands sent by the clients.
 
 
+Utilization can be time-based or capacity-based.　Time-Based Time-based utilization is formally defined in queueing theory. For example the average amount of time the server or resource was busy
+
+This defines utilization in terms of capacity instead of time. It implies that a disk at 100% utilization cannot accept any more work. With the time-based definition, 100% utilization only means it is busy
+100% of the time. 100% busy does not mean 100% capacity.
+
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
