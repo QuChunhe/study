@@ -127,6 +127,31 @@ Latency (response time) is the most important metric for expressing application 
 To investigate latency usually involves drilling down deeper into the application,
 libraries, and the operating system (kernel).
 
+* Streetlight Anti-Method
+* Random Change Anti-Method
+* Blame-Someone-Else Anti-Method
+* Ad Hoc Checklist Method
+
+
+Problem Statement
+1. What makes you think there is a performance problem?
+2. Has this system ever performed well?
+3. What changed recently? Software? Hardware? Load?
+4. Can the problem be expressed in terms of latency or runtime?
+5. Does the problem affect other people or applications (or is it just you)?
+6. What is the environment? What software and hardware are used? Versions? Configuration?
+
+Scientific Method
+1. Question
+2. Hypothesis
+3. Prediction
+4. Test
+5. Analysis
+
+observational or experimental test
+
+
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
