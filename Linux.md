@@ -182,6 +182,18 @@ resources or areas of interest, identifying possible bottlenecks.
 quantify the issue.
 
 
+Latency analysis examines the time taken to complete an operation, then breaks it into smaller components, continuing to subdivide the components with the highest latency so that the root cause can be identified and quantified.
+
+
+Static performance tuning focuses on issues of the configured architecture. Other methodologies focus
+on the performance of the applied load: the dynamic performance.
+
+Analytical modeling can be considered as the third type of performance evaluation activity, along
+with observability of a production system (“measurement”) and experimental testing (“simulation”).
+
+Scalability analysis may reveal that performance stops scaling linearly at a particular point, called the knee point, due to a resource constraint.
+
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
