@@ -193,6 +193,22 @@ with observability of a production system (“measurement”) and experimental t
 
 Scalability analysis may reveal that performance stops scaling linearly at a particular point, called the knee point, due to a resource constraint.
 
+* Linear scalability: Performance increases proportionally as the resource is scaled. This may not continue forever and may instead be the early stages of another scalability pattern.
+* Contention: Some components of the architecture are shared and can be used only serially, and contention for these shared resources begins to reduce the effectiveness of scaling.
+* Coherence: The tax to maintain data coherency including propagation of changes begins to outweigh the benefits of scaling.
+* Knee point: A factor is encountered at a scalability point that changes the scalability profile.
+* Scalability ceiling: A hard limit is reached. This may be a device bottleneck, such as a bus or interconnect reaching maximum throughput, or a software-imposed limit (system resource control).
+
+
+A/S/m
+
+These are the arrival process (A), service time distribution (S), and number of service centers (m).
+
+* M/M/1: Markovian arrivals (exponentially distributed arrival times), Markovian service times (exponential distribution), one service center
+* M/M/c: same as M/M/1, but multiserver
+* M/G/1: Markovian arrivals, general distribution of service times (any), one service center
+* M/D/1: Markovian arrivals, deterministic service times (fixed), one service center
+* M/G/1 is commonly applied to study the performance of rotational hard disks.
 
 # Setting
 
