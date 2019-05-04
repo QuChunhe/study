@@ -170,6 +170,16 @@ a generic list of server hardware resources
 * Controllers: storage, network
 * Interconnects: CPU, memory, I/O
 
+Workload characterization is a simple and effective method for identifying a class of issues: those
+due to the load applied. It focuses on the input to the system, rather than the resulting performance.
+
+Drill-down analysis starts with examining an issue at a high level, then narrowing the focus based on the previous findings, discarding areas that seem uninteresting, and digging deeper into those areas that are.
+1. Monitoring: This is used for continually recording high-level statistics over time, and
+identifying or alerting if a problem may be present.
+2. Identification: Given a suspected problem, this narrows the investigation to particular
+resources or areas of interest, identifying possible bottlenecks.
+3. Analysis: Further examination of particular system areas is done to attempt to root-cause and
+quantify the issue.
 
 
 # Setting
