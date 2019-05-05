@@ -225,8 +225,10 @@ mean, which is called the coefficient of variation (CoV or CV).
 
 
 Visualizations
-
-
+* Line Chart
+* Scatter Plots
+* Heat Maps
+* Surface Plot
 
 # Setting
 
