@@ -215,6 +215,18 @@ Resource Limits
 3. Express server requests in terms of resources used.
 4. Extrapolate server requests to known (or experimentally determined) limits for each resource.
 
+The resources to monitor include
+* Hardware: CPU utilization, memory usage, disk IOPS, disk throughput, disk capacity (volume used), network throughput
+* Software: virtual memory usage, processes/tasks/threads, file descriptors
+
+
+There is a way to express variation as a single metric: the ratio of the standard deviation to the
+mean, which is called the coefficient of variation (CoV or CV).
+
+
+Visualizations
+
+
 
 # Setting
 
