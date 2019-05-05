@@ -208,7 +208,13 @@ These are the arrival process (A), service time distribution (S), and number of 
 * M/M/c: same as M/M/1, but multiserver
 * M/G/1: Markovian arrivals, general distribution of service times (any), one service center
 * M/D/1: Markovian arrivals, deterministic service times (fixed), one service center
-* M/G/1 is commonly applied to study the performance of rotational hard disks.
+
+Resource Limits
+1. Measure the rate of server requests, and monitor this rate over time.
+2. Measure hardware and software resource usage. Monitor this rate over time.
+3. Express server requests in terms of resources used.
+4. Extrapolate server requests to known (or experimentally determined) limits for each resource.
+
 
 # Setting
 
