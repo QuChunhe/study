@@ -216,4 +216,28 @@ export PYSPARK_PYTHON=/usr/local/anaconda3/bin/python3
 
 去依赖 弱依赖 超时和重试、蓄洪、限流、熔断、降级
 
+对方故障：快速失败和安全失败
 
+对方恢复：快速回复和安全回复
+
+快速恢复有些策略。最简单的比如心跳检测、事件监听等。
+
+安全恢复一般主要是在恢复前对系统或数据先做一些检查、数据还原等。
+  
+ 单节点-->集群-->多机房-->多地区-->异地多活
+ 
+ 多服务策略
+ * 负载均衡
+ * 主从切换
+ * 优先策略
+ 
+ [Redis 缓存和 MySQL 数据如何实现一致性？](http://www.iocoder.cn/Fight/How-do-Redis-cache-and-MySQL-data-achieve-consistency/)
+  
+  负载均衡来提高系统吞吐和可靠性
+  
+  
+  负载均衡算法
+  * Round Robin 轮换
+  * Least Connections — 最少连接（Least Connections）这个算法意味着负载均衡器会选择当前连接最少的服务器。
+  * 
+  
