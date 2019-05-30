@@ -213,3 +213,7 @@ export PYSPARK_PYTHON=/usr/local/anaconda3/bin/python3
 # 高可用
 
 [大话高可用](https://mp.weixin.qq.com/s?__biz=MzUzNjAxODg4MQ==&mid=2247483678&idx=1&sn=2091e0f6b52cd859284fb14baec7565c&scene=21#wechat_redirect)
+
+去依赖 弱依赖 超时和重试、蓄洪、限流、熔断、降级
+
+
