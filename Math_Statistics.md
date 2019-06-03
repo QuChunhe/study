@@ -2,6 +2,13 @@
 # Statistics
 
 
+Stephen M. Stigler, The Seven Pillars of Statistical Wisdom (统计学七支柱), Harvard university Press, 2016 
+
+均值的3 种类型：算术平均值、几何平均值和调和平均值
+
+
+
+
 [Difference Between Time Series and Cross Sectional Data](https://www.differencebetween.com/difference-between-time-series-and-cross-sectional-data/)
 Panel Data,面板数据,“纵向数据(Longitudinal Data)”，“平行数据”，“TS-CS数据(Time Series-Cross Section)”
 
