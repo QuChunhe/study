@@ -4,9 +4,29 @@
 
 Stephen M. Stigler, The Seven Pillars of Statistical Wisdom (统计学七支柱), Harvard university Press, 2016 
 
+第一根支柱——聚合.：把数据集中的个体值进行统计汇总，概括出的信息可以超越个体
+
 均值的3 种类型：算术平均值、几何平均值和调和平均值
 
+第二根支柱——信息度量
 
+数据中的信息可以度量，其精度在某种程度上与数据的数量有关，在某些情况下能够精确处理。
+
+[算术平均、几何平均、调和平均、平方平均和移动平均](https://www.cnblogs.com/liuning8023/p/3525920.html)
+
+似然：概率尺度上的校准
+
+
+概率本身是一种度量
+
+相互比较：作为标准的样本内变异
+
+回归：多元分析、贝叶斯推断和因果推断
+
+
+设计包括积极实验的计划、研究规模的决定、问题的设计以及处理的安排，还包括田野试验和抽样调查、质量监督和临床试验，以及在实验科学中的政策和策略评价
+
+残差：科学逻辑、模型比较以及诊断展示
 
 
 [Difference Between Time Series and Cross Sectional Data](https://www.differencebetween.com/difference-between-time-series-and-cross-sectional-data/)
