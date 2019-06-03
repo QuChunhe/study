@@ -129,6 +129,12 @@ In an observational study, the researcher records information concerning the sub
 
 [confounding variable](https://en.wikipedia.org/wiki/Confounding)
 
+混淆变量(confounding variable):混淆变量是在研究中无法控制的变量(uncontrolled variable)，有时亦称为「额外变量」(extraneous variable)，这些变量可能会影响到自变量与因变量，但因为未受到控制，因此，其影响力多大是个未知数，故称为混淆变量。
+
+潜变量，与可观察变量相对，是不直接观察但是通过观察到的其他变量推断（通过数学模型）的变量（直接测量）
+
+
+
 Observational studies may be dichotomized into either a comparative study or a descriptive study. In a comparative study, two or more methods of achieving a result are compared for effectiveness. In a descriptive study, the major purpose is to characterize
 a population or process based on certain attributes in that population or process.
 
