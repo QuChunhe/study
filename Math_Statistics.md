@@ -131,7 +131,7 @@ In an observational study, the researcher records information concerning the sub
 
 混淆变量(confounding variable):混淆变量是在研究中无法控制的变量(uncontrolled variable)，有时亦称为「额外变量」(extraneous variable)，这些变量可能会影响到自变量与因变量，但因为未受到控制，因此，其影响力多大是个未知数，故称为混淆变量。
 
-潜变量，与可观察变量相对，是不直接观察但是通过观察到的其他变量推断（通过数学模型）的变量（直接测量）
+潜变量(Latent variables)，与可观察变量相对，是不直接观察但是通过观察到的其他变量推断（通过数学模型）的变量（直接测量）。潜变量可分为内生潜变量和外生潜变量，外生潜变量在模型不受其他任何一个变量的影响但影响其他变量的变量，内生潜变量在模型中总会受到一个其他变量影响的变量。
 
 
 
