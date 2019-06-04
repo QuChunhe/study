@@ -221,6 +221,8 @@ Factorial treatment structures are useful for examining the effects of two or mo
 
 A covariate is a variable that is related to the response variable.
 
+协变量：在实验的设计中，协变量是一个独立变量（解释变量），不为实验者所操纵，但仍影响实验结果。
+
 The covariate needs to have a relationship to the response variable, it must be measurable, and it cannot be affected by the treatment.
 
 
