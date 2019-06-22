@@ -2,6 +2,14 @@
 # Statistics
 
 
+Sample Space S：Set of possible outcomes of a random experiment
+Event: Every subset of is an Event
+
+Probability Set  Function P
+
+Introduction to mathematical statistics Eighth edition
+
+
 Stephen M. Stigler, The Seven Pillars of Statistical Wisdom (统计学七支柱), Harvard university Press, 2016 
 
 第一根支柱——聚合.：把数据集中的个体值进行统计汇总，概括出的信息可以超越个体
