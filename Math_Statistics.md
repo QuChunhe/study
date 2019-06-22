@@ -7,6 +7,10 @@ Event: Every subset of is an Event
 
 Probability Set  Function P
 
+A Random Variable X is a real valued function defined on S
+
+X: S-->R
+
 Introduction to mathematical statistics Eighth edition
 
 
