@@ -2,7 +2,8 @@
 # Statistics
 
 
-Sample Space S：Set of possible outcomes of a random experiment
+Sample Space S：Set of possible outcomes of a random experiment/survey.
+
 Event: Every subset of is an Event
 
 Probability Set  Function P
