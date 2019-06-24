@@ -1,4 +1,9 @@
 
+# Probability
+
+
+Probability Mass Function (pmf):
+
 # Statistics
 
 Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
