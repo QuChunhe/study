@@ -4,6 +4,10 @@
 
 Probability Mass Function (pmf):
 
+Probability Density Function (pdf):
+
+Cumulative Distribution Function (cdf):
+
 # Statistics
 
 Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
