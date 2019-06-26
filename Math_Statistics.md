@@ -1,6 +1,16 @@
 
 # Probability
 
+概率公理
+
+独立事件
+
+条件概率
+
+全概率公式
+
+贝叶斯公式：先验概率，后验概率
+
 
 Probability Mass Function (pmf):
 
@@ -34,6 +44,8 @@ Probability Set  Function P
 A Random Variable X is a real valued function defined on S
 
 X: S-->R
+
+
 
 Introduction to mathematical statistics Eighth edition
 
