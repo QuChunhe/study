@@ -2,6 +2,13 @@
 Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html
 
 
+# Parallel Computing
+
+* Parallel computer system
+* Parallel algorithms
+* Parallel programming
+* Parallel applications
+
 
 # Books
 
