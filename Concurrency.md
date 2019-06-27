@@ -10,6 +10,22 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * Parallel applications
 
 
+* Numerical computation method
+* Parallel algorithm
+* Parallel program
+* Parallel software
+
+Classification of Parallel Algorithms
+* Numerical parallel alogrithm
+* Non-numerical parallel algorithm
+* Misellanea: synchronous/asynchronous, parallel/distributed, deterministic/random
+
+Programming Models
+* Shared-Memory Programming
+* Message-Passing Programming
+* Data-Parallel Programming
+* Programming Environment and Tools
+
 # Books
 
 [Allen B. Downey. The Little Book of Semaphores. Second Edition. 2007](http://linuxinsight.com/files/downey05semaphores.pdf)
