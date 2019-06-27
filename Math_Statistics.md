@@ -29,6 +29,9 @@ coefficient of kurtosis measures the degree of flatness of the distribution.
 
 # Statistics
 
+图灵数学·统计学丛书30-损失模型：从数据到决策(第2版)【英文版暂代】-[美]斯图尔特·A·克卢格曼-Wiley出版-2004
+
+
 Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
 Sample Space: The set of all possible outcomes of a random experiment iscalled a sample space.  
 Event : The collection of none, one, or more than one outcomes from a sample space is called an event.
