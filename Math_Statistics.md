@@ -18,12 +18,8 @@ Probability Density Function (pdf):
 
 Cumulative Distribution Function (cdf):
 
-The moments are a set of constants that represent some important properties
-of the distributions. The most commonly used such constants are measures of central tendency  
-(mean, median, and mode),  and measures of dispersion (variance and mean deviation). Two other 
-important measures are the coef- ficient of skewness and the coefficient of kurtosis. The 
-coefficient of skewness measures the degree of asymmetry of the distribution, whereas the 
-coefficient of kurtosis measures the degree of flatness of the distribution.
+The moments are a set of constants that represent some important properties　of the distributions. The most commonly used such constants are measures of central tendency　(mean, median, and mode),  and measures of dispersion (variance and mean deviation). Two other important measures are the coef- ficient of skewness and the coefficient of kurtosis. The 
+coefficient of skewness measures the degree of asymmetry of the distribution, whereas the　coefficient of kurtosis measures the degree of flatness of the distribution.
 
 
 
