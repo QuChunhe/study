@@ -28,7 +28,9 @@ Coefficient of Variation: Coefficient of variation is the ratio of the standard 
 
 Mean Deviation: Mean deviation is a measure of variability of the possible values of the random variable X. It is defined as the expectation of absolute difference between X and its mean.
 
+Moment Generating Function:
 
+Characteristic Function:
 
 # Statistics
 
