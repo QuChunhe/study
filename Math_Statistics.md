@@ -32,6 +32,11 @@ Moment Generating Function:
 
 Characteristic Function:
 
+
+We shall describe here two classical methods of estimation, namely, the moment estimation and the method of maximum likelihood estimation.
+
+
+
 # Statistics
 
 图灵数学·统计学丛书30-损失模型：从数据到决策(第2版)【英文版暂代】-[美]斯图尔特·A·克卢格曼-Wiley出版-2004
