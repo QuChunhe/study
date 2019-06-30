@@ -117,6 +117,16 @@ Type I error (False Positive) (Probability = α)
 Type II error(False Negative) (Probability = β)
 
 
+Type I Error: Wrongly rejecting H0 when it is actually true is called the type I error.
+
+Type II Error: Wrongly accepting H0 when it is false is called the type II error.
+
+Level of Significance: The maximum probability of making type I error is called the level or level of significance; this is usually specified  before carrying out a test.
+
+Power Function: The power function is defined as the probability of rejecting null hypothesis. That is,
+
+
+
 [Null Hypothesis (原假设或者零假设) and Alternative Hypothesis (备择假设)](https://www.thoughtco.com/null-hypothesis-vs-alternative-hypothesis-3126413)
 
 
