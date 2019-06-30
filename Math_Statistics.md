@@ -35,7 +35,10 @@ Characteristic Function:
 
 We shall describe here two classical methods of estimation, namely, the moment estimation and the method of maximum likelihood estimation.
 
+Level α Test:
 
+
+liberal or anti conservative test.
 
 # Statistics
 
