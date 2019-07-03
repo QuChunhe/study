@@ -27,6 +27,8 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 并行计算机的存储访问模型（ＵＭＡ、ＮＵＭＡ、ＣＯＭＡ、ＣＣ-ＮＵＭＡ 和
 ＮＯＲＭＡ）以及并行计算机的存储组织（层次存储技术和高速缓存一致性问题）
 * 均匀内存访问模型 UMA(Uniform Memory Access） 
+* 非均匀存储访问NUMA(Nonumiform Memory Access)
+
 
 * 计算密集（Ｃｏｍｐｕｔｅ-Ｉｎｔｅｎｓｉｖｅ）型应用
 * 数据密集（Ｄａｔａ-Ｉｎｔｅｎｓｉｖｅ）型应用
