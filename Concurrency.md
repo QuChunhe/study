@@ -9,8 +9,24 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * Parallel programming
 * Parallel applications
 
-并行计算机的系统结构模型（ＰＶＰ、ＳＭＰ、ＭＰＰ、ＤＳＭ 和ＣＯＷ）、并行计算机的存储访问模型（ＵＭＡ、ＮＵＭＡ、ＣＯＭＡ、ＣＣ-ＮＵＭＡ 和
+并行计算机的系统结构模型(ＰＶＰ、ＳＭＰ、ＭＰＰ、ＤＳＭ 和ＣＯＷ）、
+* 单指令多数据流SIMD(Single Instrunction Multiple Data)
+* 并行向量处理器PVP(Parallel Vector Processor)
+* 对称多处理器SMP(Symmetric Multiprocessor)
+* 大规模并行处理器MPP(Massively Parallel Processor)
+* 工作站集群COW(Cluster of Workstations)
+* 分布共享存储DSM(Distributed Shared Memory)
+
+
+可扩展并行机公用结构
+* 无共享
+* 共享磁盘
+* 共享存储（共享内存和共享磁盘）
+
+
+并行计算机的存储访问模型（ＵＭＡ、ＮＵＭＡ、ＣＯＭＡ、ＣＣ-ＮＵＭＡ 和
 ＮＯＲＭＡ）以及并行计算机的存储组织（层次存储技术和高速缓存一致性问题）
+* 均匀内存访问模型 UMA(Uniform Memory Access） 
 
 * 计算密集（Ｃｏｍｐｕｔｅ-Ｉｎｔｅｎｓｉｖｅ）型应用
 * 数据密集（Ｄａｔａ-Ｉｎｔｅｎｓｉｖｅ）型应用
