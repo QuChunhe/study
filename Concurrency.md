@@ -9,6 +9,12 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * Parallel programming
 * Parallel applications
 
+并行计算机的系统结构模型（ＰＶＰ、ＳＭＰ、ＭＰＰ、ＤＳＭ 和ＣＯＷ）、并行计算机的存储访问模型（ＵＭＡ、ＮＵＭＡ、ＣＯＭＡ、ＣＣ-ＮＵＭＡ 和
+ＮＯＲＭＡ）以及并行计算机的存储组织（层次存储技术和高速缓存一致性问题）
+
+* 计算密集（Ｃｏｍｐｕｔｅ-Ｉｎｔｅｎｓｉｖｅ）型应用
+* 数据密集（Ｄａｔａ-Ｉｎｔｅｎｓｉｖｅ）型应用
+* 网络密集（Ｎｅｔｗｏｒｋ-Ｉｎｔｅｎｓｉｖｅ））型应用
 
 * Numerical computation method
 * Parallel algorithm
