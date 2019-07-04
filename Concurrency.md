@@ -30,9 +30,16 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * 非均匀存储访问NUMA(Nonumiform Memory Access)
 
 
-* 计算密集（Ｃｏｍｐｕｔｅ-Ｉｎｔｅｎｓｉｖｅ）型应用
-* 数据密集（Ｄａｔａ-Ｉｎｔｅｎｓｉｖｅ）型应用
-* 网络密集（Ｎｅｔｗｏｒｋ-Ｉｎｔｅｎｓｉｖｅ））型应用
+* 计算密集(Compute-Intensive)型应用
+* 数据密集(Data-Intensive)型应用
+* 网络密集(Network-Intensive)型应用
+
+
+* First generation Parrell computational models - shared memory
+* Second generation parallel computational models - distributed memoery
+   * BSP (Bulk Synchranous Parallel) model
+   * LogP (Latency, overhead, gap, Processor) model
+BSP=LogP+barriers-overhead
 
 * Numerical computation method
 * Parallel algorithm
