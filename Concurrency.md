@@ -38,7 +38,7 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * First generation Parrell computational models - shared memory
 * Second generation parallel computational models - distributed memoery
    * BSP (Bulk Synchranous Parallel) model
-   * LogP (Latency, overhead, gap, Processor) model
+   * LogP (Latency, overhead, gap, Processor) model   
 BSP=LogP+barriers-overhead
 
 * Numerical computation method
