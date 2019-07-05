@@ -35,11 +35,14 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * 网络密集(Network-Intensive)型应用
 
 
-* First generation Parrell computational models - shared memory
-* Second generation parallel computational models - distributed memoery
+* First generation Parrell computational models - shared memory (algorithm)
+* Second generation parallel computational models - distributed memoery (communication)
    * BSP (Bulk Synchranous Parallel) model
    * LogP (Latency, overhead, gap, Processor) model   
 BSP=LogP+barriers-overhead
+* Third generation parallel computational models - hierarchical memoery ()
+   * UMH (Uniform Memory Hierarchy) Model: register, acache, memoery,disk
+   * DRAM (Distributed RAM) model: local memoery, remote memory
 
 * Numerical computation method
 * Parallel algorithm
@@ -56,6 +59,11 @@ Programming Models
 * Message-Passing Programming
 * Data-Parallel Programming
 * Programming Environment and Tools
+
+Design policy of parallel algorithms
+* Parallelizing a sequential algorithm
+* Designing a new parallel algorithm
+* Borrowing other well-known algorithm
 
 # Books
 
