@@ -78,7 +78,10 @@ Design mehtods of parallel algorithms
     * Breaking an algorithm into a sequence of segments in which the output of each segment is the input of its successor
     * All segments must produce results at the same rate
     
-    
+ * Iterative
+    * Each iterative produces an approximation solution, measures the error between the approximation and true solution.
+    * Based on the error measurement, improves on approximation solution, constructs a next iterate.
+    * Repeats this process until the error is small enough
     
 
 # Books
