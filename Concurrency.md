@@ -65,6 +65,22 @@ Design policy of parallel algorithms
 * Designing a new parallel algorithm
 * Borrowing other well-known algorithm
 
+
+Design mehtods of parallel algorithms
+* partitioning
+    * Breaking up the given problem into several nonoverlapping subproblems of almost equal sizes
+    * Solving concurrently the subproblems
+* Divide and conquer
+    * Dividing the problem into serveral subproblems
+    * Solving recursively the subproblems
+    * Merging solutions of subproblems into a solution for original problem
+* Pipelining
+    * Breaking an algorithm into a sequence of segments in which the output of each segment is the input of its successor
+    * All segments must produce results at the same rate
+    
+    
+    
+
 # Books
 
 [Allen B. Downey. The Little Book of Semaphores. Second Edition. 2007](http://linuxinsight.com/files/downey05semaphores.pdf)
