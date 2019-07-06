@@ -97,7 +97,10 @@ Design mehtods of parallel algorithms
     * Each iterative produces an approximation solution, measures the error between the approximation and true solution.
     * Based on the error measurement, improves on approximation solution, constructs a next iterate.
     * Repeats this process until the error is small enough
-    
+  
+  计算执行时间
+  * 运算操作： Computational Steps
+  * 通信操作： Routing Steps
 
 # Books
 
