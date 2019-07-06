@@ -2,12 +2,21 @@
 Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html
 
 
+
 # Parallel Computing
+
+并行编程模式
+* 共享存储
+* 消息传递
+* 数据并行
 
 * Parallel computer system
 * Parallel algorithms
 * Parallel programming
 * Parallel applications
+
+
+
 
 并行计算机的系统结构模型(ＰＶＰ、ＳＭＰ、ＭＰＰ、ＤＳＭ 和ＣＯＷ）、
 * 单指令多数据流SIMD(Single Instrunction Multiple Data)
