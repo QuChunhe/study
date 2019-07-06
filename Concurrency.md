@@ -35,6 +35,12 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * 网络密集(Network-Intensive)型应用
 
 
+并行计算模型(Parallel Computational Model)
+* 集群参数(包括CPU性能参数、存储器参数和通信网络参数等）
+* 计算行为(同步方式或异步方式）
+* 成本函数(其自变量是机器参数）
+
+
 * First generation Parrell computational models - shared memory (algorithm)
 * Second generation parallel computational models - distributed memoery (communication)
    * BSP (Bulk Synchranous Parallel) model
