@@ -98,9 +98,14 @@ Design mehtods of parallel algorithms
     * Based on the error measurement, improves on approximation solution, constructs a next iterate.
     * Repeats this process until the error is small enough
   
-  计算执行时间
+计算执行时间
   * 运算操作： Computational Steps
   * 通信操作： Routing Steps
+
+
+复杂性度量
+* 期望复杂度(Expected Complexity)
+* 最坏情况下复杂度(Worst-Case Complexity)
 
 # Books
 
