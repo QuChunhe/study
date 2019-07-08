@@ -98,6 +98,14 @@ Design mehtods of parallel algorithms
     * Based on the error measurement, improves on approximation solution, constructs a next iterate.
     * Repeats this process until the error is small enough
   
+ Implementation principle of parallel algorithms
+ * Decomposition
+    * Domain decomposition (data decomposition): subdivides the data domain of problem into multiple regions, assigns defferent processors to compute the results of each region
+    * Functional decomposition (task decomposition): identifies dependences among the tasks of a problem, assign defferent processor to run independent tasks in parallel.
+
+
+
+
 计算执行时间
   * 运算操作： Computational Steps
   * 通信操作： Routing Steps
