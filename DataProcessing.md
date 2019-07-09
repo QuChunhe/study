@@ -24,7 +24,7 @@ on the service side, and one a combination of the two.
     * Service-side half-async pattern
     * Service async request/response pattern：full-async
 * Publish/subscribe pattern
-* One-way pattern
+* One-way pattern: “fire and forget” message pattern
 * Request/acknowledge pattern
 * Stream pattern
 
