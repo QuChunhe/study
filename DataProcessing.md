@@ -28,6 +28,7 @@ on the service side, and one a combination of the two.
 * Request/acknowledge pattern
 * Stream pattern
 
+
 ## Python
 
 ```
