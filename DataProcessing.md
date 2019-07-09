@@ -16,7 +16,12 @@ A. G. Psaltis. Streaming Data: Understanding the real-time pipeline. Manning Pub
 |Near |Skype video, home automation |Seconds–minutes| High—no system failure,no life at risk |
 
 
-
+ The interaction patterns fall into one of the following categories:
+* Request/response pattern
+* Publish/subscribe pattern
+* One-way pattern
+* Request/acknowledge pattern
+* Stream pattern
 
 ## Python
 
