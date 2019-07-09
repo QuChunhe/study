@@ -103,11 +103,17 @@ Design mehtods of parallel algorithms
     * Domain decomposition (data decomposition): subdivides the data domain of problem into multiple regions, assigns defferent processors to compute the results of each region
     * Functional decomposition (task decomposition): identifies dependences among the tasks of a problem, assign defferent processor to run independent tasks in parallel.
 * Scheduling
-    * definition: to assign task on proper processors and to decide their operating sequence
+    * Definition: to assign task on proper processors and to decide their operating sequence
     * Static Scheduling (Compile time scheduling)
     * Dynamic Scheduling (Run time scheduling)
+* Load balance
+    * Definition: processors have roughly the same amount of workload, so that no one processor holds up the entire solution.
+    * Static load balancing
+    * Dynamic load balancing
 
-
+Performance Evaluation of Parallel Algorithms
+* Speedup
+    *
 
 计算执行时间
   * 运算操作： Computational Steps
