@@ -18,6 +18,11 @@ A. G. Psaltis. Streaming Data: Understanding the real-time pipeline. Manning Pub
 
  The interaction patterns fall into one of the following categories:
 * Request/response pattern
+    * Basic request/response pattern.Three common strategies can overcome this limitation: one on the client side, one
+on the service side, and one a combination of the two.
+    * Client making asynchronous request to the service: half-async pattern
+    * Service-side half-async pattern
+    * Service async request/response pattern：full-async
 * Publish/subscribe pattern
 * One-way pattern
 * Request/acknowledge pattern
