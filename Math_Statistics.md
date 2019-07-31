@@ -3,6 +3,11 @@
 
 概率公理
 
+There are many interpretations of P(A). The two common interpretations are frequencies and degrees of beliefs.
+* In the frequency interpretation, P(A) is the long run proportion of times that A is true in repetitions.
+* The degree-of-belief interpretation is that P(A) measures an observer’s strength of belief that A is true.
+
+
 独立事件
 
 条件概率
