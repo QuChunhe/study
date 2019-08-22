@@ -119,10 +119,15 @@ Performance Evaluation of Parallel Algorithms
   * 运算操作： Computational Steps
   * 通信操作： Routing Steps
 
+并行计算模型(Parallel Computational Model),三要素
+* 机器参数，包括CPU
 
 复杂性度量
 * 期望复杂度(Expected Complexity)
 * 最坏情况下复杂度(Worst-Case Complexity)
+
+
+
 
 # Books
 
