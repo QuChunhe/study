@@ -53,9 +53,10 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * First generation Parrell computational models - shared memory (algorithm)
    * 共享存储SIMD同步模型   
    随机存取机器(Parrallel Random Access Machine:PRAM)
-   * 共享存储MIMD异步模型
+   * 共享存储MIMD异步模型    
    异步PRAM模型(Asynchronization PRAM: APRAM)： 分相(Phase)PRAM模式
 * Second generation parallel computational models - distributed memoery (communication)
+   * 固定连接的SIMB模型（SIMD-IN模型）
    * BSP (Bulk Synchranous Parallel) model
    * LogP (Latency, overhead, gap, Processor) model   
 BSP=LogP+barriers-overhead
