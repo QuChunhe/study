@@ -188,3 +188,12 @@ http://www.gotw.ca/publications/index.htm
 [3 Use Critical Sections (Preferably Locks) to Eliminate Races](http://www.drdobbs.com/cpp/use-critical-sections-preferably-locks-t/201804238)
 
 A "critical section" is a region of code that shall execute in isolation with respect to some or all other code in the program, and every kind of synchronization you've ever heard of is a way to express critical sections.
+
+
+# Concurrency
+
+instruction level parallelism (ILP)
+
+thread level parallelism (TLP)
+
+
