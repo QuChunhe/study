@@ -57,7 +57,7 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
    异步PRAM模型(Asynchronization PRAM: APRAM)： 分相(Phase)PRAM模式
 * Second generation parallel computational models - distributed memoery (communication)
    * 固定连接的SIMB模型（SIMD-IN模型）
-   * BSP (Bulk Synchranous Parallel) model
+   * BSP (Bulk Synchronous Parallel) model：BSP模型将并行机的特性抽象为三个定量参数模型p、g、L，分别处理器数目、选路器吞吐(亦称带宽因子)、全局同步之间时间间隔
    * LogP (Latency, overhead, gap, Processor) model   
 BSP=LogP+barriers-overhead
 * Third generation parallel computational models - hierarchical memoery ()
