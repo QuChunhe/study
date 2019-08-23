@@ -81,15 +81,105 @@ daemonize yes
 #       They do not enable continuous liveness pings back to your supervisor.
 supervised no
 
+# If a pid file is specified, Redis writes it where specified at startup
+# and removes it at exit.
+#
+# When the server runs non daemonized, no pid file is created if none is
+# specified in the configuration. When the server is daemonized, the pid file
+# is used even if not specified, defaulting to "/var/run/redis.pid".
+#
+# Creating a pid file is best effort: if Redis is not able to create it
+# nothing bad happens, the server will start and run normally.
+pidfile /var/run/redis_6379.pid
 
-daemonize yes
-pidfile /home/admredis/working/redis-adm/redis.6382.pid
-
-
-
+# Specify the server verbosity level.
+# This can be one of:
+# debug (a lot of information, useful for development/testing)
+# verbose (many rarely useful info, but not a mess like the debug level)
+# notice (moderately verbose, what you want in production probably)
+# warning (only very important / critical messages are logged)
 loglevel warning
-logfile /home/admredis/working/redis-adm/redis.6382.log
-databases 1
+
+# Specify the log file name. Also the empty string can be used to force
+# Redis to log on the standard output. Note that if you use standard
+# output for logging but daemonize, logs will be sent to /dev/null
+logfile ""
+
+# Set the number of databases. The default database is DB 0, you can select
+# a different one on a per-connection basis using SELECT <dbid> where
+# dbid is a number between 0 and 'databases'-1
+databases 16
+
+# 为了性能，尽量不要使用全量备份。如果需要，建议在专门的slave上使用
+################################ SNAPSHOTTING  ################################
+#
+# Save the DB on disk:
+#
+#   save <seconds> <changes>
+#
+#   Will save the DB if both the given number of seconds and the given
+#   number of write operations against the DB occurred.
+#
+#   In the example below the behaviour will be to save:
+#   after 900 sec (15 min) if at least 1 key changed
+#   after 300 sec (5 min) if at least 10 keys changed
+#   after 60 sec if at least 10000 keys changed
+#
+#   Note: you can disable saving completely by commenting out all "save" lines.
+#
+#   It is also possible to remove all the previously configured save
+#   points by adding a save directive with a single empty string argument
+#   like in the following example:
+#
+#   save ""
+# save 900 1
+# save 300 10
+# save 60 10000
+
+# By default Redis will stop accepting writes if RDB snapshots are enabled
+# (at least one save point) and the latest background save failed.
+# This will make the user aware (in a hard way) that data is not persisting
+# on disk properly, otherwise chances are that no one will notice and some
+# disaster will happen.
+#
+# If the background saving process will start working again Redis will
+# automatically allow writes again.
+#
+# However if you have setup your proper monitoring of the Redis server
+# and persistence, you may want to disable this feature so that Redis will
+# continue to work as usual even if there are problems with disk,
+# permissions, and so forth.
+# stop-writes-on-bgsave-error yes
+
+# Compress string objects using LZF when dump .rdb databases?
+# For default that's set to 'yes' as it's almost always a win.
+# If you want to save some CPU in the saving child set it to 'no' but
+# the dataset will likely be bigger if you have compressible values or keys.
+# rdbcompression yes
+
+# Since version 5 of RDB a CRC64 checksum is placed at the end of the file.
+# This makes the format more resistant to corruption but there is a performance
+# hit to pay (around 10%) when saving and loading RDB files, so you can disable it
+# for maximum performances.
+#
+# RDB files created with checksum disabled have a checksum of zero that will
+# tell the loading code to skip the check.
+# rdbchecksum yes
+
+# The filename where to dump the DB
+#dbfilename dump.rdb
+
+# The working directory.
+#
+# The DB will be written inside this directory, with the filename specified
+# above using the 'dbfilename' configuration directive.
+#
+# The Append Only File will also be created inside this directory.
+#
+# Note that you must specify a directory here, not a file name.
+#dir ./
+
+
 rdbcompression no
 maxmemory 20GB
 maxmemory-policy allkeys-lru
