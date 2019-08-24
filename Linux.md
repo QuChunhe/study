@@ -232,12 +232,20 @@ Visualizations
 
 
 Workloads can be categorized as either
-＊ CPU-bound: applications that perform heavy compute, for example, scientific and
+* CPU-bound: applications that perform heavy compute, for example, scientific and
 mathematical analysis, which is expected to have long runtimes (seconds, minutes, hours).
 These become limited by CPU resources.
-＊ I/O-bound: applications that perform I/O, with little compute, for example, web servers, file
+* I/O-bound: applications that perform I/O, with little compute, for example, web servers, file
 servers, and interactive shells, where low-latency responses are desirable. When their load
 increases, they are limited by I/O to storage or network resources.
+
+
+Observability Tools
+
+
+In reality, there were many gaps, and systems performance experts became skilled in the art of inference and interpretation: figuring out activity from indirect tools and statistics.   
+
+Performance observability tools can be categorized as providing system-wide or per-process observability, and most are based on either counters or tracing.
 
 # Setting
 
