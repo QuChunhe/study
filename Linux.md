@@ -230,6 +230,15 @@ Visualizations
 * Heat Maps
 * Surface Plot
 
+
+Workloads can be categorized as either
+＊ CPU-bound: applications that perform heavy compute, for example, scientific and
+mathematical analysis, which is expected to have long runtimes (seconds, minutes, hours).
+These become limited by CPU resources.
+＊ I/O-bound: applications that perform I/O, with little compute, for example, web servers, file
+servers, and interactive shells, where low-latency responses are desirable. When their load
+increases, they are limited by I/O to storage or network resources.
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
