@@ -261,6 +261,11 @@ transferred by each I/O, the better.
 * Caching. An important aspect of the cache is how it manages integrity, so that lookups do not return stale
 data. This is called cache coherency and can be expensive to perform—ideally not more so than the benefit the cache provides.
 * Buffering. To improve write performance, data may be coalesced in a buffer before being sent to the next level.
+* Polling. Polling is a technique in which the system waits for an event to occur by checking the status of the
+event in a loop, with pauses between checks. There are some potential performance problems with polling:
+    * Costly CPU overhead of repeated checks
+    * High latency between the occurrence of the event and the next polled check
+* Concurrency and Parallelism. 
 
 # Setting
 
