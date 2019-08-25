@@ -254,6 +254,14 @@ which activities to perform.
 * Throughput: a high application operation rate or data transfer rate
 * Resource utilization: efficiency for a given application workload
 
+
+Application Performance Techniques
+* Selecting an I/O Size. “Initialization tax” is paid for small and large I/O alike. For efficiency, the more data
+transferred by each I/O, the better.
+* Caching. An important aspect of the cache is how it manages integrity, so that lookups do not return stale
+data. This is called cache coherency and can be expensive to perform—ideally not more so than the benefit the cache provides.
+* Buffering. To improve write performance, data may be coalesced in a buffer before being sent to the next level.
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
