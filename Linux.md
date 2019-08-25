@@ -266,7 +266,12 @@ event in a loop, with pauses between checks. There are some potential performanc
     * Costly CPU overhead of repeated checks
     * High latency between the occurrence of the event and the next polled check
 * Concurrency and Parallelism. 
-
+    * Different functions within an application can also be made concurrent. This can be achieved using multiple processes (multiprocess) or multiple threads (multithreaded), each performing its own task.
+    * Another approach is event-based concurrency, whereby an application services different functions and switches between them when events occur.
+    
+* Non-Blocking I/O
+* Processor Binding. CPU affinity
+    
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
