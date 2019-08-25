@@ -478,6 +478,12 @@ Terminology definitions:
 
 #### CPU
 
+run-queue latency or dispatcher-queue latency, scheduler latency.
+
+cache warmth, CPU affinity
+
+cycles-per-instruction(CPI)
+
 [The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
 ```
  yum install perf.x86_64
