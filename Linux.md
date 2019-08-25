@@ -247,6 +247,13 @@ In reality, there were many gaps, and systems performance experts became skilled
 
 Performance observability tools can be categorized as providing system-wide or per-process observability, and most are based on either counters or tracing.
 
+
+A performance goal provides direction for your performance analysis work and helps you select
+which activities to perform.
+* Latency: a low application response time
+* Throughput: a high application operation rate or data transfer rate
+* Resource utilization: efficiency for a given application workload
+
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
