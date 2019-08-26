@@ -522,11 +522,37 @@ queue or other structure used to manage threads.
 
 
 ```
+uptime
+
 top -Hp pid
+
+mpstat -P ALL 1
+
+mpstat
+
+top/prstat
+
+pidstat/prstat
+
+perf/dtrace/stap/oprofile
+
+perf/cpustat
+
+```
+
+Basic attributes for characterizing CPU workload are
+* Load averages (utilization + saturation)
+* User-time to system-time ratio
+* Syscall rate
+* Voluntary context switch rate
+* Interrupt rate
+
+
+```
 
 pidstat 1
 
-mpstat -P ALL 1
+
 
 free -h
 cat /proc/meminfo
@@ -540,6 +566,10 @@ tuned-adm list
 tuned-adm active
 tuned-adm profile latency-performance
 ```
+
+
+
+
 
 #### Network
 ```
