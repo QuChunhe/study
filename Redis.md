@@ -1,4 +1,6 @@
 
+# Configuration
+
 [Redis configuration for 4.0](https://raw.githubusercontent.com/antirez/redis/4.0/redis.conf)
 
 
@@ -340,3 +342,12 @@ activerehashing yes
 #save 9000 100
 dir /home/admredis/working/redis-adm
 ```
+
+
+# Tranactions
+
+It's important to note that even when a command fails, all the other commands in the queue are processed – Redis will not stop the processing of commands.
+
+
+Redis commands can fail during a transaction, but still Redis will execute the rest of the transaction instead of rolling back.
+
