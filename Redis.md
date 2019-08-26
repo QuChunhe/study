@@ -1,5 +1,5 @@
 
-[configuration](https://raw.githubusercontent.com/antirez/redis/4.0/redis.conf)
+[Redis configuration for 4.0](https://raw.githubusercontent.com/antirez/redis/4.0/redis.conf)
 
 
 ```
