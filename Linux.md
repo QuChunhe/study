@@ -568,7 +568,7 @@ tuned-adm profile latency-performance
 ```
 
 
-
+CPU cache warmth. On Linux-based systems, the exclusive CPU sets approach can be implemented using cpusets
 
 
 #### Network
