@@ -485,6 +485,21 @@ run on-CPU, decreasing overall performance. This latency is the time spent waiti
 queue or other structure used to manage threads.
 
 
+ scheduling policies in a LINUX environment
+```
+chrt -m 
+
+1. SCHED_OTHER   the standard round-robin time-sharing policy
+2. SCHED_BATCH   for "batch" style execution of processes
+3. SCHED_IDLE    for running very low priority background jobs.
+4. SCHED_FIFO    a first-in, first-out policy
+5. SCHED_RR      a round-robin policy
+```
+PR is calculated as follows:
+* for normal processes: PR = 20 + NI (NI is nice and ranges from -20 to 19)
+* for real time processes: PR = - 1 - real_time_priority (real_time_priority ranges from 1 to 99)
+
+
 
 [The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
 ```
@@ -500,6 +515,10 @@ queue or other structure used to manage threads.
 uptime
 
 top -Hp pid
+# It is good to note the process with PR value -51 that corresponds to a real time value. 
+# There are also some processes whose PR value is stated as "rt". This value actually corresponds 
+# to a PR value of -100.
+
 
 mpstat -P ALL 1
 
