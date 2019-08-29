@@ -445,34 +445,6 @@ Terminology definitions:
 
 
 
-```
- /etc/logrotate.conf
- 
- vim /etc/logrotate.d/nginx
- /var/log/nginx/*.log {
-    daily
-    dateext
-    compress
-    rotate 1000
-    nodelaycompress
-    missingok
-    notifempty
-    sharedscripts
-    nocreate
-    noolddir
-    postrotate
-        kill -USR1 `cat /var/run/nginx.pid`
-    endscript
-} 
- ```
- 
- ```
- vim /etc/crontab
- 
-  0  0  *  *  * root ntpdate 0.uk.pool.ntp.org
-  0  12 *  *  * root ntpdate 1.us.pool.ntp.org
-  59 23 *  *  * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
- ```
 
 ### Monitoring
 
@@ -522,6 +494,9 @@ queue or other structure used to manage threads.
 
 
 ```
+# uptime gives a one line display of the following information.  The current time, 
+# how long the system has been running, how many users are currently logged on, and 
+# the system load averages for the past 1, 5, and 15 minutes
 uptime
 
 top -Hp pid
@@ -764,3 +739,35 @@ efibootmgr -v
 sudo grub-install /dev/sda
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+# Log
+
+
+```
+ /etc/logrotate.conf
+ 
+ vim /etc/logrotate.d/nginx
+ /var/log/nginx/*.log {
+    daily
+    dateext
+    compress
+    rotate 1000
+    nodelaycompress
+    missingok
+    notifempty
+    sharedscripts
+    nocreate
+    noolddir
+    postrotate
+        kill -USR1 `cat /var/run/nginx.pid`
+    endscript
+} 
+ ```
+ 
+ ```
+ vim /etc/crontab
+ 
+  0  0  *  *  * root ntpdate 0.uk.pool.ntp.org
+  0  12 *  *  * root ntpdate 1.us.pool.ntp.org
+  59 23 *  *  * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
+ ```
