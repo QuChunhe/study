@@ -515,9 +515,8 @@ PR is calculated as follows:
 uptime
 
 top -Hp pid
-# It is good to note the process with PR value -51 that corresponds to a real time value. 
-# There are also some processes whose PR value is stated as "rt". This value actually corresponds 
-# to a PR value of -100.
+# The scheduling priority of the task.  If you see `rt' in this field, it means 
+# the task is running under real time scheduling priority.
 
 
 mpstat -P ALL 1
