@@ -484,7 +484,18 @@ A CPU at 100% utilization is saturated, and threads will encounter scheduler lat
 run on-CPU, decreasing overall performance. This latency is the time spent waiting on the CPU run
 queue or other structure used to manage threads.
 
+[The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
+```
+ yum install perf.x86_64
+ perf stat -a -- sleep 10
+```
 
+```
+# uptime gives a one line display of the following information.  The current time, 
+# how long the system has been running, how many users are currently logged on, and 
+# the system load averages for the past 1, 5, and 15 minutes
+uptime
+```
  scheduling policies in a LINUX environment
 ```
 chrt -m 
@@ -500,25 +511,39 @@ PR is calculated as follows:
 * for real time processes: PR = - 1 - real_time_priority (real_time_priority ranges from 1 to 99)
 
 
-
-[The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
 ```
- yum install perf.x86_64
- perf stat -a -- sleep 10
-```
-
-
-```
-# uptime gives a one line display of the following information.  The current time, 
-# how long the system has been running, how many users are currently logged on, and 
-# the system load averages for the past 1, 5, and 15 minutes
-uptime
-
 top -Hp pid
 # The scheduling priority of the task.  If you see `rt' in this field, it means 
 # the task is running under real time scheduling priority.
+# The status of the task which can be one of:
+#     D = uninterruptible sleep
+#     R = running
+#     S = sleeping
+#     T = stopped by job control signal
+#     t = stopped by debugger during trace
+#     Z = zombie
+# 
+# command
+#     s – 改变画面更新频率
+#     l – 关闭或开启第一部分第一行 top 信息的表示
+#     t – 关闭或开启第一部分第二行 Tasks 和第三行 Cpus 信息的表示
+#     m – 关闭或开启第一部分第四行 Mem 和 第五行 Swap 信息的表示
+#     N – 以 PID 的大小的顺序排列表示进程列表
+#     P – 以 CPU 占用率大小的顺序排列进程列表
+#     M – 以内存占用率大小的顺序排列进程列表
+#     h – 显示帮助
+#     n – 设置在进程列表所显示进程的数量
+#     q – 退出 to
+#     f 键可以选择显示的内容
+```
+* VIRT  --  Virtual Memory Size (KiB)
+* RES  --  Resident Memory Size (KiB)
+* SHR  --  Shared Memory Size (KiB)
+* DATA  --  Data + Stack Size (KiB)
+* CODE  --  Code Size (KiB)
 
 
+```
 mpstat -P ALL 1
 
 mpstat
