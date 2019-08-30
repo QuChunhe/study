@@ -546,6 +546,11 @@ top -Hp pid
 ```
 mpstat -P ALL 1
 
+mpstat -I SCPU
+# cat proc/softirqs
+
+```
+```
 mpstat
 
 top/prstat
