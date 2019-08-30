@@ -479,10 +479,21 @@ and data analysis.
 perform the I/O. For example, a web server performing network I/O may have a user/kernel ratio of
 around 70/30.
 
-
 A CPU at 100% utilization is saturated, and threads will encounter scheduler latency as they wait to
 run on-CPU, decreasing overall performance. This latency is the time spent waiting on the CPU run
 queue or other structure used to manage threads.
+
+
+* Context Switches   
+The higher the volume of context switches on a system, the more work the kernel has to do in
+order to manage the scheduling of processes.
+* The Run Queue   
+A very popular term called “load” is often used to describe the state of the run queue. The system load is a combination of the amount of process threads currently executing along with the amount of threads in the CPU run queue.
+* CPU Utilization
+   * User Time
+   * System Time
+   * Wait IO
+   * Idle
 
 [The PMCs of EC2: Measuring IPC](http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html)
 ```
