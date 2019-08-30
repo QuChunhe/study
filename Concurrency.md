@@ -197,3 +197,11 @@ instruction level parallelism (ILP)
 thread level parallelism (TLP)
 
 
+# Reactive Design Patterns
+
+message-driven
+
+* It must react to its users (responsive). 能响应
+* It must react to failure and stay available (resilient).可自愈
+* It must react to variable load conditions (elastic).有弹性
+* It must react to inputs (message-driven). 消息驱动
