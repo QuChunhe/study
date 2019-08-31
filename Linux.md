@@ -386,6 +386,10 @@ net.ipv4.tcp_tw_recycle = 1
 net.ipv4.tcp_tw_reuse = 1
 ```
 
+```
+cat /sys/devices/system/cpu/cpu10/cpufreq/scaling_governor，发现CPU工作模式为powersave。
+tuned-adm profile latency-performance修改工作模式，解决问题
+```
 
 
 cat /proc/vmstat | egrep "dirty|writeback"
