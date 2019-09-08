@@ -35,7 +35,20 @@ A local logical clock v.t. A logical global clock,
 
 keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.
 
-Rule 1—Don’t Overengineer the Solution
+##### Rule 1—Don’t Overengineer the Solution
+
+The first category covers products designed and implemented to exceed their useful
+requirements.
+
+
+The second category of overengineering deals with making something overly complex
+and making something in a complex way.
+
+##### Rule 2—Design Scale into the Solution　(D-I-D Process)
+
+
+AKF Partners’ Design-Implement-Deploy or D-I-D approach to thinking about scalability.
+
 
 # Course
 
