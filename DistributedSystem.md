@@ -49,6 +49,15 @@ and making something in a complex way.
 
 AKF Partners’ Design-Implement-Deploy or D-I-D approach to thinking about scalability.
 
+##### Rule 3—Simplify the Solution Three Times Over
+
+Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二八定律、帕累托定律、最省力法则、不平衡原则、犹太法则。意大利经济学家帕累托提出的。法则认为原因和结果、投入和产出、努力和报酬之间本来存在着无法解释的不平衡
+
+
+
+
+
+
 
 # Course
 
