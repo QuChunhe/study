@@ -35,6 +35,9 @@ characteristics can be found in all of them:
 * Global snapshot—The protocols require that a snapshot of the global state of the whole system be regularly saved to storage somewhere, not merely the state of the collection tier.
 * Potential for data loss—The protocols only ensure that the system is recoverable up to the most recent recorded global state; any messages that were processed and generated afterward are lost.
 
+Part of the complexity of checkpointing that’s eliminated is the global snapshot, and therefore the management and generation
+of the global state. In the end, the goals of the logging technique manifest themselves in the basic idea that underpins all of the logging techniques: if a message can be replayed, then the system can reach a global consistent state without the need for a global snapshot.
+
 
 ## Python
 
