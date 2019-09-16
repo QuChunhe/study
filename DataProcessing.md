@@ -28,6 +28,13 @@ on the service side, and one a combination of the two.
 * Request/acknowledge pattern
 * Stream pattern
 
+The two primary approaches to implementing fault tolerance, checkpointing and logging, are designed to protect against data loss and enable speedy recovery of the crashed node.
+
+Numerous checkpoint-based protocols are available to choose from in the literature, but when you boil it down, the following two
+characteristics can be found in all of them:
+* Global snapshot—The protocols require that a snapshot of the global state of the whole system be regularly saved to storage somewhere, not merely the state of the collection tier.
+* Potential for data loss—The protocols only ensure that the system is recoverable up to the most recent recorded global state; any messages that were processed and generated afterward are lost.
+
 
 ## Python
 
