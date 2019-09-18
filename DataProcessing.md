@@ -39,6 +39,11 @@ Part of the complexity of checkpointing that’s eliminated is the global snapsh
 of the global state. In the end, the goals of the logging technique manifest themselves in the basic idea that underpins all of the logging techniques: if a message can be replayed, then the system can reach a global consistent state without the need for a global snapshot.
 
 
+Implementing a logging protocol frees us from worrying about maintaining global state, enabling us to focus on how to add
+fault tolerance to the collection tier. To do this we’re going to discuss two classic techniques, receiver-based message logging (RBML) and sender-based message logging (SBML), and an emerging technique called hybrid message logging (HML).
+
+
+
 ## Python
 
 ```
