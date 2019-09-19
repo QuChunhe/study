@@ -272,6 +272,20 @@ event in a loop, with pauses between checks. There are some potential performanc
 * Non-Blocking I/O
 * Processor Binding. CPU affinity
     
+    
+ For Linux kernels, the scheduling classes are   
+* RT: provides fixed and high priorities for real-time workloads
+* O(1): The O(1) scheduler was introduced in Linux 2.6 as the default time-sharing scheduler for user processes.
+* CFS: Completely fair scheduling was added to the Linux 2.6.23 kernel as the default timesharing scheduler for user processes.   
+    
+    
+Scheduler policies are as follows:    
+* RR: SCHED_RR is round-robin scheduling.
+* FIFO: SCHED_FIFO is first-in first-out scheduling, which continues running the thread at the head of the run queue until it voluntarily leaves, or until a higher-priority thread arrives.
+* NORMAL: SCHED_NORMAL (previously known as SCHED_OTHER) is time-sharing scheduling and is the default for user processes.
+* BATCH: SCHED_BATCH is similar to SCHED_NORMAL, but with the expectation that the thread will be CPU-bound and should not be scheduled to interrupt other I/O-bound interactive work    
+    
+    
 # Setting
 
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
