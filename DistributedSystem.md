@@ -88,6 +88,10 @@ server.2=zoo2.example.com:2888:3888
 server.3=zoo3.example.com:2888:3888
 ```
 
+## Mesos
+
+
+[Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center](https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf)
 
 
 ## Kafka
