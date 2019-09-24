@@ -285,6 +285,13 @@ Scheduler policies are as follows:
 * NORMAL: SCHED_NORMAL (previously known as SCHED_OTHER) is time-sharing scheduling and is the default for user processes.
 * BATCH: SCHED_BATCH is similar to SCHED_NORMAL, but with the expectation that the thread will be CPU-bound and should not be scheduled to interrupt other I/O-bound interactive work    
     
+ 
+Basic attributes for characterizing CPU workload are
+* Load averages (utilization + saturation)
+* User-time to system-time ratio
+* Syscall rate
+* Voluntary context switch rate
+* Interrupt rate  
     
 # Setting
 
