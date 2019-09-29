@@ -31,7 +31,7 @@ A local logical clock v.t. A logical global clock,
 
 
 
-#### Martin L. Abbott and Michael T. FisherScalability Rules：Principles for Scaling Web Sites Second Edition, 2017
+#### Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scaling Web Sites Second Edition, 2017
 
 keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.
 
