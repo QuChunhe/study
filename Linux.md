@@ -6,6 +6,8 @@
 
 [Linux System and Performance Monitoring](http://www.ufsdump.org/papers/linuxcon2010-linux-monitoring.pdf)
 
+[Resource Management Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/resource_management_guide/index)
+
 应用类型
 * IO密集型(IO Bound)
 * CPU密集型(CPU Bound)
