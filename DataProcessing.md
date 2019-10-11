@@ -46,6 +46,15 @@ fault tolerance to the collection tier. To do this we’re going to discuss two 
 
 ## Python
 
+A programming paradigm is a style, or “way” of programming. Major programming
+paradigms are,
+* Imperative
+* Logical
+* Functional
+* Object-Oriented
+
+
+
 ```
 import os
 if 'PYSPARK_SUBMIT_ARGS' in os.environ:
