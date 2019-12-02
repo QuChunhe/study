@@ -273,3 +273,15 @@ export PYSPARK_PYTHON=/usr/local/anaconda3/bin/python3
   * Least Connections — 最少连接（Least Connections）这个算法意味着负载均衡器会选择当前连接最少的服务器。
   * 
   
+## Flink
+There are two basic kinds of state in Flink: Keyed State and Operator State.
+
+Keyed State is always relative to keys and can only be used in functions and operators on a KeyedStream.
+
+With Operator State (or non-keyed state), each operator state is bound to one parallel operator instance. The Kafka Connector is a good motivating example for the use of Operator State in Flink. 
+
+Keyed State and Operator State exist in two forms: managed and raw.
+
+Managed State is represented in data structures controlled by the Flink runtime, such as internal hash tables, or RocksDB. Examples are “ValueState”, “ListState”, etc. Flink’s runtime encodes the states and writes them into the checkpoints.
+
+Raw State is state that operators keep in their own data structures. When checkpointed, they only write a sequence of bytes into the checkpoint. Flink knows nothing about the state’s data structures and sees only the raw bytes.
