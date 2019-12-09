@@ -34,6 +34,26 @@ execute sql
 SHOW PROFILES\G;
 ```
 
+```
+SHOW PROFILE [type [, type] ... ]
+    [FOR QUERY n]
+    [LIMIT row_count [OFFSET offset]]
+
+type: {
+    ALL
+  | BLOCK IO
+  | CONTEXT SWITCHES
+  | CPU
+  | IPC
+  | MEMORY
+  | PAGE FAULTS
+  | SOURCE
+  | SWAPS
+}
+```
+
+[SHOW PROFILE Statement](https://dev.mysql.com/doc/refman/5.7/en/show-profile.html)
+
 
 ## NoSQL
 
