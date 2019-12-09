@@ -51,6 +51,10 @@ type: {
   | SWAPS
 }
 ```
+The values of n correspond to the Query_ID values displayed by SHOW PROFILES.
+
+
+
 
 [SHOW PROFILE Statement](https://dev.mysql.com/doc/refman/5.7/en/show-profile.html)
 
