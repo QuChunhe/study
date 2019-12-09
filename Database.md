@@ -25,6 +25,16 @@ SHOW SLAVE HOSTS
 OPTIMIZE [NO_WRITE_TO_BINLOG | LOCAL] TABLE tbl_name [, tbl_name] ... [WAIT n | NOWAIT]
 ```
 
+show profile默认的是关闭的，但是会话级别可以开启这个功能。开启它可以让MySQL收集在执行语句的时候所使用的资源。
+```
+SET profiling = 1;
+
+execute sql
+
+SHOW PROFILES\G;
+```
+
+
 ## NoSQL
 
 ### Cassandra
