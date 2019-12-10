@@ -58,6 +58,17 @@ The values of n correspond to the Query_ID values displayed by SHOW PROFILES.
 
 [SHOW PROFILE Statement](https://dev.mysql.com/doc/refman/5.7/en/show-profile.html)
 
+Profiling information is also available from the INFORMATION_SCHEMA PROFILING table. 
+
+```
+HOW PROFILE FOR QUERY 2;
+
+SELECT STATE, FORMAT(DURATION, 6) AS DURATION
+FROM INFORMATION_SCHEMA.PROFILING
+WHERE QUERY_ID = 2 ORDER BY SEQ;
+```
+
+[The INFORMATION_SCHEMA PROFILING Table](https://dev.mysql.com/doc/refman/5.7/en/profiling-table.html)
 
 ## NoSQL
 
