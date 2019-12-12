@@ -104,3 +104,14 @@ for row in rows :
     print(row[0], " ",row[1])
 cluster.shutdown()
 ```
+
+```
+
+    easy_install mysql-python (mix os)
+    pip install mysql-python (mix os/ python 2)
+    pip install mysqlclient (mix os/ python 3)
+    apt-get install python-mysqldb (Linux Ubuntu, ...)
+    cd /usr/ports/databases/py-MySQLdb && make install clean (FreeBSD)
+    yum install MySQL-python (Linux Fedora, CentOS ...)
+
+```
