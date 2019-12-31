@@ -857,3 +857,11 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
   0  12 *  *  * root ntpdate 1.us.pool.ntp.org
   59 23 *  *  * root /usr/sbin/logrotate -f /etc/logrotate.d/nginx
  ```
+
+
+# Disk
+
+
+```
+du -h --max-depth=1
+```
