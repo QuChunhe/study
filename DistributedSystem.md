@@ -34,8 +34,15 @@ clock consistency condition v.t. strongly consistent
 
 [52] Implementation of logical clocks requires addressing two issues [19]: data structures local to every process to represent logical time and a protocol (set of rules) to update the data structures to ensure the consistency condition.
 
-
+- A local logical clock, denoted by lci,
+- A logical global clock, denoted by gci
 A local logical clock v.t. A logical global clock,
+
+
+- R1 This rule governs how the local logical clock is updated by a process
+when it executes an event (send, receive, or internal).
+- R2 This rule governs how a process updates its global logical clock to
+update its view of the global time and global progress.
 
 scalar time, vector time, and matrix time
 
