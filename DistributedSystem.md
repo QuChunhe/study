@@ -25,7 +25,9 @@ monotonicity property associated with causality in distributed systems.
 Causality (or the causal precedence relation)
 
 [51] Every event is assigned a timestamp and the causality relation between events can be generally inferred from their timestamps. The timestamps assigned to events obey the fundamental monotonicity property; that is, if an event a causally affects an event b, then the timestamp of a is smaller than the timestamp of b.  
-[52] Elements of T form a partially ordered set over a relation <. This relation is usually called the happened before or causal precedence. 
+[52] A system of logical clocks consists of a time domain T and a logical clock C. Elements of T form a partially ordered set over a relation <. This relation is usually called the happened before or causal precedence. 
+
+This monotonicity property is called the clock consistency condition
 
 
 clock consistency condition v.t. strongly consistent
