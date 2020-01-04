@@ -5,6 +5,10 @@
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
+Every InnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key.
+
+All indexes other than the clustered index are known as secondary indexes. In InnoDB, each record in a secondary index contains the primary key columns for the row, as well as the columns specified for the secondary index.
+
 
 ### Cluster
 
@@ -105,7 +109,14 @@ For example, SELECT ... LOCK IN SHARE MODE sets an IS lock, and SELECT ... FOR U
 
 Intention locks do not block anything except full table requests (for example, LOCK TABLES ... WRITE). The main purpose of intention locks is to show that someone is locking a row, or going to lock a row in the table. 
 
+A record lock is a lock on an index record. 
 
+A gap lock is a lock on a gap between index records, or a lock on the gap before the first or after the last index record.
+
+Gap locks in InnoDB are “purely inhibitive”, which means that their only purpose is to prevent other transactions from inserting to the gap. Gap locks can co-exist. A gap lock taken by one transaction does not prevent another transaction from taking a gap lock on the same gap.
+
+
+A next-key lock is a combination of a record lock on the index record and a gap lock on the gap before the index record.
 
 ## NoSQL
 
