@@ -46,6 +46,10 @@ two rules:
 
 scalar time, vector time, and matrix time
 
+Total Ordering
+
+The system of scalar clocks is not strongly consistent;
+
 #### Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scaling Web Sites Second Edition, 2017
 
 keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.
