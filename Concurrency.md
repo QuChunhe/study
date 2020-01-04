@@ -10,6 +10,7 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 * 消息传递
 * 数据并行
 
+并行层次
 * Parallel computer system
 * Parallel algorithms
 * Parallel programming
@@ -18,7 +19,7 @@ Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-
 
 
 
-并行计算机的系统结构模型(ＰＶＰ、ＳＭＰ、ＭＰＰ、ＤＳＭ 和ＣＯＷ）、
+并行计算机的系统结构模型(PVP、SMP、MPP、DSM和COW）
 * 单指令多数据流SIMD(Single Instrunction Multiple Data)
 * 并行向量处理器PVP(Parallel Vector Processor)
 * 对称多处理器SMP(Symmetric Multiprocessor)
