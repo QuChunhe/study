@@ -79,6 +79,18 @@ WHERE QUERY_ID = 2 ORDER BY SEQ;
 
 [InnoDB Locking](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html)
 
+
+- A shared (S) lock permits the transaction that holds the lock to read a row.
+- An exclusive (X) lock permits the transaction that holds the lock to update or delete a row
+
+InnoDB supports multiple granularity locking which permits coexistence of row locks and table locks. For example, a statement such as LOCK TABLES ... WRITE takes an exclusive lock (an X lock) on the specified table. 
+
+ Intention locks are table-level locks that indicate which type of lock (shared or exclusive) a transaction requires later for a row in a table. There are two types of intention locks:
+- An intention shared lock (IS) indicates that a transaction intends to set a shared lock on individual rows in a table.
+- An intention exclusive lock (IX) indicates that a transaction intends to set an exclusive lock on individual rows in a table. 
+For example, SELECT ... LOCK IN SHARE MODE sets an IS lock, and SELECT ... FOR UPDATE sets an IX lock. 
+
+
 ## NoSQL
 
 ### Cassandra
