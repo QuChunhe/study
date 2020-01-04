@@ -1,6 +1,13 @@
 
 ## MySQL
 
+### Index
+
+[Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
+
+
+### Cluster
+
 [Spider Server System Variables](https://mariadb.com/kb/en/library/spider-server-status-variables/)
 
 ```
@@ -21,6 +28,11 @@ SHOW SLAVE HOSTS
 
 ```
  /usr/local/mariadb/bin/mysqlbinlog  --start-datetime='2018-07-26 09:50:00' --base64-output=decode-rows -v /var/mariadb/data/mysql-bin.000216 --result-file=binglog.sql
+
+
+
+### Performance
+
 
 OPTIMIZE [NO_WRITE_TO_BINLOG | LOCAL] TABLE tbl_name [, tbl_name] ... [WAIT n | NOWAIT]
 ```
@@ -72,7 +84,7 @@ WHERE QUERY_ID = 2 ORDER BY SEQ;
 
 
 
-
+### Lock
 
 [MySQL介于普通读和锁定读的加锁方式](https://mp.weixin.qq.com/s?__biz=MzIxNTQ3NDMzMw==&mid=2247484352&idx=1&sn=799a109943108ce3ed139d0b684f18f8&chksm=97968a32a0e10324bd808b23ab376796f49c5998c6d917bf8f0073936cf1b128ac30742aebb8&mpshare=1&scene=1&srcid=01046CqxEFUnP5P2zo7hKda5&sharer_sharetime=1578110785863&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AW49gRrpesj66SITcN8Z3Fg%3D&pass_ticket=kOI4SUiiSQZgtNAcX5IS41mTJmr%2FciBGq3MXwztfKxT51U1FpE7lMYqAa9JxIFu2#rd)
 
@@ -88,7 +100,11 @@ InnoDB supports multiple granularity locking which permits coexistence of row lo
  Intention locks are table-level locks that indicate which type of lock (shared or exclusive) a transaction requires later for a row in a table. There are two types of intention locks:
 - An intention shared lock (IS) indicates that a transaction intends to set a shared lock on individual rows in a table.
 - An intention exclusive lock (IX) indicates that a transaction intends to set an exclusive lock on individual rows in a table. 
+
 For example, SELECT ... LOCK IN SHARE MODE sets an IS lock, and SELECT ... FOR UPDATE sets an IX lock. 
+
+Intention locks do not block anything except full table requests (for example, LOCK TABLES ... WRITE). The main purpose of intention locks is to show that someone is locking a row, or going to lock a row in the table. 
+
 
 
 ## NoSQL
