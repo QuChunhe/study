@@ -118,6 +118,11 @@ Gap locks in InnoDB are “purely inhibitive”, which means that their only pur
 
 A next-key lock is a combination of a record lock on the index record and a gap lock on the gap before the index record.
 
+
+
+[AUTO_INCREMENT Handling in InnoDB](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html)
+
+
 ## NoSQL
 
 ### Cassandra
