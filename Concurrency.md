@@ -125,7 +125,9 @@ Performance Evaluation of Parallel Algorithms
   * 通信操作： Routing Steps
 
 并行计算模型(Parallel Computational Model),三要素
-* 机器参数，包括CPU
+* 机器参数，包括CPU性能参数、存储器参数和通信网络参数等
+* 仔细行为，同步方式或者异步方式
+* 成本函数，其自变量是机器参数
 
 复杂性度量
 * 期望复杂度(Expected Complexity)
