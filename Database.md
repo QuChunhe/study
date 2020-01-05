@@ -127,6 +127,9 @@ A next-key lock is a combination of a record lock on the index record and a gap 
 
 ### Cassandra
 
+[Cassandra集群优化与运维](https://www.jianshu.com/p/5bacb06e334b)
+
+
 [CQL COPY](https://docs.datastax.com/en/cql/3.3/cql/cql_reference/cqlshCopy.html?hl=copy)
 
 [Data Types](http://cassandra.apache.org/doc/latest/cql/types.html)
@@ -142,6 +145,9 @@ nodetool rebuild
 nodetool repair
 
 ```
+
+
+
 
 [Adding nodes to an existing cluster](https://docs.datastax.com/en/archived/cassandra/3.0/cassandra/operations/opsAddNodeToCluster.html)
 
