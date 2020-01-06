@@ -153,7 +153,7 @@ nodetool repair
 
 [Changing the IP Address of a Cassandra Node](https://www.eventbrite.com/engineering/changing-the-ip-address-of-a-cassandra-node-with-auto_bootstrapfalse/)
 
-
+[Updating the replication factor](https://docs.datastax.com/en/archived/cql/3.3/cql/cql_using/useUpdateKeyspaceRF.html)
 
 #### Book
 ###### Expert Apache Cassandra Adminitration, Apress, 2018.
