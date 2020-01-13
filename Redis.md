@@ -1,4 +1,17 @@
 
+
+
+```
+redis-cli --cluster create 192.168.1.6:6380 192.168.1.11:6380  192.168.1.102:6380 192.168.1.106:6380 192.168.1.11:6390 192.168.1.102:6390 192.168.1.106:6390  192.168.1.6:6390 --cluster-replicas 1
+
+redis-cli --cluster help
+
+redis-cli --cluster info 192.168.1.102:6380
+
+
+````
+
+
 # Configuration
 
 [Redis configuration for 4.0](https://raw.githubusercontent.com/antirez/redis/4.0/redis.conf)
