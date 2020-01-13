@@ -704,6 +704,9 @@ useradd -s /sbin/nologin mariadb -g mariadb
 
 ```
 ssh-keygen -t ecdsa -b 521
+
+vim authorized_keys
+chmod g-w authorized_keys
 ```
 
 
