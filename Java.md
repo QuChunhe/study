@@ -125,3 +125,9 @@ Stream operations are divided into intermediate and terminal operations, and are
 
 Intermediate operations are further divided into stateless and stateful operations. Stateless operations, such as filter and map, retain no state from previously seen element when processing a new element -- each element can be processed independently of operations on other elements. Stateful operations, such as distinct and sorted, may incorporate state from previously seen elements when processing new elements. 
 
+
+# Performance
+
+
+[async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
+
