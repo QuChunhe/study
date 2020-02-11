@@ -68,6 +68,10 @@ A Random Variable X is a real valued function defined on S
 
 X: S-->R
 
+* 放回有序样本
+* 放回无序样本
+
+# Statistics
 
 
 Introduction to mathematical statistics Eighth edition
