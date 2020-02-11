@@ -78,6 +78,20 @@ X: S-->R
 
 [Unordered Sampling without Replacement: Combinations](https://www.probabilitycourse.com/chapter2/2_1_3_unordered_without_replacement.php)
 
+
+
+基本事件空间
+
+样本空间
+
+事件
+
+事件的并、交、补和差
+
+不可能事件和必然事件
+
+集合的分割和划分
+
 # Statistics
 
 
