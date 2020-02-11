@@ -71,6 +71,9 @@ X: S-->R
 * 放回有序样本
 * 放回无序样本
 
+[放回无序样本](https://zhuanlan.zhihu.com/p/48248142)
+
+
 # Statistics
 
 
