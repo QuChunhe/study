@@ -76,6 +76,8 @@ X: S-->R
 [放回无序样本](https://zhuanlan.zhihu.com/p/48248142)
 
 
+[Unordered Sampling without Replacement: Combinations](https://www.probabilitycourse.com/chapter2/2_1_3_unordered_without_replacement.php)
+
 # Statistics
 
 
