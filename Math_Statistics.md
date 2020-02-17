@@ -1,6 +1,11 @@
 
 # Probability
 
+
+[复旦大学 概率论](https://www.bilibili.com/video/av11918653)
+
+
+
 概率公理
 
 There are many interpretations of P(A). The two common interpretations are frequencies and degrees of beliefs.
@@ -12,7 +17,7 @@ There are many interpretations of P(A). The two common interpretations are frequ
 
 条件概率
 
-全概率公式
+全概率公式(total probablity formula)
 
 贝叶斯公式：先验概率，后验概率
 
