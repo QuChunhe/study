@@ -69,6 +69,13 @@ A Random Variable X is a real valued function defined on S
 
 X: S-->R
 
+
+
+[在线西北工业大学的数理统计课程](https://www.bilibili.com/video/av80041910)
+
+
+
+
 * 放回有序样本
 * 放回无序样本
 * 不放回有序抽样
