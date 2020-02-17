@@ -51,6 +51,7 @@ liberal or anti conservative test.
 
 图灵数学·统计学丛书30-损失模型：从数据到决策(第2版)【英文版暂代】-[美]斯图尔特·A·克卢格曼-Wiley出版-2004
 
+[統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
 
 Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
 Sample Space: The set of all possible outcomes of a random experiment iscalled a sample space.  
