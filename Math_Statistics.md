@@ -13,13 +13,15 @@ There are many interpretations of P(A). The two common interpretations are frequ
 * The degree-of-belief interpretation is that P(A) measures an observer’s strength of belief that A is true.
 
 
-独立事件
+独立事件   
+independent, statistically independent, independent in a probability sense
 
-条件概率
+条件概率(Conditional Probability): multiplication rule for probabilities   
 
-全概率公式(total probablity formula)
+全概率公式(total probablity formula, law of total probability)   
 
-贝叶斯公式：先验概率，后验概率
+贝叶斯公式：先验概率，后验概率, Bayer's theorem   
+
 
 
 Probability Mass Function (pmf):
