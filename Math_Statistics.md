@@ -67,7 +67,7 @@ liberal or anti conservative test.
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
 
 Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
-Sample Space: The set of all possible outcomes of a random experiment iscalled a sample space.  
+Sample Space: The set of all possible outcomes of a random experiment is called a sample space.  
 Event : The collection of none, one, or more than one outcomes from a sample space is called an event.
 Random Variable: A variable whose numerical values are determined by chance factors is called a random variable. Formally, it is a function from the sample space to a set of real numbers.
 
