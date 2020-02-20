@@ -12,16 +12,22 @@ There are many interpretations of P(A). The two common interpretations are frequ
 * In the frequency interpretation, P(A) is the long run proportion of times that A is true in repetitions.
 * The degree-of-belief interpretation is that P(A) measures an observer’s strength of belief that A is true.
 
+条件概率(Conditional Probability): multiplication rule for probabilities   
 
 独立事件   
 independent, statistically independent, independent in a probability sense
 
-条件概率(Conditional Probability): multiplication rule for probabilities   
-
 全概率公式(total probablity formula, law of total probability)   
+
+mutually independent相互独立   
+
+independent experiments
+
 
 贝叶斯公式：先验概率，后验概率, Bayer's theorem   
 
+
+random variables   
 
 
 Probability Mass Function (pmf):
