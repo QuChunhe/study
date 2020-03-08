@@ -2,6 +2,10 @@
 
 # Real Analysis
 
+[Improper Integrals]https://www2.math.uconn.edu/~stein/virtual/Notes/Calculus/improperintegrals.pdf
+
+There are basically two types of problems that lead us to define improper integrals.(1)  We may, for some reason, want to define an integral on an interval extending to±∞.This leads to what is sometimes called anImproper Integral of Type 1.(2)  The  integrand  may  fail  to  be  defined,  or  fail  to  be  continuous,  at  a  point  in  theinterval of integration, typically an endpoint.  This leads to what is sometimes calledan em Improper Integral of Type 2.
+
 
 [Measurable functions](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes_ch3.pdf)
 
