@@ -1,6 +1,10 @@
 
 [Java Date Time](https://www.joda.org/joda-time/)
 
+协调世界时，又称世界统一时间、世界标准时间、国际协调时间,从英文“Coordinated Universal Time”／法文“Temps Universel Cordonné”
+而来.协调世界时是以原子时秒长为基础，在时刻上尽量接近于世界时的一种时间计量系统。
+
+国际原子时(TAI，来自法国名字temps atomique International)是一个高精度的原子坐标时间标准:取1958年1月1日0时0分0秒世界时(UT)的瞬间作为同年同月同日0时0分0秒TAI。
 
 # Architecture
 
