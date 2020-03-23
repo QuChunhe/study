@@ -2,6 +2,9 @@
 # Date Time
 [Java Date Time](https://www.joda.org/joda-time/)
 
+The new API makes a distinction between how dates and times are used by machines and humans. Machines deal with time as continual ticks as a single incrementing number measured in seconds, milliseconds, etc. Humans use a calendar system to deal with time in terms of year, month, day, hour, minute, and second. The Date-Time API has a separate set of classes to deal with machine-based time and calendar-based human time. It lets you convert machine-based time to human-based time and vice versa.
+
+
 协调世界时，又称世界统一时间、世界标准时间、国际协调时间,从英文“Coordinated Universal Time”／法文“Temps Universel Cordonné”
 而来.协调世界时是以原子时秒长为基础，在时刻上尽量接近于世界时的一种时间计量系统。
 
