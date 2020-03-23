@@ -24,6 +24,8 @@ ZoneRules
 
 TemporalAmount : This is the base interface type for amounts of time. An amount is distinct from a date or time-of-day in that it is not tied to any specific point on the time-line. 
 
+Durations and periods differ in their treatment of daylight savings time when added to ZonedDateTime. A Duration will add an exact number of seconds, thus a duration of one day is always exactly 24 hours. By contrast, a Period will add a conceptual day, trying to maintain the local time.   
+
 # SPI
 
 
@@ -162,4 +164,8 @@ Intermediate operations are further divided into stateless and stateful operatio
 
 
 [async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
+
+# 杂项
+
+Comparable<T>  Comparator<T>
 
