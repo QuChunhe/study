@@ -1,3 +1,6 @@
+
+[从事分布式系统，计算，hadoop](https://www.cnblogs.com/zengkefu/p/5768874.html)
+
 # Idea
 
 data
