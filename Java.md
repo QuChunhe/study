@@ -24,8 +24,8 @@ TimeZone
 ZoneRules    
 TemporalField ->ChronoField
 
-Calendar  ->  GregorianCalendar
-Chronology  
+Calendar ->  GregorianCalendar   
+Chronology ->   IsoChronology, JapaneseChronology
 
 
 TemporalAmount : This is the base interface type for amounts of time. An amount is distinct from a date or time-of-day in that it is not tied to any specific point on the time-line. 
