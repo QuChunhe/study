@@ -20,7 +20,11 @@ Temporal ->  HijrahDate, Instant, JapaneseDate, LocalDate, LocalDateTime, LocalT
 TemporalUnit -> ChronoUnit   
 TemporalAdjuster    
 ZoneId -> ZoneOffset   
-ZoneRules
+TimeZone   
+ZoneRules    
+TemporalField ->ChronoField
+
+Calendar  ->  GregorianCalendar
 
 TemporalAmount : This is the base interface type for amounts of time. An amount is distinct from a date or time-of-day in that it is not tied to any specific point on the time-line. 
 
