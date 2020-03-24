@@ -28,12 +28,18 @@ ZoneRules
 TemporalField ->ChronoField
 
 Calendar ->  GregorianCalendar   
-Chronology ->   IsoChronology, JapaneseChronology
+Chronology ->   IsoChronology, JapaneseChronology    
 Clock   
 
 TemporalAmount : This is the base interface type for amounts of time. An amount is distinct from a date or time-of-day in that it is not tied to any specific point on the time-line. 
 
 Durations and periods differ in their treatment of daylight savings time when added to ZonedDateTime. A Duration will add an exact number of seconds, thus a duration of one day is always exactly 24 hours. By contrast, a Period will add a conceptual day, trying to maintain the local time.   
+
+The Calendar class is an abstract class that provides methods for converting between a specific instant in time and a set of calendar fields such as YEAR, MONTH, DAY_OF_MONTH, HOUR, and so on, and for manipulating the calendar fields, such as getting the date of the next week.     
+
+A clock providing access to the current instant, date and time using a time-zone.    
+
+
 
 # SPI
 
