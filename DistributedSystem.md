@@ -1,5 +1,5 @@
 
-[从事分布式系统，计算，hadoop](https://www.cnblogs.com/zengkefu/p/5768874.html)
+[从事分布式系统、计算、hadoop 等方面工作需要哪些基础](https://www.zhihu.com/question/19868791/answer/88873783l)
 
 # Idea
 
