@@ -180,6 +180,27 @@ Intermediate operations are further divided into stateless and stateful operatio
 
 [async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
 
+
+jstack prints Java stack traces of Java threads for a given Java process or core file or a remote debug server. For each Java frame, the full class name, method name, 'bci' (byte code index) and line number, if available, are printed. With the -m option, jstack prints both Java and native frames of all threads along with the 'pc' (program counter). 
+```
+jstack [ option ] pid
+jstack [ option ] executable core
+jstack [ option ] [server-id@]remote-hostname-or-IP
+
+nid 进程id
+```
+Option
+* -F:  Force a stack dump when 'jstack [-l] pid' does not respond.
+* -l:  Long listing. Prints additional information about locks such as list of owned java.util.concurrent ownable synchronizers.
+* -m:  prints mixed mode (both Java and native C/C++ frames) stack trace.
+* -h:  prints a help message.
+* -help: prints a help message
+
+线程的状态
+* waiting on condition: TIMED_WAITING (sleeping), WAITING (parking)
+* runnable: RUNNABLE
+* in Object.wait(): TIMED_WAITING (on object monitor)
+* sleeping: TIMED_WAITING (sleeping)
 # 杂项
 
 Comparable<T>  Comparator<T>
