@@ -689,6 +689,12 @@ ethtool eth0
  iotop –d 5 -P
 ```
 
+```
+yum install dstat.noarch 
+
+dstat -N em1 1
+```
+
 #### IO
 
 ```
