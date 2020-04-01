@@ -606,6 +606,44 @@ top -Hp pid
 * CODE  --  Code Size (KiB)
 
 
+top -hv|-bcHiOSs -d secs -n max -u|U user -p pid -o fld -w [cols]
+COMMAND-LINE Options
+  -h | -v  :Help/Version
+  -d  :Delay-time interval as:  -d ss.t (secs.tenths)
+  -H  :Threads-mode operation
+  -p  :Monitor-PIDs mode as:  -pN1 -pN2 ...  or  -pN1,N2,N3 ...
+
+
+           Global-defaults
+              A - Alt display      Off (full-screen)
+            * d - Delay time       1.5 seconds
+            * H - Threads mode     Off (summarize as tasks)
+              I - Irix mode        On  (no, `solaris' smp)
+            * p - PID monitoring   Off (show all processes)
+            * s - Secure mode      Off (unsecured)
+              B - Bold enable      On  (yes, bold globally)
+           Summary-Area-defaults
+              l - Load Avg/Uptime  On  (thus program name)
+              t - Task/Cpu states  On  (1+1 lines, see `1')
+              m - Mem/Swap usage   On  (2 lines worth)
+              1 - Single Cpu       Off (thus multiple cpus)
+           Task-Area-defaults
+              b - Bold hilite      Off (use `reverse')
+            * c - Command line     Off (name, not cmdline)
+            * i - Idle tasks       On  (show all tasks)
+              J - Num align right  On  (not left justify)
+              j - Str align right  Off (not right justify)
+              R - Reverse sort     On  (pids high-to-low)
+            * S - Cumulative time  Off (no, dead children)
+            * u - User filter      Off (show euid only)
+            * U - User filter      Off (show any uid)
+              V - Forest view      On  (show as branches)
+              x - Column hilite    Off (no, sort field)
+              y - Row hilite       On  (yes, running tasks)
+              z - color/mono       On  (show colors)
+
+
+
 ```
 mpstat -P ALL 1
 
