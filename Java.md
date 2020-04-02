@@ -210,6 +210,14 @@ Option
   Locked ownable synchronizers:
         - <0x00000006cad83ca8> 
 ```
+
+* Thread Name : Name of the Thread.
+* Priority (prio and os_prio=0): prio is Thread Priority which can be between 1 to 10. 1 is MIN_PRIORITY  and 10 is MAX_PRIORITY.
+* tid (Thread id) :  Every thread is assigned a unique id. We can get this id by calling Thread.getId() method.
+* nid (Native thread id) :  It gives us information about which thread is consuming most of CPU.
+* Thread States (java.lang.Thread.State) : States of Thread NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING and TERMINATED.
+* Java stack information for the threads 
+
 # 杂项
 
 Comparable<T>  Comparator<T>
