@@ -180,6 +180,7 @@ Intermediate operations are further divided into stateless and stateful operatio
 
 [async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
 
+[How to Read a Thread Dump ](https://dzone.com/articles/how-to-read-a-thread-dump)
 
 A thread dump is a snapshot of the state of all the threads of a Java process. The state of each thread is presented with a stack trace, showing the content of a thread's stack. A thread dump is useful for diagnosing problems as it displays the thread's activity.
 
