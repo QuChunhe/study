@@ -1,4 +1,71 @@
 
+# Performance
+
+
+[async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
+
+[How to Read a Thread Dump ](https://dzone.com/articles/how-to-read-a-thread-dump)
+
+A thread dump is a snapshot of the state of all the threads of a Java process. The state of each thread is presented with a stack trace, showing the content of a thread's stack. A thread dump is useful for diagnosing problems as it displays the thread's activity.
+
+jstack prints Java stack traces of Java threads for a given Java process or core file or a remote debug server. For each Java frame, the full class name, method name, 'bci' (byte code index) and line number, if available, are printed. With the -m option, jstack prints both Java and native frames of all threads along with the 'pc' (program counter). 
+```
+jstack [ option ] pid
+jstack [ option ] executable core
+jstack [ option ] [server-id@]remote-hostname-or-IP
+
+```
+Option
+* -F:  Force a stack dump when 'jstack [-l] pid' does not respond.
+* -l:  Long listing. Prints additional information about locks such as list of owned java.util.concurrent ownable synchronizers.
+* -m:  prints mixed mode (both Java and native C/C++ frames) stack trace.
+* -h:  prints a help message.
+* -help: prints a help message
+
+线程的状态
+* waiting on condition: TIMED_WAITING (sleeping), WAITING (parking)
+* runnable: RUNNABLE
+* in Object.wait(): TIMED_WAITING (on object monitor)
+* sleeping: TIMED_WAITING (sleeping)
+
+```
+- parking to wait for  <0x00000006c861e938>
+
+  Locked ownable synchronizers:
+        - <0x00000006cad83ca8> 
+```
+
+
+```
+"Reference Handler" #2 daemon prio=10 os_prio=0 tid=0x00007f06001ae800 nid=0x4f03 in Object.wait() [0x00007f05e39f8000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x0000000782c06c08> (a java.lang.ref.Reference$Lock)
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+	- locked <0x0000000782c06c08> (a java.lang.ref.Reference$Lock)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+   Locked ownable synchronizers:
+	- None
+
+```
+|  Section   |   Example  |   Description  |
+| :------------ | :------------ | :------------ |
+Name | "Reference Handler"  |Human-readable name of the thread. This name can be set by calling the setName method on a Threadobject and be obtained by calling getName on the object.|
+ID   | #2  | A unique ID associated with each Thread object. This number is generated, starting at 1, for all threads in the system. Each time a Thread object is created, the sequence number is incremented and then assigned to the newly created Thread. This ID is read-only and can be obtained by calling getId on a Thread object.|
+Daemon status | daemon |A tag denoting if the thread is a daemon thread. If the thread is a daemon, this tag will be present; if the thread is a non-daemon thread, no tag will be present. For example, Thread-0 is not a daemon thread and therefore has no associated daemon tag in its summary: Thread-0" #12 prio=5....|
+Priority | prio=10 | The numeric priority of the Java thread. Note that this does not necessarily correspond to the priority of the OS thread to with the Java thread is dispatched. The priority of a Thread object can be set using the setPriority method and obtained using the getPriority method.|
+OS Thread Priority | os_prio=2 |The OS thread priority. This priority can differ from the Java thread priority and corresponds to the OS thread on which the Java thread is dispatched.|
+Address | tid=0x00000250e4979000 |The address of the Java thread. This address represents the pointer address of the Java Native Interface (JNI) native Thread object (the C++ Thread object that backs the Java thread through the JNI). This value is obtained by converting the pointer to this (of the C++ object that backs the Java Thread object) to an integer on line 879 of hotspot/share/runtime/thread.cpp:
+
+    st->print("tid=" INTPTR_FORMAT " ", p2i(this));
+
+Although the key for this item (tid) may appear to be the thread ID, it is actually the address of the underlying JNI C++ Thread object and thus is not the ID returned when calling getId on a Java Thread object.
+
+
+
+
 # Date Time
 [Java Date Time](https://www.joda.org/joda-time/)
 
@@ -174,64 +241,6 @@ Stream operations are divided into intermediate and terminal operations, and are
 
 Intermediate operations are further divided into stateless and stateful operations. Stateless operations, such as filter and map, retain no state from previously seen element when processing a new element -- each element can be processed independently of operations on other elements. Stateful operations, such as distinct and sorted, may incorporate state from previously seen elements when processing new elements. 
 
-
-# Performance
-
-
-[async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
-
-[How to Read a Thread Dump ](https://dzone.com/articles/how-to-read-a-thread-dump)
-
-A thread dump is a snapshot of the state of all the threads of a Java process. The state of each thread is presented with a stack trace, showing the content of a thread's stack. A thread dump is useful for diagnosing problems as it displays the thread's activity.
-
-jstack prints Java stack traces of Java threads for a given Java process or core file or a remote debug server. For each Java frame, the full class name, method name, 'bci' (byte code index) and line number, if available, are printed. With the -m option, jstack prints both Java and native frames of all threads along with the 'pc' (program counter). 
-```
-jstack [ option ] pid
-jstack [ option ] executable core
-jstack [ option ] [server-id@]remote-hostname-or-IP
-
-```
-Option
-* -F:  Force a stack dump when 'jstack [-l] pid' does not respond.
-* -l:  Long listing. Prints additional information about locks such as list of owned java.util.concurrent ownable synchronizers.
-* -m:  prints mixed mode (both Java and native C/C++ frames) stack trace.
-* -h:  prints a help message.
-* -help: prints a help message
-
-线程的状态
-* waiting on condition: TIMED_WAITING (sleeping), WAITING (parking)
-* runnable: RUNNABLE
-* in Object.wait(): TIMED_WAITING (on object monitor)
-* sleeping: TIMED_WAITING (sleeping)
-
-```
-- parking to wait for  <0x00000006c861e938>
-
-  Locked ownable synchronizers:
-        - <0x00000006cad83ca8> 
-```
-
-
-```
-"Reference Handler" #2 daemon prio=10 os_prio=0 tid=0x00007f06001ae800 nid=0x4f03 in Object.wait() [0x00007f05e39f8000]
-   java.lang.Thread.State: WAITING (on object monitor)
-	at java.lang.Object.wait(Native Method)
-	- waiting on <0x0000000782c06c08> (a java.lang.ref.Reference$Lock)
-	at java.lang.Object.wait(Object.java:502)
-	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
-	- locked <0x0000000782c06c08> (a java.lang.ref.Reference$Lock)
-	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
-
-   Locked ownable synchronizers:
-	- None
-
-```
-|  Section   |   Example  |   Description  |
-| :------------ | :------------ | :------------ |
-Name | "Reference Handler"  |Human-readable name of the thread. This name can be set by calling the setName method on a Threadobject and be obtained by calling getName on the object.|
-ID   | #2  | A unique ID associated with each Thread object. This number is generated, starting at 1, for all threads in the system. Each time a Thread object is created, the sequence number is incremented and then assigned to the newly created Thread. This ID is read-only and can be obtained by calling getId on a Thread object.|
-Daemon status | daemon |A tag denoting if the thread is a daemon thread. If the thread is a daemon, this tag will be present; if the thread is a non-daemon thread, no tag will be present. For example, Thread-0 is not a daemon thread and therefore has no associated daemon tag in its summary: Thread-0" #12 prio=5....|
-Priority | prio=10 | The numeric priority of the Java thread. Note that this does not necessarily correspond to the priority of the OS thread to with the Java thread is dispatched. The priority of a Thread object can be set using the setPriority method and obtained using the getPriority method.|
 
 
 
