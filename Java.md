@@ -181,13 +181,15 @@ Intermediate operations are further divided into stateless and stateful operatio
 [async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
 
 
+A thread dump is a snapshot of the state of all the threads of a Java process. The state of each thread is presented with a stack trace, showing the content of a thread's stack. A thread dump is useful for diagnosing problems as it displays the thread's activity.
+
 jstack prints Java stack traces of Java threads for a given Java process or core file or a remote debug server. For each Java frame, the full class name, method name, 'bci' (byte code index) and line number, if available, are printed. With the -m option, jstack prints both Java and native frames of all threads along with the 'pc' (program counter). 
 ```
 jstack [ option ] pid
 jstack [ option ] executable core
 jstack [ option ] [server-id@]remote-hostname-or-IP
 
-nid 进程id
+nid 进程id.The tid is thead id and nid is: Native thread ID. This ID is highly platform dependent.
 ```
 Option
 * -F:  Force a stack dump when 'jstack [-l] pid' does not respond.
@@ -201,6 +203,13 @@ Option
 * runnable: RUNNABLE
 * in Object.wait(): TIMED_WAITING (on object monitor)
 * sleeping: TIMED_WAITING (sleeping)
+
+```
+- parking to wait for  <0x00000006c861e938>
+
+  Locked ownable synchronizers:
+        - <0x00000006cad83ca8> 
+```
 # 杂项
 
 Comparable<T>  Comparator<T>
