@@ -220,7 +220,8 @@ Option
 
 |  Section   |   Example  |   Description  |
 | :------------ | :------------ | :------------ |
-Name  |	"Reference Handler" 	|Human-readable name of the thread. This name can be set by calling the setName method on a Threadobject and be obtained by calling getName on the object.
+Name | "Reference Handler"  |Human-readable name of the thread. This name can be set by calling the setName method on a Threadobject and be obtained by calling getName on the object.|
+ID   | #2  | A unique ID associated with each Thread object. This number is generated, starting at 1, for all threads in the system. Each time a Thread object is created, the sequence number is incremented and then assigned to the newly created Thread. This ID is read-only and can be obtained by calling getId on a Thread object.|
 
 # 杂项
 
