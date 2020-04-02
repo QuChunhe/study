@@ -190,7 +190,6 @@ jstack [ option ] pid
 jstack [ option ] executable core
 jstack [ option ] [server-id@]remote-hostname-or-IP
 
-nid 进程id.The tid is thead id and nid is: Native thread ID. This ID is highly platform dependent.
 ```
 Option
 * -F:  Force a stack dump when 'jstack [-l] pid' does not respond.
@@ -212,16 +211,29 @@ Option
         - <0x00000006cad83ca8> 
 ```
 
-* Thread Name : Name of the Thread.
-* Priority (prio and os_prio=0): prio is Thread Priority which can be between 1 to 10. 1 is MIN_PRIORITY  and 10 is MAX_PRIORITY.
-* nid (Native thread id) :  It gives us information about which thread is consuming most of CPU.
-* Thread States (java.lang.Thread.State) : States of Thread NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING and TERMINATED.
-* Java stack information for the threads 
 
+```
+"Reference Handler" #2 daemon prio=10 os_prio=0 tid=0x00007f06001ae800 nid=0x4f03 in Object.wait() [0x00007f05e39f8000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x0000000782c06c08> (a java.lang.ref.Reference$Lock)
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+	- locked <0x0000000782c06c08> (a java.lang.ref.Reference$Lock)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+   Locked ownable synchronizers:
+	- None
+
+```
 |  Section   |   Example  |   Description  |
 | :------------ | :------------ | :------------ |
 Name | "Reference Handler"  |Human-readable name of the thread. This name can be set by calling the setName method on a Threadobject and be obtained by calling getName on the object.|
 ID   | #2  | A unique ID associated with each Thread object. This number is generated, starting at 1, for all threads in the system. Each time a Thread object is created, the sequence number is incremented and then assigned to the newly created Thread. This ID is read-only and can be obtained by calling getId on a Thread object.|
+Daemon status | daemon |A tag denoting if the thread is a daemon thread. If the thread is a daemon, this tag will be present; if the thread is a non-daemon thread, no tag will be present. For example, Thread-0 is not a daemon thread and therefore has no associated daemon tag in its summary: Thread-0" #12 prio=5....|
+Priority | prio=10 | The numeric priority of the Java thread. Note that this does not necessarily correspond to the priority of the OS thread to with the Java thread is dispatched. The priority of a Thread object can be set using the setPriority method and obtained using the getPriority method.|
+
+
 
 # 杂项
 
