@@ -679,6 +679,17 @@ Global-defaults
 * st(steal)：表示 CPU 被其他虚拟机占用的时间，仅出现在多虚拟机场景。如果该指标过高，可以检查下宿主机或其他虚拟机是否异常。
 
 
+平均负载（Load Average）是指单位时间内，系统处于 可运行状态（Running / Runnable） 和 不可中断态 的平均进程数，也就是 平均活跃进程数。
+可运行态进程包括正在使用 CPU 或者等待 CPU 的进程；不可中断态进程是指处于内核态关键流程中的进程，并且该流程不可被打断。  
+这 3 个数字分别表示 1分钟、5分钟、15分钟内系统的平均负载。
+
+ * UPTIME and LOAD Averages
+   ** program or window name, depending on display mode
+   ** current time and length of time since last boot
+   ** total number of users
+   ** system load avg over the last 1, 5 and 15 minutes
+
+
 ```
 mpstat -P ALL 1
 
