@@ -700,6 +700,8 @@ Global-defaults
 * MEMORY Usage
 
 
+()[]
+Linux always tries to use RAM to speed up disk operations by using available memory for buffers (file system metadata) and cache (pages with actual contents of files or block devices). 
 
 ```
 mpstat -P ALL 1
