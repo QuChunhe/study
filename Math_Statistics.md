@@ -64,6 +64,15 @@ liberal or anti conservative test.
 
 图灵数学·统计学丛书30-损失模型：从数据到决策(第2版)【英文版暂代】-[美]斯图尔特·A·克卢格曼-Wiley出版-2004
 
+
+[中国科技大学·缪柏其·概率论与数理统计](https://mp.weixin.qq.com/s?__biz=MzI3OTM0NTU3NQ==&mid=2247491588&idx=1&sn=88caec9e14700105827e1389c26a6df6&chksm=eb4b80ccdc3c09da36e5482570cb1b5f63c22cb056cd9a9dae5c368cf4bf79de733ca83cfbe6&mpshare=1&scene=1&srcid=&sharer_sharetime=1581605935230&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AaXBbDJteA%2FYnjehKiZ8AIk%3D&pass_ticket=LEguntyz1PWNMmRC%2FEyyrSNOvCpywEX3DB73r7jUcAZBdsNR5%2FkTGTgFjY0%2BCCq9#rd)
+
+
+事件的蕴含、包含及相等
+
+事件的互斥和对立
+
+
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
 
 Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
