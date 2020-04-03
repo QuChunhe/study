@@ -44,7 +44,7 @@ Within this stack trace, we can see that locking information has been added, whi
   Locked ownable synchronizers:
         - <0x00000006cad83ca8> 
 ```
-[Class LockInfo](https://docs.oracle.com/javase/8/docs/api/java/lang/management/LockInfo.html)
+[Class LockInfo](https://docs.oracle.com/javase/8/docs/api/java/lang/management/LockInfo.html)   
 An ownable synchronizer is a synchronizer that may be exclusively owned by a thread and uses AbstractOwnableSynchronizer (or its subclass) to implement its synchronization property. ReentrantLock and ReentrantReadWriteLock are two examples of ownable synchronizers provided by the platform.
 
 
