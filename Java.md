@@ -22,18 +22,30 @@ Option
 * -h:  prints a help message.
 * -help: prints a help message
 
+The second line represents the current state of the thread. The possible states for a thread are captured in the Thread.State enumeration:
+* NEW
+* RUNNABLE
+* BLOCKED
+* WAITING
+* TIMED_WAITING
+* TERMINATED
+
 线程的状态
 * waiting on condition: TIMED_WAITING (sleeping), WAITING (parking)
 * runnable: RUNNABLE
 * in Object.wait(): TIMED_WAITING (on object monitor)
 * sleeping: TIMED_WAITING (sleeping)
 
+
+Within this stack trace, we can see that locking information has been added, which tells us that this thread is waiting for a lock on an object with an address of 0x00000006c861e938 (and a type of java.lang.Object) and, at this point in the stack trace, holds a lock on an object with an address of x00000006cad83ca8 (also of type java.lang.Object). This supplemental lock information is important when diagnosing deadlocks, as we will see in the following sections
 ```
 - parking to wait for  <0x00000006c861e938>
 
   Locked ownable synchronizers:
         - <0x00000006cad83ca8> 
 ```
+[Class LockInfo](https://docs.oracle.com/javase/8/docs/api/java/lang/management/LockInfo.html)
+An ownable synchronizer is a synchronizer that may be exclusively owned by a thread and uses AbstractOwnableSynchronizer (or its subclass) to implement its synchronization property. ReentrantLock and ReentrantReadWriteLock are two examples of ownable synchronizers provided by the platform.
 
 
 ```
@@ -60,9 +72,7 @@ OS Thread Priority | os_prio=2 |The OS thread priority. This priority can differ
 Address | tid=0x00000250e4979000 |The address of the Java thread. This address represents the pointer address of the Java Native Interface (JNI) native Thread object (the C++ Thread object that backs the Java thread through the JNI). This value is obtained by converting the pointer to this (of the C++ object that backs the Java Thread object) to an integer on line 879 of **hotspot/share/runtime/thread.cpp:** ```st->print("tid=" INTPTR_FORMAT " ", p2i(this));``` Although the key for this item (tid) may appear to be the thread ID, it is actually the address of the underlying JNI C++ Thread object and thus is not the ID returned when calling getId on a Java Thread object.|
 OS Thread ID | nid=0x3c28 | The unique ID of the OS thread to which the Java Thread is mapped. This value is printed on line 42 of **hotspot/share/runtime/osThread.cpp:**  ```st->print("nid=0x%x ", thread_id()); ```|
 Status | waiting on condition| A human-readable string depicting the current status of the thread. This string provides supplementary information beyond the basic thread state (see below) and can be useful in discovering the intended actions of a thread (i.e. was the thread trying to acquire a lock or waiting on a condition when it blocked).|
-Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Pointer (SP) for the stack associated with the thread. This value is supplied using native C++ code and is interlaced with the Java Thread class using the JNI. This value is obtained using the last_Java_sp() native method and is formatted into the thread dump on line 2886 of **hotspot/share/runtime/thread.cpp:** ```    st->print_cr("[" INTPTR_FORMAT "]",
-        (intptr_t)last_Java_sp() & ~right_n_bits(12));```
-For simple thread dumps, this information may not be useful, but for more complex diagnostics, this SP value can be used to trace lock acquisition through a program.
+Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Pointer (SP) for the stack associated with the thread. This value is supplied using native C++ code and is interlaced with the Java Thread class using the JNI. This value is obtained using the last_Java_sp() native method and is formatted into the thread dump on line 2886 of **hotspot/share/runtime/thread.cpp:** ```    st->print_cr("[" INTPTR_FORMAT "]", (intptr_t)last_Java_sp() & ~right_n_bits(12));``` For simple thread dumps, this information may not be useful, but for more complex diagnostics, this SP value can be used to trace lock acquisition through a program.|
 
 
 # Date Time
