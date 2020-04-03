@@ -633,7 +633,7 @@ top -Hp pid
 * COMMAND    命令名/命令行
 * WCHAN    若该进程在睡眠，则显示睡眠中的系统函数名
 
-```
+
 top -hv|-bcHiOSs -d secs -n max -u|U user -p pid -o fld -w [cols]
 COMMAND-LINE Options
   -h | -v  :Help/Version
@@ -668,7 +668,7 @@ COMMAND-LINE Options
               x - Column hilite    Off (no, sort field)
               y - Row hilite       On  (yes, running tasks)
               z - color/mono       On  (show colors)
-```
+
     us(user)：表示 CPU 在用户态运行的时间百分比，通常用户态 CPU 高表示有应用程序比较繁忙。典型的用户态程序包括：数据库、Web 服务器等。
 
     sy(sys)：表示 CPU 在内核态运行的时间百分比（不包括中断），通常内核态 CPU 越低越好，否则表示系统存在某些瓶颈。
@@ -692,8 +692,7 @@ mpstat -P ALL 1
 mpstat -I SCPU
 # cat proc/softirqs
 
-```
-```
+
 mpstat
 
 top/prstat
