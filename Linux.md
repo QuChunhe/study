@@ -683,11 +683,22 @@ Global-defaults
 可运行态进程包括正在使用 CPU 或者等待 CPU 的进程；不可中断态进程是指处于内核态关键流程中的进程，并且该流程不可被打断。  
 这 3 个数字分别表示 1分钟、5分钟、15分钟内系统的平均负载。
 
- * UPTIME and LOAD Averages
-   ** program or window name, depending on display mode
-   ** current time and length of time since last boot
-   ** total number of users
-   ** system load avg over the last 1, 5 and 15 minutes
+* UPTIME and LOAD Averages
+   * program or window name, depending on display mode
+   * current time and length of time since last boot
+   * total number of users
+   * system load avg over the last 1, 5 and 15 minutes
+* TASK and CPU States
+   * us, user    : time running un-niced user processes
+   * sy, system  : time running kernel processes
+   * ni, nice    : time running niced user processes
+   * id, idle    : time spent in the kernel idle handler
+   * wa, IO-wait : time waiting for I/O completion
+   * hi : time spent servicing hardware interrupts
+   * si : time spent servicing software interrupts
+   * st : time stolen from this vm by the hypervisor
+* MEMORY Usage
+
 
 
 ```
