@@ -633,7 +633,7 @@ top -Hp pid
 * COMMAND    命令名/命令行
 * WCHAN    若该进程在睡眠，则显示睡眠中的系统函数名
 
-
+```
 top -hv|-bcHiOSs -d secs -n max -u|U user -p pid -o fld -w [cols]
 COMMAND-LINE Options
   -h | -v  :Help/Version
@@ -669,6 +669,7 @@ COMMAND-LINE Options
               x - Column hilite    Off (no, sort field)
               y - Row hilite       On  (yes, running tasks)
               z - color/mono       On  (show colors)
+```
 
 
 
@@ -964,4 +965,22 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 ```
 du -h --max-depth=1
+```
+
+# Info
+
+```
+cat /proc/cpuinfo
+```
+查看 CPU 个数：
+```
+cat /proc/cpuinfo | grep 'physical id' | sort | uniq | wc -l
+```
+查看 CPU 物理核数：
+```
+cat /proc/cpuinfo | grep 'cpu cores' | sort | uniq
+```
+查看 CPU 逻辑核数：
+```
+cat /proc/cpuinfo | grep 'siblings' | sort | uniq
 ```
