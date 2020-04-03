@@ -998,6 +998,14 @@ du -h --max-depth=1
 
 ```
 cat /proc/cpuinfo
+
+processor	: 2
+
+physical id	: 0
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+
 ```
 查看 CPU 个数：
 ```
