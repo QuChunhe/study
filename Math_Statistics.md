@@ -90,7 +90,8 @@ liberal or anti conservative test.
 概率是随机事件发生大小可能性的数学表征，即概率是事件的函数。
 
 古典概率定义
-
+* 有限性：存在有限个基本事件
+* 等概率：基本事件的概率相等
 
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
