@@ -76,7 +76,7 @@ liberal or anti conservative test.
 * Ｓ  空间
 * 事件  集合
 * 基本事件  空间中的点
-
+事件的运算《==》集合的运算
 
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
