@@ -72,6 +72,12 @@ liberal or anti conservative test.
 
 事件的互斥和对立
 
+事件与集合一一对应
+* Ｓ  空间
+* 事件  集合
+* 基本事件  空间中的点
+
+
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
 
