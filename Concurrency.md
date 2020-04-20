@@ -135,7 +135,41 @@ Performance Evaluation of Parallel Algorithms
 
 
 
+# Concurrency
 
+
+Atul S. Khot, Concurrent Patterns and Best Practices: Build scalable apps with patterns in multithreading, synchronization, and functional programming, 2018
+
+When things happen at the same time, we say that things are happening concurrently. As far as this book is concerned, whenever parts of an
+executable program run at the same time, we are dealing with concurrent programming. We use the term parallel programming as a synonym for concurrent programming.
+
+并发的需求：
+* 任务：更小的处理时间，更大的系统吞吐
+* 设备：并行处理能力
+* 处理的速度的失配
+* 设备复用
+
+[The Free Lunch Is Over:A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm)
+ 
+ Instead of driving clock speeds and straight-line instruction throughput ever higher, they are instead turning en masse to hyperthreading and multicore architectures.
+ 
+ 传统的提高CPU处理能力
+ * 提高系统时钟
+ * 提高指令吞吐：pipelining, branch prediction, executing multiple instructions in the same clock cycle(s),instruction reordering。
+ 现在的方式
+ * 超线程
+ * 多核和众核
+ 
+Over the past 30 years, CPU designers have achieved performance gains in three main areas, the first two of which focus on straight-line execution flow:
+* clock speed
+* execution optimization
+* cache
+借助于底层硬件的升级，上层应用和软件无须改动，就可以提高性能
+
+动力：
+* 半导体和电子技术
+* 计算机系统结构
+ 
 # Books
 
 [Allen B. Downey. The Little Book of Semaphores. Second Edition. 2007](http://linuxinsight.com/files/downey05semaphores.pdf)
