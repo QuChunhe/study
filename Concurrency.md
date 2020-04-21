@@ -179,7 +179,11 @@ The near-term future performance growth drivers are:
 * multicore
 * cache 
  
- 
+Applications will increasingly need to be concurrent if they want to fully exploit continuing exponential CPU throughput gains
+
+Efficiency and performance optimization will get more, not less, importan
+
+
  
 # Books
 
