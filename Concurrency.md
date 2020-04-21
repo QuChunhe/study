@@ -169,6 +169,17 @@ Over the past 30 years, CPU designers have achieved performance gains in three m
 动力：
 * 半导体和电子技术
 * 计算机系统结构
+
+It has become harder and harder to exploit higher clock speeds due to not just one but several physical issues, notably heat (too much of it and too hard to dissipate), power consumption (too high), and current leakage problems.
+ 
+The performance gains are going to be accomplished in fundamentally different ways for at least the next couple of processor generations. And most current applications will no longer benefit from the free ride without significant redesign.
+ 
+The near-term future performance growth drivers are:
+* hyperthreading
+* multicore
+* cache 
+ 
+ 
  
 # Books
 
@@ -241,3 +252,17 @@ message-driven
 * It must react to failure and stay available (resilient).可自愈
 * It must react to variable load conditions (elastic).有弹性
 * It must react to inputs (message-driven). 消息驱动
+
+
+[什么是CPU Die](https://zhuanlan.zhihu.com/p/51354994)
+Die或者CPU Die指的是处理器在生产过程中，从晶圆（Silicon Wafer）上切割下来的一个个小方块（这也是为啥消费者看到的CPU芯片为什么都是方的的原因），在切割下来之前，每个小方块（Die）都需要经过各种加工，将电路逻辑刻到该Die上面.
+
+对于主流的CPU厂商Intel和AMD而言，他们会将1个或者N个CPU Die封装起来形成一个CPU Package，有时候也叫作CPU Socket.
+
+而对于AMD的EYPC CPU而言，它的每个CPU Socket由4个CPU Die组成，每个CPU Die中包含有4个CPU内核
+
+CPU Die之间通过片外总线（Infinity Fabric）互联，并且不同CPU Die上的CPU内核不能共享CPU缓存，而单个Die的Xeon处理器内和所有CPU内核其实是可以共享CPU的第三级缓存（L3 Cache）的。
+
+* CPU插槽
+
+
