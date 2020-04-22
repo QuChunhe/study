@@ -1,4 +1,10 @@
 
+
+Concurrency vs Parallelism
+
+顾名思义，并发就是同时发生，并行就是同时执行。因此，并发指的是同时执行这个事件，也就是说后续的执行是串行，还是并行，不确定，而并行指的是同时执行这个过程。并发可以因为并行是并发的一种特例。并发往往在软件层面，而并行往往在硬件层面。
+
+
 Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html
 
 
