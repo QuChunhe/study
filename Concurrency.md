@@ -4,6 +4,9 @@ Concurrency vs Parallelism
 
 顾名思义，并发就是同时发生，并行就是同时执行。因此，并发指的是同时开始执行这个事件，也就是说后续的执行是串行，还是并行，不确定，而并行指的是同时执行这个过程。并发可以因为并行是并发的一种特例。并发往往在软件层面，而并行往往在硬件层面。
 
+Thread Pool 线程池
+* 复用线程，大大减小创建和消耗线程的代价
+* 设置线程池中最大可用线程数，避免过渡使用线程资源，而拖垮系统性能
 
 Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html
 
@@ -222,7 +225,8 @@ http://www.gotw.ca/publications/index.htm
 
 ![fundamental concurrency requirements and techniques](https://github.com/QuChunhe/study/blob/master/pics/the-pillars-of-concurrency-table1.gif)
 
-* Pillar 1: Responsiveness and Isolation Via Asynchronous Agents。通过异步代理，提高响应性和隔离性。
+* Pillar 1: Responsiveness and Isolation Via Asynchronous Agents。通过异步代理，提高响应性和隔离性，既能够快速响应服务请求，也要避免或减小服务的相互干扰。互扰本质上是来因为任务之间的相互等待，即一个任务即使独立于其他其他任务，也需要等待其他任务处理结束，才能运行。互扰来自于两个方面：1）硬件资源的复用，包括计算资源、存储资源和内存资源等；2）软件串行处理。软件串行处理意味着如果有多个任务，那么仅仅有一个任务在运行，而其他任务则必须等待。在复用的资源没有达到门限的前提下，采用多线程并发处理任务，可以减小任务的等待时间，避免相互干扰。
+ 
 * Pillar 2: Throughput and Scalability Via Concurrent Collections
 * Pillar 3: Consistency Via Safely Shared Resources
 
