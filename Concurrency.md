@@ -225,9 +225,11 @@ http://www.gotw.ca/publications/index.htm
 
 ![fundamental concurrency requirements and techniques](https://github.com/QuChunhe/study/blob/master/pics/the-pillars-of-concurrency-table1.gif)
 
-* Pillar 1: Responsiveness and Isolation Via Asynchronous Agents。通过异步代理，提高响应性和隔离性，既能够快速响应服务请求，也要避免或减小服务的相互干扰。互扰本质上是来因为任务之间的相互等待，即一个任务即使独立于其他其他任务，也需要等待其他任务处理结束，才能运行。互扰来自于两个方面：1）硬件资源的复用，包括计算资源、存储资源和内存资源等；2）软件串行处理。软件串行处理意味着如果有多个任务，那么仅仅有一个任务在运行，而其他任务则必须等待。在复用的资源没有达到门限的前提下，采用多线程并发处理任务，可以减小任务的等待时间，避免相互干扰。
+* Pillar 1: Responsiveness and Isolation Via Asynchronous Agents。通过异步代理，提高响应性和隔离性。换言之，能够快速响应服务请求，避免或减小服务的相互干扰或者阻塞。互扰在本质上是来因为任务之间的相互等待，即一个任务即使独立于其他其他任务，也需要被迫处于阻塞状态，以等待其他任务处理结束，才能运行。互扰来自于两个方面：1）硬件资源的复用，包括计算资源、存储资源和内存资源等；2）软件串行处理。软件串行处理意味着如果有多个任务，那么仅仅有一个任务在运行，而其他任务则必须等待。在复用的资源没有达到门限的前提下，采用多线程并发处理任务，可以减小任务的等待时间，避免相互干扰。独立的任务之间通过异步消息相互通信。
+
+Finally, how should the independent tasks communicate? A key is to have the communication itself be asynchronous, preferably using asynchronous messages where possible because messages are nearly always preferable to sharing objects in memory (which is Pillar 3's territory). In the case of a GUI thread, this is an easy fit because GUIs already use message-based event-driven models.
  
-* Pillar 2: Throughput and Scalability Via Concurrent Collections
+* Pillar 2: Throughput and Scalability Via Concurrent Collections。通过并发聚集(Collection)，提高吞吐能力和可扩展性
 * Pillar 3: Consistency Via Safely Shared Resources
 
 [2 How Much Scalability Do You Have or Need?](http://www.drdobbs.com/parallel/how-much-scalability-do-you-have-or-need/201202924)
