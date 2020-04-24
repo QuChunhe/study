@@ -279,4 +279,9 @@ CPU Die之间通过片外总线（Infinity Fabric）互联，并且不同CPU Die
 
 * CPU插槽
 
+socket ⇄ node
 
+socket是一个物理上的概念，指的是主板上的cpu插槽。node是一个逻辑上的概念，对应于socket。
+core ⇄ 物理cpu
+
+core就是一个物理cpu,一个独立的硬件执行单元
