@@ -277,11 +277,16 @@ Die或者CPU Die指的是处理器在生产过程中，从晶圆（Silicon Wafer
 
 CPU Die之间通过片外总线（Infinity Fabric）互联，并且不同CPU Die上的CPU内核不能共享CPU缓存，而单个Die的Xeon处理器内和所有CPU内核其实是可以共享CPU的第三级缓存（L3 Cache）的。
 
-* CPU插槽
+CPU Socket(NUMA Node)--> CPU Die --> CPU Core (Physic CPU)--> HyperThread (logic CPU)
 
-socket ⇄ node
+* socket ⇄ node
 
 socket是一个物理上的概念，指的是主板上的cpu插槽。node是一个逻辑上的概念，对应于socket。
-core ⇄ 物理cpu
+
+* core ⇄ 物理cpu
 
 core就是一个物理cpu,一个独立的硬件执行单元
+
+* thread ⇄ 逻辑cpu
+
+socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执行的硬件单元，比如寄存器，计算单元等; Thread：就是超线程hyperthread的概念，逻辑的执行单元，独立的执行上下文，但是共享core内的寄存器和计算单元。
