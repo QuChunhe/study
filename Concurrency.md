@@ -222,7 +222,7 @@ http://www.gotw.ca/publications/index.htm
 
 ![fundamental concurrency requirements and techniques](https://github.com/QuChunhe/study/blob/master/pics/the-pillars-of-concurrency-table1.gif)
 
-* Pillar 1: Responsiveness and Isolation Via Asynchronous Agents
+* Pillar 1: Responsiveness and Isolation Via Asynchronous Agents。通过异步代理，提高响应性和隔离性。
 * Pillar 2: Throughput and Scalability Via Concurrent Collections
 * Pillar 3: Consistency Via Safely Shared Resources
 
