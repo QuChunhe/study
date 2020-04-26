@@ -11,7 +11,7 @@ Programming Paradigms: fundamentally different approaches to building solutions 
  imperative programming
 * Object-oriented programming：approach to problem solving where all computations are carried out using objects.
    * Object： component of a program that knows how to perform certain actions and how to ineract with other elements of the program. property and method
-   * Class
+   * Class   
    OOP的核心特性
    * Abstraction
    * Encapsulation
