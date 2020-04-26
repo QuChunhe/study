@@ -229,7 +229,8 @@ http://www.gotw.ca/publications/index.htm
 
 Finally, how should the independent tasks communicate? A key is to have the communication itself be asynchronous, preferably using asynchronous messages where possible because messages are nearly always preferable to sharing objects in memory (which is Pillar 3's territory). In the case of a GUI thread, this is an easy fit because GUIs already use message-based event-driven models.
  
-* Pillar 2: Throughput and Scalability Via Concurrent Collections。通过并发聚集(Collection)，提高吞吐能力和可扩展性
+* Pillar 2: Throughput and Scalability Via Concurrent Collections。通过并发聚集(Collection)，提高吞吐能力和可扩展性。使得众多内核处于繁忙状态，以更快的计算出结果。我们特别期望目标操作在聚集（collection）上执行，在数据和算法结构上挖掘并行性。
+
 * Pillar 3: Consistency Via Safely Shared Resources
 
 [2 How Much Scalability Do You Have or Need?](http://www.drdobbs.com/parallel/how-much-scalability-do-you-have-or-need/201202924)
