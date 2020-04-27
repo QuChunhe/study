@@ -158,6 +158,19 @@ executable program run at the same time, we are dealing with concurrent programm
 * 处理的速度的失配
 * 设备复用
 
+MapReduce pattern
+
+Fault tolerance:redundant
+
+Time sharing
+
+We need to communicate and coordinate with the concurrently executing entities.
+
+There are two prominent models for concurrent communications:
+* message passing 
+* shared memory
+
+
 [The Free Lunch Is Over:A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm)
  
  Instead of driving clock speeds and straight-line instruction throughput ever higher, they are instead turning en masse to hyperthreading and multicore architectures.
