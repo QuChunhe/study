@@ -271,3 +271,11 @@ message-driven
 * It must react to inputs (message-driven). 消息驱动
 
 
+[The Trouble With Locks](http://gotw.ca/publications/mill36.htm)
+
+* Lock-based programming
+* Lock-free programming
+
+ unforeseen races (i.e., program corruption), deadlocks (i.e., program lockup), and performance cliffs (e.g., priority inversion, convoying, and sometimes complete loss of parallelism and/or worse performance than a single-threaded program)
+
+it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelock). 
