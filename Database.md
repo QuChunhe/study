@@ -123,6 +123,46 @@ A next-key lock is a combination of a record lock on the index record and a gap 
 [AUTO_INCREMENT Handling in InnoDB](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html)
 
 
+
+[划重点！你还在困惑MySQL中的"锁"吗？](https://mp.weixin.qq.com/s?__biz=MzI3NDA4OTk1OQ==&mid=2649903745&idx=1&sn=7cd6111a400186c6c7d4806f4277ceca&chksm=f31fa009c468291f683d6ac1de0a0a5a767e629a9da47b6f9c1f675a4c5a3835b48568b48fe6&mpshare=1&scene=1&srcid=0427WrpaKOREnrzqtACZ1Lwv&sharer_sharetime=1587972414462&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=Af3svVFvaH5D4v6WMzjSpw8%3D&pass_ticket=dQPTuWQMQvIImHS%2Frl41EVuA7Uh8PT6VumsOGO8w14tdeRR2aOM7wmGBoT4lfOSK#rd)
+
+* 乐观锁(optimistic locking)
+* 悲观锁(pessimistic locking)
+
+* 记录锁(record locking)
+* 间隙锁（gap locking）
+* 临键锁（next-key locking），其中临键锁=记录锁+间隙锁
+
+加锁粒度
+* 行锁（row-level locking）
+* 表锁（table-level locking）
+
+* 共享锁（share locking，S锁）,读锁
+* 排他锁（exclusive locking，X锁），写锁
+
+
+意向锁（intention locking）
+
+普通select语句不加锁，如想加锁只需在select语句后明确指定"for share"或"for update"即可，其中前者就是共享锁（S锁），也叫读锁；后者是排他锁（X锁），也叫写锁
+
+insert、update和delete都会自动加锁，而且加的是排他锁（X锁）
+
+* MVCC（multi-version concurrency control，即多版本并发控制）
+* LBCC（locking-based concurrency control）
+
+四大隔离等级
+* 读未提交（Read Uncommitted，RU）
+* 读已提交（Read Committed，RC）
+* 可重复读（Repeatable Read，RR）
+* 串行化（Serializable， SE）
+
+read phenomena，主要是指数据库中三种"错误"的读取结果：
+* 脏读：dirty read，即A事务读取了B事务更改但未提交的信息，主要发生在RU隔离级别
+* 不可重复读，non-repeatable read，即由于B事务在A事务期间对数据更改并已提交，导致A事务前后读取到不一致的结果
+* 幻读，phantom read，即A事务在之后的查询中出现了前期未出现的记录。
+
+
+
 ## NoSQL
 
 ### Cassandra
