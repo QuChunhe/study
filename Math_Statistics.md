@@ -102,7 +102,10 @@ liberal or anti conservative test.
 
 独立重复做n次实验，若在这n次实验中，事件A出现m次，则称f=m/n为事件A发生的频率。若n无限增大时，则f在某值p附近摆动，则称事件A的概率P(A)=p
 
+几何概率
 
+
+陈希孺<<概率论与数理统计>>
 
 * 放回有序样本
 * 放回无序样本
@@ -148,8 +151,6 @@ liberal or anti conservative test.
 二项式分布   
 多项式分布   
 
-
-几何概率
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
 
