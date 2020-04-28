@@ -611,6 +611,11 @@ Bradley Efron and Trevor Hastie, Computer Age Statistical Inference: Algorithms,
 [Bayesian Inference](http://www.stat.cmu.edu/~larry/=sml/Bayes.pdf)
 
 
+# Statistical Inference
+
+[Statistical inference for data science](https://leanpub.com/LittleInferenceBook/read)
+
+
 A
 absolute value 绝对值
 
