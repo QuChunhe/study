@@ -93,6 +93,11 @@ liberal or anti conservative test.
 * 有限性：存在有限个基本事件
 * 等概率：基本事件的概率相等
 
+如果基本事件的个数为n，则事件A的概率定义为P(A)=m/n,其中m为事件A包含的基本事件个数。
+
+概率的统计定义
+
+独立重复做n次实验，若在这n次实验中，事件A出现m次，则称f=m/n为事件A发生的频率。
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
 
