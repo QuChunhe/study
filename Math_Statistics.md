@@ -1,4 +1,6 @@
 
+$x^4$
+
 # Probability
 
 
