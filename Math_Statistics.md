@@ -103,35 +103,6 @@ liberal or anti conservative test.
 独立重复做n次实验，若在这n次实验中，事件A出现m次，则称f=m/n为事件A发生的频率。若n无限增大时，则f在某值p附近摆动，则称事件A的概率P(A)=p
 
 
-几何概率
-
-[統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
-
-
-Hogg,.Craig,.Introduction.to.Mathematical.Statistics,.5ed,.Pearson.1995,.HEP.2004,
-
-Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
-Sample Space: The set of all possible outcomes of a random experiment is called a sample space.  
-Event : The collection of none, one, or more than one outcomes from a sample space is called an event.
-Random Variable: A variable whose numerical values are determined by chance factors is called a random variable. Formally, it is a function from the sample space to a set of real numbers.
-
-
-Sample Space S：Set of possible outcomes of a random experiment/survey.
-
-Event: Every subset of is an Event
-
-Probability Set  Function P
-
-A Random Variable X is a real valued function defined on S
-
-X: S-->R
-
-
-
-[在线西北工业大学的数理统计课程](https://www.bilibili.com/video/av80041910)
-
-
-
 
 * 放回有序样本
 * 放回无序样本
@@ -176,6 +147,38 @@ X: S-->R
 
 二项式分布   
 多项式分布   
+
+
+几何概率
+
+[統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
+
+
+Hogg,.Craig,.Introduction.to.Mathematical.Statistics,.5ed,.Pearson.1995,.HEP.2004,
+
+Random Experiment : An experiment whose outcomes are determined only by chance factors is called a random experiment.   
+Sample Space: The set of all possible outcomes of a random experiment is called a sample space.  
+Event : The collection of none, one, or more than one outcomes from a sample space is called an event.
+Random Variable: A variable whose numerical values are determined by chance factors is called a random variable. Formally, it is a function from the sample space to a set of real numbers.
+
+
+Sample Space S：Set of possible outcomes of a random experiment/survey.
+
+Event: Every subset of is an Event
+
+Probability Set  Function P
+
+A Random Variable X is a real valued function defined on S
+
+X: S-->R
+
+
+
+[在线西北工业大学的数理统计课程](https://www.bilibili.com/video/av80041910)
+
+
+
+
 
 
 
