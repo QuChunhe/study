@@ -241,6 +241,12 @@ We’re interested in concurrency for two reasons: to make an application respon
 * deadlock(死锁).Two or more threads are waiting on each other for some action or resource.需要线程主动放弃资源。
 * race conditions(条件竞争).If two threads compete to use the same resource or data, we have a race condition.Two forces can lead to race conditions—the Just-in-Time (JIT) compiler optimization and the Java Memory Model.
 
+Visibility: Understand the Memory Barrier。
+
+
+
+[Designing and Building Parallel Programs](https://www.mcs.anl.gov/~itf/dbpp/text/book.html)
+
 # Web
 
 http://www.gotw.ca/publications/index.htm
