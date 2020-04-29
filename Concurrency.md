@@ -225,6 +225,11 @@ the order of events
 * 乱序执行：
 * cache，数据不一致
 
+Venkat Subramaniam, Programming Concurrency on the JVM : Mastering Synchronization, STM, and Actors
+
+We’re interested in concurrency for two reasons: to make an application responsive/improve the user experience and to make it faster.
+* Making Apps More Responsive
+* Making Apps Faster
 
 
 
