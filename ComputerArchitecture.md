@@ -1,4 +1,7 @@
 
+四十年来CPU发展的推动力
+* 半导体工艺：更高的频率、更多的晶体管
+* 体系结构
 
 [什么是CPU Die](https://zhuanlan.zhihu.com/p/51354994)   
 
