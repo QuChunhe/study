@@ -120,6 +120,7 @@ liberal or anti conservative test.
 
 概率的公理化定义：定义概率必须满足的一般性质。
 
+$\Omega$
 
 
 陈希孺<<概率论与数理统计>>
