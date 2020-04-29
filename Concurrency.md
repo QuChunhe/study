@@ -231,7 +231,15 @@ We’re interested in concurrency for two reasons: to make an application respon
 * Making Apps More Responsive
 * Making Apps Faster
 
+任务或者问题极少能够被划分为能够完全相互独立运行的部分。经常性的，我们能够执行独立的操作，但是却不得合并部分结果，以获得最总的结果。这就需要线程通信部分结果，有时需要等等这些结果准备好。
 
+* 数据交换：交换需要处理的数据和已经处理的结果
+* 任务协同：需要等待前一步的处理完成以及触发下一步的处理
+
+并发程序的三个问题
+* starvation(饥饿).Starvation occurs when a thread waits for an event that may take a very long time or forever to happen. 比如调用异常，一直无法返回。针对这种情况，一般需要添加timeout。
+* deadlock(死锁).Two or more threads are waiting on each other for some action or resource.需要线程主动放弃资源。
+* race conditions(条件竞争).If two threads compete to use the same resource or data, we have a race condition.Two forces can lead to race conditions—the Just-in-Time (JIT) compiler optimization and the Java Memory Model.
 
 # Web
 
