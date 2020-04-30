@@ -4,14 +4,30 @@ Concurrency vs Parallelism
 
 顾名思义，并发就是同时发生，并行就是同时执行。因此，并发指的是同时开始执行这个事件，也就是说后续的执行是串行，还是并行，不确定，而并行指的是同时执行这个过程。并发可以因为并行是并发的一种特例。并发往往在软件层面，而并行往往在硬件层面。
 
+
+无法充分多个CPU和多个内核的原因
+* 硬件资源的竞争，包括Cache，内存带宽和I/O等。硬件资源竞争使得线程无法继续运行，比如内存墙，采取：
+   * 忙等待(busy waiting)
+   * 放弃CPU运行，置于暂停或者等待状态，进行上线文切换
+* 软件问题
+   * 问题/任务固有的串行化，即没有办法并发处理。
+   * 没有充分挖掘问题/任务蕴含的并行性
+   * 分割的子问题/子任务的粒度不均匀，使得并发执行的线程处理时间相差太大
+   * 线程间的任务协调和数据交换占用太多的时间
+   * CPU的负载不均匀
+
+
 Thread Pool 线程池
 * 复用线程，通过线程复用，避免重复创建和消耗线程，从而大大减小创建/消耗线程的代价。
 * 避免过载，通过设置线程池中最大可用线程数，避免过渡使用线程资源，而拖垮系统性能
 
 
 
-无法充分多个CPU和多个内核的原因
-1）硬件资源的竞争，
+
+
+
+busy waiting is a technique in which a process repeatedly checks to see if a condition is true, such as whether keyboard input or a lock is available
+
 
 Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html
 
