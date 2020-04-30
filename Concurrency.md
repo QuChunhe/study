@@ -8,6 +8,11 @@ Thread Pool 线程池
 * 复用线程，通过线程复用，避免重复创建和消耗线程，从而大大减小创建/消耗线程的代价。
 * 避免过载，通过设置线程池中最大可用线程数，避免过渡使用线程资源，而拖垮系统性能
 
+
+
+无法充分多个CPU和多个内核的原因
+1）硬件资源的竞争，
+
 Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html
 
 
