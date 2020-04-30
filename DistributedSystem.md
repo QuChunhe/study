@@ -317,3 +317,12 @@ Raw State is state that operators keep in their own data structures. When checkp
 
 A third type of supported operator state is the Broadcast State. Broadcast state was introduced to support use cases where some data coming from one stream is required to be broadcasted to all downstream tasks, where it is stored locally and is used to process all incoming elements on the other stream.
 
+
+* Pattern
+
+MapReduce pattern
+* map part (distribution of work).
+
+
+
+
