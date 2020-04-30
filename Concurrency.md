@@ -16,10 +16,12 @@ Concurrency vs Parallelism
    * 线程间的任务协调和数据交换占用太多的时间
    * CPU的负载不均匀
 
-
-* lock-free data structures/Algorithms
-* lock
+线程协调的主要机制
+* lock-free data structures/Algorithms,其依赖于底层的原子操作指令 
+* lock，依赖于底层指令支持
 * atomic operations
+
+
 
 Thread Pool 线程池
 * 复用线程，通过线程复用，避免重复创建和消耗线程，从而大大减小创建/消耗线程的代价。
@@ -195,6 +197,15 @@ There are two prominent models for concurrent communications:
 * message passing 
 * shared memory
 
+We start getting results faster, which means the system is responsive.
+
+并发编程实际两个问题
+* Coordination：协同是指协建线程的创建以及子任务的执行顺序。
+* Communication：通信时指在线程间传递数据，这些数据可能时来自文件和数据库的原始输入数据，也可能时线程子任务的处理结果
+
+
+* pipes and filters design pattern
+
 
 [The Free Lunch Is Over:A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm)
  
@@ -267,6 +278,8 @@ We’re interested in concurrency for two reasons: to make an application respon
 * race conditions(条件竞争).If two threads compete to use the same resource or data, we have a race condition.Two forces can lead to race conditions—the Just-in-Time (JIT) compiler optimization and the Java Memory Model.
 
 Visibility: Understand the Memory Barrier。
+
+
 
 
 
