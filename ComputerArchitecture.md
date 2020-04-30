@@ -70,3 +70,16 @@ socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执�
 
 
 [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
+
+
+# Intel
+he processor uses three interdependent mechanisms for carrying out locked atomic operations:
+* Guaranteed atomic operations
+* Bus locking, using the LOCK# signal and the LOCK instruction prefix
+* Cache coherency protocols that ensure that atomic operations can be carried out
+on cached data structures (cache lock)
+These mechanisms are interdependent in the following ways. Certain basic memory transactions (such as reading or writing a byte in system memory) are always guaranteed to be handled atomically. That is, once started, the processor guarantees that the operation will be completed before another processor or bus agent is allowed access to the memory location. The processor also supports bus locking for performing selected memory operations (such as a read-modify-write operation in a shared area of memory) that typically need to be handled atomically, but are not automatically handled this way. Because frequently used memory locations are often cached in a processor’s L1 or L2 caches, atomic operations can often be carried out inside a processor’s caches without asserting the bus lock. Here the processor’s cache coherency protocols ensure that other processors that are caching the same memory locations are managed properly while atomic operations are performed on cached memory locations.
+<<Intel 64 and IA-32 Architectures Software Developer’s Manual Volume 3 (3A, 3B & 3C): System Programming Guide>> Chater 8 Mutiple-Processor Managment
+
+Press Ctrl+Enter to start a new line Send
+
