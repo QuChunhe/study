@@ -17,9 +17,14 @@ Concurrency vs Parallelism
    * CPU的负载不均匀
 
 线程协调的主要机制
-* lock-free data structures/Algorithms,其依赖于底层的原子操作指令 
-* lock，依赖于底层指令支持
-* atomic operations
+* 共享内存
+   * atomic operations，例如CAS指令
+   * lock，依赖于底层指令支持
+   * 线程安全的数据结构，其往往依赖于lock。
+   * lock-free data structures/Algorithms,其依赖于底层的原子操作指令 
+* 消息传递
+   
+ 
 
 
 
