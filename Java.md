@@ -269,6 +269,8 @@ The CAS operation updates atomically the value in M to B, but only if the existi
 1）如果操作成功，继续执行
 2）如果操作失败，那么：a)循环CAS操作，直到操作成功，忙等待；b）执行其他操作，空闲在执行CAS操作
 
+Atomic Variables and Collections
+
 [深入理解JVM之Java内存模型](https://segmentfault.com/a/1190000021637869)
 
 
