@@ -1,4 +1,15 @@
 
+“Power Wall + Memory Wall + ILP Wall = Brick Wall”
+* The Power Wall means faster computers get really hot.
+* The Memory Wall means 1000 pins on a CPU package is way too many.
+* ILP Wall means a deeper instruction pipeline really means digging a deeper power hole. (ILP stands for instruction level parallelism.)
+
+[The future of computers – Part 1: Multicore and the Memory Wall](https://www.edn.com/the-future-of-computers-part-1-multicore-and-the-memory-wall/)
+
+[Future of computers - Part 2: The Power Wall](https://www.edn.com/future-of-computers-part-2-the-power-wall/)
+
+[ Future of computing - Part 3: The ILP Wall and pipelines](https://www.edn.com/future-of-computing-part-3-the-ilp-wall-and-pipelines/)
+
 四十年来CPU发展的推动力
 * 半导体工艺：更高的频率、更多的晶体管
 * 体系结构
@@ -41,3 +52,17 @@ core就是一个物理cpu,一个独立的硬件执行单元
 * thread ⇄ 逻辑cpu
 
 socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执行的硬件单元，比如寄存器，计算单元等; Thread：就是超线程hyperthread的概念，逻辑的执行单元，独立的执行上下文，但是共享core内的寄存器和计算单元。
+
+
+
+(Memory Hierarchy Design – Part 1. Basics of Memory Hierarchie)[https://www.edn.com/memory-hierarchy-design-part-1-basics-of-memory-hierarchies/]
+
+[ Memory Hierarchy Design – Part 2. Ten advanced optimizations of cache performance](https://www.edn.com/memory-hierarchy-design-part-2-ten-advanced-optimizations-of-cache-performance/)
+
+[Memory Hierarchy Design – Part 3. Memory technology and optimizations](https://www.edn.com/memory-hierarchy-design-part-3-memory-technology-and-optimizations/)
+
+[Memory Hierarchy Design – Part 4. Virtual memory and virtual machines](https://www.edn.com/memory-hierarchy-design-part-4-virtual-memory-and-virtual-machines/)
+
+[Memory Hierarchy Design – Part 5. Crosscutting issues and the memory design of the ARM Cortex-A8](https://www.edn.com/memory-hierarchy-design-part-5-crosscutting-issues-and-the-memory-design-of-the-arm-cortex-a8/)
+
+[Memory Hierarchy Design – Part 6. The Intel Core i7, fallacies, and pitfalls](https://www.edn.com/memory-hierarchy-design-part-6-the-intel-core-i7-fallacies-and-pitfalls/)
