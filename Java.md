@@ -251,7 +251,30 @@ Stream operations are divided into intermediate and terminal operations, and are
 Intermediate operations are further divided into stateless and stateful operations. Stateless operations, such as filter and map, retain no state from previously seen element when processing a new element -- each element can be processed independently of operations on other elements. Stateful operations, such as distinct and sorted, may incorporate state from previously seen elements when processing new elements. 
 
 
+# Java Memory Model (JMM)
 
+Using locks solves the problem. However, performance takes a hit.When multiple threads attempt to acquire a lock, one of them wins, while the rest of the threads are either blocked or suspended.The process of suspending and then resuming a thread is very expensive and affects the overall efficiency of the system.
+
+
+There is a branch of research focused on creating non-blocking algorithms for concurrent environments. These algorithms exploit low-level atomic machine instructions such as compare-and-swap (CAS), to ensure data integrity.
+
+A typical CAS operation works on three operands:
+* The memory location on which to operate (M)
+* The existing expected value (A) of the variable
+* The new value (B) which needs to be set
+
+The CAS operation updates atomically the value in M to B, but only if the existing value in M matches A, otherwise no action is taken.In both cases, the existing value in M is returned. This combines three steps – getting the value, comparing the value and updating the value – into a single machine level operation. When multiple threads attempt to update the same value through CAS, one of them wins and updates the value. However, unlike in the case of locks, no other thread gets suspended;
+
+使用CAS后，需要判断CAS操作是否成功
+1）如果操作成功，继续执行
+2）如果操作失败，那么：a)循环CAS操作，直到操作成功，忙等待；b）执行其他操作，空闲在执行CAS操作
+
+[深入理解JVM之Java内存模型](https://segmentfault.com/a/1190000021637869)
+
+
+https://www.cs.umd.edu/class/spring2013/cmsc433/Notes/07-CMSC433-VolatilityAndOrdering.pdf
+
+[Programming Language Technologies and Paradigms](https://www.cs.umd.edu/class/spring2013/cmsc433/Notes/)
 
 # 杂项
 
