@@ -228,9 +228,23 @@ Threads interleaving – the need for synchronization
 
 线程一旦开始，其何时运行完全依赖于操作系统的调度，这使得如果不添加额外机制，多个线程会以交织方式获得CPU并且执行操作，即不同线程内的操作会以不可以预料的顺序执行。访问被共享的数据需要正确的同步。
 
+Race conditions and heisenbugs
+
+These are heisenbugs—essentially nondeterministic and hard to reproduce.
+
+Correct memory visibility and happens-before
+
+incorrect memory visibility. The synchronized keyword prevents the execution of critical sections by more than one thread. The synchronized keyword also makes sure the thread's local memory syncs up correctly with the shared memory。
+
+* write barrier
+* read barrier
+
+Java's volatile keyword guarantees correct memory visibility.
+
 * pipes and filters design pattern
 * Divide and conquer
-，
+* double-checked locking pattern
+
 
 [The Free Lunch Is Over:A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm)
  
@@ -240,7 +254,7 @@ Threads interleaving – the need for synchronization
  * 提高系统时钟
  * 提高指令吞吐：pipelining, branch prediction, executing multiple instructions in the same clock cycle(s),instruction reordering。
  现在的方式
- * 超线程
+ * 超线程:一个内核同时运行多个线程，从而实现一个物理内核实现多个逻辑内核的效果
  * 多核和众核
  
 Over the past 30 years, CPU designers have achieved performance gains in three main areas, the first two of which focus on straight-line execution flow:
