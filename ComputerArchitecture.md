@@ -6,9 +6,9 @@
 
 [The future of computers – Part 1: Multicore and the Memory Wall](https://www.edn.com/the-future-of-computers-part-1-multicore-and-the-memory-wall/)
 
-[Future of computers - Part 2: The Power Wall](https://www.edn.com/future-of-computers-part-2-the-power-wall/)
+[The future of computers - Part 2: The Power Wall](https://www.edn.com/future-of-computers-part-2-the-power-wall/)
 
-[ Future of computing - Part 3: The ILP Wall and pipelines](https://www.edn.com/future-of-computing-part-3-the-ilp-wall-and-pipelines/)
+[The future of computing - Part 3: The ILP Wall and pipelines](https://www.edn.com/future-of-computing-part-3-the-ilp-wall-and-pipelines/)
 
 四十年来CPU发展的推动力
 * 半导体工艺：更高的频率、更多的晶体管
@@ -55,7 +55,7 @@ socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执�
 
 
 
-(Memory Hierarchy Design – Part 1. Basics of Memory Hierarchie)[https://www.edn.com/memory-hierarchy-design-part-1-basics-of-memory-hierarchies/]
+[Memory Hierarchy Design – Part 1. Basics of Memory Hierarchie](https://www.edn.com/memory-hierarchy-design-part-1-basics-of-memory-hierarchies/)
 
 [ Memory Hierarchy Design – Part 2. Ten advanced optimizations of cache performance](https://www.edn.com/memory-hierarchy-design-part-2-ten-advanced-optimizations-of-cache-performance/)
 
