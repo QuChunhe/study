@@ -43,7 +43,7 @@ Thread Pool 线程池的好处
 busy waiting is a technique in which a process repeatedly checks to see if a condition is true, such as whether keyboard input or a lock is available
 
 
-(Fail-Fast Vs Fail-Safe Iterator in Java)[ https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html]
+[Fail-Fast Vs Fail-Safe Iterator in Java](https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html)
 
 
 
@@ -78,7 +78,7 @@ busy waiting is a technique in which a process repeatedly checks to see if a con
 * 共享存储（共享内存和共享磁盘）
 
 
-并行计算机的存储访问模型（ＵＭＡ、ＮＵＭＡ、ＣＯＭＡ、ＣＣ-ＮＵＭＡ 和ＮＯＲＭＡ）以及并行计算机的存储组织（层次存储技术和高速缓存一致性问题）
+并行计算机的存储访问模型（UMA, NUMA, COMA, CC_NUMA和NORMA）以及并行计算机的存储组织（层次存储技术和高速缓存一致性问题）
 * 一致内存访问模型UMA(Uniform Memory Access） 
 * 非一致存储访问NUMA(Nonumiform Memory Access)
 
