@@ -1,4 +1,9 @@
 
+
+针对复杂工程问题的通用思路是通过如下两个方式降低简化问题
+* 分解
+* 模块化
+
 [What Is Design Pattern?](http://www.vishalchovatiya.com/what-is-design-pattern/)
 
 The SOLID principles comprise of these five principles:
