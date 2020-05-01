@@ -99,6 +99,31 @@ Since the clock speed is limited by (among other things) the length of the longe
 
 Since the execute stage of the pipeline is really a bunch of different functional units, each doing its own task, it seems tempting to try to execute multiple instructions in parallel, each in its own functional unit. To do this, the fetch and decode/dispatch stages must be enhanced so they can decode multiple instructions in parallel and send them out to the "execution resources".
 
+The number of instructions able to be issued, executed or completed per cycle is called a processor's width.
+
+**Explicit Parallelism – VLIW(very long instruction word)**
+
+
+**Instruction Dependencies & Latencies**
+
+
+**Branches & Branch Prediction**
+
+**Eliminating Branches with Predication**
+
+**Instruction Scheduling, Register Renaming & OOO**
+
+The instructions in the program must be reordered so that while one instruction is waiting, other instructions can execute. Not surprisingly, this is called out-of-order execution, or just OOO for short (sometimes written OoO or OOE).
+
+
+Another approach to the whole problem is to have the compiler optimize the code by rearranging the instructions. This is called static, or compile-time, instruction scheduling. The rearranged instruction stream can then be fed to a processor with simpler in-order multiple-issue logic, relying on the compiler to "spoon feed" the processor with the best instruction stream. 
+
+A question that must be asked is whether the costly out-of-order logic is really warranted, or whether compilers can do the task of instruction scheduling well enough without it. This is historically called the brainiac vs speed-demon debate. 
+
+**The Power Wall & The ILP Wall**
+
+功耗和散热问题(power and heat issures)限制了时钟频率。And while power increases linearly with clock frequency, it increases as the square of voltage, making for a kind of "triple whammy" at very high clock speeds (f*V*V).
+
 # Intel
 The processor uses three interdependent mechanisms for carrying out locked atomic operations:
 * Guaranteed atomic operations
