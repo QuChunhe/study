@@ -93,8 +93,8 @@ busy waiting is a technique in which a process repeatedly checks to see if a con
 * 计算行为(同步方式或异步方式）
 * 成本函数(其自变量是机器参数）
 
-
-* First generation Parrell computational models - shared memory (algorithm)
+并行计算模型的演进
+* First generation Parallel computational models - shared memory (algorithm)
    * 共享存储SIMD同步模型   
    随机存取机器(Parrallel Random Access Machine:PRAM)
    * 共享存储MIMD异步模型    
@@ -108,6 +108,7 @@ BSP=LogP+barriers-overhead
    * UMH (Uniform Memory Hierarchy) Model: register, acache, memoery,disk
    * DRAM (Distributed RAM) model: local memoery, remote memory
 
+并行的层次
 * Numerical computation method
 * Parallel algorithm
 * Parallel program
