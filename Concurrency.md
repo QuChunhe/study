@@ -371,6 +371,10 @@ instruction level parallelism (ILP)
 thread level parallelism (TLP)
 
 
+[Real-world Concurrency](https://queue.acm.org/detail.cfm?id=1454462)
+
+[queue.acm concurrency](https://queue.acm.org/listing.cfm?item_topic=Concurrency&qc_type=theme_list&filter=Concurrency&page_title=Concurrency&order=desc)
+
 # Reactive Design Patterns
 
 message-driven
