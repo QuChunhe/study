@@ -111,7 +111,7 @@ The number of instructions able to be issued, executed or completed per cycle is
 
 **Eliminating Branches with Predication**
 
-**Instruction Scheduling, Register Renaming & OOO**
+**Instruction Scheduling, Register Renaming & OOO(out-of-order execution)**
 
 The instructions in the program must be reordered so that while one instruction is waiting, other instructions can execute. Not surprisingly, this is called out-of-order execution, or just OOO for short (sometimes written OoO or OOE).
 
@@ -123,6 +123,37 @@ A question that must be asked is whether the costly out-of-order logic is really
 **The Power Wall & The ILP Wall**
 
 功耗和散热问题(power and heat issures)限制了时钟频率。And while power increases linearly with clock frequency, it increases as the square of voltage, making for a kind of "triple whammy" at very high clock speeds (f*V*V).
+
+It gets even worse, because in addition to the normal switching power, there is also a small amount of leakage power, since even when a transistor is off, the current flowing through it isn't completely reduced to zero. And just like the good, useful current, this leakage current also goes up as the voltage is increased. If that wasn't bad enough, leakage generally goes up as the temperature increases as well, due to the increased movement of the hotter, more energetic electrons within the silicon.
+
+
+The power and heat problems become unmanageable, because it's simply not possible to provide that much power and cooling to a silicon chip in any practical fashion, even if the circuits could, in fact, operate at higher clock speeds. This is called the power wall.
+
+Pursuing more and more ILP also has definite limits, because unfortunately, normal programs just don't have a lot of fine-grained parallelism in them, due to a combination of load latencies, cache misses, branches and dependencies between instructions. This limit of available instruction-level parallelism is called the ILP wall.
+* 通常的程序没有很多细粒度的并行性
+* 读取（内存）的时延。CPU和内存的速度失配。
+* ache未命中
+* 指令的分支和依赖
+
+
+**Threads – SMT(Simultaneous multi-threading), Hyper-Threading & Multi-Core**
+
+Simultaneous multi-threading (SMT) is a processor design technique which exploits exactly this type of thread-level parallelism.
+
+在Intel　CPU中被成为超线程(hyper-threading)
+
+**More Cores or Wider Cores?**
+
+ One key problem is that the complex multiple-issue dispatch logic scales up as roughly the square of the issue width, because all n candidate instructions need to be compared against every other candidate.8-issue more than 4 times larger than 4-issue (for only 2 times the width).In addition, a very wide superscalar design requires highly multi-ported register files and caches, to service all those simultaneous accesses. Both of these factors conspire to not only increase size, but also to massively increase the amount of longer-distance wiring at the circuit-design level, placing serious limits on the clock speed. 
+
+
+**Data Parallelism – SIMD Vector Instructions**
+
+In addition to instruction-level parallelism and thread-level parallelism, there is yet another source of parallelism in many programs – data parallelism. Rather than looking for ways to execute groups of instructions in parallel, the idea is to look for ways to make one instruction apply to a group of data values in parallel.
+
+This is sometimes called SIMD parallelism (single instruction, multiple data). More often, it's called vector processing. Supercomputers used to use vector processing a lot, with very long vectors, because the types of scientific programs which are run on supercomputers are quite amenable to vector processing.
+
+[Gallery of Processor Cache Effects](http://igoro.com/archive/gallery-of-processor-cache-effects/)
 
 # Intel
 The processor uses three interdependent mechanisms for carrying out locked atomic operations:
