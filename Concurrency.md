@@ -43,7 +43,7 @@ Thread Pool 线程池的好处
 busy waiting is a technique in which a process repeatedly checks to see if a condition is true, such as whether keyboard input or a lock is available
 
 
-Fail-Fast Vs Fail-Safe Iterator in Java https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html
+(Fail-Fast Vs Fail-Safe Iterator in Java)[ https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html]
 
 
 
