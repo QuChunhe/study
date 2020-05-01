@@ -82,7 +82,7 @@ busy waiting is a technique in which a process repeatedly checks to see if a con
 * 一致内存访问模型UMA(Uniform Memory Access） 
 * 非一致存储访问NUMA(Nonumiform Memory Access)
 
-
+应用类型
 * 计算密集(Compute-Intensive)型应用
 * 数据密集(Data-Intensive)型应用
 * 网络密集(Network-Intensive)型应用
