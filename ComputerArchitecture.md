@@ -72,6 +72,33 @@ socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执�
 [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 
 
+
+[Modern Microprocessors:A 90-Minute Guide!](http://www.lighterra.com/papers/modernmicroprocessors/)
+
+关键技术
+* pipelining (superscalar, OOO, VLIW, branch prediction, predication)
+* multi-core and simultaneous multi-threading (SMT, hyper-threading)
+* SIMD vector instructions (MMX/SSE/AVX, AltiVec, NEON)
+* caches and the memory hierarchy
+
+**Pipelining & Instruction-Level Parallelism**
+* Fetch
+* Decode
+* Execute
+* Writeback
+Modern processors overlap these stages in a pipeline, like an assembly line. 
+
+D**eeper Pipelines – Superpipelining**
+
+Since the clock speed is limited by (among other things) the length of the longest, slowest stage in the pipeline, the logic gates that make up each stage can be subdivided, especially the longer ones, converting the pipeline into a deeper super-pipeline with a larger number of shorter stages. Then the whole processor can be run at a higher clock speed! Of course, each instruction will now take more cycles to complete (latency), but the processor will still be completing 1 instruction per cycle (throughput), and there will be more cycles per second, so the processor will complete more instructions per second (actual performance).
+
+
+
+
+**Multiple Issue – Superscalar(超标量)**
+
+Since the execute stage of the pipeline is really a bunch of different functional units, each doing its own task, it seems tempting to try to execute multiple instructions in parallel, each in its own functional unit. To do this, the fetch and decode/dispatch stages must be enhanced so they can decode multiple instructions in parallel and send them out to the "execution resources".
+
 # Intel
 The processor uses three interdependent mechanisms for carrying out locked atomic operations:
 * Guaranteed atomic operations
@@ -80,6 +107,10 @@ The processor uses three interdependent mechanisms for carrying out locked atomi
 on cached data structures (cache lock)
 These mechanisms are interdependent in the following ways. Certain basic memory transactions (such as reading or writing a byte in system memory) are always guaranteed to be handled atomically. That is, once started, the processor guarantees that the operation will be completed before another processor or bus agent is allowed access to the memory location. The processor also supports bus locking for performing selected memory operations (such as a read-modify-write operation in a shared area of memory) that typically need to be handled atomically, but are not automatically handled this way. Because frequently used memory locations are often cached in a processor’s L1 or L2 caches, atomic operations can often be carried out inside a processor’s caches without asserting the bus lock. Here the processor’s cache coherency protocols ensure that other processors that are caching the same memory locations are managed properly while atomic operations are performed on cached memory locations.
 <<Intel 64 and IA-32 Architectures Software Developer’s Manual Volume 3 (3A, 3B & 3C): System Programming Guide>> Chater 8 Mutiple-Processor Managment
+
+
+
+
 
 
 #ARM
