@@ -179,6 +179,9 @@ Performance Evaluation of Parallel Algorithms
 
 
 
+[Is Parallel Programming Hard, And, If So, What Can You Do About It?](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html)
+
+
 # Concurrency
 
 
@@ -384,6 +387,26 @@ message-driven
 * It must react to variable load conditions (elastic).有弹性
 * It must react to inputs (message-driven). 消息驱动
 
+# Lock
+
+[Lecture Locking](https://www.ics.uci.edu/~aburtsev/cs5460/lectures/lecture11-locking/lecture11-locking.pdf)
+
+* Lock ordering: Locks need to be acquired in the same order
+* Locks and interrupts: Never hold a lock with interrupts enabled
+
+Problems with locks
+* Deadlock: Locks break modularity of interfaces, easy to get wrong
+
+Priority inversion
+* Low-priority task holds a lock required by a higher priority task
+* Priority inheritance can be a solution, but can also result in errors (see What really happened on Mars)
+* Convoying
+   1. Several tasks need the locks in roughly the same order
+   2. One slow task acquires the lock first
+   3. Everyone slows to the speed of this slow task
+* Signal safety: Similar to interrupts, but for user processes
+* Kill safety: What if a task is killed or crashed while holding a lock? 
+* Preemption safety: What happens if a task is preempted while holding a lock
 
 [The Trouble With Locks](http://gotw.ca/publications/mill36.htm)
 
@@ -393,3 +416,5 @@ message-driven
  unforeseen races (i.e., program corruption), deadlocks (i.e., program lockup), and performance cliffs (e.g., priority inversion, convoying, and sometimes complete loss of parallelism and/or worse performance than a single-threaded program)
 
 it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelock). 
+
+[Linux中常见同步机制设计原理](http://www.wowotech.net/kernel_synchronization/445.html)
