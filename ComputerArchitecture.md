@@ -85,10 +85,10 @@ socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执�
 * Fetch
 * Decode
 * Execute
-* Writeback
+* Writeback   
 Modern processors overlap these stages in a pipeline, like an assembly line. 
 
-D**eeper Pipelines – Superpipelining**
+**Deeper Pipelines – Superpipelining**
 
 Since the clock speed is limited by (among other things) the length of the longest, slowest stage in the pipeline, the logic gates that make up each stage can be subdivided, especially the longer ones, converting the pipeline into a deeper super-pipeline with a larger number of shorter stages. Then the whole processor can be run at a higher clock speed! Of course, each instruction will now take more cycles to complete (latency), but the processor will still be completing 1 instruction per cycle (throughput), and there will be more cycles per second, so the processor will complete more instructions per second (actual performance).
 
