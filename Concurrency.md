@@ -419,3 +419,8 @@ Priority inversion
 it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelock). 
 
 [Linux中常见同步机制设计原理](http://www.wowotech.net/kernel_synchronization/445.html)
+
+
+RCU（read copy update）
+[The RCU API, 2010 Edition](https://lwn.net/Articles/418853/)
+
