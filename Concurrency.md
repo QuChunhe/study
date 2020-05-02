@@ -2,8 +2,12 @@
 
 Concurrency vs Parallelism
 
+传统单核和单CPU时代
+* 分时复用CPU
+* 线程交织执行
+微观上运行执行，宏观上并发执行。
 
-顾名思义，并发就是同时发生，并行就是同时执行。因此，并发指的是同时开始执行这个事件，也就是说后续的执行是串行，还是并行，不确定，而并行指的是同时执行这个过程。并行是并发的一种特例。并发往往在软件层面，而并行往往在硬件层面。
+现在已经是多CPU(SMP)和多核时代，主流的商用服务器都多个CPU，每个CPU有多个内核。顾名思义，并发就是同时发生，并行就是同时执行。因此，并发指的是同时开始执行这个事件，也就是说后续的执行是串行，还是并行，不确定，而并行指的是同时执行这个过程。并行是并发的一种特例。并发往往在软件层面，而并行往往在硬件层面。
 
 
 无法充分利用多个CPU和多个内核的原因
@@ -16,7 +20,11 @@ Concurrency vs Parallelism
    * 分割的子问题/子任务的粒度不均匀，使得并发执行的线程处理时间相差太大
    * 线程间的任务协调和数据通信占用太多的时间
    * CPU的负载不均匀
-
+ 
+ 
+ [The Memory Wall Is Ending Multicore Scaling](https://www.electronicdesign.com/technologies/analog/article/21794572/the-memory-wall-is-ending-multicore-scaling)
+ 
+ 
 线程协调的主要机制
 * 共享内存
    * atomic operations，例如CAS指令
@@ -25,8 +33,11 @@ Concurrency vs Parallelism
    * lock-free data structures/Algorithms,其依赖于底层的原子操作指令 
 * 消息传递
    
- [The Memory Wall Is Ending Multicore Scaling](https://www.electronicdesign.com/technologies/analog/article/21794572/the-memory-wall-is-ending-multicore-scaling)
 
+三个维度挖掘并行性
+* 数据(data)
+* 功能(function)
+* 请求(request), 
 
 
 Thread Pool 线程池的好处
@@ -424,3 +435,5 @@ it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelo
 RCU（read copy update）
 [The RCU API, 2010 Edition](https://lwn.net/Articles/418853/)
 
+
+[volatile vs. volatile](https://www.drdobbs.com/parallel/volatile-vs-volatile/212701484)
