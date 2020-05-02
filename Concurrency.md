@@ -25,7 +25,7 @@ Concurrency vs Parallelism
    * lock-free data structures/Algorithms,其依赖于底层的原子操作指令 
 * 消息传递
    
- 
+ [The Memory Wall Is Ending Multicore Scaling](https://www.electronicdesign.com/technologies/analog/article/21794572/the-memory-wall-is-ending-multicore-scaling)
 
 
 
