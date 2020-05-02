@@ -154,6 +154,15 @@ In addition to instruction-level parallelism and thread-level parallelism, there
 This is sometimes called SIMD parallelism (single instruction, multiple data). More often, it's called vector processing. Supercomputers used to use vector processing a lot, with very long vectors, because the types of scientific programs which are run on supercomputers are quite amenable to vector processing.
 
 [Gallery of Processor Cache Effects](http://igoro.com/archive/gallery-of-processor-cache-effects/)
+## Memory Barriers
+
+[LINUX KERNEL MEMORY BARRIERS](https://www.mjmwired.net/kernel/Documentation/memory-barriers.txt)
+
+weakly ordered CPU 
+
+There are some minimal guarantees that may be expected of a CPU:
+* On any given CPU, dependent memory accesses will be issued in order, with respect to itself. 
+* Overlapping loads and stores within a particular CPU will appear to be ordered within that CPU.
 
 # Intel
 The processor uses three interdependent mechanisms for carrying out locked atomic operations:
@@ -165,7 +174,23 @@ These mechanisms are interdependent in the following ways. Certain basic memory 
 <<Intel 64 and IA-32 Architectures Software Developer’s Manual Volume 3 (3A, 3B & 3C): System Programming Guide>> Chater 8 Mutiple-Processor Managment
 
 
+[Intel® 64 Architecture Memory Ordering White Paper](http://www.cs.cmu.edu/~410-f10/doc/Intel_Reordering_318147.pdf)
 
+
+LOCK is not an instruction itself: it is an instruction prefix, which applies to the following instruction. That instruction must be something that does a read-modify-write on memory (INC, XCHG, CMPXCHG etc.) --- in this case it is the incl (%ecx) instruction which increments the long word at the address held in the ecx register.
+
+The LOCK prefix ensures that the CPU has exclusive ownership of the appropriate cache line for the duration of the operation, and provides certain additional ordering guarantees. This may be achieved by asserting a bus lock, but the CPU will avoid this where possible. If the bus is locked then it is only for the duration of the locked instruction.
+
+
+[](https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf)
+
+alignment：对于alignment为A的任意类型的变量，他的地址必须是A的倍数．字节对齐主要是为了提高内存的访问效率
+起始地址对齐，CPU从内存中获取数据时起始地址必须是地址总线宽度的倍数
+
+内存对齐的3大规则:
+1. 对于结构体的各个成员，第一个成员的偏移量是0，排列在后面的成员其当前偏移量必须是当前成员类型的整数倍
+2. 结构体内所有数据成员各自内存对齐后，结构体本身还要进行一次内存对齐，保证整个结构体占用内存大小是结构体内最大数据成员的最小整数倍
+3. 如程序中有#pragma pack(n)预编译指令，则所有成员对齐以n字节为准(即偏移量是n的整数倍)，不再考虑当前类型以及最大结构体内类型
 
 
 
