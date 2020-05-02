@@ -380,6 +380,9 @@ Finally, how should the independent tasks communicate? A key is to have the comm
  * Exploit parallelism in algorithm structures: For example, recursive sorting can exploit the natural parallelism in its divide-and-conquer structure. 
  * Exploit parallelism in data structures: For example, tree traversal can often exploit the independence in each node's subtrees. Compilation can exploit independence at several levels in the structure of source code, from coarse-grained independence among source files to finer-grained independence among classes or methods within a file.
 
+通过开发固有的并发性，寻找可扩展的并发机会
+* 开发算法结构的并发性
+* 开发数据结构的并发性
 
 [3 Use Critical Sections (Preferably Locks) to Eliminate Races](http://www.drdobbs.com/cpp/use-critical-sections-preferably-locks-t/201804238)
 
