@@ -201,6 +201,9 @@ Performance Evaluation of Parallel Algorithms
 [Is Parallel Programming Hard, And, If So, What Can You Do About It?](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html)
 
 
+
+
+[Designing Parallel Algorithms: Part 1](https://www.drdobbs.com/parallel/designing-parallel-algorithms-part-1/223100878)
 # Concurrency
 
 
