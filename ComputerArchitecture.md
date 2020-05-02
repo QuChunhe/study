@@ -181,8 +181,11 @@ LOCK is not an instruction itself: it is an instruction prefix, which applies to
 
 The LOCK prefix ensures that the CPU has exclusive ownership of the appropriate cache line for the duration of the operation, and provides certain additional ordering guarantees. This may be achieved by asserting a bus lock, but the CPU will avoid this where possible. If the bus is locked then it is only for the duration of the locked instruction.
 
+Causes the processor’s LOCK# signal to be asserted during execution of the accompanying instruction (turns the instruction into an atomic instruction). In a multiprocessor environment, the LOCK# signal ensures that the processor has exclusive use of any shared memory while the signal is asserted.
 
-[](https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf)
+[Intel® 64 and IA-32 ArchitecturesSoftware Developer’s Manual](https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf)
+
+[x86 and amd64 instruction reference](https://www.felixcloutier.com/x86/index.html)
 
 alignment：对于alignment为A的任意类型的变量，他的地址必须是A的倍数．字节对齐主要是为了提高内存的访问效率
 起始地址对齐，CPU从内存中获取数据时起始地址必须是地址总线宽度的倍数
