@@ -2,6 +2,8 @@
 
 Concurrency vs Parallelism
 
+multiprogramming　--> multithread (Concurrency) --> multiprocessor (parallelism).
+
 传统单核和单CPU时代
 * 分时复用CPU
 * 线程交织执行   
