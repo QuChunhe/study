@@ -452,3 +452,9 @@ RCU（read copy update）
 
 
 [volatile vs. volatile](https://www.drdobbs.com/parallel/volatile-vs-volatile/212701484)
+
+
+[eal-world concurrency](https://queue.acm.org/detail.cfm?id=1454462)
+
+Concurrent execution can improve performance in three fundamental ways: it can reduce latency (that is, make a unit of work execute faster); it can hide latency (that is, allow the system to continue doing work during a long-latency operation); or it can increase throughput (that is, make the system able to perform more work).
+
