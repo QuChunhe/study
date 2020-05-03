@@ -1,4 +1,14 @@
 
+John L. Hennessy, David A. Patterson, A New Golden Age for Computer Architecture, Communications of the ACM, February 2019, Vol. 62 No. 2, Pages 48-6
+
+key insights
+* Software advances can inspire architecture innovation.
+* Elevating the hardware/software interface creates opportunities for architecture innovation.
+* The marketplace ultimately settles architecture debates.
+
+Software talks to hardware through a vocabulary called an instruction set architecture (ISA).
+
+
 “Power Wall + Memory Wall + ILP Wall = Brick Wall”
 * The Power Wall means faster computers get really hot.
 * The Memory Wall means 1000 pins on a CPU package is way too many.
