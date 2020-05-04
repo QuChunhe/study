@@ -488,6 +488,9 @@ useful work while the operation is pending; in this model,the latency of the ope
 * 避免资源空闲
 当不需要硬件资源时，则放弃对于硬件资源的独占，使得其他应用使用该硬件资源。
 
-
+Further, concurrent execution is not the　only way to hide system-induced latencies: one can often
+achieve the same effect by employing nonblocking operations (e.g., asynchronous I/O) and an event loop (e.g.,
+the poll()/select() calls found in Unix) in an otherwise　sequential program. Programmers who wish to hide
+latency should therefore consider concurrent execution as　an option, not as a foregone conclusion.
 
 
