@@ -476,7 +476,7 @@ Concurrent execution can improve performance in three fundamental ways: it can r
 Using concurrency to reduce latency is highly problem-specific in that it requires a parallel algorithm for
 the task at hand.In short, the degree to which one can use concurrency to reduce latency depends much more on the problem than on those endeavoring to solve it—and many important problems are simply not amenable to it.
 
-减小服务时延依赖于问题或者任务本身:挖掘问题／任务的并行性，将问题／任务分解为子问题／任务，并通过并行处理这些子问题／子任务，减小处理时间
+减小服务时延依赖于问题或者任务本身:挖掘问题/任务的并行性，将问题/任务分解为子问题/任务，并通过并行处理这些子问题/子任务，以减小处理时间
 * 并发处理过程中需要引入而外的开销，因此只有问题规模足够大时，并发处理所减小的时延才内补偿所带来的额外开销
 * 问题或者任务固有的顺序性，使得难以并行化。
 
@@ -494,3 +494,20 @@ the poll()/select() calls found in Unix) in an otherwise　sequential program. P
 latency should therefore consider concurrent execution as　an option, not as a foregone conclusion.
 
 
+Instead of using parallel　logic to make a single operation faster, one can employ multiple concurrent executions of sequential logic to　accommodate more simultaneous work. Importantly, a system using concurrency to increase throughput need
+not consist exclusively (or even largely) of multithreaded code. Rather, those components of the system that
+share no state can be left entirely sequential, with the system executing multiple instances of these components concurrently.
+
+it is concurrency by architecture instead of by implementation.
+
+**Know your cold paths from your hot paths.** it is to know which paths through your code you want to be able to execute in
+parallel (the hot paths) versus which paths can execute sequentially without affecting performance (the cold paths).
+
+In cold paths, keep the locking as coarse-grained as possible. Don’t hesitate to have one lock that covers a wide range of rare activity in your subsystem. Conversely, in hot paths—those that must execute concurrently to deliver highest throughput—you must be much more careful: locking strategies must be simple and fine-grained, and you must be careful to avoid activity that
+can become a bottleneck.
+
+**Intuition is frequently wrong—be data intensive.** Today, dynamic instrumentation continues to provide　us with the data we need not only to find those parts of the system that are inhibiting scalability, but also to gather sufficient data to understand which techniques will be best suited for reducing that contention.
+
+在优化之前需要通过性能分析工具，收集足够的数据，用于标示出哪些子系统缺乏并行性或者需要可伸缩性。
+
+**Know when—and when not—to break up a lock.**
