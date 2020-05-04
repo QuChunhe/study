@@ -14,4 +14,7 @@ The SOLID principles comprise of these five principles:
 * DIP – Dependency Inversion Principle
 
 
-架构风格（architecture style
+架构风格（architecture style)
+
+
+![The Software Design & Architecture Stack][https://github.com/QuChunhe/study/blob/master/pics/Software-Design-Architecture-Stack.png]
