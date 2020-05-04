@@ -10,6 +10,41 @@ Phaser
 * thread-saft Collections
 * concurrent Collecttions
 
+
+## Lock
+
+
+JDK中的所机制
+* 内置锁 synchronized
+* 锁对象 Lock接口的的实现，包括ReentrantLock, ReentrantReadWriteLock.ReadLock, ReentrantReadWriteLock.WriteLock，本质上依赖于Unsafe.unpark()和Unsafe.park(LockSupport类调用Unsafte)。
+
+ReentrantLock, ReentrantReadWriteLock.ReadLock, ReentrantReadWriteLock.WriteLock --> AbstractOwnableSynchronizer --> LockSupport --> Unsafe
+
+```
+class X {
+   private final ReentrantLock lock = new ReentrantLock();
+   // ...
+
+   public void m() {
+     lock.lock();  // block until condition holds
+     try {
+       // ... method body
+     } finally {
+       lock.unlock()
+     }
+   }
+ }
+```
+
+在JAVA中ReentrantLock相对于内置锁有如下优势:
+1. 可中断锁，
+2. 可超时锁；
+3. 能够获得运行线程和阻塞线程
+4. 多个条件。
+5. 设置不同的加锁策略，fair和unfair 
+
+1)和2)能够使线程优雅地退出加锁阻塞状态，而3)适用于需要等待多个Condition的复杂场景，例如读写锁。
+
 # Performance
 
 
