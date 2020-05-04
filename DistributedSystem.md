@@ -324,7 +324,7 @@ MapReduce pattern
 * map part (distribution of work).
 
 
-＃　Patterns
+＃ Patterns
 
 (稳定性模式大全（Stability Patterns）)[https://mp.weixin.qq.com/s?__biz=MzIxMzEzMjM5NQ==&mid=2651036295&idx=2&sn=84c81f52fd1d915e7a8a70985d3e9d16&chksm=8c4c4f83bb3bc695cad976bbafc7e977995b548e5545c319ec1487fb32bd25dbf554702e7eff&mpshare=1&scene=1&srcid=0504wRpYm31npqZ7x6azDg5r&sharer_sharetime=1588554674432&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=Aa9aSiFEz46Dkrw1Lg%2Be0T8%3D&pass_ticket=a43aJERQMX9BbF%2FHWomrWkZFBaA3Ze0Kb4Lh0aokJrwblRbybCbiYCDvafpfxaWM#rd]
 
@@ -338,5 +338,9 @@ https://www.slideshare.net/jboner/scalability-availability-stability-patterns
 (awesome-scalability)[https://github.com/binhnguyennus/awesome-scalability]
 
 **Timeouts Pattern**
+
+Always use timeouts (if possible)
+
+**Circuit Breaker Pattern（断路器模式）**
 
 
