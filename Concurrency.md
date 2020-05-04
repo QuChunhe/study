@@ -437,12 +437,23 @@ Priority inversion
 
 [The Trouble With Locks](http://gotw.ca/publications/mill36.htm)
 
+A lock convoy occurs when multiple threads of equal priority contend repeatedly for the same lock. http://t.cn/RG0RQDH     Lock Convoys Explained  http://t.cn/zW4t7eS
+
+使用锁引起性能的下降主要是如下两个原因：1)并发/并行多个进程中，只有成功获得锁的进程能够继续执行，而其他进程则进入阻塞队列等待被唤醒，在极端条件下并发/并行程序会退化为串行执行；2)进程从运行状态到阻塞状态或者从阻塞状态被唤醒，OS需要切换上下文执行环境，代价高昂。
+
+无锁操作使得进程不会被阻塞，从而免去了进程切换导致的性能消耗，但是：1)并发/并行进程在竞争互斥资源时或者采用spin方式，或者polling方式，不可避免地引入进程空转；2)很多情况下还无法替换锁，虽然恨它，却无法离开它。
+
+尽量避免使用锁。检索操作（put方法）无需加锁，并不阻塞索引线程，而更新操作（put和remove方法）则要加锁。如果检索线程和更新线程相互重叠，则检索操作返回最近修改的结果，但不会受到更新操作的影响。对于put方法，或者更新值，或者在链表末尾增加节点。上述两种情况，都不会引起put方法异常
+
 * Lock-based programming
 * Lock-free programming
 
  unforeseen races (i.e., program corruption), deadlocks (i.e., program lockup), and performance cliffs (e.g., priority inversion, convoying, and sometimes complete loss of parallelism and/or worse performance than a single-threaded program)
 
 it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelock). 
+
+
+乐观并发控制/乐观锁基于出现写竞争的情况是一个小概率事件，即使出现写竞争，操作者也可通过检查状态发现并容忍操作失败时回滚操作。操作步骤：1）Begin；2）Modify；3）Validate；4）Commit/Rollback。『Optimistic concurrency control - Wikipedia, the free encyclopedia』http://t.cn/R5j2lUV
 
 [Linux中常见同步机制设计原理](http://www.wowotech.net/kernel_synchronization/445.html)
 
