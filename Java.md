@@ -327,4 +327,7 @@ https://www.cs.umd.edu/class/spring2013/cmsc433/Notes/07-CMSC433-VolatilityAndOr
 # 杂项
 
 Comparable<T>  Comparator<T>
+	
+[Sentinel(https://github.com/alibaba/Sentinel)
+	
 
