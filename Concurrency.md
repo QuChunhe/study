@@ -465,7 +465,29 @@ RCU（read copy update）
 [volatile vs. volatile](https://www.drdobbs.com/parallel/volatile-vs-volatile/212701484)
 
 
-[eal-world concurrency](https://queue.acm.org/detail.cfm?id=1454462)
+[Real-world Concurrency](https://queue.acm.org/detail.cfm?id=1454462)
 
 Concurrent execution can improve performance in three fundamental ways: it can reduce latency (that is, make a unit of work execute faster); it can hide latency (that is, allow the system to continue doing work during a long-latency operation); or it can increase throughput (that is, make the system able to perform more work).
+* 减小服务时延，能够更快的得到服务的响应或者输出
+* 提高系统吞吐，能够处理更多的输入，例如更多的服务请求以及更大的数据规模等
+* 降低系统负载，充分利用系统硬件资源，能够在相同的硬件条件下服务更多的服务请求和输入数据
+
+
+Using concurrency to reduce latency is highly problem-specific in that it requires a parallel algorithm for
+the task at hand.In short, the degree to which one can use concurrency to reduce latency depends much more on the problem than on those endeavoring to solve it—and many important problems are simply not amenable to it.
+
+减小服务时延依赖于问题或者任务本身:挖掘问题／任务的并行性，将问题／任务分解为子问题／任务，并通过并行处理这些子问题／子任务，减小处理时间
+* 并发处理过程中需要引入而外的开销，因此只有问题规模足够大时，并发处理所减小的时延才内补偿所带来的额外开销
+* 问题或者任务固有的顺序性，使得难以并行化。
+
+For long-running operations that cannot be parallelized, concurrent execution can instead be used to perform
+useful work while the operation is pending; in this model,the latency of the operation is not reduced, but it is hidden by the progression of the system.
+
+以时分复用方式占用资源，
+* 充分利用资源
+* 避免资源空闲
+当不需要硬件资源时，则放弃对于硬件资源的独占，使得其他应用使用该硬件资源。
+
+
+
 
