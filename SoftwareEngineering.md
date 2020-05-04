@@ -12,3 +12,6 @@ The SOLID principles comprise of these five principles:
 * LSP – Liskov Substitution Principle
 * ISP – Interface Segregation Principle
 * DIP – Dependency Inversion Principle
+
+
+架构风格（architecture style
