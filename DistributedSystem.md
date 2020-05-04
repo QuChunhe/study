@@ -337,6 +337,6 @@ https://www.slideshare.net/jboner/scalability-availability-stability-patterns
 
 (awesome-scalability)[https://github.com/binhnguyennus/awesome-scalability]
 
-
+**Timeouts Pattern**
 
 
