@@ -120,8 +120,8 @@ liberal or anti conservative test.
 
 概率的公理化定义：定义概率必须满足的一般性质。
 
-集合$\Omega$，其元素$\omega$称为基本事件， 集类S的元素是$\Omega$的子集
-
+集合$\Omega$，其元素$\omega$称为基本事件， 集类S的元素是$\Omega$的子集，对应S中任意一个
+* 0<=P
 
 陈希孺<<概率论与数理统计>>
 
