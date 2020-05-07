@@ -540,7 +540,7 @@ Breaking up a lock is not the only way to reduce contention, and contention can 
 decreasing the hold time of the lock. This can be done by algorithmic improvements (many scalability improvements have been achieved by reducing execution under the lock from quadratic time to linear time!) or by finding　activity that is needlessly protected by the lock.
 
 
-全局所很天然地成为可伸缩性的障碍物。
+全局锁天然地成为可伸缩性的障碍物。
 
 * 减小临界区(Critical Section)的执行时间或者范围，比如将无需锁保护的数据或者功能，移出临界区。
 * 减小锁的粒度，两个纬度
