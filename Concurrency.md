@@ -478,7 +478,7 @@ Concurrent execution can improve performance in three fundamental ways: it can r
 Using concurrency to reduce latency is highly problem-specific in that it requires a parallel algorithm for
 the task at hand.In short, the degree to which one can use concurrency to reduce latency depends much more on the problem than on those endeavoring to solve it—and many important problems are simply not amenable to it.
 
-减小服务时延依赖于问题或者任务本身:挖掘问题/任务的并行性，将问题/任务分解为子问题/任务，并通过并行处理这些子问题/子任务，以减小处理时间
+减小服务时延依赖于问题或者任务本身:挖掘问题/任务的并行性，将问题/任务分解为子问题/子任务，并通过并行处理这些子问题/子任务，以减小处理时间
 * 并发处理过程中需要引入而外的开销，因此只有问题规模足够大时，并发处理所减小的时延才内补偿所带来的额外开销
 * 问题或者任务固有的顺序性，使得难以并行化。
 
@@ -496,7 +496,7 @@ the poll()/select() calls found in Unix) in an otherwise　sequential program. P
 latency should therefore consider concurrent execution as　an option, not as a foregone conclusion.
 
 
-Instead of using parallel　logic to make a single operation faster, one can employ multiple concurrent executions of sequential logic to　accommodate more simultaneous work. Importantly, a system using concurrency to increase throughput need
+Instead of using parallel logic to make a single operation faster, one can employ multiple concurrent executions of sequential logic to　accommodate more simultaneous work. Importantly, a system using concurrency to increase throughput need
 not consist exclusively (or even largely) of multithreaded code. Rather, those components of the system that
 share no state can be left entirely sequential, with the system executing multiple instances of these components concurrently.
 
@@ -507,6 +507,18 @@ parallel (the hot paths) versus which paths can execute sequentially without aff
 
 In cold paths, keep the locking as coarse-grained as possible. Don’t hesitate to have one lock that covers a wide range of rare activity in your subsystem. Conversely, in hot paths—those that must execute concurrently to deliver highest throughput—you must be much more careful: locking strategies must be simple and fine-grained, and you must be careful to avoid activity that
 can become a bottleneck.
+
+热点路径
+* 耗时过长的功能或模块
+* 经常执行的功能或模块
+
+功能(模块)的平均执行次数＊功能(模块)的平均运行时间/总的平均运行时间＝功能(模块)的运行时间占比
+
+热点路径是指运行时间占比高的那些模块或功能。二八定律，即经常被执行的功能/模块不多，大部分功能/模块很少被执行
+
+冷僻路径，相对于热点路径而言
+* 
+* 
 
 **Intuition is frequently wrong—be data intensive.** Today, dynamic instrumentation continues to provide　us with the data we need not only to find those parts of the system that are inhibiting scalability, but also to gather sufficient data to understand which techniques will be best suited for reducing that contention.
 
