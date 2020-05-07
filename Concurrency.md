@@ -509,20 +509,28 @@ In cold paths, keep the locking as coarse-grained as possible. Don’t hesitate 
 can become a bottleneck.
 
 热点路径
-* 耗时过长的功能或模块
-* 经常执行的功能或模块
+* 执行耗时过长的功能或模块
+* 经常调用执行的功能或模块
 
 功能(模块)的平均执行次数＊功能(模块)的平均运行时间/总的平均运行时间＝功能(模块)的运行时间占比
 
 热点路径是指运行时间占比高的那些模块或功能。二八定律，即经常被执行的功能/模块不多，大部分功能/模块很少被执行
 
-冷僻路径，相对于热点路径而言
-* 
-* 
+冷僻路径
+* 执行耗时不长
+* 执行次数不多
+
+
 
 **Intuition is frequently wrong—be data intensive.** Today, dynamic instrumentation continues to provide　us with the data we need not only to find those parts of the system that are inhibiting scalability, but also to gather sufficient data to understand which techniques will be best suited for reducing that contention.
 
 在优化之前需要通过性能分析工具，收集足够的数据，用于标示出哪些子系统缺乏并行性或者需要可伸缩性。
+
+设计和开发阶段：人工分析和估计热点路径
+
+系统上线之后需要性能采样和诊断工具(Profiling Tool)
+* Linux perf, Java async-profiler
+* 火焰图（flame graph）
 
 **Know when—and when not—to break up a lock.**
 的
