@@ -521,7 +521,6 @@ can become a bottleneck.
 * 执行次数不多
 
 
-
 **Intuition is frequently wrong—be data intensive.** Today, dynamic instrumentation continues to provide　us with the data we need not only to find those parts of the system that are inhibiting scalability, but also to gather sufficient data to understand which techniques will be best suited for reducing that contention.
 
 在优化之前需要通过性能分析工具，收集足够的数据，用于标示出哪些子系统缺乏并行性或者需要可伸缩性。
@@ -533,4 +532,23 @@ can become a bottleneck.
 * 火焰图（flame graph）
 
 **Know when—and when not—to break up a lock.**
-的
+
+Global locks can naturally become scalability inhibitors, and when gathered data indicates a single hot lock, it
+is reasonable to want to break up the lock into per-CPU locks, a hash table of locks, per-structure locks, etc.
+
+Breaking up a lock is not the only way to reduce contention, and contention can be (and often is) more easily reduced by
+decreasing the hold time of the lock. This can be done by algorithmic improvements (many scalability improvements have been achieved by reducing execution under the lock from quadratic time to linear time!) or by finding　activity that is needlessly protected by the lock.
+
+
+全局所很天然地成为可伸缩性的障碍物。
+
+* 减小临界区(Critical Section)的执行时间或者范围，比如将无需锁保护的数据或者功能，移出临界区。
+* 减小锁的粒度，两个纬度
+   * 功能纬度，将临界区的功能无法多个相互独立的临界区，并采用不同锁进行保护
+   * 数据纬度，采用具有并发能力的数据结构，比如ConcurrentHashMap采用了"分段锁"策略。
+  
+  
+  
+**Be wary of readers/writer locks.**
+
+
