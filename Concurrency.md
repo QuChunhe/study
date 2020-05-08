@@ -543,12 +543,19 @@ decreasing the hold time of the lock. This can be done by algorithmic improvemen
 全局锁天然地成为可伸缩性的障碍物。
 
 * 减小临界区(Critical Section)的执行时间或者范围，比如将无需锁保护的数据或者功能，移出临界区。
-* 减小锁的粒度，两个纬度
-   * 功能纬度，将临界区的功能无法多个相互独立的临界区，并采用不同锁进行保护
-   * 数据纬度，采用具有并发能力的数据结构，比如ConcurrentHashMap采用了"分段锁"策略。
+* 减小锁的粒度，即将锁分解为若干小锁，从而实现更好的并发性。可以从两个纬度进行分解
+   * 功能维度，将一个大的临界区的功能分割为多个相互独立的小临界区，并采用不同锁进行保护
+   * 数据维度，采用具有并发能力的数据结构，比如ConcurrentHashMap采用了"分段锁"策略，以支持多线程并发操作。
   
   
   
 **Be wary of readers/writer locks.**
+
+If there is a novice error when trying to break up a lock, it is this: seeing that a data structure is frequently accessed for reads and infrequently accessed for writes, one may be tempted to replace a mutex guarding the structure with a readers/writer lock to allow for concurrent readers.
+
+* Readers/Writer Locks
+* Copy-On-Write
+
+**Consider per-CPU locking.**
 
 
