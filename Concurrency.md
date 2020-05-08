@@ -589,4 +589,7 @@ thundering herd: all waiting threads will wake up, fight over the lock protectin
 * signal --> resource availability
 * broadcast --> state change
 
+不正确的使用广播方式会造成lock convoys问题,即大量被同一个锁阻塞的线程，频繁地被唤醒和被阻塞，引起大量不必要的CPU调度和上下文切换，导致性能问题。
+
+
 
