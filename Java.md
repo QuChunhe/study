@@ -45,6 +45,23 @@ class X {
 
 1)和2)能够使线程优雅地退出加锁阻塞状态，而3)适用于需要等待多个Condition的复杂场景，例如读写锁。
 
+
+## Concurrent Collections
+
+copy-on-write collections
+
+“写时复制”——要写的时候复制一份副本，往副本里面写，然后引用到这个副本，在引用到这个副本之前有读操作的话，读的还是之前的老版本，读写分离，写不影响读可以并发读读，读写，但是写写的时候还是冲突的，如果拷贝了N个副本，最后到底引用谁呢，引用某个副本，写到其他副本上的数据就丢失了，所以写要加锁，也就是一个一个来，串行写。
+* CopyOnWriteArrayList
+* CopyOnWriteArraySet
+
+The way it does this is to make a brand new copy of the list every time it is altered.
+* Reads do not block, and effectively pay only the cost of a volatile read;
+* Writes do not block reads (or vice versa), but only one write can occur at once; 
+
+Copy-on-write collections are designed for cases where:
+* reads hugely outnumber writes;
+* the size of collections array is small (or writes are very infrequent); 
+
 # Performance
 
 提高性能的三个方面
