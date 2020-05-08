@@ -626,6 +626,8 @@ protocols, semaphore-based systems will always be vulnerable to priority inversi
 onerous.
 
 获得锁的所有者，能够带来很多灵活性
-
+* 能够转递调度优先级，实现优先级继承，这在实时系统中非常关键
+* 使得系统能够
+* 
 
 
