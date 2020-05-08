@@ -450,7 +450,7 @@ A lock convoy occurs when multiple threads of equal priority contend repeatedly 
 * Lock-based programming
 * Lock-free programming
 
- unforeseen races (i.e., program corruption), deadlocks (i.e., program lockup), and performance cliffs (e.g., priority inversion, convoying, and sometimes complete loss of parallelism and/or worse performance than a single-threaded program)
+Unforeseen races (i.e., program corruption), deadlocks (i.e., program lockup), and performance cliffs (e.g., priority inversion, convoying, and sometimes complete loss of parallelism and/or worse performance than a single-threaded program)
 
 it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelock). 
 
@@ -473,6 +473,14 @@ it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelo
   * 设置优先级上限。
   * 优先级继承。
 * 锁伴随（Lock Convoys） 
+ 
+ 
+Priority Inversion is a problem while Priority Inheritance is a solution. Literally, Priority Inversion means that priority of tasks get inverted and Priority Inheritance means that priority of tasks get inherited
+ 
+ 优先级反转(Priority Inversion) 
+ *  优先级继承(priority inheritance) 
+ *  优先级天花板(priority ceilings)
+ 
  
 RCU（read copy update）
 [The RCU API, 2010 Edition](https://lwn.net/Articles/418853/)
@@ -590,6 +598,34 @@ thundering herd: all waiting threads will wake up, fight over the lock protectin
 * broadcast --> state change
 
 不正确的使用广播方式会造成lock convoys问题,即大量被同一个锁阻塞的线程，频繁地被唤醒和被阻塞，引起大量不必要的CPU调度和上下文切换，导致性能问题。
+
+
+**Learn to debug postmortem.**
+
+排查死锁问题需要打印各个线程的快照，即每个线程的调用栈，根据调用关系确定哪些线程和哪些锁出现死锁，并进一步确定死锁条件。
+
+
+Unlike a semaphore, a mutex has a notion of ownership—the lock is either owned or not, and if it is
+owned, it has a known owner. By contrast, a semaphore (and its kin, the condition variable) has no notion of ownership:
+
+
+**Design your systems to be composable.**
+
+There are two ways to make lock-based systems completely composable, and each has its own place. First (and
+most obviously), one can make locking entirely internal to the subsystem.
+
+Second (and perhaps counterintuitively), one can achieve concurrency and composability by having no locks whatsoever.
+
+尽量把锁隐藏到子系统内部，比如Java采用内置锁时采用内部对象作为锁。
+
+**Don’t use a semaphore where a mutex would suffice.**
+
+
+First, there is no way of propagating the blocking thread’s scheduling priority to the thread that is in the critical section. This ability to propagate scheduling priority—priority inheritance—is critical in a realtime system, and in the absence of other
+protocols, semaphore-based systems will always be vulnerable to priority inversions. A second problem with the lack of ownership is that it deprives the system of the ability to make assertions about itself. For example, when ownership is tracked, the machinery that implements thread blocking can detect pathologies such as deadlocks and recursive lock acquisitions, inducing fatal failure (and that all-important core dump) upon detection. Finally, the lack of ownership makes debugging much more
+onerous.
+
+获得锁的所有者，能够带来很多灵活性
 
 
 
