@@ -553,9 +553,26 @@ decreasing the hold time of the lock. This can be done by algorithmic improvemen
 
 If there is a novice error when trying to break up a lock, it is this: seeing that a data structure is frequently accessed for reads and infrequently accessed for writes, one may be tempted to replace a mutex guarding the structure with a readers/writer lock to allow for concurrent readers.
 
-* Readers/Writer Locks
-* Copy-On-Write
+对于满足如下两种情况的
+* 操作读多写少
+* 数据数量较少
+可以采用如下两个方式提高数据读操作的并发性
+* Readers/Writer Locks　读写锁
+* Copy-On-Write　复制读
 
 **Consider per-CPU locking.**
+
+Per-CPU locking (that is,acquiring a lock based on the current CPU identifier) can be a convenient technique for diffracting contention, as a per-CPU lock is not likely to be contended (a CPU can run only one thread at a time).
+
+Two notes on this technique: first, it should be employed only when the data indicates that it’s necessary, as it clearly introduces substantial complexity into the implementation; second, be sure to have a single order for acquiring all locks in the cold path: if one case acquires the per-CPU locks from lowest to highest and another acquires them from highest to lowest, deadlock will (naturally) result.
+
+**Know when to broadcast—and when to signal.**
+
+A broadcast will awaken all waiting threads, it should generally be used to indicate state change rather than resource availability. If a condition broadcast is used when a condition signal would have been more appropriate, the result will be a
+thundering herd: all waiting threads will wake up, fight over the lock protecting the condition variable, and (assuming that the first thread to acquire the lock also consumes the available resource) sleep once again when they discover that the resource has been consumed. This needless scheduling and locking activity can have a serious effect on performance.
+
+
+* signal --> resource availability
+* broadcast --> state change
 
 
