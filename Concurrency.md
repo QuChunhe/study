@@ -501,7 +501,7 @@ Using concurrency to reduce latency is highly problem-specific in that it requir
 the task at hand.In short, the degree to which one can use concurrency to reduce latency depends much more on the problem than on those endeavoring to solve it—and many important problems are simply not amenable to it.
 
 减小服务时延依赖于问题或者任务本身:挖掘问题/任务的并行性，将问题/任务分解为子问题/子任务，并通过并行处理这些子问题/子任务，以减小处理时间
-* 并发处理过程中需要引入而外的开销，因此只有问题规模足够大时，并发处理所减小的时延才内补偿所带来的额外开销
+* 并发处理过程中需要引入额外的开销，因此只有问题规模足够大时，并发处理所减小的时延才能补偿所带来的额外开销
 * 问题或者任务固有的顺序性，使得难以并行化。
 
 For long-running operations that cannot be parallelized, concurrent execution can instead be used to perform
@@ -510,7 +510,7 @@ useful work while the operation is pending; in this model,the latency of the ope
 以时分复用方式占用资源，
 * 充分利用资源
 * 避免资源空闲
-当不需要硬件资源时，则放弃对于硬件资源的独占，使得其他应用使用该硬件资源。
+当不需要硬件资源时，则放弃对于硬件资源的独占，使得其他应用以分时复用的方式共享该硬件资源。
 
 Further, concurrent execution is not the　only way to hide system-induced latencies: one can often
 achieve the same effect by employing nonblocking operations (e.g., asynchronous I/O) and an event loop (e.g.,
