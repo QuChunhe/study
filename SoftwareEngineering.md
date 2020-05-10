@@ -1,8 +1,13 @@
 
 
-针对复杂工程问题的通用思路是通过如下两个方式降低简化问题
-* 分解
-* 模块化
+针对复杂工程问题的通用思路是通过模块化来简化简化问题
+* 逐步分解为更细粒度的模块
+* 通过尽可能简单的接口集成模块锁提供的功能
+
+
+modular programming,
+
+
 
 [What Is Design Pattern?](http://www.vishalchovatiya.com/what-is-design-pattern/)
 
