@@ -509,7 +509,8 @@ useful work while the operation is pending; in this model,the latency of the ope
 
 以时分复用方式占用资源，
 * 充分利用资源
-* 避免资源空闲
+* 避免资源空闲   
+
 当不需要硬件资源时，则放弃对于硬件资源的独占，使得其他应用以分时复用的方式共享该硬件资源。
 
 Further, concurrent execution is not the　only way to hide system-induced latencies: one can often
@@ -536,7 +537,7 @@ can become a bottleneck.
 
 功能(模块)的平均执行次数＊功能(模块)的平均运行时间/总的平均运行时间＝功能(模块)的运行时间占比
 
-热点路径是指运行时间占比高的那些模块或功能。二八定律，即经常被执行的功能/模块不多，大部分功能/模块很少被执行
+热点路径是指运行时间占比高的那些模块或功能。二八定律，即经常被执行的功能/模块不多，大部分功能/模块很少被执行。优化时间占比大的功能或者模块，效果会更加明显，实现更优的产出／投入比更高。
 
 冷僻路径
 * 执行耗时不长
@@ -545,7 +546,7 @@ can become a bottleneck.
 
 **Intuition is frequently wrong—be data intensive.** Today, dynamic instrumentation continues to provide　us with the data we need not only to find those parts of the system that are inhibiting scalability, but also to gather sufficient data to understand which techniques will be best suited for reducing that contention.
 
-在优化之前需要通过性能分析工具，收集足够的数据，用于标示出哪些子系统缺乏并行性或者需要可伸缩性。
+在优化之前需要通过性能分析工具，收集足够的数据，用于标示出哪些子系统或者模块是热的路径，哪些子系统缺乏并行性或者需要可伸缩性。
 
 设计和开发阶段：人工分析和估计热点路径
 
