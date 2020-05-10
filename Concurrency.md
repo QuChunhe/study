@@ -482,6 +482,20 @@ Priority Inversion is a problem while Priority Inheritance is a solution. Litera
  *  优先级天花板(priority ceilings)
  
  
+ [Unreliable Guide To Locking](https://www.kernel.org/doc/htmldocs/kernel-locking/index.html)
+ 
+ Race Conditions and Critical Regions
+ 
+ 竞争条件和临界区
+ 
+ This overlap, where the result depends on the relative timing of multiple tasks, is called a race condition. The piece of code containing the concurrency issue is called a critical region.
+ 
+ 强占
+ 
+Preemption can have the same effect, even if there is only one CPU: by preempting one task during the critical region, we have exactly the same race condition. In this case the thread which preempts might run the critical region itself. 
+ 
+Two Main Types of Kernel Locks: Spinlocks and Mutexes
+ 
 RCU（read copy update）
 [The RCU API, 2010 Edition](https://lwn.net/Articles/418853/)
 
@@ -563,7 +577,7 @@ Breaking up a lock is not the only way to reduce contention, and contention can 
 decreasing the hold time of the lock. This can be done by algorithmic improvements (many scalability improvements have been achieved by reducing execution under the lock from quadratic time to linear time!) or by finding　activity that is needlessly protected by the lock.
 
 
-全局锁天然地成为可伸缩性的障碍物。
+全局锁天然地成为可伸缩性的障碍物。将全局锁分解为更细粒度的锁。
 
 * 减小临界区(Critical Section)的执行时间或者范围，比如将无需锁保护的数据或者功能，移出临界区。
 * 减小锁的粒度，即将锁分解为若干小锁，从而实现更好的并发性。可以从两个纬度进行分解
@@ -598,7 +612,7 @@ thundering herd: all waiting threads will wake up, fight over the lock protectin
 * signal --> resource availability
 * broadcast --> state change
 
-不正确的使用广播方式会造成lock convoys问题,即大量被同一个锁阻塞的线程，频繁地被唤醒和被阻塞，引起大量不必要的CPU调度和上下文切换，导致性能问题。
+不正确的使用广播方式会造成lock convoys(锁陪绑)问题,即大量被同一个锁阻塞的线程，频繁地被唤醒和被阻塞，引起大量不必要的CPU调度和上下文切换，导致性能问题。
 
 
 **Learn to debug postmortem.**
