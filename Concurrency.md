@@ -499,6 +499,8 @@ Two Main Types of Kernel Locks: Spinlocks and Mutexes
 RCU（read copy update）
 [The RCU API, 2010 Edition](https://lwn.net/Articles/418853/)
 
+[What is RCU, Fundamentally?](https://lwn.net/Articles/262464/)
+
 
 [volatile vs. volatile](https://www.drdobbs.com/parallel/volatile-vs-volatile/212701484)
 
@@ -603,6 +605,9 @@ Per-CPU locking (that is,acquiring a lock based on the current CPU identifier) c
 
 Two notes on this technique: first, it should be employed only when the data indicates that it’s necessary, as it clearly introduces substantial complexity into the implementation; second, be sure to have a single order for acquiring all locks in the cold path: if one case acquires the per-CPU locks from lowest to highest and another acquires them from highest to lowest, deadlock will (naturally) result.
 
+
+per-cpu variables are widely used in Linux kernel such as per-cpu counters, per-cpu cache. The advantages of per-cpu variables are obvious: for a per-cpu data, we do not need locks to synchronize with other cpus. Without locks, we can gain more performance. There are two kinds of type of per-cpu variables: static and dynamic. 
+
 **Know when to broadcast—and when to signal.**
 
 A broadcast will awaken all waiting threads, it should generally be used to indicate state change rather than resource availability. If a condition broadcast is used when a condition signal would have been more appropriate, the result will be a
@@ -619,9 +624,11 @@ thundering herd: all waiting threads will wake up, fight over the lock protectin
 
 排查死锁问题需要打印各个线程的快照，即每个线程的调用栈，根据调用关系确定哪些线程和哪些锁出现死锁，并进一步确定死锁条件。
 
+This information is contained in a snapshot of state so essential to software develop ment that its very name reflects its origins at the dawn of computing: it is a core dump.
 
-Unlike a semaphore, a mutex has a notion of ownership—the lock is either owned or not, and if it is
-owned, it has a known owner. By contrast, a semaphore (and its kin, the condition variable) has no notion of ownership:
+Debugging from a core dump—postmortem debugging—is an essential skill
+
+
 
 
 **Design your systems to be composable.**
@@ -635,14 +642,22 @@ Second (and perhaps counterintuitively), one can achieve concurrency and composa
 
 **Don’t use a semaphore where a mutex would suffice.**
 
+Unlike a semaphore, a mutex has a notion of ownership—the lock is either owned or not, and if it is
+owned, it has a known owner. By contrast, a semaphore (and its kin, the condition variable) has no notion of ownership.
+
 
 First, there is no way of propagating the blocking thread’s scheduling priority to the thread that is in the critical section. This ability to propagate scheduling priority—priority inheritance—is critical in a realtime system, and in the absence of other
 protocols, semaphore-based systems will always be vulnerable to priority inversions. A second problem with the lack of ownership is that it deprives the system of the ability to make assertions about itself. For example, when ownership is tracked, the machinery that implements thread blocking can detect pathologies such as deadlocks and recursive lock acquisitions, inducing fatal failure (and that all-important core dump) upon detection. Finally, the lack of ownership makes debugging much more
 onerous.
 
 获得锁的所有者，能够带来很多灵活性
-* 能够转递调度优先级，实现优先级继承，这在实时系统中非常关键
-* 使得系统能够
-* 
+* 所有者关系能够转递调度优先级，实现优先级继承，这在实时系统中非常关键
+* 缺少所有者关系剥夺了系统诊断自己的能力
+* 缺少所有者关系使得调试更加复杂
 
+
+**Consider memory retiring to implement per-chain hash-table locks.**
+
+
+**Be aware of false sharing.**
 
