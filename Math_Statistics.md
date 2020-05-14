@@ -71,6 +71,8 @@ liberal or anti conservative test.
 [中国科技大学·缪柏其·概率论与数理统计](https://mp.weixin.qq.com/s?__biz=MzI3OTM0NTU3NQ==&mid=2247491588&idx=1&sn=88caec9e14700105827e1389c26a6df6&chksm=eb4b80ccdc3c09da36e5482570cb1b5f63c22cb056cd9a9dae5c368cf4bf79de733ca83cfbe6&mpshare=1&scene=1&srcid=&sharer_sharetime=1581605935230&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AaXBbDJteA%2FYnjehKiZ8AIk%3D&pass_ticket=LEguntyz1PWNMmRC%2FEyyrSNOvCpywEX3DB73r7jUcAZBdsNR5%2FkTGTgFjY0%2BCCq9#rd)
 
 
+[[中国科学技术大学精品课程：概率论与数理统计].(缪柏其).2009](https://www.bilibili.com/video/BV17x411e7rn?p=3)
+
 事件的蕴含、包含及相等
 
 事件的互斥和对立
@@ -126,6 +128,10 @@ liberal or anti conservative test.
 * P满足完全可列可加性
 ($\Omega$,S,P)为一个特殊的测度空间
 
+加法原理　
+
+乘法原理
+
 
 
 陈希孺<<概率论与数理统计>>
@@ -156,6 +162,12 @@ liberal or anti conservative test.
 
 二项式分布   
 多项式分布   
+
+[概率论与数理统计 - 中国科学院大学](https://www.bilibili.com/video/BV1q7411L75X/?spm_id_from=333.788.videocard.15)
+
+
+
+[【数学系专业课】 概率论与数理统计 讲解视频](https://www.bilibili.com/video/BV1cb411j7Mm?from=search&seid=15835382154082768770)
 
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
