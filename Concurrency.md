@@ -505,6 +505,9 @@ RCU（read copy update）
 [volatile vs. volatile](https://www.drdobbs.com/parallel/volatile-vs-volatile/212701484)
 
 
+[Intel Guide for Developing Multithreaded Applications ](https://software.intel.com/content/www/us/en/develop/articles/intel-guide-for-developing-multithreaded-applications.html)
+
+
 [Real-world Concurrency](https://queue.acm.org/detail.cfm?id=1454462)
 
 Concurrent execution can improve performance in three fundamental ways: it can reduce latency (that is, make a unit of work execute faster); it can hide latency (that is, allow the system to continue doing work during a long-latency operation); or it can increase throughput (that is, make the system able to perform more work).
@@ -661,3 +664,10 @@ onerous.
 
 **Be aware of false sharing.**
 
+
+
+False sharing is a common problem in shared memory parallel processing. It occurs when two or more cores hold a copy of the same memory cache line.
+
+If one core writes, the cache line holding the memory line is invalidated on other cores. Even though another core may not be using that data (reading or writing), it may be using another element of data on the same cache line. The second core will need to reload the line before it can access its own data again.
+
+The cache hardware ensures data coherency, but at a potentially high performance cost if false sharing is frequent. A good technique to identify false sharing problems is to catch unexpected sharp increases in last-level cache misses using hardware counters or other performance tools.
