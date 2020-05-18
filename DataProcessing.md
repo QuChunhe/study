@@ -8,7 +8,7 @@ A. G. Psaltis. Streaming Data: Understanding the real-time pipeline. Manning Pub
 
 ![The streaming data architectural blueprint](pics/TheStreamingDataArchitecturalBlueprint.JPG)
 
-https://github.com/QuChunhe/study/blob/master/pics/TheStreamingDataArchitecturalBlueprint.JPG
+
 
 
 |Classification  | Example |Latency measured in |Tolerance for delay|
