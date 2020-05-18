@@ -132,7 +132,13 @@ liberal or anti conservative test.
 
 乘法原理
 
+排列和组合
 
+盒子模型：r个球放入n个盒子
+* 
+* 
+* 
+* 
 
 陈希孺<<概率论与数理统计>>
 
