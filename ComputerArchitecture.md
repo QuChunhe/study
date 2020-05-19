@@ -207,6 +207,8 @@ alignment：对于alignment为A的任意类型的变量，他的地址必须是A
 
 
 
+Memory Barriers: a Hardware View for Software Hackers
+
 #ARM
 
 [ARM Manul](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cacghbij.html)
