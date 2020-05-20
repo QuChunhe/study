@@ -137,9 +137,14 @@ BSP=LogP+barriers-overhead
 * Parallel software
 
 Classification of Parallel Algorithms
-* Numerical parallel alogrithm
-* Non-numerical parallel algorithm
+* Numerical parallel alogrithm,数值计算，包括矩阵运算、多项式求值、解线性方程组等
+* Non-numerical parallel algorithm，非数值计算，例如排序、查找、搜索和匹配等
 * Misellanea: synchronous/asynchronous, parallel/distributed, deterministic/random
+
+
+* 同步算法(Synchronized Algorithm)
+* 异步算法(Asynchronized Algorithm)
+
 
 Programming Models
 * Shared-Memory Programming
@@ -199,6 +204,17 @@ Performance Evaluation of Parallel Algorithms
 复杂性度量
 * 期望复杂度(Expected Complexity)
 * 最坏情况下复杂度(Worst-Case Complexity)
+
+
+并行算法描述
+
+par-do, do in parallel
+```
+ for i=1 to n par-do
+ 
+ end for
+```
+
 
 
 
