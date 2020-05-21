@@ -174,7 +174,9 @@ Design mehtods of parallel algorithms
     * Each iterative produces an approximation solution, measures the error between the approximation and true solution.
     * Based on the error measurement, improves on approximation solution, constructs a next iterate.
     * Repeats this process until the error is small enough
-  
+ 
+ partitioning在开始的时候对数据的进行划分
+ 
  Implementation principle of parallel algorithms
  * Decomposition
     * Domain decomposition (data decomposition): subdivides the data domain of problem into multiple regions, assigns defferent processors to compute the results of each region
