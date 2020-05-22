@@ -365,7 +365,11 @@ How do you scale your software product
   * CPU usage;
   * Network I/O;
   * Disk I/O.
-
+* Use cloud computing smartly
+* Push workload to clients and use APIs
+* Use caching to improve scalability
+* Use the right databases to achieve scalability
+* Make the right choice of technology
 
 
 **Timeouts Pattern**
