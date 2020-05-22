@@ -96,7 +96,10 @@ throughtput=concurrency/latency
 
 降低系统负载的方法
 
+## 原子操作
 
+i++,
+read-modify-write
 
 # Tools
 
