@@ -72,6 +72,8 @@ Copy-on-write collections are designed for cases where:
 * reads hugely outnumber writes;
 * the size of collections array is small (or writes are very infrequent); 
 
+ConcurrentLinkedQueue
+
 # Performance
 
 提高性能的三个方面
@@ -98,8 +100,14 @@ throughtput=concurrency/latency
 
 ## 原子操作
 
+
+[多核系统上的 Java 并发缺陷模式（bug patterns）](https://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/)
+
+一定要谨记 volatile 关键字在 Java 代码中仅仅保证这个变量是可见的：它不保证原子性。
+
 i++,
 read-modify-write
+
 
 # Tools
 
