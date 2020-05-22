@@ -368,6 +368,20 @@ https://www.cs.umd.edu/class/spring2013/cmsc433/Notes/07-CMSC433-VolatilityAndOr
 
 [Programming Language Technologies and Paradigms](https://www.cs.umd.edu/class/spring2013/cmsc433/Notes/)
 
+# Functional Programming
+
+Functional Programming in Java
+
+* First-class functions 函数为值
+* Anonymous functions  匿名函数
+* Closures 闭包
+* Currying 柯里化
+* Lazy evaluation 惰性求值
+* Parametric polymorphism 参数多态
+* Algebraic data types 代数数据类型
+
+
+
 # 杂项
 
 Comparable<T>  Comparator<T>
