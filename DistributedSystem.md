@@ -372,6 +372,14 @@ How do you scale your software product
 * Make the right choice of technology
 
 
+[Availability and Single Points of Failure](https://docs.oracle.com/cd/E19424-01/820-4806/fjdch/index.html)
+
+SPOFs can be divided into three categories:
+* Hardware failures, for example, server crashes, network failures, power failures, or disk drive crashes
+* Software failures, for example, Directory Server or Directory Proxy Server crashes
+* Database corruption
+
+
 **Timeouts Pattern**
 
 Always use timeouts (if possible)
@@ -379,3 +387,6 @@ Always use timeouts (if possible)
 **Circuit Breaker Pattern（断路器模式）**
 
 
+# Performance
+
+[8 Key Application Performance Metrics & How to Measure Them](https://stackify.com/application-performance-metrics/)
