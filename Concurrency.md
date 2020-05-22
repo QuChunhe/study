@@ -189,6 +189,9 @@ Design mehtods of parallel algorithms
     * Definition: processors have roughly the same amount of workload, so that no one processor holds up the entire solution.
     * Static load balancing
     * Dynamic load balancing
+分解到各个线程：以数据为中心的的数据域分解和以功能为中心的功能性分解
+
+线程映射到处理器
 
 Performance Evaluation of Parallel Algorithms
 * Speedup
