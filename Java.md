@@ -391,6 +391,7 @@ Functional Programming in Java
 * Algebraic data types 代数数据类型
 
 
+A referentially transparent program doesn't interfere with the outside world apart from taking an argument as input and outputting a result. Its result only depends on its argument.
 
 # 杂项
 
