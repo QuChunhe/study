@@ -191,11 +191,12 @@ Design mehtods of parallel algorithms
     * Dynamic load balancing
 分解到各个线程：以数据为中心的的数据域分解和以功能为中心的功能性分解
 
-线程映射到处理器
+调度：1）将线程映射到处理器，优先级；2）平衡负载
 
 Performance Evaluation of Parallel Algorithms
 * Speedup
-    *
+    * Amdahl's Law: the computational workload is fixed. If f is fraction of a sequential calculation, then the maximum speedup is 1/f.
+    * Gustafson's Law: the execution time is fixed. Gustafson said, the speedup is the linear function of the number of processors.
 
 计算执行时间
   * 运算操作： Computational Steps
