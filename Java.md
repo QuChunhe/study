@@ -33,6 +33,16 @@ class X {
        lock.unlock()
      }
    }
+   
+   public void n() {
+       if (lock.tryLock()) {
+           try {
+              
+           } finally {
+              lock. unlock();
+            }
+       }
+   }
  }
 ```
 
@@ -391,3 +401,9 @@ Comparable<T>  Comparator<T>
 System.nanoTime与System.currentTimeMillis
 * System.nanoTime : This method can only be used to measure elapsed time and is not related to any other notion of system or wall-clock time. 
 * System.currentTimeMillis : the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+
+
+* 强引用（StrongReference）
+* 软引用（SoftReference）
+* 弱引用（WeakReference）
+* 虚引用（PhantomReference）
