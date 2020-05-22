@@ -374,4 +374,6 @@ Comparable<T>  Comparator<T>
 	
 [Sentinel(https://github.com/alibaba/Sentinel)
 	
-
+System.nanoTime与System.currentTimeMillis
+* System.nanoTime : This method can only be used to measure elapsed time and is not related to any other notion of system or wall-clock time. 
+* System.currentTimeMillis : the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
