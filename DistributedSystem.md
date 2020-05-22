@@ -102,6 +102,7 @@ Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二�
 srvr
 
 ### configuration
+
 ```
 tickTime=2000
 dataDir=/var/lib/zookeeper
@@ -126,13 +127,14 @@ server.3=zoo3.example.com:2888:3888
 ## Kafka
 
 
-https://github.com/gwenshap/kafka-examples
+[kafka-examples](https://github.com/gwenshap/kafka-examples)
 
 ### Broker Configuration
+
 ```
 zookeeper.connect
 broker.id
-```	
+```
 
 kafka-run-class.sh
 ```
@@ -338,6 +340,31 @@ https://www.slideshare.net/jboner/scalability-availability-stability-patterns
 [awesome-scalability](https://github.com/binhnguyennus/awesome-scalability)
 
 
+[How To Scale Your Software Product](https://www.devteam.space/blog/how-to-scale-your-software-product/)
+
+
+[Scalability Design Principles](https://elastisys.com/2015/09/10/scalability-design-principles/)
+
+The different dimensions of software scalability
+* Scalability of performance: You need high performance to support more users, and adding more capacity can help to improve the performance of the software. However, this is subject to limits since performance doesn’t scale linearly.
+* Scalability of availability: You need to weigh between consistency, availability, and partition tolerance when designing a scalable system. A system with strong consistency lets users read the most recent updates immediately, however, this impacts the other two. You might need to settle for eventual consistency, i.e., users will eventually see all the updates, although with a minor time lag.
+* Scalability of maintenance: Software and their IT infrastructure need regular maintenance, which is a key consideration while designing scalable systems.
+* Scalability of expenditure: Building everything by yourselves offers many customization options, however, it increases both development and maintenance costs. Using available market-leading components may give fewer customization options, however, they cost less. It’s easier to find people to support such components, which reduces your maintenance costs.
+
+How do you scale your software product
+* Avoid a “Single Point of Failure” (SPOF)
+* Scale horizontally instead of scaling vertically
+* Use the right architecture pattern
+  * Layered (n-tier) architecture
+  * Event-driven architecture
+  * Microservices architecture
+  * Microkernel architecture
+  * Space-based architecture:
+* Identify the metrics to track scalability
+  * Memory utilization;
+  * CPU usage;
+  * Network I/O;
+  * Disk I/O.
 
 
 
