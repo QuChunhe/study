@@ -175,7 +175,7 @@ Design mehtods of parallel algorithms
     * Based on the error measurement, improves on approximation solution, constructs a next iterate.
     * Repeats this process until the error is small enough
  
- partitioning在开始的时候对数据的进行划分
+ partitioning在开始的时候将数据划分为更小的数据规模，然后处理．分而治之采用递归，持续地将大问题分解为小问题
  
  Implementation principle of parallel algorithms
  * Decomposition
