@@ -10,3 +10,7 @@ https://www.itcodemonkey.com/article/15901.html
 
 
 (TensorFlow Examples)[https://github.com/aymericdamien/TensorFlow-Examples]
+
+
+**中科院-统计学习基础**
+
