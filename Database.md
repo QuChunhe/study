@@ -120,7 +120,20 @@ A next-key lock is a combination of a record lock on the index record and a gap 
 
 
 
-[AUTO_INCREMENT Handling in InnoDB](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html)
+[AUTO_INCREMENT Handling in InnoDB](https://dev.mysql.com/doc/refman/5.7/en/innodb-auto-increment-handling.html)
+
+“INSERT-like” statements 
+* “Simple inserts”: Statements for which the number of rows to be inserted can be determined in advance (when the statement is initially processed).  
+* “Bulk inserts”: Statements for which the number of rows to be inserted (and the number of required auto-increment values) is not known in advance. 
+* “Mixed-mode inserts”: These are “simple insert” statements that specify the auto-increment value for some (but not all) of the new rows.
+
+innodb_autoinc_lock_mode
+* innodb_autoinc_lock_mode = 0 (“traditional” lock mode) 
+* innodb_autoinc_lock_mode = 1 (“consecutive” lock mode) 
+* innodb_autoinc_lock_mode = 2 (“interleaved” lock mode) 
+
+
+[14.7.1 InnoDB Locking](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html)
 
 
 
