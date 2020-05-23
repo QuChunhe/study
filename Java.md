@@ -210,6 +210,9 @@ public void workOn(List<Operand> operands) {
 
 [async-profiler](https://github.com/jvm-profiling-tools/async-profiler)
 
+
+[JVM CPU Profiler技术原理及源码深度解析 ](https://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&mid=2651750821&idx=1&sn=3876eb1ea3963d568a35235a72550e62&chksm=bd1258e88a65d1fed4fc4248398af17537281ca11f90a5808bcb9e2079d0272f3d59cd659c94&mpshare=1&scene=1&srcid=0523O7Lto7wKrJQsEAlQ6v5l&sharer_sharetime=1590241994068&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AcIcetLP1FaoVWANh0K%2B%2BOk%3D&pass_ticket=aPCoYgXoBsTz6ID87xukGuKUB%2F0jC3shEYI%2BzFX4WzBHZJtlLnSwSzjsGCI93oyx#rd)
+
 ## jstack
 [How to Read a Thread Dump ](https://dzone.com/articles/how-to-read-a-thread-dump)
 
