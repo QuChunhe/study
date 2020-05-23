@@ -284,6 +284,8 @@ OS Thread ID | nid=0x3c28 | The unique ID of the OS thread to which the Java Thr
 Status | waiting on condition| A human-readable string depicting the current status of the thread. This string provides supplementary information beyond the basic thread state (see below) and can be useful in discovering the intended actions of a thread (i.e. was the thread trying to acquire a lock or waiting on a condition when it blocked).|
 Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Pointer (SP) for the stack associated with the thread. This value is supplied using native C++ code and is interlaced with the Java Thread class using the JNI. This value is obtained using the last_Java_sp() native method and is formatted into the thread dump on line 2886 of **hotspot/share/runtime/thread.cpp:** ```    st->print_cr("[" INTPTR_FORMAT "]", (intptr_t)last_Java_sp() & ~right_n_bits(12));``` For simple thread dumps, this information may not be useful, but for more complex diagnostics, this SP value can be used to trace lock acquisition through a program.|
 
+## jstat
+[Java命令行工具之 jstat ](https://mp.weixin.qq.com/s?__biz=MzU3Mjc5NjAzMw==&mid=2247484257&idx=1&sn=555158f962cfa2fad3fd9b5ee43d3f5d&exportkey=AWVZr0rfIXoe7A%2F4RS39IA4%3D&pass_ticket=E6xf44phJMVDAosPSXbBiREJLPMNAecAB%2FfhyIbrCbLED1COVgSeTl9cLBpSwz1u)
 
 # Date Time
 [Java Date Time](https://www.joda.org/joda-time/)
