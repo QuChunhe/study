@@ -103,11 +103,103 @@ throughtput=concurrency/latency
 
 [多核系统上的 Java 并发缺陷模式（bug patterns）](https://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/)
 
-一定要谨记 volatile 关键字在 Java 代码中仅仅保证这个变量是可见的：它不保证原子性。
+1)一定要谨记 volatile 关键字在 Java 代码中仅仅保证这个变量是可见的：它不保证原子性。
 
 i++,
 read-modify-write
+```
+    private volatile int p;
+    
+    public void m() {
+        ...
+        p++;
+	...
+    }
+```
 
+2)在 Java 语言中，我们使用了同步语句来获取互斥锁，这可以保护多线程系统的共享资源访问。然而，易变域的同步中会有一个漏洞，它可能破坏互斥。解决的方法是一定要将同步的域声明为 private final
+
+```
+   private Parameter parameter = new Parameter();
+   
+   public void m() {
+       synchronized (parameter) {
+           ...
+           parameter = new Parameter();
+	   ...
+       }
+   }
+```
+争取的用法
+```
+   private Parameter parameter = new Parameter();
+   private final Ojbect lock = new Object();
+   public void m() {
+   
+       synchronized (lock) {
+           ...
+           parameter = new Parameter();
+	   ...
+       }
+   }
+```
+
+3) 锁泄漏. 要保证锁得到释放，我们只需要在每一个 lock 之后对应执行一个 unlock 方法，而且它们应该置于 try-finally 复杂语句中.
+```
+private final Lock lock = new ReentrantLock();
+ 
+public void lockLeak() {
+   lock.lock();
+   try {
+      // access the shared resource
+      accessResource();
+   } catch (Exception e) {}
+   finally {
+      lock.unlock();
+   }
+ 
+public void accessResource() throws InterruptedException {...}
+```
+
+4)同步语句的性能优化
+
+```
+public class Operator {
+   private int generation = 0; //shared variable
+   private float totalAmount = 0; //shared variable
+   private final Object lock = new Object();
+ 
+   public void workOn(List<Operand> operands) {
+      synchronized (lock) {
+         int curGeneration = generation; //requires synch
+         float amountForThisWork = 0;
+         for (Operand o : operands) {
+            o.setGeneration(curGeneration);
+            amountForThisWork += o.amount;
+         }
+         totalAmount += amountForThisWork; //requires synch
+         generation++; //requires synch
+      }
+   }
+}
+```
+
+```
+public void workOn(List<Operand> operands) {
+   int curGeneration;
+   float amountForThisWork = 0;
+   synchronized (lock) {
+      int curGeneration = generation++;
+   }
+   for (Operand o : operands) {
+      o.setGeneration(curGeneration);
+      amountForThisWork += o.amount;
+   }
+   synchronized (lock)
+      totalAmount += amountForThisWork;
+   }
+}
+```
 
 # Tools
 
