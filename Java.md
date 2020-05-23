@@ -161,7 +161,7 @@ public void lockLeak() {
 public void accessResource() throws InterruptedException {...}
 ```
 
-4)同步语句的性能优化
+4)同步语句的性能优化：分解锁，减小临界区的大小
 
 ```
 public class Operator {
@@ -183,7 +183,7 @@ public class Operator {
    }
 }
 ```
-
+分解之后,在保证线程安全的前提下要尽可能地简化同步语句。
 ```
 public void workOn(List<Operand> operands) {
    int curGeneration;
@@ -200,6 +200,10 @@ public void workOn(List<Operand> operands) {
    }
 }
 ```
+
+5)多阶段访问
+
+6) 对称锁死锁
 
 # Tools
 
