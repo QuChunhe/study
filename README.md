@@ -33,3 +33,5 @@ https://cacm.acm.org/magazines/2008/11/544-the-limits-of-computability/fulltext
 
 https://cacm.acm.org/magazines/2008/11/537-software-transactional-memory-why-is-it-only-a-research-toy/fulltext
 
+[30 Free Courses: Neural Networks, Machine Learning, Algorithms, AI](https://www.datasciencecentral.com/profiles/blogs/neural-networks-for-machine-learning)
+
