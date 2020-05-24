@@ -520,3 +520,33 @@ System.nanoTime与System.currentTimeMillis
 * 软引用（SoftReference）
 * 弱引用（WeakReference）
 * 虚引用（PhantomReference）
+
+
+
+<? extends T>和<? super T>是Java泛型中的“通配符（Wildcards）”和“边界（Bounds）”的概念。
+* <? extends T>：是指 “上界通配符（Upper Bounds Wildcards）”
+* <? super T>：是指 “下界通配符（Lower Bounds Wildcards）
+
+泛型，即参数化类型
+* 泛型类
+* 泛型接口
+* 泛型方法
+
+PECS（Producer Extends Consumer Super）原则，已经很好理解了：
+* 频繁往外读取内容的，适合用上界Extends。
+* 经常往里插入的，适合用下界Super。
+
+从上述两方面的分析，总结PECS原则如下：
+* 如果要从集合中读取类型T的数据，并且不能写入，可以使用 ? extends 通配符；(Producer Extends)
+* 如果要从集合中写入类型T的数据，并且不需要读取，可以使用 ? super 通配符；(Consumer Super)
+
+The principles behind this in computer science is called
+* Covariance: ? extends MyClass,
+* Contravariance: ? super MyClass and
+* Invariance/non-variance: MyClass
+
+* Read-only data types (sources) can be covariant;
+* write-only data types (sinks) can be contravariant.
+* Mutable data types which act as both sources and sinks should be invarian
+
+[Java Generics PECS – Producer Extends Consumer Super](https://howtodoinjava.com/java/generics/java-generics-what-is-pecs-producer-extends-consumer-super/)
