@@ -11,6 +11,19 @@ Phaser
 * concurrent Collecttions
 
 
+
+Semaphore
+
+限流，限制并发执行的调用数量
+
+资源共享：多个资源，每个线程排他地 占用资源
+
+协同：
+
+CyclicBarrier
+
+协同：在一个出来内部需协同，即在一个线程处理中，发放多个 阶段，每个阶段需要协同，同时 进入下一个阶段
+
 ## Lock
 
 
