@@ -50,6 +50,31 @@ Antoine de Saint-Exupéry: “Perfection is achieved not when there is nothing m
 
 method reference:The Java compiler will take either a lambda expression or a reference to a method where an implementation of a functional interface is expected. With this feature, a short String::toUpperCase can replace name ->name.toUpperCase(),
 
+lexical scoping and closures
+```
+    public static Predicate<String> checkIfStartsWith(final String letter) {
+        return name -> name.startsWith(letter);
+   }
+```
+
+
+```
+final Function<String, Predicate<String>> startsWithLetter =
+      (String letter) -> {
+          Predicate<String> checkStartsWith = (String name) -> name.startsWith(letter);
+          return checkStartsWith;
+      };
+```
+
+```
+final Function<String, Predicate<String>> startsWithLetter =
+           (String letter) -> (String name) -> name.startsWith(letter);
+```
+
+```
+final Function<String, Predicate<String>> startsWithLetter = letter -> name -> name.startsWith(letter);
+```
+
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
 
