@@ -1,6 +1,12 @@
 
 ## MySQL
 
+### Design Schema
+
+除了字典表和日志表，不能有VARCHAR的列
+
+
+
 ### Index & Performance
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
