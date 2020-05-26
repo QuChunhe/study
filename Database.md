@@ -5,9 +5,21 @@
 
 除了字典表和日志表，不能有VARCHAR的列
 
+正式表采用InnoDB，导入数据或者中间结果采用的临时表可以可以采用MEMORY或者MyISAM。
+* InnoDB具有更好的并发性，采用表锁
+* InnoDB具有更好的缓存，InnoDB Buffer
 
+InnoDB的插入性能比较差。
 
-### Index & Performance
+范式与例外
+
+[Good Database Design Principle](http://eckstein.rutgers.edu/mis/handouts/rdb2.pdf)
+
+[11 important database designing rules which I follow](https://www.codeproject.com/articles/359654/11-important-database-designing-rules-which-i-fo-2)
+
+[Database design basics](https://support.office.com/en-us/article/Database-design-basics-EB2159CF-1E30-401A-8084-BD4F9C9CA1F5)
+
+### Index & Performancey
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
