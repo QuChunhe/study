@@ -86,6 +86,8 @@ aLongName.ifPresent(name -> System.out.println(String.format("A longest name: %s
 * Finding Elements
 * Picking an Element
 * Reducing a Collection to a Single Value 
+* Joining Elements
+
 
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
