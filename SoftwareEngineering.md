@@ -75,6 +75,18 @@ final Function<String, Predicate<String>> startsWithLetter =
 final Function<String, Predicate<String>> startsWithLetter = letter -> name -> name.startsWith(letter);
 ```
 
+
+```
+final Optional<String> aLongName = friends.stream()
+                                         .reduce((name1, name2) -> name1.length() >= name2.length() ? name1 : name2);
+aLongName.ifPresent(name -> System.out.println(String.format("A longest name: %s", name)));
+```
+
+* Iterating through a Collection
+* Finding Elements
+* Picking an Element
+* Reducing a Collection to a Single Value 
+
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
 
