@@ -552,6 +552,52 @@ PECS（Producer Extends Consumer Super）原则，已经很好理解了：
 * 如果要从集合中读取类型T的数据，并且不能写入，可以使用 \<? extends T> 通配符；(Producer Extends)
 * 如果要从集合中写入类型T的数据，并且不需要读取，可以使用 \<? super T>通配符；(Consumer Super)
 
+```
+    class Plate<T> {
+        private T item;
+        public Plate(T t){item=t;}
+        public void set(T t){item=t;}
+        public T get(){return item;}
+    }
+
+   //Lev 1
+   class Food{}
+   
+   //Lev 2
+   class Fruit extends Food{}
+   class Meat extends Food{}
+   
+   //Lev 3
+   class Apple extends Fruit{}
+   class Banana extends Fruit{}
+   class Pork extends Meat{}
+   class Beef extends Meat{}
+   
+   //Lev 4
+   class RedApple extends Apple{}
+   class GreenApple extends Apple{}
+
+   Plate<? extends Fruit> p=new Plate<Apple>(new Apple());
+   //不能存入任何元素
+   p.set(new Fruit()); //Error
+   p.set(new Apple()); //Error
+   p.set(new Object()); //Error
+   //读取出来的东西只能存放在Fruit或它的基类里。
+   Fruit newFruit1=p.get();
+   Object newFruit2=p.get();
+   Apple newFruit3=p.get(); //Error
+
+   Plate<? super Fruit> p=new Plate<Fruit>(new Fruit());
+   //存入元素正常
+   p.set(new Fruit());
+   p.set(new Apple());
+   //读取出来的东西只能存放在Object类里。
+   Apple newFruit4=p.get(); //Error
+   Fruit newFruit5=p.get(); //Error
+   Food newFruit7=p.get(); //Error
+   Object newFruit6=p.get();
+
+```
 The principles behind this in computer science is called
 * Covariance: \<? extends T> MyClass,
 * Contravariance: \<? super T> MyClass and
