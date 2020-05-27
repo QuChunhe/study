@@ -628,6 +628,10 @@ The capture-helper trick depends on several things: type inference and capture c
 
 There's a simple rule, called the get-put principle, which tells us which kind of wildcard to use. The get-put principle, as stated in Naftalin and Wadler's fine book on generics, Java Generics and Collections (see Resources), says:   Use an extends wildcard when you only get values out of a structure, use a super wildcard when you only put values into a structure, and don't use a wildcard when you do both.
 
+[Java Generics Interview](https://www.baeldung.com/java-generics-interview-questions)
+
+[Type Erasure](https://docs.oracle.com/javase/tutorial/java/generics/erasure.html)
+
 # 杂项
 
 Comparable<T>  Comparator<T>
