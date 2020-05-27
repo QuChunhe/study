@@ -518,22 +518,15 @@ Functional Programming in Java
 
 A referentially transparent program doesn't interfere with the outside world apart from taking an argument as input and outputting a result. Its result only depends on its argument.
 
-# 杂项
 
-Comparable<T>  Comparator<T>
-	
-[Sentinel(https://github.com/alibaba/Sentinel)
-	
-System.nanoTime与System.currentTimeMillis
-* System.nanoTime : This method can only be used to measure elapsed time and is not related to any other notion of system or wall-clock time. 
-* System.currentTimeMillis : the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+# 范型
 
-
-* 强引用（StrongReference）
-* 软引用（SoftReference）
-* 弱引用（WeakReference）
-* 虚引用（PhantomReference）
-
+一些常用的泛型类型变量：
+* E：元素（Element），多用于java集合框架
+* K：关键字（Key）
+* N：数字（Number）
+* T：类型（Type）
+* V：值（Value）
 
 \<? extends T>和<? super T>是Java泛型中的"通配符（Wildcards）"和"边界（Bounds）"的概念。
 * \<? extends T>：是指 “上界通配符（Upper Bounds Wildcards）”
@@ -608,3 +601,21 @@ The principles behind this in computer science is called
 * Mutable data types which act as both sources and sinks should be invarian
 
 [Java Generics PECS – Producer Extends Consumer Super](https://howtodoinjava.com/java/generics/java-generics-what-is-pecs-producer-extends-consumer-super/)
+
+
+# 杂项
+
+Comparable<T>  Comparator<T>
+	
+[Sentinel(https://github.com/alibaba/Sentinel)
+	
+System.nanoTime与System.currentTimeMillis
+* System.nanoTime : This method can only be used to measure elapsed time and is not related to any other notion of system or wall-clock time. 
+* System.currentTimeMillis : the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+
+
+* 强引用（StrongReference）
+* 软引用（SoftReference）
+* 弱引用（WeakReference）
+* 虚引用（PhantomReference）
+
