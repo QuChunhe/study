@@ -549,12 +549,12 @@ PECS（Producer Extends Consumer Super）原则，已经很好理解了：
 * 经常往里插入的，适合用下界Super。
 
 从上述两方面的分析，总结PECS原则如下：
-* 如果要从集合中读取类型T的数据，并且不能写入，可以使用 ? extends 通配符；(Producer Extends)
-* 如果要从集合中写入类型T的数据，并且不需要读取，可以使用 ? super 通配符；(Consumer Super)
+* 如果要从集合中读取类型T的数据，并且不能写入，可以使用 \<? extends T> 通配符；(Producer Extends)
+* 如果要从集合中写入类型T的数据，并且不需要读取，可以使用 \<? super T>通配符；(Consumer Super)
 
 The principles behind this in computer science is called
-* Covariance: ? extends MyClass,
-* Contravariance: ? super MyClass and
+* Covariance: \<? extends T> MyClass,
+* Contravariance: \<? super T> MyClass and
 * Invariance/non-variance: MyClass
 
 * Read-only data types (sources) can be covariant;
