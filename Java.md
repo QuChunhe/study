@@ -626,9 +626,7 @@ The principles behind this in computer science is called
 
 The capture-helper trick depends on several things: type inference and capture conversion. The Java compiler doesn't perform type inference in very many places, but one place it does is in inferring the type parameter for generic methods. 
 
-There's a simple rule, called the get-put principle, which tells us which kind of wildcard to use. The get-put principle, as stated in Naftalin and Wadler's fine book on generics, Java Generics and Collections (see Resources), says:
-
-    Use an extends wildcard when you only get values out of a structure, use a super wildcard when you only put values into a structure, and don't use a wildcard when you do both.
+There's a simple rule, called the get-put principle, which tells us which kind of wildcard to use. The get-put principle, as stated in Naftalin and Wadler's fine book on generics, Java Generics and Collections (see Resources), says:   Use an extends wildcard when you only get values out of a structure, use a super wildcard when you only put values into a structure, and don't use a wildcard when you do both.
 
 # 杂项
 
