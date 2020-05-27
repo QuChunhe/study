@@ -602,6 +602,29 @@ The principles behind this in computer science is called
 
 [Java Generics PECS – Producer Extends Consumer Super](https://howtodoinjava.com/java/generics/java-generics-what-is-pecs-producer-extends-consumer-super/)
 
+泛型中的约束和局限性
+* 不能实例化泛型类
+* 静态变量或方法不能引用泛型类型变量，但是静态泛型方法是可以的
+* 基本类型无法作为泛型类型
+* 无法使用instanceof关键字或==判断泛型类的类型
+* 泛型类的原生类型与所传递的泛型无关，无论传递什么类型，原生类是一样的
+* 泛型数组可以声明但无法实例化
+* 泛型类不能继承Exception或者Throwable
+* 不能捕获泛型类型限定的异常但可以将泛型限定的异常抛出
+
+型类型继承规则
+* 对于泛型参数是继承关系的泛型类之间是没有继承关系的
+* 泛型类可以继承其它泛型类，例如: public class ArrayList<E> extends AbstractList<E>
+* 泛型类的继承关系在使用中同样会受到泛型类型的影响
+
+这里的Type指java.lang.reflect.Type, 是Java中所有类型的公共高级接口, 代表了Java中的所有类型. Type体系中类型的包括：数组类型(GenericArrayType)、参数化类型(ParameterizedType)、类型变量(TypeVariable)、通配符类型(WildcardType)、原始类型(Class)、基本类型(Class), 以上这些类型都实现Type接口.
+* 参数化类型,就是我们平常所用到的泛型List、Map；
+* 数组类型,并不是我们工作中所使用的数组String[] 、byte[]，而是带有泛型的数组，即T[] ；
+* 通配符类型, 指的是<?>, <? extends T>等等
+* 原始类型, 不仅仅包含我们平常所指的类，还包括枚举、数组、注解等；
+* 基本类型, 也就是我们所说的java的基本类型，即int,float,double等
+
+
 
 # 杂项
 
