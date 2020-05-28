@@ -528,7 +528,7 @@ Design with Higher-Order Functions
 external iterators
 
 internal iteration
-```
+```java
 friends.forEach((final String name) -> System.out.println(name))
 
 friends.forEach((name) -> System.out.println(name));
@@ -551,14 +551,14 @@ There are following types of method references in java:
 
 
 lexical scoping and closures
-```
+```java
     public static Predicate<String> checkIfStartsWith(final String letter) {
         return name -> name.startsWith(letter);
    }
 ```
 
 
-```
+```java
 final Function<String, Predicate<String>> startsWithLetter =
       (String letter) -> {
           Predicate<String> checkStartsWith = (String name) -> name.startsWith(letter);
@@ -566,7 +566,7 @@ final Function<String, Predicate<String>> startsWithLetter =
       };
 ```
 
-```
+```java
 final Function<String, Predicate<String>> startsWithLetter =
            (String letter) -> (String name) -> name.startsWith(letter);
 ```
@@ -576,7 +576,7 @@ final Function<String, Predicate<String>> startsWithLetter = letter -> name -> n
 ```
 
 
-```
+```java
 final Optional<String> aLongName = friends.stream()
                                          .reduce((name1, name2) -> name1.length() >= name2.length() ? name1 : name2);
 aLongName.ifPresent(name -> System.out.println(String.format("A longest name: %s", name)));
@@ -587,6 +587,14 @@ aLongName.ifPresent(name -> System.out.println(String.format("A longest name: %s
 * Picking an Element
 * Reducing a Collection to a Single Value 
 * Joining Elements
+
+
+```java
+List<Person> olderThan20 = people.stream()
+                                 .filter(person -> person.getAge() > 20)
+                                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+System.out.println("People older than 20: " + olderThan20);
+```
 
 
 Tell-Don't-Ask
