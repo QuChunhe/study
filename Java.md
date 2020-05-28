@@ -544,7 +544,7 @@ Antoine de Saint-Exupéry: “Perfection is achieved not when there is nothing m
 method reference:The Java compiler will take either a lambda expression or a reference to a method where an implementation of a functional interface is expected. With this feature, a short String::toUpperCase can replace name ->name.toUpperCase(),
 
 
-here are following types of method references in java:
+There are following types of method references in java:
 * Reference to a static method.
 * Reference to an instance method.
 * Reference to a constructor.
