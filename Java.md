@@ -33,7 +33,7 @@ JDK中的所机制
 
 ReentrantLock, ReentrantReadWriteLock.ReadLock, ReentrantReadWriteLock.WriteLock --> AbstractOwnableSynchronizer --> LockSupport --> Unsafe
 
-```
+```java
 class X {
    private final ReentrantLock lock = new ReentrantLock();
    // ...
@@ -120,7 +120,7 @@ throughtput=concurrency/latency
 
 i++,
 read-modify-write
-```
+```java
     private volatile int p;
     
     public void m() {
@@ -132,7 +132,7 @@ read-modify-write
 
 2)在 Java 语言中，我们使用了同步语句来获取互斥锁，这可以保护多线程系统的共享资源访问。然而，易变域的同步中会有一个漏洞，它可能破坏互斥。解决的方法是一定要将同步的域声明为 private final
 
-```
+```java
    private Parameter parameter = new Parameter();
    
    public void m() {
@@ -144,7 +144,7 @@ read-modify-write
    }
 ```
 争取的用法
-```
+```java
    private Parameter parameter = new Parameter();
    private final Ojbect lock = new Object();
    public void m() {
@@ -158,7 +158,7 @@ read-modify-write
 ```
 
 3) 锁泄漏. 要保证锁得到释放，我们只需要在每一个 lock 之后对应执行一个 unlock 方法，而且它们应该置于 try-finally 复杂语句中.
-```
+```java
 private final Lock lock = new ReentrantLock();
  
 public void lockLeak() {
@@ -176,7 +176,7 @@ public void accessResource() throws InterruptedException {...}
 
 4)同步语句的性能优化：分解锁，减小临界区的大小
 
-```
+```java
 public class Operator {
    private int generation = 0; //shared variable
    private float totalAmount = 0; //shared variable
@@ -197,7 +197,7 @@ public class Operator {
 }
 ```
 分解之后,在保证线程安全的前提下要尽可能地简化同步语句。
-```
+```java
 public void workOn(List<Operand> operands) {
    int curGeneration;
    float amountForThisWork = 0;
@@ -373,7 +373,7 @@ ServiceLoader: A service provider is identified by placing a provider-configurat
 
 [Correct way to find rowcount in Java JDBC](https://stackoverflow.com/questions/13103067/correct-way-to-find-rowcount-in-java-jdbc)
 
-```
+```java
 query = "SELECT * FROM customer WHERE username ='"+username+"'";
 rs = stmt.executeQuery(query);
 ResultSetMetaData metaData = rs.getMetaData();
@@ -589,13 +589,21 @@ aLongName.ifPresent(name -> System.out.println(String.format("A longest name: %s
 * Joining Elements
 
 
+
+Using the collect Method and the Collectors Class
+
 ```java
 List<Person> olderThan20 = people.stream()
                                  .filter(person -> person.getAge() > 20)
                                  .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 System.out.println("People older than 20: " + olderThan20);
 ```
-
+```java
+List<Person> olderThan20 = people.stream()
+                                 .filter(person -> person.getAge() > 20)
+                                 .collect(Collectors.toList());
+System.out.println("People older than 20: " + olderThan20);
+```
 
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
@@ -630,7 +638,7 @@ PECS（Producer Extends Consumer Super）原则，已经很好理解了：
 * 如果要从集合中读取类型T的数据，并且不能写入，可以使用 \<? extends T> 通配符；(Producer Extends)
 * 如果要从集合中写入类型T的数据，并且不需要读取，可以使用 \<? super T>通配符；(Consumer Super)
 
-```
+```java
     class Plate<T> {
         private T item;
         public Plate(T t){item=t;}
