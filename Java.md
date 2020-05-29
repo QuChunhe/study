@@ -745,3 +745,15 @@ System.nanoTime与System.currentTimeMillis
 * 弱引用（WeakReference）
 * 虚引用（PhantomReference）
 
+
+  
+ 方法的覆盖(Overriding )vs.重载(Overloading)
+ 
+Overloading occurs when two or more methods in one class have the same method name but different parameters.
+
+Overriding means having two methods with the same method name and parameters (i.e., method signature). One of the methods is in the parent class and the other is in the child class. Overriding allows a child class to provide a specific implementation of a method that is already provided its parent class. 
+
+* Polymorphism applies to overriding, not to overloading.
+* Overriding is a run-time concept while overloading is a compile-time concept. 
+ 
+ [ Overriding vs. Overloading in Java ](https://www.programcreek.com/2009/02/overriding-and-overloading-in-java-with-examples/)
