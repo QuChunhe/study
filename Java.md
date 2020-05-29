@@ -605,6 +605,10 @@ List<Person> olderThan20 = people.stream()
 System.out.println("People older than 20: " + olderThan20);
 ```
 
+
+We’ll use lambda expressions to easily separate logic from functions, making them more extensible.
+
+
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
 
