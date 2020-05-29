@@ -686,10 +686,30 @@ onerous.
 
 **Be aware of false sharing.**
 
-
-
 False sharing is a common problem in shared memory parallel processing. It occurs when two or more cores hold a copy of the same memory cache line.
 
 If one core writes, the cache line holding the memory line is invalidated on other cores. Even though another core may not be using that data (reading or writing), it may be using another element of data on the same cache line. The second core will need to reload the line before it can access its own data again.
 
 The cache hardware ensures data coherency, but at a potentially high performance cost if false sharing is frequent. A good technique to identify false sharing problems is to catch unexpected sharp increases in last-level cache misses using hardware counters or other performance tools.
+
+**Consider using nonblocking synchronization routines to monitor contention.**
+
+**When reacquiring locks, consider using generation counts to detect state change.**
+
+```java
+    /**
+     * The number of times this HashMap has been structurally modified
+     * Structural modifications are those that change the number of mappings in
+     * the HashMap or otherwise modify its internal structure (e.g.,
+     * rehash).  This field is used to make iterators on Collection-views of
+     * the HashMap fail-fast.  (See ConcurrentModificationException).
+     */
+    transient int modCount;
+
+```
+
+**Use wait- and lock-free structures only if you absolutely must.**
+
+in normal contexts, wait- and lock-free data structures are to be avoided as their failure
+modes are brutal (livelock is much nastier to debug than deadlock), their effect on complexity and the mainte-
+nance burden is significant, and their benefit in terms of performance is usually nil.
