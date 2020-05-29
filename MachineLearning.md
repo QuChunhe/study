@@ -39,4 +39,19 @@ CDF的反函数
 
 
 
+Discrete Uniform Distribution:X has a uniform distribution on {1, . . . , k}.
 
+Bernoulli distribution written X ∼ Bernoulli(p).
+
+
+Binomial random
+variable and we write X ∼ Binomial(n, p).
+
+X is a random variable; x denotes a particular value of the random variable; n and p
+are parameters, that is, fixed real numbers. The parameter p is usually unknown
+and must be estimated from data; that’s what statistical inference is all about.
+
+
+X has a geometric distribution with parameter p ∈ (0, 1), written X ∼ Geom(p),
+
+X has a Poisson distribution with parameter λ, written X ∼ Poisson(λ)
