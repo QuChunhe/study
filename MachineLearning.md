@@ -82,3 +82,9 @@ marginal densities
 条件独立
 
 independent and identically distributed 独立同分布
+
+The Law of Total Probability
+
+Bayes’ Theorem
+
+We call P(Ai) the prior probability of A and P(Ai|B) the posterior probability of A.
