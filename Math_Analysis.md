@@ -76,3 +76,5 @@ intervals.  It has the cardinality of the real numbers, yet it has zero length.
 
 [The Cantor function](https://warwick.ac.uk/fac/sci/maths/people/staff/oleg_zaboronski/analysisiii/cantor.pdf)
 
+
+依均值收敛
