@@ -61,3 +61,24 @@ X has a Poisson distribution with parameter λ, written X ∼ Poisson(λ)
 
 The Poisson is often used as a model for counts of rare events like radioactive
 decay and traffic accidents.
+
+
+X has a Normal (or Gaussian) distribution with
+parameters μ and σ, denoted by X ∼ N(μ, σ2),
+
+The Poisson is often used as a model for counts of rare events like radioactive
+decay and traffic accidents.
+
+X has an Exponential distribution with　parameter β, denoted by X ∼ Exp(β)．
+
+joint mass　function
+
+marginal mass function
+
+marginal densities
+
+多元分布  联合分布 边缘分布
+
+条件独立
+
+independent and identically distributed 独立同分布
