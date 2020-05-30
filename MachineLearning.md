@@ -54,4 +54,10 @@ and must be estimated from data; that’s what statistical inference is all abou
 
 X has a geometric distribution with parameter p ∈ (0, 1), written X ∼ Geom(p),
 
+Think of X as the number of flips needed until the first head when flipping a
+coin.
+
 X has a Poisson distribution with parameter λ, written X ∼ Poisson(λ)
+
+The Poisson is often used as a model for counts of rare events like radioactive
+decay and traffic accidents.
