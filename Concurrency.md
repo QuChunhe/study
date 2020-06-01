@@ -713,3 +713,6 @@ The cache hardware ensures data coherency, but at a potentially high performance
 in normal contexts, wait- and lock-free data structures are to be avoided as their failure
 modes are brutal (livelock is much nastier to debug than deadlock), their effect on complexity and the mainte-
 nance burden is significant, and their benefit in terms of performance is usually nil.
+
+
+[Concepts in Multicore Computing](https://www.cse.wustl.edu/~angelee/archive/cse539/spr15/)
