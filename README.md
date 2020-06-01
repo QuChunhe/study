@@ -7,8 +7,11 @@
 [线性回归分析及其应用](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=17695)
 
 [中国科学院大学-自然语言处理-2018](https://www.bilibili.com/video/BV14b411E7RB?from=search&seid=13130800206221963093)
+
 [随机过程 - 中国科学院大学](https://www.bilibili.com/video/BV1z7411L7Qw/?spm_id_from=333.788.videocard.4)
+
 [模式识别19-20秋季-中国科学院大学](https://www.bilibili.com/video/BV19J411j7tU?from=search&seid=4892424083475395943)
+
 [复分析](https://www.bilibili.com/video/BV1ZT4y137ec?from=search&seid=13323790604327395281)
 
 [微分流形](https://www.bilibili.com/video/BV1w7411m7u9?from=search&seid=13323790604327395281)
