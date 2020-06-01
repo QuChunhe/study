@@ -6,16 +6,12 @@
 
 [线性回归分析及其应用](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=17695)
 
-[计算语言学](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=19573)
+[中国科学院大学-自然语言处理-2018](https://www.bilibili.com/video/BV14b411E7RB?from=search&seid=13130800206221963093)
+[随机过程 - 中国科学院大学](https://www.bilibili.com/video/BV1z7411L7Qw/?spm_id_from=333.788.videocard.4)
+[模式识别19-20秋季-中国科学院大学](https://www.bilibili.com/video/BV19J411j7tU?from=search&seid=4892424083475395943)
+[复分析](https://www.bilibili.com/video/BV1ZT4y137ec?from=search&seid=13323790604327395281)
 
-[近世代数](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=15832)
-[多元统计分析](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=13273)
-
-[并行处理](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=29814)
-
-[自然语言处理](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=3ba9b9804c8f43fdbbfa21349b477648)
-
-[复分析](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=46747f62278a49dd9a430516037473d6)
+[微分流形](https://www.bilibili.com/video/BV1w7411m7u9?from=search&seid=13323790604327395281)
 
 https://cacm.acm.org/magazines/2017/12/223054-parallel-computational-thinking/fulltext
 
