@@ -716,3 +716,15 @@ nance burden is significant, and their benefit in terms of performance is usuall
 
 
 [Concepts in Multicore Computing](https://www.cse.wustl.edu/~angelee/archive/cse539/spr15/)
+
+[Algorithms for Scalable Synchronization on Shared-Memory Multiprocessors](www.cs.rice.edu/~johnmc/scalable_synch/tocs91.pdf)
+
+同步方式可以划分为两类
+* 阻塞方式(blocking construncts)：线程释放资源，等待被重新调度。
+* 忙等待方式(busy-wait constructs)：线程持有资源，并且重复测试共享的变量，以确定其十分可以继续执行
+
+如果重新调度的时间消耗超过所期望的等待时间，则选择阻塞方式
+
+两种最常用的忙等待方式是
+* spin lock. spin lock提供一种实现排他执行的方式，即确保在一个时间仅仅有一个处理器能够访问特定的共享数据结构
+* barriers.　屏障提供了一种方式，以确保在计算过程中，直到所有线程都执行到特定的点之前，没有线程可以超过这个点执行。
