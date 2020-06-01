@@ -34,3 +34,6 @@ Leibniz
 Frege:弗雷格(德语:Friedrich Ludwig Gottlob Frege，1848年11月8日-1925年7月26日)，德国数学家、逻辑学家和哲学家。他是数理逻辑和分析哲学的奠基人，代表作为《概念演算--一种按算术语言构成的思维符号语言》。
 
 归纳定义和归纳证明
+
+
+(数理逻辑_冯琦)[http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=0bad6c0585be4a9d86c3215d31517ff6]
