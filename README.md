@@ -44,6 +44,10 @@
 * Mood, Graybill and Boes, Introduction to the Theory of Statistics, McGraw Hill,1973
 
 
+
+[数理逻辑（Mathematical Logic](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
+
+
 https://cacm.acm.org/magazines/2017/12/223054-parallel-computational-thinking/fulltext
 
 https://cacm.acm.org/magazines/2017/12/223046-automatically-accelerating-non-numerical-programs-by-architecture-compiler-co-design/fulltext
