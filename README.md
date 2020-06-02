@@ -45,7 +45,7 @@
 
 
 
-[数理逻辑（Mathematical Logic](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
+[数理逻辑（Mathematical Logic)](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 
 [Logic for CS, Shai Ben-David, U Waterloo Fall 2015](https://www.youtube.com/channel/UCg9V0y9_RxG7hg5GjcyS2OA)
