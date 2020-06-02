@@ -22,7 +22,7 @@
 
 [多元统计分析-王学民 上海财经大学](https://www.bilibili.com/video/BV1Pb411J7YU/?spm_id_from=333.788.videocard.9)
 
-[多元统计分析（上）_上海财经大学（完整)]https://www.bilibili.com/video/BV1M54y1R7sK/?spm_id_from=333.788.videocard.10()
+[多元统计分析（上）_上海财经大学（完整)](https://www.bilibili.com/video/BV1M54y1R7sK/?spm_id_from=333.788.videocard.10)
 
 [回归分析 | Regression Analysis-](https://www.bilibili.com/video/BV1s4411G7T9?from=search&seid=8434143579523388319)
 
