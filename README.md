@@ -48,6 +48,8 @@
 [数理逻辑（Mathematical Logic](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 
+[Logic for CS, Shai Ben-David, U Waterloo Fall 2015](https://www.youtube.com/channel/UCg9V0y9_RxG7hg5GjcyS2OA)
+
 https://cacm.acm.org/magazines/2017/12/223054-parallel-computational-thinking/fulltext
 
 https://cacm.acm.org/magazines/2017/12/223046-automatically-accelerating-non-numerical-programs-by-architecture-compiler-co-design/fulltext
