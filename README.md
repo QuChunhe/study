@@ -24,6 +24,20 @@
 
 [多元统计分析（上）_上海财经大学（完整)]https://www.bilibili.com/video/BV1M54y1R7sK/?spm_id_from=333.788.videocard.10()
 
+[回归分析 | Regression Analysis-](https://www.bilibili.com/video/BV1s4411G7T9?from=search&seid=8434143579523388319)
+
+[贝叶斯统计](https://www.bilibili.com/video/BV1hE411N7q2?p=1)
+
+[统计方法与数据分析](https://www.bilibili.com/video/BV1ZE411N7Ju/?spm_id_from=333.788.videocard.17)
+
+[多元统计分析](https://www.bilibili.com/video/BV1VQ4y1K7Pz/?spm_id_from=333.788.videocard.5)
+
+[研究生 数理统计](https://www.bilibili.com/video/BV1F741127Jp/?spm_id_from=333.788.videocard.14)
+
+[应用回归分析——上海立信会计金融学院](https://www.bilibili.com/video/BV1KJ411x7xb?from=search&seid=15994992527821645519)
+
+[迴歸分析 Regression Analysis - Introduction](http://ocw.nctu.edu.tw/course_detail-v.php?bgid=1&gid=4&nid=528)
+
 https://cacm.acm.org/magazines/2017/12/223054-parallel-computational-thinking/fulltext
 
 https://cacm.acm.org/magazines/2017/12/223046-automatically-accelerating-non-numerical-programs-by-architecture-compiler-co-design/fulltext
