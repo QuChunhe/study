@@ -185,6 +185,14 @@ B为实验前知道的某些信息
 [概率论与数理统计 - 中国科学院大学](https://www.bilibili.com/video/BV1q7411L75X/?spm_id_from=333.788.videocard.15)
 
 
+[Non-transitive Dice](https://www.microsoft.com/en-us/research/project/non-transitive-dice/)
+
+
+频率与概率
+
+蒲丰投针
+
+
 
 [【数学系专业课】 概率论与数理统计 讲解视频](https://www.bilibili.com/video/BV1cb411j7Mm?from=search&seid=15835382154082768770)
 
