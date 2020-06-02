@@ -38,6 +38,12 @@
 
 [迴歸分析 Regression Analysis - Introduction](http://ocw.nctu.edu.tw/course_detail-v.php?bgid=1&gid=4&nid=528)
 
+[統計學 Statistics](http://ocw.nctu.edu.tw/course_detail.php?bgid=1&gid=4&nid=537&page=1)
+
+* Hogg and Craig, Introduction to Mathematical Statistics, Pearson,2012 (建議購買書籍).
+* Mood, Graybill and Boes, Introduction to the Theory of Statistics, McGraw Hill,1973
+
+
 https://cacm.acm.org/magazines/2017/12/223054-parallel-computational-thinking/fulltext
 
 https://cacm.acm.org/magazines/2017/12/223046-automatically-accelerating-non-numerical-programs-by-architecture-compiler-co-design/fulltext
