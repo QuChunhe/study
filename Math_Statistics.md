@@ -209,6 +209,8 @@ B为实验前知道的某些信息
 * P(A)=P(A|B)
 * P(A)>P(A|B)
 
+波利亚罐子模型（传染模型）
+
 [【数学系专业课】 概率论与数理统计 讲解视频](https://www.bilibili.com/video/BV1cb411j7Mm?from=search&seid=15835382154082768770)
 
 
