@@ -69,7 +69,7 @@
 
 [【MIT公开课】 6.854 高级算法 (完结)](https://www.bilibili.com/video/BV11E411u73m/?spm_id_from=333.788.videocard.0)
 
-[【教育】并行计算机架构与编程 第一讲][https://www.bilibili.com/video/BV1Dx411673i?from=search&seid=7184861422555047434]
+[【教育】并行计算机架构与编程 第一讲](https://www.bilibili.com/video/BV1Dx411673i?from=search&seid=7184861422555047434)
 
 [实战Java高并发程序设计](https://www.bilibili.com/video/BV1n7411Z7Cn?from=search&seid=12603401063409719862)
 
