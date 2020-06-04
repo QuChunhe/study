@@ -51,29 +51,29 @@
 
 [新竹清华大学：并行计算与并行编程课程](https://www.bilibili.com/video/BV1Yt411W7td?from=search&seid=7327485488962960724)
 
-(知名国外机构GPU并行计算课程)[https://www.bilibili.com/video/BV1qt411V726?from=search&seid=7327485488962960724]
+[知名国外机构GPU并行计算课程](https://www.bilibili.com/video/BV1qt411V726?from=search&seid=7327485488962960724)
 
-(【哈工大-苏统华】CUDA并行程序设计)[https://www.bilibili.com/video/BV15E411x7yT?from=search&seid=13960558620827365183]
+[【哈工大-苏统华】CUDA并行程序设计](https://www.bilibili.com/video/BV15E411x7yT?from=search&seid=13960558620827365183)
 
-(Java多线程及并行编程基础 莱斯大学)[https://www.bilibili.com/video/BV1St411i7oa?from=search&seid=7184861422555047434]
+[Java多线程及并行编程基础 莱斯大学](https://www.bilibili.com/video/BV1St411i7oa?from=search&seid=7184861422555047434)
 
-(【龙芯|中科院】计算机体系结构导教班)[https://www.bilibili.com/video/BV17E411W7NS/?spm_id_from=333.788.videocard.5]
+[【龙芯|中科院】计算机体系结构导教班](https://www.bilibili.com/video/BV17E411W7NS/?spm_id_from=333.788.videocard.5)
 
-(CMU 15-418 并行体系结构与编程（Parallel Computer Architecture and Programming）2016春)[https://www.bilibili.com/video/BV1Fb411W7BG/?spm_id_from=333.788.videocard.3]
+[CMU 15-418 并行体系结构与编程（Parallel Computer Architecture and Programming）2016春](https://www.bilibili.com/video/BV1Fb411W7BG/?spm_id_from=333.788.videocard.3)
 
-([MIT] 多核编程 (双语字幕) Multicore Programming Primer)[https://www.bilibili.com/video/BV18t411M7vY/?spm_id_from=333.788.videocard.0]
+[[MIT] 多核编程 (双语字幕) Multicore Programming Primer](https://www.bilibili.com/video/BV18t411M7vY/?spm_id_from=333.788.videocard.0)
 
-(麻省理工 多核编程 (MIT 6.189 Multicore Programming Primer)【英】)[https://www.bilibili.com/video/BV1kt411q7Qj/?spm_id_from=333.788.videocard.2]
+[麻省理工 多核编程 (MIT 6.189 Multicore Programming Primer)【英】](https://www.bilibili.com/video/BV1kt411q7Qj/?spm_id_from=333.788.videocard.2)
 
-(【MIT公开课】6.824 分布式系统 · 2020年春（完结·中英字幕·机翻)[https://www.bilibili.com/video/BV1qk4y197bB/?spm_id_from=333.788.videocard.10]
+[【MIT公开课】6.824 分布式系统 · 2020年春（完结·中英字幕·机翻)](https://www.bilibili.com/video/BV1qk4y197bB/?spm_id_from=333.788.videocard.10)
 
-(【MIT公开课】 6.854 高级算法 (完结)[https://www.bilibili.com/video/BV11E411u73m/?spm_id_from=333.788.videocard.0]
+[【MIT公开课】 6.854 高级算法 (完结)](https://www.bilibili.com/video/BV11E411u73m/?spm_id_from=333.788.videocard.0)
 
-(【教育】并行计算机架构与编程 第一讲)[https://www.bilibili.com/video/BV1Dx411673i?from=search&seid=7184861422555047434]
+[【教育】并行计算机架构与编程 第一讲][https://www.bilibili.com/video/BV1Dx411673i?from=search&seid=7184861422555047434]
 
-(实战Java高并发程序设计)[https://www.bilibili.com/video/BV1n7411Z7Cn?from=search&seid=12603401063409719862]
+[实战Java高并发程序设计](https://www.bilibili.com/video/BV1n7411Z7Cn?from=search&seid=12603401063409719862)
 
-(Message-Passing Programming with MPI)[https://www.bilibili.com/video/BV1Mb411w7Tc?from=search&seid=17062182834967111242]
+[Message-Passing Programming with MPI](https://www.bilibili.com/video/BV1Mb411w7Tc?from=search&seid=17062182834967111242)
 
 [Java并发编程](https://www.bilibili.com/video/BV1jE411j7uX?from=search&seid=17062182834967111242)
 
