@@ -204,6 +204,11 @@ B为实验前知道的某些信息
 对立事件
 
 
+条件概率P(A)与无条件概率之间P(A|B)的大小无确定关系，即可能
+* P(A)<P(A|B)
+* P(A)=P(A|B)
+* P(A)>P(A|B)
+
 [【数学系专业课】 概率论与数理统计 讲解视频](https://www.bilibili.com/video/BV1cb411j7Mm?from=search&seid=15835382154082768770)
 
 
