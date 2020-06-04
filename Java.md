@@ -608,6 +608,9 @@ System.out.println("People older than 20: " + olderThan20);
 
 We’ll use lambda expressions to easily separate logic from functions, making them more extensible.
 
+Constructor Reference is used to refer to a constructor without instantiating the named class.
+
+
 
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
