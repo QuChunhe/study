@@ -28,6 +28,8 @@ metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 [Modes of Convergence](http://www.prime.sdu.edu.cn/__local/2/0D/5E/684A4CDDEF2D69A81B84B71E0C2_E677655A_264C6.pdf)
 
+[Littlewood’s Three Principles]http://math.gmu.edu/~dwalnut/teach/Math776/Spring11/776s11lec07_notes.pdf()
+
 
 <<实变函数理论和方法>>
 
