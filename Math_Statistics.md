@@ -682,6 +682,13 @@ Bradley Efron and Trevor Hastie, Computer Age Statistical Inference: Algorithms,
 [Statistical inference for data science](https://leanpub.com/LittleInferenceBook/read)
 
 
+[迴歸分析 Regression Analysis - Introduction](http://ocw.nctu.edu.tw/course_detail-v.php?bgid=1&gid=4&nid=528)
+
+Introduction to Linear Regression Analysis (5th Edition). Wiley. (ILRA)
+
+
+
+
 A
 absolute value 绝对值
 
