@@ -748,14 +748,43 @@ The Intel-64 memory ordering model guarantees that, for each of the following
 memory-access instructions, the constituent memory operation appears to execute 
 as a single memory access:
 
-• Instructions that read or write a single byte.
-• Instructions that read or write a word (2 bytes) whose address is aligned on a 2
+* Instructions that read or write a single byte.
+* Instructions that read or write a word (2 bytes) whose address is aligned on a 2
 byte boundary.
-• Instructions that read or write a doubleword (4 bytes) whose address is aligned
+* Instructions that read or write a doubleword (4 bytes) whose address is aligned
 on a 4 byte boundary.
-• Instructions that read or write a quadword (8 bytes) whose address is aligned on
+* Instructions that read or write a quadword (8 bytes) whose address is aligned on
 an 8 byte boundary.
 
 Any locked instruction (either the XCHG instruction or another read-modify-write
  instruction with a LOCK prefix) appears to execute as an indivisible and 
 uninterruptible sequence of load(s) followed by store(s) regardless of alignment.
+
+[LOCK — Assert LOCK# Signal Prefix](https://www.felixcloutier.com/x86/lock)
+
+[MFENCE — Memory Fence](https://www.felixcloutier.com/x86/mfence)
+
+https://www.cnblogs.com/-9-8/p/4654294.html
+
+[读写一气呵成 - Linux中的原子操作](https://zhuanlan.zhihu.com/p/89299392)
+
+[Atomic explosion: evolution of relaxed concurrency primitives — Will Deacon](https://kernel-recipes.org/en/2018/live-blog-day-2-1/)
+
+https://kernel-recipes.org/en/2018/talks/atomic-explosion-evolution-and-use-of-relaxed-concurrency-primitives/
+
+https://web.mit.edu/6.005/www/fa15/classes/23-locks/
+
+
+[Operating Systems: Three Easy Pieces](http://pages.cs.wisc.edu/~remzi/OSTEP/)
+
+[Classical Problems of Synchronization](https://www.studytonight.com/operating-system/classical-synchronization-problems)
+
+[Syllabus for CS 598, Concurrent Programming](http://bluehawk.monmouth.edu/~rclayton/web-pages/u03-598/syl.html#part2)
+
+Lock Scaling Analysis on Intel® Xeon® Processors
+
+[Mutex vs Semaphore](https://www.geeksforgeeks.org/mutex-vs-semaphore/)
+
+Modeling Critical Sections in Amdahl’s Law and its Implications for Multicore Design
+
+book Semaphores, Locks, and Conditional Critical Regions
