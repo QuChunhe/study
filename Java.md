@@ -768,3 +768,5 @@ Overriding means having two methods with the same method name and parameters (i.
 * Overriding is a run-time concept while overloading is a compile-time concept. 
  
  [ Overriding vs. Overloading in Java ](https://www.programcreek.com/2009/02/overriding-and-overloading-in-java-with-examples/)
+ 
+ [](https://shipilev.net/talks/narnia-2555-jmm-pragmatics-en.pdf)
