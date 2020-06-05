@@ -728,3 +728,34 @@ nance burden is significant, and their benefit in terms of performance is usuall
 两种最常用的忙等待方式是
 * spin lock. spin lock提供一种实现排他执行的方式，即确保在一个时间仅仅有一个处理器能够访问特定的共享数据结构
 * barriers.　屏障提供了一种方式，以确保在计算过程中，直到所有线程都执行到特定的点之前，没有线程可以超过这个点执行。
+
+
+[Managing Lock Contention: Large and Small Critical Sections](https://software.intel.com/content/www/us/en/develop/articles/managing-lock-contention-large-and-small-critical-sections.html)
+
+在多线程应用中，锁用于同步进入临界区。临界区是一段访问共享资源的代码。当一个线程位于临界区内时，其他线程不能进入。因此，临界区被顺序执行。
+
+当多线程试图访问共享资源时，临界区能够确保数据的完整性。但是以顺序执行临界区的代码为代价。线程应该在临界区内消耗尽可能少额时间，以减小其他线程等待获取锁的时间。锁竞争。尽可能地减小临界区的执行时间。
+
+获取锁和释放锁需要引入额外的代价，这个代价主要是因为增加lock指令，或在普通的操作上增加锁在总线
+
+总的线程数为n，临界区的评价执行时间为t，那么总的等待时间可达n*(n-1)*t/2。显然，随着线程数的增加，执行时间会增加。
+
+[Bus Lock](https://software.intel.com/en-us/forums/intel-performance-bottleneck-analyzer/topic/308523)
+
+[Intel® 64 and IA-32 Architectures Developer's Manual: Vol. 3A](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.html)
+
+The Intel-64 memory ordering model guarantees that, for each of the following 
+memory-access instructions, the constituent memory operation appears to execute 
+as a single memory access:
+
+• Instructions that read or write a single byte.
+• Instructions that read or write a word (2 bytes) whose address is aligned on a 2
+byte boundary.
+• Instructions that read or write a doubleword (4 bytes) whose address is aligned
+on a 4 byte boundary.
+• Instructions that read or write a quadword (8 bytes) whose address is aligned on
+an 8 byte boundary.
+
+Any locked instruction (either the XCHG instruction or another read-modify-write
+ instruction with a LOCK prefix) appears to execute as an indivisible and 
+uninterruptible sequence of load(s) followed by store(s) regardless of alignment.
