@@ -10,6 +10,7 @@ multiprogramming　--> multithread (Concurrency) --> multiprocessor (parallelism
 传统单核和单CPU时代的并发
 * 分时复用CPU
 * 线程交织执行   
+
 微观上交替执行，宏观上并发执行。现在已经是多CPU(SMP)和多核时代，主流的商用服务器装备多个CPU，每个CPU拥有多个内核。从软件角度，并发和并行没有本质的区别。
 
 并发和并行都需要挖掘问题或者任务的并行性。三个维度挖掘并行性
