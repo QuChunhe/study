@@ -2,11 +2,15 @@
 https://www.itcodemonkey.com/article/15901.html
 
 智能
-* 演绎
+* 演绎，学习已有经验和知识，并进一步的应用
 
-* 归纳
+* 归纳，通过特例，分析和总结经验
 
-* 联想
+* 联想，通过
+
+* 尝试
+
+* 类比，相关的事件和经验，能够进行关联和对比
 
 
 [TensorFlow Examples](https://github.com/aymericdamien/TensorFlow-Examples)
