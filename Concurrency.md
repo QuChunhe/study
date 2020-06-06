@@ -801,6 +801,8 @@ Intel提供了Lock前缀，可以应用在如下指令之前ADD, ADC, AND, BTC, 
 
 总线锁具有诶出高的性能损失，需要尽可能地避免锁住内存访问，以提高内存访问的并发性。
 
+从P6处理器家族开始，如果使用了LOCK指令前缀的指令要访问的目的地址的内容已经缓存在了cache中，那么LOCK#信号一般就不会被设置，但是当前处理器的cache会被锁定，然后缓存一致性（cache coherency ）机制会自动确保操作的原子性。
+
 [MFENCE — Memory Fence](https://www.felixcloutier.com/x86/mfence)
 
 https://www.cnblogs.com/-9-8/p/4654294.html
