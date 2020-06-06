@@ -39,4 +39,9 @@ Frege:弗雷格(德语:Friedrich Ludwig Gottlob Frege，1848年11月8日-1925年
 * R(n)归纳步骤
 * R(n')归纳假设
 
+串值归纳法
+
+递归等义
+
+
 (数理逻辑_冯琦)[http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=0bad6c0585be4a9d86c3215d31517ff6]
