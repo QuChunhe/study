@@ -735,12 +735,44 @@ nance burden is significant, and their benefit in terms of performance is usuall
 
 在多线程应用中，锁用于同步进入临界区。临界区是一段访问共享资源的代码。当一个线程位于临界区内时，其他线程不能进入。因此，临界区被顺序执行。
 
-当多线程试图访问共享资源时，临界区能够确保数据的完整性。但是以顺序执行临界区的代码为代价。线程应该在临界区内消耗尽可能少额时间，以减小其他线程等待获取锁的时间。锁竞争。尽可能地减小临界区的执行时间。
+当多线程试图访问共享资源时，临界区能够确保数据的完整性。但是以顺序执行临界区的代码为代价。线程应该在临界区内消耗尽可能少额时间，以减小其他线程等待获取锁的时间。锁竞争。尽可能地减小临界区的执行时间。最好保持较小额临界区。每个临界区都需要获取或者释放锁，因此使用多个较小的、相互分开的临界区会引入额外开销。
+```
+Begin Thread Function ()
+	Initialize ()	
 
-获取锁和释放锁需要引入额外的代价，这个代价主要是因为增加lock指令，或在普通的操作上增加锁在总线
+	BEGIN CRITICAL SECTION 1
 
-总的线程数为n，临界区的评价执行时间为t，那么总的等待时间可达n*(n-1)*t/2。显然，随着线程数的增加，执行时间会增加。
+	UpdateSharedData1 ()
 
+	END CRITICAL SECTION 1
+
+	DoFunc1 ()	
+
+	BEGIN CRITICAL SECTION 2
+
+	UpdateSharedData2 ()
+
+	END CRITICAL SECTION 2	
+
+	DoFunc2 ()
+
+	End Thread Function ()
+```
+如果临界区被一个名为doFunc1的调用分隔，如果doFunc1仅仅消耗非常少的时间，那么就不能忽略锁引入的同步开销。在这种情况下，一个更好的方案是合并这两个小临界区成为一个较大的临界区。
+
+如果doFunc1消耗的时间远高于合并临界区锁锁减小的耗时，那么合并临界区就不是一个可行方案。随着临界区的增大，增加了锁竞争的可能性，增加了线程等待额时间。
+
+如果线程在功能UpdateSharedData2花费大量大量的时间，使用包含UpdateSharedData1和UpdateSharedData2的单一临界区将不在是一个好的解决方案，因为锁竞争额可能性非常高。
+
+使用不同的锁保护不同的共享变量。为一个数据结构中的不同元素分别创建独立的锁，或者创建一个锁用于保护访问整个数据结构。依赖于更新元素的代价，大粒度或小粒度的极端情况并不是一个可行的方案，最佳的锁粒度往往是在中间。例如给定一个共享的数组，采用一对锁：一个用于保护偶数元素，另一个用于保护奇数元素。
+
+对于UpdateSharedData2需要耗费大量的时间才能完成的情况
+
+
+获取锁和释放锁需要引入额外的代价，这个代价主要是因为增加lock指令，或在普通的操作上增加锁总线。
+
+总的线程数为n，临界区的评价执行时间为t，那么总的等待时间可达n*t_cache+n*(t_lock)+n*(n-1)*t/2。由于需要锁住总线，使得内存访问传行化，增加了线程之间和应用之间的互扰。显然，随着线程数的增加，执行时间会增加。
++
 [Bus Lock](https://software.intel.com/en-us/forums/intel-performance-bottleneck-analyzer/topic/308523)
 
 [Intel® 64 and IA-32 Architectures Developer's Manual: Vol. 3A](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.html)
