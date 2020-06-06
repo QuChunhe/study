@@ -797,6 +797,10 @@ uninterruptible sequence of load(s) followed by store(s) regardless of alignment
 
 [LOCK — Assert LOCK# Signal Prefix](https://www.felixcloutier.com/x86/lock)
 
+Intel提供了Lock前缀，可以应用在如下指令之前ADD, ADC, AND, BTC, BTR, BTS, CMPXCHG, CMPXCH8B, CMPXCHG16B, DEC, INC, NEG, NOT, OR, SBB, SUB, XOR, XADD, and XCHG。处理器会使用LOCK＃信号，在关键的内存操作期间自动生效，锁定系统总线。一旦信号生效，其他处理器或者总线代理的总线控制请求将会被阻塞。
+
+总线锁具有诶出高的性能损失，需要尽可能地避免锁住内存访问，以提高内存访问的并发性。
+
 [MFENCE — Memory Fence](https://www.felixcloutier.com/x86/mfence)
 
 https://www.cnblogs.com/-9-8/p/4654294.html
