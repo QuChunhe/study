@@ -12,6 +12,8 @@ https://www.itcodemonkey.com/article/15901.html
 
 * 类比，相关的事件和经验，能够进行关联和对比
 
+* 本能，天生的或者经过反复训练具有的一些条件反射或者直觉。
+
 
 [TensorFlow Examples](https://github.com/aymericdamien/TensorFlow-Examples)
 
