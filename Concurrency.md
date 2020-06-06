@@ -738,25 +738,26 @@ nance burden is significant, and their benefit in terms of performance is usuall
 当多线程试图访问共享资源时，临界区能够确保数据的完整性。但是以顺序执行临界区的代码为代价。线程应该在临界区内消耗尽可能少额时间，以减小其他线程等待获取锁的时间。锁竞争。尽可能地减小临界区的执行时间。最好保持较小额临界区。每个临界区都需要获取或者释放锁，因此使用多个较小的、相互分开的临界区会引入额外开销。
 ```
 Begin Thread Function ()
-	Initialize ()	
 
-	BEGIN CRITICAL SECTION 1
+    Initialize ()	
 
-	UpdateSharedData1 ()
+    BEGIN CRITICAL SECTION 1
 
-	END CRITICAL SECTION 1
+    UpdateSharedData1 ()
 
-	DoFunc1 ()	
+    END CRITICAL SECTION 1
+    
+    DoFunc1 ()	
 
-	BEGIN CRITICAL SECTION 2
+    BEGIN CRITICAL SECTION 2
 
-	UpdateSharedData2 ()
+    UpdateSharedData2 ()
 
-	END CRITICAL SECTION 2	
+    END CRITICAL SECTION 2	
 
-	DoFunc2 ()
+    DoFunc2 ()
 
-	End Thread Function ()
+End Thread Function ()
 ```
 如果临界区被一个名为doFunc1的调用分隔，如果doFunc1仅仅消耗非常少的时间，那么就不能忽略锁引入的同步开销。在这种情况下，一个更好的方案是合并这两个小临界区成为一个较大的临界区。
 
@@ -766,8 +767,9 @@ Begin Thread Function ()
 
 使用不同的锁保护不同的共享变量。为一个数据结构中的不同元素分别创建独立的锁，或者创建一个锁用于保护访问整个数据结构。依赖于更新元素的代价，大粒度或小粒度的极端情况并不是一个可行的方案，最佳的锁粒度往往是在中间。例如给定一个共享的数组，采用一对锁：一个用于保护偶数元素，另一个用于保护奇数元素。
 
-对于UpdateSharedData2需要耗费大量的时间才能完成的情况
+对于功能UpdateSharedData2需要耗费大量的时间才能完成的情况,可以分解此功能的工作并采用新的临界区可能是一个更好的选择，以减小锁竞争
 
+平衡临界区的大小以减小获取和释放锁的开销。考虑合并小临界区以分摊锁的开销。将具有严重锁竞争的大临界区分割为小临界区。将锁关联到特定共享数据，以减小锁竞争。最佳的方案位于针对共享的每个数据元素使用不同的锁与针对所有共享数据使用一个锁这两个方案之间。
 
 获取锁和释放锁需要引入额外的代价，这个代价主要是因为增加lock指令，或在普通的操作上增加锁总线。
 
