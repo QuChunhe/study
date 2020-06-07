@@ -50,6 +50,11 @@ Frege:弗雷格(德语:Friedrich Ludwig Gottlob Frege，1848年11月8日-1925年
 
 联结词，五个是常用的　复合命题
 
+可兼容的或，不相容的或
+
+
+在命题逻辑中，以简单命题作为基本单位，由简单命题出发，经过使用联结词，构成复合命题。
+
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 
