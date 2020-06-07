@@ -718,7 +718,7 @@ nance burden is significant, and their benefit in terms of performance is usuall
 
 [Concepts in Multicore Computing](https://www.cse.wustl.edu/~angelee/archive/cse539/spr15/)
 
-[Algorithms for Scalable Synchronization on Shared-Memory Multiprocessors](www.cs.rice.edu/~johnmc/scalable_synch/tocs91.pdf)
+[Algorithms for Scalable Synchronization on Shared-Memory Multiprocessors](https://www.cs.rice.edu/~johnmc/scalable_synch/tocs91.pdff)
 
 同步方式可以划分为两类
 * 阻塞方式(blocking construncts)：线程释放资源，等待被重新调度。
