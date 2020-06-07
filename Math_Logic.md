@@ -1,4 +1,4 @@
-[陆钟万 数理逻辑]https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819()　
+[陆钟万 数理逻辑](https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819)　
 
 数理逻辑的四个分支
 * 模型论   
@@ -43,7 +43,14 @@ Frege:弗雷格(德语:Friedrich Ludwig Gottlob Frege，1848年11月8日-1925年
 
 递归等义
 
-经典命题逻辑
+经典命题逻辑(Classical propositional logic)
+
+
+形式语言　自然语言
+
+联结词，五个是常用的　复合命题
+
+(数理逻辑（Mathematical Logic）)[https://yiqinnju.github.io/course/MathLogic/MathLogic.html]
 
 
 (数理逻辑_冯琦)[http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=0bad6c0585be4a9d86c3215d31517ff6]
