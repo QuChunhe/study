@@ -94,3 +94,7 @@ The Law of Total Probability
 Bayes’ Theorem
 
 We call P(Ai) the prior probability of A and P(Ai|B) the posterior probability of A.
+
+
+
+期望/均值：随机变量的平均值
