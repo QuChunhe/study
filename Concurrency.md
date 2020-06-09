@@ -829,3 +829,20 @@ Lock Scaling Analysis on Intel® Xeon® Processors
 Modeling Critical Sections in Amdahl’s Law and its Implications for Multicore Design
 
 book Semaphores, Locks, and Conditional Critical Regions
+
+
+
+几个问题
+
+Starvation and Fairness
+　
+ 饥饿(Starvation)问题
+ 
+ 公平(Fairness)问题
+ 
+如下三个原因造成了在java中的线程饥饿
+* 高优先级的线程会具有低优先级的线程那里抢占所有的CPU时间，造成低优先级线程无法执行
+* 由于其他线程总能够获得锁，造成线程被无限期的阻塞，一直等待进入临界区
+* 由于其他线程总能够获得信号，从而被唤醒，导致执行wait方法的线程无限期地等待被信号唤醒
+ 
+ [Starvation and Fairness](http://tutorials.jenkov.com/java-concurrency/starvation-and-fairness.html)
