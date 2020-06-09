@@ -117,3 +117,16 @@ https://cacm.acm.org/magazines/2008/11/537-software-transactional-memory-why-is-
 
 
 http://www.dre.vanderbilt.edu/%7Eschmidt/PDF/proactor.pdf
+
+[用户自制的 TiKZ 绘图样例分享](https://www.latexstudio.net/archives/51667.html](https://www.latexstudio.net/archives/51667.html)
+
+[TikZ 的简介、资源以及学习方法](https://www.latexstudio.net/archives/51577.html)
+
+[TiKZ绘制网络拓扑图](https://www.latexstudio.net/archives/10760.html)
+
+[用TikZ快速绘制微观经济学常用图](https://www.latexstudio.net/archives/6725.html)
+
+[在 LaTeX 中使用流程图](https://www.latexstudio.net/archives/5846.html)
+
+[texample的15个新例子 ](https://www.latexstudio.net/archives/2066.html)
+[Tikz样例集下载--Martin Thoma ](https://www.latexstudio.net/archives/2276.html)
