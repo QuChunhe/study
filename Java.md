@@ -261,7 +261,7 @@ https://www.cnblogs.com/aishangJava/p/6555291.html
 
 为了避免信号丢失，需要在临界区内设置和检查标志或者状态。设置标志或者改变状态后，发出信号。在调用wait和进入等待信号之前以及被信号唤醒之后，都需要检查标志和状态；２）唤醒后
 
-
+虚假唤醒（spurious wakeup）
 
 [多核系统上的 Java 并发缺陷模式（bug patterns）](https://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/)
 
