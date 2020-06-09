@@ -844,6 +844,31 @@ Starvation and Fairness
 * 高优先级的线程会具有低优先级的线程那里抢占所有的CPU时间，造成低优先级线程无法执行
 * 由于其他线程总能够获得锁，造成线程被无限期的阻塞，一直等待进入临界区
 * 由于其他线程总能够获得信号，从而被唤醒，导致执行wait方法的线程无限期地等待被信号唤醒
+
+```java
+public class Lock{
+  private boolean isLocked      = false;
+  private Thread  lockingThread = null;
+
+  public synchronized void lock() throws InterruptedException{
+    while(isLocked){
+      wait();
+    }
+    isLocked      = true;
+    lockingThread = Thread.currentThread();
+  }
+
+  public synchronized void unlock(){
+    if(this.lockingThread != Thread.currentThread()){
+      throw new IllegalMonitorStateException(
+        "Calling thread has not locked this lock");
+    }
+    isLocked      = false;
+    lockingThread = null;
+    notify();
+  }
+}
+```
  
  ```java
  public class FairLock {
@@ -917,3 +942,31 @@ Starvation and Fairness
 }
  ```
  [Starvation and Fairness](http://tutorials.jenkov.com/java-concurrency/starvation-and-fairness.html)
+ 
+ 
+ Nested Monitor Lockout(嵌套监视器锁定)是一个类似于死锁的问题，其来如下情况下会发生
+ ```
+Thread 1 synchronizes on A
+Thread 1 synchronizes on B (while synchronized on A)
+Thread 1 decides to wait for a signal from another thread before continuing
+Thread 1 calls B.wait() thereby releasing the lock on B, but not A.
+
+Thread 2 needs to lock both A and B (in that sequence)
+         to send Thread 1 the signal.
+Thread 2 cannot lock A, since Thread 1 still holds the lock on A.
+Thread 2 remain blocked indefinately waiting for Thread1
+         to release the lock on A
+
+Thread 1 remain blocked indefinately waiting for the signal from
+        Thread 2, thereby never releasing the lock on A, that must be released to make
+        it possible for Thread 2 to send the signal to Thread 1, etc.
+ ```
+ 
+ 
+ [Nested Monitor Lockout](http://tutorials.jenkov.com/java-concurrency/nested-monitor-lockout.html)
+
+所谓Slipped conditions，就是说， 从一个线程检查某一特定条件到该线程操作此条件期间，这个条件已经被其它线程改变，导致第一个线程在该条件上执行了错误的操作。
+
+[Slipped Conditions](http://tutorials.jenkov.com/java-concurrency/slipped-conditions.html)
+
+https://www.cnblogs.com/aishangJava/p/6555291.html
