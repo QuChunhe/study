@@ -130,3 +130,7 @@ http://www.dre.vanderbilt.edu/%7Eschmidt/PDF/proactor.pdf
 
 [texample的15个新例子 ](https://www.latexstudio.net/archives/2066.html)
 [Tikz样例集下载--Martin Thoma ](https://www.latexstudio.net/archives/2276.html)
+
+[Example: Knowledge Base Exchange framework](http://www.texample.net/tikz/examples/kb-exchange/)
+
+[Example: Simple flow chart](http://www.texample.net/tikz/examples/simple-flow-chart/)
