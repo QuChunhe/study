@@ -24,6 +24,10 @@ CyclicBarrier
 
 协同：在一个出来内部需协同，即在一个线程处理中，发放多个 阶段，每个阶段需要协同，同时 进入下一个阶段
 
+[Close Encounters of The Java Memory Model Kind](https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/)
+
+[The JSR-133 Cookbook for Compiler Writers](http://gee.cs.oswego.edu/dl/jmm/cookbook.html)
+
 ## Lock
 
 
@@ -111,7 +115,152 @@ throughtput=concurrency/latency
 
 降低系统负载的方法
 
+
+[http://tutorials.jenkov.com/java-performance/index.html](Java Performance)
+
 ## 原子操作
+
+
+如下三个原因造成了在java中的线程饥饿
+* 高优先级的线程会具有低优先级的线程那里抢占所有的CPU时间，造成低优先级线程无法执行
+* 由于其他线程总能够获得锁，造成线程被无限期的阻塞，一直等待进入临界区
+* 由于其他线程总能够获得信号，从而被唤醒，导致执行wait方法的线程无限期地等待被信号唤醒
+
+```java
+public class Lock{
+  private boolean isLocked      = false;
+  private Thread  lockingThread = null;
+
+  public synchronized void lock() throws InterruptedException{
+    while(isLocked){
+      wait();
+    }
+    isLocked      = true;
+    lockingThread = Thread.currentThread();
+  }
+
+  public synchronized void unlock(){
+    if(this.lockingThread != Thread.currentThread()){
+      throw new IllegalMonitorStateException(
+        "Calling thread has not locked this lock");
+    }
+    isLocked      = false;
+    lockingThread = null;
+    notify();
+  }
+}
+```
+ 
+ ```java
+ public class FairLock {
+    private boolean           isLocked       = false;
+    private Thread            lockingThread  = null;
+    private List<QueueObject> waitingThreads =
+            new ArrayList<QueueObject>();
+
+  public void lock() throws InterruptedException{
+    QueueObject queueObject           = new QueueObject();
+    boolean     isLockedForThisThread = true;
+    synchronized(this){
+        waitingThreads.add(queueObject);
+    }
+
+    while(isLockedForThisThread){
+      synchronized(this){
+        isLockedForThisThread =
+            isLocked || waitingThreads.get(0) != queueObject;
+        if(!isLockedForThisThread){
+          isLocked = true;
+           waitingThreads.remove(queueObject);
+           lockingThread = Thread.currentThread();
+           return;
+         }
+      }
+      try{
+        queueObject.doWait();
+      }catch(InterruptedException e){
+        synchronized(this) { waitingThreads.remove(queueObject); }
+        throw e;
+      }
+    }
+  }
+
+  public synchronized void unlock(){
+    if(this.lockingThread != Thread.currentThread()){
+      throw new IllegalMonitorStateException(
+        "Calling thread has not locked this lock");
+    }
+    isLocked      = false;
+    lockingThread = null;
+    if(waitingThreads.size() > 0){
+      waitingThreads.get(0).doNotify();
+    }
+  }
+}
+ 
+ ```
+ 
+ ```java
+ public class QueueObject {
+
+  private boolean isNotified = false;
+
+  public synchronized void doWait() throws InterruptedException {
+    while(!isNotified){
+        this.wait();
+    }
+    this.isNotified = false;
+  }
+
+  public synchronized void doNotify() {
+    this.isNotified = true;
+    this.notify();
+  }
+
+  public boolean equals(Object o) {
+    return this == o;
+  }
+}
+ ```
+ [Starvation and Fairness](http://tutorials.jenkov.com/java-concurrency/starvation-and-fairness.html)
+ 
+ 
+ Nested Monitor Lockout(嵌套监视器锁定)是一个类似于死锁的问题，其来如下情况下会发生
+ ```
+Thread 1 synchronizes on A
+Thread 1 synchronizes on B (while synchronized on A)
+Thread 1 decides to wait for a signal from another thread before continuing
+Thread 1 calls B.wait() thereby releasing the lock on B, but not A.
+
+Thread 2 needs to lock both A and B (in that sequence)
+         to send Thread 1 the signal.
+Thread 2 cannot lock A, since Thread 1 still holds the lock on A.
+Thread 2 remain blocked indefinately waiting for Thread1
+         to release the lock on A
+
+Thread 1 remain blocked indefinately waiting for the signal from
+        Thread 2, thereby never releasing the lock on A, that must be released to make
+        it possible for Thread 2 to send the signal to Thread 1, etc.
+ ```
+ 
+ 
+ [Nested Monitor Lockout](http://tutorials.jenkov.com/java-concurrency/nested-monitor-lockout.html)
+
+所谓Slipped conditions，就是说， 从一个线程检查某一特定条件到该线程操作此条件期间，这个条件已经被其它线程改变，导致第一个线程在该条件上执行了错误的操作。
+
+[Slipped Conditions](http://tutorials.jenkov.com/java-concurrency/slipped-conditions.html)
+
+https://www.cnblogs.com/aishangJava/p/6555291.html
+
+
+[Thread Signaling](http://tutorials.jenkov.com/java-concurrency/thread-signaling.html#missedsignals)
+
+线程发送信号的目的是使得线程之间能够相互发送信号。
+
+方法notify()和notifyAll()在调用时，如果没有线程正在等待该信号，那么这个信号将会被丢弃。 因此，如果在接受信号的线程调用wait()方法之前，线程已经调用notify()方法，则这个信号将会被等待的线程丢失。 这可能是一个问题，也可能不是一个问题。在某些情况下，错过了唤醒信号可能会导致等待的线程永远处于等待状态，永远不会被唤醒。
+
+为了避免信号丢失，需要在临界区内设置和检查标志或者状态。设置标志或者改变状态后，发出信号。在调用wait和进入等待信号之前以及被信号唤醒之后，都需要检查标志和状态；２）唤醒后
+
 
 
 [多核系统上的 Java 并发缺陷模式（bug patterns）](https://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/)
