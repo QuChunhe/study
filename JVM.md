@@ -12,3 +12,8 @@ javap
 # GC
 
 [Do It Yourself (OpenJDK) Garbage Collector](https://shipilev.net/jvm/diy-gc/)
+
+
+#JMM
+
+[Java Memory Model Pragmatics (transcript)](https://shipilev.net/blog/2014/jmm-pragmatics/)
