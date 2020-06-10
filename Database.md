@@ -23,7 +23,8 @@ InnoDB的插入性能比较差。
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
-Every InnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key.
+Every I
+Database Internals： A Deep Dive into How Distributed Data Systems WorknnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key.
 
 All indexes other than the clustered index are known as secondary indexes. In InnoDB, each record in a secondary index contains the primary key columns for the row, as well as the columns specified for the secondary index.
 
@@ -365,4 +366,9 @@ You run the nodetool decommission command to make a node send all its data to th
 [422]  
   There are two good nodetool commands that help you identify performance issues in a cluster: nodetool proxyhistograms and nodetool tablehistograms. Both commands present performance statistics captured by the database in the form of histograms, hence
 the command names.
+
+
+
+
+Alex Petrov，Database Internals： A Deep Dive into How Distributed Data Systems Work
 
