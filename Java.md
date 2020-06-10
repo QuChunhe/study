@@ -73,54 +73,6 @@ class X {
 1)和2)能够使线程优雅地退出加锁阻塞状态，而3)适用于需要等待多个Condition的复杂场景，例如读写锁。
 
 
-## Concurrent Collections
-
-copy-on-write collections
-
-“写时复制”——要写的时候复制一份副本，往副本里面写，然后引用到这个副本，在引用到这个副本之前有读操作的话，读的还是之前的老版本，读写分离，写不影响读可以并发读读，读写，但是写写的时候还是冲突的，如果拷贝了N个副本，最后到底引用谁呢，引用某个副本，写到其他副本上的数据就丢失了，所以写要加锁，也就是一个一个来，串行写。
-* CopyOnWriteArrayList
-* CopyOnWriteArraySet
-
-The way it does this is to make a brand new copy of the list every time it is altered.
-* Reads do not block, and effectively pay only the cost of a volatile read;
-* Writes do not block reads (or vice versa), but only one write can occur at once; 
-
-Copy-on-write collections are designed for cases where:
-* reads hugely outnumber writes;
-* the size of collections array is small (or writes are very infrequent); 
-
-ConcurrentLinkedQueue
-
-# Performance
-
-提高性能的三个方面
-* 减小服务时延，能够更快的得到服务的响应或者输出
-* 提高系统吞吐，能够处理更多的输入，例如更多的服务请求以及更大的数据规模等
-* 降低系统负载，充分利用系统硬件资源，能够在相同的硬件条件下服务更多的服务请求和输入数据
-
-减小服务时延的方法
-* 更快的硬件，比如采用固态硬盘(Solid Stat Drive)，以取代机械硬盘(Hard Disk Drive)
-* 并行化，挖掘问题/任务的并行性，将问题/任务分解为子问题/任务，并通过并行处理这些子问题/子任务，以减小处理时间
-* cache(缓存)，通过缓存数据，避免重复处理 
-* 更快的子系统或子任务，比如优化MySQL查询或者采用Redis替换MySQL
-* 功能优化，包括算法优化、数据结构优化和编程语言优化
-
-throughtput=concurrency/latency
-
-提高系统吞入的方法
-* 提高并发度，即采用更多的线程提供服务，但是随着线程数量的增加，线程之间的互扰会逐渐增加，从而不断增加服务响应时间
-* 减小服务时延，即减小服务响应时间
-* 采用非阻塞式调用或异步调用
-* 避免或减小共享资源，包括共享硬件和共享的数据，例如避免使用锁或者减小所额粒度
-
-降低系统负载的方法
-
-
-[http://tutorials.jenkov.com/java-performance/index.html](Java Performance)
-
-## 原子操作
-
-
 如下三个原因造成了在java中的线程饥饿
 * 高优先级的线程会具有低优先级的线程那里抢占所有的CPU时间，造成低优先级线程无法执行
 * 由于其他线程总能够获得锁，造成线程被无限期的阻塞，一直等待进入临界区
@@ -264,6 +216,60 @@ https://www.cnblogs.com/aishangJava/p/6555291.html
 虚假唤醒（spurious wakeup）
 
 由于无法解释的原因，即使在没有调用notify()和notifyAll()的情况下，线程也可能被唤醒。这就是所谓的虚假唤醒。在这种情况下，如果被异常唤醒的线程继续执行，就可能造成严重的问题。为了防止上述情况额发生，被唤醒的线程需要检测状态或者标志，以确定开始执行后续代码，还是继续调用wait等待信号 
+
+对于多线程等待的情况，在while中检查状态或者标志是一个不错的解决方案。通过notifyAll()方法唤醒所有线程，但仅仅有一个线程许可继续执行。在同一个时间，仅仅有一个线程能够获得锁，即仅仅有一个对象能够离开wait调用并清除wasSignalled的标志。一旦这个线程离开wait所在的同步块，其他线程可以离开wait调用并检测wasSignalled标志
+
+[Understanding Deadlock, Livelock and Starvation with Code Examples in Java](https://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-and-starvation-with-code-examples-in-java)
+
+## Concurrent Collections
+
+copy-on-write collections
+
+“写时复制”——要写的时候复制一份副本，往副本里面写，然后引用到这个副本，在引用到这个副本之前有读操作的话，读的还是之前的老版本，读写分离，写不影响读可以并发读读，读写，但是写写的时候还是冲突的，如果拷贝了N个副本，最后到底引用谁呢，引用某个副本，写到其他副本上的数据就丢失了，所以写要加锁，也就是一个一个来，串行写。
+* CopyOnWriteArrayList
+* CopyOnWriteArraySet
+
+The way it does this is to make a brand new copy of the list every time it is altered.
+* Reads do not block, and effectively pay only the cost of a volatile read;
+* Writes do not block reads (or vice versa), but only one write can occur at once; 
+
+Copy-on-write collections are designed for cases where:
+* reads hugely outnumber writes;
+* the size of collections array is small (or writes are very infrequent); 
+
+ConcurrentLinkedQueue
+
+# Performance
+
+提高性能的三个方面
+* 减小服务时延，能够更快的得到服务的响应或者输出
+* 提高系统吞吐，能够处理更多的输入，例如更多的服务请求以及更大的数据规模等
+* 降低系统负载，充分利用系统硬件资源，能够在相同的硬件条件下服务更多的服务请求和输入数据
+
+减小服务时延的方法
+* 更快的硬件，比如采用固态硬盘(Solid Stat Drive)，以取代机械硬盘(Hard Disk Drive)
+* 并行化，挖掘问题/任务的并行性，将问题/任务分解为子问题/任务，并通过并行处理这些子问题/子任务，以减小处理时间
+* cache(缓存)，通过缓存数据，避免重复处理 
+* 更快的子系统或子任务，比如优化MySQL查询或者采用Redis替换MySQL
+* 功能优化，包括算法优化、数据结构优化和编程语言优化
+
+throughtput=concurrency/latency
+
+提高系统吞入的方法
+* 提高并发度，即采用更多的线程提供服务，但是随着线程数量的增加，线程之间的互扰会逐渐增加，从而不断增加服务响应时间
+* 减小服务时延，即减小服务响应时间
+* 采用非阻塞式调用或异步调用
+* 避免或减小共享资源，包括共享硬件和共享的数据，例如避免使用锁或者减小所额粒度
+
+降低系统负载的方法
+
+
+[http://tutorials.jenkov.com/java-performance/index.html](Java Performance)
+
+## 原子操作
+
+
+
 
 [多核系统上的 Java 并发缺陷模式（bug patterns）](https://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/)
 
