@@ -505,6 +505,17 @@ Priority Inversion is a problem while Priority Inheritance is a solution. Litera
  *  优先级天花板(priority ceilings)
  
  
+ 
+几个问题
+
+Starvation and Fairness
+　
+ 饥饿(Starvation)问题
+ 
+ 公平(Fairness)问题
+ 
+ Deadlock, Starvation, and Livelock
+ 
  [Unreliable Guide To Locking](https://www.kernel.org/doc/htmldocs/kernel-locking/index.html)
  
  Race Conditions and Critical Regions
@@ -832,12 +843,4 @@ book Semaphores, Locks, and Conditional Critical Regions
 
 
 
-几个问题
-
-Starvation and Fairness
-　
- 饥饿(Starvation)问题
- 
- 公平(Fairness)问题
- 
 
