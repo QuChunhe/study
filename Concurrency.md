@@ -841,6 +841,19 @@ Modeling Critical Sections in Amdahl’s Law and its Implications for Multicore 
 
 book Semaphores, Locks, and Conditional Critical Regions
 
+[Solving 11 Likely Problems In Your Multithreaded Code](https://docs.microsoft.com/en-us/archive/msdn-magazine/2008/october/concurrency-hazards-solving-problems-in-your-multithreaded-code)
 
+* Incorrect Granularity. Even if access to shared state occurs with proper synchronization, the resulting behavior may still be incorrect. The granularity must be sufficiently large that the operations that must be seen as atomic are encapsulated within the region. There is a tension between correctness and making the region smaller, because smaller regions reduce the time that other threads will have to wait to concurrently enter.
 
+* Read and Write Tearing. Tearing occurs because reading or writing such locations actually involves multiple physical memory operations. Concurrent updates can happen in between these, potentially causing the resultant value to be some blend of the before and after values.
+
+* Lock-Free Reordering.
+
+* Lock Convoys
+
+* Two-Step Dance
+
+* Priority Inversion
+
+[Parallel Computing](https://docs.microsoft.com/en-us/previous-versions/bb964701(v=msdn.10)?redirectedfrom=MSDN)
 
