@@ -782,6 +782,7 @@ The Java compiler follows a few simple rules to resolve default methods:
 3. Implementations in classes, including abstract declarations, take precedence over all interface defaults.
 4. If there’s a conflict between two or more default method implementations, or there’s a default-abstract conflict between two interfaces, the inheriting class should disambiguate.
 
+Streams have two types of methods: intermediate and terminal
 
 
 # 范型
