@@ -35,6 +35,13 @@ The SOLID principles comprise of these five principles:
 
 IT行业技术演进快，新技术、新概念和新方法层出不穷。
 
+程序员的知识很容易老化。在参加工作后，缺乏动力系统的和持续的学习，难以跟上技术进步的步伐。
+
+
+功能实现简单
+
+产品利润较低，在某一个方面和领域，长期投入人力和物力，进行研究和开发。往往短平快，缺乏技术的积累和沉淀
+
 
 ### John Ousterhout, A Philosophy of Software Design
 
