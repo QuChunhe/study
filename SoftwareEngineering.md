@@ -82,6 +82,8 @@ There are two general approaches to fighting complexity. The first approach is t
 The second approach to complexity is to encapsulate it, so that programmers can workon a system without being exposed to all of its complexity at once. This approach iscalled modular design . In modular design, a software system is divided up intomodules , such as classes in an object-oriented language. The modules are designed tobe relatively independent of each other, so that a programmer can work on one modulewithout having to understand the details of other modules.
 
 
+ Software systemsare intrinsically more complex than physical systems; it isn’t possible tovisualize the design for a large software system well enough to understand all of itsimplications before building anything. As a result, the initial design will have manyproblems. The problems do not become apparent until implementation is well underway. However, the waterfall model is not structured to accommodate major design changes atthis point (for example, the designers may have moved on to other projects). Thus,developers try to patch around the problems without changing the overall design. Thisresults in an explosion of complexity.
+
 
 降低复杂性的基本方法，就是把复杂性隔离。“如果能把复杂性隔离在一个模块，不与其他模块互动，就达到了消除复杂性的目的。”
 
@@ -96,7 +98,7 @@ Reduce the amount of code that is affected by each design decision, so design ch
  When a design decision is used across multiple modules, coupling them together.
 
 
- Software systemsare intrinsically more complex than physical systems; it isn’t possible tovisualize the design for a large software system well enough to understand all of itsimplications before building anything. As a result, the initial design will have manyproblems. The problems do not become apparent until implementation is well underway.However, the waterfall model is not structured to accommodate major design changes atthis point (for example, the designers may have moved on to other projects). Thus,developers try to patch around the problems without changing the overall design. Thisresults in an explosion of complexity.
+
 
 
 [阮一峰：如何降低软件的复杂性](https://www.techug.com/post/a-philosophy-of-software-design.html?from=singlemessage)
