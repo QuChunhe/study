@@ -64,6 +64,10 @@ Lp，L代表语言，p代表proposition
 
 标点符号，两个左括号和右括号
 
+表达式的相等　　表达式的并列
+
+原子公式Atom(Lp)　公式Form(Lp)
+
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 
