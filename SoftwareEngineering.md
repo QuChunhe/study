@@ -48,15 +48,18 @@ The second approach to complexity is to encapsulate it, so that programmers can 
 
 降低复杂性的基本方法，就是把复杂性隔离。“如果能把复杂性隔离在一个模块，不与其他模块互动，就达到了消除复杂性的目的。”
 
-    Isolating complexity in places that are rarely interacted with is roughly equivalent to eliminating complexity.
+Isolating complexity in places that are rarely interacted with is roughly equivalent to eliminating complexity.
 
 改变软件设计的时候，修改的代码越少，软件的复杂性越低。
 
-    Reduce the amount of code that is affected by each design decision, so design changes don’t require very many code modifications.
+Reduce the amount of code that is affected by each design decision, so design changes don’t require very many code modifications.
 
 复杂性尽量封装在模块里面，不要暴露出来。如果多个模块耦合，那就把这些模块合并成一个。
 
-    When a design decision is used across multiple modules, coupling them together.
+ When a design decision is used across multiple modules, coupling them together.
+
+
+ Software systemsare intrinsically more complex than physical systems; it isn’t possible tovisualize the design for a large software system well enough to understand all of itsimplications before building anything. As a result, the initial design will have manyproblems. The problems do not become apparent until implementation is well underway.However, the waterfall model is not structured to accommodate major design changes atthis point (for example, the designers may have moved on to other projects). Thus,developers try to patch around the problems without changing the overall design. Thisresults in an explosion of complexity.
 
 
 [阮一峰：如何降低软件的复杂性](https://www.techug.com/post/a-philosophy-of-software-design.html?from=singlemessage)
