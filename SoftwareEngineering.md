@@ -24,8 +24,19 @@ The SOLID principles comprise of these five principles:
 
 ![The Software Design & Architecture Stack](https://github.com/QuChunhe/study/blob/master/pics/Software-Design-Architecture-Stack.png)
 
+尽量简化实现，奥卡姆剃刀定律（Occam's Razor, Ockham's Razor）又称“奥康的剃刀”，它是由14世纪英格兰的逻辑学家、圣方济各会修士奥卡姆的威廉（William of Occam，约1285年至1349年）提出。这个原理称为“如无必要，勿增实体”，即“简单有效原理”。正如他在《箴言书注》2卷15题说“切勿浪费较多东西去做，用较少的东西，同样可以做好的事情。”
 
-John Ousterhout, A Philosophy of Software Design
+简无可简，模块化，实现功能的分装和复杂性的隔离
+
+
+大量程序员的困境
+
+中国的产业结果和中国企业在产业链中的位置有关
+
+IT行业技术演进快，新技术、新概念和新方法层出不穷。
+
+
+### John Ousterhout, A Philosophy of Software Design
 
 松耦合低内聚的手段就是模块化，目标是隔离复杂性。分层模式，流水线和过滤器模式，Pipes and Filters
 
