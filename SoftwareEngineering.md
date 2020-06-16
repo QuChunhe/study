@@ -22,7 +22,15 @@ The SOLID principles comprise of these five principles:
 架构风格（architecture style)
 
 
+
+
+
 ![The Software Design & Architecture Stack](https://github.com/QuChunhe/study/blob/master/pics/Software-Design-Architecture-Stack.png)
+
+高内聚，松耦合
+
+对于高内聚低耦合，很多人即熟悉又陌生。说熟悉，是因为软件工程中最为常见的，说陌生，是因为大多数说不清楚何时，类似于道，只可一会，不可言传。不利于设施，也不利于。难以找到相关指标的数据支撑，考核过程中非理性因素难以控制，
+
 
 
 软件工程既然称之为工程，那么就类似其他工程，例如建桥、修路和制造分解
