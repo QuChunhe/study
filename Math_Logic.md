@@ -73,3 +73,6 @@ Lp，L代表语言，p代表proposition
 [Insights into Mathematics](https://www.youtube.com/user/njwildberger)  -->A Grief history of Logic
 
 
+逻辑学：研究“有效推理”和“证明的原则与标准”的一门学科
+
+
