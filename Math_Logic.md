@@ -70,5 +70,6 @@ Lp，L代表语言，p代表proposition
 
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
+[Insights into Mathematics](https://www.youtube.com/user/njwildberger)  -->A Grief history of Logic
 
-(数理逻辑_冯琦)[http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=0bad6c0585be4a9d86c3215d31517ff6]
+
