@@ -390,3 +390,10 @@ Always use timeouts (if possible)
 # Performance
 
 [8 Key Application Performance Metrics & How to Measure Them](https://stackify.com/application-performance-metrics/)
+
+
+# 杂项
+
+＃＃　分布式ID
+
+[分布式ID之为什么需要分布式ID以及分布式ID的业务需求](https://www.itqiankun.com/article/1565060480)
