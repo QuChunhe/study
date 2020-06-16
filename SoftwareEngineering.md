@@ -25,7 +25,14 @@ The SOLID principles comprise of these five principles:
 ![The Software Design & Architecture Stack](https://github.com/QuChunhe/study/blob/master/pics/Software-Design-Architecture-Stack.png)
 
 
+软件工程既然称之为工程，那么就类似其他工程，例如建桥、修路和制造分解
 
+满足工程目标和业务需求，一系列的衡量指标
+
+收到各种条件约束，例如预算、人员、开发周期、硬件摄氏和继承遗留系统等等
+
+
+考虑考量上面的条件约束继承上，实现工程目标和业务需求。运行在高性能的小型机上，与运行在三个普通商用刀片服务器上。
 
 大量程序员的困境
 
