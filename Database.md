@@ -217,7 +217,10 @@ read phenomena，主要是指数据库中三种"错误"的读取结果：
 
 RR级别中一旦建立了快照版本，则在该事务的后续查询中均采用该快照版本作为结果（当然，通过前面的案例发现也有例外）；与之对应的是，RC级别中，每次查询都采集最新的快照版本作为结果，所以自然也就存在不可重复读的问题。
 
+### JDBC
 
+
+[Configuration Properties](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-configuration-properties.html)
 
 ### SQL
 
