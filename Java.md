@@ -266,6 +266,9 @@ throughtput=concurrency/latency
 
 [http://tutorials.jenkov.com/java-performance/index.html](Java Performance)
 
+
+[JAVA 线上故障排查完整套路，从 CPU、磁盘、内存、网络、GC 一条龙！](https://zhuanlan.zhihu.com/p/145180618)
+
 ## 原子操作
 
 
