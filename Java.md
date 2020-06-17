@@ -788,6 +788,13 @@ The Java compiler follows a few simple rules to resolve default methods:
 Streams have two types of methods: intermediate and terminal
 
 
+
+tail-call optimization (TCO)
+
+trampoline calls
+
+Plain-Vanilla Recursion
+
 # 范型
 
 一些常用的泛型类型变量：
