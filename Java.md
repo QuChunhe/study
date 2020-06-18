@@ -21,7 +21,7 @@ Phaser
  CountDownLatch
 
 * thread-saft Collections
-* concurrent Collecttions
+* concurrent Collections
 
 
 
