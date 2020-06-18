@@ -37,9 +37,103 @@ normal form 范式
 * Fourth Normal Form (4NF)
 * Fifth Normal Form (5NF)
 
+如果一个表是第一范式，那么其所有的属性都必须是原子的。不是原子原子属性的情况包括
+* 嵌套关系、嵌套表或字表
+* 重复的组或者重复的部分
+* 基于列表值的属性
+
+为了消除迭代关系，可以移出迭代关系，形成一个新表。确保在新表中包括原来表的主健，用于将表连接在一起。
+
+在如下情况中发生了部分依赖
+* 采用复合主健（composite primary key）
+* 一个非健属性依赖于部分主健，而不是全部主健
+* 如果一个满足第一范式的表，不保护任何部分依赖，则称其满足第二范式
+
+当一个非健属性依赖于其他一个非健属性并且所依赖的属性不能用于作为一个候选主健时，就发生了传递依赖于。如果一个满足第二范式并且不包含任何可依赖的转递依赖，则称其满足第三范式。
+
+识别第三范式的关键因素
+* 所有属性都是原子类型
+* 在每个关系中决定性因素时整个主健，或者被选出来作为候选主健：确保没有部分依赖或者转移依赖
+* 基于列表值的属性
+
 
 
 [11 important database designing rules which I follow](https://www.codeproject.com/articles/359654/11-important-database-designing-rules-which-i-fo-2)
+
+Rule 1: What is the nature of the application (OLTP or OLAP)?
+
+规则１：应用的本质是什么（OLTP或OLAP）
+
+在开始设计一个数据库时，此需要确定数据库之上的应用在本质上是事务型，还是分析型。在不考虑应用本质的情况下，默认应用正规化，造成出现性能和定制化问题。有两类应用：基于事务型和基于分析型。
+
+事务型：面向CRUD，creating, reading, updating, and deleting records
+
+分析型：面向分析、报表、预测等，较少的插入和更新，尽可能快的取出和分析数据。
+
+如果认为插入、更新和删除占主导，那么需要正规化表设计。反之，需要创建扁平的、非正规化的数据库结构。
+
+
+OnLine Transaction Processing 联机事务处理过程(OLTP)，也称为面向交易的处理过程，
+
+联机分析处理（Online Analytical Processing ）
+
+[OLAP、OLTP的介绍和比较](https://www.cnblogs.com/hhandbibi/p/7118740.html)
+
+Rule 2: Break your data into logical pieces, make life simpler
+
+规则２：将你的数据分解为逻辑字段，使得生活更加简单
+
+该规则实际是来自第一范式的第一个规则。违反此规则的一个迹象是你的查询中使用太多的字符串解析汉书，例如substring、charindex等，大概需要一个用此规则。
+
+Rule 3: Do not get overdosed with rule 2
+
+规则３：不能滥用规则２
+
+规则２的滥用将会导致不是期望的结果。判断分解是否合理，逻辑上十分合理。
+
+Rule 4: Treat duplicate non-uniform data as your biggest enemy
+
+规则４：将重复的非规格化的数据作为最大的敌人
+
+聚焦和重构复制的数据，对于复制数据的焦虑不是因为其占用磁盘空间，而是其产生困惑。
+
+Rule 5: Watch for data separated by separators
+
+Rule 6: Watch for partial dependencies
+
+规则6:注意部分依赖
+
+注意部分依赖于主健的域。
+
+Rule 7: Choose derived columns preciously
+
+对于OTLP应用，消除派生的列是一个好的想法，除非存在一些紧迫性的性能原因。对于OLAP的例子，我们需要大量的求和和计算，这些派生域对于提高性能是必不可少。
+
+在第三范式要求不能有列依赖于其他非主健的列。我个人的想法是不要盲目地应用第三范式，而是要看具体情况，不是说冗余数据总是不好的。如果冗余数据是计算数据，要仔细评估得失，然后决定是否要实施第三范式。
+
+Rule 8: Do not be hard on avoiding redundancy, if performance is the key
+
+规则８：如果性能是关键，那么就不要竭尽全力的避免冗余。
+
+
+不必严格遵守避免冗余的规则。如果迫切需要性能，考虑非规范话。在规范化中，需要join很多表，而在非规范化中，减小了join操作从而提高了性能。
+
+
+Rule 9: Multidimensional data is a different beast altogether
+
+规则9：多维数据完全是另一种野兽
+
+Rule 10: Centralize name value table design
+
+规则10：集中名值表设计
+
+集中的字典表，采用类型表面用途
+
+Rule 11: For unlimited hierarchical data self-reference PK and FK
+
+规则11：对于没有限制的分层数据，采用自引用主健（PK）和外健（FK）
+
+
 
 [Database design basics](https://support.office.com/en-us/article/Database-design-basics-EB2159CF-1E30-401A-8084-BD4F9C9CA1F5)
 
