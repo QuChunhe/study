@@ -1,4 +1,17 @@
 
+
+＃ Parallelism
+
+[Java多线程及并行编程基础 莱斯大学](https://www.bilibili.com/video/BV1St411i7oa?from=search&seid=7184861422555047434)
+
+[Sophomoric Parallelism and Concurrency](https://homes.cs.washington.edu/~djg/teachingMaterials/spac/)
+
+Task Parallelism（任务并行）  Functional Parallelism（功能并行）loop parallelism（循环并行） dataflow parallelism（数据流并行性）
+
+determine which of these steps can run in parallel with each other. How their parallelism should be coordinate.
+
+
+
 # Concurrency
 
 Phaser
