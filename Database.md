@@ -15,6 +15,30 @@ InnoDB的插入性能比较差。
 
 [Good Database Design Principle](http://eckstein.rutgers.edu/mis/handouts/rdb2.pdf)
 
+normalization 规范化
+
+normal form 范式
+
+1.没有冗余，一个字段仅仅存储在一个表中，除非其是一个外键。复制外键许可两个表关联起来。
+
+2.没有坏的依赖，在数据库中任何关系的依赖图，列依赖于整个主键或者一个候选键。违法这种规则的情况包括
+* 部分依赖
+* 传递依赖
+
+规范化是消除坏依赖的过程，通过分解表并通过外键连接它们。
+
+范式是一些类型，归类了如何对一个表进行归类。
+
+有六个公认的范式
+* First Normal Form (1NF)
+* Second Normal Form (2NF)
+* Third Normal Form (3NF)
+* Boyce-Codd Normal Form (BCNF)
+* Fourth Normal Form (4NF)
+* Fifth Normal Form (5NF)
+
+
+
 [11 important database designing rules which I follow](https://www.codeproject.com/articles/359654/11-important-database-designing-rules-which-i-fo-2)
 
 [Database design basics](https://support.office.com/en-us/article/Database-design-basics-EB2159CF-1E30-401A-8084-BD4F9C9CA1F5)
