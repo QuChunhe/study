@@ -1033,3 +1033,12 @@ perf
 pstack
 
 free 内存泄漏判断
+
+
+ext4 --> xfs
+
+实列解析ＭｙＳＱＬ性能瓶颈　　　DBA登入服务器后应该先关注啥
+
+set long_query_time=0
+
+select benchmark
