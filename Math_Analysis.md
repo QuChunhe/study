@@ -1,5 +1,7 @@
 
 
+[数学|数学中的英语名词汇](https://zhuanlan.zhihu.com/p/134603058)
+
 # Real Analysis
 
 [Improper Integrals](https://www2.math.uconn.edu/~stein/virtual/Notes/Calculus/improperintegrals.pdf)
