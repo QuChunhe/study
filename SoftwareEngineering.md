@@ -113,8 +113,15 @@ The second approach to complexity is to encapsulate it, so that programmers can 
 
 Beautiful designs reflect a balance between competing ideas and approaches.
 
-minimize their complexity
+to minimize their complexity。Exactly what is “complexity”? How can youtell if a system is unnecessarily complex? What causes systems to become complex?
 
+
+使得复杂性最小化：确定去说复杂性是什么？如何评估一个系统不该如此复杂？什么造成系统变得复杂？
+如果一味追求简单性，那么只能使得人类退回到石器时代。
+
+Complexity is anything related to the structure of a software system thatmakes it hard to understand and modify the system.
+
+复杂性可以是与一个软件系统结构相关的任何东西，只要其使得该系统难以理解和难以更改。
 
 
 
