@@ -1,4 +1,8 @@
 
+
+[scalability-availability-stability-patterns](https://www.slideshare.net/jboner/scalability-availability-stability-patterns)
+
+
 [从事分布式系统、计算、hadoop 等方面工作需要哪些基础](https://www.zhihu.com/question/19868791/answer/88873783l)
 
 * Horizontal scaling
