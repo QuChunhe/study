@@ -473,6 +473,17 @@ Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Poin
 ## jstat
 [Java命令行工具之 jstat ](https://mp.weixin.qq.com/s?__biz=MzU3Mjc5NjAzMw==&mid=2247484257&idx=1&sn=555158f962cfa2fad3fd9b5ee43d3f5d&exportkey=AWVZr0rfIXoe7A%2F4RS39IA4%3D&pass_ticket=E6xf44phJMVDAosPSXbBiREJLPMNAecAB%2FfhyIbrCbLED1COVgSeTl9cLBpSwz1u)
 
+
+
+[使用jmap排查线上故障：高内存占用 ](https://mp.weixin.qq.com/s?__biz=MzU5MDYxOTc2NQ==&mid=2247483681&idx=1&sn=60edd6cc18cfc59d536fbd77ef751873&chksm=fe3a343bc94dbd2de758b57a228c0c6589c1364160550508f3fe982f33a234720dd77943af66&mpshare=1&scene=1&srcid=0523YV6xXqvxKBgWdfAs1ZHb&sharer_sharetime=1590247120471&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=Aca3MYNxyQgdSh%2FMWImH35g%3D&pass_ticket=aPCoYgXoBsTz6ID87xukGuKUB%2F0jC3shEYI%2BzFX4WzBHZJtlLnSwSzjsGCI93oyx#rd)
+
+[jmap命令的实现原理解析](https://mp.weixin.qq.com/s?__biz=MzIwMzY1OTU1NQ==&mid=2247483746&idx=1&sn=91da774e4be73699b376fc2a8864e6ee&chksm=96cd412ea1bac838548adb281ce2bfdfbd39870e86c8a2bfeb22d522e25a20d6ddd002e9cc57&mpshare=1&scene=1&srcid=0523fLvRBuqDho9ZVyRmWkXM&sharer_sharetime=1590247058554&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AYGD4k1O17l1WGxxOAq9vCU%3D&pass_ticket=aPCoYgXoBsTz6ID87xukGuKUB%2F0jC3shEYI%2BzFX4WzBHZJtlLnSwSzjsGCI93oyx#rd)
+
+
+[JVM CPU Profiler技术原理及源码深度解析 ](https://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&mid=2651750821&idx=1&sn=3876eb1ea3963d568a35235a72550e62&chksm=bd1258e88a65d1fed4fc4248398af17537281ca11f90a5808bcb9e2079d0272f3d59cd659c94&mpshare=1&scene=1&srcid=0523O7Lto7wKrJQsEAlQ6v5l&sharer_sharetime=1590241994068&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AcIcetLP1FaoVWANh0K%2B%2BOk%3D&pass_ticket=aPCoYgXoBsTz6ID87xukGuKUB%2F0jC3shEYI%2BzFX4WzBHZJtlLnSwSzjsGCI93oyx#rd)
+
+[Java命令行工具之 jstat ](https://mp.weixin.qq.com/s?__biz=MzU3Mjc5NjAzMw==&mid=2247484257&idx=1&sn=555158f962cfa2fad3fd9b5ee43d3f5d&exportkey=AWVZr0rfIXoe7A%2F4RS39IA4%3D&pass_ticket=E6xf44phJMVDAosPSXbBiREJLPMNAecAB%2FfhyIbrCbLED1COVgSeTl9cLBpSwz1u)
+
 # Date Time
 [Java Date Time](https://www.joda.org/joda-time/)
 
