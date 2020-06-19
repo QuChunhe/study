@@ -1021,3 +1021,15 @@ cat /proc/cpuinfo | grep 'cpu cores' | sort | uniq
 ```
 cat /proc/cpuinfo | grep 'siblings' | sort | uniq
 ```
+
+top free ps df 
+
+sysstat(sar,mpstat, iostat) dstat, iotop
+
+netstat ethstatus arping
+
+perf
+
+pstack
+
+free 内存泄漏判断
