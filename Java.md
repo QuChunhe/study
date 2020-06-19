@@ -12,7 +12,7 @@ Task Parallelism（任务并行）  Functional Parallelism（功能并行）loop
 
 determine which of these steps can run in parallel with each other. How their parallelism should be coordinate.
 
-
+forkjoin framwork
 
 # Concurrency
 
