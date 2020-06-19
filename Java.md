@@ -284,6 +284,14 @@ throughtput=concurrency/latency
 
 [JAVA 线上故障排查完整套路，从 CPU、磁盘、内存、网络、GC 一条龙！](https://zhuanlan.zhihu.com/p/145180618)
 
+
+[高性能 性能优化和测试](https://www.jdon.com/performance.html)
+
+[可伸缩性/可扩展性(Scalable/scalability)](https://www.jdon.com/scalable.html)
+
+[分布式系统](https://www.jdon.com/DistributedSystems.html)
+
+
 ## 原子操作
 
 
