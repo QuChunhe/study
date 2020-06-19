@@ -40,10 +40,14 @@ The SOLID principles comprise of these five principles:
 
 软件工程既然称之为工程，那么就类似其他工程，例如建桥、修路和制造分解
 
-满足工程目标和业务需求，一系列的衡量指标
+1）满足工程目标和业务需求，一系列的衡量指标，在业务上满足那些功能和流程，每个流程的数据要求等。在性能上，满足可靠性、吞吐量和响应时间等要
 
-收到各种条件约束，例如预算、人员、开发周期、硬件摄氏和继承遗留系统等等
+2）收到各种条件约束，例如预算、人员、开发周期、硬件设施和继承遗留系统等等
 
+设计的目的在满足1）和2）的情况，给出一个可实施的方案：a）要尽可能简单，使得复杂性最小化；b)指导和协同后续的开发、多人并行开发，能够将会集成起来，满足1）
+
+
+minimize their complexity
 
 考虑考量上面的条件约束继承上，实现工程目标和业务需求。运行在高性能的小型机上，与运行在三个普通商用刀片服务器上，系统设计就可能会不同。每天响应一百万和每天响应一百亿个服务请求。99%的可靠性，99.999%的可靠性，硬件设施、软件架构和代码质量等方面的要求就会非常不同。
 
@@ -53,7 +57,7 @@ The SOLID principles comprise of these five principles:
 大量程序员的困境
 
 IT行业的特点
-
+zhid
 IT行业技术演进快，新技术、新概念和新方法层出不穷。知识和技能的老化程度很快，
 
 在参加工作后，缺乏动力系统的和持续的学习，难以跟上技术进步的步伐。投入生活的时间更多，缺乏工作的冲进和主动性。
@@ -108,6 +112,11 @@ The second approach to complexity is to encapsulate it, so that programmers can 
  Software systemsare intrinsically more complex than physical systems; it isn’t possible tovisualize the design for a large software system well enough to understand all of itsimplications before building anything. As a result, the initial design will have manyproblems. The problems do not become apparent until implementation is well underway. However, the waterfall model is not structured to accommodate major design changes atthis point (for example, the designers may have moved on to other projects). Thus,developers try to patch around the problems without changing the overall design. Thisresults in an explosion of complexity.
 
 Beautiful designs reflect a balance between competing ideas and approaches.
+
+minimize their complexity
+
+
+
 
 
 降低复杂性的基本方法，就是把复杂性隔离。“如果能把复杂性隔离在一个模块，不与其他模块互动，就达到了消除复杂性的目的。”
