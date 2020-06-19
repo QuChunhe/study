@@ -6,6 +6,8 @@
 
 [Sophomoric Parallelism and Concurrency](https://homes.cs.washington.edu/~djg/teachingMaterials/spac/)
 
+[A Sophomoric∗Introduction toShared-Memory Parallelism and Concurrenc](https://cs.pomona.edu/classes/cs062-2018sp/handouts/CS62sophomoricParallelismAndConcurrency.pdf)
+
 Task Parallelism（任务并行）  Functional Parallelism（功能并行）loop parallelism（循环并行） dataflow parallelism（数据流并行性）
 
 determine which of these steps can run in parallel with each other. How their parallelism should be coordinate.
