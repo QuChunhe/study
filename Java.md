@@ -44,6 +44,28 @@ CyclicBarrier
 
 [The JSR-133 Cookbook for Compiler Writers](http://gee.cs.oswego.edu/dl/jmm/cookbook.html)
 
+
+[A Java Fork/Join Framework](http://gee.cs.oswego.edu/dl/papers/fj.pdf)
+
+fork/join框架是熟知分而治之方法的并行版本
+```
+Result solve(Problem problem) {
+    if (problem is small)
+        directly solve problem
+    else {
+        split problem into independent parts
+        fork new subtasks to solve each part
+        join all subtasks
+        compose result from subresults
+    }
+}
+```
+迭代地、重复地分解子任务，直到这些子任务足够小，能够被简单的和短小的顺序方法解决。
+
+确定任务的粒度。分解任务和合并结果以及管理和调度线程都需要额外的性能开销，任务的粒度的过小，上述的开销要超过任务的计算时间。反之，如果任务的粒度太大，限制了开发任务的并行能力
+
+分而治之是一种思想，迭代是一种方法，fork/join是一种工具
+
 ## Lock
 
 JDK中的所机制
