@@ -12,13 +12,7 @@ Task Parallelism（任务并行）  Functional Parallelism（功能并行）loop
 
 determine which of these steps can run in parallel with each other. How their parallelism should be coordinate.
 
-forkjoin framwork
 
-ForkJoinPool.commonPool()
-
-java.util.concurrent.ForkJoinPool.common.parallelism
-
-fork/join框架的一些局限
 
 # Concurrency
 
@@ -71,6 +65,23 @@ Result solve(Problem problem) {
 确定任务的粒度。分解任务和合并结果以及管理和调度线程都需要额外的性能开销，任务的粒度的过小，上述的开销要超过任务的计算时间。反之，如果任务的粒度太大，限制了开发任务的并行能力
 
 分而治之是一种思想，迭代是一种方法，fork/join是一种工具
+
+forkjoin framwork
+
+ForkJoinPool.commonPool()
+
+java.util.concurrent.ForkJoinPool.common.parallelism
+
+fork/join框架的一些局限
+* 所分解的任务规模不能太小，也不能太大，根据JDK Doc的建议在100到10000之间比较适合
+* 不能使用阻塞式I/O操作，例如读取用户输入或者从网络socket读取数据，这些操作会一直等待直到数据可用时为止。因此，这类操作将会导致CPU内核处于空闲，从而降低并行能力。
+* 不能在一个任务内抛出非检测型异常。
+
+* ForkJoinPool
+* ForkJoinTask
+* RecursiveTask
+* RecursiveAction
+* CountedCompleter
 
 ## Lock
 
