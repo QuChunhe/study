@@ -14,6 +14,12 @@ determine which of these steps can run in parallel with each other. How their pa
 
 forkjoin framwork
 
+ForkJoinPool.commonPool()
+
+java.util.concurrent.ForkJoinPool.common.parallelism
+
+fork/join框架的一些局限
+
 # Concurrency
 
 ## 协同模型
