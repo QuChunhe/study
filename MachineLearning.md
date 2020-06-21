@@ -128,3 +128,4 @@ standard deviation
 sample mean（样本的均值），sample variance（样本的方差），确保无偏估计
 
 协方差(Covariance)和相关系数
+
