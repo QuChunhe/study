@@ -20,6 +20,8 @@ https://www.itcodemonkey.com/article/15901.html
 
 **中科院-统计学习基础**
 
+All of Statistics - A Concise Course in Statistical Inference
+
 样本空间/随机事件
 
 随机变量
@@ -97,10 +99,32 @@ We call P(Ai) the prior probability of A and P(Ai|B) the posterior probability o
 
 
 
-期望/均值：随机变量的平均值
+期望/均值：随机变量的平均值,一阶矩
 
-大树定律：大量独立同分布样本的期望
+大树定律：大量独立同分布样本的期望；The Rule of the Lazy Statistician
 
 E(X)良好定义
 
+期望的性质
+* 线性运算
+* 加分规则
+* 乘法规则，相互独立的随机变量
 
+平均数、中位数、众数（mode）
+
+众数是出现次数最多的位置
+
+期望、中位数和众数，高斯三者相等
+
+The kth moment of X
+
+方差：刻画随机变量围绕均值的散布程度
+
+方差：两阶中心矩
+
+standard deviation
+
+
+sample mean（样本的均值），sample variance（样本的方差），确保无偏估计
+
+协方差(Covariance)和相关系数
