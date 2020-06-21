@@ -98,3 +98,9 @@ We call P(Ai) the prior probability of A and P(Ai|B) the posterior probability o
 
 
 期望/均值：随机变量的平均值
+
+大树定律：大量独立同分布样本的期望
+
+E(X)良好定义
+
+
