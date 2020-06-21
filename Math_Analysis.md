@@ -84,3 +84,11 @@ intervals.  It has the cardinality of the real numbers, yet it has zero length.
 
 
 依均值收敛
+
+连续　continous
+
+一致连续 uniformly continuous
+
+
+绝对连续 Absolutely Continuous
+
