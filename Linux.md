@@ -1037,8 +1037,27 @@ free 内存泄漏判断
 
 ext4 --> xfs
 
-实列解析ＭｙＳＱＬ性能瓶颈　　　DBA登入服务器后应该先关注啥
+实列解析MySQL性能瓶颈　　　DBA登入服务器后应该先关注啥
 
 set long_query_time=0
 
 select benchmark
+
+
+# 杂项
+
+在CentOS中GCC的版本比较老旧。造成无法编译需要c11等版本的软件.
+
+可以选择安装特定版本的devtoolset，其对应响应版本的gcc
+
+```shell
+yum search devtoolset
+
+yum install devtoolset-7-all.x86_64
+
+```
+在编译软件前，使用如下命令指定后续编译使用的gcc
+```shell
+scl enable devtoolset-7 bash
+```
+
