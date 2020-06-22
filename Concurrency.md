@@ -542,6 +542,28 @@ RCU（read copy update）
 [Intel Guide for Developing Multithreaded Applications ](https://software.intel.com/content/www/us/en/develop/articles/intel-guide-for-developing-multithreaded-applications.html)
 
 
+
+## 网络编程
+
+
+两个模型
+* 线程池模型，逻辑简单，实现简单；一个线程在一个时间点仅仅服务一个请求
+* 事件驱动模型，并发度高，能够支持更多的服务请求；逻辑复杂，实现复杂
+
+* 海量的TCP连接
+* 保证公平性对用户体验非常重要
+
+问题1： select()/epoll()返回的socket fd从小到大排序，导致socket fd小的TCP连接总是优先得到服务，而socket fd大的总是最后得到服务
+
+问题2：通常socket的触发模式为水平触发(level triggered),当socket有数据达到时，必须把所有的数据一次性接收完毕
+
+解决办法：
+* epoll使用edge triggered模式
+* 将待处理的socket放入FIFO队列中
+* 
+
+## 杂项
+
 [Real-world Concurrency](https://queue.acm.org/detail.cfm?id=1454462)
 
 Concurrent execution can improve performance in three fundamental ways: it can reduce latency (that is, make a unit of work execute faster); it can hide latency (that is, allow the system to continue doing work during a long-latency operation); or it can increase throughput (that is, make the system able to perform more work).
