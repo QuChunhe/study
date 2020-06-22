@@ -1057,7 +1057,7 @@ yum install devtoolset-7-all.x86_64
 
 ```
 在编译软件前，使用如下命令指定后续编译使用的gcc
-```shell
+```bash
 scl enable devtoolset-7 bash
 ```
 
