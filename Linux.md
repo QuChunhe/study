@@ -1050,7 +1050,7 @@ select benchmark
 
 可以选择安装特定版本的devtoolset，其对应响应版本的gcc
 
-```shell
+```bash
 yum search devtoolset
 
 yum install devtoolset-7-all.x86_64
