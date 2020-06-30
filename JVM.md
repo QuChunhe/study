@@ -31,7 +31,20 @@ Behavior-Based Tuning
 
 Choosing a maximum pause time goal may mean that your throughput goal will not be met, so choose values that are an acceptable compromise for the application.
 
+Java的一个优点就是向开发者屏蔽了内存分配和垃圾回收的复杂性。然而，当垃圾回收是主要瓶颈时，理解一些被隐藏的实现也是非常有用的。垃圾回收器假设了应用使用对象的方式，这些使用方式反映在可以调整的参数上，通过调整这些参数可以提高性能而不以牺牲抽象为代价。
 
+如果在一个运行程序中从任何指针都无法到达一个对象，那么该对象就被认为是垃圾。
+
+虚拟机包含了一些不同的垃圾回收算法。这些算法通过分代收集组合起来。
+
+
+弱分代假说（weak generational hypothesis），大部分对象仅仅生存很短的时间，即大部分对象生命期很短（die young），
+
+强分代假说（Strong Generational Hypothesis） 越老的对象越不容易死亡，而没有die young的对象则很可能会存活很长时间（live long）
+
+通过代来管理内存，代是持有不同生命周期对象的内存池。任何一个代，当其被填满时，就会发生垃圾回收。
+
+the young generation　－－ a minor collection 
 
 #JMM
 
