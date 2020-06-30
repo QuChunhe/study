@@ -46,6 +46,12 @@ Java的一个优点就是向开发者屏蔽了内存分配和垃圾回收的复�
 
 the young generation　－－ a minor collection 
 
+Yong: Eden, Survivor, Virtual
+
+Tenured
+
+
+
 #JMM
 
 [Java Memory Model Pragmatics (transcript)](https://shipilev.net/blog/2014/jmm-pragmatics/)
