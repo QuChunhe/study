@@ -92,3 +92,6 @@ intervals.  It has the cardinality of the real numbers, yet it has zero length.
 
 绝对连续 Absolutely Continuous
 
+total variation of f over [a,b]
+
+positive variation of f over [a,b]
