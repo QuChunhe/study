@@ -50,17 +50,17 @@ the young generation　－－ a minor collection
 
 Yong: Eden, Survivor, Virtual
 
-Tenured
+Tenured -- Major Collection, full collection
 
-当某些对象经过几次年轻代垃圾收集后依然存活，则这些对象会被 提升（promoted）到老年代。典型情况下，老年代所占用的内存会比年轻代大，而且还会随时渐渐慢慢增大。这样的结果是，对老年代的垃圾收集就不能频繁进行，而且执行时间也会长很多。
+当某些对象在经过几次年轻代的垃圾收集后依然存活，则这些对象会被提升（promoted）到老年代。典型情况下，老年代所占用的内存会比年轻代大，而且还会随时逐渐增大。这使得在老年代上垃圾回收的执行时间会比较长，因此不能频繁地对老年代进行垃圾收集。
 
 新生代有一个eden区和两个survivor区组成。大多数对象初始时被分配在eden区。在任何时间总有一个survivor区是空的，用作在eden区内存活对象的目的地，另一个survivor作为下一次复制收集的目的地。对象会被从一个survivor区复制到另一个survivor区。当经过一定次数（-XX:MaxTenuringThreshold=n来指定默认值为15）的年轻代GC后依然存活的对象可以被晋升到老年代。
 
 性能考量
 * 吞吐。从一个较长的时间来看，耗费在应用运行的总时间与消耗在垃圾回收上的总时间的比值
 * 暂停。暂停是由于发生了垃圾回收使得应用出现无法响应的时间。
-* Footprint：一个进程的工作集合，通过页和cache　line来衡量
-* Promptness:及时性 (promptness)定义为对象死去之后到对象所占用的内存可以使用之前的时间。
+* Footprint：一个进程的工作集合，通过页和cache line来衡量
+* Promptness:及时性 (promptness)定义为对象死去之后到对象所占用的内存可以再次被使用之前的时间。
 
 Some users are sensitive to other considerations. Footprint is the working set of a process, measured in pages and cache lines. On systems with limited physical memory or many processes, footprint may dictate scalability. Promptness is the time between when an object becomes dead and when the memory becomes available, an important consideration for distributed systems, including Remote Method Invocation (RMI).
 
@@ -105,8 +105,8 @@ JDK8 中，永久代被完全的移除了（相关参数 -XX:PermSize / -XX：Ma
 
 
 三种不同类型的回收器
-* 串行回收器，使用单一线程执行所有垃圾回收工作。由于没有线程间的通信开销，这使得串行回收器相对高效。串行回收器非常适合于没有多处理器硬件的单处理器机器，此外对于具有较小数据集的应用，串行处理器也可应用于多处理器的机器。可以通过参数-XX:+UseSerialGC指定使用串行回收器。
-* 并行回收器，以并行方式执行minor回收，能够显著降低垃圾回收的开销。其针对于具有中型或者大型数据集并运行在多处理器或者多线程硬件中的应用， -XX:+UseParallelGC。平行压缩(parallel compaction）是一种能够并行回收器以并行方式执行major回收的特性。如果没有并行压缩，major回收器使用单一现场执行，其会显著地限制可伸缩性。在使用选项-XX:+UseParallelGC时，模式情况下并行压缩是使能的，通过使用-XX:-UseParallelOldGC可以关闭此选项。
+* 串行回收器，使用单一线程执行所有的垃圾回收工作。由于没有线程间的通信开销，这使得串行回收器相对高效。串行回收器非常适合于没有多处理器硬件的单处理器机器，此外对于具有较小数据集的应用，串行处理器也可应用于多处理器的机器。可以通过参数-XX:+UseSerialGC指定使用串行回收器。
+* 并行回收器，以并行方式执行minor回收，能够显著降低垃圾回收的开销。其针对于具有中型或者大型数据集并运行在多处理器或者多线程硬件中的应用，可以通过参数-XX:+UseParallelGC指定并行回收器。平行压缩(parallel compaction）是一种能够并行回收器以并行方式执行major回收的特性。如果没有并行压缩，major回收器使用单一现场执行，其会显著地限制可伸缩性。在使用选项-XX:+UseParallelGC时，模式情况下并行压缩是使能的，通过使用-XX:-UseParallelOldGC可以关闭此选项。
 * 并发回收器，并发地执行大部分工作，以保证垃圾回收暂停较短。针对于具有中型或者大型的数据集并且要求响应时间比总吞吐更为主要的应用而设计。HotSpot自带了两个并发收集器可供选择，使用-XX:+UseConcMarkSweepGC选择CMS收集器或者使用-XX:+UseG1GC选择G１收集器。
 
 **The Parallel Collector**
@@ -118,23 +118,28 @@ Growing and shrinking are done at different rates. By default a generation grows
 
 **The Mostly Concurrent Collectors**
 
-* Concurrent Mark Sweep (CMS) Collector: This collector is for applications that prefer shorter garbage collection pauses and can afford to share processor resources with the garbage collection.此种收集器针对于那些期望更短的垃圾回收间隔并且能够提供共享处理器资源给垃圾回收的应用
-* Garbage-First Garbage Collector: This server-style collector is for multiprocessor machines with large memories. It meets garbage collection pause time goals with high probability while achieving high throughput.服务器类型的收集器针对于具有大内存的多处理器服务器，其能够满足垃圾回收暂停时间目标的前提下以较大概论实现高吞吐。
+* Concurrent Mark Sweep (CMS) Collector: This collector is for applications that prefer shorter garbage collection pauses and can afford to share processor resources with the garbage collection.此种收集器针对于那些期望更短的垃圾回收停顿并且能够提供共享处理器资源给垃圾回收的应用
+* Garbage-First Garbage Collector: This server-style collector is for multiprocessor machines with large memories. It meets garbage collection pause time goals with high probability while achieving high throughput.服务器类型的收集器针对于具有大内存的多处理器服务器，其在满足垃圾回收暂停时间目标的前提下以较大概率实现高吞吐。
 
-通常并发回收器以处理器资源为代价换取更短的major回收间隔时间，这些处理器资源原本是可以被应用使用的。最常见的开销是在并发回收部分使用一个或多个处理器。在一个具有N个处理器的系统上。并发回收部分可能使用K/N可用的处理器，其中1<=K<=ceiling{N/4}。除了在并发并发阶段使用处理器资源，使用并发性还会带来额外的开销。因此，使用并发回收器虽然垃圾回收暂停通常会短很多，但是与其他收集器相比，应用吞吐也会更低一些。
+通常并发回收器以处理器资源为代价换取更短的major回收停顿时间，这些处理器资源原本是可以被应用所使用的。最常见的开销是在并发回收部分使用一个或多个处理器。在一个具有N个处理器的系统上，并发回收部分可能使用K/N可用的处理器，其中1<=K<=ceiling{N/4}。除了在并发阶段使用处理器资源，使用并发回收器还会带来额外的开销。因此，使用并发回收器虽然垃圾回收暂停时间通常会短很多，但是与其他收集器相比，应用吞吐也会更低一些。
 
 **Concurrent Mark Sweep (CMS) Collector**
 
-具有相当大的数据集合并且数据存活很长时间（一个大老年代）、运行在两个或者多个处理器上的系统，更容易从使用此类收集器上获得收益。此收集器能应用于任何需要较低暂停时间的应用。可以通过命令行参数-XX:+UseConcMarkSweepGC，使得CMS生效。
+具有相当大的数据集合并且数据存活很长时间（一个大老年代）、运行在两个或者多个处理器上的系统，更容易从使用此类收集器上获得好处。此收集器也能应用于任何需要较低暂停时间的应用。可以通过命令行参数-XX:+UseConcMarkSweepGC，使得CMS生效。
 
 
-However, if the CMS collector is unable to finish reclaiming the unreachable objects before the tenured generation fills up, or if an allocation cannot be satisfied with the available free space blocks in the tenured generation, then the application is paused and the collection is completed with all the application threads stopped. The inability to complete a collection concurrently is referred to as ８８**concurrent mode failure** and indicates the need to adjust the CMS collector parameters. 
+However, if the CMS collector is unable to finish reclaiming the unreachable objects before the tenured generation fills up, or if an allocation cannot be satisfied with the available free space blocks in the tenured generation, then the application is paused and the collection is completed with all the application threads stopped. The inability to complete a collection concurrently is referred to as **concurrent mode failure** and indicates the need to adjust the CMS collector parameters. 
 
+如果CMS收集器在老年代填满之前不能回收不可达的对象，或者在老年代中可用的未分配块不能满足对象分配，那么应用将会被暂停并且。。不能并发地完成垃圾回收被成为并发模式失败，表明需要调整CMS垃圾回收参数。
 
 The CMS collector throws an OutOfMemoryError if too much time is being spent in garbage collection: if more than 98% of the total time is spent in garbage collection and less than 2% of the heap is recovered, then an OutOfMemoryError is thrown. This feature is designed to prevent applications from running for an extended period of time while making little or no progress because the heap is too small. If necessary, this feature can be disabled by adding the option -XX:-UseGCOverheadLimit to the command line.
 
+如果在垃圾回收上花费过多的的时间，CMS收集器抛出OutOfMemoeryError：如果超过９８％的时间都是花费在垃圾回收上并且低于２％的堆上空间被恢复。那么将会抛出OutOfMemoryError。这个特性是为了防止由于堆太小，应用长时间运行但是仅仅稍有或者没有进展。如果必要，可以通过命令行中添加选项-XX:-UseGCOverheadLimit，禁止此项功能。
 
 Because application threads and the garbage collector thread run concurrently during a major collection, objects that are traced by the garbage collector thread may subsequently become unreachable by the time collection process ends. Such unreachable objects that have not yet been reclaimed are referred to as **floating garbage**. The amount of floating garbage depends on the duration of the concurrent collection cycle and on the frequency of reference updates, also known as **mutations**, by the application. 
+
+
+在一个并发回收周期中，CMS收集器会暂停一个应用两次。第一次暂停标注所有从根（例如从应用线程栈、寄存器、静态对象等）和从其他堆（例如新生代）中可以直达的对象为存活对象。第一次暂停也被成为initial mark pause。
 
 **JVM内存分配策略**
 
