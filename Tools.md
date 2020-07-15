@@ -19,3 +19,7 @@ git push -u origin master
 ```
  mvn dependency:tree
 ```
+
+```
+pdftocairo -r 300 -png \\infile % 将生成的pdf文件转换为png图像
+```
