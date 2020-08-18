@@ -1061,3 +1061,7 @@ yum install devtoolset-7-all.x86_64
 scl enable devtoolset-7 bash
 ```
 
+
+```
+tracker reset -r
+```
