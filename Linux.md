@@ -415,6 +415,19 @@ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor，发现CPU工作模�
 tuned-adm profile latency-performance修改工作模式，解决问题
 ```
 
+错误信息
+```
+The current inotify(7) watch limit is too low
+```
+解决方案
+
+```
+vim etc/sysctl.conf
+
+fs.inotify.max_user_watches = 524288
+
+sysctl -p
+```
 
 cat /proc/vmstat | egrep "dirty|writeback"
 ```
