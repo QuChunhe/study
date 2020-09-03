@@ -137,6 +137,12 @@ Rule 11: For unlimited hierarchical data self-reference PK and FK
 
 [Database design basics](https://support.office.com/en-us/article/Database-design-basics-EB2159CF-1E30-401A-8084-BD4F9C9CA1F5)
 
+
+What is good database design?
+
+第一条原则是重复信息（也被称之为冗余数据）是有害的，因为其不仅浪费存储空间，而且增加了错误和不一致的可能性。第二条原则是信息的正确性和完整性非常重要。
+
+
 ### Index & Performancey
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
