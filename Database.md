@@ -142,6 +142,24 @@ What is good database design?
 
 第一条原则是重复信息（也被称之为冗余数据）是有害的，因为其不仅浪费存储空间，而且增加了错误和不一致的可能性。第二条原则是信息的正确性和完整性非常重要。
 
+一个好的数据库设计应该满足如下条件
+* Divides your information into subject-based tables to reduce redundant data.将信息划分到基于主题的表中，以减小冗余书记
+* Provides Access with the information it requires to join the information in the tables together as needed.通过按需将表关联在一起，从而提供访问所需要信息的能力。
+* Helps support and ensure the accuracy and integrity of your information.辅助支持和确保信息精确性和完整性
+* Accommodates your data processing and reporting needs.满足数据处理和报表需求。
+
+设计过程
+* Determine the purpose of your database
+* Find and organize the information required
+* Divide the information into tables
+* Turn information items into columns 
+* Specify primary keys 
+* Set up the table relationships
+* Refine your design
+* Apply the normalization rules
+
+
+
 
 ### Index & Performancey
 
