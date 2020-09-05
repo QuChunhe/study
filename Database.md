@@ -158,8 +158,12 @@ What is good database design?
 * Refine your design
 * Apply the normalization rules
 
+Determine the purpose of your database
+
+确定数据库的目标(Determine the purpose of your database):将数据库的目标写在纸上是一个好主意.
 
 
+查找并组织所需信息(Find and organize the information required)
 
 ### Index & Performancey
 
