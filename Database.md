@@ -165,6 +165,13 @@ Determine the purpose of your database
 
 查找并组织所需信息(Find and organize the information required)
 
+
+[Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
+
+数据库正规化是根据一系列范式构造关系型数据库的过程，以减小数据冗余和提高数据完整性。范式是由Edgar F. Codd首先提出，作为关系模型的一部分。
+
+正规化需要对于数据库的列（属性）和表（关系）进行组织，以确保它们的依赖性正确地符合数据库完整性约束
+
 ### Index & Performancey
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
