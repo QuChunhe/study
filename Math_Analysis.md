@@ -95,3 +95,5 @@ intervals.  It has the cardinality of the real numbers, yet it has zero length.
 total variation of f over [a,b]
 
 positive variation of f over [a,b]
+
+[Measure Theory](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes.pdf)
