@@ -145,3 +145,33 @@ Reduce the amount of code that is affected by each design decision, so design ch
 [阮一峰：如何降低软件的复杂性](https://www.techug.com/post/a-philosophy-of-software-design.html?from=singlemessage)
 
 [五年磨一剑,服务端团队呕心力作之稳定性规范](https://mp.weixin.qq.com/s/gVNKibDQ6UsX_q8_CHvg1A)
+
+[IEEE Std 729-1983, IEEE Standard Glossary of Software Engineering Terminology](http://www.informatik.htw-dresden.de/~hauptman/SEI/IEEE_Standard_Glossary_of_Software_Engineering_Terminology%20.pdf)
+
+architectural design. (1) The process of defining a collection of hardware and software components and their interfaces to establish the framework for the development of a computer system. See also: functional design. (2) The result of the process in (1).
+
+architecture. The organizational structure of a system or component. See also: component; module; subprogram; routine.
+
+cohesion. The manner and degree to which the tasks performed by a single software module are related to one another. Types include coincidental, communicational, functional,logical, procedural, sequential, and temporal. Syn: module strength. Contrast with: coupling.
+
+component. One of the parts that make up a system. A component may be hardware or software and may be subdivided into other
+components. Note: The terms “module,” “component,” and “unit” are often used interchangeably or defined to be subelements of one another in different ways
+depending upon the context. The relationship of these terms is not yet standardized.
+
+coupling. The manner and degree of interdependence between software modules. Types include common-environment coupling,content coupling, control coupling, data coupling, hybrid coupling, and pathological coupling. Contrast with: cohesion.
+
+decoupling. The process of making software modules more independent of one another to decrease the impact of changes to, and errors in, the individual modules. See also: Coupling.
+
+encapsulation. A software development technique that consists of isolating a system function o r a set of data and operations on
+those data within a module and providing precise specifications for the module. See also: data abstraction; information hiding.
+
+modular. Composed of discrete parts. See also:modular decomposition; modular programming.
+
+modular decomposition. The process of breaking a system into components to facilitate design and development; an element of modular programming. Syn: modularization. See also: cohesion; coupling; demodularization; factoring; functional decomposition; hierarchical decomposition; packaging.
+
+
+modular programming. A software development technique in which software is developed as a collection of modules.
+
+modularity. The degree t o which a system or computer program is composed of discrete components such that a change to one component has minimal impact on other components. See also: cohesion; coupling.
+
+module. (1) A program unit that is discrete and identifiable with respect to compiling,combining with other units, and loading; for example, the input to, or output from, an assembler, compiler, linkage editor, or executive routine.(2) A logically separable part of a program.
