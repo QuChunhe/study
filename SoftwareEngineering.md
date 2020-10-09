@@ -199,6 +199,10 @@ Modular software ==> maintainable software:Uses divide and conquer principle
 
 [HOW DO COMMITTEES INVENT?](http://www.melconway.com/Home/pdf/committees.pdf)
 
+
+
+[康威定律](https://www.jianshu.com/p/ba2d444c89d2)
+
 Conway’s law 最初来自于Conway在1967年发表的论文《How Do Committees Invent?》，之后在《人月神话》
 这本书中引用了论文的结论，并命名为康威定律（Conway’s law）得以推广。
 >Conway’s law: Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations. - >Melvin Conway(1967)
@@ -210,9 +214,26 @@ Conway’s law 最初来自于Conway在1967年发表的论文《How Do Committee
 
 Mike Amundsen 归纳了如下四个核心观点:
 
-##第一定律##
+**第一定律**
 
 >Communication dictates the design
 >组织沟通方式会通过系统设计表达出来
 
+**第二定律**
+
+>There is never enough time to do something right, but there is always enough time to do it over
+>时间再多一件事情也不可能做的完美，但总有时间做完一件事情
+
+
+**第三定律**
+
+>There is a homomorphism from the linear graph of a system to the linear graph of its design organization
+>线型系统和线型组织架构间有潜在的异质同态特性
+
+
+
+**第四定律**
+
+>The structures of large systems tend to disintegrate during development, qualitatively more so than with small systems
+>大的系统组织总是比小系统更倾向于分解
 
