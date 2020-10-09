@@ -187,3 +187,12 @@ five criteria for modularity:
 * Protection - fault isolation
 
 
+[Modularity of Mind](https://plato.stanford.edu/entries/modularity-mind/)
+
+
+[Modularity:Guidelines for design in any programming language](https://www.eecs.yorku.ca/course_archive/2013-14/F/3311/slides/14-Modularity.pdf)
+
+Modular software ==> maintainable software:Uses divide and conquer principle
+
+三种编程范式Three Programming Styles： procedural programming, object oriented programming, and functional programming. 
+
