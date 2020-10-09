@@ -244,10 +244,16 @@ Mike Amundsen 归纳了如下四个核心观点:
 >大的系统组织总是比小系统更倾向于分解
 
 
+
+**Murphy's law**
+
 [Murphy's law](https://en.wikiquote.org/wiki/Murphy%27s_law)
 >Murphy's law is a popular adage that states that "things will go wrong in any given situation, if you give them a chance." or more commonly, "whatever can go >wrong, will go wrong."
 
 如果事情可能出錯，它最終一定會出錯。
+
+
+**Brook’s Law**
 
 [Brook’s Law](https://www.techopedia.com/definition/18085/brooks-law)
 
@@ -259,6 +265,22 @@ states that when a person is added to a project team, and the project is already
 Brooks' law may be applied for two key reasons:
 * "Ramp up" time, which is required by new project members for productivity because of the complex nature of software projects are complex. This takes existing resources (personnel) away from active development and places them in training roles.
 * An increase in staff drives communication overhead, including the number and variety of communication channels. 
+
+
+**Hofstadter's law** 
+
+Douglas Hofstadter, a cognitive scientist and author, introduced the law in his 1979  book Gödel, Escher, Bach: An Eternal Golden Braid.
+
+Hofstadter’s law is the observation that “It always takes longer than you expect, even when you take into account Hofstadter's Law.” In other words, time estimates for how long anything will take to accomplish always fall short of the actual time required -- even when the time allotment is increased to compensate for the human tendency to underestimate it.
+
+
+Hofstadter’s law illustrates one element of optimism bias, which leads people to overestimate the benefits of some proposed system and underestimate the drawbacks, as well as the time required for completion. It’s also closely related to the ninety-ninety rule proposed by Tom Cargill of Bell Labs: The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.
+
+**Conway’s Law**
+
+**帕累托法则（Pareto Principle）或 80/20法则**
+
+**Moore’s Law**
 
 
 
