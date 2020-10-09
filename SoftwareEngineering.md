@@ -196,3 +196,12 @@ Modular software ==> maintainable software:Uses divide and conquer principle
 
 三种编程范式Three Programming Styles： procedural programming, object oriented programming, and functional programming. 
 
+
+[HOW DO COMMITTEES INVENT?](http://www.melconway.com/Home/pdf/committees.pdf)
+
+Conway’s law 最初来自于Conway在1967年发表的论文《How Do Committees Invent?》，之后在《人月神话》
+这本书中引用了论文的结论，并命名为康威定律（Conway’s law）得以推广。
+>>Conway’s law: Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations. - >>Melvin Conway(1967)
+>>设计系统的组织其产生的设计等价于组织间的沟通结构。
+
+
