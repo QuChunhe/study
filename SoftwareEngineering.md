@@ -201,7 +201,18 @@ Modular software ==> maintainable software:Uses divide and conquer principle
 
 Conway’s law 最初来自于Conway在1967年发表的论文《How Do Committees Invent?》，之后在《人月神话》
 这本书中引用了论文的结论，并命名为康威定律（Conway’s law）得以推广。
->>Conway’s law: Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations. - >>Melvin Conway(1967)
->>设计系统的组织其产生的设计等价于组织间的沟通结构。
+>Conway’s law: Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations. - >Melvin Conway(1967)
+>设计系统的组织其产生的设计等价于组织间的沟通结构。
+
+反向理解起来也是成立的。
+>Conway’s law reversed：You won’t be able to successfully establish an efficient organizational structure that is not supported by your system architecture >design.
+>如果系统架构不支持，你无法建立一个高效的组织。
+
+Mike Amundsen 归纳了如下四个核心观点:
+
+##第一定律##
+
+>Communication dictates the design
+>组织沟通方式会通过系统设计表达出来
 
 
