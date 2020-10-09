@@ -205,8 +205,14 @@ Modular software ==> maintainable software:Uses divide and conquer principle
 
 Conway’s law 最初来自于Conway在1967年发表的论文《How Do Committees Invent?》，之后在《人月神话》
 这本书中引用了论文的结论，并命名为康威定律（Conway’s law）得以推广。
->Conway’s law: Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations. - >Melvin Conway(1967)
+>Conway’s law: Organizations which design systems (in the broad sense used here) are constrained to produce designs which are copies of the communication >structures of these organizations. - Melvin Conway(1967)
 >设计系统的组织其产生的设计等价于组织间的沟通结构。
+
+>a design effort should be organized according to the need for communication.
+
+Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure.
+
+任何设计系统的组织，必然会产生以下设计结果：即其结构就是该组织沟通结构的写照。简单来说： 产品必然是其组织沟通结构的缩影。 
 
 反向理解起来也是成立的。
 >Conway’s law reversed：You won’t be able to successfully establish an efficient organizational structure that is not supported by your system architecture >design.
@@ -236,4 +242,23 @@ Mike Amundsen 归纳了如下四个核心观点:
 
 >The structures of large systems tend to disintegrate during development, qualitatively more so than with small systems
 >大的系统组织总是比小系统更倾向于分解
+
+
+[Murphy's law](https://en.wikiquote.org/wiki/Murphy%27s_law)
+>Murphy's law is a popular adage that states that "things will go wrong in any given situation, if you give them a chance." or more commonly, "whatever can go >wrong, will go wrong."
+
+如果事情可能出錯，它最終一定會出錯。
+
+[Brook’s Law](https://www.techopedia.com/definition/18085/brooks-law)
+
+
+Brooks’ Law refers to a well-known software development principle coined by Fred Brooks in "The Mythical Man-Month". 
+>"Adding manpower to a late software project makes it later,” 
+states that when a person is added to a project team, and the project is already late, the project time is longer, rather than shorter.
+
+Brooks' law may be applied for two key reasons:
+* "Ramp up" time, which is required by new project members for productivity because of the complex nature of software projects are complex. This takes existing resources (personnel) away from active development and places them in training roles.
+* An increase in staff drives communication overhead, including the number and variety of communication channels. 
+
+
 
