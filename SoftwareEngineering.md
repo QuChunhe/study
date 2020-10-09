@@ -230,15 +230,55 @@ Dunbar's Number: the max number of relationships a person can maintain
 
 **Conway’s (first) Law**: tells us TEAM SIZE is important
 
-Make the teams as small as necessary.
+so... Make the teams as small as necessary.
 
 “There is never enough time to do something right, but there is always enough time to do it over.” -- Mel Conway, 1967
 
-Increasing Intractability
+Increasing Intractability -- Eric Hollnagel, 2009
 1. Systems grow too large
 2. Rate of change increases
 3. Overall expectations keep rising
--- Eric Hollnagel, 2009
+
+
+**Conway’s Second Law**: tells us PROBLEM SIZE is important.
+
+so...Make the solution as small as necessary.
+
+Homomorphism  “There is a homomorphism from the linear graph of a system to the linear graph of its design organization” -- Mel Conway, 1967
+
+**Conway’s Third Law** : tells us CROSS-TEAM INDEPENDENCE is important.
+
+So...
+Make each team fully independent.
+
+
+Disintegration  “The structures of large systems tend to disintegrate during development, qualitatively more so than with small systems.” -- Mel Conway, 1967
+
+
+**Conway’s Fourth Law**: tells us TIME is against LARGE teams.
+
+So...
+Make release cycles short and small.
+
+
+Conway’s First Law: A system’s design is a copy of the organization’s communication structure. Actively manage communications within the
+teams and across teams.
+
+Conway’s Second Law: There is never enough time to do something right, but there is always enough time to do it over. Remember the process is
+continually repeating.
+
+Conway’s Third Law: There is a homomorphism from the linear graph of a system to the linear graph of its design organization. Organize teams in order to
+achieve desired system.
+
+Conway’s Lessons from 1967
+1. Increase communications
+2. Support continuous process
+3. Organize teams by products
+4. Make teams small as necessary
+
+
+
+
 
 Mike Amundsen 归纳了如下四个核心观点:
 
