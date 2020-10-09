@@ -218,6 +218,28 @@ Any organization that designs a system (defined broadly) will produce a design w
 >Conway’s law reversed：You won’t be able to successfully establish an efficient organizational structure that is not supported by your system architecture >design.
 >如果系统架构不支持，你无法建立一个高效的组织。
 
+[Conway’s Four Laws](www.amundsen.com/talks/2016-07-restfest-conway/2016-07-restfest-conway.pdf)
+
+Communication dictates design.-- Mel Conway, 1967
+
+Brooks’ Law “Adding manpower to a late software project makes it later.” -- Fred Brooks, 1975
+
+Intercommunication formula n(n − 1) / 2  -- Fred Brooks, 1975
+
+Dunbar's Number: the max number of relationships a person can maintain
+
+**Conway’s (first) Law**: tells us TEAM SIZE is important
+
+Make the teams as small as necessary.
+
+“There is never enough time to do something right, but there is always enough time to do it over.” -- Mel Conway, 1967
+
+Increasing Intractability
+1. Systems grow too large
+2. Rate of change increases
+3. Overall expectations keep rising
+-- Eric Hollnagel, 2009
+
 Mike Amundsen 归纳了如下四个核心观点:
 
 **第一定律**
