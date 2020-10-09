@@ -175,3 +175,15 @@ modular programming. A software development technique in which software is devel
 modularity. The degree t o which a system or computer program is composed of discrete components such that a change to one component has minimal impact on other components. See also: cohesion; coupling.
 
 module. (1) A program unit that is discrete and identifiable with respect to compiling,combining with other units, and loading; for example, the input to, or output from, an assembler, compiler, linkage editor, or executive routine.(2) A logically separable part of a program.
+
+
+https://en.wikipedia.org/wiki/Bertrand_Meyer
+
+five criteria for modularity:
+* Decomposability of the problem into sub-problems
+* Composability of modules to produce new systems
+* Understandability of a module in isolation
+* Continuity - small changes have localized effects
+* Protection - fault isolation
+
+
