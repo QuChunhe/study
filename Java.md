@@ -1018,3 +1018,5 @@ Overriding means having two methods with the same method name and parameters (i.
  [](https://shipilev.net/talks/narnia-2555-jmm-pragmatics-en.pdf)
  
  Inner Class, Anonymous Classes, Local Classes,static nested classes
+ 
+ https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
