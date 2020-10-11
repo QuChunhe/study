@@ -69,6 +69,8 @@ busy waiting is a technique in which a process repeatedly checks to see if a con
 [Fail-Fast Vs Fail-Safe Iterator in Java](https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html)
 
 
+# Actor & CSP
+Akka/Erlang的actor模型与Go语言的协程Goroutine与通道Channel代表的CSP(Communicating Sequential Processes)
 
 # Parallel Computing
 
