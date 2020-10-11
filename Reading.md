@@ -8,3 +8,6 @@
 [A History of Transaction Histories](https://ristret.com/s/f643zk/history_transaction_histories)
 
 [Lambda Architecture: Design Simpler, Resilient, Maintainable and Scalable Big Data Solutions](https://www.infoq.com/articles/lambda-architecture-scalable-big-data-solutions/)
+
+
+https://en.wikipedia.org/wiki/Defensive_programming
