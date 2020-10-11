@@ -76,6 +76,8 @@ Let It Crash principles
 # Actor & CSP
 Akka/Erlang的actor模型与Go语言的协程Goroutine与通道Channel代表的CSP(Communicating Sequential Processes)
 
+[The actor model in 10 minutes](https://www.brianstorti.com/the-actor-model/)
+
 # Parallel Computing
 
 并行编程模式
