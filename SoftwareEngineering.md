@@ -20,6 +20,9 @@ The single-responsibility principle (SRP) is a computer-programming principle th
 
 In computer programming, cohesion refers to the degree to which the elements inside a module belong together.
 
+迪米特法则（Law of Demeter）又叫作最少知识原则（Least Knowledge Principle 简写LKP），就是说一个对象应当对其他对象有尽可能少的了解
+
+
 
 [What Is Design Pattern?](http://www.vishalchovatiya.com/what-is-design-pattern/)
 
