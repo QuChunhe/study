@@ -37,3 +37,8 @@ Object-oriented  programming
 
 * commodity hardware 商品化硬件
 * 定制化硬件
+
+
+ multi-tier architecture 多级架构
+ 
+  multi-layer architecture　多层架构
