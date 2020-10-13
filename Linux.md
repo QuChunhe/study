@@ -519,7 +519,13 @@ run-queue latency or dispatcher-queue latency, scheduler latency.
 
 cache warmth, CPU affinity
 
-cycles-per-instruction(CPI)
+程序执行时间 = 程序总指令数 x 每 CPU 时钟周期时间 x 每指令执行所需平均时钟周期数
+
+cycles-per-instruction(CPI) 每指令周期数; instructions per cycle (IPC) 每周期指令数
+
+CPI = 1/IPC
+
+Execution Time (T) = Instruction Count x Time Per Cycle X CPI
 
 Cycles per instruction (CPI) is an important high-level metric for describing where a CPU is
 spending its clock cycles and for understanding the nature of CPU utilization. This metric may also be
@@ -528,6 +534,9 @@ expressed as instructions per cycle (IPC), the inverse of CPI.
 For real-world applications, here's how I'd interpret the IPC:
 * IPC < 1: likely stall cycle bound, also likely memory bound (more PMCs can confirm). Stall cycles are when the CPU isn't making forward progress, likely because it's waiting on memory I/O. In this case, look to tune memory usage: allocate fewer or smaller objects, do zero copy, look at NUMA and memory placement tuning. A CPU flame graph will show which code is on-CPU during these stall cycles, and should be clues for were to look for memory usage.
 * IPC > 1: likely instruction bound. Look to tune instructions: a CPU flame graph will show which code is on-CPU doing instructions: find ways to reduce executed code.
+
+
+
 
 CPU utilization  
 
@@ -1011,6 +1020,8 @@ du -h --max-depth=1
 
 # Info
 
+查看CPU信息
+
 ```
 cat /proc/cpuinfo
 
@@ -1035,6 +1046,12 @@ cat /proc/cpuinfo | grep 'cpu cores' | sort | uniq
 cat /proc/cpuinfo | grep 'siblings' | sort | uniq
 ```
 
+display information about the CPU architecture
+```
+lscpu
+```
+
+
 top free ps df 
 
 sysstat(sar,mpstat, iostat) dstat, iotop
@@ -1056,7 +1073,10 @@ set long_query_time=0
 
 select benchmark
 
-
+list hardware
+```
+lshw
+```
 # 杂项
 
 在CentOS中GCC的版本比较老旧。造成无法编译需要c11等版本的软件.
