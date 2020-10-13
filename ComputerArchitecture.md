@@ -41,7 +41,7 @@ Software talks to hardware through a vocabulary called an instruction set archit
 
 [什么是CPU Die](https://zhuanlan.zhihu.com/p/51354994)   
 
-Die或者CPU Die指的是处理器在生产过程中，从晶圆（Silicon Wafer）上切割下来的一个个小方块（这也是为啥消费者看到的CPU芯片为什么都是方的的原因），在切割下来之前，每个小方块（Die）都需要经过各种加工，将电路逻辑刻到该Die上面.
+Die或者CPU Die指的是处理器在生产过程中，从晶圆/硅片/硅圆片（Silicon Wafer）上切割下来的一个个小方块，也被称之为裸片，在切割下来之前，每个小方块（Die）都需要经过各种加工，将电路逻辑刻到该Die上面.
 
 对于主流的CPU厂商Intel和AMD而言，他们会将1个或者N个CPU Die封装起来形成一个CPU Package，有时候也叫作CPU Socket.
 
