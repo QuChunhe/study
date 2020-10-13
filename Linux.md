@@ -1115,6 +1115,9 @@ There are fundamentally two types of processes in Linux
 
 Daemons: These are special types of background processes that start at system startup and keep running forever as a service; they don’t die. They are started as system tasks (run as services), spontaneously. 
 
+You can as well run a process directly from the background using the ampersand, **& sign**.
+
+You can also use **nohup** command, which also enables a process to continue running in the background when a user exits a shell.
 
 There are two conventional ways used for creating a new process in Linux:
 * Using The System() Function – this method is relatively simple, however, it’s inefficient and has significantly certain security risks.
