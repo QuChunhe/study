@@ -1089,6 +1089,32 @@ tracker reset -r
 
 进程的三种状态：就绪、执行和阻塞
 
+There are fundamentally two types of processes in Linux
+* Foreground processes
+* Background processes
+
+Daemons: These are special types of background processes that start at system startup and keep running forever as a service; they don’t die. They are started as system tasks (run as services), spontaneously. 
+
+
+There are two conventional ways used for creating a new process in Linux:
+* Using The System() Function – this method is relatively simple, however, it’s inefficient and has significantly certain security risks.
+* Using fork() and exec() Function – this technique is a little advanced but offers greater flexibility, speed, together with security.
+
+process ID (PID)   parent processes ID (PPID),
+
+Print a list of signal names, or convert the given signal number to a name.
+```
+kill -l
+```
+The following are signals which are useful to a system user:
+* SIGHUP 1 – sent to a process when its controlling terminal is closed.
+* SIGINT 2 – sent to a process by its controlling terminal when a user interrupts the process by pressing [Ctrl+C].
+* SIGQUIT 3 – sent to a process if the user sends a quit signal [Ctrl+D].
+* SIGKILL 9 – this signal immediately terminates (kills) a process and the process will not perform any clean-up operations.
+* SIGTERM 15 – this a program termination signal (kill will send this by default).
+* SIGTSTP 20 – sent to a process by its controlling terminal to request it to stop (terminal stop); initiated by the user pressing [Ctrl+Z].
+
+
 
 线程是进程厘米的一个执行上下文，或者执行序列。
 
