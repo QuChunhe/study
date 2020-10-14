@@ -593,12 +593,23 @@ chrt -m
 4. SCHED_FIFO    a first-in, first-out policy
 5. SCHED_RR      a round-robin policy
 ```
+There are 2 types of processes, the normal ones and the real time.
 
-Nice value is a user-space and priority PR is the process's actual priority that use by Linux kernel. In linux system priorities are 0 to 139 in which 0 to 99 for real time and 100 to 139 for users. nice value range is -20 to +19 where -20 is highest, 0 default and +19 is lowest.   
+Nice value is a user-space and priority PR is the process's actual priority that use by Linux kernel. In linux system priorities are 0 to 139 in which 0 to 99 for real time and 100 to 139 for users. Nice value range is -20 to +19 where -20 is highest, 0 default and +19 is lowest.   
 PR is calculated as follows:
 * for normal processes: PR = 20 + NI (NI is nice and ranges from -20 to 19)
 * for real time processes: PR = - 1 - real_time_priority (real_time_priority ranges from 1 to 99)
 
+There are a total of 140 priorities and two distinct priority ranges implemented in Linux. The first one is a nice value (niceness) which ranges from -20 (highest priority value) to 19 (lowest priority value) and the default is 0, this is what we will uncover in this guide. The other is the real-time priority, which ranges from 1 to 99 by default, then 100 to 139 are meant for user-space.
+* NI – is the nice value, which is a user-space concept, while
+* PR or PRI – is the process’s actual priority, as seen by the Linux kernel.
+
+```
+Total number of priorities = 140
+Real time priority range(PR or PRI):  0 to 99 
+User space priority range: 100 to 139
+PR = 0 to 39 which is same as 100 to 139
+```
 
 ```
 top -Hp pid
