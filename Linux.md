@@ -611,6 +611,8 @@ User space priority range: 100 to 139
 PR = 0 to 39 which is same as 100 to 139
 ```
 
+But if you see a **rt** rather than a number as shown in the screenshot below, it basically means the process is running under real-time scheduling priority.
+
 ```
 top -Hp pid
 # The scheduling priority of the task.  If you see `rt' in this field, it means 
