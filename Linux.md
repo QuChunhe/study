@@ -586,6 +586,13 @@ uptime
  scheduling policies in a LINUX environment
 ```
 chrt -m 
+SCHED_OTHER min/max priority	: 0/0
+SCHED_FIFO min/max priority	: 1/99
+SCHED_RR min/max priority	: 1/99
+SCHED_BATCH min/max priority	: 0/0
+SCHED_IDLE min/max priority	: 0/0
+SCHED_DEADLINE min/max priority	: 0/0
+
 
 1. SCHED_OTHER   the standard round-robin time-sharing policy
 2. SCHED_BATCH   for "batch" style execution of processes
