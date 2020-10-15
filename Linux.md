@@ -515,6 +515,14 @@ Terminology definitions:
 
 ### Monitoring
 
+
+
+Headroom is available usable resources
+* Total Capacity minus Peak Utilization and Margin
+* Applies to CPU, RAM, Net, Disk and OS
+
+![headroom](https://github.com/QuChunhe/study/raw/master/pics/Headroom.png)
+
 #### CPU
 
 [CPU Utilization is Wrong](http://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
