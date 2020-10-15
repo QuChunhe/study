@@ -92,6 +92,6 @@ Abstract Classes
 
 Scala traits don’t allow constructor parameters
 
-
+https://hello-scala.com/202-scala-list-class.html
 
 
