@@ -53,3 +53,41 @@ count match {
     }
 }
 ```
+
+In Scala, the primary constructor of a class is a combination of:
+* The constructor parameters
+* Methods that are called in the body of the class
+* Statements and expressions that are executed in the body of the class
+
+val makes fields read-only
+
+You define auxiliary Scala class constructors by defining methods that are named this. There are only a few rules to know:
+* Each auxiliary constructor must have a different signature (different parameter lists)
+* Each constructor must call one of the previously defined constructors
+
+Supplying Default Values for Constructor Parameters.
+
+Named parameters
+
+Enumerations
+
+```scala
+sealed trait DayOfWeek
+case object Sunday extends DayOfWeek
+case object Monday extends DayOfWeek
+case object Tuesday extends DayOfWeek
+case object Wednesday extends DayOfWeek
+case object Thursday extends DayOfWeek
+case object Friday extends DayOfWeek
+case object Saturday extends DayOfWeek
+```
+
+Using Scala Traits as Interfaces
+
+Extending multiple traits
+* Use extends to extend the first trait
+* Use with to extend subsequent traits
+
+Abstract Classes
+
+Scala traits don’t allow constructor parameters
