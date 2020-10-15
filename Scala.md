@@ -91,3 +91,7 @@ Extending multiple traits
 Abstract Classes
 
 Scala traits don’t allow constructor parameters
+
+
+
+
