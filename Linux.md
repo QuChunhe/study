@@ -517,6 +517,35 @@ Terminology definitions:
 
 #### CPU
 
+[CPU Utilization is Wrong](http://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
+
+The metric we call CPU utilization is really "non-idle time": the time the CPU was not running the idle thread. Your operating system kernel (whatever it is) usually tracks this during context switch. If a non-idle thread begins running, then stops 100 milliseconds later, the kernel considers that CPU utilized that entire time.
+
+Nowadays, CPUs have become much faster than main memory, and waiting on memory dominates what is still called "CPU utilization". When you see high %CPU in top(1), you might think of the processor as being the bottleneck – the CPU package under the heat sink and fan – when it's really those banks of DRAM.
+
+多CPU、多核和超线程加剧了CPU等待内存的停顿。
+
+CPU处理指令的一般步骤
+1. Instruction Fetch. Obtain instruction from program memory. The Program Counter (PC) points to the instruction to be processed
+2. Instruction Decode. Determine required actions and instruction size
+3. Operand Fetch. Locate and obtain operand data. From data memory or registers
+4. Execute..Compute result value or status
+5. Result Store. Deposit results in storage (data memory or register) for later use
+
+The average instruction executed takes a number of cycles per instruction (CPI) to be completed.
+– Measured in: cycles/instruction, CPI, Or Instructions Per Cycle (IPC)
+
+CPU has a fixed clock cycle time C = 1/clock rate
+– Measured in: seconds/cycle
+
+
+CPU performance equation
+```
+CPU execution time = PU clock cycles x Clock cycle
+                   = Instruction count x CPI x Clock cycle
+T = I x CPI x C
+```
+
 run-queue latency or dispatcher-queue latency, scheduler latency.
 
 cache warmth, CPU affinity
@@ -543,7 +572,7 @@ For real-world applications, here's how I'd interpret the IPC:
 CPU utilization  
 
 The measure of CPU utilization spans all clock cycles for eligible activities, including memory
-stall cycles. It may seem a little counterintuitive, but a CPU may be highly utilized because it is often
+stall cycles. It may seem a little counter intuitive, but a CPU may be highly utilized because it is often
 stalled waiting for memory I/O, not just executing instructions, as described in the previous section.
 
 When measured across the entire system, the user-time/kernel-time ratio indicates the type of workload
