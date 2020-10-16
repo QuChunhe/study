@@ -97,3 +97,6 @@ total variation of f over [a,b]
 positive variation of f over [a,b]
 
 [Measure Theory](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes.pdf)
+
+dominated convergence theory
+控制收敛理论
