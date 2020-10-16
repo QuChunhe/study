@@ -81,6 +81,10 @@
 
 [Logic for CS, Shai Ben-David, U Waterloo Fall 2015](https://www.youtube.com/channel/UCg9V0y9_RxG7hg5GjcyS2OA)
 
+
+
+
+
 https://cacm.acm.org/magazines/2017/12/223054-parallel-computational-thinking/fulltext
 
 https://cacm.acm.org/magazines/2017/12/223046-automatically-accelerating-non-numerical-programs-by-architecture-compiler-co-design/fulltext
@@ -140,3 +144,16 @@ http://www.dre.vanderbilt.edu/%7Eschmidt/PDF/proactor.pdf
 [Example: Knowledge Base Exchange framework](http://www.texample.net/tikz/examples/kb-exchange/)
 
 [Example: Simple flow chart](http://www.texample.net/tikz/examples/simple-flow-chart/)
+
+
+
+
+
+```
+vim /etc/hosts
+199.232.28.133    raw.githubusercontent.com
+192.168.166.206 repos.git
+
+108.174.11.74 www.slideshare.net slideshare.net
+
+```
