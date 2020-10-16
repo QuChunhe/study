@@ -4,6 +4,7 @@ Programming in Scala, Fourth Editio
 
 In Scala a function value  is an object.  Function types are classes that can be inherited by subclasses.
 
+https://hello-scala.com/202-scala-list-class.html
 
 ‘if’ expressions always return a result.
 
@@ -85,13 +86,20 @@ case object Saturday extends DayOfWeek
 Using Scala Traits as Interfaces
 
 Extending multiple traits
-* Use extends to extend the first trait
-* Use with to extend subsequent traits
+* Use **extends** to extend the first trait
+* Use **with** to extend subsequent traits
 
 Abstract Classes
 
 Scala traits don’t allow constructor parameters
 
-https://hello-scala.com/202-scala-list-class.html
 
+One way I remember those method names is to think that the : character represents the side that the sequence is on, so when I use +: I know that the list needs to be on the right, like this:
+```
+0 +: a
+```
+and when I use :+ I know the list needs to be on the left:
+```
+a :+ 4
+```
 
