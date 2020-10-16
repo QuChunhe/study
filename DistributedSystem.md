@@ -19,6 +19,50 @@ task
 - load balancing
 - pipeline
 
+[Architecting for Massive Scalability](https://www.slideshare.net/ericdboyd/architecting-for-massive-scalability-st-louis-day-of-net-2011-aug-6-2011?qid=2acd1958-d23a-40d9-b5d6-afb6ff6c99e2&v=&b=&from_search=18)
+
+What is Scalability? A service is said to be scalable if when we increase the resources in a system, it results in increased performance in a manner proportional to resources added. --Werner Vogels, CTO, Amazon.com 
+
+Measures of Performance 
+* Response Time 
+* Throughput 
+
+Measures of Scalability?
+
+What can be Scaled? 
+* Servers 
+* CPU 
+* Memory 
+* Hard Disk 
+* Network Ports 
+* Bandwidth 
+* Cooling 
+* Power 
+* Racks 
+* Floor Space
+
+Benefits of Scalability
+* Dynamic Capacity 
+* Planning Cost is Linear 
+
+
+ACID, CAP(Consistency, Availability, Partition Tolerance), BASE(Basically Available, Soft State, Eventually Consistent ) 
+
+ I Need Scalability
+ * Loose Coupling
+ * Stateless 
+ * Messaging & SOA 
+ * Async & Background Processes 
+ * Queuing 
+ * Monitoring and Diagnostics 
+
+Front-End (FE) + Back-End (BE) Architecture 
+1. (FE) requests (BE) to perform work 
+2. (BE) completes work 
+3. (BE) reports results back to (FE) 
+
+
+
 # Papers
 [1] Patrick O'Neil, Edward Cheng, Dieter Gawlick, Elizabetch O'Neil. The log-structured merge-tree (LSM-tree). Acta Informatica, 1996, 33(4): 351-385.
 
