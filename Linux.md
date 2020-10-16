@@ -505,23 +505,26 @@ yum install iotop
 The USE Method can be summarized as:  For every resource, check utilization, saturation, and errors.
 
 Terminology definitions:
-* resource: all physical server functional components (CPUs, disks, busses, ...) [1]
-* utilization: the average time that the resource was busy servicing work [2]
+* resource: all physical server functional components (CPUs, disks, busses, ...) 
+* utilization: the average time that the resource was busy servicing work 
 * saturation: the degree to which the resource has extra work which it can't service, often queued
 * errors: the count of error events
 
 
-
-
 ### Monitoring
 
-
+[Utilization is Virtually Useless as a Metric](http://www.hpts.ws/papers/2007/Cockcroft_HPTS-Useless.pdf)
 
 Headroom is available usable resources
 * Total Capacity minus Peak Utilization and Margin
 * Applies to CPU, RAM, Net, Disk and OS
 
 ![headroom](https://github.com/QuChunhe/study/raw/master/pics/Headroom.png)
+
+Utilization
+* Utilization is the proportion of busy time
+* Always defined over a time interval
+
 
 #### CPU
 
