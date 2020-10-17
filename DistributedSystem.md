@@ -395,7 +395,7 @@ https://www.slideshare.net/jboner/scalability-availability-stability-patterns
 [How To Scale Your Software Product](https://www.devteam.space/blog/how-to-scale-your-software-product/)
 
 
-[Scalability Design Principles](https://elastisys.com/2015/09/10/scalability-design-principles/)
+[Scalability Design Principles](https://elastisys.com/scalability-design-principles/)
 
 The different dimensions of software scalability
 * Scalability of performance: You need high performance to support more users, and adding more capacity can help to improve the performance of the software. However, this is subject to limits since performance doesn’t scale linearly.
