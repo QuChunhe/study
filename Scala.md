@@ -103,3 +103,4 @@ and when I use :+ I know the list needs to be on the left:
 a :+ 4
 ```
 
+ a function that takes another function as an input parameter is known as a Higher-Order Function (HOF).
