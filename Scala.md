@@ -95,18 +95,18 @@ Scala traits don’t allow constructor parameters
 
 
 One way I remember those method names is to think that the : character represents the side that the sequence is on, so when I use +: I know that the list needs to be on the right, like this:
-```
+```scala
 0 +: a
 ```
 and when I use :+ I know the list needs to be on the left:
-```
+```scala
 a :+ 4
 ```
 
  a function that takes another function as an input parameter is known as a Higher-Order Function (HOF).
  
  Option/Some/None  Try/Success/Failure
- ```
+ ```scala
 def toInt(s: String): Option[Int] = {
     try {
         Some(Integer.parseInt(s.trim))
@@ -121,7 +121,7 @@ toInt(x) match {
 }
 ```
 
-```
+```scala
 def toInt(s: String): Try[Int] = Try {
     Integer.parseInt(s.trim)
 }
