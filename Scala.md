@@ -104,3 +104,52 @@ a :+ 4
 ```
 
  a function that takes another function as an input parameter is known as a Higher-Order Function (HOF).
+ 
+ Option/Some/None  Try/Success/Failure
+ ```
+def toInt(s: String): Option[Int] = {
+    try {
+        Some(Integer.parseInt(s.trim))
+    } catch {
+        case e: Exception => None
+    }
+}
+
+toInt(x) match {
+    case Some(i) => println(i)
+    case None => println("That didn't work.")
+}
+```
+
+```
+def toInt(s: String): Try[Int] = Try {
+    Integer.parseInt(s.trim)
+}
+
+toInt(x) match {
+    case Success(i) => println(i)
+    case Failure(s) => println(s"Failed. Reason: $s")
+}
+ ```
+ 
+ A companion object in Scala is an object that’s declared in the same file as a class, and has the same name as the class. 
+ 
+ apply  and unapply method
+ 
+ Case Classes
+* Case class constructor parameters are public val fields by default, so accessor methods are generated for each parameter.
+* An **apply** method is created in the companion object of the class, so you don’t need to use the new keyword to create a new instance of the class.
+* An **unapply** method is generated, which lets you use case classes in more ways in match expressions.
+* A **copy** method is generated in the class. I never use this in Scala/OOP code, but I use it all the time in Scala/FP.
+* **equals** and **hashCode** methods are generated, which let you compare objects and easily use them as keys in maps.
+* A default **toString** method is generated, which is helpful for debugging.
+
+the biggest advantage of case classes is that they support pattern matching.
+
+Methods and values that aren’t associated with individual instances of a class belong in singleton objects, denoted by using the keyword **object** instead of **class**.
+
+
+Case objects
+* It is serializable
+* It has a default **hashCode** implementation
+
