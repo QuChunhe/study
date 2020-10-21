@@ -1221,7 +1221,7 @@ interprocess communication
 3. 重复利用CPU的。如果线程数<=CPU总核数，可以并发执行；如果线程数>CPU总核数，使得I/O操作和计算操作可以相互重叠。
 * 
 
-
+Wiliam Stallings, Operating Systems: Internals and Design Princiles (Ninth Edition),Pearson Education Limited, 2018
 
 lock unlock
 
@@ -1236,13 +1236,13 @@ barrier
 * 可重用的
 * 有消耗的
 
-一组线程由于不适当的申请和独占资源，所造成的相互阻塞和等待的，
+一组线程以不适当方式竞争资源，造成相互阻塞和相互等待的问题。在并发编程中，非常常见的问题，在极端情况下导致整个程序无法运行。
 
 产生死锁的必要条件(Coffman 1971)
-1. 资源有限
-2. 互斥使用
-3. 持有等待
-4. 不能抢占
+1. 循环等待 (Circular Wait)。
+2. 互斥使用 (Mutual exclusion)
+3. 持有等待 (Hold and Wait)
+4. 不能抢占 (No Preemption)
 
 哲学家就餐问题
 
@@ -1256,7 +1256,7 @@ barrier
 * 消除非抢占条件
 * 消除循环等的
 
-死锁(deadlock)， 活锁(livelock)， 饥饿
+死锁(deadlock)， 活锁(livelock)， 饥饿(Starvation)
 
 基本word读写操作是原子性的
 
