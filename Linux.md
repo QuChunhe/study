@@ -1200,6 +1200,14 @@ The following are signals which are useful to a system user:
 * SIGTSTP 20 – sent to a process by its controlling terminal to request it to stop (terminal stop); initiated by the user pressing [Ctrl+Z].
 
 
+interprocess communication
+* pipe, named pipe
+* socket
+* signal
+* semaphore
+* shared memory
+* message queue
+
 
 线程是进程厘米的一个执行上下文，或者执行序列。
 
@@ -1207,3 +1215,49 @@ The following are signals which are useful to a system user:
 
 线程独享的资源： 程序计数器、寄存器、栈、状态字。
 
+线程的用处
+1. 在一个应用中（一个process）中实现并发，同时执行多个任务
+2. 线程比进程更轻便，与进程相比，线程更容易地被创建和销毁
+3. 重复利用CPU的。如果线程数<=CPU总核数，可以并发执行；如果线程数>CPU总核数，使得I/O操作和计算操作可以相互重叠。
+* 
+
+
+
+lock unlock
+
+barrier
+
+动态资源使用
+1. 请求资源
+2. 使用资源
+3. 释放资源
+
+资源的分类
+* 可重用的
+* 有消耗的
+
+一组线程由于不适当的申请和独占资源，所造成的相互阻塞和等待的，
+
+产生死锁的必要条件(Coffman 1971)
+1. 资源有限
+2. 互斥使用
+3. 持有等待
+4. 不能抢占
+
+哲学家就餐问题
+
+避免死锁：检查死锁
+许可死锁：死锁的恢复，许可抢占
+
+
+消除死锁的必要条件
+* 消除资源独占条件
+* 消除保持和请求条件
+* 消除非抢占条件
+* 消除循环等的
+
+死锁(deadlock)， 活锁(livelock)， 饥饿
+
+基本word读写操作是原子性的
+
+对于特点数据结构的独占访问，使用CAS（Compare-and-Swap)，或者TAS（test-and-set)指令
