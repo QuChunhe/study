@@ -1026,6 +1026,8 @@ Overriding means having two methods with the same method name and parameters (i.
 
 
 |Top 10 Common Java Performance Problems|
+
+
 | :------| :-------------------------------------|
 |Memory| 1. Out-of-Memory Errors in the JVM |
          2. Excessive Garbage Collection    |
