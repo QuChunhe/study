@@ -1036,7 +1036,7 @@ Overriding means having two methods with the same method name and parameters (i.
 |Soft |	Airline reservation system,online stock quotes, VoIP (Skype) |	Milliseconds–seconds |Low—no system failure, no life at risk|  
 |Near |Skype video, home automation |Seconds–minutes| High—no system failure,no life at risk |
 
-
+|Classification  | Example |L
 | :------------ | :------------ |
 |Memory | 1. Out-of-Memory Errors in the JVM |
         | 2. Excessive Garbage Collection    |
