@@ -1020,3 +1020,13 @@ Overriding means having two methods with the same method name and parameters (i.
  Inner Class, Anonymous Classes, Local Classes,static nested classes
  
  https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+ 
+ [Top 10 Java Performance Problems and How to Solve Them](https://www.eginnovations.com/blog/top-10-java-performance-problems/#JVM-Memory)
+
+
+
+|Top 10 Common Java Performance Problems:|
+|Memory| 1. Out-of-Memory Errors in the JVM |
+         2. Excessive Garbage Collection    |
+         3. Improper Data Caching           |
+|Thread|                                     |
