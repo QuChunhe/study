@@ -1028,6 +1028,15 @@ Overriding means having two methods with the same method name and parameters (i.
 |Top 10 Common Java Performance Problems|
 
 
+
+
+|Classification  | Example |Latency measured in |Tolerance for delay|
+| :------------ | :------------ | :------------ | :------------| 
+|Hard |Pacemaker, anti-lock brakes |Microseconds–milliseconds |None—total system failure, potential loss of life|
+|Soft |	Airline reservation system,online stock quotes, VoIP (Skype) |	Milliseconds–seconds |Low—no system failure, no life at risk|  
+|Near |Skype video, home automation |Seconds–minutes| High—no system failure,no life at risk |
+
+
 | :------------ | :------------ |
 |Memory| 1. Out-of-Memory Errors in the JVM |
        |  2. Excessive Garbage Collection    |
