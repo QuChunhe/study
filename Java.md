@@ -1023,24 +1023,19 @@ Overriding means having two methods with the same method name and parameters (i.
  
  [Top 10 Java Performance Problems and How to Solve Them](https://www.eginnovations.com/blog/top-10-java-performance-problems/#JVM-Memory)
 
-* Memory 
-
+* Memory   
   1. Out-of-Memory Errors in the JVM
   2. Excessive Garbage Collection
   3. Improper Data Caching
-* Threads 
-
+* Threads  
   4. Thread Deadlocks and Gridlocks
-* Database 
-
+* Database   
   5. Running Out of Database Connections
   6. Slow Database Calls
-* Application/Code 
-
+* Application/Code   
   7. Java Code-Level Issues
   8. Java Application Server Bottlenecks
-* Infrastructure 
-
+* Infrastructure   
   9. Server Performance Problems
   10.Network Latency and Connectivity Issues
 
