@@ -1031,10 +1031,10 @@ Overriding means having two methods with the same method name and parameters (i.
   4. Thread Deadlocks and Gridlocks
 * Database   
   5. Running Out of Database Connections
-  6. Slow Database Calls
+  6. Slow Database Calls   
 * Application/Code   
-  7. Java Code-Level Issues
-  8. Java Application Server Bottlenecks
+  7. Java Code-Level Issues   
+  8. Java Application Server Bottlenecks   
 * Infrastructure   
   9. Server Performance Problems
   10.Network Latency and Connectivity Issues
