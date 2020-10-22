@@ -1223,9 +1223,26 @@ interprocess communication
 1. 在一个应用中（一个process）中实现并发，同时执行多个任务
 2. 线程比进程更轻便，与进程相比，线程更容易地被创建和销毁
 3. 重复利用CPU的。如果线程数<=CPU总核数，可以并发执行；如果线程数>CPU总核数，使得I/O操作和计算操作可以相互重叠。
-* 
+
+Risks of threads
+* Safety hazards: syncronization, contention
+* Liveness Hazards: race conditions, deadlock
+* Performance hazards: context switching overhead,互扰，相互干扰
+
+liveness:A concurrent application's ability to execute in timely manner is known as its liveness.
+
+死锁(deadlock)， 活锁(livelock)， 饥饿(Starvation)
+
+Deadlock: a situation where two or more threads are blocked forever, waiting for each other.
+
+starvation: A situation where a thread is unable to gain regular access to shared resources and is unable to make progress. This happens when shared resources are made unavailable for long periods by greedy threads.
 
 
+livelock: A thread often acts in response to the action of another thread. If the other thread's action is aslo a response to the action of another thread, then livelock may result. As with deadlock, livelocked threads are unable to make further progress. However, the threads are not blocked, they are simply to busy responding to each other to resume work.
+
+Guarded blocks.
+
+Immutable Objects
 
 lock unlock
 
@@ -1290,7 +1307,6 @@ Assignment Edges - A set of directed arcs from Rj to Pi indicating that resource
 * 消除非抢占条件
 * 消除循环等的
 
-死锁(deadlock)， 活锁(livelock)， 饥饿(Starvation)
 
  
 
