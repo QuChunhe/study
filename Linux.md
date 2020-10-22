@@ -1165,6 +1165,10 @@ tracker reset -r
 
 邹恒明著，计算机的心智：操作系统之哲学原理，机械工业出版社，2009
 
+Wiliam Stallings, Operating Systems: Internals and Design Princiles (Ninth Edition),Pearson Education Limited, 2018
+
+https://www.drdobbs.com/parallel/the-many-faces-of-deadlock/209900973
+
 进程管理、内存管理和文件管理是操作系统的三大核心功能。
 
 进程=程序+执行
@@ -1221,7 +1225,7 @@ interprocess communication
 3. 重复利用CPU的。如果线程数<=CPU总核数，可以并发执行；如果线程数>CPU总核数，使得I/O操作和计算操作可以相互重叠。
 * 
 
-Wiliam Stallings, Operating Systems: Internals and Design Princiles (Ninth Edition),Pearson Education Limited, 2018
+
 
 lock unlock
 
@@ -1239,10 +1243,18 @@ barrier
 一组线程以不适当方式竞争资源，造成相互阻塞和相互等待的问题。在并发编程中，非常常见的问题，在极端情况下导致整个程序无法运行。
 
 产生死锁的必要条件(Coffman 1971)
-1. 循环等待 (Circular Wait)。
-2. 互斥使用 (Mutual exclusion)
-3. 持有等待 (Hold and Wait)
-4. 不能抢占 (No Preemption)
+1. 互斥使用 (Mutual exclusion)：一个资源在一段时间内仅仅许可一个进程使用。
+2. 持有等待 (Hold and Wait)：在等待分配其他资源时，进程继续持有已经分配给自己的资源。
+3. 不能抢占 (No Preemption)：不能强迫持有一个资源的进程放弃此资源。
+4. 循环等待 (Circular Wait)。
+
+1,2,3是必要条件
+
+Deadlock can happen whenever there is a blocking (or waiting) cycle among concurrent tasks.
+
+deadlock: When N concurrent tasks enter a cycle where each one is blocked waiting for the next.
+
+Clearly, blocking operations include all kinds of blocking synchronization
 
 哲学家就餐问题
 
@@ -1257,6 +1269,16 @@ barrier
 * 消除循环等的
 
 死锁(deadlock)， 活锁(livelock)， 饥饿(Starvation)
+
+
+First, to prevent locking cycles within the code you control, use lock hierarchies and other ordering techniques to ensure that your program always acquires all mutexes in the same order。
+
+Second, to prevent many kinds of message cycles, disciplines have been proposed to express contracts on communication channels, which helps to impose a known ordering on messages.
+
+Probably the best you can do today is to roll your own deadlock detection in code, by adopting a discipline like the following:
+* Identify every condition or resource that can be waited for (a mutex, a message, a value of an atomic variable, an exclusive use of a file) and give it a unique name by creating a dummy object to represent it.
+* Instrument every "start wait" and "end wait" point in your code by calling two helper functions: The first records that a condition or resource is about to be waited for (e.g,. StartWait(thing)) and should internally record the current thread's ID and the thing being waited for; it can also check to see if there is now a waiting cycle among threads and resources, and report the deadlock if that occurs. The second records that a wait has ended (e.g., EndWait(thing)) and will remove the waiting edge.
+
 
 基本word读写操作是原子性的
 
