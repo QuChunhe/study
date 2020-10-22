@@ -1256,6 +1256,11 @@ deadlock: When N concurrent tasks enter a cycle where each one is blocked waitin
 
 Clearly, blocking operations include all kinds of blocking synchronization
 
+经典的同步问题
+* Bounded-Buffer Problem
+* Readers and Writers problem
+* Dinning-Philosophers Problem
+
 哲学家就餐问题
 
 避免死锁：检查死锁
@@ -1278,6 +1283,9 @@ Second, to prevent many kinds of message cycles, disciplines have been proposed 
 Probably the best you can do today is to roll your own deadlock detection in code, by adopting a discipline like the following:
 * Identify every condition or resource that can be waited for (a mutex, a message, a value of an atomic variable, an exclusive use of a file) and give it a unique name by creating a dummy object to represent it.
 * Instrument every "start wait" and "end wait" point in your code by calling two helper functions: The first records that a condition or resource is about to be waited for (e.g,. StartWait(thing)) and should internally record the current thread's ID and the thing being waited for; it can also check to see if there is now a waiting cycle among threads and resources, and report the deadlock if that occurs. The second records that a wait has ended (e.g., EndWait(thing)) and will remove the waiting edge.
+
+
+ThreadMXBean: ManagementFactory.getThreadMXBean(), findDeadlockedThread()
 
 
 基本word读写操作是原子性的
