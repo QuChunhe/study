@@ -1038,7 +1038,7 @@ Overriding means having two methods with the same method name and parameters (i.
 
 
 | :------------ | :------------ |
-|Memory| 1. Out-of-Memory Errors in the JVM |
-       |  2. Excessive Garbage Collection    |
-       |  3. Improper Data Caching           |
+|Memory | 1. Out-of-Memory Errors in the JVM |
+        | 2. Excessive Garbage Collection    |
+        | 3. Improper Data Caching           |
 |Thread|                                     |
