@@ -1256,6 +1256,18 @@ deadlock: When N concurrent tasks enter a cycle where each one is blocked waitin
 
 Clearly, blocking operations include all kinds of blocking synchronization
 
+
+Deadlock Modelling：Resource-Allocation Graph 
+
+A set of resource categories, { R1, R2, R3, . . ., RN }, which appear as square nodes on the graph. Dots inside the resource nodes indicate specific instances of the resource. ( E.g. two dots might represent two laser printers. ) 
+
+A set of processes, { P1, P2, P3, . . ., PN } 
+
+Request Edges - A set of directed arcs from Pi to Rj, indicating that process Pi has requested Rj, and is currently waiting for that resource to become available. 
+
+Assignment Edges - A set of directed arcs from Rj to Pi indicating that resource Rj has been allocated to process Pi, and that Pi is currently holding resource Rj. 
+
+
 经典的同步问题
 * Bounded-Buffer Problem
 * Readers and Writers problem
@@ -1275,6 +1287,7 @@ Clearly, blocking operations include all kinds of blocking synchronization
 
 死锁(deadlock)， 活锁(livelock)， 饥饿(Starvation)
 
+ 
 
 First, to prevent locking cycles within the code you control, use lock hierarchies and other ordering techniques to ensure that your program always acquires all mutexes in the same order。
 
