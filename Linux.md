@@ -1250,11 +1250,9 @@ barrier
 
 1,2,3是必要条件
 
-Deadlock can happen whenever there is a blocking (or waiting) cycle among concurrent tasks.
+Deadlock can happen whenever there is a blocking (or waiting) cycle among concurrent tasks. deadlock: When N concurrent tasks enter a cycle where each one is blocked waiting for the next. Clearly, blocking operations include all kinds of blocking synchronization
 
-deadlock: When N concurrent tasks enter a cycle where each one is blocked waiting for the next.
-
-Clearly, blocking operations include all kinds of blocking synchronization
+A process is deadlock if it is waiting for en event which is never going to happen.Deadlocks can occur via system call, locking, etc.
 
 
 Deadlock Modelling：Resource-Allocation Graph 
@@ -1274,6 +1272,13 @@ Assignment Edges - A set of directed arcs from Rj to Pi indicating that resource
 * Dinning-Philosophers Problem
 
 哲学家就餐问题
+
+* Deadlock Prevention
+* Deadlock Avoidance
+* Deadlock Detection
+* Recovery from Deadlock
+
+
 
 避免死锁：检查死锁
 许可死锁：死锁的恢复，许可抢占
