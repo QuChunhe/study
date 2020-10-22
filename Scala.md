@@ -153,3 +153,5 @@ Case objects
 * It is serializable
 * It has a default **hashCode** implementation
 
+The rule of thumb is that a parameterless method that doesn’t modify the object
+has no parentheses.
