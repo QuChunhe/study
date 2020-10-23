@@ -479,6 +479,9 @@ Sharding
 * Scatter & gather (MapReduce)
 
 Design for high scalability
-* Relax temporal constraints
+* Relax temporal constraints: ACID, BASE, CAP
+  * Quorum
+  * Harvest & Yield
+  * Hinted handoffs
 
 much request, complex function, big data 大量请求， 复杂功能，海量请求
