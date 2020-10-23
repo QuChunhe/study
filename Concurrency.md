@@ -888,3 +888,16 @@ book Semaphores, Locks, and Conditional Critical Regions
 [Parallel Computing](https://docs.microsoft.com/en-us/previous-versions/bb964701(v=msdn.10)?redirectedfrom=MSDN)
 
 [Quantitative System Performance: Computer System Analysis Using Queueing Network Models](https://homes.cs.washington.edu/~lazowska/qsp/)
+
+
+two parameters:
+* workload intensity
+* service demand
+
+performance measure: 
+* utilization: the proportion of time the server is busy
+* residence time: the average time spande at the service center by a customer, both queuing and receiving service
+* queue length: the average number of customers at the service center, both waiting and receiving service
+* throughput
+
+
