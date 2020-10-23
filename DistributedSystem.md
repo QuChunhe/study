@@ -449,3 +449,36 @@ Always use timeouts (if possible)
 ＃＃　分布式ID
 
 [分布式ID之为什么需要分布式ID以及分布式ID的业务需求](https://www.itqiankun.com/article/1565060480)
+
+[Size does Matter: pattrens for high scalability](https://www.slideshare.net/ufried/scalability-patterns)
+
+Basic of Scalability
+* Strive for Simplicity: The system should be made as simple as possible (but no simpler)
+* Scale out, not up
+* Be stateless.
+* Share nothing
+* Communicated Asynchronously
+
+Dimensions of Scalability
+* Splitting (By function or resource)
+* Replication
+* Sharding
+
+Replication: High read to write ratio
+* Load balancer & shared nothing units
+* load balancer & stateless nodes & scalable storage
+* master slave replication
+* masterless replication
+
+Splitting
+* Split up by noun (data) or verb (function)
+* Best implemented with shared nothing units and/or anynchronous communication
+
+Sharding
+* Consistent Hashing
+* Scatter & gather (MapReduce)
+
+Design for high scalability
+* Relax temporal constraints
+
+much request, complex function, big data 大量请求， 复杂功能，海量请求
