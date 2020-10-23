@@ -483,5 +483,11 @@ Design for high scalability
   * Quorum
   * Harvest & Yield
   * Hinted handoffs
+* Cache as cache can
+  * Short response times and/or high throughput are important
+  * High read to write ratio
+* Keep dynamic data closer to the end-user
 
+  
+  
 much request, complex function, big data 大量请求， 复杂功能，海量请求
