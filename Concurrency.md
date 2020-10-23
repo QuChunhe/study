@@ -887,3 +887,4 @@ book Semaphores, Locks, and Conditional Critical Regions
 
 [Parallel Computing](https://docs.microsoft.com/en-us/previous-versions/bb964701(v=msdn.10)?redirectedfrom=MSDN)
 
+[Quantitative System Performance: Computer System Analysis Using Queueing Network Models](https://homes.cs.washington.edu/~lazowska/qsp/)
