@@ -2,6 +2,8 @@
 
 [scalability-availability-stability-patterns](https://www.slideshare.net/jboner/scalability-availability-stability-patterns)
 
+https://akfpartners.com/growth-blog
+
 
 [从事分布式系统、计算、hadoop 等方面工作需要哪些基础](https://www.zhihu.com/question/19868791/answer/88873783l)
 
@@ -10,6 +12,34 @@
 
 
 # Idea
+
+分布式的两个视角或者维度
+
+分布式的对象
+* 数据(data)
+* 功能(function)
+* 请求(request)
+
+分布式的方法：
+* 分割/划分（split/shard)
+* 复制/克隆（replicate/clone),
+
+请求分解为多个请求：请求数据，检查数据是否准备完成，下载数据
+
+请求复制：热备
+
+分布式的目的
+* 提高吞吐
+* 提高可靠
+* 降低时延，功能和模块的分布式部署，增加了调用的时延，通常会增加服务的相应时间。但是如果挖掘处理的并发性，实现的并行处理，可以弥补分布式处理带来的时间损耗，降低来实现。
+
+|  |数据 | 功能 | 请求 |
+| :------------ | :------------ | :------------ | :------------ |
+|分割/划分 |数据划分<br>* 分担写负载 | pipeline | 大任务请求：划分为多个阶段性请求和多个并行请求（页面浏览）|
+|复制/克隆 | 数据复制<br>* 分担读负载 <br>* 提高可靠性<br>*   Cache | 负载均衡 |热备| 
+
+
+数据-分割/划分，提高系统的并发度
 
 data
 - partitions
@@ -121,16 +151,59 @@ requirements.
 The second category of overengineering deals with making something overly complex
 and making something in a complex way.
 
+[Faster Time to Market – How to Avoid Overengineering (Rule 1)](https://akfpartners.com/growth-blog/faster-time-to-market-how-to-avoid-overengineering-yagni)
+
+Overengineering is solving problems you don’t have.
+
+We will look at two sides of overengineering: Exceeding useful requirements, and spending too much effort to get a job done.
+
 ##### Rule 2—Design Scale into the Solution　(D-I-D Process)
 
+How to use:
+* Design for 20x capacity.
+* Implement for 3x capacity.
+* Deploy for roughly 1.5x capacity.
+
+
+D-I-D provides a cost-effective, JIT method of scaling your product.
+
+Dell, configure-to-order： 按订单配置，just-in-time manufacturing：及时制造
 
 AKF Partners’ Design-Implement-Deploy or D-I-D approach to thinking about scalability.
+
+[The DID Process - Scale Design Principles (Rule 2)](https://akfpartners.com/growth-blog/scale-design-principles-the-did-process)
+
+
+Ideally, what you want is JIT (just-in-time) scalability. The idea originates from JIT manufacturing, and relates to reducing delivery time. JIT scalability is the ability to scale up or down when needed, as needed.
+
+infrastructure-as-a-service (IaaS) 
+
+
 
 ##### Rule 3—Simplify the Solution Three Times Over
 
 Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二八定律、帕累托定律、最省力法则、不平衡原则、犹太法则。意大利经济学家帕累托提出的。法则认为原因和结果、投入和产出、努力和报酬之间本来存在着无法解释的不平衡
 
+[Scalability Rules - How to Simplify Scope, Design, and Implementation (Rule 3)](https://akfpartners.com/growth-blog/scalability-rules-how-to-simplify-scope-design-and-implementation)
 
+The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
+* X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
+* Y Axis Scaling: Split Disimilar Thing. Scaling on the Y Axis consists of functional decomposition. Monoliths are separated along functional or resource oriented boundaries to create macro and microservices. This allows you to scale earch service independently and apply more resources only the services that need them.
+* Z Axis Scaling: Split Similar Things. Scaling on the Z Axis consists of each server running the same code but for only a subset (or shard - 1/Nth) of the data. The most common Z axis split is by geography for B2C implementations, which can also enable faster response times. B2B implementations commonly split along a company or group of companies boundary.
+
+
+AKF Scale Cube
+* X-Axis: Horizontal Duplication and Cloning of services and data
+* Y-Axis: Functional Decomposition and Segmentation - Microservices (or micro-services)
+* Z-Axis: Service and Data Partitioning along Customer Boundaries - Shards/Pods
+
+
+
+[Reduce DNS lookups to improve website performance (Rule 4)](https://akfpartners.com/growth-blog/reduce-dns-lookups-to-improve-website-performance)
+
+
+
+[Scalability Rules - Reduce Objects to Improve Website Performance (Rule 5)](https://akfpartners.com/growth-blog/scalability-rules-reduce-objects-to-improve-website-performance)
 
 # 分布式存储
 
@@ -491,3 +564,26 @@ Design for high scalability
   
   
 much request, complex function, big data 大量请求， 复杂功能，海量请求
+
+http://www.redbooks.ibm.com/redpapers/pdfs/redp5109.pdf
+
+[AKF Availability Cube](https://akfpartners.com/growth-blog/akf-availability-cube)
+
+[The Scale Cube](https://akfpartners.com/growth-blog/scale-cube)
+
+[Architectural Principles - Fault Isolation & Swimlanes](https://akfpartners.com/growth-blog/fault-isolation-swim-lane)
+
+[The Domino or Multiplicative Effect of Failure](https://akfpartners.com/growth-blog/the-domino-or-multiplicative-effect-of-failure)
+
+[The AKF Scale Cube: X Axis in the Persistence Tier](https://akfpartners.com/growth-blog/the-akf-scale-cube-x-axis-in-the-persistence-tier)
+
+[Measuring Availability](https://akfpartners.com/growth-blog/measuring-availability)
+
+[The Scale Cube: Achieve Security Through Scalability](https://akfpartners.com/growth-blog/the-scale-cube-achieve-security-through-scalability)
+
+AKF Availability Cube
+* X axis: Duplicate Everything. i.e. "N" x firewalls, switches, database instances, power supplies, services etc.- each a clone, increasing availability
+* Y Axis: Eliminate the multiplicative effect of Failure in "Deep" or "Broad" chains.
+* Z Axis:Fault Isolate Customer Segment. Reduce the impact of outages to smaller customer segments.
+
+The X Axis of the Availability Cube: Any product/service/solution we develop should have multiple instances (deployments) of the service/product. 

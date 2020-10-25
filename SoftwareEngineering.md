@@ -4,6 +4,10 @@
 * 逐步分解为细粒度的、相对独立的模块
 * 通过简单的接口集成模块所提供的功能
 
+传统的工厂流水线，比如汽车或者手机制造工厂
+* 标准化，流水线的生产是高度标准化的
+* 固定化，每个人的工作是固定不变，从上一个流程输出何种半成品
+* 可衡量，产品质量和每个人的工作是可以衡量的
 
 modular programming,
 
@@ -22,7 +26,13 @@ In computer programming, cohesion refers to the degree to which the elements ins
 
 迪米特法则（Law of Demeter）又叫作最少知识原则（Least Knowledge Principle 简写LKP），就是说一个对象应当对其他对象有尽可能少的了解
 
+[KISS](https://en.wikipedia.org/wiki/KISS_principle)
 
+[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+
+[SLA](http://www.principles-wiki.net/principles:single_level_of_abstraction)
+
+[“You aren’t gonna need it!” (YAGNI)](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 
 [What Is Design Pattern?](http://www.vishalchovatiya.com/what-is-design-pattern/)
 
@@ -33,19 +43,21 @@ The SOLID principles comprise of these five principles:
 * ISP – Interface Segregation Principle
 * DIP – Dependency Inversion Principle
 
+[SOLID](https://en.wikipedia.org/wiki/SOLID)
 
 架构风格（architecture style)
 
 
-
+[10 Coding principles and acronyms demystified!](https://areknawo.com/10-coding-principles-and-acronyms-demystified/)
 
 
 ![The Software Design & Architecture Stack](https://github.com/QuChunhe/study/blob/master/pics/Software-Design-Architecture-Stack.png)
 
 高内聚，松耦合
 
-对于高内聚低耦合，很多人即熟悉又陌生。说熟悉，是因为软件工程中最为常见的，说陌生，是因为大多数说不清楚何时，类似于道，只可意会会，不可言传。不利于设施，也不利于。难以找到相关指标的数据支撑，考核过程中非理性因素难以控制，
+对于高内聚低耦合，很多人即熟悉又陌生。说熟悉，是因为软件工程中最为常见的准则，说陌生，是因为大多数说不清楚何时，类似于道，只可意会，不可言传。不利于设施，也不利于。难以找到相关指标的数据支撑，考核过程中非理性因素难以控制，
 
+虽然工程师都在谈论，但是实际上却无从下手，甚至判断一个是否是高内聚松耦合时，还会争论不休
 
 需要明确和简单的指标衡量，这个指标很好地反映了高内聚和松耦合性
 
