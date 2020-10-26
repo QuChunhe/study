@@ -278,8 +278,8 @@ Program Structures
   * Fork/Join
 * Data Structures
   * Shared Data
-  * Distributed Array. break array into thread specific parts.
-  * Shared Queue
+  * Distributed Array. break array into thread specific parts. Be aware of cache line overlap, Keep data distribution coarse.
+  * Shared Queue. Fundamental part of Master/Worker.
 
 
 # Concurrency
