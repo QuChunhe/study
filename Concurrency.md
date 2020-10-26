@@ -270,7 +270,16 @@ Problem decomposition
   * linear: pipeline
   * recursive: event-based coordination
   
-  
+Program Structures
+* Program Structrues
+  * SPMD: Single Progam, Multiple data
+  * Master/Worker. Task are highly variable. Program Structure does't map onto loops. Master sets up tasks and waits for completion. Workers grab task from queue, execute and then grap the next one.
+  * Loop Parallelism. Split iterations of the loop out to threads. Be careful of memory use and process granularity.
+  * Fork/Join
+* Data Structures
+  * Shared Data
+  * Distributed Array. break array into thread specific parts.
+  * Shared Queue
 
 
 # Concurrency
