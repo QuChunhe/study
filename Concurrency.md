@@ -946,3 +946,12 @@ performance measure:
 * throughput
 
 http://www.johngustafson.net/pubs/pub13/amdahl.htm
+
+# Asynchrony
+
+* express computation that will run outside the main flow
+* handle errors if they occur during processing
+* tell our computation how to return the result to us
+* use type-safte constructs.
+
+
