@@ -949,6 +949,7 @@ http://www.johngustafson.net/pubs/pub13/amdahl.htm
 
 # Asynchrony
 
+[Async fun ](https://www.slideshare.net/TomaszKogut/async-fun?qid=13cbb241-6304-44be-a0a0-ed9e05782a3d&v=&b=&from_search=65)
 * express computation that will run outside the main flow
 * handle errors if they occur during processing
 * tell our computation how to return the result to us
