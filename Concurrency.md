@@ -241,6 +241,8 @@ par-do, do in parallel
 [Designing Parallel Algorithms: Part 1](https://www.drdobbs.com/parallel/designing-parallel-algorithms-part-1/223100878)
 
 
+[Parallel Programming: Beyond the Critical Section](https://www.slideshare.net/Tony.Albrecht/parallel-programming-beyond-the-critical-section-presentation?qid=beb3d4ff-d8bb-44b8-bd00-c72ce37dd580&v=&b=&from_search=1)
+
 The problems of Parallel Programming
 * Race conditions
 * deadlocks
