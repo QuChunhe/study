@@ -16,9 +16,9 @@ https://akfpartners.com/growth-blog
 分布式的两个视角或者维度
 
 分布式的对象
-* 数据(data)
-* 功能(function)
-* 请求(request)
+* 数据(data)，存储的分布化
+* 功能(function)，计算和处理的分布化
+* 请求(request)，
 
 分布式的方法：
 * 分割/划分（split/shard)
@@ -29,9 +29,9 @@ https://akfpartners.com/growth-blog
 请求复制：热备
 
 分布式的目的
-* 提高吞吐
-* 提高可靠
-* 降低时延，功能和模块的分布式部署，增加了调用的时延，通常会增加服务的相应时间。但是如果挖掘处理的并发性，实现的并行处理，可以弥补分布式处理带来的时间损耗，降低来实现。
+* 提高吞吐量
+* 提高可靠性
+* 降低时延，功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是:a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
 
 |  |数据 | 功能 | 请求 |
 | :------------ | :------------ | :------------ | :------------ |
@@ -101,7 +101,7 @@ Front-End (FE) + Back-End (BE) Architecture
 
 # Books
 
-#### Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algorithms, and Systems. Cambridge University Press. 2008
+### Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algorithms, and Systems. Cambridge University Press. 2008
 
 causality, physical time, logical time
 
@@ -138,11 +138,13 @@ The system of scalar clocks is not strongly consistent;
 Isomorphism
 
 
-#### Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scaling Web Sites Second Edition, 2017
+### Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scaling Web Sites Second Edition, 2017
+
+#### Reduce the Equation 大道至简
 
 keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.
 
-##### Rule 1—Don’t Overengineer the Solution
+##### Rule 1—Don’t Overengineer the Solution 不要过度设计方案
 
 The first category covers products designed and implemented to exceed their useful
 requirements.
@@ -157,7 +159,7 @@ Overengineering is solving problems you don’t have.
 
 We will look at two sides of overengineering: Exceeding useful requirements, and spending too much effort to get a job done.
 
-##### Rule 2—Design Scale into the Solution　(D-I-D Process)
+##### Rule 2—Design Scale into the Solution　(D-I-D Process) 将可扩展性设计到方案中（设计-实现-部署过程）
 
 How to use:
 * Design for 20x capacity.
@@ -180,11 +182,31 @@ infrastructure-as-a-service (IaaS)
 
 
 
-##### Rule 3—Simplify the Solution Three Times Over
+##### Rule 3—Simplify the Solution Three Times Over 三重简化方案
+
+How to use:
+* Simplify scope using the Pareto Principle.
+* Simplify design by thinking about cost effectiveness and scalability.
+* Simplify implementation by leveraging the experience of others.
 
 Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二八定律、帕累托定律、最省力法则、不平衡原则、犹太法则。意大利经济学家帕累托提出的。法则认为原因和结果、投入和产出、努力和报酬之间本来存在着无法解释的不平衡
 
 [Scalability Rules - How to Simplify Scope, Design, and Implementation (Rule 3)](https://akfpartners.com/growth-blog/scalability-rules-how-to-simplify-scope-design-and-implementation)
+
+
+##### Rule 4—Reduce DNS Lookups 减少DNS查找
+
+How to use: Minimize the number of DNS lookups required to download pages, but balance
+this with the browser’s limitation for simultaneous connections.
+
+[Reduce DNS lookups to improve website performance (Rule 4)](https://akfpartners.com/growth-blog/reduce-dns-lookups-to-improve-website-performance)
+
+##### Rule 5—Reduce Objects Where Possible
+
+How to use:
+* Reduce or combine objects but balance this with maximizing simultaneous connections.
+* Look for opportunities to reduce weight of objects as well.
+* Test changes to ensure performance improvements.
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
@@ -199,7 +221,10 @@ AKF Scale Cube
 
 
 
-[Reduce DNS lookups to improve website performance (Rule 4)](https://akfpartners.com/growth-blog/reduce-dns-lookups-to-improve-website-performance)
+
+
+
+
 
 
 
