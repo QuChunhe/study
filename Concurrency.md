@@ -900,4 +900,4 @@ performance measure:
 * queue length: the average number of customers at the service center, both waiting and receiving service
 * throughput
 
-
+http://www.johngustafson.net/pubs/pub13/amdahl.htm
