@@ -239,6 +239,40 @@ par-do, do in parallel
 
 
 [Designing Parallel Algorithms: Part 1](https://www.drdobbs.com/parallel/designing-parallel-algorithms-part-1/223100878)
+
+
+The problems of Parallel Programming
+* Race conditions
+* deadlocks
+* Read/Write tearing
+* Priority Inversion
+* ABA Problem
+* Thread scheduling problems
+  * convoy: Multiple threads restricted by a bottleneck
+  * stampede: 
+  
+ 
+Higher level Locking primitime
+* SpinLock
+* Mutex
+* Barrier
+* RWlock
+* Semaphore
+
+Problem decomposition
+* organise by tasks
+  * linear: Task Parallelism
+  * Recursive: Divide and Conquer
+* organise by data decomposition
+  * linear: geometric decomposition
+  * recursive: Recursive data
+* organise by data flow
+  * linear: pipeline
+  * recursive: event-based coordination
+  
+  
+
+
 # Concurrency
 
 
