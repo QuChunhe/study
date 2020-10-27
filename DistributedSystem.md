@@ -610,6 +610,9 @@ Design for high scalability
 
 The core principles of scalability: simplicity, scale out, share nothing, asynchronous communication.  
   
+  
+[No crash allowed - Fault tolerance patterns](https://www.slideshare.net/ufried/no-crash-allowed-fault-tolerance-patterns)  
+  
 much request, complex function, big data 大量请求， 复杂功能，海量请求
 
 http://www.redbooks.ibm.com/redpapers/pdfs/redp5109.pdf
