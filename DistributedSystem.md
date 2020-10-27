@@ -152,7 +152,10 @@ Isomorphism
 
 #### Reduce the Equation 大道至简
 
-keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.
+match the effort and approach to the complexity of the problem. Not every solution has the same complexity—take the simplest approach to
+achieve the desired outcome。努力和方法要与问题的复杂性相匹配。不是每个方案都有相同的复杂性，选取最简单的方法，实现所期望的结果
+
+keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.保持事情尽可能的简单。从我们的视角来看，一个复杂问题其实仅仅是一些更小的、更简单的待解决问题集合
 
 ##### Rule 1—Don’t Overengineer the Solution 不要过度设计方案
 
@@ -228,7 +231,20 @@ How to use:
 * Test changes to ensure performance improvements.
 
 
+
+
 无论是对应功能进行分割，还是对应数据进行分割，都会引入高昂的代价。如果分割的粒度过小，那么所付出的代价将远远超过所引入的好处，因而得不偿失。
+
+
+##### Rule 6—Use Homogeneous Networks使用同构网络
+
+
+对于操作系统以及数据库、JDK和Nginx等系统软件采用相同的版本。
+
+
+#### Distribute Your Work 分而治之
+
+
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
