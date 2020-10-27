@@ -372,4 +372,8 @@ Hofstadter’s law illustrates one element of optimism bias, which leads people 
 **Moore’s Law**
 
 
+[Who is Solution Architect: Processes, Role Description, Responsibilities, and Outcomes](https://www.altexsoft.com/blog/engineering/solution-architect-role/)
 
+[Software Architect Role, Skills, and Impact on Product Success](https://www.altexsoft.com/blog/software-architect-role/)
+
+[How Enterprise Architects Close the Gap between Technology and Business](https://www.altexsoft.com/blog/business/how-enterprise-architects-close-the-gap-between-technology-and-business/)
