@@ -637,3 +637,5 @@ The X Axis of the Availability Cube: Any product/service/solution we develop sho
 
 
 [千万级流量的优化策略实战](https://blog.csdn.net/person_limit/article/details/80561196)
+
+[Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)
