@@ -617,7 +617,24 @@ Fault->Error-> Failure
 
 Error detection and handling is a core effort in fault tolerant system design.
 
+Availability: percentage of time performing the designed function (uptime). availability = MTTF /(MTTF+MTTR)
 
+Coverage: Probability to revoer automatically within a given time period given that an error has occured. Prob(Successful error detection) * Prob(Successful recovery)
+
+Reliability: Probablity to perform without devitions from aggeed-upon behaviour for a specific period of time.
+
+Dependability: Trustworthiness to be relied upon to perform the desired function.
+
+Strive for Simpmlicity.The system should be made as simple as possible (but no simpler).
+
+Design for Failure. Whatever can go wrong will go wrong.
+
+Design incrementally.
+
+Fault tolerant architecture: error detection -> error recovery(improves error handling) || error mitigation (reduces error risk) -> fault treatment (core error handling flow)
+
+* Redudancy: Balance costs and level of availability carefully.
+* 
   
 much request, complex function, big data 大量请求， 复杂功能，海量请求
 
