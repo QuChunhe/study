@@ -73,6 +73,10 @@ Let It Crash principles
 
 [The Let It Crash Philosophy Outside Erlang](http://stratus3d.com/blog/2020/01/20/applying-the-let-it-crash-philosophy-outside-erlang/)
 
+
+Future, Callback, Promise, Coroutine
+
+
 # Actor & CSP
 Akka/Erlang的actor模型与Go语言的协程Goroutine与通道Channel代表的CSP(Communicating Sequential Processes)
 
