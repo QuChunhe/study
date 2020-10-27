@@ -20,8 +20,8 @@ https://akfpartners.com/growth-blog
 
 分布式的目的
 * 提高吞吐量
-* 提高可靠性
-* 降低时延，功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是:a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
+* 提高可靠性，（可用性）
+* 降低时延，降低响应时间。功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是:a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
 
 
 分布式的对象
@@ -163,7 +163,7 @@ requirements.
 The second category of overengineering deals with making something overly complex
 and making something in a complex way.
 
-不要向不需要的需求或功能付费，
+不要向不需要的需求或功能买单
 
 [Faster Time to Market – How to Avoid Overengineering (Rule 1)](https://akfpartners.com/growth-blog/faster-time-to-market-how-to-avoid-overengineering-yagni)
 
@@ -192,7 +192,7 @@ Ideally, what you want is JIT (just-in-time) scalability. The idea originates fr
 
 infrastructure-as-a-service (IaaS) 
 
-
+有预见性的设计，分阶段性的实现，及时性的部署
 
 ##### Rule 3—Simplify the Solution Three Times Over 三重简化方案
 
@@ -204,6 +204,8 @@ How to use:
 Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二八定律、帕累托定律、最省力法则、不平衡原则、犹太法则。意大利经济学家帕累托提出的。法则认为原因和结果、投入和产出、努力和报酬之间本来存在着无法解释的不平衡
 
 [Scalability Rules - How to Simplify Scope, Design, and Implementation (Rule 3)](https://akfpartners.com/growth-blog/scalability-rules-how-to-simplify-scope-design-and-implementation)
+
+简化体现在更容易被理解，完成的时间更短，所付出的代价更小
 
 
 ##### Rule 4—Reduce DNS Lookups 减少DNS查找
@@ -632,3 +634,6 @@ AKF Availability Cube
 * Z Axis:Fault Isolate Customer Segment. Reduce the impact of outages to smaller customer segments.
 
 The X Axis of the Availability Cube: Any product/service/solution we develop should have multiple instances (deployments) of the service/product. 
+
+
+[千万级流量的优化策略实战](https://blog.csdn.net/person_limit/article/details/80561196)
