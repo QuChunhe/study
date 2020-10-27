@@ -612,6 +612,12 @@ The core principles of scalability: simplicity, scale out, share nothing, asynch
   
   
 [No crash allowed - Fault tolerance patterns](https://www.slideshare.net/ufried/no-crash-allowed-fault-tolerance-patterns)  
+
+Fault->Error-> Failure
+
+Error detection and handling is a core effort in fault tolerant system design.
+
+
   
 much request, complex function, big data 大量请求， 复杂功能，海量请求
 
