@@ -639,3 +639,5 @@ The X Axis of the Availability Cube: Any product/service/solution we develop sho
 [千万级流量的优化策略实战](https://blog.csdn.net/person_limit/article/details/80561196)
 
 [Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)
+
+[架构设计60-设计原则01-故障隔离(故障的传播方式与隔离办法)](https://www.jianshu.com/p/a88041462150)
