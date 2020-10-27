@@ -13,7 +13,16 @@ https://akfpartners.com/growth-blog
 
 # Idea
 
-分布式的两个视角或者维度
+分布式字面上的意思是通过多个服务器或者阶段协同提高服务
+
+分布式的不同视角或者侧面
+
+
+分布式的目的
+* 提高吞吐量
+* 提高可靠性
+* 降低时延，功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是:a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
+
 
 分布式的对象
 * 数据(data)，存储的分布化
@@ -24,14 +33,15 @@ https://akfpartners.com/growth-blog
 * 分割/划分（split/shard)
 * 复制/克隆（replicate/clone),
 
+
+分布式引入的问题
+* 时延
+
 请求分解为多个请求：请求数据，检查数据是否准备完成，下载数据
 
 请求复制：热备
 
-分布式的目的
-* 提高吞吐量
-* 提高可靠性
-* 降低时延，功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是:a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
+
 
 |  |数据 | 功能 | 请求 |
 | :------------ | :------------ | :------------ | :------------ |
@@ -153,6 +163,8 @@ requirements.
 The second category of overengineering deals with making something overly complex
 and making something in a complex way.
 
+不要向不需要的需求或功能付费，
+
 [Faster Time to Market – How to Avoid Overengineering (Rule 1)](https://akfpartners.com/growth-blog/faster-time-to-market-how-to-avoid-overengineering-yagni)
 
 Overengineering is solving problems you don’t have.
@@ -195,18 +207,26 @@ Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二�
 
 
 ##### Rule 4—Reduce DNS Lookups 减少DNS查找
+##### Rule 4—避免重复性工作
+
 
 How to use: Minimize the number of DNS lookups required to download pages, but balance
 this with the browser’s limitation for simultaneous connections.
 
+在分割后的功能中包含一些重复的处理，将这个处理分离出来，作为一个公共的前置功能。
+
 [Reduce DNS lookups to improve website performance (Rule 4)](https://akfpartners.com/growth-blog/reduce-dns-lookups-to-improve-website-performance)
 
 ##### Rule 5—Reduce Objects Where Possible
+##### Rule 5—控制分割的粒度
 
 How to use:
 * Reduce or combine objects but balance this with maximizing simultaneous connections.
 * Look for opportunities to reduce weight of objects as well.
 * Test changes to ensure performance improvements.
+
+
+无论是对应功能进行分割，还是对应数据进行分割，都会引入高昂的代价。如果分割的粒度过小，那么所付出的代价将远远超过所引入的好处，因而得不偿失。
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
