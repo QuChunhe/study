@@ -606,9 +606,9 @@ Design for high scalability
 * Cache as cache can
   * Short response times and/or high throughput are important
   * High read to write ratio
-* Keep dynamic data closer to the end-user
+* Keep dynamic data closer to the computer and static data closer to the end-user
 
-  
+The core principles of scalability: simplicity, scale out, share nothing, asynchronous communication.  
   
 much request, complex function, big data 大量请求， 复杂功能，海量请求
 
