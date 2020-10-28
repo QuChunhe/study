@@ -274,6 +274,13 @@ AKF Scale Cube
 
 2010s 去中心化，用计算的方式来定位，而不是利用查表的方式。一致性Hash.无单点性能瓶颈、文件数理几乎不受限制；磁盘空间利用率不高、管理困难、目录操作性能低
 
+{},
+   author =    {},
+   publisher = {},
+   isbn =      {3658245484, 978-3658245481},
+   year =      {},
+
+Andreas Meier, Michael Kaufmann,SQL & NoSQL Databases: Models, Languages, Consistency Options and Architectures for Big Data Management,Springer,2019
 
 
 # Course
