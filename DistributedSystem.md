@@ -725,6 +725,13 @@ Inconsistency can be tolerated for two reasons: for improving read and write per
 two ways of looking at consistency： One is from the developer / client point of view; how they observe data updates. The second way is from the server side; how updates flow through the system and what guarantees systems can give with respect to updates.
 
 
+The degree of consistency may vary:  
+* Strong consistency. After the update completes any subsequent access (by A, B or C) will return the updated value.  
+* Weak consistency. The system does not guarantee that subsequent accesses will return the updated value. A number of conditions need to be met before the value will be returned. Often this condition is the passing of time, [i.e.] the inconsistency window.  
+* Eventual consistency. The storage system guarantees that if no new updates are made to the object eventually (after the inconsistency window closes) all accesses will return the last updated value.  
+
+
+
 https://www.infoq.com/architecture/presentations/
 [Consistency vs. availability: eventual consistency by Werner Vogels](https://www.infoq.com/news/2008/01/consistency-vs-availability/)
 
