@@ -701,9 +701,29 @@ Assume that the following case occurs:
 
 The consistency model has to determine whether client B sees the write from client A or not. 
 
+There are two methods to define and categorize consistency models; 
+* Issue: Issue method describes the restrictions that define how a process can issue operations.
+* View: View method which defines the order of operations visible to processes.
+
+two main reasons for replicating; reliability and performance. Reliability can be achieved in a replicated file system by switching to another replica in the case of the current replica failure. The replication also protects data from being corrupted by providing multiple copies of data on different replicas. It also improves the performance by dividing the work. While replication can improve performance and reliability, it can cause consistency problems between multiple copies of data. The multiple copies are consistent if a read operation returns the same value from all copies and a write operation as a single atomic operation (transaction) updates all copies before any other operation takes place. 
+
+可靠性
+* 节点损坏。一个副本所在服务器不能响应，则切换到另一个副本所在服务器
+* 数据损坏。
+
+读性能
+* 平衡负载，减小等待时间
+* 并行读取，
+
 [Eventually Consistent](https://www.allthingsdistributed.com/2007/12/eventually_consistent.html)
 
 [Availability & Consistency](https://www.infoq.com/news/2008/01/consistency-vs-availability/)
+
+Inconsistency can be tolerated for two reasons: for improving read and write performance under highly concurrent conditions and for handling partition cases where a majority model would render part of the system unavailable even though the nodes are up and running.
+
+
+two ways of looking at consistency： One is from the developer / client point of view; how they observe data updates. The second way is from the server side; how updates flow through the system and what guarantees systems can give with respect to updates.
+
 
 https://www.infoq.com/architecture/presentations/
 [Consistency vs. availability: eventual consistency by Werner Vogels](https://www.infoq.com/news/2008/01/consistency-vs-availability/)
