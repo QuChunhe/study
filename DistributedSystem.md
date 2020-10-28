@@ -683,3 +683,28 @@ The X Axis of the Availability Cube: Any product/service/solution we develop sho
 [Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)
 
 [架构设计60-设计原则01-故障隔离(故障的传播方式与隔离办法)](https://www.jianshu.com/p/a88041462150)
+
+[The Art of Scalability - Managing growth ](https://www.slideshare.net/quipo/the-art-of-scalability-managing-growth)
+
+[Scalability wikipedia](https://en.wikipedia.org/wiki/Scalability)
+
+Scalability is the property of a system to handle a growing amount of work by adding resources to the system.
+
+[Consistency model wikipedia](https://en.wikipedia.org/wiki/Consistency_model)
+
+Coherence deals with maintaining a global order in which writes to a single location or single variable are seen by all processors. Consistency deals with the ordering of operations to multiple locations with respect to all processors.
+
+Assume that the following case occurs:
+1. The row X is replicated on nodes M and N
+2. The client A writes row X to node M
+3. After a period of time t, client B reads row X from node N
+
+The consistency model has to determine whether client B sees the write from client A or not. 
+
+[Eventually Consistent](https://www.allthingsdistributed.com/2007/12/eventually_consistent.html)
+
+[Availability & Consistency](https://www.infoq.com/news/2008/01/consistency-vs-availability/)
+
+https://www.infoq.com/architecture/presentations/
+[Consistency vs. availability: eventual consistency by Werner Vogels](https://www.infoq.com/news/2008/01/consistency-vs-availability/)
+
