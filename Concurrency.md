@@ -951,6 +951,11 @@ performance measure:
 
 http://www.johngustafson.net/pubs/pub13/amdahl.htm
 
+
+[Scalability, basics, application to systems, teams and processes](https://www.slideshare.net/AvishaiIshShalom/resilient-design-101?qid=b7d32533-3be1-45fb-bdf5-c5461d6c9362&v=&b=&from_search=16)
+
+
+
 # Asynchrony
 
 [Async fun ](https://www.slideshare.net/TomaszKogut/async-fun?qid=13cbb241-6304-44be-a0a0-ed9e05782a3d&v=&b=&from_search=65)
