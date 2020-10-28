@@ -954,7 +954,9 @@ http://www.johngustafson.net/pubs/pub13/amdahl.htm
 
 [Scalability, basics, application to systems, teams and processes](https://www.slideshare.net/AvishaiIshShalom/resilient-design-101?qid=b7d32533-3be1-45fb-bdf5-c5461d6c9362&v=&b=&from_search=16)
 
+[Resilient Design 101 (JeeConf 2017)](https://www.slideshare.net/AvishaiIshShalom/resilient-design-101?qid=b7d32533-3be1-45fb-bdf5-c5461d6c9362&v=&b=&from_search=16)
 
+[Resilient design 101 (BuildStuff LT 2017)](https://www.slideshare.net/AvishaiIshShalom/resilient-design-101-82223160)
 
 # Asynchrony
 
@@ -964,4 +966,6 @@ http://www.johngustafson.net/pubs/pub13/amdahl.htm
 * tell our computation how to return the result to us
 * use type-safte constructs.
 
+# Performance
 
+ [Applied Performance Theory](https://www.slideshare.net/InfoQ/applied-performance-theory?qid=b7d32533-3be1-45fb-bdf5-c5461d6c9362&v=&b=&from_search=12) 
