@@ -443,6 +443,8 @@ throughtput=concurrency/latency
 [分布式系统](https://www.jdon.com/DistributedSystems.html)
 
 
+[Continuous Monitoring with JDK Flight Recorder (JFR) ](https://www.slideshare.net/InfoQ/continuous-monitoring-with-jdk-flight-recorder-jfr)
+
 
 
 # Tools
