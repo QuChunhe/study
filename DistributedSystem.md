@@ -38,7 +38,11 @@ https://akfpartners.com/growth-blog
 
 
 分布式引入的问题
-* 时延
+
+
+[Fallacies of Distributed Computing Explained](http://rgoarchitects.com/Files/fallacies.pdf)
+
+[Eight Fallacies of Distributed Computing ](https://samirbehara.com/2019/05/16/eight-fallacies-of-distributed-computing/)
 
 请求分解为多个请求：请求数据，检查数据是否准备完成，下载数据
 
