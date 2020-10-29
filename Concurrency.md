@@ -968,4 +968,40 @@ http://www.johngustafson.net/pubs/pub13/amdahl.htm
 
 # Performance
 
+https://www.infoq.com/performance/
+
+https://www.infoq.com/apm/
+
+https://www.infoq.com/performance-scalability/
+
+https://www.infoq.com/performance_tuning/
+
+https://www.infoq.com/performance_evaluation/
+
+
  [Applied Performance Theory](https://www.slideshare.net/InfoQ/applied-performance-theory?qid=b7d32533-3be1-45fb-bdf5-c5461d6c9362&v=&b=&from_search=12) 
+ 
+ performance 
+ * 在不降低响应世界的情况下，系统还能支持多少额外负载
+ * 系统的使用瓶颈是什么
+ * 当改变响应时间和最大吞吐时会产生什么影响
+ 
+ Capacity
+ * 为了支持10倍的负载，需要添加多少服务器
+ * 系统是否过渡供给
+ 
+ 性能评估的方法
+ * 负载模拟
+ * 性能建模
+ 
+ 性能评估指标
+ * 最大系统吞吐，即系统的容量
+ * 平均响应时间，
+
+queueing delay + service time = response time 
+
+等待时间 + 服务时间 = 响应时间
+
+utilization = arrival rate * service time
+
+利用率 = 到达速率 * 服务时间
