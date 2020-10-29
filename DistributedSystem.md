@@ -10,6 +10,9 @@ https://akfpartners.com/growth-blog
 * Horizontal scaling
 * Vertical scaling
 
+性能指标
+* 系统容量，即系统最大的吞吐量
+* 响应时间，平均响应时间，总的请求中，响应时间低于一个特定阈值的请求所占比例
 
 # Idea
 
