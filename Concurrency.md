@@ -997,6 +997,8 @@ https://www.infoq.com/performance_evaluation/
  性能评估指标
  * 最大系统吞吐，即系统的容量
  * 平均响应时间，
+ 
+ 在满足给定的响应时间目标的情况下，此台服务器的最大吞吐量
 
 queueing delay + service time = response time 
 
@@ -1005,3 +1007,7 @@ queueing delay + service time = response time
 utilization = arrival rate * service time
 
 利用率 = 到达速率 * 服务时间
+
+Pollaczek-Khinchine (P-K) formula
+
+meaning queuing delay time 正比于 U/（1-U）
