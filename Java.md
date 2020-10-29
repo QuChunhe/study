@@ -445,7 +445,9 @@ throughtput=concurrency/latency
 
 [Continuous Monitoring with JDK Flight Recorder (JFR) ](https://www.slideshare.net/InfoQ/continuous-monitoring-with-jdk-flight-recorder-jfr)
 
+黑匣子（Flight Recorder 飞行记录仪），在飞机运行期间，不间断记录各种信息，用于飞机发生事故后的调查
 
+JFR = JDK Fligh Recorder
 
 # Tools
 
