@@ -1015,4 +1015,7 @@ meaning queuing delay time 正比于 U/（1-U）
 
 How can we improve the mean response time>
 * respone time 正比于 queuing delay, prevent requests from queuing to long
-  * Controlled delay
+  * Controlled delay。key insight: queues are typically empty allows short bursts, prevents standing queues
+  * Adaptive or always LIFO. helps when system is overloaded,makes no difference when it’s not. newest requests ﬁrst, not old requests that are likely to expire.  
+  * set a max queue length
+  * client-side concurrency control
