@@ -33,7 +33,7 @@ https://akfpartners.com/growth-blog
 * 请求(request)，
 
 分布式的方法：
-* 分割/划分（split/shard)
+* 分割/划分（partition/split)
 * 复制/克隆（replicate/clone),
 
 
