@@ -18,7 +18,7 @@ https://akfpartners.com/growth-blog
 
 分布式字面上的意思是通过多个服务器或者阶段协同提高服务
 
-分布式的不同视角或者侧面
+分布式的不同视角或者侧面:目的、对象、方法和问题
 
 
 分布式的目的
@@ -39,6 +39,15 @@ https://akfpartners.com/growth-blog
 
 分布式引入的问题
 
+The 8 fallacies of distributed computing
+1. The network is reliable.
+2. Latency is zero.
+3. Bandwidth is infinite.
+4. The network is secure.
+5. Topology doesn't change.
+6. There is one administrator.
+7. Transport cost is zero.
+8. The network is homogeneous.
 
 [Fallacies of Distributed Computing Explained](http://rgoarchitects.com/Files/fallacies.pdf)
 
