@@ -300,6 +300,16 @@ Basic attributes for characterizing CPU workload are
     
 # Setting
 
+Pinning memory or threads to a particular core can improve performance 
+* Reduces intra-core memory ownership traﬃc 
+* Less likely to have cache invalidations 
+* isolcpu allows reservation of CPUs for non-kernel use with cpusets 
+* taskset allows binding of a process to speciﬁc cores 
+* numactl allows cores/memory to be clamped for a process 
+* libnuma has additional aﬃnity settings for programmatic use 
+
+
+
 [The /proc filesystem documentation ](http://linuxinsight.com/proc_filesystem.html)
  
 ```
