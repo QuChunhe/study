@@ -1010,7 +1010,9 @@ utilization = arrival rate * service time
 
 Pollaczek-Khinchine (P-K) formula
 
-meaning queuing delay time 正比于 U/（1-U）
+meaning queuing dela = U/(1-U）* linear fn(mean service time) * quadratic fn(service time variability)
+
+meaning queuing delay time 正比于 U/(1-U）
 
 
 How can we improve the mean response time>
@@ -1019,3 +1021,20 @@ How can we improve the mean response time>
   * Adaptive or always LIFO. helps when system is overloaded,makes no difference when it’s not. newest requests ﬁrst, not old requests that are likely to expire.  
   * set a max queue length
   * client-side concurrency control
+* decrease sevice time by optimizing application code
+* decrease request/service size variability for example, by bathing requests.
+
+两类系统
+* open system:
+* close system：throughput depends on response time
+   * 请求是同步的
+   * 同时服务的客户端数目是固定的
+ 
+ 系统吞吐不是随着资源增加而线性增长的，即不是线性可扩展的
+ * 竞争代价(contention penalty), 共享资源所固有的串行性，比如数据库竞争和锁竞争,αN
+ * 串扰影响(crosstalk penalty),βN^2
+ 
+ Universal Scalability law: throughput of N thread = N/(αN+βN^2+C)
+ 
+ How can we improve the system scales: avoid contention (serialization) and crosstalk (synchronization)
+ 
