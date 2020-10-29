@@ -449,6 +449,37 @@ throughtput=concurrency/latency
 
 JFR = JDK Fligh Recorder
 
+Using JFR (JDK 11+) 
+```
+# Start a recording 
+java -XX:StartFlightRecording ... 
+
+# Start a recording, and store it to file 
+java –XX:StartFlightRecording:filename=/tmp/foo.jfr ... 
+
+# Enable recording in an already running VM (pid 4711) # 
+jcmd <pid | main class name> JFR.start [options] 
+jcmd 4711 JFR.start 
+jcmd MyApplication JFR.start 
+
+# Dump a recording from running VM (pid 4711), at most 50MB of data 
+jcmd 4711 JFR.dump maxsize=50MB
+```
+
+Using bin/jfr 
+```
+# Print summary of recording 
+jfr summary myrecording.jfr 
+
+# Print events 
+jfr print myrecording.jfr 
+
+# Print events in JSON format 
+jfr print --json myrecording.jfr 
+
+# Print GC related events 
+jfr print --categories "GC" myrecording.jfr 
+```
 # Tools
 
 
