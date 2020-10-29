@@ -745,3 +745,7 @@ The degree of consistency may vary:
 https://www.infoq.com/architecture/presentations/
 [Consistency vs. availability: eventual consistency by Werner Vogels](https://www.infoq.com/news/2008/01/consistency-vs-availability/)
 
+[Architectures That Scale Deep - Regaining Control in Deep Systems](https://www.slideshare.net/InfoQ/architectures-that-scale-deep-regaining-control-in-deep-systems)
+
+* Scaling Wide: 功能的克隆+负载平衡，提高可靠性和吞吐量
+* Scaling Deep: 功能的分割，系统之间的调用，tier Pattern，增加了系统之间的依赖性，依赖的不可见性，故障扩散
