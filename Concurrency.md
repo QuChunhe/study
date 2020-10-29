@@ -1011,3 +1011,8 @@ utilization = arrival rate * service time
 Pollaczek-Khinchine (P-K) formula
 
 meaning queuing delay time 正比于 U/（1-U）
+
+
+How can we improve the mean response time>
+* respone time 正比于 queuing delay, prevent requests from queuing to long
+  * Controlled delay
