@@ -466,8 +466,14 @@ The output shows that the size of a Huge Page on this system is 2MB. This means 
 # grep HugePages_Total /proc/meminfo
 
 
-
 ```
+Transparent Huge Pages
+```
+# echo madvise > /sys/kernel/mm/transparent_hugepages/enabled 
+# echo defer > /sys/kernel/mm/transparent_hugepage/defrag 
+```
+
+
 
 对所有用户有效在/etc/profile增加以下内容。只对当前用户有效在Home目录下的
 .bashrc或.bash_profile里增加下面的内容：
@@ -1081,6 +1087,14 @@ du -h --max-depth=1
 ```
 
 # Info
+
+lstopo is a tool provided by the Portable Hardware Locality(HWLOC) project.
+它可以图片的形式显示计算机的结构。包括处理图的结构，物理核心数，虚拟核心数，和对应的各级缓存，还有总线上的元件。
+```
+yum install  hwloc-gui  hwloc-libs
+
+lstopo
+```
 
 查看CPU信息
 
