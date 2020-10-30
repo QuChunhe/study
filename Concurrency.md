@@ -1041,3 +1041,5 @@ How can we improve the mean response time>
  
  How can we improve the system scales: avoid contention (serialization) and crosstalk (synchronization)
  
+ [Quantifying Scalability with the USL](https://www.xaprb.com/slides/dataengconf-2018-quantifying-scalability-universal-scalability-law/1)
+ 
