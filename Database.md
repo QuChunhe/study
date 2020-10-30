@@ -184,6 +184,39 @@ All indexes other than the clustered index are known as secondary indexes. In In
 [8.8 Understanding the Query Execution Plan](https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html)
 [日常 Explain SQL，慢慢就懂得SQL调优了](https://mp.weixin.qq.com/s?__biz=Mzg3NjIxMjA1Ng==&mid=2247484371&idx=1&sn=2dd8269b94188240f0055a03a7ddd62d&chksm=cf34f9e4f84370f27e4a0154ee3f4ae8cf4b0ed78b4ea08adcba2d259a56c541e9083e3abc60&mpshare=1&scene=1&srcid=&sharer_sharetime=1590161808351&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AVvFPMTM%2BMmRiXHYR%2FX9SLA%3D&pass_ticket=MEmx%2FMYK8VidR%2FIzGjGwl831u7rhFBT3A8aHASx6xXXS8VO%2BGLjQV%2BNTc5FUYxmf#rd)
 
+### DevOpt
+
+[Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
+
+The CELT metrics reveal everything about workload QoS.
+* Concurrency is the number of simultaneous requests NNN
+* Error Rate is what it sounds like
+* Latency is response time, as previously defined RRR
+* Throughput is requests per second XXX
+
+These can all be calculated as average (or p99) during intervals or as they apply to individual requests (except for Throughput).
+
+
+The workload places demand on four key resources.
+* CPU cycles
+* Memory
+* Storage
+* Network
+
+The way resources respond to demand often explains performance.
+
+
+The Three Golden Signals of Resource Sufficiency: Brendan Gregg’s USE method:
+* Utilization
+* Saturation
+* Errors
+
+The CELT and USE metrics are the seven golden signals of overall system health and performance, unifying the external (customer, workload) and internal (resource) perspectives.
+
+There are three primary ways to measure requests (workload):
+* Turn on full query logging
+* Use internal statistics tables/views, if they exist
+* Sniff network traffic
 
 
 ### Cluster
