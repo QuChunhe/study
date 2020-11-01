@@ -33,8 +33,8 @@ https://akfpartners.com/growth-blog
 * 请求(request)，
 
 分布式的方法：
-* 分割/划分（partition/split)
-* 复制/克隆（replicate/clone),
+* 分割/划分（partition/split)，通过提高并发度来提高吞吐，通过并行处理来降低服务时间。
+* 复制/克隆（replicate/clone)，分担负载来提高吞吐，提高可靠性
 
 
 分布式引入的问题
@@ -646,6 +646,22 @@ MTTF = (total hours of operation)/(total number of units)
 ![故障率的浴盆曲线(bathtub curve)](https://github.com/QuChunhe/study/raw/master/pics/reliability-bathtub-curve-chart.png)
 
 FIT – Failures in Time, number of units failing per billion operating hours. 
+
+
+
+Availability of the module is the percentage of time when system is operational. 
+
+A=MTBF/(MTBF+MTTR)
+
+[System Reliability and Availability](https://eventhelix.com/RealtimeMantra/FaultHandling/system_reliability_availability.htm)
+
+System Availability is calculated by modeling the system as an interconnection of parts in series and parallel. The following rules are used to decide if components should be placed in series or parallel:
+* If failure of a part leads to the combination becoming inoperable, the two parts are considered to be operating in series
+* If failure of a part leads to the other part taking over the operations of the failed part, the two parts are considered to be operating in parallel.
+
+Availability in Series A = Ax * Ay
+
+Availability in Parallel A = 1-(1-Ax)2
 
 # 杂项
 
