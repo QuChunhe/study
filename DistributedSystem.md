@@ -603,6 +603,27 @@ Always use timeouts (if possible)
 [8 Key Application Performance Metrics & How to Measure Them](https://stackify.com/application-performance-metrics/)
 
 
+# Reliability & Avaibility
+
+平均无故障时间（MTBF）平均无故障工作时间，英文全称是“Mean Time Between Failure”
+
+Mean Time To Repair (MTTR)
+
+故障表现无法按照预期正常地响应服务请求，包括多
+* 无法响应服务请求
+* 返回错误的应答
+* 服务时间或者响应时间超长
+
+及时和正确地处理故障，较小故障所引发的不利影响或者损失。
+
+[MTTR, MTBF, or MTTF? – A Simple Guide To Failure Metrics](https://limblecmms.com/blog/mttr-mtbf-mttf-guide-to-failure-metrics/)
+
+Mean Time To Repair (MTTR) refers to the amount of time required to repair a system and restore it to full functionality.
+
+The MTTR clock starts ticking when the repairs start and it goes on until operations are restored. This includes repair time, testing period, and return to the normal operating condition.
+
+MTTR = (total maintenance time)/(total number of repairs)
+
 # 杂项
 
 ＃＃　分布式ID
