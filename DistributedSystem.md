@@ -645,6 +645,11 @@ MTTF = (total hours of operation)/(total number of units)
 
 ![故障率的浴盆曲线(bathtub curve)](https://github.com/QuChunhe/study/raw/master/pics/reliability-bathtub-curve-chart.png)
 
+* Early LifeIf we follow the slope from the leftmost start to where it begins to flatten out this can be considered the first period. The first period is characterized by a decreasing failure rate. It is what occurs during the “early life” of a population of units. The weaker units fail leaving a population that is more rigorous.  
+* Useful LifeThe next period is the flat bottom portion of the graph. It is called the “useful life” period. Failures occur more in a random sequence during this time. It is difficult to predict which failure mode will occur, but the rate of failures is predictable. Notice the constant slope.  
+* WearoutThe third period begins at the point where the slope begins to increase and extends to the rightmost end of the graph. This is what happens when units become old and begin to fail at an increasing rate. It is called the “wearout” period.
+
+
 FIT – Failures in Time, number of units failing per billion operating hours. 
 
 
@@ -662,6 +667,16 @@ System Availability is calculated by modeling the system as an interconnection o
 Availability in Series A = Ax * Ay
 
 Availability in Parallel A = 1-(1-Ax)2
+
+[Reliability vs Availability: What’s the Difference?](https://www.bmc.com/blogs/reliability-vs-availability/)
+
+Availability refers to the percentage of time that the infrastructure, system or a solution remains operational under normal circumstances in order to serve its intended purpose.
+
+
+Reliability refers to the probability that the system will meet certain performance standards in yielding correct output for a desired time duration. Reliability can be used to understand how well the service will be available in context of different real-world conditions.
+
+MTBF = (total elapsed time – sum of downtime)/number of failures
+
 
 # 杂项
 
