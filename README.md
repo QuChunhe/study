@@ -1,3 +1,6 @@
+https://www.cnblogs.com/1024th/p/11623258.html
+
+
 # study
 
 [现代统计方法_张三国](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=10b0013342724a5e900b7e52bf0da2a9)
