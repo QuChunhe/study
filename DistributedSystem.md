@@ -677,6 +677,8 @@ Reliability refers to the probability that the system will meet certain performa
 
 MTBF = (total elapsed time – sum of downtime)/number of failures
 
+[Weibull Reliability Analysis](http://faculty.washington.edu/fscholz/Reports/weibullanalysis.pdf)
+
 
 # 杂项
 
