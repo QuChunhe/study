@@ -643,7 +643,7 @@ MTBF is used only when referring to repairable items, MTTF is used to refer to n
 
 MTTF = (total hours of operation)/(total number of units)
 
-![故障率的浴盆曲线(bathtub curve)]https://github.com/QuChunhe/study/raw/master/pics/reliability-bathtub-curve-chart.png()
+![故障率的浴盆曲线(bathtub curve)](https://github.com/QuChunhe/study/raw/master/pics/reliability-bathtub-curve-chart.png)
 
 FIT – Failures in Time, number of units failing per billion operating hours. 
 
