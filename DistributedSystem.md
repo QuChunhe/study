@@ -258,7 +258,7 @@ How to use:
 对于操作系统以及数据库、JDK和Nginx等系统软件采用相同的版本。
 
 
-#### Distribute Your Work 分而治之
+#### Distribute Your Work 分布你的工作
 
 
 
@@ -618,11 +618,34 @@ Mean Time To Repair (MTTR)
 
 [MTTR, MTBF, or MTTF? – A Simple Guide To Failure Metrics](https://limblecmms.com/blog/mttr-mtbf-mttf-guide-to-failure-metrics/)
 
+
+As we’ll show in the failure metrics calculations below, the following inputs must be collected as part of your maintenance history:
+* Labor hours spent on maintenance
+* Number of breakdowns
+* Operational time (can be calculated from total expected operating hours per week – total equipment downtime)
+
+
 Mean Time To Repair (MTTR) refers to the amount of time required to repair a system and restore it to full functionality.
 
 The MTTR clock starts ticking when the repairs start and it goes on until operations are restored. This includes repair time, testing period, and return to the normal operating condition.
 
 MTTR = (total maintenance time)/(total number of repairs)
+
+MTTR: Mean Time To Repair vs Mean Time To Recovery
+
+Mean Time To Recovery is a measure of the time between the point at which the failure is first discovered until the point at which the equipment returns to operation. So, in addition to repair time, testing period, and return to normal operating condition, it captures failure notification time and diagnosis.
+
+MTBF = (total operational time)/(total number of failures)
+
+Mean Time To Failure (MTTF) is a very basic measure of reliability used for non-repairable systems. It represents the length of time that an item is expected to last in operation until it fails.
+
+MTBF is used only when referring to repairable items, MTTF is used to refer to non-repairable items.
+
+MTTF = (total hours of operation)/(total number of units)
+
+![故障率的浴盆曲线(bathtub curve)]https://github.com/QuChunhe/study/raw/master/pics/reliability-bathtub-curve-chart.png()
+
+FIT – Failures in Time, number of units failing per billion operating hours. 
 
 # 杂项
 
