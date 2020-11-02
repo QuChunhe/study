@@ -83,6 +83,10 @@ Measures of Performance
 * Response Time 
 * Throughput 
 
+Scalability is the property of a system to handle a growing amount of work by adding resources to the system.
+
+可扩展性（可伸缩性）描述了一个系统能够随着添加资源而处理更多工作的属性。
+
 Measures of Scalability?
 
 What can be Scaled? 
@@ -100,6 +104,11 @@ What can be Scaled?
 Benefits of Scalability
 * Dynamic Capacity 
 * Planning Cost is Linear 
+
+
+In a general sense, scaling is a geometric notion where we make a system bigger by stretching it in several directions. However, every system has its limitations to growth. As the system is scaled up, overheads start to hinder the gains. Beyond a critical point, the capability of the system starts to decrease as the system is further scaled up.
+
+一般而言，缩放是一种几何概念，我们通过在多个方向上拉伸来使系统变大。然而，每个系统都有其增长的限制。随着系统规模的扩大，开销不断增加，而收益却逐渐减少。在超过某个临界点后，随着系统进一步扩展，系统的能力开始下降。
 
 
 ACID, CAP(Consistency, Availability, Partition Tolerance), BASE(Basically Available, Soft State, Eventually Consistent ) 
