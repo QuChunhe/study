@@ -1043,3 +1043,5 @@ How can we improve the mean response time>
  
  [Quantifying Scalability with the USL](https://www.xaprb.com/slides/dataengconf-2018-quantifying-scalability-universal-scalability-law/1)
  
+ Gunther, N.  Guerrilla Capacity Planning. Springer, Berlin Heidelberg 2007.
+ 
