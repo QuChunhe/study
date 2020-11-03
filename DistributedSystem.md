@@ -7,8 +7,9 @@ https://akfpartners.com/growth-blog
 
 [从事分布式系统、计算、hadoop 等方面工作需要哪些基础](https://www.zhihu.com/question/19868791/answer/88873783l)
 
-* Horizontal scaling
-* Vertical scaling
+* Horizontal scaling(水平缩放):scale out 向外伸缩
+* Vertical scaling(垂直缩放):Scale up 向上伸缩
+
 
 性能指标
 * 系统容量，即系统最大的吞吐量
@@ -85,7 +86,11 @@ Measures of Performance
 
 Scalability is the property of a system to handle a growing amount of work by adding resources to the system.
 
-可扩展性（可伸缩性）描述了一个系统能够随着添加资源而处理更多工作的属性。
+可扩展性（可伸缩性）描述了一个系统随着向其添加资源而能够处理更多工作的能力。
+
+Computing capability of a system can be scaled up. Up to a certain point, we observe a performance gain as the system is scaled up. Yet, after a critical point, we observe that we do not get the intended speed up as we provide the system with more and more resources. 
+
+一个系统的计算能力能够向上扩展。当系统向上扩展时，我们会观察到性能提升，但是在经过一个关键点之后，我们发现虽然我们为系统提供越来越多的资源，却无法获得所预计的性能加速。
 
 Measures of Scalability?
 
