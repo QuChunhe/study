@@ -295,7 +295,11 @@ WHERE QUERY_ID = 2 ORDER BY SEQ;
 
 [The INFORMATION_SCHEMA PROFILING Table](https://dev.mysql.com/doc/refman/5.7/en/profiling-table.html)
 
+### Configuration
 
+[采坑之使用MySQL，SQL_MODE有哪些坑](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
+
+[Server SQL Modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
 
 ### Lock
 
