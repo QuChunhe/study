@@ -853,3 +853,13 @@ https://www.infoq.com/architecture/presentations/
 
 * Scaling Wide: 功能的克隆+负载平衡，提高可靠性和吞吐量
 * Scaling Deep: 功能的分割，系统之间的调用，tier Pattern，增加了系统之间的依赖性，依赖的不可见性，故障扩散
+
+
+Capacity limits are scalability limits.
+
+Scalability Isn’t Throughput-vs-Latency
+
+Concurrency-vs-Latency is OK。 It’s a simple quadratic per Little’s Law, and is quite useful
+* Scalability is formally definable, and black-box observable
+* Scalability is nonlinear; this region is the failure boundary
+* Scalability is a function with parameters you can estimate
