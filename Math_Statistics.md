@@ -74,7 +74,7 @@ liberal or anti conservative test.
 [中国科技大学·缪柏其·概率论与数理统计](https://mp.weixin.qq.com/s?__biz=MzI3OTM0NTU3NQ==&mid=2247491588&idx=1&sn=88caec9e14700105827e1389c26a6df6&chksm=eb4b80ccdc3c09da36e5482570cb1b5f63c22cb056cd9a9dae5c368cf4bf79de733ca83cfbe6&mpshare=1&scene=1&srcid=&sharer_sharetime=1581605935230&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AaXBbDJteA%2FYnjehKiZ8AIk%3D&pass_ticket=LEguntyz1PWNMmRC%2FEyyrSNOvCpywEX3DB73r7jUcAZBdsNR5%2FkTGTgFjY0%2BCCq9#rd)
 
 
-[[中国科学技术大学精品课程：概率论与数理统计].(缪柏其).2009](https://www.bilibili.com/video/BV17x411e7rn?p=3)
+[[中国科学技术大学精品课程：概率论与数理统计].(缪柏其).2009](https://www.bilibili.com/video/BV18b411F7QA?p=9)
 
 事件的蕴含、包含及相等
 
