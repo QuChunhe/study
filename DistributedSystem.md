@@ -863,3 +863,6 @@ Concurrency-vs-Latency is OK。 It’s a simple quadratic per Little’s Law, an
 * Scalability is formally definable, and black-box observable
 * Scalability is nonlinear; this region is the failure boundary
 * Scalability is a function with parameters you can estimate
+
+
+[distributed systems like it or not](https://www.slideshare.net/postwait/distributed-systems-like-it-or-not)
