@@ -868,3 +868,13 @@ Concurrency-vs-Latency is OK。 It’s a simple quadratic per Little’s Law, an
 [distributed systems like it or not](https://www.slideshare.net/postwait/distributed-systems-like-it-or-not)
 
 [Monitoring 101](https://www.slideshare.net/postwait/monitoring-101-79494722)
+
+Monitoring is the action of observing and checking static and dynamic properties of a system.
+ 
+Service Level Objects: usually based on percentiles: 95th percentile less 10ms
+
+* Do not measue rates. You can derive the rate of change over time at query time.
+* Monitor outside the tech stack. Your tech stack wout not exist without happy customers and a sales pipeline. Monitor that which is important to the health of your organization.
+* Do not silo data. The behaior of the parts must be put in context. Correlating disparate systems and even business outcomes is critical.
+* ##Value observation of real work## over the measurement of synthesized work.
+*  
