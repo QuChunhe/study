@@ -866,3 +866,5 @@ Concurrency-vs-Latency is OK。 It’s a simple quadratic per Little’s Law, an
 
 
 [distributed systems like it or not](https://www.slideshare.net/postwait/distributed-systems-like-it-or-not)
+
+[Monitoring 101](https://www.slideshare.net/postwait/monitoring-101-79494722)
