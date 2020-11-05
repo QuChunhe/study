@@ -873,8 +873,14 @@ Monitoring is the action of observing and checking static and dynamic properties
  
 Service Level Objects: usually based on percentiles: 95th percentile less 10ms
 
-* Do not measue rates. You can derive the rate of change over time at query time.
-* Monitor outside the tech stack. Your tech stack wout not exist without happy customers and a sales pipeline. Monitor that which is important to the health of your organization.
-* Do not silo data. The behaior of the parts must be put in context. Correlating disparate systems and even business outcomes is critical.
-* **Value observation of real work** over the measurement of synthesized work.
-*  
+1. **Do not measue rates.** You can derive the rate of change over time at query time.
+2. **Monitor outside the tech stack.** Your tech stack wout not exist without happy customers and a sales pipeline. Monitor that which is important to the health of your organization.
+3. **Do not silo data.** The behaior of the parts must be put in context. Correlating disparate systems and even business outcomes is critical.
+4. **Value observation of real work** over the measurement of synthesized work.
+5. **Synthesize work to ensure function** for business critical, low-value events.
+6. **Percentiles are not histograms." For rebust SLO management, you need to store histograms for post-processing. 
+7. **History is critical.** not weeks or months, but years of detailed history. Capacity planning, retrospectives, comparative analysis, and modelling all relay on accurate, high-fidelity history.
+8. **Alters require documentation.** No ruleset should trigger an alert without: human-readable explanation, business impact description, remediation procedure, escalation documentation.
+9. **Be outside the blast radius.** The purpose of monitoring is to detect changes in behavior and assist in answering operational questions.
+10. **Something is better than nothing.** Don't let perfect be the enemy of good. You have to start somewhere.
+
