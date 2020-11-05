@@ -876,5 +876,5 @@ Service Level Objects: usually based on percentiles: 95th percentile less 10ms
 * Do not measue rates. You can derive the rate of change over time at query time.
 * Monitor outside the tech stack. Your tech stack wout not exist without happy customers and a sales pipeline. Monitor that which is important to the health of your organization.
 * Do not silo data. The behaior of the parts must be put in context. Correlating disparate systems and even business outcomes is critical.
-* ##Value observation of real work## over the measurement of synthesized work.
+* **Value observation of real work** over the measurement of synthesized work.
 *  
