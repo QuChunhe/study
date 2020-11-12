@@ -184,6 +184,9 @@ All indexes other than the clustered index are known as secondary indexes. In In
 [8.8 Understanding the Query Execution Plan](https://dev.mysql.com/doc/refman/5.7/en/execution-plan-information.html)
 [日常 Explain SQL，慢慢就懂得SQL调优了](https://mp.weixin.qq.com/s?__biz=Mzg3NjIxMjA1Ng==&mid=2247484371&idx=1&sn=2dd8269b94188240f0055a03a7ddd62d&chksm=cf34f9e4f84370f27e4a0154ee3f4ae8cf4b0ed78b4ea08adcba2d259a56c541e9083e3abc60&mpshare=1&scene=1&srcid=&sharer_sharetime=1590161808351&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AVvFPMTM%2BMmRiXHYR%2FX9SLA%3D&pass_ticket=MEmx%2FMYK8VidR%2FIzGjGwl831u7rhFBT3A8aHASx6xXXS8VO%2BGLjQV%2BNTc5FUYxmf#rd)
 
+
+[6 Tips to MySQL Performance Tuning ](https://www.slideshare.net/Oracle_MySQL/6-tips-to-mysql-performance-tuning?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=17)
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
