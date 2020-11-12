@@ -187,6 +187,14 @@ All indexes other than the clustered index are known as secondary indexes. In In
 
 [6 Tips to MySQL Performance Tuning ](https://www.slideshare.net/Oracle_MySQL/6-tips-to-mysql-performance-tuning?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=17)
 
+Ensure all tables hava a PRIMARY KEY
+
+InnoDB organizes the data according to the PRIMARY KEY
+* The PRIMARY KEY is included in all secondary indexes in order to be able to locate the actual row -> smaller PRIMARY KEY gives smaller secondary indexes.
+* A mostly sequential PRIMARY KEY is in general recommended to avoid inserting rows betwween existing rows.
+
+
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
