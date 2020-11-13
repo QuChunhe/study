@@ -210,8 +210,36 @@ Capacity Setting - InnoDB redo log
 
 Innodb redo log - Is it large enougth
 ```
+MariaDB [**]> show engine innodb status\G;
+
+---
+LOG
+---
+Log sequence number 44272443141888
+Log flushed up to   44272443141888
+Pages flushed up to 44270928721766
+Last checkpoint at  44270908839819
+0 pending log flushes, 0 pending chkp writes
+32383062 log i/o's done, 427.78 log i/o's/second
+----------------------
+
+
+MariaDB [**]> SELECT name, count FROM information_schema.innodb_metrics WHERE name like "log_lsn_%";
+
+MariaDB [adm]> show global variables like "innodb_log_file%";
++---------------------------+-------------+
+| Variable_name             | Value       |
++---------------------------+-------------+
+| innodb_log_file_size      | 17179869184 |
+| innodb_log_files_in_group | 1           |
++---------------------------+-------------+
 ```
 
+Calculate the amount of used redo log
+
+Used log = log_lsn_current-log_lsn_last_checkpoint=44272443141888-44270908839819=1534302069
+
+used%= (used log/total log) * 100=1534302069/17179869184*100=8.93
 
 
 ### DevOpt
