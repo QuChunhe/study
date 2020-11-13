@@ -279,7 +279,18 @@ Data Consistency versus Performance
   * N: every N commites
   * MySQL 5.6 and later support group commit for InnoDB giving less overhead of sync_binlog=1
   
-  I/O Scheduler
+I/O Scheduler
+```
+cat /sys/block/sda/queue/scheduler
+
+echo deadline > /sys/block/sda/queue/scheduler
+
+cat /sys/block/sda/queue/scheduler
+```
+  
+  
+  
+  
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
