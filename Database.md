@@ -258,6 +258,12 @@ Buffers and Caches
 * sort_buffer_size
 
 ```
+MariaDB [**]> show global status like "sort_merge_passes";
++-------------------+-------+
+| Variable_name     | Value |
++-------------------+-------+
+| Sort_merge_passes | 0     |
++-------------------+-------+
 
 ```
 
