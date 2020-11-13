@@ -257,6 +257,7 @@ Buffers and Caches
 * join_buffer_size
 * sort_buffer_size
 
+Linux glibc malloc change memory allocation algorithm when crossing threshold: Algorithm for larger allocations can be 40 times slower than for smaller allocation.
 ```
 MariaDB [**]> show global status like "sort_merge_passes";
 +-------------------+-------+
@@ -267,7 +268,18 @@ MariaDB [**]> show global status like "sort_merge_passes";
 
 ```
 
-
+Data Consistency versus Performance
+* innodb_flush_log_at_trx_commit
+  * 1: is theoretically the slowest, but with fast SSD it may be arount as fast as 2 and 0. Defaults to 1, flush the redo log after each commit. Required for D in ACID
+  * 2: flushed every second: transactions may be lost if the OS crashes
+  * 0: MySQL never fsyncs  
+* sync_binlog: specifies how many transactions between each flush of the binary log
+  * 0: when rotating the binary log or when the OS decides
+  * 1: at everty transaction commit - this is the saftest
+  * N: every N commites
+  * MySQL 5.6 and later support group commit for InnoDB giving less overhead of sync_binlog=1
+  
+  I/O Scheduler
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
