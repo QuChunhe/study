@@ -193,6 +193,25 @@ InnoDB organizes the data according to the PRIMARY KEY
 * The PRIMARY KEY is included in all secondary indexes in order to be able to locate the actual row -> smaller PRIMARY KEY gives smaller secondary indexes.
 * A mostly sequential PRIMARY KEY is in general recommended to avoid inserting rows betwween existing rows.
 
+ If you use InnoDB, enable all the INNODB_METRICS counters: innodb_monitor_enable='%', the overhead has turned out to be small so worth the extra details.
+ 
+ Ensure the performance schema is enabled. The performance schema can also be configured dynamically at runtime.
+ 
+ Capacity settings - innodb_buffer_pool_size
+ * How much memory does the host have?
+ * Subtract memory required by OS and other processes
+ * Subtract memoery required by MySQL other then the InnoDB buffer
+ * Choose minimum of the and the size of the "working data set"
+
+Capacity Setting - InnoDB redo log
+* total size = innodb_log_file_size * innodb_log_files-in_group
+* Should be large enought to avoid "excessive" checkpointing
+* the larger redo log, the slower shutdowns potentially
+
+Innodb redo log - Is it large enougth
+```
+```
+
 
 
 ### DevOpt
