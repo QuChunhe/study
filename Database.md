@@ -289,8 +289,74 @@ cat /sys/block/sda/queue/scheduler
 ```
   
   
-  
-  
+[Optimizing MariaDB for maximum performance ](https://www.slideshare.net/MariaDB/optimizing-mariadb-for-maximum-performance?qid=2c51b4b8-e618-4342-a975-2fb06ee22c57&v=&b=&from_search=24)  
+We deprecate & hard-wire a number of parameters, including the following:
+```
+innodb_buffer_pool_instances=1, innodb_page_cleaners=1 
+innodb_log_files_in_group=1 (only ib_logfile0) 
+innodb_undo_logs=128 (the “rollback segment” component of DB_ROLL_PTR)
+```
+Operating System System 
+```shell
+# sysctl -w vm.swappiness=1 
+# echo "vm.swappiness=1" >> /etc/sysctl.conf 
+``` 
+```shell
+# echo noop > /sys/block/sda/queue/scheduler  
+```
+```shell
+ # cat /etc/security/limits.conf 
+ mysql soft nofile 65535 
+ mysql hard nofile 65535  
+ ```
+ ```shell
+# cat /etc/fstab ... rw,noatime,nodiratime,data=writeback 
+```
+ Server Variables MariaDB Server 
+```
+max_allowed_packet = e.g. 128G-256G 
+max_connections = e.g. 2000-10000 
+
+thread_handling = pool-of-threads 
+thread_pool_size = # of cpu cores 
+thread_pool_max_threads = 65536 t
+hread_pool_min_threads = e.g. 8 
+thread_pool_idle_timeout = 60 
+
+query_cache_size = 0 
+query_cache_type = 0 
+
+skip_name_resolv = ON 
+
+thread_cache_size = DON'T SET (Auto) 
+
+sync_binlog = e.g. 1000
+
+innodb_buffer_pool_size = e.g. 256M-900G 
+#((Total RAM - (OS + Apps)
+#- (mysqld memory + query buffers)
+#- caches for things like binary log 
+#- other possible buffers and caches 
+#- memory tables) 
+#/ 105% ) | ROUND_DOWN
+innodb_log_file_size = e.g. 2G-16G 
+innodb_stats_on_metadata = 0 
+innodb_flush_log_at_trx_commit = e.g. 0? (IFLATC) 
+
+innodb_flush_method = O_DIRECT 
+innodb_io_capacity = e.g. 2000 
+innodb_adaptive_hash_index_parts = e.g. 2-8 btr0sea.c
+
+innodb_autoinc_lock_mode = e.g. 2 
+innodb_flush_neighbors = e.g. 0 w/SSD 
+
+innodb_lru_scan_depth = e.g. 4096 
+innodb_sync_array_size = e.g. 16-32 (but < # of cpu cores) 
+
+innodb_read_io_threads = 4 
+innodb_write_io_threads = 4 
+
+```
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
