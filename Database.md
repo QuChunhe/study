@@ -241,6 +241,26 @@ Used log = log_lsn_current-log_lsn_last_checkpoint=44272443141888-44270908839819
 
 used%= (used log/total log) * 100=1534302069/17179869184*100=8.93
 
+if used% reaches 75% an asychronous flush is tirggered.
+
+InnoDB Undo log
+* innodb_undo_tablespaces can only be set before initializing the datadir
+* Each undo tablespace file is 10M initially
+
+other capacity options
+* max_connecton: be careful setting the too large as each connection requires memory
+* table_definition_cache: ensure all tables can be in the cache. If you expect 4000 tables, set table_definition_cache>4000
+* table_open_cache: each table can be open more than once
+* table_open_cache_instance: typicall a good value is 16.
+
+Buffers and Caches
+* join_buffer_size
+* sort_buffer_size
+
+```
+
+```
+
 
 ### DevOpt
 
