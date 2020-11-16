@@ -216,7 +216,8 @@ use mysqldumpslow command to get summaries of slow queries
 * In Innodb
    * PRIMARY KEY (UNIQUE KEY) stores data in leaf pages of the index, not pointer
    * Secondary indexes store primary key as data pointer
-   
+ 
+ 
    
    
 
