@@ -198,6 +198,127 @@ Index Types
 * Hash
 * Full-text
 
+
+[MySQL performance tuning](https://www.slideshare.net/anubioinfo/my-sql-performance-tuning-78825290?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=49)
+
+### DevOpt
+
+[Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
+
+The CELT metrics reveal everything about workload QoS.
+* Concurrency is the number of simultaneous requests NNN
+* Error Rate is what it sounds like
+* Latency is response time, as previously defined RRR
+* Throughput is requests per second XXX
+
+These can all be calculated as average (or p99) during intervals or as they apply to individual requests (except for Throughput).
+
+
+The workload places demand on four key resources.
+* CPU cycles
+* Memory
+* Storage
+* Network
+
+The way resources respond to demand often explains performance.
+
+
+The Three Golden Signals of Resource Sufficiency: Brendan Gregg’s USE method:
+* Utilization
+* Saturation
+* Errors
+
+The CELT and USE metrics are the seven golden signals of overall system health and performance, unifying the external (customer, workload) and internal (resource) perspectives.
+
+There are three primary ways to measure requests (workload):
+* Turn on full query logging
+* Use internal statistics tables/views, if they exist
+* Sniff network traffic
+
+
+### Cluster
+
+[Spider Server System Variables](https://mariadb.com/kb/en/library/spider-server-status-variables/)
+
+```
+SHOW SLAVE STATUS\G;
+START SLAVE;
+STOP SLAVE;
+
+SHOW BINARY LOGS
+
+SHOW BINLOG EVENTS
+
+SHOW MASTER STATUS
+
+SHOW SLAVE HOSTS 
+
+
+```
+
+```
+ /usr/local/mariadb/bin/mysqlbinlog  --start-datetime='2018-07-26 09:50:00' --base64-output=decode-rows -v /var/mariadb/data/mysql-bin.000216 --result-file=binglog.sql
+
+
+
+### Performance
+
+
+OPTIMIZE [NO_WRITE_TO_BINLOG | LOCAL] TABLE tbl_name [, tbl_name] ... [WAIT n | NOWAIT]
+```
+
+show profile默认的是关闭的，但是会话级别可以开启这个功能。开启它可以让MySQL收集在执行语句的时候所使用的资源。
+```
+SET profiling = 1;
+
+execute sql
+
+SHOW PROFILES\G;
+```
+
+```
+SHOW PROFILE [type [, type] ... ]
+    [FOR QUERY n]
+    [LIMIT row_count [OFFSET offset]]
+
+type: {
+    ALL
+  | BLOCK IO
+  | CONTEXT SWITCHES
+  | CPU
+  | IPC
+  | MEMORY
+  | PAGE FAULTS
+  | SOURCE
+  | SWAPS
+}
+```
+The values of n correspond to the Query_ID values displayed by SHOW PROFILES.
+
+
+
+
+[SHOW PROFILE Statement](https://dev.mysql.com/doc/refman/5.7/en/show-profile.html)
+
+Profiling information is also available from the INFORMATION_SCHEMA PROFILING table. 
+
+```
+HOW PROFILE FOR QUERY 2;
+
+SELECT STATE, FORMAT(DURATION, 6) AS DURATION
+FROM INFORMATION_SCHEMA.PROFILING
+WHERE QUERY_ID = 2 ORDER BY SEQ;
+```
+
+[The INFORMATION_SCHEMA PROFILING Table](https://dev.mysql.com/doc/refman/5.7/en/profiling-table.html)
+
+### Configuration
+
+[采坑之使用MySQL，SQL_MODE有哪些坑](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
+
+[Server SQL Modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
+
+
 [6 Tips to MySQL Performance Tuning ](https://www.slideshare.net/Oracle_MySQL/6-tips-to-mysql-performance-tuning?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=17)
 
 Ensure all tables hava a PRIMARY KEY
@@ -370,122 +491,7 @@ innodb_read_io_threads = 4
 innodb_write_io_threads = 4 
 
 ```
-### DevOpt
 
-[Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
-
-The CELT metrics reveal everything about workload QoS.
-* Concurrency is the number of simultaneous requests NNN
-* Error Rate is what it sounds like
-* Latency is response time, as previously defined RRR
-* Throughput is requests per second XXX
-
-These can all be calculated as average (or p99) during intervals or as they apply to individual requests (except for Throughput).
-
-
-The workload places demand on four key resources.
-* CPU cycles
-* Memory
-* Storage
-* Network
-
-The way resources respond to demand often explains performance.
-
-
-The Three Golden Signals of Resource Sufficiency: Brendan Gregg’s USE method:
-* Utilization
-* Saturation
-* Errors
-
-The CELT and USE metrics are the seven golden signals of overall system health and performance, unifying the external (customer, workload) and internal (resource) perspectives.
-
-There are three primary ways to measure requests (workload):
-* Turn on full query logging
-* Use internal statistics tables/views, if they exist
-* Sniff network traffic
-
-
-### Cluster
-
-[Spider Server System Variables](https://mariadb.com/kb/en/library/spider-server-status-variables/)
-
-```
-SHOW SLAVE STATUS\G;
-START SLAVE;
-STOP SLAVE;
-
-SHOW BINARY LOGS
-
-SHOW BINLOG EVENTS
-
-SHOW MASTER STATUS
-
-SHOW SLAVE HOSTS 
-
-
-```
-
-```
- /usr/local/mariadb/bin/mysqlbinlog  --start-datetime='2018-07-26 09:50:00' --base64-output=decode-rows -v /var/mariadb/data/mysql-bin.000216 --result-file=binglog.sql
-
-
-
-### Performance
-
-
-OPTIMIZE [NO_WRITE_TO_BINLOG | LOCAL] TABLE tbl_name [, tbl_name] ... [WAIT n | NOWAIT]
-```
-
-show profile默认的是关闭的，但是会话级别可以开启这个功能。开启它可以让MySQL收集在执行语句的时候所使用的资源。
-```
-SET profiling = 1;
-
-execute sql
-
-SHOW PROFILES\G;
-```
-
-```
-SHOW PROFILE [type [, type] ... ]
-    [FOR QUERY n]
-    [LIMIT row_count [OFFSET offset]]
-
-type: {
-    ALL
-  | BLOCK IO
-  | CONTEXT SWITCHES
-  | CPU
-  | IPC
-  | MEMORY
-  | PAGE FAULTS
-  | SOURCE
-  | SWAPS
-}
-```
-The values of n correspond to the Query_ID values displayed by SHOW PROFILES.
-
-
-
-
-[SHOW PROFILE Statement](https://dev.mysql.com/doc/refman/5.7/en/show-profile.html)
-
-Profiling information is also available from the INFORMATION_SCHEMA PROFILING table. 
-
-```
-HOW PROFILE FOR QUERY 2;
-
-SELECT STATE, FORMAT(DURATION, 6) AS DURATION
-FROM INFORMATION_SCHEMA.PROFILING
-WHERE QUERY_ID = 2 ORDER BY SEQ;
-```
-
-[The INFORMATION_SCHEMA PROFILING Table](https://dev.mysql.com/doc/refman/5.7/en/profiling-table.html)
-
-### Configuration
-
-[采坑之使用MySQL，SQL_MODE有哪些坑](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
-
-[Server SQL Modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
 
 ### Lock
 
