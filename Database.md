@@ -218,8 +218,10 @@ use mysqldumpslow command to get summaries of slow queries
    * Secondary indexes store primary key as data pointer
  
  
-   
-   
+By default, MySQL sorts all GROUP BY col1, col2, … queries as if you specified ORDER BY col1, col2, … in the query as well. If a query includes GROUP BY but you want to avoid the overhead of sorting the result, you can suppress sorting by specifying ORDER BY NULL. 
+```sql
+SELECT a, COUNT(*) FROM bar GROUP BY a ORDER BY NULL
+```   
 
 ### DevOpt
 
