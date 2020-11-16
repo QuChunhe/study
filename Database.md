@@ -201,6 +201,25 @@ Index Types
 
 [MySQL performance tuning](https://www.slideshare.net/anubioinfo/my-sql-performance-tuning-78825290?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=49)
 
+* The IN claused in MySQL is very fast
+* keep column alone on left side of condition
+* Avoid % at the start of LIKE on an index
+* Use Explain to see the execution plan for query
+* If column used in order by clause are indeed they help with performance
+* Try to convert<> operator to = operator
+* Avoid using SELECT *
+
+
+use mysqldumpslow command to get summaries of slow queries
+
+* In MyISAM data pointers point to physical offset in the data file: All indexes are essentially equivalent
+* In Innodb
+   * PRIMARY KEY (UNIQUE KEY) stores data in leaf pages of the index, not pointer
+   * Secondary indexes store primary key as data pointer
+   
+   
+   
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
@@ -490,6 +509,12 @@ innodb_sync_array_size = e.g. 16-32 (but < # of cpu cores)
 innodb_read_io_threads = 4 
 innodb_write_io_threads = 4 
 
+```
+
+show information of queries that take long time to execute
+```
+log_slow_queries=1
+slow_query_log_file=<some file name>
 ```
 
 
