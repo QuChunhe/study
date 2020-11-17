@@ -235,6 +235,9 @@ Queries with errors or warnings:
 select * from sys.statements_with_errors_or_warnings; 
 ```
 
+[MySQL Performance Tuning: The Perfect Scalability (OOW2019) ](https://www.slideshare.net/MirkoOrtensi/mysql-performance-tuning-the-perfect-scalability-oow2019?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=46)
+
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
