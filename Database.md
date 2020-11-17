@@ -226,6 +226,15 @@ SELECT a, COUNT(*) FROM bar GROUP BY a ORDER BY NULL
 * index: multi column efficient sorting。KEY(a,b)，要么按照a进行排序，要么在where a=A并且按照b进行排序。
 * indexes are costly. Do not add more than you need.
 
+Mysql sys Schema Find out all unused indexes: 
+```sql
+select * from sys.schema_unused_indexes;
+```
+Queries with errors or warnings: 
+```sql
+select * from sys.statements_with_errors_or_warnings; 
+```
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
