@@ -251,6 +251,19 @@ I/O,CPU and Network bound
 * More connections thread
 * I/O thoughput
 
+I/O Bound Monitoring 
+* iostat 
+* SHOW ENGINE INNODB STATUS 
+* Performance schema (MEM) 
+* SYS schema 
+```sql
+select * from sys.io_by_thread_by_latency; 
+select * from sys.io_global_by_file_by_bytes; 
+select * from sys.io_global_by_file_by_latency; 
+select * from sys.waits_global_by_latency; 
+select * from sys.statements_with_temp_tables;
+```
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
