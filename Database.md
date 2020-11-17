@@ -223,6 +223,9 @@ By default, MySQL sorts all GROUP BY col1, col2, … queries as if you specified
 SELECT a, COUNT(*) FROM bar GROUP BY a ORDER BY NULL
 ```   
 
+* index: multi column efficient sorting。KEY(a,b)，要么按照a进行排序，要么在where a=A并且按照b进行排序。
+* indexes are costly. Do not add more than you need.
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
