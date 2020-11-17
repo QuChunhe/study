@@ -1,6 +1,12 @@
 
 ## MySQL
 
+优化MySQL性能
+* 硬件选择
+* 配置：操作系统配置和数据库配置
+* Schema设计，包括主键和索引的设计
+* 查询优化
+
 ### Design Schema
 
 除了字典表和日志表，不能有VARCHAR的列
@@ -237,6 +243,13 @@ select * from sys.statements_with_errors_or_warnings;
 
 [MySQL Performance Tuning: The Perfect Scalability (OOW2019) ](https://www.slideshare.net/MirkoOrtensi/mysql-performance-tuning-the-perfect-scalability-oow2019?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=46)
 
+data and concurrency grow: more data and more active connections
+
+I/O,CPU and Network bound
+* More locks + scans
+* Buffer pool should be increased
+* More connections thread
+* I/O thoughput
 
 ### DevOpt
 
