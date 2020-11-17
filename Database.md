@@ -264,6 +264,23 @@ select * from sys.waits_global_by_latency;
 select * from sys.statements_with_temp_tables;
 ```
 
+I/O Bound: 
+* Redo log: innodb_log_group_home_dir, innodb_log_files in_group
+* binary log: log_bin
+* undo logs: innodb_undo_directory
+* external tablespace: file-per_talbe, DATA DIRECTORY, CREATE TABLESPACE
+* partitioning
+* session and globale temporary tablespace: innodb_temp_data_file_path
+* logging:
+   * general log: general_log_file
+   * slow query log: slow_query_log_file
+   * audit log: audit_log_file
+* Flush method: Data can travel through different layer before reaching the durable storage. application cache(buffer pool, log file cache)-->Kernel cache(Buffer/Page cache)--> storage cache(eventually battery backed). innodb_flush_method
+   * fsync
+   * O_DIRECT
+   * O_DIRECT_NO_FSYNC
+   * O_DSYNC
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
