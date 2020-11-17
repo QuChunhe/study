@@ -281,6 +281,22 @@ I/O Bound:
    * O_DIRECT_NO_FSYNC
    * O_DSYNC
 
+CPU Bound Monitoring 
+* vmstat / mpstat 
+* Status 
+```sql
+SHOW STATUS LIKE "Handler%"; 
+SHOW STATUS LIKE "select_full_join"; 
+sys schema
+```sql
+select * from sys.schema_redundant_indexes; 
+select * from sys.schema_unused_indexes; 
+select * from sys.statements_with_sorting; 
+CALL sys.diagnostics(60, 60, 'current');
+SELECT * FROM sys.schema_tables_with_full_table_scans; 
+```
+NETWORK Bound Compression --compress: Compress all information sent between the client and the server if possible
+
 ### DevOpt
 
 [Optimizing Database Performance](https://www.xaprb.com/slides/percona-live-2019-optimizing-database-performance-efficiency/#1)
