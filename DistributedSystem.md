@@ -279,6 +279,22 @@ How to use:
 #### Distribute Your Work 分布你的工作
 
 
+##### Rule 7-Design To Clone or Replicate Things (X Axis)
+
+##### Rule 7-为克隆或者复制而设计
+
+When to use:
+* Databases with a very high read-to-write ratio (5:1 or greater—the higher the better).
+* Any system where transaction growth exceeds data growth.
+How to use:
+* Simply clone services and implement a load balancer.
+* For databases, ensure that the accessing code understands the difference between a
+read and a write.
+
+There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy.
+
+时间敏感性：如何更新或者完全更新读副本，使其与写副本保持一致。
+
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
