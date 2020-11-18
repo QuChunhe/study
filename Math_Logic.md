@@ -120,3 +120,9 @@ Lp，L代表语言，p代表proposition
 * Soundness(可靠性)：程序执行正确--> 程序正确
 * Completeness(完备性)：程序正确-->程序执行正确
 * Compactness(紧致性）： 有限次执行 --> 程序执行全正确
+
+
+字母表 ： PS
+* 命题符
+* 连接符
+* 辅助符
