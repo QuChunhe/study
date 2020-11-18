@@ -244,6 +244,10 @@ Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二�
 ##### Rule 4—Reduce DNS Lookups 减少DNS查找
 ##### Rule 4—避免重复性工作
 
+方法
+* Batch: 打包批量处理
+* cache 缓存和复用结果
+
 
 How to use: Minimize the number of DNS lookups required to download pages, but balance
 this with the browser’s limitation for simultaneous connections.
