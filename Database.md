@@ -9,6 +9,9 @@
 
 ### Design Schema
 
+
+Database Design and Relational Theory_Normal Forms and All That Jazz, 2nd Edition-Apress(2019)
+
 除了字典表和日志表，不能有VARCHAR的列
 
 正式表采用InnoDB，导入数据或者中间结果采用的临时表可以可以采用MEMORY或者MyISAM。
