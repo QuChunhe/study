@@ -241,6 +241,45 @@ Queries with errors or warnings:
 select * from sys.statements_with_errors_or_warnings; 
 ```
 
+[Mysql performance tuning](https://www.slideshare.net/philipzhongl/mysql-performance-tuning?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=30)
+
+Types of I/O schedulers 
+* noop: Sorting incoming i/o requests by logical block address, that’s all 
+* deadlilne: Prioritize read (sync) requests rather than write requests (async) to some extent (to avoid “write-starving-reads” problem) 
+* cfq(default): Fairly scheduling i/o requests per i/o thread –
+
+Default is cfq, but noop / deadline is better in many cases 
+```shell
+echo noop > /sys/block/sdX/queue/scheduler
+```
+File System Tunning
+* Make sure to use Flash Back Write Cache(FBWC) or Battery Backed up Write Cache (BBWC) on raid cards –
+* Do not set “write barrier” on file systems (enabled by default in some cases)
+* Consider disabling atime updates on files and directories
+
+
+*Put sequentially written files on HDD 
+   * ibdata, ib_logfile, binary log files 
+   * HDD is fast enough for sequential writes 
+   * Write performance deterioration can be mitigated 
+   * Life expectancy of SSD will be longer
+* Put randomly accessed files on SSD 
+   * \*ibd files, index files(MYI), data files(MYD) 
+   * SSD is 10x -100x faster for random reads than HDD 
+   * Archive less active tables/records to HDD 
+   * SSD is still much expensive than HDD• 
+
+
+MySQL Parameters Tuning: Buffered I/O(InnoDB Buffer Pool <--> FileSystem Cache <--> InnoDB data File) --> Direct I/O(InnoDB Buffer Pool <--> InnoDB data File)
+
+MySQL Profile
+```sql
+Mysql>SET profiling = 1;
+Mysql>SHOW PROFILES;
+Mysql>SHOW PROFILE CPU FOR QUERY 1;
+```
+
+
 [MySQL Performance Tuning: The Perfect Scalability (OOW2019) ](https://www.slideshare.net/MirkoOrtensi/mysql-performance-tuning-the-perfect-scalability-oow2019?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=46)
 
 data and concurrency grow: more data and more active connections
