@@ -5,9 +5,15 @@
 * 硬件选择
 * 配置：操作系统配置和数据库配置
 * Schema设计，包括主键和索引的设计
-* 查询优化
+* 查询优化:monitor, analysize, optimize
+  * monitor 发现和记录出现的问题
+  * analysize 深入分析问题的根源
+  * optimize 采取措施解决性能问题
 
 ### Design Schema
+
+
+Database Design and Relational Theory_Normal Forms and All That Jazz, 2nd Edition-Apress(2019)
 
 除了字典表和日志表，不能有VARCHAR的列
 
@@ -180,6 +186,16 @@ Determine the purpose of your database
 
 ### Index & Performancey
 
+Clustered Index Accessing a row through the clustered index is fast because the row data is on the same page (on disk) where the index search leads. 
+* If in the table is set PRIMARY KEY – this is it. 
+* Otherwise, if the table has UNIQUE indexes - this is the first of them. 
+* Otherwise, InnoDB itself creates a hidden field with the surrogate ID in size of 6 bytes. 
+This is why it’s very important to use a natural primary key whenever possible.
+
+
+Data Warehouse: Star Index-De-normalize schemas 
+
+
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
 Every I
@@ -240,6 +256,45 @@ Queries with errors or warnings:
 ```sql
 select * from sys.statements_with_errors_or_warnings; 
 ```
+
+[Mysql performance tuning](https://www.slideshare.net/philipzhongl/mysql-performance-tuning?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=30)
+
+Types of I/O schedulers 
+* noop: Sorting incoming i/o requests by logical block address, that’s all 
+* deadlilne: Prioritize read (sync) requests rather than write requests (async) to some extent (to avoid “write-starving-reads” problem) 
+* cfq(default): Fairly scheduling i/o requests per i/o thread –
+
+Default is cfq, but noop / deadline is better in many cases 
+```shell
+echo noop > /sys/block/sdX/queue/scheduler
+```
+File System Tunning
+* Make sure to use Flash Back Write Cache(FBWC) or Battery Backed up Write Cache (BBWC) on raid cards –
+* Do not set “write barrier” on file systems (enabled by default in some cases)
+* Consider disabling atime updates on files and directories
+
+
+*Put sequentially written files on HDD 
+   * ibdata, ib_logfile, binary log files 
+   * HDD is fast enough for sequential writes 
+   * Write performance deterioration can be mitigated 
+   * Life expectancy of SSD will be longer
+* Put randomly accessed files on SSD 
+   * \*ibd files, index files(MYI), data files(MYD) 
+   * SSD is 10x -100x faster for random reads than HDD 
+   * Archive less active tables/records to HDD 
+   * SSD is still much expensive than HDD• 
+
+
+MySQL Parameters Tuning: Buffered I/O(InnoDB Buffer Pool <--> FileSystem Cache <--> InnoDB data File) --> Direct I/O(InnoDB Buffer Pool <--> InnoDB data File)
+
+MySQL Profile
+```sql
+Mysql>SET profiling = 1;
+Mysql>SHOW PROFILES;
+Mysql>SHOW PROFILE CPU FOR QUERY 1;
+```
+
 
 [MySQL Performance Tuning: The Perfect Scalability (OOW2019) ](https://www.slideshare.net/MirkoOrtensi/mysql-performance-tuning-the-perfect-scalability-oow2019?qid=a3c9f635-e08a-489c-adbb-439394c6e094&v=&b=&from_search=46)
 
@@ -332,6 +387,65 @@ There are three primary ways to measure requests (workload):
 * Sniff network traffic
 
 
+[More mastering the art of indexing ](https://www.slideshare.net/matsunobu/more-mastering-the-art-of-indexing)
+
+* Lock contention and indexing
+* deadlock caused by indexes
+* covering index and range scan
+  * Covering index: Reading only an index. If all columns in the SQL statment are contained within single index, MySQL chooses "Chovering index" execution plan.
+* Sorting, indexing and query execution plans
+
+[MySQL Indexing - Best practices for MySQL 5.6](https://www.slideshare.net/myxplain/mysql-indexing-best-practices-for-mysql)
+
+Types of Indexes you might heard about 
+* BTREE Indexes – Majority of indexes you deal in MySQL is this type 
+* RTREE Indexes – MyISAM only, for GIS 
+* HASH Indexes – MEMORY, NDB 
+* FULLTEXT Indexes – MyISAM, Innodb starting 5.6
+
+B+ Trees are typically used for Disk storage – Data stored in leaf nodes
+
+In MyISAM data pointers point to physical offset in the data file 
+* All indexes are essentially equivalent 
+In Innodb 
+* PRIMARY KEY (Explicit or Implicit) - stores data in the leaf pages of the index, not pointer 
+* Secondary Indexes – store primary key as data pointer 
+
+Impact on Cost of Indexing 
+* Long PRIMARY KEY for Innodb – Make all Secondary keys longer and slower 
+* Random” PRIMARY KEY for Innodb – Insertion causes a lot of page splits 
+* Longer indexes are generally slower 
+* Index with insertion in random order – SHA1(‘password’) 
+* Low selectivity index cheap for insert – Index on gender 
+* Correlated indexes are less expensive – insert_time is correlated with auto_increment id
+
+Index Innodb tables: data is clustered by Primary Key.
+
+The First Rule of MySQL Optimizer 
+* MySQL will stop using key parts in multi part index as soon as it met the real range (<,>, BETWEEN), it however is able to continue using key parts further to the right if IN(…) range is used 
+
+MySQL Using Index for Sorting Rules 
+* You can’t sort in different order by 2 columns 
+* You can only have Equality comparison (=) for columns which are not part of ORDER BY – Not even IN() works in this case
+
+MySQL Can use More than one index – “Index Merge” 
+* SELECT * FROM TBL WHERE A=5 AND B=6 
+   * Can often use Indexes on (A) and (B) separately 
+   * Index on (A,B) is much better 
+* SELECT * FROM TBL WHERE A=5 OR B=6 
+   * 2 separate indexes is as good as it gets
+   * Index (A,B) can’t be used for this query 
+   
+You can build Index on the leftmost prefix of the column 
+```sql
+ALTER TABLE TITLE ADD KEY(TITLE(20)); –
+```
+
+join_buffer_size
+
+ICP(Index Condition Pushdown)
+
+
 ### Cluster
 
 [Spider Server System Variables](https://mariadb.com/kb/en/library/spider-server-status-variables/)
@@ -409,6 +523,39 @@ WHERE QUERY_ID = 2 ORDER BY SEQ;
 [The INFORMATION_SCHEMA PROFILING Table](https://dev.mysql.com/doc/refman/5.7/en/profiling-table.html)
 
 ### Configuration
+
+[MariaDB / MySQL tripping hazard and how to get out again?](https://www.slideshare.net/shinguz/mariadb-mysql-tripping-hazard-and-how-to-get-out-again)
+ibdata1 is called the System tablespace: Today it contains only "system"data
+
+innodb_file_per_table=on
+
+Do not store BLOBS in the RDBS but on a filter (Disk, NAS, SAN)
+* Query latency higher 
+* Database throughput lower
+* Backup size and time will increase
+* DDL operations will take ages
+* Bufer Pool (cache) is flooded
+
+Disk full is more or less the worst you can do to your database
+* mmonitor your disk space!
+* Try to predict how long it will take until disk is full.
+
+```
+connection_timeout
+max_connections
+max_allowed_packet
+innodb_numa_interleave
+```
+
+Optimization with Innodb 
+* Turn off linux caching by disabling O_DIRECT 
+* innodb_buffer_pool_size = (.70 * total_mem_size) 
+* bulk-insert-buffer-size=256M 
+* innodb_buffer_pool_instances = tune for concurrency 
+* innodb_thread_concurrency = 2 x CPUs 
+* innodb_flush_method = O_DIRECT (avoids double buffering) 
+
+
 
 [采坑之使用MySQL，SQL_MODE有哪些坑](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
 
