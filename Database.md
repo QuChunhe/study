@@ -5,7 +5,10 @@
 * 硬件选择
 * 配置：操作系统配置和数据库配置
 * Schema设计，包括主键和索引的设计
-* 查询优化
+* 查询优化:monitor, analysize, optimize
+  * monitor 发现和记录出现的问题
+  * analysize 深入分析问题的根源
+  * optimize 采取措施解决性能问题
 
 ### Design Schema
 
@@ -191,6 +194,7 @@ This is why it’s very important to use a natural primary key whenever possible
 
 
 Data Warehouse: Star Index-De-normalize schemas 
+
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
@@ -381,6 +385,65 @@ There are three primary ways to measure requests (workload):
 * Turn on full query logging
 * Use internal statistics tables/views, if they exist
 * Sniff network traffic
+
+
+[More mastering the art of indexing ](https://www.slideshare.net/matsunobu/more-mastering-the-art-of-indexing)
+
+* Lock contention and indexing
+* deadlock caused by indexes
+* covering index and range scan
+  * Covering index: Reading only an index. If all columns in the SQL statment are contained within single index, MySQL chooses "Chovering index" execution plan.
+* Sorting, indexing and query execution plans
+
+[MySQL Indexing - Best practices for MySQL 5.6](https://www.slideshare.net/myxplain/mysql-indexing-best-practices-for-mysql)
+
+Types of Indexes you might heard about 
+* BTREE Indexes – Majority of indexes you deal in MySQL is this type 
+* RTREE Indexes – MyISAM only, for GIS 
+* HASH Indexes – MEMORY, NDB 
+* FULLTEXT Indexes – MyISAM, Innodb starting 5.6
+
+B+ Trees are typically used for Disk storage – Data stored in leaf nodes
+
+In MyISAM data pointers point to physical offset in the data file 
+* All indexes are essentially equivalent 
+In Innodb 
+* PRIMARY KEY (Explicit or Implicit) - stores data in the leaf pages of the index, not pointer 
+* Secondary Indexes – store primary key as data pointer 
+
+Impact on Cost of Indexing 
+* Long PRIMARY KEY for Innodb – Make all Secondary keys longer and slower 
+* Random” PRIMARY KEY for Innodb – Insertion causes a lot of page splits 
+* Longer indexes are generally slower 
+* Index with insertion in random order – SHA1(‘password’) 
+* Low selectivity index cheap for insert – Index on gender 
+* Correlated indexes are less expensive – insert_time is correlated with auto_increment id
+
+Index Innodb tables: data is clustered by Primary Key.
+
+The First Rule of MySQL Optimizer 
+* MySQL will stop using key parts in multi part index as soon as it met the real range (<,>, BETWEEN), it however is able to continue using key parts further to the right if IN(…) range is used 
+
+MySQL Using Index for Sorting Rules 
+* You can’t sort in different order by 2 columns 
+* You can only have Equality comparison (=) for columns which are not part of ORDER BY – Not even IN() works in this case
+
+MySQL Can use More than one index – “Index Merge” 
+* SELECT * FROM TBL WHERE A=5 AND B=6 
+   * Can often use Indexes on (A) and (B) separately 
+   * Index on (A,B) is much better 
+* SELECT * FROM TBL WHERE A=5 OR B=6 
+   * 2 separate indexes is as good as it gets
+   * Index (A,B) can’t be used for this query 
+   
+You can build Index on the leftmost prefix of the column 
+```sql
+ALTER TABLE TITLE ADD KEY(TITLE(20)); –
+```
+
+join_buffer_size
+
+ICP(Index Condition Pushdown)
 
 
 ### Cluster
