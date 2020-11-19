@@ -293,7 +293,7 @@ read and a write.
 
 There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy.
 
-时间敏感性：如何更新或者完全更新读副本，使其与写副本保持一致。
+时间敏感性是指相对于写副本，读副本的一致或者完全正确程度。
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
