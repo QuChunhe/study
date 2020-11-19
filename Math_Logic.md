@@ -109,9 +109,6 @@ Lp，L代表语言，p代表proposition
 
 语法（Syntax）与语义（Semantics）是符号逻辑的两个基本要素
 
-命题符，　联结词，辅助符
-
-用Bacus-Naur Form定义
 
 * 程序正确性证明：霍尔逻辑
 * 可执行文件正确性验证：软件测试
@@ -126,3 +123,11 @@ Lp，L代表语言，p代表proposition
 * 命题符
 * 连接符
 * 辅助符
+
+命题符，　联结词，辅助符
+
+命题
+
+用Bacus-Naur Form定义
+
+括号引理（Parenthesis Lemma）:结构归纳
