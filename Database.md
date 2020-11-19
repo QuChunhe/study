@@ -183,6 +183,15 @@ Determine the purpose of your database
 
 ### Index & Performancey
 
+Clustered Index Accessing a row through the clustered index is fast because the row data is on the same page (on disk) where the index search leads. 
+* If in the table is set PRIMARY KEY – this is it. 
+* Otherwise, if the table has UNIQUE indexes - this is the first of them. 
+* Otherwise, InnoDB itself creates a hidden field with the surrogate ID in size of 6 bytes. 
+This is why it’s very important to use a natural primary key whenever possible.
+
+
+Data Warehouse: Star Index-De-normalize schemas 
+
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
 Every I
@@ -451,6 +460,39 @@ WHERE QUERY_ID = 2 ORDER BY SEQ;
 [The INFORMATION_SCHEMA PROFILING Table](https://dev.mysql.com/doc/refman/5.7/en/profiling-table.html)
 
 ### Configuration
+
+[MariaDB / MySQL tripping hazard and how to get out again?](https://www.slideshare.net/shinguz/mariadb-mysql-tripping-hazard-and-how-to-get-out-again)
+ibdata1 is called the System tablespace: Today it contains only "system"data
+
+innodb_file_per_table=on
+
+Do not store BLOBS in the RDBS but on a filter (Disk, NAS, SAN)
+* Query latency higher 
+* Database throughput lower
+* Backup size and time will increase
+* DDL operations will take ages
+* Bufer Pool (cache) is flooded
+
+Disk full is more or less the worst you can do to your database
+* mmonitor your disk space!
+* Try to predict how long it will take until disk is full.
+
+```
+connection_timeout
+max_connections
+max_allowed_packet
+innodb_numa_interleave
+```
+
+Optimization with Innodb 
+* Turn off linux caching by disabling O_DIRECT 
+* innodb_buffer_pool_size = (.70 * total_mem_size) 
+* bulk-insert-buffer-size=256M 
+* innodb_buffer_pool_instances = tune for concurrency 
+* innodb_thread_concurrency = 2 x CPUs 
+* innodb_flush_method = O_DIRECT (avoids double buffering) 
+
+
 
 [采坑之使用MySQL，SQL_MODE有哪些坑](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
 
