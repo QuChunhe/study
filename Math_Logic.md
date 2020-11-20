@@ -135,3 +135,7 @@ Lp，L代表语言，p代表proposition
 括号引理（Parenthesis Lemma）:结构归纳
 
 构造序列
+
+命题符对应于赋值，而命题对应于解释
+
+
