@@ -128,6 +128,10 @@ Lp，L代表语言，p代表proposition
 
 命题
 
+命题集
+
 用Bacus-Naur Form定义
 
 括号引理（Parenthesis Lemma）:结构归纳
+
+构造序列
