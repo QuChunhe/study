@@ -523,6 +523,10 @@ WHERE QUERY_ID = 2 ORDER BY SEQ;
 
 # Configuration
 
+
+innodb_log_file_size :larger = longer recovery times
+
+
 [MariaDB / MySQL tripping hazard and how to get out again?](https://www.slideshare.net/shinguz/mariadb-mysql-tripping-hazard-and-how-to-get-out-again)
 ibdata1 is called the System tablespace: Today it contains only "system"data
 
@@ -874,4 +878,32 @@ High Availability
 Estimates of levels of availability
 
 HA is Redundancy
-* 
+* RAID: disk crashes? Another works 
+* Clustering: server crashes? Another works 
+* Power: fuse blows? Redundant power supplies 
+* Network: Switch/NIC crashes? 2nd network route 
+* Geographical: Datacenter ofﬂine/destroyed? Computation to another DC 
+
+Redundancy through client-side XA transactions 
+* Client writes to 2 independent but identical databases 
+* HA-JDBC (http://ha-jdbc.github.io/) 
+* No replication anywhere
+
+Redundancy through shared storage: Oracle RAC, ScaleDB
+
+Redundancy through disk replication
+
+Redundancy through MySQL replication
+* MySQL replication
+* Tungsten Replicator
+* Galera Cluster
+* MySQL Cluster(NDBCluster)
+* Huge potential for scaling out
+
+The logs 
+* Binary log (binlog) - events that describe database changes 
+* Relay log - events read from binlog on master, written by slave i/o thread 
+* master_info_log - status/conﬁg info for slave’s connection to master
+* relay_log_info_log - status info about execution point in slave’s relay log 
+
+
