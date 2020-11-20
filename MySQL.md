@@ -865,3 +865,13 @@ RR级别中一旦建立了快照版本，则在该事务的后续查询中均采
 
 [Best practices for MySQL/MariaDB Server/Percona Server High Availability ](https://www.slideshare.net/bytebot/best-practices-for-mysqlmariadb-serverpercona-server-high-availability?qid=688000eb-0784-40ec-82ba-bda9163b0bf4&v=&b=&from_search=48)
 
+High Availability
+* Performance Scalability: Throughtput and latency
+* Clustering, Failover
+* Replication: Redundancy
+* Duarablity: replicas, backup
+
+Estimates of levels of availability
+
+HA is Redundancy
+* 
