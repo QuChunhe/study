@@ -907,3 +907,9 @@ The logs
 * relay_log_info_log - status info about execution point in slave’s relay log 
 
 
+Global Transaction ID (GTID)
+* supports multi-source replication
+
+log-slave-updates=0 for efficiency
+
+MHA for MySQL: Master High Availability Manager tools for MySQL
