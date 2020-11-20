@@ -281,7 +281,7 @@ How to use:
 
 ##### Rule 7-Design To Clone or Replicate Things (X Axis)
 
-##### Rule 7-为克隆或者复制而设计
+##### Rule 7-设计克隆或者复制相同的事情（X轴）
 
 When to use:
 * Databases with a very high read-to-write ratio (5:1 or greater—the higher the better).
@@ -294,6 +294,30 @@ read and a write.
 There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy.
 
 时间敏感性是指相对于写副本，读副本的一致或者完全正确程度。
+
+the ways to distribute the data.
+* One way is to use a caching tier in front of the database.
+* The next step beyond an object cache between the application tier and the database
+tier is replicating the database
+
+X axis—Horizontal Duplication
+
+
+##### Rule 8—Design to Split Different Things (Y Axis)
+
+##### Rule 8—设计分拆不同的事情（Y轴）
+
+**What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or
+noun (resources) boundaries.
+
+**When to use**:
+* Very large data sets where relations between data are not necessary.
+* Large, complex systems where scaling engineering resources requires specialization.
+
+**How to use**:
+* Split up actions by using verbs, or resources by using nouns, or use a mix.
+* Split both the services and the data along the lines defined by the verb/noun approach.
+
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
