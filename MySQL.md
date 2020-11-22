@@ -13,9 +13,68 @@
 # Design Schema
 
 
-Database Design and Relational Theory_Normal Forms and All That Jazz, 2nd Edition-Apress(2019)
+C.J. Date, Database Design and Relational Theory: Normal Forms and All That Jazz, 2nd Edition, Apress, 2019.
 
-除了字典表和日志表，不能有VARCHAR的列
+每个属性的定义域为不可分割的原子类型。
+
+* candidate key
+* primary key
+* composite key
+* Simple key
+* alternate keys
+* foreign key
+
+Logical design is concerned with what the database looks like to the user (which means,
+loosely, what relvars exist and what constraints apply to those relvars); physical design,
+by contrast, is concerned with how a given logical design maps to physical storage
+
+为开发者和设计者提供了适用的、可遵循的指南。
+
+
+
+C.J. Date, 熊建国译,深度探索关系数据库：实践者的关系理论, 电子工业出版社， 2007
+
+
+SQL not equal 关系模型
+
+关系、元组和属性
+
+
+关系不是表，元组不是行，属性也不是列
+
+在1969年当时任职于IBM的E. F. Codd首先提出了关系模型
+
+
+* 结构
+* 完整性
+* 操作
+
+结构
+* 候选键
+* 主键
+* 外键
+
+操作
+* 限制 restrict
+* 投影 Project
+* 积 product。笛卡尔积、交积、交叉连接、笛卡尔连接
+* 交 Intersect
+* 并 Union
+* 差 difference
+* 连接 join
+* 除 Divide
+
+
+
+
+
+
+
+
+
+
+
+除了字典表和日志表，尽量避免VARCHAR的列
 
 正式表采用InnoDB，导入数据或者中间结果采用的临时表可以可以采用MEMORY或者MyISAM。
 * InnoDB具有更好的并发性，采用表锁
@@ -528,6 +587,7 @@ innodb_log_file_size :larger = longer recovery times
 
 
 [MariaDB / MySQL tripping hazard and how to get out again?](https://www.slideshare.net/shinguz/mariadb-mysql-tripping-hazard-and-how-to-get-out-again)
+
 ibdata1 is called the System tablespace: Today it contains only "system"data
 
 innodb_file_per_table=on
@@ -537,7 +597,7 @@ Do not store BLOBS in the RDBS but on a filter (Disk, NAS, SAN)
 * Database throughput lower
 * Backup size and time will increase
 * DDL operations will take ages
-* Bufer Pool (cache) is flooded
+* Buffer Pool (cache) is flooded
 
 Disk full is more or less the worst you can do to your database
 * mmonitor your disk space!
