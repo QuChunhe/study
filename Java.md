@@ -430,6 +430,36 @@ throughtput=concurrency/latency
 降低系统负载的方法
 
 
+[Speedup Your Java Apps with Hardware Counters ](https://www.slideshare.net/InfoQ/speedup-your-java-apps-with-hardware-counters?qid=4285c82d-ad5b-4bb0-ab3b-bf0320612a9d&v=&b=&from_search=55)
+
+Three magic questions What? ⇒ Where? ⇒ How? 
+* What prevents my application to work faster? (monitoring) 
+* Where does it hide? (profiling) 
+* How to stop it messing with performance? (tuning/optimizing)
+
+[Java Performance Engineer's Survival Guide ](https://www.slideshare.net/MonicaBeckwith/java-performance-engineers-survival-guide-67609990?qid=4285c82d-ad5b-4bb0-ab3b-bf0320612a9d&v=&b=&from_search=47)
+
+Monitor, measure and define performance in terms of throughput, latency, capacity, footprint, utilization
+
+Perfromance Requirements/SLAs
+* Throughput
+* Respone time
+* Footprint
+* Capacity managment
+* Availability
+
+
+1. Monitor
+  * active
+  * Passive
+  * Offline
+2. Profile
+3. Analyze
+4. Tune + apply
+
+* Tow down approach
+* Bottom up approach
+
 [http://tutorials.jenkov.com/java-performance/index.html](Java Performance)
 
 

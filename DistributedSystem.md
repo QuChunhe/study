@@ -244,6 +244,8 @@ Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二�
 ##### Rule 4—Reduce DNS Lookups 减少DNS查找
 ##### Rule 4—避免重复性工作
 
+[什么是高并发下的请求合并？](https://mp.weixin.qq.com/s?__biz=MzIxNTQ4MzE1NA==&mid=2247501569&idx=1&sn=1bdce3ec6b00e2a1ec4e71c293fbf8ef&chksm=9795117ca0e2986a85c91e3fd1157d302e25db247ac694f3f80ddb9a44245a45255874cfd68a&mpshare=1&scene=1&srcid=112361PzzD8ACPONUPHVU9HI&sharer_sharetime=1606100477426&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AUU9f1Fl1KaBL6RENR8Oraw%3D&pass_ticket=fk%2BE1fOYHmI5CyP5XtiiPrUMmfrHPspkwtzMhbIMcZ8RCXV3pYelubWJqWxZuV5q&wx_header=0#rd)
+
 方法
 * Batch: 打包批量处理
 * cache 缓存和复用结果
@@ -927,4 +929,72 @@ Service Level Objects: usually based on percentiles: 95th percentile less 10ms
 8. **Alters require documentation.** No ruleset should trigger an alert without: human-readable explanation, business impact description, remediation procedure, escalation documentation.
 9. **Be outside the blast radius.** The purpose of monitoring is to detect changes in behavior and assist in answering operational questions.
 10. **Something is better than nothing.** Don't let perfect be the enemy of good. You have to start somewhere.
+
+
+[The Art of Scalability - Managing growth](https://www.slideshare.net/quipo/the-art-of-scalability-managing-growth/2-Scalability_Scalability_is_a_desirable)  good
+
+
+Scalability is a desirable property of system, a network, a business or a process, which indicates its ability to handle growing amounts of work. 可伸缩性(可扩展性)是系统、网络、业务或者流程期望的一种属性，该属性表明其具有能力，能够处理不断增长的工作量。
+
+scalable not equal fast: 增加资源，能够处理更多的请求或更多的数据
+
+Project Management: Measurement-> Communication->Resolution
+* Goals
+* Projects
+* Tasks
+* Individuals
+
+People Management
+* Hiring
+* Firing
+* Growth
+
+Headroom: 余量= Capacity - Current Load
+
+Managing Incidents and Problems
+1. Detect
+2. Report
+3. Investigate
+4. Escalate
+5. Resolve
+
+
+Performance (Load) Testing
+
+Stress Testing
+
+Architectural Principle
+* N+1 design
+* for rollback
+* to be disabled
+* to be monitoring
+* for multiple live sites
+* use mature technology
+* asynchronous design
+* stateless system
+* buy when non core: focus on core competencies
+
+
+Create Fault Isolative Structures: Limit impact of failures, Easier debugging
+
+Scale Directions
+* X : cloning of entities or data- unbiased distribution of work
+* Y : Seperation of work by activity or data
+* Z : separation of work by persion for whom the work is done. 
+
+Splitting Applications for scale
+* Mirroring
+* split by service
+* split by need/location/value
+
+
+Splitting database for scale
+* Data cloing (replication/Clustering)
+* Split by service/resource/data affinity
+* split by modulus/ hash-based lookups
+
+Caching for performance & Scale
+* Object caches : Redis
+* Application caches: Squid, Varnish
+* CDNs
 
