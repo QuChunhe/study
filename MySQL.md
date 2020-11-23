@@ -3,7 +3,9 @@
 
 优化MySQL性能
 * 硬件选择
-* 配置：操作系统配置和数据库配置
+* 配置：
+   * 操作系统配置
+   * 数据库配置
 * Schema设计，包括主键和索引的设计
 * 查询优化:monitor, analysize, optimize
   * monitor 发现和记录出现的问题
