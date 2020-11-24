@@ -283,12 +283,15 @@ How to use:
 
 ##### Rule 7-Design To Clone or Replicate Things (X Axis)
 
-##### Rule 7-设计克隆或者复制相同的事情（X轴）
+##### Rule 7-设计克隆或者复制相同的东西（X轴）
 
-When to use:
+**What:** Typically called horizontal scale, this is the duplication of services or databases to spread transaction load.
+
+**When to use:**
 * Databases with a very high read-to-write ratio (5:1 or greater—the higher the better).
 * Any system where transaction growth exceeds data growth.
-How to use:
+
+**How to use:**
 * Simply clone services and implement a load balancer.
 * For databases, ensure that the accessing code understands the difference between a
 read and a write.
@@ -307,10 +310,9 @@ X axis—Horizontal Duplication
 
 ##### Rule 8—Design to Split Different Things (Y Axis)
 
-##### Rule 8—设计分拆不同的事情（Y轴）
+##### Rule 8—设计分拆不同的东西（Y轴）
 
-**What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or
-noun (resources) boundaries.
+**What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or noun (resources) boundaries.
 
 **When to use**:
 * Very large data sets where relations between data are not necessary.
