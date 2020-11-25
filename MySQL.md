@@ -1006,3 +1006,50 @@ Global Transaction ID (GTID)
 log-slave-updates=0 for efficiency
 
 MHA for MySQL: Master High Availability Manager tools for MySQL
+
+[Using all of the high availability options in MariaDB](https://www.slideshare.net/MariaDB/using-all-of-the-high-availability-options-in-mariadb?qid=688000eb-0784-40ec-82ba-bda9163b0bf4&v=&b=&from_search=36)
+
+MariaDB TX provides high availability via asynchronous or semi-synchronous master/slave replication with automatic failover and synchronous multi-master clustering; 
+
+Single Point of Failure
+* The mariadb cluster fails can trigger new Master election on MaxScale
+* MaxScale can be setup in HA
+
+MariaDB Server Replication 
+* Asynchronous - With asynchronous replication, transactions are replicated after being committed;
+* Semi-synchronous - With semi-synchronous replication, a transaction is not committed until it has been replicated to a slave; The semi-sync repl plugin was merged into the server on MariaDB Server 10.3.3 
+
+```
+replication_user=mariadb #: replication user 
+replication_password=ACEEF153D52F8391E3218F9F2B259EAD #: replication password 
+switchover_timeout=90 #: time to complet
+
+failcount=5 #: number of passes/checks if a server failed 
+monitor_interval=1000 #: time in ms for each of the passes 
+auto_failover=true #: if the automatic failover is enabled 
+failover_timeout=10 #: time in secs the failover ops has to complete
+```
+
+When auto_rejoin is enabled, the monitor will rejoin any standalone database servers or any slaves replicating from a relay master to the main cluster:
+
+
+MaxScale Highly Available
+* Active Redundancy
+* Standby Redundancy
+
+Dedicated Server 
+* To utilise server resources to max. 
+  * --innodb-dedicated-server := boolean (default OFF) 
+* Sets values based on physical memory available 
+  * —innodb-log-file-size based on physical memory size 
+  * —innodb-buffer-pool-size based on physical memory size 
+  * —innodb-flush-method = O_DIRECT_NO_FSYNC 
+  
+ Parallel Select Count(*)  —innodb-parallel-thread-count= [1-256] 
+ * Session variable. Default 4. 
+ * Maximum threads 256. 
+ * Scans partitions in parallel too
+ * Only works on the clustered index (yet) 
+ 
+ 
+ 
