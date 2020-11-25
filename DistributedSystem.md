@@ -256,7 +256,7 @@ this with the browser’s limitation for simultaneous connections.
 
 在分割后的功能中包含一些重复的处理，将这个处理分离出来，作为一个公共的前置功能。
 
-[Reduce DNS lookups to improve website performance (Rule 4)](https://akfpartners.com/growth-blog/reduce-dns-lookups-to-improve-website-performance)
+
 
 ##### Rule 5—Reduce Objects Where Possible
 ##### Rule 5—控制分割的粒度
@@ -266,7 +266,9 @@ How to use:
 * Look for opportunities to reduce weight of objects as well.
 * Test changes to ensure performance improvements.
 
+如果分割的太小，引入的代价将会超过分割带来的好处。因此，在一些情况下可以需要合并
 
+[Reduce DNS lookups to improve website performance (Rule 4)](https://akfpartners.com/growth-blog/reduce-dns-lookups-to-improve-website-performance)
 
 
 无论是对应功能进行分割，还是对应数据进行分割，都会引入高昂的代价。如果分割的粒度过小，那么所付出的代价将远远超过所引入的好处，因而得不偿失。
@@ -283,37 +285,50 @@ How to use:
 
 ##### Rule 7-Design To Clone or Replicate Things (X Axis)
 
-##### Rule 7-设计克隆或者复制相同的东西（X轴）
+##### 规则7-设计克隆或者复制相同的东西（X轴）
 
-**What:** Typically called horizontal scale, this is the duplication of services or databases to spread transaction load.
+**What:** Typically called horizontal scale, this is the duplication of services or databases to spread transaction load. 通常被称为水平可伸缩，这种服务或者数据库的复制可以分散事务负载
 
 **When to use:**
-* Databases with a very high read-to-write ratio (5:1 or greater—the higher the better).
-* Any system where transaction growth exceeds data growth.
+* Databases with a very high read-to-write ratio (5:1 or greater—the higher the better).数据具有非常号的读/写比（5:1或者更高，越高越好）
+* Any system where transaction growth exceeds data growth.任何事务增长超过数据增长的系统
 
 **How to use:**
-* Simply clone services and implement a load balancer.
+* Simply clone services and implement a load balancer.简单的克隆服务并实现一个负载均衡器
 * For databases, ensure that the accessing code understands the difference between a
-read and a write.
+read and a write.对于数据库，确保访问的代码理解读和写的不同
 
-There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy.
+**Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality. 许可以复制数据和功能为代价，快速地实现事务处理的可伸缩性
 
-时间敏感性是指相对于写副本，读副本的一致或者完全正确程度。
+**Key takeaways:** X axis splits are fast to implement, are low cost from a developer effort perspective, and can scale transaction volumes nicely. However, they tend to be high cost from the perspective of operational cost of data.
+
+Often, the hardest part of a solution to scale is the database or persistent storage tier. 在实现可伸缩性的解决方案中最为困难的部分是数据库或者持久化存储层。
+* 分布式事务：ACID
+* 数据一致性：如果写数据，1）如何实现数据多个副本数据的一致性；2）如何避免读到不一致的数据
+
+One technique for scaling databases is to take advantage of the fact that most applications and databases perform significantly more reads than writes. 一种用于扩展数据库的技术是利用了大多数应用和数据库施行读要远远多于写这个事实。
+
+
+There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy.依赖于数据的时间敏感性，你可以使用多种方式分布数据的读副本。时间敏感性是指相对于写副本，读副本的一致程度或者完全正确程度。
 
 the ways to distribute the data.
-* One way is to use a caching tier in front of the database.
+* One way is to use a caching tier in front of the database.一种方法是在数据库之前使用缓存层。
 * The next step beyond an object cache between the application tier and the database
-tier is replicating the database
+tier is replicating the database。除了在应用层和数据库层之间对象缓存，下一步是复制数据库。
 
 X axis—Horizontal Duplication
 
 
+应用和web服务的克隆相对较为用于实现，允许我们扩展所处理事务的数目。
+
+
+
 ##### Rule 8—Design to Split Different Things (Y Axis)
 
-##### Rule 8—设计分拆不同的东西（Y轴）
+##### 规则8—设计分拆不同的东西（Y轴）
 
-**What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or noun (resources) boundaries.
-
+**What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or noun (resources) boundaries. 有时指的是通过服务或者资源实现可扩展，这个规则聚焦于沿着动词(服务)或者名词(资源)的边界通过分割数据集、事务和工程团队来实现可扩展。
+ 
 **When to use**:
 * Very large data sets where relations between data are not necessary.
 * Large, complex systems where scaling engineering resources requires specialization.
@@ -321,6 +336,38 @@ X axis—Horizontal Duplication
 **How to use**:
 * Split up actions by using verbs, or resources by using nouns, or use a mix.
 * Split both the services and the data along the lines defined by the verb/noun approach.
+
+**Why:** Allows for efficient scaling of not only transactions but also very large data sets associated with those transactions. Also allows for the efficient scaling of teams. 不仅许可高效地扩展事务，而且许可高效地扩展与这些事务相关联的、非常大的数据集合。还许可高效地扩展团队。
+
+**Key takeaways:** Y axis or data/service-oriented splits allow for efficient scaling of transactions, large data sets, and can help with fault isolation. Y axis splits help reduce the communication overhead of teams.
+
+Let’s split up our site using the verb approach first
+
+We might identify certain resources upon which we will ultimately take actions (rather than the verbs that represent the actions we take). 我们可以鉴别特定的、我们将最终操作的资源（而不是代表我们操作行为的动词）
+
+
+Because services or resources are now split, the actions we perform and the
+code necessary to perform them are split up as well. 因为服务或资源已被分拆，我们的行为和操作服务或者资源的代码也被分拆了。
+
+One tenet of Brooks’ Law is that developer productivity is reduced as a result of increasing team sizes. The communication effort within any team to coordinate team efforts is a square of the number of participants in the team. Therefore, with increasing team size comes decreasing developer productivity as more developer time is spent on coordination.
+Brooks法则的一个宗旨是作为吞掉规模逐渐扩大的一个结果，开发人员的生产率会降低。在任何团队内部进行协同团队工作的沟通工作是团队成员数目的平方。因此，增加团队的规模会降低开发人员的生产率，因为开发人员花费更多的时间用于协同。
+
+##### Rule 9—Design to Split Similar Things (Z Axis)
+##### 规则9-设计分拆相似的东西(Z轴)
+
+**What:** This is very often a split by some unique aspect of the customer such as customer ID, name, geography, and so on.非常常见的分离方式是客户一些独特的属性，例如客户id、名字和地理位置等。
+
+**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important.
+
+**How to use:** Identify something you know about the customer, such as customer ID, last name, geography, or device, and split or partition both data and services based on that attribute.
+
+**Why:** Rapid customer growth exceeds other forms of data growth, or you have the need to perform fault isolation between certain customer groups as you scale.
+
+**Key takeaways:** Z axis splits are effective at helping you to scale customer bases but can alsobe applied to other very large data sets that can’t be pulled apart using the Y axis methodology.
+
+
+Often referred to as sharding and podding, Rule 9 is about taking one data set or service and partitioning it into several pieces. These pieces are often equal in size but may be of different sizes if there is value in having several unequally sized chunks or shards. 规则9经常称为分片或者分割，其获取一个数据集或者服务，然后将其划分为多个部分。这些部分通常大小相等，但如果大小不一的块或者分片有意义，那么也可能大小并不相同。
+
 
 
 
