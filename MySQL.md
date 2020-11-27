@@ -241,6 +241,121 @@ Determine the purpose of your database
 查找并组织所需信息(Find and organize the information required)
 
 
+[Codd's 12 rules](https://en.wikipedia.org/wiki/Codd%27s_12_rules)
+
+准则
+
+一个关系形的关系数据库系统必须能完全通过它的关系能力来管理数据库。
+
+准则1：信息准则
+
+关系数据库系统的所有信息都应该在逻辑一级上用表中的值这一种方法显式的表示。
+
+准则2：保证访问准则
+
+依靠表名、主码和列名的组合，保证能以逻辑方式访问关系数据库中的每个数据项。
+
+准则3：空值的系统化处理
+
+全关系的关系数据库系统支持空值的概念，并用系统化的方法处理空值。
+
+准则4：基于关系模型的动态的联机数据字典
+
+数据库的描述在逻辑级上和普通数据采用同样的表述方式。
+
+准则5：统一的数据子语言
+
+一个关系数据库系统可以具有几种语言和多种终端访问方式，但必须有一种语言，它的语句可以表示为严格语法规定的字符串，并能全面的支持各种规则。
+
+准则6：视图更新准则
+
+所有理论上可更新的视图也应该允许由系统更新。
+
+准则7：高级的插入、修改和删除操作
+
+系统应该对各种操作进行查询优化。
+
+准则8：数据的物理独立性
+
+无论数据库的数据在存储表示或存取方法上作任何变化，应用程序和终端活动都保持逻辑上的不变性。
+
+准则9：数据逻辑独立性
+
+当对基本关系进行理论上信息不受损害的任何改变时，应用程序和终端活动都保持逻辑上的不变性。
+
+准则10：数据完整的独立性
+
+关系数据库的完整性约束条件必须是用数据库语言定义并存储在数据字典中的。
+
+准则11：分布独立性
+
+关系数据库系统在引入分布数据或数据重新分布时保持逻辑不变。
+
+准则12：无破坏准则
+
+如果一个关系数据库系统具有一个低级语言，那么这个低级语言不能违背或绕过完整性准则
+
+**Rule 0:** The foundation rule:
+
+    For any system that is advertised as, or claimed to be, a relational data base management system, that system must be able to manage data bases entirely through its relational capabilities.
+
+Rule 1: The information rule:
+
+    All information in a relational data base is represented explicitly at the logical level and in exactly one way – by values in tables.
+
+Rule 2: The guaranteed access rule:
+
+    Each and every datum (atomic value) in a relational data base is guaranteed to be logically accessible by resorting to a combination of table name, primary key value and column name.
+
+Rule 3: Systematic treatment of null values:
+
+    Null values (distinct from the empty character string or a string of blank characters and distinct from zero or any other number) are supported in fully relational DBMS for representing missing information and inapplicable information in a systematic way, independent of data type.
+
+Rule 4: Dynamic online catalog based on the relational model:
+
+    The data base description is represented at the logical level in the same way as ordinary data, so that authorized users can apply the same relational language to its interrogation as they apply to the regular data.
+
+Rule 5: The comprehensive data sublanguage rule:
+
+    A relational system may support several languages and various modes of terminal use (for example, the fill-in-the-blanks mode). However, there must be at least one language whose statements are expressible, per some well-defined syntax, as character strings and that is comprehensive in supporting all of the following items:
+
+            Data definition.
+            View definition.
+            Data manipulation (interactive and by program).
+            Integrity constraints.
+            Authorization.
+            Transaction boundaries (begin, commit and rollback).
+
+Rule 6: The view updating rule:
+
+    All views that are theoretically updatable are also updatable by the system.
+
+Rule 7: Possible for high-level insert, update, and delete:
+
+    The capability of handling a base relation or a derived relation as a single operand applies not only to the retrieval of data but also to the insertion, update and deletion of data.
+
+Rule 8: Physical data independence:
+
+    Application programs and terminal activities remain logically unimpaired whenever any changes are made in either storage representations or access methods.
+
+Rule 9: Logical data independence:
+
+    Application programs and terminal activities remain logically unimpaired when information-preserving changes of any kind that theoretically permit unimpairment are made to the base tables.
+
+Rule 10: Integrity independence:
+
+    Integrity constraints specific to a particular relational data base must be definable in the relational data sublanguage and storable in the catalog, not in the application programs.
+
+Rule 11: Distribution independence:
+
+    The end-user must not be able to see that the data is distributed over various locations. Users should always get the impression that the data is located at one site only.
+
+Rule 12: The nonsubversion rule:
+
+    If a relational system has a low-level (single-record-at-a-time) language, that low level cannot be used to subvert or bypass the integrity rules and constraints expressed in the higher level relational language (multiple-records-at-a-time).
+
+
+
 [Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
 
 数据库正规化是根据一系列范式构造关系型数据库的过程，以减小数据冗余和提高数据完整性。范式是由Edgar F. Codd首先提出，作为关系模型的一部分。
