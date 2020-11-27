@@ -243,9 +243,7 @@ Determine the purpose of your database
 
 [Codd's 12 rules](https://en.wikipedia.org/wiki/Codd%27s_12_rules)
 
-准则
 
-一个关系形的关系数据库系统必须能完全通过它的关系能力来管理数据库。
 
 准则1：信息准则
 
@@ -295,9 +293,11 @@ Determine the purpose of your database
 
 如果一个关系数据库系统具有一个低级语言，那么这个低级语言不能违背或绕过完整性准则
 
-**Rule 0:** The foundation rule:
+**Rule 0:** The foundation rule: For any system that is advertised as, or claimed to be, a relational data base management system, that system must be able to manage data bases entirely through its relational capabilities.
 
-    For any system that is advertised as, or claimed to be, a relational data base management system, that system must be able to manage data bases entirely through its relational capabilities.
+准则 0 基础规则：对于任何宣传或者声称为一个关系数据库管理系统的系统，其必须具有能力管理 
+
+一个关系形的关系数据库系统必须能完全通过它的关系能力来管理数据库。
 
 Rule 1: The information rule:
 
