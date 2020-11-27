@@ -250,6 +250,8 @@ Determine the purpose of your database
 
 [First normal form](https://en.wikipedia.org/wiki/First_normal_form)
 
+第一范式是关系数据库中关系的基本属性。
+
 # Index & Performancey
 
 Clustered Index Accessing a row through the clustered index is fast because the row data is on the same page (on disk) where the index search leads. 
