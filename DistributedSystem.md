@@ -330,12 +330,12 @@ X axis—Horizontal Duplication
 **What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or noun (resources) boundaries. 有时指的是通过服务或者资源实现可扩展，这个规则聚焦于沿着动词(服务)或者名词(资源)的边界通过分割数据集、事务和工程团队来实现可扩展。
  
 **When to use**:
-* Very large data sets where relations between data are not necessary.
-* Large, complex systems where scaling engineering resources requires specialization.
+* Very large data sets where relations between data are not necessary.非常大的数据集合，并且集合内数据之间的关系不是必须的
+* Large, complex systems where scaling engineering resources requires specialization.大的、复杂的系统，并且在系统中扩展工程资源需要非常的专业化
 
 **How to use**:
-* Split up actions by using verbs, or resources by using nouns, or use a mix.
-* Split both the services and the data along the lines defined by the verb/noun approach.
+* Split up actions by using verbs, or resources by using nouns, or use a mix.使用动词分拆分动作，使用名词拆分资源，或者两者混合 。
+* Split both the services and the data along the lines defined by the verb/noun approach.沿着通过动词/名词方法定义的路线拆分服务和数据
 
 **Why:** Allows for efficient scaling of not only transactions but also very large data sets associated with those transactions. Also allows for the efficient scaling of teams. 不仅许可高效地扩展事务，而且许可高效地扩展与这些事务相关联的、非常大的数据集合。还许可高效地扩展团队。
 
@@ -355,18 +355,52 @@ Brooks法则的一个宗旨是作为吞掉规模逐渐扩大的一个结果，�
 ##### Rule 9—Design to Split Similar Things (Z Axis)
 ##### 规则9-设计分拆相似的东西(Z轴)
 
-**What:** This is very often a split by some unique aspect of the customer such as customer ID, name, geography, and so on.非常常见的分离方式是客户一些独特的属性，例如客户id、名字和地理位置等。
+**What:** This is very often a split by some unique aspect of the customer such as customer ID, name, geography, and so on.非常常见的分离方式是通过客户一些独特的属性，例如客户id、名字和地理位置等。
 
-**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important.
+**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important. 规模庞大的或者相似的数据集，例如庞大并快速增长的客户群或者对于地理分布的客户群响应时间非常重要
 
-**How to use:** Identify something you know about the customer, such as customer ID, last name, geography, or device, and split or partition both data and services based on that attribute.
+**How to use:** Identify something you know about the customer, such as customer ID, last name, geography, or device, and split or partition both data and services based on that attribute.识别那些你所知有关客户的信息，例如客户id、姓氏、地理位置或终端，并据此分割或者划分数据和服务。
 
-**Why:** Rapid customer growth exceeds other forms of data growth, or you have the need to perform fault isolation between certain customer groups as you scale.
+**Why:** Rapid customer growth exceeds other forms of data growth, or you have the need to perform fault isolation between certain customer groups as you scale.快速的客户增长超过了其他格式的数据增长，或者在你扩展客户规模的过程，你需要在特定的客户之间实现故障隔离。
 
 **Key takeaways:** Z axis splits are effective at helping you to scale customer bases but can alsobe applied to other very large data sets that can’t be pulled apart using the Y axis methodology.
 
 
-Often referred to as sharding and podding, Rule 9 is about taking one data set or service and partitioning it into several pieces. These pieces are often equal in size but may be of different sizes if there is value in having several unequally sized chunks or shards. 规则9经常称为分片或者分割，其获取一个数据集或者服务，然后将其划分为多个部分。这些部分通常大小相等，但如果大小不一的块或者分片有意义，那么也可能大小并不相同。
+Often referred to as sharding and podding, Rule 9 is about taking one data set or service and partitioning it into several pieces. These pieces are often equal in size but may be of different sizes if there is value in having several unequally sized chunks or shards. 规则9经常称为分片或者分割，其获取一个数据集或者服务，然后将其划分为多个部分。这些部分通常大小相等，但如果大小不一的块或者分片有意义，那么也可以大小并不相同。
+
+Summary
+* Scale by cloning—Cloning or duplicating data and services allows you to scale
+transactions easily.
+* Scale by splitting different things—Use nouns or verbs to identify data and services to separate. If done properly, both transactions and data sets can be scaled efficiently.
+* Scale by splitting similar things—Typically these are customer data sets. Set customers up into unique and separated shards or swim lanes (see Chapter 9 for
+the definition of swim lane) to enable transaction and data scaling.
+
+#### Design to Scale Out Horizontally
+#### 设计水平地向往扩展
+
+In our minds, it is clear: we believe that within hyper-growth environments it is critical that companies plan to scale in a horizontal fashion—what we describe as scaling
+out. Most often this is done through the segmentation or duplication of workloads across multiple systems.在我们的思想中，其非常显然，即我们认为在高速增长的环境中，公司计划以一种水平方式扩展（也被我们描述为向往扩展）是非常关键的。绝大多数情况下是通过跨越多个系统通过分割或者复制来实现。
+
+
+Here again we see this troubling notion of “complexity.” When used one way, more devices equals more complexity—or as we prefer to indicate, more devices to manage and oversee.
+But when seen from another perspective, more devices equals lower complexity—lower rates of failure overall and fewer incidents to manage.
+这里我们再次看到复杂性这个令人陷入麻烦的概念。从一个方向上使用，更多的设备等于更高的复杂性，或者按照我们喜欢的方式指出，更多的设备需要管理和监控。但是，从另一个角度看，更多的设备等于更低的复杂性，因为更低的整体故障率和更少需要管理的事故。
+
+
+
+##### Rule 10—Design Your Solution to Scale Out, Not Just Up
+
+##### 规则10-设计你的系统支持向外扩展，而不仅仅是向上扩展
+
+**What:** Scaling out is the duplication or segmentation of services or databases to spread transaction load and is the alternative to buying larger hardware, known as scaling up.
+
+**When to use:** Any system, service, or database expected to grow rapidly or that you would like to grow cost-effectively.
+
+**How to use:**  Use the AKF Scale Cube to determine the correct split for your environment. Usually the horizontal split (cloning) is the easiest.
+
+**Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality.
+
+**Key takeaways:** Plan for success and design your systems to scale out. Don’t get caught in the trap of expecting to scale up only to find out that you’ve run out of faster and larger systems to purchase.
 
 
 
