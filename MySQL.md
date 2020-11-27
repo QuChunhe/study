@@ -247,6 +247,9 @@ Determine the purpose of your database
 
 正规化需要对于数据库的列（属性）和表（关系）进行组织，以确保它们的依赖性正确地符合数据库完整性约束
 
+
+[First normal form](https://en.wikipedia.org/wiki/First_normal_form)
+
 # Index & Performancey
 
 Clustered Index Accessing a row through the clustered index is fast because the row data is on the same page (on disk) where the index search leads. 
