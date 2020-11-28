@@ -18,6 +18,7 @@
 * 标准化，流水线的生产是高度标准化的
 * 固定化，每个人的工作是固定不变，从上一个流程输出何种半成品
 * 可衡量，产品质量和每个人的工作是可以衡量的
+* 协同化，一个流水线上众多的环节和工人能够以并行方式相互协同生产
 
 modular programming,
 
@@ -393,4 +394,11 @@ D. L. Parnas, On the Criteria To Be Used in Decomposing Systems into Modules
 
 A well-defined segmentation of the project effort ensures system modularity. Each task forms a separate, distinct program module. At implementation time each module
 and its inputs and outputs are well-defined, there is no confusion in the intended interface with other system modules. At checkout time the integrity of the module is tested independently; there are few scheduling problems in synchronizing  the completion of several tasks before checkout can begin. Finally, the system is maintained in modular fashion; system errors and deficiencies can be traced to specific system modules, thus limiting the scope of detailed error searching.
-对于项目工作定义明确的分工确保系统的模块化。每个任务形成一个分离的、清晰的程序模块，
+对于项目工作定义明确的分工确保系统的模块化。每个任务形成一个分离的、清晰的程序模块。在实现期间，每个模块以及其输入和输出会被明确的定义，使得在打算通过接口集成其他系统模块时不会产生任何混淆。在检测期间，集成的模块可以独立测试。最后，系统能够以模块化的方式被维护，系统错误和缺陷能够被跟踪定位到特定的系统模块，因此限制记录错误搜索的范围
+
+The major progress in the area of modular programming has been the development of coding techniques and assemblers which (1) allow one module to be written with little knowledge of the code used in another module and, (2) allow modules to be reassembled and replaced without reassembly of the whole system.
+在模块化变成领域主要的进展是编码技术和装配器的发展：1）其许可在对另一个使用的模块知之甚少的情况下编写一个模块；2）许可模板被重新装配和替换而无需整个系统进行重新组装，
+
+
+The expected benefits of modular programming fall into three classes: (1) managerial -- development time could be shortened because separate groups would work on each module with little need for communication (and little regret afterward that there had not been more communication); (2) product flexibility — it was hoped that it would be possible to make quite drastic changes or improvements in one module without changing others; (3) comprehensibility -- it was hoped that the system could be studied a module at a time with the result that the whole system could be better designed because it was better understood.
+模块化编程所期望的好处可以划归为三类：（1）管理上——因为分开的多个组需要较少的交流就可以开发对应的模块，从而缩短开发时间；（2）产品的灵活性——期望可以在不改变其他模块的情况针对一个模块实现巨大的更新或者改进；（3）可理解性——期望能够在一个时间仅仅研究系统的一个模块，由于系统能够更好地理解，从而够更好地设计系统。
