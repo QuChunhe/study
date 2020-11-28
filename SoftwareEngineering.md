@@ -387,3 +387,10 @@ Hofstadter’s law illustrates one element of optimism bias, which leads people 
 [Software Architect Role, Skills, and Impact on Product Success](https://www.altexsoft.com/blog/software-architect-role/)
 
 [How Enterprise Architects Close the Gap between Technology and Business](https://www.altexsoft.com/blog/business/how-enterprise-architects-close-the-gap-between-technology-and-business/)
+
+
+D. L. Parnas, On the Criteria To Be Used in Decomposing Systems into Modules
+
+A well-defined segmentation of the project effort ensures system modularity. Each task forms a separate, distinct program module. At implementation time each module
+and its inputs and outputs are well-defined, there is no confusion in the intended interface with other system modules. At checkout time the integrity of the module is tested independently; there are few scheduling problems in synchronizing  the completion of several tasks before checkout can begin. Finally, the system is maintained in modular fashion; system errors and deficiencies can be traced to specific system modules, thus limiting the scope of detailed error searching.
+对于项目工作定义明确的分工确保系统的模块化。每个任务形成一个分离的、清晰的程序模块，
