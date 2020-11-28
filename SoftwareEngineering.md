@@ -16,7 +16,7 @@
 
 传统的工厂流水线，比如汽车或者手机制造工厂
 * 标准化，流水线的生产是高度标准化的
-* 固定化，每个人的工作是固定不变，从上一个流程输出何种半成品
+* 固定化，每个人的工作是固定不变，也就是说，在一个流水线一个特定环节的工作是重复性，从上一个流程输出何种半成品
 * 可衡量，产品质量和每个人的工作是可以衡量的
 * 协同化，一个流水线上众多的环节和工人能够以并行方式相互协同生产
 
@@ -402,3 +402,16 @@ The major progress in the area of modular programming has been the development o
 
 The expected benefits of modular programming fall into three classes: (1) managerial -- development time could be shortened because separate groups would work on each module with little need for communication (and little regret afterward that there had not been more communication); (2) product flexibility — it was hoped that it would be possible to make quite drastic changes or improvements in one module without changing others; (3) comprehensibility -- it was hoped that the system could be studied a module at a time with the result that the whole system could be better designed because it was better understood.
 模块化编程所期望的好处可以划归为三类：（1）管理上——因为分开的多个组需要较少的交流就可以开发对应的模块，从而缩短开发时间；（2）产品的灵活性——期望可以在不改变其他模块的情况针对一个模块实现巨大的更新或者改进；（3）可理解性——期望能够在一个时间仅仅研究系统的一个模块，由于系统能够更好地理解，从而够更好地设计系统。
+
+In the first decomposition the criterion used was make each 'major step' in the processing a module. One might say that to get the first decomposition one makes a flowchart. Figure 1 is a flowchart. This is the most common approach to decomposition or modularization.
+在第一个分解中所使用的标准是使得处理过程中的每个主要步骤成为一个模块。有人可能会说，为了得到第一个分解可以制作了一个流程图。图1是一个流程图。这是最常见的分解或模块化方法。
+
+The second decomposition was made using "information hiding"  as a criteria. The modules no longer correspond to steps in the processing. 
+在第二次分解中采用了信息隐藏作为标准。模块不再对应于处理中的步骤
+
+Every module in the second decomposition is characterized by its knowledge of a design decision which it hides from all others. Its interface or definition was chosen to reveal as little as possible about its inner workings.
+第二个分解中每个模块都以其对设计决策的知识为特征，而模块对其他所有模块隐藏这些知识。所选择的接口或定义暴露尽可能少的其内部工作情况。
+
+另种方式的区别
+* 第一种分解方式采用动词分解过程
+* 第二种分解方式采用名称分解实体
