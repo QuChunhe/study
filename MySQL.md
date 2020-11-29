@@ -241,6 +241,18 @@ Determine the purpose of your database
 查找并组织所需信息(Find and organize the information required)
 
 
+A Practical Guide to Database Design, 2nd Edition,2018
+
+* Problem Type 1—Synonyms:A synonym is created when two different names are used for the same information ( attribute). If an attribute resides in more than one entity, insure that all entities use the same attribute name.
+* Problem Type 2—Homonyms: A homonym is the reverse of a synonym. Just as you cannot use different names for the same attribute, you cannot use the same name for different attributes
+* Problem Type 3—Redundant Information: This problem, in which the same information is stored in two different forms or ways, is
+a bit harder to spot. One way to check for it is to consider if the value of any attribute is known or is derivable through the other attributes defined.
+* Problem Type 4—Mutually Exclusive Data: Mutually exclusive data exist when attributes occur, all the values of which, perhaps expressed as yes/no indicators, cannot be true for any single entity.
+
+More formally stated, normalization is the process of analyzing the dependencies between attributes within entities. Each attribute is checked against three or more sets of rules, then making adjustments as necessary to put each in first, second, and third normal form (3NF).
+
+In his book, An Introduction to Database Systems, C. J. Date gives the definition of first normal form (1NF) as “A relation R is in first normal form (1NF) if and only if all underlying domains contain atomic values only.”
+
 [Codd's 12 rules](https://en.wikipedia.org/wiki/Codd%27s_12_rules)
 
 
