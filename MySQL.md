@@ -383,6 +383,34 @@ Rule 12: The nonsubversion rule:
 
 第一范式是关系数据库中关系的基本属性。
 
+[database-normalization](https://www.learncomputerscienceonline.com/database-normalization/)
+第一范式
+* Each table cell shoul have atomic value 每个表单元应该具有原子值
+* Each column (attribute) name should be unique 每列的名称应该是唯一的
+* Table must have a primary key 表必须具有主键
+* No repeating column groups allowed 不允许重复的列组
+
+
+[Normalization of Database](https://www.studytonight.com/dbms/database-normalization.php)
+
+For a table to be in the First Normal Form, it should follow the following 4 rules:
+* It should only have single(atomic) valued attributes/columns.
+* Values stored in a column should be of the same domain
+* All the columns in a table should have unique names.
+* And the order in which data is stored, does not matter.
+
+[Facts and Fallacies about First Normal Form](https://www.red-gate.com/simple-talk/sql/learn-sql-server/facts-and-fallacies-about-first-normal-form/)
+
+Well, simply put a repeating group is a column that can accommodate multiple values.  (2). The columns in a base table in SQL are explicitly named and typed and therefore can accommodate only a single value of that type (or a null in case of a nullable column which we will discuss in a while).  Therefore strictly speaking, a base table in SQL, cannot have a repeating group.  A SQL column with an integer data type, for example,  cannot contain a repeating group containing a set of several integers
+
+
+
+[Normalization: What does “repeating groups” mean?](https://stackoverflow.com/questions/23194292/normalization-what-does-repeating-groups-mean#:~:text=The%20term%20%22repeating%20group%22%20originally%20meant%20the%20concept,exist%20in%20any%20modern%20relational%20or%20SQL-based%20DBMS.)
+
+Eliminate repeating groups in individual tables。消除单个表中的重复组。
+
+误解和误用了重复组这一个概念。重复组在E.F.Codd主要值得是一个单独的域可能包含一个具有重复值的宿处
+
 # Index & Performancey
 
 Clustered Index Accessing a row through the clustered index is fast because the row data is on the same page (on disk) where the index search leads. 
