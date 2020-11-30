@@ -77,6 +77,10 @@ SQL not equal 关系模型
 [Facts and Fallacies about First Normal Form](https://www.red-gate.com/simple-talk/sql/learn-sql-server/facts-and-fallacies-about-first-normal-form/)
 
 
+A database is in first normal form if it satisfies the following conditions:
+* Contains only atomic values.仅仅包含原子类型值
+* There are no repeating groups.不存在重复的组
+
 
 除了字典表和日志表，尽量避免VARCHAR的列
 
