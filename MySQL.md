@@ -402,7 +402,10 @@ For a table to be in the First Normal Form, it should follow the following 4 rul
 [Facts and Fallacies about First Normal Form](https://www.red-gate.com/simple-talk/sql/learn-sql-server/facts-and-fallacies-about-first-normal-form/)
 
 Well, simply put a repeating group is a column that can accommodate multiple values.  (2). The columns in a base table in SQL are explicitly named and typed and therefore can accommodate only a single value of that type (or a null in case of a nullable column which we will discuss in a while).  Therefore strictly speaking, a base table in SQL, cannot have a repeating group.  A SQL column with an integer data type, for example,  cannot contain a repeating group containing a set of several integers
+简单的说，重复组指的是一行可以容纳多个值的列。在SQL中通过显示方面命名和定义来定义列，因此每列仅仅能够容纳此类型的单个值。因此，严格来说，SQL中不可能有重复组。
 
+In the past, most people based their understanding of  1NF on the concept of atomicity — more specifically data value atomicity. That is, each value in a column must be a “single unit of data”. In fact some earlier database pioneers have defined atomic data, paraphrased,  as “data that cannot be decomposed into smaller pieces“. 
+在过去，大多数人对于第一方式的理解是基于原则性概念，更具体来说是数值的原子性。也就说，在一列中的每个值必须是单一的数据单元。实际上
 
 
 [Normalization: What does “repeating groups” mean?](https://stackoverflow.com/questions/23194292/normalization-what-does-repeating-groups-mean#:~:text=The%20term%20%22repeating%20group%22%20originally%20meant%20the%20concept,exist%20in%20any%20modern%20relational%20or%20SQL-based%20DBMS.)
