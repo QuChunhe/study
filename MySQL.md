@@ -74,7 +74,7 @@ SQL not equal 关系模型
 
 
 
-
+[Facts and Fallacies about First Normal Form](https://www.red-gate.com/simple-talk/sql/learn-sql-server/facts-and-fallacies-about-first-normal-form/)
 
 
 
