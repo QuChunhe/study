@@ -376,12 +376,24 @@ If a relational system has a low-level (single-record-at-a-time) language, that 
 
 数据库正规化是根据一系列范式构造关系型数据库的过程，以减小数据冗余和提高数据完整性。范式是由Edgar F. Codd首先提出，作为关系模型的一部分。
 
-正规化需要对于数据库的列（属性）和表（关系）进行组织，以确保它们的依赖性正确地符合数据库完整性约束
+Normalization entails organizing the columns (attributes) and tables (relations) of a database to ensure that their dependencies are properly enforced by database integrity constraints. It is  accomplished by applying some formal rules either by a process of synthesis (creating a new database design) or decomposition (improving an existing database design). 
+正规化需要对于数据库的列（属性）和表（关系）进行组织，以确保它们的依赖性正确地符合数据库完整性约束。应用一些正式的规则并通过合成（创建新的表）或者分解（改进已有的表）的过程来实现上述的组织。
+
 
 
 [First normal form](https://en.wikipedia.org/wiki/First_normal_form)
 
 第一范式是关系数据库中关系的基本属性。
+
+Codd states that the "values in the domains on which each relation is defined are required to be atomic with respect to the DBMS." Codd defines an atomic value as one that "cannot be decomposed into smaller pieces by the DBMS (excluding certain special functions)" meaning a column should not be divided into parts with more than one kind of data in it such that what one part means to the DBMS depends on another part of the same column.
+Codd表述为“在定义每个关系的域中，其值对于DBMS必须是原子的”。Codd将一个原子值定义为“不能被DBMS分解为更小的部分（不包括某些特殊的函数）”，这意味着一列不应被分割为具有不止一种类型的多个部分，并且对于DBMS一部分依赖于同一列的另外部分。
+
+Hugh Darwen and Chris Date have suggested that Codd's concept of an "atomic value" is ambiguous, and that this ambiguity has led to widespread confusion about how 1NF should be understood. In particular, the notion of a "value that cannot be decomposed" is problematic, as it would seem to imply that few, if any, data types are atomic: 
+Huge Darwen和Chis Date指出Codd的原子值概念具有歧义，并且这种歧义性会导致对于如何理解第一范式产生广泛的困惑。尤其是，对于“不能被分解的值”这一概念是有问题的，
+
+
+Date suggests that "the notion of atomicity has no absolute meaning": a value may be considered atomic for some purposes, but may be considered an assemblage of more basic elements for other purposes. If this position is accepted, 1NF cannot be defined with reference to atomicity. Columns of any conceivable data type (from string types and numeric types to array types and table types) are then acceptable in a 1NF table—although perhaps not always desirable; for example, it may be more desirable to separate a Customer Name column into two separate columns as First Name, Surname.
+Date指出“原子性这一概念并不是绝对”：针对于一些使用场合，一个值可以被认为是原子的，但是对于其他一些使用场合这个值也可以被认为是由多个基本元素聚合而成。如果上述情况时可以被接受的，那么就不能引用原子性来定义第一范式。任何可以想象到的数据类型（从字符串类型和数值类型到数组类型和表类型）所定义的列都是可以被第一范式的表接受，尽管可能并不总是期望如此。first_name(名字）和surname（姓氏）
 
 [database-normalization](https://www.learncomputerscienceonline.com/database-normalization/)
 第一范式
@@ -401,18 +413,29 @@ For a table to be in the First Normal Form, it should follow the following 4 rul
 
 [Facts and Fallacies about First Normal Form](https://www.red-gate.com/simple-talk/sql/learn-sql-server/facts-and-fallacies-about-first-normal-form/)
 
+Some of the common definitions of 1NF in tutorials misuse the term “repeating groups”, or “repeated groups”.  Usually it goes like this: If there are no repeating groups in a table, then it is in First Normal Form.  
+在教程中对于第一范式一些常用定义误用“重复组”这一术语。通常是这样描述的：“如果在一个表中没有重复的组，那么这个表就是第一个范式“。
+
+Many writers misunderstand the concept of a repeating group and use it to claim that a certain table is in violation of 1NF.  Some people believe that a set of columns, usually similarly named, that are placed adjacent to each other in a table, and have  the same data type constitute a ‘repeating group’. 
+很多作者错误理解了重复组的概念，使用其来声称某个表违反第一范式。一些人相信一些命名相似的、在表中的位置彼此相邻的并且具有相同数据类型的列构成了“重复组”
+
 Well, simply put a repeating group is a column that can accommodate multiple values.  (2). The columns in a base table in SQL are explicitly named and typed and therefore can accommodate only a single value of that type (or a null in case of a nullable column which we will discuss in a while).  Therefore strictly speaking, a base table in SQL, cannot have a repeating group.  A SQL column with an integer data type, for example,  cannot contain a repeating group containing a set of several integers
-简单的说，重复组指的是一行可以容纳多个值的列。在SQL中通过显示方面命名和定义来定义列，因此每列仅仅能够容纳此类型的单个值。因此，严格来说，SQL中不可能有重复组。
+简单的说，重复组指的是一个可以容纳多个值的列。在SQL中一个数据表的列是通过显式命名和定义类型，因此每列仅仅能够容纳此类型的单个值。因此，严格来说，SQL中不可能有重复组。
 
 In the past, most people based their understanding of  1NF on the concept of atomicity — more specifically data value atomicity. That is, each value in a column must be a “single unit of data”. In fact some earlier database pioneers have defined atomic data, paraphrased,  as “data that cannot be decomposed into smaller pieces“. 
-在过去，大多数人对于第一方式的理解是基于原则性概念，更具体来说是数值的原子性。也就说，在一列中的每个值必须是单一的数据单元。实际上
+在过去，大多数人对于第一范式的理解是基于原则性概念，更具体来说是数值的原子性。也就说，在一列中的每个值必须是单一的数据单元。实际上，一些早期的数据库先驱将所定义的原子性数据解释为“不能分解为更小片段的数据”。
+
+While this was considered appropriate for some time, it has turned out to be very vague and imprecise. For instance, how do we perceive an atomic value? Is a value declared as VARCHAR(10) considered atomic when we can decompose the string into individual characters? How can a value declared as DATETIME, which has year, month and day components and the time portion, have further decomposable elements? Well, the answer is “it depends”. Data value atomicity by itself is not an objective yardstick and has no absolute meaning (3). It depends on how we want to deal with the data. In other words, whether or not a data value is atomic is in the eye of the beholder.
+尽管在一段时期内这种理解被认为是正确的，但是其已经被证明是非常模糊和不精确的。例如，我们怎么样人的一个原子值？
 
 
 [Normalization: What does “repeating groups” mean?](https://stackoverflow.com/questions/23194292/normalization-what-does-repeating-groups-mean#:~:text=The%20term%20%22repeating%20group%22%20originally%20meant%20the%20concept,exist%20in%20any%20modern%20relational%20or%20SQL-based%20DBMS.)
 
 Eliminate repeating groups in individual tables。消除单个表中的重复组。
 
-误解和误用了重复组这一个概念。重复组在E.F.Codd主要值得是一个单独的域可能包含一个具有重复值的宿处
+误解和误用了重复组这一个概念。重复组在E.F.Codd主要指的是在一个单独的域可能包含一个具有重复值的数组。
+
+The term "repeating group" originally meant the concept in CODASYL and COBOL based languages where a single field could contain an array of repeating values. When E.F.Codd described his First Normal Form that was what he meant by a repeating group. The concept does not exist in any modern relational or SQL-based DBMS.
 
 # Index & Performancey
 
