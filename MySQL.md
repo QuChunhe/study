@@ -426,7 +426,7 @@ In the past, most people based their understanding of  1NF on the concept of ato
 在过去，大多数人对于第一范式的理解是基于原则性概念，更具体来说是数值的原子性。也就说，在一列中的每个值必须是单一的数据单元。实际上，一些早期的数据库先驱将所定义的原子性数据解释为“不能分解为更小片段的数据”。
 
 While this was considered appropriate for some time, it has turned out to be very vague and imprecise. For instance, how do we perceive an atomic value? Is a value declared as VARCHAR(10) considered atomic when we can decompose the string into individual characters? How can a value declared as DATETIME, which has year, month and day components and the time portion, have further decomposable elements? Well, the answer is “it depends”. Data value atomicity by itself is not an objective yardstick and has no absolute meaning (3). It depends on how we want to deal with the data. In other words, whether or not a data value is atomic is in the eye of the beholder.
-尽管在一段时期内这种理解被认为是正确的，但是其已经被证明是非常模糊和不精确的。例如，我们怎么样人的一个原子值？
+尽管在一段时期内这种理解被认为是正确的，但是其已经被证明是非常模糊和不精确的。例如，我们怎么样认定一个原子值？我们可以将VARCHAR(10)定义的字符串分解成单个字符，是否将字符串视为原子值？ 如何能够将一个值定义为DATETIME类型，其具有年、月和日以及时间部分组成，并能够进一步地分解为元素。 好吧，答案是“取决于情况”。 数据值原子性本身不是客观的标准，也没有绝对意义。这取决于我们要如何处理数据。换句话说，数据值是否是原子的取决于旁观者。
 
 
 [Normalization: What does “repeating groups” mean?](https://stackoverflow.com/questions/23194292/normalization-what-does-repeating-groups-mean#:~:text=The%20term%20%22repeating%20group%22%20originally%20meant%20the%20concept,exist%20in%20any%20modern%20relational%20or%20SQL-based%20DBMS.)

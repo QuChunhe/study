@@ -541,6 +541,12 @@ Utilization
 * Utilization is the proportion of busy time
 * Always defined over a time interval
 
+Response Time = Queue time + Service time
+
+* Queue length = Throughput x Response Time： (Little's Law)
+
+* Response Time = Service Time / (1 - Utilization)
+
 
 #### CPU
 
