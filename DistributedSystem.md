@@ -393,8 +393,10 @@ But when seen from another perspective, more devices equals lower complexity—l
 ##### 规则10-设计你的系统支持向外扩展，而不仅仅是向上扩展
 
 **What:** Scaling out is the duplication or segmentation of services or databases to spread transaction load and is the alternative to buying larger hardware, known as scaling up.
+向外扩展是针对服务或者数据库的复制或者分割，以扩大事务负载，其是购买更大型的硬件、被称为向上扩展的替换方案。
 
 **When to use:** Any system, service, or database expected to grow rapidly or that you would like to grow cost-effectively.
+期望快速增长的或者你期望高性价比的增长的任何系统、服务或者数据库
 
 **How to use:**  Use the AKF Scale Cube to determine the correct split for your environment. Usually the horizontal split (cloning) is the easiest.
 
@@ -403,6 +405,8 @@ But when seen from another perspective, more devices equals lower complexity—l
 **Key takeaways:** Plan for success and design your systems to scale out. Don’t get caught in the trap of expecting to scale up only to find out that you’ve run out of faster and larger systems to purchase.
 
 
+Having the ability to run your product on multiple servers through all tiers is scaling out.
+有能力将你的产品贯穿所有的层级运行在多个服务器是向外扩展。
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
