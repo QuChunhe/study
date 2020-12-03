@@ -878,7 +878,7 @@ Isolation
 * Avoid cascading failures
 * Requires set of measures to implement
 
-![Patterns of Resilience]()
+![Patterns of Resilience](https://github.com/QuChunhe/study/blob/master/pics/ResiliencePatterns.png)
 
 
 # 杂项
