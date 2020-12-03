@@ -405,8 +405,25 @@ But when seen from another perspective, more devices equals lower complexity—l
 **Key takeaways:** Plan for success and design your systems to scale out. Don’t get caught in the trap of expecting to scale up only to find out that you’ve run out of faster and larger systems to purchase.
 
 
-Having the ability to run your product on multiple servers through all tiers is scaling out.
-有能力将你的产品贯穿所有的层级运行在多个服务器是向外扩展。
+Having the ability to run your product on multiple servers through all tiers is scaling out.Continuing to run your systems on larger hardware at any tier is scaling up.
+有能力将你的产品在所有的层级上运行在多个服务器是向外扩展。继续在更强大的硬件上运行你系统的任何一个层级是向上扩展。
+
+
+
+##### Rule 11—Use Commodity Systems (Goldfish Not Thoroughbreds)
+##### 规则11-采用商品化系统
+
+**What:** Use small, inexpensive systems where possible.尽可能使用小规模的和不昂贵的系统
+
+**When to use:** Use this approach in your production environment when going through hypergrowth and adopt it as an architectural principle for more mature products.在飞速增长时在你们的生产环境中使用这个方法，并且针对更多的成熟产品采用其作为架构原则。
+
+**How to use:** Stay away from very large systems in your production environment.
+
+
+**Why:** Allows for fast, cost-effective growth. Allows you to purchase the capacity you need rather than spending for unused capacity far ahead of need.
+**Key takeaways:** Build your systems to be capable of relying on commodity hardware, and don’t get caught in the trap of using high-margin, high-end servers.
+
+
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
