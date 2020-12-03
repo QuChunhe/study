@@ -38,6 +38,11 @@ https://akfpartners.com/growth-blog
 * 复制/克隆（replicate/clone)，分担负载来提高吞吐，提高可靠性
 
 
+
+可扩展性（可伸缩性）描述了一个系统随着添加资源，能够在满足服务水平的情况下处理更多工作的能力，包括更多的请求和更多的数据
+
+线性扩展
+
 分布式引入的问题
 
 The 8 fallacies of distributed computing
@@ -769,9 +774,10 @@ Always use timeouts (if possible)
 
 # Reliability & Avaibility
 
-平均无故障时间（MTBF）平均无故障工作时间，英文全称是“Mean Time Between Failure”
+平均无故障时间（MTBF）平均无故障工作时间，英文全称是“Mean Time Between Failure”   也被称为平均失效间隔，在工作环境条件下两个故障之间时间的平均值。MTBF越长表示可靠性越高正确工作能力越强 。
 
-Mean Time To Repair (MTTR)
+
+Mean Time To Repair (MTTR) 平均修复时间，就是从出现故障到恢复中间的这段时间。MTTR越短表示易恢复性越好 
 
 故障表现无法按照预期正常地响应服务请求，包括多
 * 无法响应服务请求
@@ -842,6 +848,37 @@ Reliability refers to the probability that the system will meet certain performa
 MTBF = (total elapsed time – sum of downtime)/number of failures
 
 [Weibull Reliability Analysis](http://faculty.washington.edu/fscholz/Reports/weibullanalysis.pdf)
+
+
+<<Patterns of Resilience-A Small Pattern Language>>
+
+Availability ≔ MTTF /(MTTF + MTTR)
+
+* MTTF: Mean Time To Failure
+* MTTR: Mean Time To Recovery
+
+
+Traditional stability approach: Maximize MTTF
+
+
+Failures in todays complex, distributed and interconnected systems are not the exception.
+
+
+Do not try to avoid failures. Embrace them.
+
+Resilience approach: Minimize MTTR
+
+the ability of a system to handle unexpected situations
+* without the user noticing it (best case)
+* with a graceful degradation of service (worst case)
+
+Isolation
+* System must not fail as a whole
+* Split system in parts and isolate parts against each other
+* Avoid cascading failures
+* Requires set of measures to implement
+
+![Patterns of Resilience]()
 
 
 # 杂项
@@ -1101,4 +1138,100 @@ Caching for performance & Scale
 * Object caches : Redis
 * Application caches: Squid, Varnish
 * CDNs
+
+[Database Scalability](http://horicky.blogspot.com/2008/03/database-scalability.html)
+
+* Indexing
+* Data De-normalization: Table join is an expensive operation and should be reduced as much as possible. One technique is to de-normalize the data such that certain information is repeated in different tables.
+* DB Replication
+* Table Partitioning
+* Table Sharding
+* Transaction Processing:Avoid mixing OLAP (query intensive) and OLTP (update intensive) operations within the same DB. In the OLTP system, avoid using long running database transaction and choose the isolation level appropriately.
+
+
+[Web Site Scalability](http://horicky.blogspot.com/2008/03/web-site-scalability.html)
+
+* Web tier : Serving static contents (static pages, photos, videos)
+* App tier : Serving dynamic contents and execute the application logic (dynamic pages, order processing, transaction processing)
+* Data tier: Storing persistent states (Databases, Filesystems)
+
+Content Delivery
+* Dynamic Content
+* Static Content
+
+
+Request Dispatching and Load Balancing
+* DNS Resolution based on user proximity
+* Load balancer
+
+Client communication
+* Designing the granularity of service call
+   * Reduce the number of round trips by using a coarse grain API model so your client is making one call rather than many small calls
+   * Don't send back more data than your client need
+   * Consider using an incremental processing model. Just send back sufficient result for the first page. Use a cursor model to compute more result for subsequent pages in case the client needs it. But it is good to calculate an estimation of the total matched result to return to the client.
+* Designing message format
+* Consider data compression
+* Asynchronous communication
+
+Session state handing
+* Memory-based session state with load balancer affinity
+* Memory replication session state across App servers
+* Persist session state to a DB
+* On-demand session state migration
+* Embed session state inside cookies
+
+[Scalable System Design](http://horicky.blogspot.com/2008/02/scalable-system-design.html)
+
+General Principles
+* "Scalability" is not equivalent to "Raw Performance"
+* Understand environmental workload conditions that the system is design for
+   * Dimension of growth and growth rate: e.g. Number of users, Transaction volume, Data volume
+   * Measurement and their target: e.g. Response time, Throughput
+* Understand who is your priority customers
+   * Rank the importance of traffic so you know what to sacrifice in case you cannot handle all of them
+* Scale out and Not scale up
+* Keep your code modular and simple
+* Don't guess the bottleneck, Measure it
+* Plan for growth
+   * Do regular capacity planning. Collect usage statistics, predict the growth rate
+
+Common Techiques
+* Server Farm (real time access)
+* Data Partitioning
+* Map / Reduce (Batch Parallel Processing)
+* Content Delivery Network (Static Cache)
+* Cache Engine (Dynamic Cache)
+* Resources Pool
+* Calculate an approximate result
+* Filtering at the source
+* Asynchronous Processing
+  * In callback mode, the caller need to provide a response handler when making the call. The call itself will return immediately before the actually work is done at the server side. When the work is done later, response will be coming back as a separate thread which will execute the previous registered response handler. Some kind of co-ordination may be required between the calling thread and the callback thread.
+  * In polling mode, the call itself will return a "future" handle immediately. The caller can go off doing other things and later poll the "future" handle to see if the response if ready. In this model, there is no extra thread being created so no extra thread co-ordination is needed.
+* Implementation design considerations
+
+
+[Scalable System Design Patterns](http://horicky.blogspot.com/2010/10/scalable-system-design-patterns.html)
+
+* Load Balancer
+  * Random
+  * Round robin
+  * Least busy
+  * Sticky session/cookies
+  * By request parameters
+* Scatter and Gather
+* Result Cache
+* Shared Space: The model also known as "Blackboard"
+* Pipe and Filter: This model is also known as "Data Flow Programming"; all workers connected by pipes where data is flow across.
+* Map Reduce
+* Bulk Synchronous Parellel: This model is based on lock-step execution across all workers, coordinated by a master. Each worker repeat the following steps until the exit condition is reached, when there is no more active workers.
+   1. Each worker read data from input queue
+   2. Each worker perform local processing based on the read data
+   3. Each worker push local result along its direct connection
+
+* Execution Orchestrator: This model is based on an intelligent scheduler / orchestrator to schedule ready-to-run tasks (based on a dependency graph) across a clusters of dumb workers
+
+
+
+
+
 
