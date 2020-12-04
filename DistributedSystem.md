@@ -422,13 +422,46 @@ Having the ability to run your product on multiple servers through all tiers is 
 
 **When to use:** Use this approach in your production environment when going through hypergrowth and adopt it as an architectural principle for more mature products.在飞速增长时在你们的生产环境中使用这个方法，并且针对更多的成熟产品采用其作为架构原则。
 
-**How to use:** Stay away from very large systems in your production environment.
+**How to use:** Stay away from very large systems in your production environment.在你的生产环境中远离非常大型的系统。
 
 
 **Why:** Allows for fast, cost-effective growth. Allows you to purchase the capacity you need rather than spending for unused capacity far ahead of need.
+
 **Key takeaways:** Build your systems to be capable of relying on commodity hardware, and don’t get caught in the trap of using high-margin, high-end servers.
+能够依赖于商品化硬件构建你的系统，避免陷入使用高利润、高端服务器的陷阱。
 
 
+
+使用成熟的和商业化的系统，而不要采用定制化的、高端系统。
+* 价格相对便宜，更容易大规模的部署，以支持横向扩展
+* 更好的性价比
+
+
+##### Rule 12—Scale Out Your Hosting Solution
+##### 规则 12-横向扩展你的托管方案
+
+
+**What:** Design your systems to have three or more live data centers to reduce overall cost,
+increase availability, and implement disaster recovery. A data center can be an owned facility,
+a colocation, or a cloud (IaaS or PaaS) instance.
+设计你的系统具有三个或者更多的实时数据中心，以降低综合成本、提高可用性和实现灾后恢复。数据中心可以是自有设施、托管服务器或者一个云实例（IaaS或者PaaS）。
+
+**When to use:** Any rapidly growing business that is considering adding a disaster recovery
+(cold site) data center or mature business looking to optimize costs with a three-site solution
+
+**How to use:** Scale your data per the AKF Scale Cube. Host your systems in a “multiple live”
+configuration. Use IaaS/PaaS (cloud) for burst capacity, new ventures, or as part of a threesite
+solution.
+
+**Why:** The cost of data center failure can be disastrous to your business. Design to have
+three or more as the cost is often less than having two data centers. Consider using the
+cloud as one of your sites, and scale for peaks in the cloud. Own the base; rent the peak.
+
+**Key takeaways:** When implementing disaster recovery, lower your cost by designing your
+systems to leverage three or more live data centers. IaaS and PaaS (cloud) can scale
+systems quickly and should be used for spiky demand periods. Design your systems to be
+fully functional if only two of the three sites are available, or N-1 sites available if you scale
+to more than three sites.
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
