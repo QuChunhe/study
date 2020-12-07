@@ -192,14 +192,28 @@ achieve the desired outcome。努力和方法要与问题的复杂性相匹配�
 
 keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.保持事情尽可能的简单。从我们的视角来看，一个复杂问题其实仅仅是一些更小的、更简单的待解决问题集合
 
-##### Rule 1—Don’t Overengineer the Solution 不要过度设计方案
+##### Rule 1—Don’t Overengineer the Solution 
+##### 规则1—不要过度设计方案
 
-The first category covers products designed and implemented to exceed their useful
-requirements.
+**What:** Guard against complex solutions during design. 在设计过程中严防复杂的解决方案。
+
+**When to use:** Can be used for any project and should be used for all large or complex systems or projects. 可以应用于任何项目，而且也必须应用于所有大型或者复杂的系统或者项目
+
+**How to use:** Resist the urge to overengineer solutions by testing ease of understanding with fellow engineers. 通过与工程师同事测试易懂性，来抵制对于过度工程化解决方案的冲动。
+
+**Why:** Complex solutions are excessively costly to implement and are expensive to maintain long term. 复杂方案的实现会严重超支，而长期维护费用也高昂，
+
+**Key takeaways:** Systems that are overly complex limit your ability to scale. Simple systems
+are more easily and cost-effectively maintained and scaled.
+
+过度工程化可以划归两大类
+* The first category covers products designed and implemented to exceed their useful requirements. 第一类涵盖那些设计和实现超过其有用需求的产品。
+* The second category of overengineering covers products that are made to be overly complex.第二类过度工程化涵盖那些制造过于复杂的产品。
 
 
-The second category of overengineering deals with making something overly complex
-and making something in a complex way.
+To explain the first category of overengineering, exceeding useful requirements。第一类是超过了有用需求，即设计和实现了现在比并不需要的功能。
+
+The second category of overengineering deals with making something overly complex and making something in a complex way. 第二类过度工程化处置使得某些事情过于复杂并且以某种复杂的方式制作一些事情。
 
 不要向不需要的需求或功能买单
 
@@ -209,12 +223,21 @@ Overengineering is solving problems you don’t have.
 
 We will look at two sides of overengineering: Exceeding useful requirements, and spending too much effort to get a job done.
 
-##### Rule 2—Design Scale into the Solution　(D-I-D Process) 将可扩展性设计到方案中（设计-实现-部署过程）
+##### Rule 2—Design Scale into the Solution　(D-I-D Process) 
+##### 方案2—将可扩展性设计到方案中（设计-实现-部署过程）
 
-How to use:
-* Design for 20x capacity.
-* Implement for 3x capacity.
-* Deploy for roughly 1.5x capacity.
+**What:** An approach to provide JIT (just-in-time) scalability. 一种提供及时可扩展性的方法
+
+**When to use:** On all projects; this approach is the most cost-effective (resources and time) to ensure scalability.
+
+**How to use:**
+* Design for 20x capacity.针对20倍的容量，设计
+* Implement for 3x capacity.针对3倍的容量，实现
+* Deploy for roughly 1.5x capacity.针对大约1.5倍容量，部署
+
+**Why:** D-I-D provides a cost-effective, JIT method of scaling your product. 设计-实现-部署提供了一种高性价比的、及时的方式，来扩展你的产品。
+
+**Key takeaways:** Teams can save a lot of money and time by thinking of how to scale solutions early, implementing (coding) them a month or so before they are needed, and deploying them days before the customer rush or demand.
 
 
 D-I-D provides a cost-effective, JIT method of scaling your product.
@@ -232,12 +255,25 @@ infrastructure-as-a-service (IaaS)
 
 有预见性的设计，分阶段性的实现，及时性的部署
 
-##### Rule 3—Simplify the Solution Three Times Over 三重简化方案
+##### Rule 3—Simplify the Solution Three Times Over 
+##### 方案3—三重简化方案
 
-How to use:
-* Simplify scope using the Pareto Principle.
-* Simplify design by thinking about cost effectiveness and scalability.
-* Simplify implementation by leveraging the experience of others.
+**What:** Used when designing complex systems, this rule simplifies the scope, design, and implementation. 当设计复杂系统时使用这个规则，简化范围、设计和实现。
+
+**When to use:** When designing complex systems or products where resources (engineering
+or computational) are limited.
+
+
+**How to use:**
+* Simplify scope using the Pareto Principle. 通过帕累托法则来简化范围
+* Simplify design by thinking about cost effectiveness and scalability. 通过考量经济效益和可扩展性来简化设计
+* Simplify implementation by leveraging the experience of others.通过充分利用他人的经验来简化实现
+
+**Why:** Focusing just on “not being complex” doesn’t address the issues created in requirements
+or story and epoch development or the actual implementation.
+
+**Key takeaways:** Simplification needs to happen during every aspect of product development.
+
 
 Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二八定律、帕累托定律、最省力法则、不平衡原则、犹太法则。意大利经济学家帕累托提出的。法则认为原因和结果、投入和产出、努力和报酬之间本来存在着无法解释的不平衡
 
@@ -245,9 +281,30 @@ Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二�
 
 简化体现在更容易被理解，完成的时间更短，所付出的代价更小
 
+Complexity elimination is about cutting off unnecessary trips in a job, and simplification
+is about finding a shorter path
+
+
+“How can we leverage the experiences of others and existing solutions to simplify
+our implementation?”
+
 
 ##### Rule 4—Reduce DNS Lookups 减少DNS查找
-##### Rule 4—避免重复性工作
+##### 规则4—避免重复性工作
+
+
+**What:** Reduce the number of DNS lookups from a user perspective.
+
+**When to use:** On all Web pages where performance matters.
+
+**How to use:** Minimize the number of DNS lookups required to download pages, but balance
+this with the browser’s limitation for simultaneous connections.
+
+**Why:** DNS lookups take a great deal of time, and large numbers of them can amount to a large portion of your user experience.
+
+**Key takeaways:** Reduction of objects, tasks, computation, and so on is a great way of
+speeding up page load time, but division of labor must be considered as well.
+
 
 [什么是高并发下的请求合并？](https://mp.weixin.qq.com/s?__biz=MzIxNTQ4MzE1NA==&mid=2247501569&idx=1&sn=1bdce3ec6b00e2a1ec4e71c293fbf8ef&chksm=9795117ca0e2986a85c91e3fd1157d302e25db247ac694f3f80ddb9a44245a45255874cfd68a&mpshare=1&scene=1&srcid=112361PzzD8ACPONUPHVU9HI&sharer_sharetime=1606100477426&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AUU9f1Fl1KaBL6RENR8Oraw%3D&pass_ticket=fk%2BE1fOYHmI5CyP5XtiiPrUMmfrHPspkwtzMhbIMcZ8RCXV3pYelubWJqWxZuV5q&wx_header=0#rd)
 
@@ -256,20 +313,28 @@ Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二�
 * cache 缓存和复用结果
 
 
-How to use: Minimize the number of DNS lookups required to download pages, but balance
-this with the browser’s limitation for simultaneous connections.
+
 
 在分割后的功能中包含一些重复的处理，将这个处理分离出来，作为一个公共的前置功能。
 
 
 
-##### Rule 5—Reduce Objects Where Possible
+##### Rule 5—Reduce Objects Where Possible尽可能减少对象
 ##### Rule 5—控制分割的粒度
 
-How to use:
+**What:** Reduce the number of objects on a page where possible.
+
+**When to use:** On all Web pages where performance matters.
+
+**How to use:**
 * Reduce or combine objects but balance this with maximizing simultaneous connections.
 * Look for opportunities to reduce weight of objects as well.
 * Test changes to ensure performance improvements.
+
+**Why:** The number of objects impacts page download times.
+
+**Key takeaways:** The balance between objects and methods that serve them is a science that requires constant measurement and adjustment; it’s a balance among customer usability, usefulness, and performance.
+
 
 如果分割的太小，引入的代价将会超过分割带来的好处。因此，在一些情况下可以需要合并
 
@@ -281,6 +346,16 @@ How to use:
 
 ##### Rule 6—Use Homogeneous Networks使用同构网络
 
+**What:** Ensure that switches and routers come from a single provider.
+
+**When to use:** When designing or expanding your network. How to use:
+* Do not mix networking gear from different OEMs for switches and routers.
+* Buy or open-source for other networking gear (firewalls, load balancers, and so on).
+
+**Why:** Intermittent interoperability and availability issues simply aren’t worth the potential cost savings.
+
+**Key takeaways:** Heterogeneous networking gear tends to cause availability and scalability
+problems. Choose a single provider.
 
 对于操作系统以及数据库、JDK和Nginx等系统软件采用相同的版本。
 
@@ -300,8 +375,7 @@ How to use:
 
 **How to use:**
 * Simply clone services and implement a load balancer.简单的克隆服务并实现一个负载均衡器
-* For databases, ensure that the accessing code understands the difference between a
-read and a write.对于数据库，确保访问的代码理解读和写的不同
+* For databases, ensure that the accessing code understands the difference between a read and a write.对于数据库，确保访问的代码理解读和写的不同
 
 **Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality. 许可以复制数据和功能为代价，快速地实现事务处理的可伸缩性
 
@@ -339,7 +413,7 @@ X axis—Horizontal Duplication
 * Large, complex systems where scaling engineering resources requires specialization.大的、复杂的系统，并且在系统中扩展工程资源需要非常的专业化
 
 **How to use**:
-* Split up actions by using verbs, or resources by using nouns, or use a mix.使用动词分拆分动作，使用名词拆分资源，或者两者混合 。
+* Split up actions by using verbs, or resources by using nouns, or use a mix.使用动词分拆分动作，使用名词拆分资源，或者两者混合使用。
 * Split both the services and the data along the lines defined by the verb/noun approach.沿着通过动词/名词方法定义的路线拆分服务和数据
 
 **Why:** Allows for efficient scaling of not only transactions but also very large data sets associated with those transactions. Also allows for the efficient scaling of teams. 不仅许可高效地扩展事务，而且许可高效地扩展与这些事务相关联的、非常大的数据集合。还许可高效地扩展团队。
@@ -362,7 +436,7 @@ Brooks法则的一个宗旨是作为吞掉规模逐渐扩大的一个结果，�
 
 **What:** This is very often a split by some unique aspect of the customer such as customer ID, name, geography, and so on.非常常见的分离方式是通过客户一些独特的属性，例如客户id、名字和地理位置等。
 
-**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important. 规模庞大的或者相似的数据集，例如庞大并快速增长的客户群或者对于地理分布的客户群响应时间非常重要
+**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important. 规模庞大的或者相似的数据集，例如庞大并快速增长的客户群或者对于地理分布的客户群响应时间非常重要。
 
 **How to use:** Identify something you know about the customer, such as customer ID, last name, geography, or device, and split or partition both data and services based on that attribute.识别那些你所知有关客户的信息，例如客户id、姓氏、地理位置或终端，并据此分割或者划分数据和服务。
 
@@ -462,6 +536,31 @@ systems to leverage three or more live data centers. IaaS and PaaS (cloud) can s
 systems quickly and should be used for spiky demand periods. Design your systems to be
 fully functional if only two of the three sites are available, or N-1 sites available if you scale
 to more than three sites.
+
+It is this segmentation, replication, and cloning of data and services as well as statelessness that form the building blocks for us to spread our data centers across multiple sites and geographies. Standardize system configuration, code deployment, and monitoring to enable seamless growth between colocation sites and cloud sites.
+正是数据和服务的分割、复制和克隆以及无状态为我们形成了构造基石，可以跨域多个站点和地区分布我们的数据中心。在托管站点和云站点之间标准化系统配置、代码部署和监控能够无缝地增长。
+
+
+Multiple live site benefits include
+* Higher availability as compared to a hot and cold site configuration
+* Lower costs compared to a hot and cold site configuration
+* Faster customer response times if customers are routed to the closest data center for dynamic calls
+* Greater flexibility in rolling out products in an SaaS environment
+* Greater confidence in operations versus a hot and cold site configuration
+* Fast and easy “on-demand” growth for spikes using spare capacity in each data center, particularly if PaaS/IaaS/cloud is part of the overall solution
+
+Drawbacks or concerns of a multiple live site configuration include
+* Greater operational complexity
+* Likely a small increase in headcount
+* Increase in travel and network costs
+
+Architectural considerations in moving to a multiple live site environment include
+* Eliminating the need for state and affinity wherever possible。尽可能地消除对于状态和亲和性的需求
+* Routing customers to the closest data center if possible to reduce dynamic call times。尽可能地将客户路由到最近的数据中心，以减小动态呼叫时间
+* Investigating replication technologies for databases and state if necessary。如果必须，研究数据库和状态的复制技术
+
+
+
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
