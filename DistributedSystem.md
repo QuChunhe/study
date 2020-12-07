@@ -785,36 +785,7 @@ export PYSPARK_PYTHON=/usr/local/anaconda3/bin/python3
 ```
 
 
-# 高可用
 
-[大话高可用](https://mp.weixin.qq.com/s?__biz=MzUzNjAxODg4MQ==&mid=2247483678&idx=1&sn=2091e0f6b52cd859284fb14baec7565c&scene=21#wechat_redirect)
-
-去依赖 弱依赖 超时和重试、蓄洪、限流、熔断、降级
-
-对方故障：快速失败和安全失败
-
-对方恢复：快速回复和安全回复
-
-快速恢复有些策略。最简单的比如心跳检测、事件监听等。
-
-安全恢复一般主要是在恢复前对系统或数据先做一些检查、数据还原等。
-  
- 单节点-->集群-->多机房-->多地区-->异地多活
- 
- 多服务策略
- * 负载均衡
- * 主从切换
- * 优先策略
- 
- [Redis 缓存和 MySQL 数据如何实现一致性？](http://www.iocoder.cn/Fight/How-do-Redis-cache-and-MySQL-data-achieve-consistency/)
-  
-  负载均衡来提高系统吞吐和可靠性
-  
-  
-  负载均衡算法
-  * Round Robin 轮换
-  * Least Connections — 最少连接（Least Connections）这个算法意味着负载均衡器会选择当前连接最少的服务器。
-  * 
   
 ## Flink
 There are two basic kinds of state in Flink: Keyed State and Operator State.
@@ -906,8 +877,11 @@ Always use timeouts (if possible)
 
 # Reliability & Avaibility
 
-平均无故障时间（MTBF）平均无故障工作时间，英文全称是“Mean Time Between Failure”   也被称为平均失效间隔，在工作环境条件下两个故障之间时间的平均值。MTBF越长表示可靠性越高正确工作能力越强 。
+Mean time between failures (MTBF)，平均无故障工作时间或者平均故障间隔时间，在工作环境条件下两个故障之间时间的平均值。MTBF越长表示可靠性越高正确工作能力越强 。
 
+MTBF用于可修复系统（repairable systems）,而MTTF用于表示不可修复系统（non-repairable systems）中的期望故障时间。
+
+mean time to failure (MTTF），平均无故障时间，故障前平均时间
 
 Mean Time To Repair (MTTR) 平均修复时间，就是从出现故障到恢复中间的这段时间。MTTR越短表示易恢复性越好 
 
@@ -1012,6 +986,37 @@ Isolation
 
 ![Patterns of Resilience](https://github.com/QuChunhe/study/blob/master/pics/ResiliencePatterns.png)
 
+
+# 高可用
+
+[大话高可用](https://mp.weixin.qq.com/s?__biz=MzUzNjAxODg4MQ==&mid=2247483678&idx=1&sn=2091e0f6b52cd859284fb14baec7565c&scene=21#wechat_redirect)
+
+去依赖 弱依赖 超时和重试、蓄洪、限流、熔断、降级
+
+对方故障：快速失败和安全失败
+
+对方恢复：快速回复和安全回复
+
+快速恢复有些策略。最简单的比如心跳检测、事件监听等。
+
+安全恢复一般主要是在恢复前对系统或数据先做一些检查、数据还原等。
+  
+ 单节点-->集群-->多机房-->多地区-->异地多活
+ 
+ 多服务策略
+ * 负载均衡
+ * 主从切换
+ * 优先策略
+ 
+ [Redis 缓存和 MySQL 数据如何实现一致性？](http://www.iocoder.cn/Fight/How-do-Redis-cache-and-MySQL-data-achieve-consistency/)
+  
+  负载均衡来提高系统吞吐和可靠性
+  
+  
+  负载均衡算法
+  * Round Robin 轮换
+  * Least Connections — 最少连接（Least Connections）这个算法意味着负载均衡器会选择当前连接最少的服务器。
+  * 
 
 # 杂项
 
