@@ -984,7 +984,21 @@ Isolation
 * Avoid cascading failures
 * Requires set of measures to implement
 
+**Bulkheads Pattern（隔舱模式）**
+
+资源耗尽问题同样会影响具有多个使用者的服务。 源自一个客户端的大量请求可能耗尽服务中的可用资源。 其他使用者不再能够使用该服务，从而导致连锁故障效应。
+
+根据使用者负载和可用性要求，将服务实例分区成不同的组。 此设计有助于隔离故障，即使在发生故障期间，也能为某些使用者保留服务功能。
+
+使用者也可以将资源分区，确保用于调用一个服务的资源不会影响用于调用另一个服务的资源。 例如，对于调用多个服务的使用者，可为其分配每个服务的连接池。 如果某个服务开始发生故障，只有分配给该服务的连接池才会受到影响，因此，使用者可继续使用其他服务。
+
+[隔舱模式](https://docs.microsoft.com/zh-cn/azure/architecture/patterns/bulkhead)
+
+**Complete Parameter Checking**
+
 ![Patterns of Resilience](https://github.com/QuChunhe/study/blob/master/pics/ResiliencePatterns.png)
+
+Patterns for Fault Tolerant Software
 
 
 # 高可用
