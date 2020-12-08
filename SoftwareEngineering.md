@@ -422,3 +422,21 @@ Every module in the second decomposition is characterized by its knowledge of a 
 另种方式的区别
 * 第一种分解方式采用动词分解过程
 * 第二种分解方式采用名称分解实体
+
+
+
+
+伯斯塔尔法则 Postel’s Law
+
+接受多变，输出保守。
+
+理论背景
+
+该原理也被称为鲁棒性原理（Robustness Principle），1980 年，Jonathan Bruce Postel 在他编写的最早期的 TCP 协议规范中有提到：
+
+    Be conservative in what you send, be liberal in what you accept.
+    对发送的内容保持谨慎，对接收的内容保持自由。（直译）
+
+至此之后，该原理便被称为伯斯塔尔法则（Postel’s Law），广泛应用于计算机协议以及系统控制理论中。虽然最近几年计算机界中出现了一些质疑伯斯塔尔法则的声音，但这并不妨碍其核心思想被应用于 UI/UX 的领域。
+
+[让设计更有说服力的20条经典原则：伯斯塔尔法则、系列位置效应](https://www.uisdc.com/postels-law-serial-position-effect)
