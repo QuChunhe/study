@@ -559,6 +559,42 @@ Architectural considerations in moving to a multiple live site environment inclu
 * Routing customers to the closest data center if possible to reduce dynamic call times。尽可能地将客户路由到最近的数据中心，以减小动态呼叫时间
 * Investigating replication technologies for databases and state if necessary。如果必须，研究数据库和状态的复制技术
 
+##### Rule 13—Design to Leverage the Cloud
+##### 规则13-设计充分利用云/为充分利用云而设计
+
+**What:** This is the purposeful utilization of cloud technologies to scale on demand.这是有目的性地使用云技术，以按需可扩展。
+
+**When to use:** When demand is temporary, spiky, and inconsistent and when response time is not a core issue in the product. Consider when you are “renting your risk”—when future
+demand for new products is uncertain and you need the option of rapid change or walking away from your investment. Companies moving from two active sites to three should consider
+the cloud for the third site. 当需求是临时的、突发性的和不一致的，并且当在响应时间不是这些产品中的核心问题的时候。考虑何时承担你的风险——当未来对于你产品的需求还不确定并且你需要选择快速改变或者放弃你的投资时。公司从两个活跃站点迁移到三个的公司应该考虑为第三个站点使用云。
+
+**How to use:**
+* Make use of third-party cloud environments for temporary demand, such as seasonal business trends, large batch jobs, or quality assurance (QA) environments during
+testing cycles. 使用第三方云环境满足临时性需求，例如季节性业务趋势、大量批处理作业或者在测试周期中的质量保证环境。
+* Design your application to service some requests from a third-party cloud when demand exceeds a certain peak level. Scale in the cloud for the peak, then reduce
+active nodes to a basic level.设计你的应用，以当需求超过一个特定峰值水平时服务于一些来自第三方云的请求。针对峰值在云中扩展，然后减少活跃的节点到一个基本水平。
+
+**Why:** Provisioning of hardware in a cloud environment takes a few minutes as compared to days or weeks for physical servers in your own colocation facility. When used temporarily,
+this is also very cost-effective.
+
+**Key takeaways:** Design to leverage virtualization in all sites and grow in the cloud to meet unexpected spiky demand.
+
+Vendor-provided clouds have four primary characteristics: pay by usage, scale on demand, multiple tenants, and virtualization.
+
+
+#### Use the Right Tools
+#### 使用正确的工具
+
+“Law of the Instrument,” otherwise known as Maslow’s Hammer.  “When all you have is a hammer, everything looks like a nail.” There are at least two important implications of this “law.” 当你只有一只锤子时，一切看起来都像钉子。
+
+The first is that we all tend to use instruments or tools with which we are familiar to solve the problems before us. 第一个含义是我们都倾向于使用我们熟悉的器械或者工具，来解决我们面前的问题。
+
+The second implication of this law really builds on the first. If within our organizations we consistently bring in people with similar skill sets to solve problems or implement new
+products, we will very likely get consistent answers built with similar tools and thirdparty products. The problem with such an approach is that while it has the benefit of
+predictability and consistency, it may very well drive us to use tools or solutions that are inappropriate or suboptimal for our task.
+这个法则的第二个含义是构建在第一含义的基础上。如果在我们的组织内我们持续地引起具有类似技术能力的人员，来解决问题或者实现新产品，我们将会非常可能地得到使用类似工具和第三方产品构建的、一贯的结果。使用这种方法的一个问题是虽然其具有可预测性和一致性的好处，但是其非常可能驱动我们针对我们的问题，使用不适当的或者次优的工具或者解决方案。
+
+
 
 
 
@@ -877,6 +913,15 @@ Always use timeouts (if possible)
 
 # Reliability & Avaibility
 
+
+三个的区别与联系
+* Availability
+* Reliability
+* Resiliency
+
+Stability 
+
+
 Mean time between failures (MTBF)，平均无故障工作时间或者平均故障间隔时间，在工作环境条件下两个故障之间时间的平均值。MTBF越长表示可靠性越高正确工作能力越强 。
 
 MTBF用于可修复系统（repairable systems）,而MTTF用于表示不可修复系统（non-repairable systems）中的期望故障时间。
@@ -986,6 +1031,8 @@ Isolation
 
 **Bulkheads Pattern（隔舱模式）**
 
+Bulkhead 模式是一种容错能力的应用程序设计。 在 bulkhead 体系结构中，应用程序的元素隔离到池中，这样，如果一个应用程序发生故障，其他元素将继续工作。 该名称在分段的分区 (隔舱的) ，并按发货的球面进行命名。 如果船体受到破坏，只有受损的分段才会进水，从而可以防止船只下沉。
+
 资源耗尽问题同样会影响具有多个使用者的服务。 源自一个客户端的大量请求可能耗尽服务中的可用资源。 其他使用者不再能够使用该服务，从而导致连锁故障效应。
 
 根据使用者负载和可用性要求，将服务实例分区成不同的组。 此设计有助于隔离故障，即使在发生故障期间，也能为某些使用者保留服务功能。
@@ -996,12 +1043,176 @@ Isolation
 
 **Complete Parameter Checking**
 
-![Patterns of Resilience](https://github.com/QuChunhe/study/blob/master/pics/ResiliencePatterns.png)
+
 
 Patterns for Fault Tolerant Software
 
+Errors in one part of the system propagate to other parts of the system. If the errors are incorrect computational results, then errors can compound asthey move through the system. If the errors are incorrect actions, they can trigger further erroneous actions.
+系统某一个部分的错误会传播到系统的其他部分。如果错误是不正确的计算结果，那么随着这些错误在系统中移动，错误会持续恶化。如果错误是错误的操作，那么它们能够触发更多的错误操作。
 
-# 高可用
+How can the time from fault activation to error detection be minimized? The fastest option is to check for error at every operation that the system conducts. 
+如何缩短从故障被触发到错误被检查到的时间？最快的选择是在系统执行的每个操作中检查错误。
+
+Perform frequent checks on data and operations to detect errors quickly and prevent errors from propagating to the rest of the system 
+频繁地对数据和操作执行检查，能够快速地检测错误并防止错误扩散到系统的其他部分。
+
+Loose Coupling
+* Complements isolation
+* Reduce coupling between failure units
+* Avoid cascading failures
+* Different approaches and patterns available
+
+
+**Asynchronous Communication**
+* Decouples sender from receiver
+* Sender does not need to wait for receiver’s response
+* Useful to prevent cascading failures due to failing/latent resources
+* Breaks up the call stack paradigm
+
+**Location Transparency**
+* Decouples sender from receiver
+* Sender does not need to know receiver’s concrete location
+* Useful to implement redundancy and failover transparently
+* Usually implemented using dispatchers or mappers
+
+**Event-Driven**
+* Popular asynchronous communication style
+* Without broker location dependency is reversed
+* With broker location transparency is easily achieved
+* Very different from request-response paradigm
+
+**Stateless**
+* Supports location transparency (amongst other patterns)
+* Service relocation is hard with state
+* Service failover is hard with state
+* Very fundamental resilience and scalability pattern
+
+
+**Relaxed Temporal Constraints**
+* Strict consistency requires tight coupling of the involved nodes
+* Any single failure immediately compromises availability
+* Use a more relaxed consistency model to reduce coupling
+* The real world is not ACID, it is BASE (at best)!
+
+**Idempotency**
+* Non-idempotency is complicated to handle in distributed systems
+* (Usually) increases coupling between participating parties
+* Use idempotent actions to reduce coupling between nodes
+* Very fundamental resilience and scalability pattern
+
+**Self-Containment**
+* Services are self-contained deployment units
+* No dependencies to other runtime infrastructure components
+* Reduces coupling at deployment time
+* Improves isolation and flexibility
+
+
+Latency control
+* Complements isolation
+* Detection and handling of non-timely responses
+* Avoid cascading temporal failures
+* Different approaches and patterns available
+
+
+**Timeouts**
+* Preserve responsiveness independent of downstream latency
+* Measure response time of downstream calls
+* Stop waiting after a pre-determined timeout
+* Take alternate action if timeout was reached
+
+**Circuit Breaker**
+* Probably most often cited resilience pattern
+* Extension of the timeout pattern
+* Takes downstream unit offline if calls fail multiple times
+* Specific variant of the fail fast pattern
+
+
+Hystrix
+
+**Fail Fast**
+* “If you know you’re going to fail, you better fail fast”
+* Avoid foreseeable failures
+* Usually implemented by adding checks in front of costly actions
+* Enhances probability of not failing
+
+
+
+Fan out & quickest reply
+* Send request to multiple workers
+* Use quickest reply and discard all other responses
+* Reduces probability of latent responses
+* Tradeoff is “waste” of resources
+
+
+**Bounded Queues**
+* Limit request queue sizes in front of highly utilized resources
+* Avoids latency due to overloaded resources
+* Introduces pushback on the callers
+* Another variant of the fail fast pattern
+
+为可用内存设置上限，即为队列和缓存等设置最大可用的内存数量，避免出现过度使用内存，引起内存不够分配而触发错误。
+
+**Shed Load**
+* Upstream isolation pattern
+* Avoid becoming overloaded due to too many requests
+* Install a gatekeeper in front of the resource
+* Shed requests based on resource load
+
+
+http://libgen.gs/ads.php?md5=9BF0FE6A1B5893A6C45B5434F0C1A979
+
+Supervision
+* Provides failure handling beyond the means of a single failure unit
+* Detect unit failures
+* Provide means for error escalation
+* Different approaches and patterns available
+
+
+**Monitor**
+* Observe unit behavior and interactions from the outside
+* Automatically respond to detected failures
+* Part of the system – complex failure handling strategies possible
+* Outside the system – more robust against system level failures
+
+**Error Handler**
+* Units often don’t have enough time or information to handle errors
+* Separate business logic and error handling
+* Business logic just focuses on getting the task done (quickly)
+* Error handler has sufficient time and information to handle errors
+
+**Escalation**
+* Units often don’t have enough time or information to handle errors
+* Escalation peer with more time and information needed
+* Often multi-level hierarchies
+* Pure design issue
+
+
+Failures are the normal case. Failures are not predictable.
+* Isolation
+   * Bulkheads Pattern（隔舱模式）
+   * Complete Parameter Checking (完成参数检查)
+* Loose Coupling   
+   * Asynchronous Communication
+   * Location Transparency
+   * Event-Driven
+   * Stateless   
+   * Relaxed Temporal Constraints
+   * Idempotency
+   * Self-Containment 
+* Latency control
+   * Timeouts 
+   * Circuit Breaker
+   * Fail Fast
+   * Fan out & quickest reply
+   * Bounded Queues
+   * Shed Load
+* Supervision
+   * Monitor
+   * Error Handler
+   * Escalation
+   
+   
+![Patterns of Resilience](https://github.com/QuChunhe/study/blob/master/pics/ResiliencePatterns.png)
 
 [大话高可用](https://mp.weixin.qq.com/s?__biz=MzUzNjAxODg4MQ==&mid=2247483678&idx=1&sn=2091e0f6b52cd859284fb14baec7565c&scene=21#wechat_redirect)
 
