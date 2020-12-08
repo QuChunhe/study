@@ -956,7 +956,7 @@ MTBF = (total elapsed time – sum of downtime)/number of failures
 [Weibull Reliability Analysis](http://faculty.washington.edu/fscholz/Reports/weibullanalysis.pdf)
 
 
-<<Patterns of Resilience-A Small Pattern Language>>
+**Patterns of Resilience-A Small Pattern Language**
 
 Availability ≔ MTTF /(MTTF + MTTR)
 
