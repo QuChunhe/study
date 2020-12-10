@@ -25,8 +25,9 @@ https://akfpartners.com/growth-blog
 分布式的目的
 * 提高吞吐量
 * 提高可靠性，（可用性）
-* 降低时延，降低响应时间。功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是:a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
+* 降低响应时间，减小等待时延。功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是: a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
 
+上述三个目标是相互冲突和矛盾，虽然降低响应时间，能够提高吞吐量，但是提高吞吐量的很多措施却很增加服务的响应时间。类似于的，为了
 
 分布式的对象
 * 数据(data)，存储的分布化
@@ -76,6 +77,17 @@ The 8 fallacies of distributed computing
 data
 - partitions
 - replication
+
+读多写少，极端情况下一次写入、多次读取
+
+数据复制所带来的问题
+* 一致性问题，
+* 事务处理
+* 时延
+
+数据分割
+* 分割相同的数据（根据地理位置、id等分割客户数据
+* 分割不同的数据（分割客户、商品、订单和商户数据）
 
 task
 - load balancing
@@ -564,9 +576,7 @@ Architectural considerations in moving to a multiple live site environment inclu
 
 **What:** This is the purposeful utilization of cloud technologies to scale on demand.这是有目的性地使用云技术，以按需可扩展。
 
-**When to use:** When demand is temporary, spiky, and inconsistent and when response time is not a core issue in the product. Consider when you are “renting your risk”—when future
-demand for new products is uncertain and you need the option of rapid change or walking away from your investment. Companies moving from two active sites to three should consider
-the cloud for the third site. 当需求是临时的、突发性的和不一致的，并且在响应时间不是这些产品中的核心问题的时候。考虑何时真正承担你的风险——当未来对于你产品的需求还不确定并且你需要选择快速改变或者放弃你的投资时。那些将两个活跃站点迁移到三个的公司应该考虑为第三个站点使用云。
+**When to use:** When demand is temporary, spiky, and inconsistent and when response time is not a core issue in the product. Consider when you are “renting your risk”—when future demand for new products is uncertain and you need the option of rapid change or walking away from your investment. Companies moving from two active sites to three should consider the cloud for the third site. 当需求是临时的、突发性的和不一致的，并且在响应时间不是这些产品中的核心问题的时候。考虑何时真正承担你的风险——当未来对于你产品的需求还不确定并且你需要选择快速改变或者放弃你的投资时。那些将两个活跃站点迁移到三个的公司应该考虑为第三个站点使用云。
 
 **How to use:**
 * Make use of third-party cloud environments for temporary demand, such as seasonal business trends, large batch jobs, or quality assurance (QA) environments during
@@ -574,8 +584,7 @@ testing cycles. 使用第三方云环境满足临时性需求，例如季节性�
 * Design your application to service some requests from a third-party cloud when demand exceeds a certain peak level. Scale in the cloud for the peak, then reduce
 active nodes to a basic level.设计你的应用，以当需求超过一个特定峰值水平时服务于一些来自第三方云的请求。针对峰值在云中扩展，然后减少活跃的节点到一个基本水平。
 
-**Why:** Provisioning of hardware in a cloud environment takes a few minutes as compared to days or weeks for physical servers in your own colocation facility. When used temporarily,
-this is also very cost-effective.
+**Why:** Provisioning of hardware in a cloud environment takes a few minutes as compared to days or weeks for physical servers in your own colocation facility. When used temporarily, this is also very cost-effective.
 
 **Key takeaways:** Design to leverage virtualization in all sites and grow in the cloud to meet unexpected spiky demand.
 
@@ -596,9 +605,7 @@ products, we will very likely get consistent answers built with similar tools an
 predictability and consistency, it may very well drive us to use tools or solutions that are inappropriate or suboptimal for our task.
 这个法则的第二个含义是构建在第一含义的基础上。如果在我们的组织内我们持续地引进那些拥有类似技术能力的人员，来解决问题或者实现新产品，那么我们会非常可能地得到使用类似工具和第三方产品所构建的、一致的答案。使用这种方法的一个问题是虽然其具有可预测性和一致性的好处，但是其非常可能驱动我们针对我们的问题，使用不适当的或者次优的工具或者解决方案。
 
-This one system was carrying all the weight of everything the organization wanted to do.
-While it worked, and the execution risk for projects was lower, this is a classic example
-of overusing a tool
+This one system was carrying all the weight of everything the organization wanted to do. While it worked, and the execution risk for projects was lower, this is a classic example of overusing a tool
 一个系统承载了组织想做的所有事情。虽然其有效并且降低了项目的执行风险，但是这是一种经典的、滥用一个工具的例子。
 
 Using the right tool for the right job at the right time in an organization’s lifecycle is critical. This is a balancing act that requires judgment, especially in a large organization. Some teams suffer from always chasing the ‘next cool tool.’ Their infrastructure ends up being littered with a myriad of different tools, none of them hardened, robust, or able to be supported at scale. On the flip side, some organizations get good at just one thing, and they take that one thing way too far.”
@@ -624,6 +631,65 @@ There is no perfect database. There’s no perfect data store. They all have tra
 
 Don’t get locked into only what you are familiar with;spend the time to learn new things and be open to them.
 不要仅仅局限于你所熟悉的事物；花些时间学习新东西并对它们保持开放态度。
+
+
+##### Rule 14—Use Databases Appropriately
+##### 规则14-恰当地使用数据库
+
+**What:** Use relational databases when you need ACID properties to maintain relationships between your data and consistency. For other data storage needs consider more appropriate
+tools such as NoSQL DBMSs. 当你需要ACID属性以保证数据之间的关系和一致性时，请使用关系数据库。对于其他数据存储需求，请考虑更加适当的工具，例如NoSQL DBMSs。
+
+**When to use:** When you are introducing new data or data structures into the architecture of a system. 
+
+**How to use:** Consider the data volume, amount of storage, response time requirements, relationships, and other factors to choose the most appropriate storage tool. Consider how
+your data is structured and your products need to manage and manipulate data. 考虑数据规模、存储容量、响应时间需求、关系和其他因素，以选择最恰当的存储工具。考虑你的数据如何构造以及你的产品需要如何管理和操作数据。
+
+**Why:** An RDBMS provides great transactional integrity but is more difficult to scale, costs more, and has lower availability than many other storage options.关系型数据库管理系统提供了强大的事务完整性，但是与很多其他存储选择相比，其较难实现可扩展、成本更高、具有较低的可用性。
+
+**Key takeaways:** Use the right storage tool for your data. Don’t get lured into sticking everything in a relational database just because you are comfortable accessing data in a
+database.
+
+
+
+Relational database management systems (RDBMSs), such as Oracle and MySQL, are based on the relational model introduced by Edgar F. Codd in his 1970 paper “A Relational Model of Data for Large Shared Data Banks.”Most RDBMSs provide two huge benefits for storing data. The first is the guarantee of transactional integrity through ACID properties. The second is the relational structure within and between tables. To minimize data redundancy and improve transaction processing, the tables of most OLTP databases are normalized to third normal form, where all records of a table have the same fields, nonkey fields cannot be described by only one of the keys in a composite key, and all nonkey fields must be described by the key. Within the table each piece of data is highly related to other pieces of data. Between tables there are often relationships known as foreign keys. While these are two of the major benefits of using an RDBMS, these are also the reasons for their limitations in terms of scalability.
+大多数的关系数据库系统为数据存储提供了两大便利。第一个是通过ACID属性确保事务完整性。第二个是在表内部和表之间的关系型结构。为了最小化数据冗余和提高事务处理，大多数OLTP数据库的表都被正规化为第三范式，其中一个表的所有记录都有相同的字段，非键字段不能仅仅被组合键中的一个键描述，所有的非键字段必须被键所描述。在一个表内部数据的每一个部分紧密地关联到数据的其他部分。在表之间的关联关系通常被称为外键。虽然这些是使用关系型数据库带来的主要便利，但是这也是在可伸缩方面受到限制的原因。
+
+文件系统
+* 大型数据，比如文件、图片等
+* 一次写入，多次读取
+
+The next set of alternative storage strategies is termed NoSQL. Technologies that fall into this category are often subdivided into key-value stores, extensible record stores, and document stores. There is no universally agreed-upon classification of technologies, and many of them could accurately be placed in multiple categories.
+
+
+Key-value stores include technologies such as Memcached, Redis, and Amazon DynamoDB and Simple DB. These products have a single key-value index for data and that is stored in memory.
+键值存储
+
+
+Extensible record stores (ERSs), sometimes called wide column stores or table-style DBMSs, include technologies such as Google’s proprietary Bigtable and Facebook’s, now open-source, Cassandra and the open-source HBase.
+列存储
+
+
+Document stores include technologies such as MongoDB, CouchDB, Amazon’s DynamoDB, and Couchbase. The data model used in this category is called a “document” but is more accurately described as a multi-indexed object model. The multi-indexed object (or “document”) can be aggregated into collections of multi-indexed objects (typically called “domains”).
+文件存储
+
+You can tune consistency and latency in many of the NoSQL solutions with trade-offs, but immediate consistency is not possible as with an RDBMS.
+在很多NoSQL解决方案中你可以利用折中来调整一致性和时延，但是获得像一个关系型数据库那样的实时一致性是不可能的。
+
+There is a trade-off between scalability and flexibility within these systems. The degree of relationship between data entities ultimately drives this trade-off; as relationships increase, flexibility also increases. This flexibility comes at an increase in cost and a decrease in the ability to easily scale the system
+在在这些系统中存在着可扩展和灵活性之间的折中。数据实体之间的关系程度最终驱动了这种折中，当关系增加时，灵活性也会得到提高。然而，这种灵活性是增加成本和减小系统的易扩展能力为代价。
+
+Read and write ratios are important as they help drive an understanding of what kind of system we need. Data that is written once and read many times can easily be put on a file system coupled with some sort of application, file, or object cache.Images are great examples of systems that typically can be put on file systems. Data that is written and then updated, or with high write-to-read ratios, is better off within NoSQL or RDBMS solutions.
+读和写之间的比非常重要，因为其有助于推动我们更深入地理解我们需要哪种系统。一次写入和多次读取的数据非常容易放入那些与应用、文件或对象缓存相结合的文件系统。
+
+
+* degree of relationships
+* Rate of Growth
+* read and write conf licts,
+[Database Solution Decision Cube](https://github.com/QuChunhe/study/blob/master/pics/DatabaseSelection.JPG)
+
+A much better approach might be using tiers of data storage; as the data ages in terms of access date, continue to push it off to cheaper and slower-access storage media.We call this the Cost-Value Data Dilemma, which is where the value of data decreases over time and the cost of keeping it increases over time.
+一个更好的方法是使用分层的数据存储。随着在数据访问方面数据年龄的增加，持续地将数据转移到更加便宜、访问更慢的存储介质。我们称之为数据的成本-价值困境，即随着时间流失，数据的价值在降低，而保存数据的成本却随着时间在增加。
+
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
@@ -1239,6 +1305,17 @@ Failures are the normal case. Failures are not predictable.
    
    
 ![Patterns of Resilience](https://github.com/QuChunhe/study/blob/master/pics/ResiliencePatterns.png)
+
+
+”Resilience reloaded-More resilience patterns“
+
+(Almost) every system is a distributed system -- Chas Emerick
+
+Failures in todays complex, distributed and interconnected systems are not the exception.
+* They are the normal case
+* They are not predictable
+* They are not avoidable
+
 
 [大话高可用](https://mp.weixin.qq.com/s?__biz=MzUzNjAxODg4MQ==&mid=2247483678&idx=1&sn=2091e0f6b52cd859284fb14baec7565c&scene=21#wechat_redirect)
 
