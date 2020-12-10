@@ -1620,6 +1620,12 @@ Common Techiques
 
 
 
+[A Distributed Systems Reading List](https://dancres.github.io/Pages/)
 
+[Distributed Systems A free online class](https://www.distributedsystemscourse.com/)
+
+[CSE138 Distributed Systems](https://www.youtube.com/user/lindseykuper)
+
+[MIT 6.824 Distributed Systems (Spring 2020)](https://www.youtube.com/watch?v=cQP8WApzIQQ&list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB)
 
 
