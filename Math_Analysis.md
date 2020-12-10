@@ -102,3 +102,8 @@ http://people.math.harvard.edu/~shlomo/212a/11.pdf
 
 dominated convergence theory
 控制收敛理论
+
+
+proper Riemann integral
+* 定义域有界
+* 值域有界
