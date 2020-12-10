@@ -1629,3 +1629,20 @@ Common Techiques
 [MIT 6.824 Distributed Systems (Spring 2020)](https://www.youtube.com/watch?v=cQP8WApzIQQ&list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB)
 
 
+[Readings in distributed systems](http://christophermeiklejohn.com/distributed/systems/2013/07/12/readings-in-distributed-systems.html)
+
+课程视频官方地址：
+
+https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g
+
+爱可可老师也将视频“搬运”到了B站上：
+
+https://www.bilibili.com/video/av89327823/
+
+截止到现在（2月18日），只更新了前三节课。
+
+不过，整个课程的paper和lab已经放出了，如果你觉得视频更新太慢，你也可以先“酸爽”着。
+
+课程地址：
+
+https://pdos.csail.mit.edu/6.824/schedule.ht
