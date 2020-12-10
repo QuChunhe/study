@@ -108,8 +108,8 @@ proper Riemann integral
 * 定义域有界
 * 值域有界
 
-Ex.1 f(x)=sinx/x on [1,infinity)
+Ex.1 f(x)=sinx/x on [1,∞)
 
 Ex.2 sin(1/x)/x on (0.1)
 
-f(x) Riemann integrable, |f(x)| not Rieman integrable
+f(x) Riemann integrable, |f(x)| not Rieman integrable, not Lebbesgue integrable
