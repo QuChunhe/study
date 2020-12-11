@@ -293,6 +293,9 @@ Program Structures
 
 Atul S. Khot, Concurrent Patterns and Best Practices: Build scalable apps with patterns in multithreading, synchronization, and functional programming, 2018
 
+Concurrency entails communication between the concurrent entities. We will look at two primary concurrency models: message passing and shared memory.
+并发性需要并发实体之间的通信。我们将会研究两种主要的并发模型：消息传递和共享内存。
+
 When things happen at the same time, we say that things are happening concurrently. As far as this book is concerned, whenever parts of an
 executable program run at the same time, we are dealing with concurrent programming. We use the term parallel programming as a synonym for concurrent programming.
 
