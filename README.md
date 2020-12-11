@@ -1,4 +1,8 @@
-https://www.cnblogs.com/1024th/p/11623258.html
+[LaTeX公式手册](https://www.cnblogs.com/1024th/p/11623258.html)
+
+[TeXample.net](https://texample.net/)
+
+[The TikZ-UML package - v1.0](https://perso.ensta-paris.fr/~kielbasi/tikzuml/var/files/html/web-tikz-uml-userguide.html)
 
 
 # study
