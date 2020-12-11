@@ -427,6 +427,12 @@ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor，发现CPU工作模�
 tuned-adm profile latency-performance修改工作模式，解决问题
 ```
 
+
+linux系统出于安全角度的考虑，在多个位置都限制了可打开的文件描述符的数量，包括系统级、用户级、进程级。这三个限制的含义和修改方式如下
+* 系统级：当前系统可打开的最大数量，通过fs.file-max参数可修改
+* 用户级：指定用户可打开的最大数量，修改/etc/security/limits.conf
+* 进程级：单个进程可打开的最大数量，通过fs.nr_open参数可修改
+
 错误信息
 ```
 The current inotify(7) watch limit is too low
