@@ -1,5 +1,6 @@
-https://www.cnblogs.com/1024th/p/11623258.html
+[LaTeX公式手册](https://www.cnblogs.com/1024th/p/11623258.html)
 
+[TeXample.net](https://texample.net/)
 
 # study
 
