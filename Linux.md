@@ -896,6 +896,12 @@ yum install dstat.noarch
 
 dstat -N em1 1
 ```
+查看DNS
+```
+dig www.bing.com
+
+nslookup www.bing.com
+```
 
 #### IO
 
