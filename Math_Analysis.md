@@ -105,8 +105,8 @@ dominated convergence theory
 
 
 proper Riemann integral
-* 定义域有界
-* 值域有界
+* 定义域有界 bounded interval
+* 值域有界 bounded function
 
 Ex.1 f(x)=sinx/x on [1,∞)
 

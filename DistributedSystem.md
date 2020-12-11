@@ -150,6 +150,17 @@ Front-End (FE) + Back-End (BE) Architecture
 
 
 
+复制/克隆的一种特殊形式是跨越多个数据中心的复制/克隆
+* 就近提供服务，减小网络传输时延
+* 避免断电、断网和灾难等原因造成数据中心不可用，从而提供更高的可靠性
+* 分流流量，避免网络拥塞
+
+静态文件：CDN （Content Delivery Network）
+
+数据的多数据中心异地存储
+
+根据地理位置，部署多个站点：每次域名解析请求都会根据对应的负载均衡算法计算出一个不同的IP地址并返回，这样A记录中配置多个服务器就可以构成一个集群，并可以实现负载均衡
+
 # Papers
 [1] Patrick O'Neil, Edward Cheng, Dieter Gawlick, Elizabetch O'Neil. The log-structured merge-tree (LSM-tree). Acta Informatica, 1996, 33(4): 351-385.
 
@@ -1092,6 +1103,10 @@ MTBF = (total elapsed time – sum of downtime)/number of failures
 
 [Weibull Reliability Analysis](http://faculty.washington.edu/fscholz/Reports/weibullanalysis.pdf)
 
+
+
+
+[https://akfpartners.com/growth-blog/akf-availability-cube](https://akfpartners.com/growth-blog/akf-availability-cube)
 
 **Patterns of Resilience-A Small Pattern Language**
 
