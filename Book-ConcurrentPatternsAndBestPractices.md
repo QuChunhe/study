@@ -2,6 +2,11 @@
 
 Atul S. Khot, Concurrent Patterns and Best Practices: Build scalable apps with patterns in multithreading, synchronization, and functional programming, 2018
 
+并发的层次
+* 架构
+* 模式
+* 数据结构
+
 # Chapter 1 Concurrency – An Introduction
 
 
@@ -132,3 +137,11 @@ ReactiveX is a library for composing asynchronous and event-based programs by us
 
 
 The actor paradigm
+
+Message brokers
+
+software transactional memory
+
+parallel collections
+
+# Chapter 1 
