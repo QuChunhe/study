@@ -440,3 +440,35 @@ Every module in the second decomposition is characterized by its knowledge of a 
 至此之后，该原理便被称为伯斯塔尔法则（Postel’s Law），广泛应用于计算机协议以及系统控制理论中。虽然最近几年计算机界中出现了一些质疑伯斯塔尔法则的声音，但这并不妨碍其核心思想被应用于 UI/UX 的领域。
 
 [让设计更有说服力的20条经典原则：伯斯塔尔法则、系列位置效应](https://www.uisdc.com/postels-law-serial-position-effect)
+
+[The Full-stack Software Design & Architecture Map](https://khalilstemmler.com/articles/software-design-architecture/full-stack-software-design/)
+Understanding how to:
+* Architect a system to serve the needs of its users
+* Write code that's easy to change
+* Write code that's easy to maintain
+* Write code that's easy to test
+
+First Principles Thinking： 第一性原则
+
+A first principle is a basic assumption that cannot be deduced any further. Over two thousand years ago, Aristotle defined a first principle as “the first basis from which a thing is known.”
+
+Many of the most groundbreaking ideas in history have been a result of boiling things down to the first principles and then substituting a more effective solution for one of the key part. 
+历史上许多最具开创性的想法都是结果，将事情简化为第一条原则，然后用更有效的解决方案替代其中一个关键部分。
+
+One of the primary obstacles to first principles thinking is our tendency to optimize form rather than function. 
+第一性原则思考的一个主要障碍是我们倾向于优化形式而不是功能。
+
+The goal of software is to continually produce something that satisfies the needs of its users, while minimizing the effort it takes to do so.
+
+Stage 1: Clean code
+
+Stage 2: Programming Paradigms
+* Object-Oriented Programming is the tool best suited for defining how we cross architectural boundaries with polymorphism and plugins
+* Functional programming is the tool we use to push data to the boundaries of our applications
+* Structured programming is the tool we use to write algorithms
+
+
+
+Stage 3: Object-Oriented Programming
+
+Functional programming can seem like the means to all ends in this scenario, but I'd recommend getting acquainted with model-driven design and Domain-Driven Design to understand the bigger picture on how object-modelers are able to encapsulate an entire business in a zero-dependency domain model.
