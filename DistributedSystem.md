@@ -608,7 +608,7 @@ Vendor-provided clouds have four primary characteristics: pay by usage, scale on
 
 
 
-#### Use the Right Tools
+#### Chapter 4 Use the Right Tools
 #### 使用正确的工具
 
 “Law of the Instrument,” otherwise known as Maslow’s Hammer.  “When all you have is a hammer, everything looks like a nail.” There are at least two important implications of this “law.” 当你的所有只是一个锤子时，那么一切看起来都像钉子。
@@ -704,6 +704,67 @@ Read and write ratios are important as they help drive an understanding of what 
 
 A much better approach might be using tiers of data storage; as the data ages in terms of access date, continue to push it off to cheaper and slower-access storage media.We call this the Cost-Value Data Dilemma, which is where the value of data decreases over time and the cost of keeping it increases over time.
 一个更好的方法是使用分层的数据存储。随着在数据访问方面数据年龄的增加，持续地将数据转移到更加便宜、访问更慢的存储介质。我们称之为数据的成本-价值困境，即随着时间流失，数据的价值在降低，而保存数据的成本却随着时间在增加。
+
+##### Rule 15—Firewalls, Firewalls Everywhere!
+##### 规则15-防火墙，处处皆是防火墙
+
+**What:** Use firewalls only when they significantly reduce risk, and recognize that they cause issues with scalability and availability. 仅仅当能够显著降低风险时才使用防火墙，并且要认识到防火墙会导致可扩展性和可用性问题。
+
+**When to use:** Always.
+
+**How to use:** Employ firewalls for critical PII, PCI (Payment Card Industry) compliance, and so on. Don’t use them for low-value static content.
+
+**Why:** Firewalls can lower availability and cause unnecessary scalability chokepoints.
+
+**Key takeaways:** While firewalls are useful, they are often overused and represent both availability and scalability concerns if not designed and implemented properly.
+
+
+The decision to employ security measures should ultimately be viewed through the lens of profit maximization.
+最终从利润最大化的角度来考量部署安全措施的决定。
+
+Unfortunately, far too many companies view firewalls as an all-or-nothing approach to security. They overuse firewalls and underuse other security approaches that would otherwise make them even more secure. We can’t overstate the impact of firewalls on availability. In our experience, failed firewalls are the number-two driver of site downtime next to failed databases.。
+不幸的是，太多的公司将防火墙视为或全有或全无的安全方法。他们过度使用防火墙而没有充分使用其他能够使得他们更加安全的安全方法。我们不能高估防火墙对于可用性的影响。根据我们的经验，防火墙故障是使得网站宕机的第二大因素，仅次于数据库故障。
+
+防火墙是一个边际的安全设备。
+
+However, it is important to keep in mind that any extra hop reduces availability and increases latency regardless of implementation.
+但是需要牢记，无论如何实现，任何额外的跳都会降低可用性和增加时延。
+
+##### Rule 16—Actively Use Log Files
+##### 规则16-积极地使用日志文件
+
+**What:** Use your application’s log files to diagnose and prevent problems.使用应用日志文件来诊断和防范问题。
+
+**When to use:** Put a process in place that monitors log files and forces people to take action on issues identified.
+设置一个过程来监控日志文件，并强迫人们对已经甄别出的问题采取行动
+
+**How to use:** Use any number of monitoring tools from custom scripts to Splunk or the ELK framework to watch your application logs for errors. Export these and assign resources to identify and solve the issue.
+可以使用任意数量的监控工具，从自定义脚本到Splunk或者ELK框架，来监视应用日志中的错误。导出这些出错日志并分配资源甄别和解决问题。
+
+**Why:** The log files are excellent sources of information about how your application is performing for your users; don’t throw this resource away without using it.
+日志文件是极好的信息来源，其包含了你的应用如何为你的用户提供服务。不要丢掉而不使用这个来源。
+
+**Key takeaways:** Make good use of your log files, and you will have fewer production issues with your system. When issues do occur, you will be able to address them more quickly.
+
+The first step in using log files is to aggregate them.使用日志文件的第一步是聚合它们。
+
+If the amount of data is too large to pull together, there are strategies such as sampling, pulling data from every nth server, that can be implemented. Another strategy is to aggregate the logs from a few servers onto a log server that can then transmit the semiaggregated logs into the final aggregation location. 
+如果数据规模过于庞大，无法汇总在一起，那么可以使用一些策略，例如抽样，从第n个服务器提前数据。另一种策略是从一些服务器上汇总日志到一个日志服务器，然后这个日志服务器再发送半聚合的日志到最终的聚合服务器。
+
+This aggregation is generally done through an out-of-band network that is not the same network used for production traffic. What we want to avoid is impacting production traffic from logging, monitoring, or aggregating data.
+这种聚合通常是通过带外网络完成的，不同于产品流量所使用的网络。我们所想要的是避免记录、监视和聚合数据影响生产流量。
+
+The next step is to monitor these logs.第二步是监视这些数据。
+
+ELK (Elasticsearch, Logstash, Kibana)
+
+A tool that combines the aggregation and monitoring of log files is Splunk.
+
+Extract, Transform, and Load (ETL)
+
+
+#### Chapter 5 Get Out of Your Own Way
+#### 摆脱你自己的方式
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
