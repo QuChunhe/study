@@ -764,7 +764,22 @@ Extract, Transform, and Load (ETL)
 
 
 #### Chapter 5 Get Out of Your Own Way
-#### 摆脱你自己的方式
+#### 不要固守成规
+
+
+##### Rule 17—Don’t Check Your Work
+##### 规则17-不要检查你的工作
+
+**What:** Avoid checking and rechecking the work you just performed or immediately reading objects you just wrote within your products. 避免检查或者重复检查你刚刚完成的工作或者理解阅读你刚刚在你的产品中写的对象
+
+**When to use:** Always (see rule conflict in the following explanation). 
+
+**How to use:** Never read what you just wrote for the purpose of validation. Store data in a local or distributed cache if it is required for operations in the near future. 不要为了验证目的而读取刚刚写入的数据。如果在不久的将来需要再次操作数据，那么就将此数据存储在本地或者分布式缓存中。
+
+**Why:** The cost of validating your work is high relative to the unlikely cost of failure. Such activities run counter to cost-effective scaling.
+验证你工作的成本要相对高于不太可能发生故障的成本。此类活动与高性价比的可扩展背道而驰。  
+
+**Key takeaways:** Never justify reading something you just wrote for the purpose of validating the data. Trust your persistence tier to notify you of failures, and read and act upon errors associated with the write activity. Avoid other types of reads of recently written data by storing that data locally.
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
