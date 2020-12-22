@@ -609,7 +609,7 @@ Vendor-provided clouds have four primary characteristics: pay by usage, scale on
 
 
 #### Chapter 4 Use the Right Tools
-#### 使用正确的工具
+#### 使用正确的工具（工欲善其事，必先利其器）
 
 “Law of the Instrument,” otherwise known as Maslow’s Hammer.  “When all you have is a hammer, everything looks like a nail.” There are at least two important implications of this “law.” 当你的所有只是一个锤子时，那么一切看起来都像钉子。
 
@@ -780,6 +780,39 @@ Extract, Transform, and Load (ETL)
 验证你工作的成本要相对高于不太可能发生故障的成本。此类活动与高性价比的可扩展背道而驰。  
 
 **Key takeaways:** Never justify reading something you just wrote for the purpose of validating the data. Trust your persistence tier to notify you of failures, and read and act upon errors associated with the write activity. Avoid other types of reads of recently written data by storing that data locally.
+
+
+Sure, corruption happens from time to time, but in most cases that corruption is identified during the actual write operation. Writing and then reading a result doubles the transactions on your systems and as a result halves the number of total transactions you may perform to create value. This in turn decreases margins and profitability. A better solution is to simply read the return value of the operation you are performing and trust that it is correct, thereby increasing the number of value-added transactions you can perform. As a side note here, the most appropriate protection against corruption is to properly implement high availability and have multiple copies of data around such as a standby database or replicated storage (see Chapter 9, “Design for Fault Tolerance and Graceful Failure”). Ideally you will ultimately implement multiple live sites (see Chapter 3, “Design to Scale Out Horizontally,” Rule 12).
+当然，损坏时常会出现，但是在大多数情况下，损坏能够在写操作过程被发现。写然后查会将你系统中的事务数量翻一番，其后果是你能够执行的、创造价值的事务数量减半。这会降低利润率和盈利能力。一个更高的解决方案是简单地读取你操作所返回的结果并相信其是正确的，从而提高你所执行增值事务的数量。作为此处的旁注，针对于损坏最为合适的保护措施是适当地实现高可用性以及使用数据的多个副本，例如备用数据库或者复制存储。理想情况下，你将最终使用多个活跃站点。
+
+If you just wrote something and you know you are likely to need it again, just keep it around locally.
+如果你刚刚写入了一些数据，并且你知道你可能还会读取这些数据，那么将这些数据保存在本地。
+
+
+Regardless of the case, if the information you are writing is going to be needed in the near future, it makes sense to keep it around, to cache it. See Chapter 6, “Use Caching Aggressively,” for more information on how and what to cache. One nifty trick here in providing users with data they may immediately need is to simply write said data to the screen of the client (again an application or browser) directly rather than requesting the data again. Or pass said data through the URI and use it in subsequent pages.
+无论何种情况，如果你正在写入的信息在不远的将来还会需要到，那么通过缓存将这些信息保存在附近是有意义的。参见第6章“勇敢地使用缓存”，以获得更多关于如何和怎样使用缓存的信息。如果在写入数据后，用户立刻需要这些数据，那么一个实用技巧是将数据直接写到客户端（应用或者浏览器）屏幕上，而不是再次查询这些数据。或者通过URI传递这些数据并在后续页面中使用它们。
+
+
+Storing information locally on a system might be indicative of state and certainly requires affinity to the server to be effective. As such, we’ve violated Rule 40 (see Chapter 10, “Avoid or Distribute State”). At a high level, we agree, and if forced to make a choice we would always develop a stateless application over ensuring that we don’t have to read what we just wrote. That said, our rules are meant to be nomothetic or “generally true” rather than idiographic or “specifically true.” You should absolutely try not to duplicate your work and absolutely try to maintain a largely stateless application. Are these two statements sometimes in conflict? Yes. Is that conf lict resolvable? Absolutely
+在一个服务器的本地存储信息可能意味着状态，并且肯定需要对服务器具有亲和性才能有效。如果如此，那么我们就违反了规则40（参考10章避免或者分发状态）。从较高的层次上，我同意，如果被迫作出选择，我将会开发一个无状态的应用，以确保我们不会读取我们刚刚写入的数据。也就是说，我们的规则是普遍适用的或者“通常情况是真实的”，而不是个例或者“特殊情况是真实的”。你绝对不要尝试重复你的工作，并且绝对要尽力维护一个大型的无状态应用。上述两个陈述有时候冲突吗？是的。冲突可以解决吗？当然。
+
+
+As with any rule, there are likely exceptions.
+任何规则都有例外的情况。
+
+#### Rule 18—Stop Redirecting Traffic
+#### 规则18——停止重定向流量
+
+**What:** Avoid redirects when possible; use the right method when they are necessary.尽量避免重定向；当需要重定向时，使用正确的方法
+
+**When to use:** Always.
+
+**How to use:** If you must use redirects, consider server configurations instead of HTML or other code-based solutions. 如果你必须使用重定向，考虑服务器配置，以取代HTML或者其他基于代码的方案。
+
+**Why:** Redirects in general delay the user, consume computation resources, are prone to errors, and can negatively affect search engine rankings. 重定向通常会增加用户时延，消耗计算资源，容易出错，并且可能对于搜索引擎排名产生负面影响。
+
+**Key takeaways:** Use redirects correctly and only when necessary.正确使用重定向并且只有当需要时才使用。
+
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
