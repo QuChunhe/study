@@ -4,7 +4,7 @@
 
 partial 偏表示部分的意思
 * 偏导数 部分导入
-* 偏序，部分有序
+* 偏序(Partial Order)，部分有序
 
 # Real Analysis
 
