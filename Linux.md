@@ -1367,3 +1367,13 @@ ThreadMXBean: ManagementFactory.getThreadMXBean(), findDeadlockedThread()
 基本word读写操作是原子性的
 
 对于特点数据结构的独占访问，使用CAS（Compare-and-Swap)，或者TAS（test-and-set)指令
+
+
+# Problems
+
+tracker-store进程占用大量IO
+```shell
+gsettings set org.freedesktop.Tracker.Miner.Files crawling-interval -2  
+gsettings set org.freedesktop.Tracker.Miner.Files enable-monitors false
+echo y | LANG=en tracker reset --hard
+```
