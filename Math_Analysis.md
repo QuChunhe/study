@@ -2,6 +2,10 @@
 
 [数学|数学中的英语名词汇](https://zhuanlan.zhihu.com/p/134603058)
 
+partial 偏表示部分的意思
+* 偏导数 部分导入
+* 偏序，部分有序
+
 # Real Analysis
 
 Cauchy Criterion for uniform
