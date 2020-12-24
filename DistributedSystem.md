@@ -814,6 +814,32 @@ As with any rule, there are likely exceptions.
 **Key takeaways:** Use redirects correctly and only when necessary.正确使用重定向并且只有当需要时才使用。
 
 
+HTTP 3xx Status Codes
+* 300 Multiple Choices—The requested resource corresponds to any one of many representations and is being provided so that the user can select a preferred representation.
+* 301 Moved Permanently—The requested resource has been assigned a new permanent URI, and any future references to this resource should use the URI returned.
+* 302 Found—The requested resource resides temporarily under a different URI, but the client should continue to use the Request-URI for future requests.
+* 303 See Other—The response to the request can be found under a different URI and should be retrieved using a GET method. This method exists primarily for the PRG design pattern to allow the output of a POST to redirect the user agent.
+* 304 Not Modified—If the client has performed a conditional GET request and access is allowed, but the document has not been modified, the server should respond with this status code.
+* 305 Use Proxy—The requested resource must be accessed through the proxy given by the Location field.
+* 306 (Unused)—This status code is no longer used in the specification.
+* 307 Temporary Redirect—The requested resource resides temporarily under a different URI.
+
+
+#### Rule 19—Relax Temporal Constraints
+#### 规则19-放松时间约束
+
+**What:** Alleviate temporal constraints in your system whenever possible. 在你的系统中尽可能地减轻时间约束。
+
+**When to use:** Anytime you are considering adding a constraint that an item or object must maintain a certain state between a user’s actions.当你考虑添加约束使得一个商品或者对象必须在用户行为之间维护一个特定状态时。
+
+**How to use:** Relax constraints in the business rules.在商业规则上放松约束。
+
+**Why:** The difficulty in scaling systems with temporal constraints is significant because of the ACID properties of most RDBMSs.由于大多数RDBMs的ACID属性，具有严格时间约束的可扩展性系统是非常难于实现的。
+
+**Key takeaways:** Carefully consider the need for constraints such as items being available from the time a user views them until the user purchases them. Some possible edge cases where users are disappointed are much easier to compensate for than not being able to scale.请仔细考虑对于约束的需求，例如商品从用户流量到这个用户购买为止一直可用。相对于不能扩展，对一些可能的、令用户失望的极端是非常容易弥补的。
+
+constraint satisfaction problems (CSPs) 约束满足问题
+
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
