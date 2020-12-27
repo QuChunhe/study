@@ -7,6 +7,10 @@
 
 # study
 
+[中科大 高等数理统计](https://www.bilibili.com/video/BV1Hz411B76u?from=search&seid=18439276058552710538)
+
+
+
 [现代统计方法_张三国](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=10b0013342724a5e900b7e52bf0da2a9)
 
 [自然语言理解](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=15769)
