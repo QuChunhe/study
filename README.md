@@ -13,6 +13,8 @@
 
 [《因果推理导论》课程(2020) by Brady Neal](https://www.bilibili.com/video/BV1nZ4y1K78i?p=1)
 
+https://www.bradyneal.com/causal-inference-course
+
 [现代统计方法_张三国](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=10b0013342724a5e900b7e52bf0da2a9)
 
 [自然语言理解](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=15769)
