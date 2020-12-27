@@ -127,6 +127,18 @@ https://cacm.acm.org/magazines/2008/11/537-software-transactional-memory-why-is-
 [30 Free Courses: Neural Networks, Machine Learning, Algorithms, AI](https://www.datasciencecentral.com/profiles/blogs/neural-networks-for-machine-learning)
 
 
+[【MIT公开课】18.S096 金融应用数学专题 · 2013年秋](https://www.bilibili.com/video/BV13k4y117kC?from=search&seid=14470104938906024732)
+[MIT OpenSourceWare MIT 18.S096 Topics in Mathematics Applications in Finance](https://www.bilibili.com/video/BV1Sy4y1C7qr?from=search&seid=14470104938906024732)
+
+https://www.youtube.com/playlist?list=PLUl4u3cNGP63ctJIEC1UnZ0btsphnnoHR
+讲师：Dr. Peter Kempthorne, Dr. Choongbum Lee, Dr. Vasily Strela, Dr. Jake Xia
+课程地址：https://ocw.mit.edu/courses/mathematics/18-s096-topics-in-mathematics-with-applications-in-finan
+
+
+[复旦大学计量经济学](https://www.bilibili.com/video/BV1ps411W75j/?spm_id_from=333.788.videocard.9)
+
+[清华大学公开课 李子奈 计量经济](https://www.bilibili.com/video/BV1Eb411B78w/?spm_id_from=333.788.videocard.0)
+
 http://www.dre.vanderbilt.edu/%7Eschmidt/PDF/proactor.pdf
 
 [用户自制的 TiKZ 绘图样例分享](https://www.latexstudio.net/archives/51667.html](https://www.latexstudio.net/archives/51667.html)
