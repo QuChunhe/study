@@ -34,6 +34,10 @@ B belongs  to a
 metric outer measure => Borel  subset  of R^n are Lebesgue measurable
 
 
+[雅可比行列式的实际意义](https://blog.csdn.net/comeonow/article/details/103239288)
+
+[行列式的意义是什么？](https://www.zhihu.com/question/26294660)
+
 [Modes of Convergence](http://www.prime.sdu.edu.cn/__local/2/0D/5E/684A4CDDEF2D69A81B84B71E0C2_E677655A_264C6.pdf)
 
 [Littlewood’s Three Principles]http://math.gmu.edu/~dwalnut/teach/Math776/Spring11/776s11lec07_notes.pdf()
