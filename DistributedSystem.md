@@ -830,15 +830,38 @@ HTTP 3xx Status Codes
 
 **What:** Alleviate temporal constraints in your system whenever possible. 在你的系统中尽可能地减轻时间约束。
 
-**When to use:** Anytime you are considering adding a constraint that an item or object must maintain a certain state between a user’s actions.当你考虑添加约束使得一个商品或者对象必须在用户行为之间维护一个特定状态时。
+**When to use:** Anytime you are considering adding a constraint that an item or object must maintain a certain state between a user’s actions.当你考虑添加一个约束，使得一个商品或者对象必须在用户行为之间维护一个特定状态时。
 
 **How to use:** Relax constraints in the business rules.在商业规则上放松约束。
 
 **Why:** The difficulty in scaling systems with temporal constraints is significant because of the ACID properties of most RDBMSs.由于大多数RDBMs的ACID属性，具有严格时间约束的可扩展性系统是非常难于实现的。
 
-**Key takeaways:** Carefully consider the need for constraints such as items being available from the time a user views them until the user purchases them. Some possible edge cases where users are disappointed are much easier to compensate for than not being able to scale.请仔细考虑对于约束的需求，例如商品从用户流量到这个用户购买为止一直可用。相对于不能扩展，对一些可能的、令用户失望的极端是非常容易弥补的。
+**Key takeaways:** Carefully consider the need for constraints such as items being available from the time a user views them until the user purchases them. Some possible edge cases where users are disappointed are much easier to compensate for than not being able to scale.请仔细考虑对于约束的需求，例如商品从用户流量到这个用户购买为止一直可用。相对于不能扩展，对一些可能的、令用户失望的极端例子是非常容易弥补的。
 
 constraint satisfaction problems (CSPs) 约束满足问题
+
+temporal constraint satisfaction problem (TCSP),
+
+Most RDBMSs aren’t good at keeping all the data completely consistent between nodes. Even though read replicas or slave databases can be kept within seconds of each other in terms of consistent data, certainly there will be edge cases when two users want to view the last available inventory of a particular item.
+大多数的RDBM系统都不擅长于在节点之间保持数据的完全一致性。即使读副本或者从属数据库能够在节点之间实现秒级的数据一致性，当两个用户想要查看一个特定商品的可用库存时，还是可能出现数据不一致的特殊情况。
+
+The CAP Theorem, also known as the Brewer Theorem, so named after computer scientist Eric Brewer, states that three core requirements exist when designing applications in a distributed environment, but it is impossible to simultaneously satisfy
+all three requirements. These requirements are expressed in the acronym CAP: 在分布式环境设计应用时，存在三个核心需求，不可能同时满足这三个需求。这个三个需求被缩写为CAP
+* Consistency—The client perceives that a set of operations has occurred all at once.一致性
+* Availability—Every operation must terminate in an intended response.可用性
+* Partition tolerance—Operations will complete, even if individual components are unavailable.抗分区
+
+BASE：“basically available, soft state, and eventually consistent”
+
+A BASE architecture allows for the databases to become consistent, eventually. This might be minutes or even just seconds, but as we saw in the previous example, even milliseconds of inconsistency can cause problems if our application expects to be able to “lock” the data。
+BASE架构许可数据库最终变得一致。这个过程可能需要数分钟，或者仅仅数秒钟，但是我们从之前的例子中看到，即使存在毫秒级的不一致。如果我们的应用期望能够锁住数据，那么也能导致问题
+
+
+The way we would redesign our system to accommodate this eventual consistency would be to relax the temporal constraint. The user just viewing an item would not guarantee that it is available. The application would “lock” the data when the item is placed into a shopping cart, and this would be done on the primary write copy or master database. Because we have ACID properties, we can guarantee that if our transaction completes and we mark the record of the item as “locked,” then that user can continue through the purchase confident that the item is reserved. Other users viewing the item may or may not have it available for them to purchase.
+重新设计我们的系统以适应上述最终一致性的方式是放松时间约束。在用户正在浏览一个商品时，并不能保证该商品可以被购买。当商品被放置到购物篮，应用将会“锁定”数据，并且这个操作是在主写拷贝或者主数据库上完成的。由于ACID数据，我们能够保证一旦我们事务完成，我们将商品的记录标记为“已经锁定”，然后在确信商品被预留，用户能够继续购物。其他浏览这个商品的用户，可能会或者可能不会获知这个商品已经不能被订购。
+
+Another area in which temporal constraints are commonly found in applications is the transfer of items (money) or communications between users. The PayPal example with which we opened this chapter is a great example of such a constraint. Guaranteeing that user A gets the money, message, or item in his or her account as soon as user B sends it is easy on a single database. Spreading out the data among several copies of the data makes this consistency much more difficult. The way to solve this is to not expect or require the temporal constraint of instant transfer. More than likely it is totally acceptable that user A waits a few seconds before seeing the money that user B sent. The reason is simply that most dyads don’t synchronously transfer items in a system. Obviously synchronous communication such as chat is different.
+另一个经常在应用中发现时间约束的领域是在用户之间的商品（钱）转移或者通信。
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
