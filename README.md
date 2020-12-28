@@ -1,3 +1,15 @@
+没有最好的方案，只有最适合的方案。
+
+技术不断进步，复杂性增加，通过模块化降低复杂性。
+最为著名的方式是分层，每层屏蔽下层的复杂性和实现细节。
+
+
+对待技术和方案
+* 确定边界：能够解决那些问题，不能解决那些问题
+* 识别深度：过犹不及
+在工程应用中要在多个目标之间进行折中，对于不重要的或者能够通过其他方式进行弥补的目标，可以适当放宽此目标的约束。
+
+# LaTex
 [LaTeX公式手册](https://www.cnblogs.com/1024th/p/11623258.html)
 
 [TeXample.net](https://texample.net/)
@@ -5,7 +17,7 @@
 [The TikZ-UML package - v1.0](https://perso.ensta-paris.fr/~kielbasi/tikzuml/var/files/html/web-tikz-uml-userguide.html)
 
 
-# study
+# Courses
 
 [中科大 高等数理统计](https://www.bilibili.com/video/BV1Hz411B76u?from=search&seid=18439276058552710538)
 
