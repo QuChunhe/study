@@ -861,8 +861,22 @@ The way we would redesign our system to accommodate this eventual consistency wo
 重新设计我们的系统以适应上述最终一致性的方式是放松时间约束。在用户正在浏览一个商品时，并不能保证该商品可以被购买。当商品被放置到购物篮，应用将会“锁定”数据，并且这个操作是在主写拷贝或者主数据库上完成的。由于ACID数据，我们能够保证一旦我们事务完成，我们将商品的记录标记为“已经锁定”，然后在确信商品被预留，用户能够继续购物。其他浏览这个商品的用户，可能会或者可能不会获知这个商品已经不能被订购。
 
 Another area in which temporal constraints are commonly found in applications is the transfer of items (money) or communications between users. The PayPal example with which we opened this chapter is a great example of such a constraint. Guaranteeing that user A gets the money, message, or item in his or her account as soon as user B sends it is easy on a single database. Spreading out the data among several copies of the data makes this consistency much more difficult. The way to solve this is to not expect or require the temporal constraint of instant transfer. More than likely it is totally acceptable that user A waits a few seconds before seeing the money that user B sent. The reason is simply that most dyads don’t synchronously transfer items in a system. Obviously synchronous communication such as chat is different.
-另一个经常在应用中发现时间约束的领域是在用户之间的商品（钱）转移或者通信。
+另一个经常在应用中发现时间约束的领域是在用户之间的商品（钱）转账或者通信。一旦用户B发送完毕，用户A就能够在他或者她的账号中获得钱、消息或者商品，在单个数据库中非常容易确保上述过程。在多个副本之间扩散数据使得一致性非常难以实现。解决这一问题的方法是不要期望或者不要要求实时转账的时间约束。用户完全可以接受在用户B发送之后需，用户A需要等待几秒钟才能看到钱。原因非常简单，双方不会在一个系统中同步转移商品。显然，例如聊天这样的同步通信是不同的。
 
+
+
+两个问题：
+* 数据一致性问题：各个副本如何保持与写入数据是一样的
+* 分布式事务问题
+
+#### Chapter 5 Use Caching Aggressively
+#### 第5章 大胆地使用缓存
+
+Caching prevents you from needing to look up, create, or serve the same data over and over again. 缓存能够阻止你一次又一次地查询、创建或者服务于相同的数据
+
+
+Scaling static content, such as text and images that don’t change very often, is elementary. A number of rules in this book cover how to make static content highly available and scalable at low cost through the use of caches. Dynamic content, or content that changes over time, is not so elementary to serve quickly and scale out.
+例如文本和图片这类静态内容不经常变化，因此实现静态内容的可扩展性比较容易。本书中的一些规则涉及如何利用缓存，使得静态内容以较低成本实现高可用和可扩展。动态内容内容或者随着时间变化的内容不容易实现快速响应和可扩展。
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
