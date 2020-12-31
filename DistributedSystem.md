@@ -903,9 +903,9 @@ As Lon described it, “Those business objects were like compositions. And those
 ##### Rule 20—Leverage Content Delivery Networks
 ##### 规则20-充分利用内容分发网络
 
-**What:** Use CDNs (content delivery networks) to offload traffic from your site.
+**What:** Use CDNs (content delivery networks) to offload traffic from your site. 使用CDN分担你网站的流量
 
-**When to use:** When speed improvements and scale warrant the additional cost.
+**When to use:** When speed improvements and scale warrant the additional cost. 当提高速度和实现可扩展，
 
 **How to use:** Most CDNs leverage DNS to serve content on your site’s behalf. Thus you may need to make minor DNS changes or additions and move content to be served from new subdomains.
 
