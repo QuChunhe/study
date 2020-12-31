@@ -800,8 +800,8 @@ Storing information locally on a system might be indicative of state and certain
 As with any rule, there are likely exceptions.
 任何规则都有例外的情况。
 
-#### Rule 18—Stop Redirecting Traffic
-#### 规则18——停止重定向流量
+##### Rule 18—Stop Redirecting Traffic
+##### 规则18——停止重定向流量
 
 **What:** Avoid redirects when possible; use the right method when they are necessary.尽量避免重定向；当需要重定向时，使用正确的方法
 
@@ -825,8 +825,8 @@ HTTP 3xx Status Codes
 * 307 Temporary Redirect—The requested resource resides temporarily under a different URI.
 
 
-#### Rule 19—Relax Temporal Constraints
-#### 规则19-放松时间约束
+##### Rule 19—Relax Temporal Constraints
+##### 规则19-放松时间约束
 
 **What:** Alleviate temporal constraints in your system whenever possible. 在你的系统中尽可能地减轻时间约束。
 
@@ -877,6 +877,44 @@ Caching prevents you from needing to look up, create, or serve the same data ove
 
 Scaling static content, such as text and images that don’t change very often, is elementary. A number of rules in this book cover how to make static content highly available and scalable at low cost through the use of caches. Dynamic content, or content that changes over time, is not so elementary to serve quickly and scale out.
 例如文本和图片这类静态内容不经常变化，因此实现静态内容的可扩展性比较容易。本书中的一些规则涉及如何利用缓存，使得静态内容以较低成本实现高可用和可扩展。动态内容内容或者随着时间变化的内容不容易实现快速响应和可扩展。
+
+1）：
+To solve latency and scale issues, the first thing Lon’s team did was to add a content distribution network; they chose Akamai. Lon stated, “It was really simple to just take all of our static assets and push them there [Akamai] and let them handle caching closest to the user. And then we could expire [the objects] using their typical cache expiration tools when we published. Expiring objects was part of our deploy process.”
+为了解决时延和可扩展性问题，Lon团队所做的一个事情就是添加内容分发网络，他们选择了Akamai。Lon说“真的非常简单，仅仅提取所有静态资产并将它们推送到Akamai，让Akamai将数据缓存到离用户最近的位置。然后当我们要发布时，我们可用使用通常的缓存过期工具将这些缓存的对象设置为过期。将对象设置为过期时我们部署过程的一部分
+
+2）
+Next Lon’s team started profiling the application to understand what was causing slow load times.
+下一步Lon团队开始对于分析应用性能，排查导致加载时间慢的原因。
+
+
+3）
+Another challenge Lon and his team faced was that product detail pages changed on a regular basis.
+Each deployment would then invalidate any number of caches, causing high load on servers and slower response times to end customers. Lon’s team closely monitored the cache hit/miss ratios. Determining that most of the changes were really small, Lon decided to build a small content management system that allowed the merchandisers to use a proprietary markup language to change information displayed, such as the price of the product, the SKU, and the content descriptions, without affecting the overall layout, the Cascading Style Sheets (CSS), or other assets, leaving the cache intact. This approach not only reduced the load on his development team but allowed assets to continue to be cached, thereby eliminating the increases in server load and customer response time.
+Lon和其团队面临的另一个条件是产品详细页面会定期的更新。每次部署都会使得大量缓存失效，造成服务器的高负载和对终端用户更低的响应时间。Lon团队密切监测系统的命中/没命中之比，确认大多数的更新都是非常小的，因此Lon决定构建一个小型的内容管理系统，许可商户需用一个专门的标记语言修改所展示的信息，例如商品的价格、SKU和内容表述，而不影响整个的布局、CSS或其他资产，以保持缓存的完整性。这种方法不仅减小了部署团队的工作，而且许可资产持续被缓存，从而减小了服务器的负载和用户的响应时间。
+
+But the cost of caching full static pages was fairly high. Instead, Lon decided to pre-render sections of the page and then assemble them at the time of request. Lon recalled, “At the top of the page you have a view of the different images related to a product. This stuff didn’t change that much, except for perhaps the price. So we would change the layout of the page in such a way where we could grab a huge chunk of that HTML, pre-render it, and cache a CLOB [character large object] in memory using Memcached. Memcached would distribute it across our cluster of application servers, making it super-easy. We proactively expired that cache based on business changes to data. We wouldn’t proactively pre-render it, so the first request still took some time. Every call but the first call went really, really fast. One of the reasons that netted out to be faster is because we were able to get rid of those Ajax calls that I mentioned when we were doing the full reverse proxy caching.
+但是缓存全部静态页面的成本还是比较高。相反地，Lon决定预先提交页面的各个部分，并且在请求的时刻将这些部分组装成页面。Lon回忆道”在每个页面的上部存在一个与产品相关的、由不同图片所组成的视图。除了价格之外，这些内容不会变化太多。因此，我们采用如下方式更改页面的布局，提取HTML的大块并预先提交它们，然后使用Memcached在内存中缓存BLOB（大对象）。Memcached将会跨越应用服务器集群分发这些BLOB，使得缓存非常容易。基于这些数据在业务上的变化，我们会主动地过期缓存数据。我们不会预先提交，因此第一个访问仍然花费一些时间。除了第一个请求，每次请求都会非常非常块的实现。对外连接会更快的一个原因是我们使用了全部的反向代理缓存，从而消除了我们提到的Ajax请求。
+
+
+As Lon described it, “Those business objects were like compositions. And those are where we had a caching rule. So what would happen, just to give you a sense of this, is a user would request a particular product. A product was a business object that might contain data from 20 different tables or views. So we’d bring these together, form a business object, and then cache that business object. We’d have a nice fully composed concept that was really meaningful to the business. The cost of assembling them is a little high, but the cost of caching them is relatively low because they really are only a bunch of text. A fully composed product model, there’s not that much in there, maybe a few hundred bytes. So we ended up having this business engine that sat in our business access layer that would be able to proactively expire these business objects. And they were really great. We had a lot of debates about what things belonged in there. For example, does it ever make sense to cache a customer object? This was a very hotly debated topic for our organization because if you’re a customer, while you’re on the site we reuse your customer object in your session quite a bit, but it’s just within your session.”
+正如Lon描述的“这些业务对象倾向于组合。这也是我们缓存规则所在。所发生的事情给你一种感觉，一个用户将会请求一个特定的产品。这个产品是一个业务对象，其包含来自20多个不同表或者视图的数据。因此我们将这些数据集成在一起，形成一个业务对象，然后缓存这些业务对象。我们已经就有了完整的合成概念，其具有真正的业务意义。组装这些数据的代价有点高，但是缓存这些数据的代价却相对低，因为它们仅仅是一组文本而已。一个完整的合成产品模型，没有那么多数据，可能仅仅是几百字节。因此，我们最终使用了业务引擎，其位于我们业务访问层，并能够主动过期这些业务对象。它们真的很棒。关于能够将什么放入这个业务引擎中，我们有很多争论。例如，缓存业务对象是否有意义？对于我们的组织，这是一个非常火热的争论话题，因为如果你是一个客户，当你登录我们的网站时，我们会在你的会话中复用你的客户对象，但是这种复用仅仅在你的会话中。”
+
+
+##### Rule 20—Leverage Content Delivery Networks
+##### 规则20-充分利用内容分发网络
+
+**What:** Use CDNs (content delivery networks) to offload traffic from your site.
+
+**When to use:** When speed improvements and scale warrant the additional cost.
+
+**How to use:** Most CDNs leverage DNS to serve content on your site’s behalf. Thus you may need to make minor DNS changes or additions and move content to be served from new subdomains.
+
+**Why:** CDNs help offload traffic spikes and are often economical ways to scale parts of a site’s traffic. They also often substantially improve page download times. 
+
+**Key takeaways:** CDNs are a fast and simple way to offset spikiness of traffic as well as traffic growth in general. Make sure you perform a cost-benefit analysis and monitor the CDN usage.
+
+
+
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
