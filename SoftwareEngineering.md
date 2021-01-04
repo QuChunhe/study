@@ -37,6 +37,11 @@ measure twice and cut once 三思而后行
 
 modular programming,
 
+类似于战略、战术和战场不同层级的划分，软件工程中
+* 业务
+* 架构
+* 模块
+模块遵循架构的要求，而架构服务于业务。
 
 [Open–closed principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle)
 
