@@ -905,16 +905,29 @@ As Lon described it, “Those business objects were like compositions. And those
 
 **What:** Use CDNs (content delivery networks) to offload traffic from your site. 使用CDN分担你网站的流量
 
-**When to use:** When speed improvements and scale warrant the additional cost. 当提高速度和实现可扩展，
+**When to use:** When speed improvements and scale warrant the additional cost. 当需要提高速度并能够承担更多成本时
 
 **How to use:** Most CDNs leverage DNS to serve content on your site’s behalf. Thus you may need to make minor DNS changes or additions and move content to be served from new subdomains.
+大多数CDN使用DNS来代表你的网站提供内容。因此，你可能需要对DNS做一些小改动或者添加，并且需要转移内容，以在新的子域名下提供服务。
 
 **Why:** CDNs help offload traffic spikes and are often economical ways to scale parts of a site’s traffic. They also often substantially improve page download times. 
+CDN有助于减轻流量峰值，是扩展部分网站流量的一种经济方式。CDN通常还可以提高页面下载速度。
 
 **Key takeaways:** CDNs are a fast and simple way to offset spikiness of traffic as well as traffic growth in general. Make sure you perform a cost-benefit analysis and monitor the CDN usage.
+CNDs是一种快速和简单的方式，既能用于分流突发的流量，也能应对一般性的流量增长。确保进行成本效益分析，并监控CDN的使用情况。
 
+##### Rule 21—Use Expires Headers
+##### 规则21-使用过期头部标志
 
+What: Use Expires headers to reduce requests and improve the scalability and performance of your system.
 
+When to use: All object types need to be considered.
+
+How to use: Headers can be set on Web servers or through application code.
+
+Why: The reduction of object requests increases the page performance for the user and decreases the number of requests your system must handle per user.
+
+Key takeaways: For each object type (image, HTML, CSS, PHP, and so on), consider how long the object can be cached and implement the appropriate header for that time frame.
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
