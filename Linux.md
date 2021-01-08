@@ -1377,3 +1377,10 @@ gsettings set org.freedesktop.Tracker.Miner.Files crawling-interval -2
 gsettings set org.freedesktop.Tracker.Miner.Files enable-monitors false
 echo y | LANG=en tracker reset --hard
 ```
+
+
+sar
+sysstat.x86_64 
+
+mtr
+mtr.x86_64 
