@@ -920,14 +920,71 @@ CNDs是一种快速和简单的方式，既能用于分流突发的流量，也�
 ##### 规则21-使用过期头部标志
 
 What: Use Expires headers to reduce requests and improve the scalability and performance of your system.
+使用过期头部标志，以降低请求次数和提高你系统的可扩展性和性能。
 
 When to use: All object types need to be considered.
+所有的对象类型都需要考虑
 
 How to use: Headers can be set on Web servers or through application code.
+头部标志能够在web服务器上或者通过应用代码来设置。
 
 Why: The reduction of object requests increases the page performance for the user and decreases the number of requests your system must handle per user.
+减小对象请求次数不仅可以提高用户的页面访问性能，并且可以减小你系统针对每个用户必须处理的请求数量。
 
 Key takeaways: For each object type (image, HTML, CSS, PHP, and so on), consider how long the object can be cached and implement the appropriate header for that time frame.
+针对于每个对象类型（图片、HTML、CSS和PHP等），考虑对象可能的缓存时长，并且通过适当的头部标志来实现特定时间的缓存，
+
+通过如下的头部标志实现缓存
+* Pragma
+* Expires
+* Cache-Control
+* Last-Modified:
+* ETag
+
+Keep-alives, or HTTP persistent connections
+
+##### Rule 22—Cache Ajax Calls
+##### 规则22-缓存Ajax调用
+
+What: Use appropriate HTTP response headers to ensure cacheability of Ajax calls. 使用适当的HTTP应答头部标志，以确保Ajax调用的可缓存性。
+
+When to use: Every Ajax call except for those absolutely requiring real-time data that are likely to have been recently updated. 每个Ajax调用，除了那些绝对需要实时性数据（最近更新的数据）的情况
+
+How to use: Modify Last-Modified, Cache-Control, and Expires headers appropriately.
+
+Why: Decrease user-perceived response time, increase user satisfaction, and increase the scalability of your platform or solution. 降低用户可感觉的响应时间，提高用户满意度，并提高系统或者解决方案的可扩展性。
+
+Key takeaways: Leverage Ajax and cache Ajax calls as much as possible to increase user satisfaction and increase scalability. 尽可能地使用Ajax和缓存Ajax调用，以提高用户满意度和可扩展性。
+
+Ajax is an acronym for Asynchronous JavaScript and XML.Ajax是异步Javascrip和XML的缩写。
+
+
+##### Rule 23—Leverage Page Caches
+##### 规则23-充分利用页面缓存
+
+What: Deploy page caches in front of your Web services. 在Web服务的前端部署页面缓存
+
+When to use: Always.总是
+
+How to use: Choose a caching solution and deploy. 选择并部署一种缓存方案
+
+Why: Decrease load on Web servers by caching and delivering previously generated dynamic requests and quickly answering calls for static objects. 通过缓存和传递之前生成的动态请求以及快速响应静态对象的调用，以减小web服务器的负载并且
+
+Key takeaways: Page caches are a great way to offload dynamic requests, decrease customer response time, and scale cost-effectively. 页面缓存是一种强大的方法，用于减少动态请求，降低服务响应时间和实现高性价比的可扩展性。
+
+A page cache is a caching server you install in front of your Web servers to offload requests for both static and dynamic objects from those servers. Other common names for such a system or server are reverse proxy cache, reverse proxy server, and reverse proxy. 页面缓存是一个你安装在Web服务器之前的缓存服务器，用于减小针对这个服务器的动态和静态对象请求。针对这类系统或者服务器的另一些常用名字是反向代理缓存(Reverse Proxy Cache)、反向代理服务器和反向代理。
+
+Page caches handle some or all of the requests until the pages or data that is stored in them is out of date or until the server receives a request for which it does not have the data. A failed request is known as a cache miss and might be a result of either a full cache with no room for the most recent request or an incompletely filled cache having either a low rate of requests or a recent restart. The cache miss is passed along to the Web server, which answers and populates the cache with the request, either replacing the least-recently-used record or taking up an unoccupied space
+页面缓存处理部分或者全部的请求，直到所存储的页面或者数据过期为止或者服务器收到没有缓存对应数据的请求。一个失败的请求被称为缓存未命中，造成缓存未命中的原因或者是缓存已满，没有多余的空间用来缓存最近的请求，或者虽然缓存尚未填满，但是请求的速率过低或者最近重启过缓存。缓存未命中的请求将会传递到Web服务器，其将会应答请求并使用请求填充缓存，或者替换最近使用最少的记录或者使用尚未占用的空间。
+
+There are three key points we emphasize in this rule. The first is that you should implement a page (or reverse proxy) cache in front of your Web servers and in doing so you will get a significant scalability benefit. 针对于此规则我们需要强调三点。第一点，你需要在你的Web服务器的前面实现页面缓存，一旦如此，你将会得到显著的可扩展性收益。
+
+The second point is that you need to use the appropriate HTTP headers to ensure the greatest (but also business-appropriate) cache potential of your content and results.第二点，你需要使用适当的HTTP头部标签，以确保你内容和结果的缓存潜力最大化。
+
+Our third point is that where possible you should include another HTTP header from RFC 2616 to help maximize the cacheability of your content. This new header is known as the ETag. The ETag, or entity tag, was developed to facilitate the method of If-None-Match conditional GET requests by clients of a server. ETags are unique identifiers issued by the server for an object at the time of first request by a browser. If the resource on the server side is changed, a new ETag is assigned to it. Assuming appropriate support by the browser (client), the object and its ETag are cached by the browser, and subsequent If-None-Match requests by the browser to the Web server will include the tag. If the tag matches, the server may respond with an HTTP 304 Not Modified response. If the tag is inconsistent with that on the server, the server will issue the updated object and its associated ETag。
+第三代，你需要尽可能地包含RFC 2616中的另一个HTTP头部标签，以帮助你将内容的可缓存性最大化。这个新的头部标签被称为ETag。开发ETag，或者实体标签（entity tag），便于IF-None-Match条件的GET请求
+
+
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
 * X Axis scaling: Cloning/Replicating. X axis scaling consists of running N instances of a cloned application or replicated database. Proxied by a load balancer, each instance handlers 1/Nth the load.
