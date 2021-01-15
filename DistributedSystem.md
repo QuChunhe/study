@@ -392,13 +392,13 @@ problems. Choose a single provider.
 
 ##### Rule 7-Design To Clone or Replicate Things (X Axis)
 
-##### 规则7-设计克隆或者复制相同的东西（X轴）
+##### 规则7-设计支持克隆或者复制相同的东西（X轴）
 
-**What:** Typically called horizontal scale, this is the duplication of services or databases to spread transaction load. 通常被称为水平可伸缩，这种服务或者数据库的复制可以分散事务负载
+**What:** Typically called horizontal scale, this is the duplication of services or databases to spread transaction load. 复制服务或者数据库，来分散事务负载，因此通常被称为水平可伸缩，
 
 **When to use:**
 * Databases with a very high read-to-write ratio (5:1 or greater—the higher the better).数据具有非常号的读/写比（5:1或者更高，越高越好）
-* Any system where transaction growth exceeds data growth.任何事务增长超过数据增长的系统
+* Any system where transaction growth exceeds data growth.任何系统如果其事务的增长超过了数据的增长
 
 **How to use:**
 * Simply clone services and implement a load balancer.简单的克隆服务并实现一个负载均衡器
@@ -406,86 +406,83 @@ problems. Choose a single provider.
 
 **Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality. 许可以复制数据和功能为代价，快速地实现事务处理的可伸缩性
 
-**Key takeaways:** X axis splits are fast to implement, are low cost from a developer effort perspective, and can scale transaction volumes nicely. However, they tend to be high cost from the perspective of operational cost of data.
+**Key takeaways:** X axis splits are fast to implement, are low cost from a developer effort perspective, and can scale transaction volumes nicely. However, they tend to be high cost from the perspective of operational cost of data. X轴的分解能够快速地实现，并且从开发者工作的视角具有较低的成本，能够非常好地扩展事务的数量。但是从数据操作代价的角度，X轴分解倾向于更高的成本。
 
 Often, the hardest part of a solution to scale is the database or persistent storage tier. 在实现可伸缩性的解决方案中最为困难的部分是数据库或者持久化存储层。
 * 分布式事务：ACID
 * 数据一致性：如果写数据，1）如何实现数据多个副本数据的一致性；2）如何避免读到不一致的数据
 
-One technique for scaling databases is to take advantage of the fact that most applications and databases perform significantly more reads than writes. 一种用于扩展数据库的技术是利用了大多数应用和数据库施行读要远远多于写这个事实。
+One technique for scaling databases is to take advantage of the fact that most applications and databases perform significantly more reads than writes. 一种用于扩展数据库的技术是利用了这样一个事实，即大多数应用和数据库的读要远远多于写。
 
 
-There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy.依赖于数据的时间敏感性，你可以使用多种方式分布数据的读副本。时间敏感性是指相对于写副本，读副本的一致程度或者完全正确程度。
+There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy. 依赖于数据的时间敏感性，你可以使用多种方式分布数据的读副本。时间敏感性是指相对于写副本，读副本的一致性的程度或者完全正确的程度。
 
-the ways to distribute the data.
+the ways to distribute the data.分布数据的方式
 * One way is to use a caching tier in front of the database.一种方法是在数据库之前使用缓存层。
-* The next step beyond an object cache between the application tier and the database
-tier is replicating the database。除了在应用层和数据库层之间对象缓存，下一步是复制数据库。
+* The next step beyond an object cache between the application tier and the database tier is replicating the database。除了在应用层和数据库层之间对象缓存，下一步是复制数据库。
 
 X axis—Horizontal Duplication
 
 
-应用和web服务的克隆相对较为用于实现，允许我们扩展所处理事务的数目。
+应用和web服务的克隆相对较为容易实现，允许我们扩展所处理事务的数目。
 
 
 
 ##### Rule 8—Design to Split Different Things (Y Axis)
 
-##### 规则8—设计分拆不同的东西（Y轴）
+##### 规则8—设计支持分拆不同的东西（Y轴）
 
-**What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or noun (resources) boundaries. 有时指的是通过服务或者资源实现可扩展，这个规则聚焦于沿着动词(服务)或者名词(资源)的边界通过分割数据集、事务和工程团队来实现可扩展。
+**What**: Sometimes referred to as scale through services or resources, this rule focuses on scaling by splitting data sets, transactions, and engineering teams along verb (services) or noun (resources) boundaries. 有时指的是通过服务或者资源实现可扩展，这个规则聚焦于沿着动词(服务)或者名词(资源)的边界，通过分割数据集、事务和工程团队，来实现可扩展。
  
 **When to use**:
-* Very large data sets where relations between data are not necessary.非常大的数据集合，并且集合内数据之间的关系不是必须的
-* Large, complex systems where scaling engineering resources requires specialization.大的、复杂的系统，并且在系统中扩展工程资源需要非常的专业化
+* Very large data sets where relations between data are not necessary.非常大的数据集合，并且集合内数据之间的关系不是必须的。数据之间没有必然的关联，无需考虑JOIN操作。
+* Large, complex systems where scaling engineering resources requires specialization.庞大的、复杂的系统，并且在系统中扩展工程资源需要非常的专业化
 
 **How to use**:
 * Split up actions by using verbs, or resources by using nouns, or use a mix.使用动词分拆分动作，使用名词拆分资源，或者两者混合使用。
 * Split both the services and the data along the lines defined by the verb/noun approach.沿着通过动词/名词方法定义的路线拆分服务和数据
 
-**Why:** Allows for efficient scaling of not only transactions but also very large data sets associated with those transactions. Also allows for the efficient scaling of teams. 不仅许可高效地扩展事务，而且许可高效地扩展与这些事务相关联的、非常大的数据集合。还许可高效地扩展团队。
+**Why:** Allows for efficient scaling of not only transactions but also very large data sets associated with those transactions. Also allows for the efficient scaling of teams. 不仅许可高效地扩展事务，而且许可高效地扩展与这些事务相关联的、非常大的数据集合。此外，还许可高效地扩展团队。
 
-**Key takeaways:** Y axis or data/service-oriented splits allow for efficient scaling of transactions, large data sets, and can help with fault isolation. Y axis splits help reduce the communication overhead of teams.
+**Key takeaways:** Y axis or data/service-oriented splits allow for efficient scaling of transactions, large data sets, and can help with fault isolation. Y axis splits help reduce the communication overhead of teams. Y轴分解或者面向数据/服务的分解能够实现高效地扩展事务和大数据集合，并且有助于故障隔离。Y轴分解帮助减小团体交流开销。
 
-Let’s split up our site using the verb approach first
+Let’s split up our site using the verb approach first。让我们首先使用动词方法分解我们的网站。
 
-We might identify certain resources upon which we will ultimately take actions (rather than the verbs that represent the actions we take). 我们可以鉴别特定的、我们将最终操作的资源（而不是代表我们操作行为的动词）
+We might identify certain resources upon which we will ultimately take actions (rather than the verbs that represent the actions we take). 我们可以鉴别我们将最终操作的特定资源（而不是代表我们操作行为的动词）
 
 
-Because services or resources are now split, the actions we perform and the
-code necessary to perform them are split up as well. 因为服务或资源已被分拆，我们的行为和操作服务或者资源的代码也被分拆了。
+Because services or resources are now split, the actions we perform and the code necessary to perform them are split up as well. 因为服务或资源已被分拆，所有我们的执行以及操作服务或者资源的代码代码也会被分拆。
 
 One tenet of Brooks’ Law is that developer productivity is reduced as a result of increasing team sizes. The communication effort within any team to coordinate team efforts is a square of the number of participants in the team. Therefore, with increasing team size comes decreasing developer productivity as more developer time is spent on coordination.
-Brooks法则的一个宗旨是作为吞掉规模逐渐扩大的一个结果，开发人员的生产率会降低。在任何团队内部进行协同团队工作的沟通工作是团队成员数目的平方。因此，增加团队的规模会降低开发人员的生产率，因为开发人员花费更多的时间用于协同。
+Brooks法则的一个原则是团队规模逐渐扩大一个必然结果是开发人员的生产率的降低。在任何团队内部协同团队工作所需要的沟通工作是团队成员数目的平方。因此，增加团队的规模会降低开发人员的生产率，因为开发人员花费更多的时间用于协同。
 
 ##### Rule 9—Design to Split Similar Things (Z Axis)
-##### 规则9-设计分拆相似的东西(Z轴)
+##### 规则9-设计支持分拆相似的东西(Z轴)
 
-**What:** This is very often a split by some unique aspect of the customer such as customer ID, name, geography, and so on.非常常见的分离方式是通过客户一些独特的属性，例如客户id、名字和地理位置等。
+**What:** This is very often a split by some unique aspect of the customer such as customer ID, name, geography, and so on. 非常常见的分离方式是通过客户一些独特的属性，例如客户id、名字和地理位置等。
 
-**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important. 规模庞大的或者相似的数据集，例如庞大并快速增长的客户群或者对于地理分布的客户群响应时间非常重要。
+**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important. 非常庞大的或者相似的数据集，例如大量并快速增长的客户群或者对于地理分布的客户群响应时间非常重要。
 
-**How to use:** Identify something you know about the customer, such as customer ID, last name, geography, or device, and split or partition both data and services based on that attribute.识别那些你所知有关客户的信息，例如客户id、姓氏、地理位置或终端，并据此分割或者划分数据和服务。
+**How to use:** Identify something you know about the customer, such as customer ID, last name, geography, or device, and split or partition both data and services based on that attribute. 识别那些你所知的、有关于客户的信息，例如客户id、姓氏、地理位置或终端，并据此分割或者划分数据和服务。
 
-**Why:** Rapid customer growth exceeds other forms of data growth, or you have the need to perform fault isolation between certain customer groups as you scale.快速的客户增长超过了其他格式的数据增长，或者在你扩展客户规模的过程，你需要在特定的客户之间实现故障隔离。
+**Why:** Rapid customer growth exceeds other forms of data growth, or you have the need to perform fault isolation between certain customer groups as you scale. 快速的客户增长超过了其他格式的数据增长，或者在你扩展客户规模的过程，你需要在特定的客户之间实现故障隔离。
 
-**Key takeaways:** Z axis splits are effective at helping you to scale customer bases but can alsobe applied to other very large data sets that can’t be pulled apart using the Y axis methodology.
+**Key takeaways:** Z axis splits are effective at helping you to scale customer bases but can also be applied to other very large data sets that can’t be pulled apart using the Y axis methodology. Z轴分解不仅是一种有效的方式，协助你扩展客户群，而且还可以应用到其他一些巨大数据集合上，这些数据集合使用Y轴方法无法有效得分解，
 
 
 Often referred to as sharding and podding, Rule 9 is about taking one data set or service and partitioning it into several pieces. These pieces are often equal in size but may be of different sizes if there is value in having several unequally sized chunks or shards. 规则9经常称为分片或者分割，其获取一个数据集或者服务，然后将其划分为多个部分。这些部分通常大小相等，但如果大小不一的块或者分片有意义，那么也可以大小并不相同。
 
 Summary
-* Scale by cloning—Cloning or duplicating data and services allows you to scale
-transactions easily.
+* Scale by cloning—Cloning or duplicating data and services allows you to scale transactions easily.
 * Scale by splitting different things—Use nouns or verbs to identify data and services to separate. If done properly, both transactions and data sets can be scaled efficiently.
 * Scale by splitting similar things—Typically these are customer data sets. Set customers up into unique and separated shards or swim lanes (see Chapter 9 for
 the definition of swim lane) to enable transaction and data scaling.
 
 #### Design to Scale Out Horizontally
-#### 设计水平地向往扩展
+#### 设计支持水平地向外扩展
 
 In our minds, it is clear: we believe that within hyper-growth environments it is critical that companies plan to scale in a horizontal fashion—what we describe as scaling
-out. Most often this is done through the segmentation or duplication of workloads across multiple systems.在我们的思想中，其非常显然，即我们认为在高速增长的环境中，公司计划以一种水平方式扩展（也被我们描述为向往扩展）是非常关键的。绝大多数情况下是通过跨越多个系统通过分割或者复制来实现。
+out. Most often this is done through the segmentation or duplication of workloads across multiple systems.在我们的思想中，其非常显然，我们认为在高速增长的环境中，公司计划以一种水平方式扩展（也被我们描述为向外扩展）是非常关键的。绝大多数情况下是通过跨越多个系统，使用分割或者复制来实现。
 
 
 Here again we see this troubling notion of “complexity.” When used one way, more devices equals more complexity—or as we prefer to indicate, more devices to manage and oversee.
@@ -982,7 +979,44 @@ There are three key points we emphasize in this rule. The first is that you shou
 The second point is that you need to use the appropriate HTTP headers to ensure the greatest (but also business-appropriate) cache potential of your content and results.第二点，你需要使用适当的HTTP头部标签，以确保你内容和结果的缓存潜力最大化。
 
 Our third point is that where possible you should include another HTTP header from RFC 2616 to help maximize the cacheability of your content. This new header is known as the ETag. The ETag, or entity tag, was developed to facilitate the method of If-None-Match conditional GET requests by clients of a server. ETags are unique identifiers issued by the server for an object at the time of first request by a browser. If the resource on the server side is changed, a new ETag is assigned to it. Assuming appropriate support by the browser (client), the object and its ETag are cached by the browser, and subsequent If-None-Match requests by the browser to the Web server will include the tag. If the tag matches, the server may respond with an HTTP 304 Not Modified response. If the tag is inconsistent with that on the server, the server will issue the updated object and its associated ETag。
-第三代，你需要尽可能地包含RFC 2616中的另一个HTTP头部标签，以帮助你将内容的可缓存性最大化。这个新的头部标签被称为ETag。开发ETag，或者实体标签（entity tag），便于IF-None-Match条件的GET请求
+第三点，你需要尽可能地包含RFC 2616中的另一个HTTP头部标签，以帮助你将内容的可缓存性最大化。这个新的头部标签被称为ETag。开发ETag，或者实体标签（entity tag），便于服务器处理来自客户端的、IF-None-Match条件的GET请求。ETags是由服务器针对浏览器第一次请求的那些对象发布的唯一标识符。如果在服务端的资源发生改变，那么一个新的ETag会被分配给这个资源。假设浏览器（客户端）能够提供适当的支持，缓存对象和其ETag，因此由浏览器向服务器发起的If-None-Match请求将会包含这个标签。如果这个标签匹配，那么服务器可能返回一个HTTP 304 Not Modified应答。如果tag与服务器上的不一致，那么服务器将会返回被更新的对象和相关联的ETag。
+
+##### Rule 24—Utilize Application Caches
+##### 规则24-使用应用缓存
+
+What: Make use of application caching to scale cost-effectively. 利用应用缓存实现经济高效的可扩展性。
+
+When to use: Whenever there is a need to improve scalability and reduce costs. 当需要提高可扩展性和降低成本时
+
+How to use: Maximize the impact of application caching by analyzing how to split the architecture first. 通过首先分析如何分解系统，将应用缓存的作用最大化，
+
+Why: Application caching provides the ability to scale cost-effectively but should be complementary to the architecture of the system. 应用缓存提供了经济高效的可扩展能力，但是应用缓存需要依赖于系统的架构。
+
+Key takeaways: Consider how to split the application by Y axis (Rule 8) or Z axis (Rule 9) before applying application caching in order to maximize the effectiveness from both cost and scalability perspectives. 在使用应用缓存之前为了将成本和可扩展性前景的有效性最大化，考虑如何沿着X轴（规则8）和Z轴（规则9）分解应用。
+
+
+This isn’t a section on how to develop an application cache.Rather we are going to make two basic but important points:
+本节并不介绍如何开发一个应用缓存，而是给出两个基本但是重要的结论
+* The first is that you absolutely must employ application-level caching if you want to scale in a cost-effective manner. 第一个是如果你想要一种经济高效的方式实现可扩展性，那么你绝对地需要部署应用级别的缓存
+* The second is that such caching must be developed from a systems architecture perspective to be effective long term. 第二个这种缓存必须从系统架构的视角开发，才能长期有效。
+
+
+With any luck, you’ve identified a pattern in this rule. The first step is to hypothesize as to likely usage and determine ways to split to maximize cacheability. After implementing these splits in both the application and supporting persistent data stores, evaluate their effectiveness in production. Further refine your approach based on production data, and iteratively apply the Pareto Principle and the AKF Scale Cube (Rules 7, 8, and 9) to refine and increase cache hit rates. Lather, rinse, repeat.
+运气好的话，你已经识别出这个规则中的模式。第一步是假设可能的使用并确定拆分方式以将可缓存性最大化。在应用和支撑持久化的数据存储中实现上述分解后，评估这些分解在生产上的有效性。基于生产数据，进一步改进你方法，迭代地应用帕瓦罗原则和AKF可扩展立方（规则7、8和9），持续地改进和提高缓存命中率。
+
+
+##### Rule 25—Make Use of Object Caches
+##### 规则25-使用对象缓存
+
+What: Implement object caches to help scale your persistence tier.
+
+When to use: Anytime you have repetitive queries or computations.
+
+How to use: Select any one of the many open-source or vendor-supported solutions and implement the calls in your application code.
+
+Why: A fairly straightforward object cache implementation can save a lot of computational resources on application servers or database servers.
+Key takeaways: Consider implementing an object cache anywhere computations are performed repeatedly, but primarily this is done between the database and application tiers.
+
 
 
 
