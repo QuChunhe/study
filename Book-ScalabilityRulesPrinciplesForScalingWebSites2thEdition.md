@@ -1,6 +1,6 @@
 
 Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scaling Web Sites Second Edition, 2017
-
+---------------------------------------------------
 
 
 ## Chapter 1 Reduce the Equation 大道至简
@@ -836,5 +836,7 @@ Key takeaways: When implementing an object cache, it is simplest to put the serv
 A better alternative is to put the object cache on its own tier of servers. This would be between the application servers and the database, if using the object cache to cache query result sets. If caching objects created in the application tier, this object cache tier would reside between the Web and application servers.
 一个更好的选择是将对象缓存放置到其自己层级中的服务器上。如果使用对象缓存来缓存查询结果集，则这个位置为应用服务器和数据库之间。如果如果在应用层级创建所缓存的对象，则对象缓存层级将位于web和应用服务器之间。
 
-![Object Cache]((pics/ObjectCache.JPG)
+![Object Cache](pics/ObjectCache.JPG)
 
+## Chapter 7 Learn from Your Mistakes
+## 第七章 从自己的错误学习
