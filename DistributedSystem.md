@@ -210,7 +210,7 @@ The system of scalar clocks is not strongly consistent;
 Isomorphism
 
 
-### Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scaling Web Sites Second Edition, 2017
+### 
 
 #### Reduce the Equation 大道至简
 
@@ -947,9 +947,9 @@ What: Use appropriate HTTP response headers to ensure cacheability of Ajax calls
 
 When to use: Every Ajax call except for those absolutely requiring real-time data that are likely to have been recently updated. 每个Ajax调用，除了那些绝对需要实时性数据（最近更新的数据）的情况
 
-How to use: Modify Last-Modified, Cache-Control, and Expires headers appropriately.
+How to use: Modify Last-Modified, Cache-Control, and Expires headers appropriately. 恰当地更改Last-Modified, Cache-Control, and Expires头部标识。
 
-Why: Decrease user-perceived response time, increase user satisfaction, and increase the scalability of your platform or solution. 降低用户可感觉的响应时间，提高用户满意度，并提高系统或者解决方案的可扩展性。
+Why: Decrease user-perceived response time, increase user satisfaction, and increase the scalability of your platform or solution. 降低用户所能感觉到的响应时间，提高用户的满意度，并提高系统或者解决方案的可扩展性。
 
 Key takeaways: Leverage Ajax and cache Ajax calls as much as possible to increase user satisfaction and increase scalability. 尽可能地使用Ajax和缓存Ajax调用，以提高用户满意度和可扩展性。
 
@@ -965,21 +965,21 @@ When to use: Always.总是
 
 How to use: Choose a caching solution and deploy. 选择并部署一种缓存方案
 
-Why: Decrease load on Web servers by caching and delivering previously generated dynamic requests and quickly answering calls for static objects. 通过缓存和传递之前生成的动态请求以及快速响应静态对象的调用，以减小web服务器的负载并且
+Why: Decrease load on Web servers by caching and delivering previously generated dynamic requests and quickly answering calls for static objects. 通过缓存和传递之前生成的动态请求以及快速响应静态对象的调用，以减小web服务器的负载。
 
-Key takeaways: Page caches are a great way to offload dynamic requests, decrease customer response time, and scale cost-effectively. 页面缓存是一种强大的方法，用于减少动态请求，降低服务响应时间和实现高性价比的可扩展性。
+Key takeaways: Page caches are a great way to offload dynamic requests, decrease customer response time, and scale cost-effectively. 页面缓存是一种强大的方法，用于减少动态请求，降低服务响应时间和实现高成本效益的可扩展性。
 
-A page cache is a caching server you install in front of your Web servers to offload requests for both static and dynamic objects from those servers. Other common names for such a system or server are reverse proxy cache, reverse proxy server, and reverse proxy. 页面缓存是一个你安装在Web服务器之前的缓存服务器，用于减小针对这个服务器的动态和静态对象请求。针对这类系统或者服务器的另一些常用名字是反向代理缓存(Reverse Proxy Cache)、反向代理服务器和反向代理。
+A page cache is a caching server you install in front of your Web servers to offload requests for both static and dynamic objects from those servers. Other common names for such a system or server are reverse proxy cache, reverse proxy server, and reverse proxy. 页面缓存是一个安装在Web服务器之前的缓存服务器，用于减小针对这个服务器的动态和静态对象请求。针对这类系统或者服务器的另一些常用名字是反向代理缓存(Reverse Proxy Cache)、反向代理服务器和反向代理。
 
 Page caches handle some or all of the requests until the pages or data that is stored in them is out of date or until the server receives a request for which it does not have the data. A failed request is known as a cache miss and might be a result of either a full cache with no room for the most recent request or an incompletely filled cache having either a low rate of requests or a recent restart. The cache miss is passed along to the Web server, which answers and populates the cache with the request, either replacing the least-recently-used record or taking up an unoccupied space
 页面缓存处理部分或者全部的请求，直到所存储的页面或者数据过期为止或者服务器收到没有缓存对应数据的请求。一个失败的请求被称为缓存未命中，造成缓存未命中的原因或者是缓存已满，没有多余的空间用来缓存最近的请求，或者虽然缓存尚未填满，但是请求的速率过低或者最近重启过缓存。缓存未命中的请求将会传递到Web服务器，其将会应答请求并使用请求填充缓存，或者替换最近使用最少的记录或者使用尚未占用的空间。
 
 There are three key points we emphasize in this rule. The first is that you should implement a page (or reverse proxy) cache in front of your Web servers and in doing so you will get a significant scalability benefit. 针对于此规则我们需要强调三点。第一点，你需要在你的Web服务器的前面实现页面缓存，一旦如此，你将会得到显著的可扩展性收益。
 
-The second point is that you need to use the appropriate HTTP headers to ensure the greatest (but also business-appropriate) cache potential of your content and results.第二点，你需要使用适当的HTTP头部标签，以确保你内容和结果的缓存潜力最大化。
+The second point is that you need to use the appropriate HTTP headers to ensure the greatest (but also business-appropriate) cache potential of your content and results.第二点，你需要使用适当的HTTP头部标签，以确保将内容和结果的缓存潜力最大化。
 
 Our third point is that where possible you should include another HTTP header from RFC 2616 to help maximize the cacheability of your content. This new header is known as the ETag. The ETag, or entity tag, was developed to facilitate the method of If-None-Match conditional GET requests by clients of a server. ETags are unique identifiers issued by the server for an object at the time of first request by a browser. If the resource on the server side is changed, a new ETag is assigned to it. Assuming appropriate support by the browser (client), the object and its ETag are cached by the browser, and subsequent If-None-Match requests by the browser to the Web server will include the tag. If the tag matches, the server may respond with an HTTP 304 Not Modified response. If the tag is inconsistent with that on the server, the server will issue the updated object and its associated ETag。
-第三点，你需要尽可能地包含RFC 2616中的另一个HTTP头部标签，以帮助你将内容的可缓存性最大化。这个新的头部标签被称为ETag。开发ETag，或者实体标签（entity tag），便于服务器处理来自客户端的、IF-None-Match条件的GET请求。ETags是由服务器针对浏览器第一次请求的那些对象发布的唯一标识符。如果在服务端的资源发生改变，那么一个新的ETag会被分配给这个资源。假设浏览器（客户端）能够提供适当的支持，缓存对象和其ETag，因此由浏览器向服务器发起的If-None-Match请求将会包含这个标签。如果这个标签匹配，那么服务器可能返回一个HTTP 304 Not Modified应答。如果tag与服务器上的不一致，那么服务器将会返回被更新的对象和相关联的ETag。
+第三点，你需要尽可能地包含RFC 2616中的另一个HTTP头部标签，以帮助你将内容的可缓存性最大化。这个新的头部标签被称为ETag。开发ETag，或者实体标签（entity tag），便于服务器处理来自客户端的、IF-None-Match条件的GET请求。ETags是由服务器发布的唯一标识符，用于来自浏览器的第一次请求那些对象。如果在服务端的资源发生改变，那么一个新的ETag会被分配给这个资源。假设浏览器（客户端）能够提供适当的支持，缓存对象和其ETag，那么由浏览器向服务器发起的If-None-Match请求时就会包含这个标签。如果来自浏览器的标签与服务器的标签相互匹配，那么服务器可能返回一个HTTP 304 Not Modified应答。如果tag与服务器上的不一致，那么服务器将会返回被更新的对象和相关联的ETag。
 
 ##### Rule 24—Utilize Application Caches
 ##### 规则24-使用应用缓存
@@ -988,7 +988,7 @@ What: Make use of application caching to scale cost-effectively. 利用应用缓
 
 When to use: Whenever there is a need to improve scalability and reduce costs. 当需要提高可扩展性和降低成本时
 
-How to use: Maximize the impact of application caching by analyzing how to split the architecture first. 通过首先分析如何分解系统，将应用缓存的作用最大化，
+How to use: Maximize the impact of application caching by analyzing how to split the architecture first. 首先通过分析如何分解系统，将应用缓存的作用最大化，
 
 Why: Application caching provides the ability to scale cost-effectively but should be complementary to the architecture of the system. 应用缓存提供了经济高效的可扩展能力，但是应用缓存需要依赖于系统的架构。
 
@@ -1002,22 +1002,63 @@ This isn’t a section on how to develop an application cache.Rather we are goin
 
 
 With any luck, you’ve identified a pattern in this rule. The first step is to hypothesize as to likely usage and determine ways to split to maximize cacheability. After implementing these splits in both the application and supporting persistent data stores, evaluate their effectiveness in production. Further refine your approach based on production data, and iteratively apply the Pareto Principle and the AKF Scale Cube (Rules 7, 8, and 9) to refine and increase cache hit rates. Lather, rinse, repeat.
-运气好的话，你已经识别出这个规则中的模式。第一步是假设可能的使用并确定拆分方式以将可缓存性最大化。在应用和支撑持久化的数据存储中实现上述分解后，评估这些分解在生产上的有效性。基于生产数据，进一步改进你方法，迭代地应用帕瓦罗原则和AKF可扩展立方（规则7、8和9），持续地改进和提高缓存命中率。
+运气好的话，你已经识别出这个规则中的模式。第一步是假设可能的使用并确定拆分方式以将可缓存性最大化。在应用和支撑持久化的数据存储中实现上述分解后，评估这些分解在生产上的有效性。基于生产数据，进一步改进你的方法，迭代地应用帕瓦罗原则和AKF可扩展立方（规则7、8和9），持续地改进和提高缓存命中率。
 
 
 ##### Rule 25—Make Use of Object Caches
 ##### 规则25-使用对象缓存
 
-What: Implement object caches to help scale your persistence tier.
+What: Implement object caches to help scale your persistence tier. 实现对象缓存，帮助持久化层的可扩展。
 
-When to use: Anytime you have repetitive queries or computations.
+When to use: Anytime you have repetitive queries or computations. 任何你有重复请求或者技术的时候。
 
-How to use: Select any one of the many open-source or vendor-supported solutions and implement the calls in your application code.
+How to use: Select any one of the many open-source or vendor-supported solutions and implement the calls in your application code. 从众多的开源和厂家支持的解决方案中选择任何一个，并在你的应用代码中实现相应的调用
 
-Why: A fairly straightforward object cache implementation can save a lot of computational resources on application servers or database servers.
-Key takeaways: Consider implementing an object cache anywhere computations are performed repeatedly, but primarily this is done between the database and application tiers.
+Why: A fairly straightforward object cache implementation can save a lot of computational resources on application servers or database servers. 即使实现一个相对简单的对象缓存，也能够节省大量应用服务器或者数据库服务器的的计算资源。
+
+Key takeaways: Consider implementing an object cache anywhere computations are performed repeatedly, but primarily this is done between the database and application tiers. 虽然任何存在重复计算的地方都需要考虑实现一个对象缓存，但是首先在数据和应用层之间考虑。
 
 
+
+Object caches are most often implemented between the database and the application to cache result sets from SQL queries. However, some people use object caches for results of complex application computations such as user recommendations, product prioritization, or reordering advertisements based on recent past performance. The object cache in front of a database tier is the most popular implementation because often the database is the most difficult and most expensive to scale. If you have the ability to postpone the split of a database or the purchase of a larger server, which is not a recommended approach to scaling, by implementing an object cache this is an easy decision. Let’s talk about how to decide when to pull the trigger and implement an object cache.
+对象缓存通常位于数据和应用之间，缓存来自SQL查询的结果。然而，一些人使用对象缓存缓存复杂应用计算的结果，例如基于最近的操作的用户推荐、产品排列或者广告重排。在数据库层之前部署对象缓存是最为常见的实现，因为数据库是最难以可扩展，扩展成本也最为高昂。实现对象缓存是一种简单的方式，能够推迟拆分数据库或者购买更大型的服务器（并不推荐使用此种方式实现可扩展）。让我们来讨论如何决定在何时出发并实现对象缓存。
+
+
+Besides the normal suspects of CPU and memory utilization by the database, one of the most telling pieces of data that indicates when your system is in need of an object cache is the Top SQL report. This is a generic name for any report generated (or tool used) to show the most frequent and most resource-intensive queries run on the database.
+除了常规地推测数据库CPU和内存的使用率，另一个具有说服力的数据是TOP SQL报告，可以提示你系统需要对象缓存了。这是针对于一类生成（或者使用工具）报告的通用性名称，这类报告显示在数据库中使用最为频繁和资源最为密集的查询。
+
+
+Once you’ve decided you need an implementation of an object cache, you need to choose one that best fits your needs. A word of caution for those engineering teams that at this point might be considering building a home-grown solution. There are more than enough production-grade object cache solutions to choose from.
+一旦已经决定需要实现对象缓存，你需要选择一个最适合你需求的方案。在此时对于考虑构建自有方案的工程团队需要谨慎，因为具有大量的产品级的对象缓存解决可供选择。
+While there are possible reasons that might drive you to make a decision to build an object cache instead of buying/using an open-source product, this decision should be highly scrutinized.
+虽然有适当的原因驱动我们作出构建对象缓存而不是购买/使用开源的产品的决定，但是需要仔细的审视这种决定。
+
+
+The next step is to actually implement the object cache, which is generally straightforward.
+下一步是实际地实现对象缓存，这通常非常简单。
+
+The final step in implementing the object cache is to monitor it for the cache hit rate. This ratio is the number of times the system requests an object that is in the cache compared to the total number of requests. Ideally this ratio is 85% or better, meaning that requests for objects not in cache or expired in cache occur only 15% or less of the time. If the cache hit ratio drops, you need to consider adding more object cache servers.
+实现对象缓存的最后一个步骤是监控其缓存命中率。这个命中率是对象正好在缓存中的系统请求数量与总的请求数量的比值。理想条件下，命中率为85%，甚至更高，这意味着请求一个对象并且这个对象不在缓存中或者虽然在但是已经过期的情况仅仅占15%，或者更少。如果缓存命中率下降，则需要考虑添加更多的缓存服务器。
+
+
+##### Rule 26—Put Object Caches on Their Own “Tier”
+##### 规则26——将对象缓存放置到它们自己的层级中
+
+What: Use a separate tier in your architecture for object caches. 在架构中针对于对象缓存使用一个分离的层级。
+
+When to use: Anytime you have implemented object caches. 任何已经实现对象缓存的时候
+
+How to use: Move object caches onto their own servers. 将对象缓存转移到自己的服务器
+
+Why: The benefits of a separate tier are better utilization of memory and CPU resources and having the ability to scale the object cache independently of other tiers. 分离层级的好处是更好地利用CPU和内存资源，能够独立其他层级扩展对象缓存。
+
+Key takeaways: When implementing an object cache, it is simplest to put the service on an existing tier such as the application servers. Consider implementing or moving the object cache to its own tier for better performance and scalability. 当实现对象缓存时，最简单的方式是将服务放置到一个已经存在的层级上，例如应用服务器。为了获得更好的性能和可扩展项，可以考虑在自己的层级上实现对象缓存或者将对象缓存转移到自己的层级上。
+
+
+A better alternative is to put the object cache on its own tier of servers. This would be between the application servers and the database, if using the object cache to cache query result sets. If caching objects created in the application tier, this object cache tier would reside between the Web and application servers.
+一个更好的选择是将对象缓存放置到其自己层级中的服务器上。如果使用对象缓存来缓存查询结果集，则这个位置为应用服务器和数据库之间。如果如果在应用层级创建所缓存的对象，则对象缓存层级将位于web和应用服务器之间。
+
+![Object Cache]((pics/ObjectCache.JPG)
 
 
 The AKF Scale Cube is a three dimentional approach to building applications that can scal infinitely.
