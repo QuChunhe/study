@@ -5,24 +5,22 @@ Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scali
 
 ## Chapter 1 Reduce the Equation 大道至简
 
-match the effort and approach to the complexity of the problem. Not every solution has the same complexity—take the simplest approach to
-achieve the desired outcome。努力和方法要与问题的复杂性相匹配。不是每个方案都有相同的复杂性，选取最简单的方法，实现所期望的结果
+match the effort and approach to the complexity of the problem. Not every solution has the same complexity—take the simplest approach to achieve the desired outcome。 努力和方法要与问题的复杂性相匹配。不是每个方案都有相同的复杂性，选取最简单的方法，实现所期望的结果
 
-keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved.保持事情尽可能的简单。从我们的视角来看，一个复杂问题其实仅仅是一些更小的、更简单的待解决问题集合
+keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved. 保持事情要尽可能的简单。从我们的视角来看，一个复杂问题其实仅仅是一些更小的、更简单的待解决问题的集合
 
 ### Rule 1—Don’t Overengineer the Solution 
-### 规则1—不要过度设计方案
+### 规则1—不要过度设计的解决方案
 
 **What:** Guard against complex solutions during design. 在设计过程中严防复杂的解决方案。
 
 **When to use:** Can be used for any project and should be used for all large or complex systems or projects. 可以应用于任何项目，而且也必须应用于所有大型或者复杂的系统或者项目
 
-**How to use:** Resist the urge to overengineer solutions by testing ease of understanding with fellow engineers. 通过与工程师同事测试易懂性，来抵制对于过度工程化解决方案的冲动。
+**How to use:** Resist the urge to overengineer solutions by testing ease of understanding with fellow engineers. 通过与工程师同事测试易懂性，来抵制对于过度工程化的解决方案的冲动。
 
 **Why:** Complex solutions are excessively costly to implement and are expensive to maintain long term. 复杂方案的实现会严重超支，而长期维护费用也高昂，
 
-**Key takeaways:** Systems that are overly complex limit your ability to scale. Simple systems
-are more easily and cost-effectively maintained and scaled.
+**Key takeaways:** Systems that are overly complex limit your ability to scale. Simple systems are more easily and cost-effectively maintained and scaled. 过于复杂的系统将会限制你的可扩展能力。简单的系统更简单，并且能够更高效地维护和扩展。
 
 过度工程化可以划归两大类
 * The first category covers products designed and implemented to exceed their useful requirements. 第一类涵盖那些设计和实现超过其有用需求的产品。
@@ -31,7 +29,7 @@ are more easily and cost-effectively maintained and scaled.
 
 To explain the first category of overengineering, exceeding useful requirements。第一类是超过了有用需求，即设计和实现了现在比并不需要的功能。
 
-The second category of overengineering deals with making something overly complex and making something in a complex way. 第二类过度工程化处置使得某些事情过于复杂并且以某种复杂的方式制作一些事情。
+The second category of overengineering deals with making something overly complex and making something in a complex way. 第二类过度工程化涉及使得某些事情过于复杂并且以某种复杂的方式做事情。
 
 不要向不需要的需求或功能买单
 
@@ -40,13 +38,14 @@ The second category of overengineering deals with making something overly comple
 Overengineering is solving problems you don’t have.
 
 We will look at two sides of overengineering: Exceeding useful requirements, and spending too much effort to get a job done.
+我们将会研究过度工程化的两个方面：超出有用的需求，以及花费更多的精力完成一个工作。
 
 ### Rule 2—Design Scale into the Solution　(D-I-D Process) 
 ### 方案2—将可扩展性设计到方案中（设计-实现-部署过程）
 
 **What:** An approach to provide JIT (just-in-time) scalability. 一种提供及时可扩展性的方法
 
-**When to use:** On all projects; this approach is the most cost-effective (resources and time) to ensure scalability.
+**When to use:** On all projects; this approach is the most cost-effective (resources and time) to ensure scalability. 在所有的项目中应用；此方法在确保可扩展性上是最为高效（资源和时间）。
 
 **How to use:**
 * Design for 20x capacity.针对20倍的容量，设计
@@ -55,7 +54,7 @@ We will look at two sides of overengineering: Exceeding useful requirements, and
 
 **Why:** D-I-D provides a cost-effective, JIT method of scaling your product. 设计-实现-部署提供了一种高性价比的、及时的方式，来扩展你的产品。
 
-**Key takeaways:** Teams can save a lot of money and time by thinking of how to scale solutions early, implementing (coding) them a month or so before they are needed, and deploying them days before the customer rush or demand.
+**Key takeaways:** Teams can save a lot of money and time by thinking of how to scale solutions early, implementing (coding) them a month or so before they are needed, and deploying them days before the customer rush or demand. 如果在开始的时候考虑如何扩展解决方案，那么需要在扩展前的一个月左右时间实现（编码）或者需要在客户高峰到来前的几天部署，团队就能够节省大量的金钱和时间。
 
 
 D-I-D provides a cost-effective, JIT method of scaling your product.
@@ -67,7 +66,7 @@ AKF Partners’ Design-Implement-Deploy or D-I-D approach to thinking about scal
 [The DID Process - Scale Design Principles (Rule 2)](https://akfpartners.com/growth-blog/scale-design-principles-the-did-process)
 
 
-Ideally, what you want is JIT (just-in-time) scalability. The idea originates from JIT manufacturing, and relates to reducing delivery time. JIT scalability is the ability to scale up or down when needed, as needed.
+Ideally, what you want is JIT (just-in-time) scalability. The idea originates from JIT manufacturing, and relates to reducing delivery time. JIT scalability is the ability to scale up or down when needed, as needed. 理想情况下，你所需要的是及时的可扩展性。这个想法来自于及时制造，并涉及缩短交付时间。及时可扩展性是指当需要时，可以根据需要实现向上或者向下的伸缩。
 
 infrastructure-as-a-service (IaaS) 
 
@@ -78,8 +77,7 @@ infrastructure-as-a-service (IaaS)
 
 **What:** Used when designing complex systems, this rule simplifies the scope, design, and implementation. 当设计复杂系统时使用这个规则，简化范围、设计和实现。
 
-**When to use:** When designing complex systems or products where resources (engineering
-or computational) are limited.
+**When to use:** When designing complex systems or products where resources (engineering or computational) are limited. 当设计复杂的并且资源（工程或者计算）受到限制的系统或者产品时，
 
 
 **How to use:**
@@ -87,10 +85,9 @@ or computational) are limited.
 * Simplify design by thinking about cost effectiveness and scalability. 通过考量经济效益和可扩展性来简化设计
 * Simplify implementation by leveraging the experience of others.通过充分利用他人的经验来简化实现
 
-**Why:** Focusing just on “not being complex” doesn’t address the issues created in requirements
-or story and epoch development or the actual implementation.
+**Why:** Focusing just on “not being complex” doesn’t address the issues created in requirements or story and epoch development or the actual implementation. 仅仅聚焦于不复杂并不能解决在需求中和在开发或实际实施时期产生的问题
 
-**Key takeaways:** Simplification needs to happen during every aspect of product development.
+**Key takeaways:** Simplification needs to happen during every aspect of product development. 在产品开发的各个方面都需要简单化。
 
 
 Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二八定律、帕累托定律、最省力法则、不平衡原则、犹太法则。意大利经济学家帕累托提出的。法则认为原因和结果、投入和产出、努力和报酬之间本来存在着无法解释的不平衡
@@ -99,12 +96,10 @@ Pareto principle 即帕累托法则，又称80/20法则、马特莱法则、二�
 
 简化体现在更容易被理解，完成的时间更短，所付出的代价更小
 
-Complexity elimination is about cutting off unnecessary trips in a job, and simplification
-is about finding a shorter path
+Complexity elimination is about cutting off unnecessary trips in a job, and simplification is about finding a shorter path
 
 
-“How can we leverage the experiences of others and existing solutions to simplify
-our implementation?”
+“How can we leverage the experiences of others and existing solutions to simplify our implementation?”
 
 
 ### Rule 4—Reduce DNS Lookups 减少DNS查找
@@ -164,16 +159,17 @@ speeding up page load time, but division of labor must be considered as well.
 
 ### Rule 6—Use Homogeneous Networks使用同构网络
 
-**What:** Ensure that switches and routers come from a single provider.
+**What:** Ensure that switches and routers come from a single provider. 确保交换机和路由器都来自单一的提供商。
 
-**When to use:** When designing or expanding your network. How to use:
-* Do not mix networking gear from different OEMs for switches and routers.
-* Buy or open-source for other networking gear (firewalls, load balancers, and so on).
+**When to use:** When designing or expanding your network. 当设计或者扩展你的网络时
 
-**Why:** Intermittent interoperability and availability issues simply aren’t worth the potential cost savings.
+**How to use:**
+* Do not mix networking gear from different OEMs for switches and routers.不要将来自不同OEM的交换机和路由器混合联网。
+* Buy or open-source for other networking gear (firewalls, load balancers, and so on). 购买或使用开源的联网设备（防火墙、负载均衡器等等）
 
-**Key takeaways:** Heterogeneous networking gear tends to cause availability and scalability
-problems. Choose a single provider.
+**Why:** Intermittent interoperability and availability issues simply aren’t worth the potential cost savings. 异构网络所带来的间歇互操作和可用性问题并不值得潜在的、所节约的费用
+
+**Key takeaways:** Heterogeneous networking gear tends to cause availability and scalability problems. Choose a single provider. 异构互联设备更容易造成可用性和可扩展性问题。选择单一的提供商。
 
 对于操作系统以及数据库、JDK和Nginx等系统软件采用相同的版本。
 
@@ -184,7 +180,7 @@ problems. Choose a single provider.
 ### Rule 7-Design To Clone or Replicate Things (X Axis)
 ### 规则7-设计支持克隆或者复制相同的东西（X轴）
 
-**What:** Typically called horizontal scale, this is the duplication of services or databases to spread transaction load. 复制服务或者数据库，来分散事务负载，因此通常被称为水平可伸缩，
+**What:** Typically called horizontal scale, this is the duplication of services or databases to spread transaction load. 复制服务或者数据库，来分担事务负载，因此通常被称为水平可伸缩，
 
 **When to use:**
 * Databases with a very high read-to-write ratio (5:1 or greater—the higher the better).数据具有非常号的读/写比（5:1或者更高，越高越好）
@@ -194,29 +190,35 @@ problems. Choose a single provider.
 * Simply clone services and implement a load balancer.简单的克隆服务并实现一个负载均衡器
 * For databases, ensure that the accessing code understands the difference between a read and a write.对于数据库，确保访问的代码理解读和写的不同
 
-**Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality. 许可以复制数据和功能为代价，快速地实现事务处理的可伸缩性
+**Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality. 允许以复制数据和功能为代价，快速地实现事务处理的可伸缩性
 
-**Key takeaways:** X axis splits are fast to implement, are low cost from a developer effort perspective, and can scale transaction volumes nicely. However, they tend to be high cost from the perspective of operational cost of data. X轴的分解能够快速地实现，并且从开发者工作的视角具有较低的成本，能够非常好地扩展事务的数量。但是从数据操作代价的角度，X轴分解倾向于更高的成本。
+**Key takeaways:** X axis splits are fast to implement, are low cost from a developer effort perspective, and can scale transaction volumes nicely. However, they tend to be high cost from the perspective of operational cost of data. X轴的分解能够快速地实现，并且从开发者工作的视角具有较低的成本，能够非常好地扩展事务的数量。但是从数据运维代价的角度，X轴分解倾向于更高的成本。
 
-Often, the hardest part of a solution to scale is the database or persistent storage tier. 在实现可伸缩性的解决方案中最为困难的部分是数据库或者持久化存储层。
+Often, the hardest part of a solution to scale is the database or persistent storage tier. 通常，在实现可伸缩性的解决方案中最为困难的部分是数据库或者持久化存储层。
 * 分布式事务：ACID
 * 数据一致性：如果写数据，1）如何实现数据多个副本数据的一致性；2）如何避免读到不一致的数据
 
-One technique for scaling databases is to take advantage of the fact that most applications and databases perform significantly more reads than writes. 一种用于扩展数据库的技术是利用了这样一个事实，即大多数应用和数据库的读要远远多于写。
+One technique for scaling databases is to take advantage of the fact that most applications and databases perform significantly more reads than writes. 一种用于扩展数据库的技术是（读写分离）利用了这样一个事实，即大多数应用和数据库的读要远远多于写。
 
 
 There are a couple of ways that you can distribute the read copy of your data depending on the time sensitivity of the data. Time (or temporal) sensitivity is how fresh or completely correct the read copy has to be relative to the write copy. 依赖于数据的时间敏感性，你可以使用多种方式分布数据的读副本。时间敏感性是指相对于写副本，读副本的一致性的程度或者完全正确的程度。
 
+两个问题：
+1. 在写入数据后，最多需要多长时间全部副本才能实现一致性
+2. 应用能够忍受多长时间的读副本与写副本之间的不一致性。
+
 the ways to distribute the data.分布数据的方式
-* One way is to use a caching tier in front of the database.一种方法是在数据库之前使用缓存层。
-* The next step beyond an object cache between the application tier and the database tier is replicating the database。除了在应用层和数据库层之间对象缓存，下一步是复制数据库。
+* One way is to use a caching tier in front of the database.一种方法是在数据库之前使用缓存层。（对象缓存）
+* The next step beyond an object cache between the application tier and the database tier is replicating the database。除了在应用层和数据库层之间对象缓存，下一步是复制数据库。（数据库复制）
 
 X axis—Horizontal Duplication
 
 
 应用和web服务的克隆相对较为容易实现，允许我们扩展所处理事务的数目。
 
-
+两个复制/克隆方向
+* 数据（名词）
+* 功能（动词）
 
 ### Rule 8—Design to Split Different Things (Y Axis)
 
@@ -226,7 +228,7 @@ X axis—Horizontal Duplication
  
 **When to use**:
 * Very large data sets where relations between data are not necessary.非常大的数据集合，并且集合内数据之间的关系不是必须的。数据之间没有必然的关联，无需考虑JOIN操作。
-* Large, complex systems where scaling engineering resources requires specialization.庞大的、复杂的系统，并且在系统中扩展工程资源需要非常的专业化
+* Large, complex systems where scaling engineering resources requires specialization. 庞大的、复杂的系统，并且在系统中扩展工程资源需要非常的专业化
 
 **How to use**:
 * Split up actions by using verbs, or resources by using nouns, or use a mix.使用动词分拆分动作，使用名词拆分资源，或者两者混合使用。
@@ -251,7 +253,7 @@ Brooks法则的一个原则是团队规模逐渐扩大一个必然结果是开�
 
 **What:** This is very often a split by some unique aspect of the customer such as customer ID, name, geography, and so on. 非常常见的分离方式是通过客户一些独特的属性，例如客户id、名字和地理位置等。
 
-**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important. 非常庞大的或者相似的数据集，例如大量并快速增长的客户群或者对于地理分布的客户群响应时间非常重要。
+**When to use:** Very large, similar data sets such as large and rapidly growing customer bases or when response time for a geographically distributed customer base is important. 非常庞大的或者相似的数据集，例如大量并快速增长的客户群或者对于地理分布的客户群而言，响应时间非常重要。
 
 **How to use:** Identify something you know about the customer, such as customer ID, last name, geography, or device, and split or partition both data and services based on that attribute. 识别那些你所知的、有关于客户的信息，例如客户id、姓氏、地理位置或终端，并据此分割或者划分数据和服务。
 
@@ -259,6 +261,8 @@ Brooks法则的一个原则是团队规模逐渐扩大一个必然结果是开�
 
 **Key takeaways:** Z axis splits are effective at helping you to scale customer bases but can also be applied to other very large data sets that can’t be pulled apart using the Y axis methodology. Z轴分解不仅是一种有效的方式，协助你扩展客户群，而且还可以应用到其他一些巨大数据集合上，这些数据集合使用Y轴方法无法有效得分解，
 
+
+数据的Sharding或者Partition
 
 Often referred to as sharding and podding, Rule 9 is about taking one data set or service and partitioning it into several pieces. These pieces are often equal in size but may be of different sizes if there is value in having several unequally sized chunks or shards. 规则9经常称为分片或者分割，其获取一个数据集或者服务，然后将其划分为多个部分。这些部分通常大小相等，但如果大小不一的块或者分片有意义，那么也可以大小并不相同。
 
@@ -268,38 +272,35 @@ Summary
 * Scale by splitting similar things—Typically these are customer data sets. Set customers up into unique and separated shards or swim lanes (see Chapter 9 for
 the definition of swim lane) to enable transaction and data scaling.
 
-#### Design to Scale Out Horizontally
-#### 设计支持水平地向外扩展
+## Chapter 3 Design to Scale Out Horizontally
+## 第三章 设计支持水平地向外扩展
 
-In our minds, it is clear: we believe that within hyper-growth environments it is critical that companies plan to scale in a horizontal fashion—what we describe as scaling
-out. Most often this is done through the segmentation or duplication of workloads across multiple systems.在我们的思想中，其非常显然，我们认为在高速增长的环境中，公司计划以一种水平方式扩展（也被我们描述为向外扩展）是非常关键的。绝大多数情况下是通过跨越多个系统，使用分割或者复制来实现。
+In our minds, it is clear: we believe that within hyper-growth environments it is critical that companies plan to scale in a horizontal fashion—what we describe as scaling out. Most often this is done through the segmentation or duplication of workloads across multiple systems. 在我们心中非常显然地认为，在高速增长的环境中公司计划以一种水平方式扩展（也被我们描述为向外扩展）是非常关键的。绝大多数情况下此种方式是通过跨越多个系统，使用分割或者复制来实现。
 
 
-Here again we see this troubling notion of “complexity.” When used one way, more devices equals more complexity—or as we prefer to indicate, more devices to manage and oversee.
-But when seen from another perspective, more devices equals lower complexity—lower rates of failure overall and fewer incidents to manage.
+Here again we see this troubling notion of “complexity.” When used one way, more devices equals more complexity—or as we prefer to indicate, more devices to manage and oversee. But when seen from another perspective, more devices equals lower complexity—lower rates of failure overall and fewer incidents to manage.
 这里我们再次看到复杂性这个令人陷入麻烦的概念。从一个方向上使用，更多的设备等于更高的复杂性，或者按照我们喜欢的方式指出，更多的设备需要管理和监控。但是，从另一个角度看，更多的设备等于更低的复杂性，因为更低的整体故障率和更少需要管理的事故。
 
 
 
 ### Rule 10—Design Your Solution to Scale Out, Not Just Up
-
 ### 规则10-设计你的系统支持向外扩展，而不仅仅是向上扩展
 
 **What:** Scaling out is the duplication or segmentation of services or databases to spread transaction load and is the alternative to buying larger hardware, known as scaling up.
 向外扩展是针对服务或者数据库的复制或者分割，以扩大事务负载，其是购买更大型的硬件、被称为向上扩展的替换方案。
 
 **When to use:** Any system, service, or database expected to grow rapidly or that you would like to grow cost-effectively.
-期望快速增长的或者你期望高性价比的增长的任何系统、服务或者数据库
+期望快速增长的或者你期望高性价比增长的任何系统、服务或者数据库
 
-**How to use:**  Use the AKF Scale Cube to determine the correct split for your environment. Usually the horizontal split (cloning) is the easiest.
+**How to use:**  Use the AKF Scale Cube to determine the correct split for your environment. Usually the horizontal split (cloning) is the easiest. 针对你的环境，使用AKF可扩展立方确定正确地分拆。通常水平分拆（克隆）是最简单的。
 
-**Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality.
+**Why:** Allows for fast scale of transactions at the cost of duplicated data and functionality. 允许以复制数据和功能为代价，快速扩展事务。
 
-**Key takeaways:** Plan for success and design your systems to scale out. Don’t get caught in the trap of expecting to scale up only to find out that you’ve run out of faster and larger systems to purchase.
+**Key takeaways:** Plan for success and design your systems to scale out. Don’t get caught in the trap of expecting to scale up only to find out that you’ve run out of faster and larger systems to purchase. 为成功做计划，并设计你的系统实现向外扩展。不要陷入如下如下的陷阱：仅仅期望向上扩展，但是发现你已经没有更快的和更大的系统可供购买了。
 
 
 Having the ability to run your product on multiple servers through all tiers is scaling out.Continuing to run your systems on larger hardware at any tier is scaling up.
-有能力将你的产品在所有的层级上运行在多个服务器是向外扩展。继续在更强大的硬件上运行你系统的任何一个层级是向上扩展。
+有能力将你的产品在所有的层级都运行在多个服务器是向外扩展。继续将你系统上的任何一个层级运行在更强大的硬件上是向上扩展。
 
 
 
@@ -308,12 +309,12 @@ Having the ability to run your product on multiple servers through all tiers is 
 
 **What:** Use small, inexpensive systems where possible.尽可能使用小规模的和不昂贵的系统
 
-**When to use:** Use this approach in your production environment when going through hypergrowth and adopt it as an architectural principle for more mature products.在飞速增长时在你们的生产环境中使用这个方法，并且针对更多的成熟产品采用其作为架构原则。
+**When to use:** Use this approach in your production environment when going through hypergrowth and adopt it as an architectural principle for more mature products. 当业务飞速增长时在你们的生产环境中使用这个方法，并且针对更多的成熟产品将其作为架构原则。
 
-**How to use:** Stay away from very large systems in your production environment.在你的生产环境中远离非常大型的系统。
+**How to use:** Stay away from very large systems in your production environment.在你的生产环境中避免使用非常大型的系统。
 
 
-**Why:** Allows for fast, cost-effective growth. Allows you to purchase the capacity you need rather than spending for unused capacity far ahead of need.
+**Why:** Allows for fast, cost-effective growth. Allows you to purchase the capacity you need rather than spending for unused capacity far ahead of need. 许可快速和高效的增长。允许你购买你需要的容量，而不是在实际需要之前就购买当期并不使用的容量。
 
 **Key takeaways:** Build your systems to be capable of relying on commodity hardware, and don’t get caught in the trap of using high-margin, high-end servers.
 能够依赖于商品化硬件构建你的系统，避免陷入使用高利润、高端服务器的陷阱。
@@ -334,15 +335,15 @@ Having the ability to run your product on multiple servers through all tiers is 
 
 **When to use:** Any rapidly growing business that is considering adding a disaster recovery (cold site) data center or mature business looking to optimize costs with a three-site solution。 任何快速增长并正在考虑添加一个灾难恢复（冷站点）数据中心的业务或者期望通过三个站点解决方案来优化成本的成熟业务。
 
-**How to use:** Scale your data per the AKF Scale Cube. Host your systems in a “multiple live” configuration. Use IaaS/PaaS (cloud) for burst capacity, new ventures, or as part of a three-site solution. 按照AFK可扩展立方来实现你数据的可扩展性。以一种“多个活跃”的配置托管你的系统。使用IaaS/Paas（云）来支持突发容量、新企业或者部分的三站点解决方案。
+**How to use:** Scale your data per the AKF Scale Cube. Host your systems in a “multiple live” configuration. Use IaaS/PaaS (cloud) for burst capacity, new ventures, or as part of a three-site solution. 按照AFK可扩展立方来实现你数据的可扩展性。以一种“多个活跃”的配置，托管你的系统。使用IaaS/Paas（云）来支持突发容量、新企业或者部分的三站点解决方案。
 
-**Why:** The cost of data center failure can be disastrous to your business. Design to have three or more as the cost is often less than having two data centers. Consider using the cloud as one of your sites, and scale for peaks in the cloud. Own the base; rent the peak. 数据中心故障的代价对你的业务可能是灾难性。因此，设计具有三个或者更多的数据中心，其综合成本经常低于具有两个数据中心。考虑使用云作为你的站点之一，并且在云中扩展支持突发流量。自有实施处理日常基础流量，租用云来处理突发流量。
+**Why:** The cost of data center failure can be disastrous to your business. Design to have three or more as the cost is often less than having two data centers. Consider using the cloud as one of your sites, and scale for peaks in the cloud. Own the base; rent the peak. 数据中心故障的代价对你的业务可能是灾难性。因此，设计具有三个或者更多的数据中心，其综合成本经常低于具有两个数据中心的场景。考虑使用云作为你的站点之一，并且在云中扩展支持突发流量。自有实施处理日常基础流量，租用云来处理突发流量。
 
 **Key takeaways:** When implementing disaster recovery, lower your cost by designing your systems to leverage three or more live data centers. IaaS and PaaS (cloud) can scale systems quickly and should be used for spiky demand periods. Design your systems to be fully functional if only two of the three sites are available, or N-1 sites available if you scale to more than three sites.
-当实施灾难恢复时，通过设计你的系统以充分使用三个或者更多的活跃数据中心，从而降低你的成本。IaaS和PaaS（云）能够快速地扩展系统，应该在尖峰需求期间使用。设计你的系统在三个站点中仅有两个可用时或者在扩展具有多于三个站点情况下有N-1个站点可用时，也能提供全部的功能
+当实施灾难恢复时，通过设计你的系统以充分使用三个或者更多的活跃数据中心，从而降低你的成本。IaaS和PaaS（云）能够快速地扩展系统，因为应该在尖峰需求期间使用此种方式。设计你的系统在三个站点中仅有两个可用时或者在扩展具有多于三个站点情况下有N-1个站点可用时，也能提供全部的功能
 
 It is this segmentation, replication, and cloning of data and services as well as statelessness that form the building blocks for us to spread our data centers across multiple sites and geographies. Standardize system configuration, code deployment, and monitoring to enable seamless growth between colocation sites and cloud sites.
-正是数据和服务的分割、复制和克隆以及无状态为我们形成了构造基石，可以跨域多个站点和地区分布我们的数据中心。在托管站点和云站点之间标准化系统配置、代码部署和监控能够无缝地增长。
+正是数据和服务的分割、复制和克隆以及无状态为我们提供了构造基石，可以跨域多个站点和地区分布我们的数据中心。在托管站点和云站点之间实现系统配置、代码部署和监控的标准化，从而能够无缝地增长。
 
 
 Multiple live site benefits include多个站点的好处包括
@@ -350,17 +351,17 @@ Multiple live site benefits include多个站点的好处包括
 * Lower costs compared to a hot and cold site configuration.与一个冷站和一个热站的配置相比，具有更低的成本。
 * Faster customer response times if customers are routed to the closest data center for dynamic calls.对于动态调用，如果将用户请求路由到距离最近的数据中心，能够实现更快的客户响应时间。
 * Greater flexibility in rolling out products in an SaaS environment.在一个SaaS环境中推出产品，具有更大的灵活性。
-* Greater confidence in operations versus a hot and cold site configuration.与一个冷站和一个热战比较，对于运维具有更大的信心。
-* Fast and easy “on-demand” growth for spikes using spare capacity in each data center, particularly if PaaS/IaaS/cloud is part of the overall solution.在每个数据中心中使用富余容量，针对于峰值实现快速简单的按需增长，特别是如果PaaS/IaaS/云作为整个方案的一部分时
+* Greater confidence in operations versus a hot and cold site configuration.与一个冷站和一个热站比较，对于运维具有更大的信心。
+* Fast and easy “on-demand” growth for spikes using spare capacity in each data center, particularly if PaaS/IaaS/cloud is part of the overall solution. 在每个数据中心中使用富余容量，针对于峰值实现快速简单的按需增长，特别是当PaaS/IaaS/云作为整个方案的一部分时
 
-Drawbacks or concerns of a multiple live site configuration include多个活跃站点配置的确定或者问题包括
+Drawbacks or concerns of a multiple live site configuration include多个活跃站点配置的缺点或者问题包括
 * Greater operational complexity. 更大的运维复杂性
 * Likely a small increase in headcount.可能要小幅增加人手
 * Increase in travel and network costs. 增加出差和网络成本。
 
-Architectural considerations in moving to a multiple live site environment include
+Architectural considerations in moving to a multiple live site environment include 对于多个活跃站点环境，架构上的考虑包括：
 * Eliminating the need for state and affinity wherever possible。尽可能地消除对于状态和亲和性的需求
-* Routing customers to the closest data center if possible to reduce dynamic call times。尽可能地将客户路由到最近的数据中心，以减小动态呼叫时间
+* Routing customers to the closest data center if possible to reduce dynamic call times。 尽可能地将客户路由到最近的数据中心，以减小动态呼叫时间
 * Investigating replication technologies for databases and state if necessary。如果必须，研究数据库和状态的复制技术
 
 ### Rule 13—Design to Leverage the Cloud
@@ -368,7 +369,7 @@ Architectural considerations in moving to a multiple live site environment inclu
 
 **What:** This is the purposeful utilization of cloud technologies to scale on demand.这是有目的性地使用云技术，以按需可扩展。
 
-**When to use:** When demand is temporary, spiky, and inconsistent and when response time is not a core issue in the product. Consider when you are “renting your risk”—when future demand for new products is uncertain and you need the option of rapid change or walking away from your investment. Companies moving from two active sites to three should consider the cloud for the third site. 当需求是临时的、突发性的和不一致的，并且在响应时间不是这些产品中的核心问题的时候。考虑何时真正承担你的风险——当未来对于你产品的需求还不确定并且你需要选择快速改变或者放弃你的投资时。那些将两个活跃站点迁移到三个的公司应该考虑为第三个站点使用云。
+**When to use:** When demand is temporary, spiky, and inconsistent and when response time is not a core issue in the product. Consider when you are “renting your risk”—when future demand for new products is uncertain and you need the option of rapid change or walking away from your investment. Companies moving from two active sites to three should consider the cloud for the third site. 当需求是临时的、突发性的和不一致的，并且响应时间不是这些产品中的核心问题的时候。考虑何时真正承担你的风险——当未来对于你产品的需求还不确定并且你需要选择快速改变或者放弃你的投资时。那些将两个活跃站点迁移到三个的公司应该考虑为第三个站点使用云。
 
 **How to use:**
 * Make use of third-party cloud environments for temporary demand, such as seasonal business trends, large batch jobs, or quality assurance (QA) environments during testing cycles. 使用第三方云环境满足临时性需求，例如季节性业务趋势、大量批处理作业或者在测试周期中的质量保证环境。
@@ -651,11 +652,11 @@ Caching prevents you from needing to look up, create, or serve the same data ove
 
 
 Scaling static content, such as text and images that don’t change very often, is elementary. A number of rules in this book cover how to make static content highly available and scalable at low cost through the use of caches. Dynamic content, or content that changes over time, is not so elementary to serve quickly and scale out.
-例如文本和图片这类静态内容不经常变化，因此实现静态内容的可扩展性比较容易。本书中的一些规则涉及如何利用缓存，使得静态内容以较低成本实现高可用和可扩展。动态内容内容或者随着时间变化的内容不容易实现快速响应和可扩展。
+例如文本和图片这类静态内容不经常变化，因此实现静态内容的可扩展性比较容易。本书中的一些规则涉及如何利用缓存，使得静态内容以较低成本实现高可用和可扩展。动态内容或者随着时间变化的内容不容易实现快速服务和可扩展性。
 
 1）：
 To solve latency and scale issues, the first thing Lon’s team did was to add a content distribution network; they chose Akamai. Lon stated, “It was really simple to just take all of our static assets and push them there [Akamai] and let them handle caching closest to the user. And then we could expire [the objects] using their typical cache expiration tools when we published. Expiring objects was part of our deploy process.”
-为了解决时延和可扩展性问题，Lon团队所做的一个事情就是添加内容分发网络，他们选择了Akamai。Lon说“真的非常简单，仅仅提取所有静态资产并将它们推送到Akamai，让Akamai将数据缓存到离用户最近的位置。然后当我们要发布时，我们可用使用通常的缓存过期工具将这些缓存的对象设置为过期。将对象设置为过期时我们部署过程的一部分
+为了解决时延和可扩展性问题，Lon团队所做的一个事情就是添加内容分发网络，他们选择了Akamai。Lon说“真的非常简单，仅仅提取所有静态资产并将它们推送到Akamai，让Akamai将数据缓存到离用户最近的位置。然后当我们要发布时，我们可用使用通常的缓存过期工具将这些缓存的对象设置为过期。将对象设置为过期是我们部署过程的一部分
 
 2）
 Next Lon’s team started profiling the application to understand what was causing slow load times.
@@ -840,3 +841,4 @@ A better alternative is to put the object cache on its own tier of servers. This
 
 ## Chapter 7 Learn from Your Mistakes
 ## 第七章 从自己的错误学习
+
