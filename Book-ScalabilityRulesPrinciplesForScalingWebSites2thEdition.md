@@ -648,11 +648,11 @@ Another area in which temporal constraints are commonly found in applications is
 ## Chapter 5 Use Caching Aggressively
 ## 第5章 大胆地使用缓存
 
-Caching prevents you from needing to look up, create, or serve the same data over and over again. 缓存能够阻止你一次又一次地查询、创建或者服务于相同的数据
+Caching prevents you from needing to look up, create, or serve the same data over and over again. 缓存能够防止你一次又一次地查询、创建或者服务于相同的数据
 
 
 Scaling static content, such as text and images that don’t change very often, is elementary. A number of rules in this book cover how to make static content highly available and scalable at low cost through the use of caches. Dynamic content, or content that changes over time, is not so elementary to serve quickly and scale out.
-例如文本和图片这类静态内容不经常变化，因此实现静态内容的可扩展性比较容易。本书中的一些规则涉及如何利用缓存，使得静态内容以较低成本实现高可用和可扩展。动态内容或者随着时间变化的内容不容易实现快速服务和可扩展性。
+例如文本和图片这类静态内容不经常变化，因此实现静态内容的可扩展性比较容易实现。本书中的一些规则涉及如何利用缓存，使得静态内容以较低成本实现高可用和可扩展。动态内容或者随着时间变化的内容不容易实现快速服务和可扩展性。
 
 1）：
 To solve latency and scale issues, the first thing Lon’s team did was to add a content distribution network; they chose Akamai. Lon stated, “It was really simple to just take all of our static assets and push them there [Akamai] and let them handle caching closest to the user. And then we could expire [the objects] using their typical cache expiration tools when we published. Expiring objects was part of our deploy process.”
@@ -695,17 +695,14 @@ CNDs是一种快速和简单的方式，既能用于分流突发的流量，也�
 ### Rule 21—Use Expires Headers
 ### 规则21-使用过期头部标志
 
-What: Use Expires headers to reduce requests and improve the scalability and performance of your system.
-使用过期头部标志，以降低请求次数和提高你系统的可扩展性和性能。
+What: Use Expires headers to reduce requests and improve the scalability and performance of your system. 使用过期头部标志，以降低请求次数和提高系统的可扩展性和性能。
 
-When to use: All object types need to be considered.
-所有的对象类型都需要考虑
+When to use: All object types need to be considered. 所有的对象类型都需要考虑
 
-How to use: Headers can be set on Web servers or through application code.
-头部标志能够在web服务器上或者通过应用代码来设置。
+How to use: Headers can be set on Web servers or through application code. 头部标志能够在web服务器上或者通过应用代码来设置。
 
 Why: The reduction of object requests increases the page performance for the user and decreases the number of requests your system must handle per user.
-减小对象请求次数不仅可以提高用户的页面访问性能，并且可以减小你系统针对每个用户必须处理的请求数量。
+减小对象请求次数不仅可以提高用户的页面访问性能，并且可以减小系统针对每个用户必须处理的请求数量。
 
 Key takeaways: For each object type (image, HTML, CSS, PHP, and so on), consider how long the object can be cached and implement the appropriate header for that time frame.
 针对于每个对象类型（图片、HTML、CSS和PHP等），考虑对象可能的缓存时长，并且通过适当的头部标志来实现特定时间的缓存，
@@ -726,7 +723,7 @@ What: Use appropriate HTTP response headers to ensure cacheability of Ajax calls
 
 When to use: Every Ajax call except for those absolutely requiring real-time data that are likely to have been recently updated. 每个Ajax调用，除了那些绝对需要实时性数据（最近更新的数据）的情况
 
-How to use: Modify Last-Modified, Cache-Control, and Expires headers appropriately. 恰当地更改Last-Modified, Cache-Control, and Expires头部标识。
+How to use: Modify Last-Modified, Cache-Control, and Expires headers appropriately. 恰当地更改Last-Modified, Cache-Control, and Expires头部标志。
 
 Why: Decrease user-perceived response time, increase user satisfaction, and increase the scalability of your platform or solution. 降低用户所能感觉到的响应时间，提高用户的满意度，并提高系统或者解决方案的可扩展性。
 
@@ -835,10 +832,28 @@ Key takeaways: When implementing an object cache, it is simplest to put the serv
 
 
 A better alternative is to put the object cache on its own tier of servers. This would be between the application servers and the database, if using the object cache to cache query result sets. If caching objects created in the application tier, this object cache tier would reside between the Web and application servers.
-一个更好的选择是将对象缓存放置到其自己层级中的服务器上。如果使用对象缓存来缓存查询结果集，则这个位置为应用服务器和数据库之间。如果如果在应用层级创建所缓存的对象，则对象缓存层级将位于web和应用服务器之间。
+一个更好的选择是将对象缓存放置到自己层级中的服务器上。如果使用对象缓存来缓存查询结果集，则这个位置为应用服务器和数据库之间。如果如果在应用层级创建所缓存的对象，则对象缓存层级将位于web和应用服务器之间。
 
 ![Object Cache](pics/ObjectCache.JPG)
 
 ## Chapter 7 Learn from Your Mistakes
 ## 第七章 从自己的错误学习
 
+
+failover architecture or active/active architecture 故障转移架构或者活跃/活跃架构
+
+Organizations must learn both deeply and broadly. Depth of learning comes from asking “why” multiple times until the answers stop coming and causes are clearly identified. Breadth of learning comes not only from looking at the technical and architectural fixes necessary to make a better product, but also from identifying what we need to do with training, people, organizations, and the processes we employ. Incidents like data center failures are costly, and we must learn deeply and broadly from them in order to prevent similar failures.
+组织必须深入而广泛地学习。学习的深度来在于多问问"为什么“，直到原因已经被清楚的确定并且答案不再出现。学习的广度不仅来自于研究那些制造更好产品所必须的技术和架构方法，而且来自于识别在培训、人员、组织和我们所部署的流程上我们需要做什么。像数据中心故障这样的事故，代价是非常高昂的，因此我们必须深入而广泛地从中学习，以防止类似的事故。
+
+### Rule 27—Learn Aggressively
+### 规则27——积极地学习
+
+What: Take every opportunity, especially failures, to learn and teach important lessons. 抓住每个机会，尤其是故障，来学习和吸取重要经验教训。
+
+When to use: Be constantly learning from your mistakes as well as your successes. 持之以恒的从你的错误和成功中学习
+
+How to use: Watch your customers or use A/B testing to determine what works. Employ a postmortem process and hypothesize failures in low-failure environments. 观察你的客户或者使用A/B策划，来确定什么是有效的。在低故障环境中使用事后分析过程和假设失效。
+
+Why: Doing something without measuring the results or having an incident without learning from it are wasted opportunities that your competitors are taking advantage of. We learn best from our mistakes—not our successes. 做了些事情但是无法测量或者遇到事故但是没有从中学到经验教训，都是浪费机遇，但是你的竞争者却会充分利用这些机遇。我们是从失误中而不是成功中学到最好的东西（失败才是我们最好的老师，而成功却不是）。
+
+Key takeaways: Be constantly and aggressively learning. The companies that learn best, fastest, and most often are the ones that grow the fastest and are the most scalable. Never let a good failure go to waste. Learn from every one and identify the architecture, people, and process issues that need to be corrected. 要不断地和积极地学习。那些学习最好和最快的公司，往往也是增长最快和扩展性最强的公司。千万不要浪费一个好的故障。从每个故障中学习，并确定架构、人员和流程方面需要更改的问题
