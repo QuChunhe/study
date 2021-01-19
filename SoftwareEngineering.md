@@ -107,6 +107,10 @@ The SOLID principles comprise of these five principles:
 
 minimize their complexity
 
+
+
+Charles Perrow’s Normal Accident Theory 
+
 考虑考量上面的条件约束继承上，实现工程目标和业务需求。运行在高性能的小型机上，与运行在三个普通商用刀片服务器上，系统设计就可能会不同。每天响应一百万和每天响应一百亿个服务请求。99%的可靠性，99.999%的可靠性，硬件设施、软件架构和代码质量等方面的要求就会非常不同。
 
 
