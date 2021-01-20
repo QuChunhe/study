@@ -854,6 +854,23 @@ When to use: Be constantly learning from your mistakes as well as your successes
 
 How to use: Watch your customers or use A/B testing to determine what works. Employ a postmortem process and hypothesize failures in low-failure environments. 观察你的客户或者使用A/B策划，来确定什么是有效的。在低故障环境中使用事后分析过程和假设失效。
 
-Why: Doing something without measuring the results or having an incident without learning from it are wasted opportunities that your competitors are taking advantage of. We learn best from our mistakes—not our successes. 做了些事情但是无法测量或者遇到事故但是没有从中学到经验教训，都是浪费机遇，但是你的竞争者却会充分利用这些机遇。我们是从失误中而不是成功中学到最好的东西（失败才是我们最好的老师，而成功却不是）。
+Why: Doing something without measuring the results or having an incident without learning from it are wasted opportunities that your competitors are taking advantage of. We learn best from our mistakes—not our successes. 做了些事情但是无法测量或者遇到事故但是没有从中学到教训，都是浪费机遇，但是你的竞争者却会充分利用这些机遇。我们是从失误中而不是成功中学到最好的东西（不是成功，而是失败才是我们最好的老师）。
 
-Key takeaways: Be constantly and aggressively learning. The companies that learn best, fastest, and most often are the ones that grow the fastest and are the most scalable. Never let a good failure go to waste. Learn from every one and identify the architecture, people, and process issues that need to be corrected. 要不断地和积极地学习。那些学习最好和最快的公司，往往也是增长最快和扩展性最强的公司。千万不要浪费一个好的故障。从每个故障中学习，并确定架构、人员和流程方面需要更改的问题
+Key takeaways: Be constantly and aggressively learning. The companies that learn best, fastest, and most often are the ones that grow the fastest and are the most scalable. Never let a good failure go to waste. Learn from every one and identify the architecture, people, and process issues that need to be corrected. 要不断地和积极地学习。那些学习最好和最快的公司，往往也是增长最快和扩展性最强的公司。千万不要浪费一个好的故障。从每个故障中学习，并梳理架构、人员和流程方面需要改进的问题。
+
+There are two areas in which learning is critical. The first, as we have been discussing, is from the customers. The second is from the operations of the business/technology. We discuss each briefly in turn. Both rely on excellent listening skills. We believe that we were given two ears and one mouth to remind us to listen more than we talk.
+有两个方面的学习非常关键。第一个是我们已经讨论过的，要从的客户身上学习。第二个是从技术运维/业务运营中学习。我们将会按照顺序简要讨论这两个方面的学习。两个方面都依赖于出色的倾听技巧。我们相信我们有两个耳朵和一个嘴巴的原因是提醒我们要多听少说。
+
+Charles Perrow, Normal Accidents (Princeton, NJ: Princeton University Press, 1999).
+
+Todd R. LaPorte and Paula M. Consolini, “Working in Practice but Not in Theory: Theoretical Challenges of ‘High-Reliability Organizations,’” Journal of Public Administration Research and Theory, Oxford Journals,
+https://polisci.berkeley.edu/sites/default/files/people/u3825/LaPorte-WorkinginPracticebutNotinTheory.pdf
+
+Charles Perrow’s Normal Accident Theory hypothesizes that the complexity inherent in modern coupled systems makes accidents inevitable. The coupling inherent in these systems allows interactions to escalate rapidly with little opportunity for humans or control systems to interact successfully.
+Charles Perrow的正态事故理论假设在现代耦合系统中所固有的复杂性是的故障不可避免的。在这些系统中所固有的相互耦合会使得相互交互迅速恶化，而没有给人类或者控制系统留下成功交互的机会。
+
+Todd LaPorte, who developed the theory of high reliability organizations, believes that even in the case of an absence of accidents from which an organization can learn, there are organizational strategies to achieve higher reliability。Todd LaPorte，其发展了高可靠组织理论，认为即使在没有故障的实例中，组织也能从中学习到经验，使用组织性策略实现更高的可靠性。
+
+For any major issue that we experience, we believe an organization should attack that issue with a postmortem process that addresses the problem in three distinct but easily described phases 对于我们所经历的任何主要问题，我们相信一个组织应该通过事后处理流程来主攻这个问题，这个流程在三个迥异的但易于描述的阶段解决这个问题。
+* Phase 1: Timeline—Focus on generating a timeline of the events leading up to the issue or crisis. Nothing is discussed other than the timeline during this first phase. The phase is complete once everyone in the room agrees that there are no more items to be added to the timeline. We typically find that even after we’ve completed the timeline phase, people continue to remember or identify timeline-worthy events in the next phase of the postmortem. 阶段1 ：时间线——聚焦于生成一个由导致问题或者事故的事件所构成的时间线。在第一个阶段，不要讨论任何事情，仅仅是时间线。当屋子里的所有人都同意没有更多的事项需要添加到时间线上，则完成这个阶段。即使我们已经完成了时间线阶段，我们通常还会发现事件，在下一个阶段的事后分析中人们会不断回想起或者识别出对于时间线有价值的事件。
+* Phase 2: Issue identification—The process facilitator walks through the timeline and works with the team to identify issues. Was it OK that the first monitor identified customer failures at 8:00 a.m. but that no one responded until noon? Why didn’t the auto-failover of the database occur as expected? Why did we believe that dropping the table would allow the application to start running again? Each and every issue is identified from the timeline, but no corrections or actions are allowed to be made until the team is done identifying issues. Invariably, team members will start to suggest actions, but it is the responsibility of the process facilitator to focus the team on issue identification during Phase 2. 阶段2： 问题识别——过程协调员与团队一同工作，沿着时间线从头到尾地识别问题。早上8点第一个监控器就已经识别出客户故障，但是到中午还没有反应，这种情况是否正常？
