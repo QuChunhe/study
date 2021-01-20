@@ -148,3 +148,5 @@ Lp，L代表语言，p代表proposition
 析合范式 合析范式
 
 逻辑等价
+
+natural deduction
