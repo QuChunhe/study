@@ -10,7 +10,7 @@ match the effort and approach to the complexity of the problem. Not every soluti
 keeping things as simple as possible. Our view is that a complex problem is really just a collection of smaller, simpler problems waiting to be solved. 保持事情要尽可能的简单。从我们的视角来看，一个复杂问题其实仅仅是一些更小的、更简单的待解决问题的集合
 
 ### Rule 1—Don’t Overengineer the Solution 
-### 规则1—不要过度设计的解决方案
+### 规则1—不要过度设计解决方案
 
 **What:** Guard against complex solutions during design. 在设计过程中严防复杂的解决方案。
 
