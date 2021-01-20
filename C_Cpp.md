@@ -23,4 +23,4 @@ $ strace ./hello
 * 使用虚拟动态共享对象（virtual dynamic shared object、vDSO）执行系统调用；
 
 
- Michael J. Donahoo and Kenneth L. Calvertm, TCP/IP Sockets in C: Practical Guide for Programmers, 2nd Edition, Morgan Kaufmann, 2009
+ Michael J. Donahoo and Kenneth L. Calvertm, TCP/IP Sockets in C: Practical Guide for Programmers, 2nd Edition, Morgan Kaufmann, 2009 [source code](http://cs.ecs.baylor.edu/~donahoo/practical/CSockets2/textcode.html)
