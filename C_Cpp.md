@@ -21,3 +21,6 @@ $ strace ./hello
 * 使用软件中断（Software interrupt）触发系统调用；
 * 使用 SYSCALL / SYSENTER 等汇编指令触发系统调用；
 * 使用虚拟动态共享对象（virtual dynamic shared object、vDSO）执行系统调用；
+
+
+ Michael J. Donahoo and Kenneth L. Calvertm, TCP/IP Sockets in C: Practical Guide for Programmers, 2nd Edition, Morgan Kaufmann, 2009
