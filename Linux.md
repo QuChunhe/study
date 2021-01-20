@@ -866,6 +866,16 @@ CPU cache warmth. On Linux-based systems, the exclusive CPU sets approach can be
 
 
 #### Network
+
+The loopback address
+for IPv4 is 127.0.0.1; 1 for IPv6 it is 0:0:0:0:0:0:0:1 (or just ::1).
+
+Address 0.0.0.0/32 may be used as a source address for this host on this network; other addresses within 0.0.0.0/8 may be used to
+refer to specified hosts on this network ([RFC1122], Section 3.2.1.3).
+
+Another group of IPv4 addresses reserved for a special purpose includes those reserved for “private use.” This group includes all IPv4 addresses that start with 10 or 192.168, as well as those whose first number is 172 and whose second number is between 16 and 31. (There is no corresponding class for IPv6.)
+
+
 ```
 netstat -antp
 
