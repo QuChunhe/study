@@ -888,7 +888,7 @@ Our philosophy is that while mistakes are unavoidable, making the same mistake t
 
 QA：Quality Assurance 质量保证
 
-**What:** Use QA to lower the cost of delivered products, increase engineering throughput, identify quality trends, and decrease defects—not to increase quality. 使用AQ，虽然可以降低产品交付成本、提高工程产出、识别质量趋势和减少缺陷，但是并不能提高质量。
+**What:** Use QA to lower the cost of delivered products, increase engineering throughput, identify quality trends, and decrease defects—not to increase quality. 使用AQ虽然可以降低产品交付成本、提高工程产出、识别质量趋势和减少缺陷，但是并不能提高质量。
 
 **When to use:** Whenever you can, get greater throughput by hiring someone focused on testing rather than writing code. Use QA to learn from past mistakes—always. 在任何可能的时候，通过雇佣一些人专注于测试而不是编写代码的员工能够得到更高的产出。使用QA能够从过去的错误中学习，并且总是如此。
 
@@ -898,3 +898,18 @@ QA：Quality Assurance 质量保证
 
 **Key takeaways:** QA doesn’t increase the quality of your system, as you can’t test quality into a system. If used properly, it can increase your productivity while decreasing cost, and most importantly it can keep you from increasing defect rates faster than your rate of organizational growth during periods of rapid hiring. QA不能提高你系统的质量，因为你不能在系统中测试质量。如果使用得当，QA能够在降低成本的同时提高你的生产率，并且更重要的是，其能够在快速招聘期间防止缺陷增加的速率高于你组织增长的速率。
 
+Techniques such as code reviews and test-driven development (TDD) help engineers create quality code, identifying defects before they reach QA. Conducting code reviews one on one with peers helps engineers find and fix mistakes overlooked in the initial development process. Test-driven development is a technique that has the engineer develop the automated test case that defines the new feature or function, then produce the minimum amount of code to pass the test. TDD improves code quality while increasing productivity. These techniques help build quality into the software early in the process and reduce rework.
+诸如代码评审和测试驱动开发这样的技术能够帮中工程师创建靠质量代码，使得缺陷在到达QA之前就识别出来。与同事一对一的处理代码评审有助于工程师发现和修复在初始开发过程中被忽视的错误。测试驱动开发是一种技术，首先由工程师开发的自动化测试实例定义新的特性或者功能，然后以最小的代码量通过测试。测试驱动开发在增加生产效率的同时也提高了代码质量。这些技术有助于在初期就将构建质量融入到软件中，从而减小返工。
+
+### Rule 29—Failing to Design for Rollback Is Designing for Failure
+### 规则29——不为回滚而设计就是为失败而设计
+
+What: Always have the ability to roll back code. 总是能够回滚代码。
+
+When to use: Ensure that all releases have the ability to roll back, practice it in a staging or QA environment, and use it in production when necessary to resolve customer incidents. 确保所有的发布都能够回滚，在测试环境或者QA环境中演练，然后当能够解决客户的问题时，在生产环境使用。
+
+How to use: Clean up your code and follow a few simple procedures to ensure that you can roll back your code. 清除你的代码并执行若干简单过程，一确保你能够回滚代码。
+
+Why: If you haven’t experienced the pain of not being able to roll back, you likely will at some point if you keep playing with the “fix-forward” fire. 如果你没有经历过不能回滚的痛苦，那么你非常可能
+
+Key takeaways: Don’t accept that the application is too complex or that you release code too often as excuses that you can’t roll back. No sane pilot would take off in an airplane without the ability to land, and no sane engineer would roll code that he or she could not pull back off in an emergency. 不能接受以应用过于复杂或者以发布代码过于频繁为借口来拒绝回滚。理智的飞行员不会登上无能降落的飞机，同样地，一个理智的工程师不会上线在紧急情况下不能退回的代码。
