@@ -888,9 +888,9 @@ Our philosophy is that while mistakes are unavoidable, making the same mistake t
 
 QA：Quality Assurance 质量保证
 
-**What:** Use QA to lower the cost of delivered products, increase engineering throughput, identify quality trends, and decrease defects—not to increase quality. 使用AQ，虽然可以降低产品交付成本、提高工程产出、识别质量趋势和减小缺陷，但是并不能提高质量。
+**What:** Use QA to lower the cost of delivered products, increase engineering throughput, identify quality trends, and decrease defects—not to increase quality. 使用AQ，虽然可以降低产品交付成本、提高工程产出、识别质量趋势和减少缺陷，但是并不能提高质量。
 
-**When to use:** Whenever you can, get greater throughput by hiring someone focused on testing rather than writing code. Use QA to learn from past mistakes—always. 在任何可能的时候，通过雇佣一些人专注于测试而不是编写代码，能够得到更高的产出。使用QA能够过去的错误中学习，并且总是如此。
+**When to use:** Whenever you can, get greater throughput by hiring someone focused on testing rather than writing code. Use QA to learn from past mistakes—always. 在任何可能的时候，通过雇佣一些人专注于测试而不是编写代码的员工能够得到更高的产出。使用QA能够从过去的错误中学习，并且总是如此。
 
 **How to use:** Hire a QA person anytime you get greater than one engineer’s worth of output with the hiring of a single QA person. 一旦与雇佣一个工程师相比，你能够获得更多的产出，就雇佣一个QA员工。
 
