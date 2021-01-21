@@ -149,4 +149,11 @@ Lp，L代表语言，p代表proposition
 
 逻辑等价
 
+Propositional logic
+
 natural deduction
+
+Rules for natural deduction
+* and-introduction
+* and-elimination
+
