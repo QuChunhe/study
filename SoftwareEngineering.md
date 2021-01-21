@@ -493,3 +493,5 @@ Stage 2: Programming Paradigms
 Stage 3: Object-Oriented Programming
 
 Functional programming can seem like the means to all ends in this scenario, but I'd recommend getting acquainted with model-driven design and Domain-Driven Design to understand the bigger picture on how object-modelers are able to encapsulate an entire business in a zero-dependency domain model.
+
+https://khalilstemmler.com/articles/software-design-architecture/full-stack-software-design/
