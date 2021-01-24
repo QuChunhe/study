@@ -154,6 +154,23 @@ Propositional logic
 natural deduction
 
 Rules for natural deduction
-* and-introduction
-* and-elimination
-
+* The rules for conjunction
+   * and-introduction
+   * and-elimination
+* The rules of double negation
+   * double negation-introduction
+   * double negative-elimination
+* The rule for eliminating implication
+   * modus ponens肯定前件式；假言推理, implies-elimination (sometimes also referred to as arrow-elimination)
+   * modus tollens, or MT否定后件律
+* The rule implies introduction
+   * implies-introduction
+* The rules for disjunction
+   * or-introduction
+   * or-elimination
+* The rules for negation
+   * bottom-elimination
+   * not-elimination
+   
+   
+Jean H. Gallier,  Logic For Computer Science: Foundations of Automatic Theorem Proving, Harper & Row, New York, 1986.

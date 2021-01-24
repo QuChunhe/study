@@ -129,11 +129,13 @@ Java Thread.State
 
 Asynchronous versus synchronous executions 
 
-Blocking operations are bad, as they waste resources.阻塞操作是不好的，因为其浪费了资源。阻塞操作是指当调用需要消耗较长时间时，线程等待调用返回之后才继续执行后续代码。
+Blocking operations are bad, as they waste resources.阻塞操作是不好的，因为其浪费了资源。阻塞操作是指当调用需要消耗较长时间时，线程会一直处于等待状态，直到调用返回结果之后才继续执行后续的代码。
 
-Synchronous execution allows tasks to execute in a sequence, waiting for the current operation to complete before starting with the next。同步执行许可任务顺序执行，即等待当前操作完成之后才开始下一个操作。
+Synchronous execution allows tasks to execute in a sequence, waiting for the current operation to complete before starting with the next。同步执行许可任务按照顺序执行，即等待当前操作完成之后才开始下一个操作。
 
-在处理过程中某个调用采用阻塞方式，并不会增加整个处理过程的执行时间，但是会降低程序的并发性，也就是使得这些阻塞调用的线程处于阻塞状态，不能持续地执行代码，降低每个线程平均执行效率。如果程序采用固定的线程数，那么阻塞方式会大大降低系统的吞吐率。
+在处理过程中某个调用采用阻塞方式，并不会增加整个处理流程的执行时间，但是会降低程序的并发性，也就是使得执行阻塞调用的线程处于阻塞状态，不能持续地执行代码，而从降低线程的平均执行效率。如果程序采用固定的线程数，那么阻塞方式会大大降低系统的吞吐率。因此，阻塞方式会带来两个直接问题
+* 需要更多的线程资源
+* 造成更多的上下文切换，从而导致性能损失
 
 
 asynchronous model
@@ -143,7 +145,7 @@ asynchronous model
 * 同步和异步
 
 Instead of blocking and wasting the thread doing nothing, we could look at the workflow as a mix of unblocking and blocking tasks. We would then handle a blocking task using a future: an abstraction that will complete eventually and call us back with the results or an error.
-相比于阻塞并浪费线程什么也不做，我们可以将工作流看成非阻塞和阻塞任务的混合。我们通过一个Future来处理阻塞任务，Future是一种抽象，当最终完成的时候，要求我们返回处理结果或者错误。
+相比于阻塞从而浪费线程什么也不做，我们可以将工作流看成非阻塞和阻塞任务的混合。我们通过一个Future来处理阻塞任务，Future是一种抽象，当最终完成的时候，要求我们返回处理结果或者错误。
 
 
 future， Actor
@@ -153,12 +155,14 @@ Futures offer composability. They are monads. You can create a pipeline of futur
 
 Java's nonblocking I/O
 
-* channels：A channel is just a bidirectional I/O stream.
+Java NIO (New IO)
+
+* channels：A channel is just a bidirectional I/O stream. 一个管道仅仅是一个双向的输入/输出流。一个单一的的线程能够监控由应用打开的所有管道。在任何管道中接受到数据是一个事件，然后通知监听的线程已经接受到数据。
 * buffers
-* selectors：The selector uses event notification
+* selectors：The selector uses event notification. 选择器使用事件通知：线程可以无需阻塞，就检查输入/输出是否完成。单一线程就能够处理多个并发连接。
 
 
-
+## Of Patterns and paradigms 模式和范式
 
 immutability
 
@@ -166,10 +170,31 @@ copy-on-write
 
 active object
 
+For example, how would you consume a legacy code base from multiple threads? The code base was written without any parallelism in mind, the state is strewn around, and it is almost impossible to figure out. 
+例如，如何在多线程环境中使用遗留代码？这些遗留代码是在没有考虑并行性的情况下编写的，状态散落各处，几乎不可能搞清楚。
 
-Event-driven architecture
+A brute-force approach could be to just wrap up the code in a big God object. Each thread could lock this object, use it, and relinquish the lock. However, this design would hurt concurrency, as it means that other threads would simply have to wait! Instead, we could use an active object.
+一种暴力解决方法是将这些代码包装到一个大的God对象中。每个线程会锁住这个对象、使用它，然后释放锁。但是，这种设计会有害于并发，因为其意味着仅仅有一个线程执行，而其他线程不得不等待。作为一种替换方法，我们可以使用Active Object。
 
-Reactive programming
+
+To use this active object, a proxy sits in between the caller threads and the actual code base. It converts each invocation of the API into a runnable and puts it in a blocking queue (a thread-safe FIFO queue). There is just one thread running in the God object. It executes the runnables on the queue one by one, in contrast to how a typical Java object method is invoked (passively). Here, the object itself executes the work placed on the queue, hence the term active object.
+为了使用活跃对象，需要在调用线程和实际的代码之间放置一个代理。这个代理将每个API调用转换为一个Runnable，并将其插入阻塞代理（线程安全的先入先出队列）。在God对象中有一个线程在运行，并一个接着一个地执行队列中的Runable。相比于通常的Java对象方法被动地被调用，这个对象本身执行放置于队列中的工作，因此采用术语Active Object。
+
+Event-driven architecture 事件驱动架构
+
+Event-driven programming is a programming style in which code executes in response to an event, such as a keypress or a mouse click. In short, the flow of a program is driven by events.
+事件驱动编程是一种编程风格，其执行代码以响应一个事件，例如一个按键或鼠标点击。简而言之，一个程序的流是由事件驱动的。
+
+
+Event-driven architecture (EDA) helps in decoupling a system's modules. Components communicate using events, which are encapsulated in messages. A component that emits an event does not know anything about the consumers. This makes EDA extremely loosely coupled. The architecture is inherently asynchronous.
+事件驱动架构有助于实现系统模块的解耦和。组件间使用封装在消息中的事件进行通信。发出事件的组件对于事件的消费者一无所知。这使得事件驱动架构的耦合性非常松散。这种架构在本质上就是异步的。
+
+
+Reactive programming响应式编程
+
+Reactive programming is a related programming paradigm. A spreadsheet is an excellent example of a reactive application. If we set a formula and change any column value, the spreadsheet program reacts and computes the new result columns. A message-driven architecture is the foundation of Reactive applications. A message-driven application may be event-driven, actor-based, or a combination of the two.
+响应式编程是一种相关的编程范式。电子表格是响应式应用的一个很好的例子。如果我们设置一个公式并修改某一列的值，那么电子表格程序会作出响应并计算新的列结果。消息驱动架构是响应式应用的基础。一个消息驱动应用可以是事件驱动的或者基于actor或者两者的组合。
+
 
 ReactiveX is a library for composing asynchronous and event-based programs by using observable sequences.
 
@@ -178,10 +203,44 @@ ReactiveX is a library for composing asynchronous and event-based programs by us
 
 The actor paradigm
 
+Actors are the abstraction over threads. We write our code using the message passing model only. The only way of talking to an actor is by sending it a message.
+Actor是在线程之上的抽象。我们仅仅通过使用消息传递模型编写我们的代码。与一个actor通话的唯一方式是向其发送一个消息。
+
+
+We need to be aware of the underlying threading model, though. For example, we should always use the tell and not the ask pattern, as shown in the picture. The tell pattern is where we send a message to an actor and then forget about it, that is, we don't block for an answer. This is essentially the asynchronous way of doing things:
+我们要理解底层的穿接模型。例如，我们总是使用tell模式，而不是ask模式。tell模型是我们发送一个消息给一个actor，然后忘记它，这意味着我们不好阻塞等待消息。这本质上是异步的做事方式。
+
+
+An actor is a lightweight entity (threads are heavyweight).The creation and destruction of actors, monetarily speaking, is similar to the creation and destruction of Java objects.
+一个actor是一个轻量级实体（线程是重量级的）。从消耗上来说，创建和销毁actor类似于创建和消耗Java对象。
+
+
+
+
 Message brokers
 
-software transactional memory
+A message broker is an architectural pattern for enabling application integrations via a message-driven paradigm.Integrations are vital to an enterprise where different applications are made to cooperate with each other.
+Message broker是一种使得应用可以通过消息驱动范式集成的架构模式。对于那些构建不同应用以相互协作的企业而言，集成是必不可少的。
 
-parallel collections
 
-# Chapter 1 
+
+software transactional memory 软件的事务性内存
+
+
+The software transactional memory is a concurrency control mechanism on similar lines. It, again, is a different paradigm, an alternative to lock-based synchronization.
+
+commit， roll back
+
+optimistic locking
+
+Composability is a big theme: lock-based programs do not compose. You cannot take two atomic operations and create one more atomic operation out of them. You need to specifically program a critical section around these. STM, on the other hand, can wrap these two operations inside a transaction block, as shown in the preceding diagram.
+可组合性是一个大主题：基于锁方式的程序不能组合。你不能使用两个原子操作创建另一个原子操作。
+
+Parallel collections
+
+# Chapter 2 A Taste of Some Concurrency Patterns 
+
+
+## A thread and its context
+
+the thread context. This context helps a thread keep its runtime information independent of another thread. The thread context holds the register set and the stack.

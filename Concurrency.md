@@ -296,7 +296,10 @@ Program Structures
 
 # Concurrency
 
-
+并发模型
+* Lock-base Concurrency
+* Actor-based Concurrency
+* Transactional Memory
 
 [The Free Lunch Is Over:A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm)
  

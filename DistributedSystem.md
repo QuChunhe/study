@@ -1248,4 +1248,13 @@ https://www.bilibili.com/video/av89327823/
 
 https://pdos.csail.mit.edu/6.824/schedule.ht
 
-[Keepalived](https://www.keepalived.org/index.html)
+
+
+Matthieu Perrin, Distributed Systems. Concurrency and Consistency,ISTE Press,2017
+
+Andreas Meier, Michael Kaufmann, SQL & NoSQL Databases: Models, Languages, Consistency Options and Architectures for Big Data Management, Springer Vieweg, 2019
+
+M. Tamer Özsu, Patrick Valduriez, Principles Of Distributed Database Systems, Springer 2020
+
+Alex Petrov, Database Internals: A deep-dive into how distributed data systems work, O’Reilly Media,2019
+

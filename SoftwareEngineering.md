@@ -495,3 +495,12 @@ Stage 3: Object-Oriented Programming
 Functional programming can seem like the means to all ends in this scenario, but I'd recommend getting acquainted with model-driven design and Domain-Driven Design to understand the bigger picture on how object-modelers are able to encapsulate an entire business in a zero-dependency domain model.
 
 https://khalilstemmler.com/articles/software-design-architecture/full-stack-software-design/
+
+
+
+
+
+产品经理能够从软件工程中学到的
+* 尽可能地使用商品化硬件/系统，而不是定制化的硬件/系统。大规模的生产不仅能够大大降低成本，而且有助于协同的、快速的技术演进。更多的产量往往意味着更多的利润，能够促进上下游厂商投入更多资源参与，从而促进相关技术、组件和产品的进步。产品进步往往又会促进产品的更新换代和使用，形成产品进步和产品产量之间的正向促进。超级计算机和商品化服务器搭建的集群，前者是定制化的设计和制造，甚至需要专门地改造软件系统，用以适配不同的超算，在大型数值计算等领域，超算还是有其用武之地，因此集群不能完全替代超算的位置，但是在很多领域，例如网络服务和数据数据等领域，
+* 帕瓦罗原理，二八定律
+* 
