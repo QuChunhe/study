@@ -238,9 +238,41 @@ Composability is a big theme: lock-based programs do not compose. You cannot tak
 
 Parallel collections
 
+线程安全的合集
+* 必须保证操作安全性，避免并发读写或写写造成问题。
+* 尽量提高操作并发性，尽可能地获取更高的操作吞吐。
+
+
+
+
 # Chapter 2 A Taste of Some Concurrency Patterns 
 
 
-## A thread and its context
+## A thread and its context 线程和其上下文
 
-the thread context. This context helps a thread keep its runtime information independent of another thread. The thread context holds the register set and the stack.
+the thread context. This context helps a thread keep its runtime information independent of another thread. The thread context holds the register set and the stack. 线程上下文帮助一个线程维持独立于其他线程的运行信息。线程上下文持有线程运行所需的寄存器集合和栈。
+
+The final and local variables (including function arguments) are always thread safe. You don't need any locks to protect them. The final variables are immutable (that is, read-only) so there is no question of multiple threads changing the value at the same time.
+常量和本地变量（包括函数参数）都是线程安全的。你无需使用任何锁来保护它们。常量是不变的（也就是只读的），因此没有多个线程在同一事件修改一个值的问题。
+
+Mutable Static and Instance Variables are unsafe! If these are not protected, we could easily create Race Conditions.
+可变静态变量和实例变量（对象属性）都不是线程安全的。如果没有保护，会非常容易造成额竞争条件。
+
+## Race conditions 竞争条件
+
+
+Singleton and factory method are two of the many creational design patterns from the famous Gang Of Four (GOF) book.
+
+The need for singletons is pretty common; a classic example of a singleton is a logging service. Thread pools are also expressed as singletons (we will be looking at thread pools in an upcoming chapter). Singletons are used as sentinel nodes in tree data structures, to indicate terminal nodes.
+
+
+数据的可见性是数据的多个副本所致。由于CPU的操作速度要远远快要主存访问速度，为了优化性能，CPU会将主存中的数据预先装载到访问速度更快的cache中，并直接操作cache中的数据。这种情况导致同一个数据的多个副本在不同内核或者线程中可能并不一致，例如在一个线程更改了一个数据后，另一个线程读取的数据还是之前过期的数值，这被称为线程对于数据的更改不可见。为此，可以在写入数据后，使用Store Barrier以保持cache中的数据被写回到内存或者广播到其他cache（如果该cache缓存该数据）。在读取一个数据之前，使用Load Barrier，以确保cache中的数据与主存中的保持一致。
+
+volatile keyword 
+
+
+A store barrier makes all CPUs (and threads executing on them) aware of the state change. Similarly, a Load Barrier makes all CPUs read the latest value, thereby avoiding the stale state issue.
+Store Barrier使得所有CPU（和在其上执行的线程）意识到状态已经改变。类似地，Load Barrier使得所有CPU读取最新的值，从而避免状态失效问题。
+
+
+https://dzone.com/articles/memory-barriersfences
