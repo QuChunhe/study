@@ -174,3 +174,8 @@ Rules for natural deduction
    
    
 Jean H. Gallier,  Logic For Computer Science: Foundations of Automatic Theorem Proving, Harper & Row, New York, 1986.
+
+all propositions in PROP
+* Associativity rules
+* Commutativity rules:
+* Distributivity rules:
