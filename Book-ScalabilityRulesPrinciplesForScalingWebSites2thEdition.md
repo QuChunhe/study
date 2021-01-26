@@ -2,6 +2,12 @@
 Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scaling Web Sites Second Edition, 2017
 ---------------------------------------------------
 
+可扩展性涉及如下几个方面
+* 项目管理
+* 架构设计
+* 技术选型
+* 实用技巧
+* 部署规范
 
 ## Chapter 1 Reduce the Equation 大道至简
 
@@ -904,12 +910,30 @@ Techniques such as code reviews and test-driven development (TDD) help engineers
 ### Rule 29—Failing to Design for Rollback Is Designing for Failure
 ### 规则29——不为回滚而设计就是为失败而设计
 
-What: Always have the ability to roll back code. 总是能够回滚代码。
+**What:** Always have the ability to roll back code. 总是能够回滚代码。
 
-When to use: Ensure that all releases have the ability to roll back, practice it in a staging or QA environment, and use it in production when necessary to resolve customer incidents. 确保所有的发布都能够回滚，在测试环境或者QA环境中演练，然后当能够解决客户的问题时，在生产环境使用。
+**When to use:** Ensure that all releases have the ability to roll back, practice it in a staging or QA environment, and use it in production when necessary to resolve customer incidents. 确保所有的发布都能够回滚，在测试环境或者QA环境中演练，然后当能够解决客户的问题时，在生产环境使用。
 
-How to use: Clean up your code and follow a few simple procedures to ensure that you can roll back your code. 清除你的代码并执行若干简单过程，一确保你能够回滚代码。
+**How to use:** Clean up your code and follow a few simple procedures to ensure that you can roll back your code. 清除你的代码并执行若干简单过程，以确保你能够回滚代码。
 
-Why: If you haven’t experienced the pain of not being able to roll back, you likely will at some point if you keep playing with the “fix-forward” fire. 如果你没有经历过不能回滚的痛苦，那么你非常可能
+**Why:** If you haven’t experienced the pain of not being able to roll back, you likely will at some point if you keep playing with the “fix-forward” fire. 如果你没有经历过不能回滚的痛苦，那么你非常可能
 
-Key takeaways: Don’t accept that the application is too complex or that you release code too often as excuses that you can’t roll back. No sane pilot would take off in an airplane without the ability to land, and no sane engineer would roll code that he or she could not pull back off in an emergency. 不能接受以应用过于复杂或者以发布代码过于频繁为借口来拒绝回滚。理智的飞行员不会登上无能降落的飞机，同样地，一个理智的工程师不会上线在紧急情况下不能退回的代码。
+**Key takeaways:** Don’t accept that the application is too complex or that you release code too often as excuses that you can’t roll back. No sane pilot would take off in an airplane without the ability to land, and no sane engineer would roll code that he or she could not pull back off in an emergency. 不能接受以应用过于复杂或者以发布代码过于频繁为借口来拒绝回滚。理智的飞行员不会登上无能降落的飞机，同样地，一个理智的工程师不会上线在紧急情况下不能退回的代码。
+
+The following bulleted points provided us and many other teams since then the ability to roll back. As you’d expect, the majority of the problem with rolling back is in the database. By going through the application to clean up any outstanding issues and then adhering to some simple rules, every team should be able to roll back.
+如下的要点为我和其他很多团队提供了回滚的能力。正如你所估计的，回滚的主要问题是在数据库。通过检查应用来清除突出的问题，然后遵循一些简单的规则，每个团队都能够实现回滚。
+* Database changes must only be additive—Columns or tables should only be added, not deleted, until the next version of code is released that deprecates the dependency on those columns. Once these standards are implemented, every release should have a portion dedicated to cleaning up the last release’s data that is no longer needed. 数据库的更新必须是增量的————列或者表只能增加，而不能删除，直到在代码的下一版本发布的时候放弃对于这些列的依赖，才能删除。一旦实现这些标准，每个版本都需要包括部分专门的代码，用于清除上一个版本发布的并且不再需要的数据。
+* Database changes scripted and tested—The database changes that are to take place for the release must be scripted ahead of time instead of applied by hand. This should include the rollback script. The two reasons for this are that (1) the team needs to test the rollback process in QA or staging to validate that they have not missed something that would prevent rolling back, and (2) the script needs to be tested under some amount of load condition to ensure that it can be executed while the application is using the database.数据库更新要编写脚本和测试————针对于将要发布的数据库更新必须提前编写好脚本，而不是手工操作数据库。之所以如此的原因是：1）团队需要在QA或者测试阶段测试回滚过程，以验证没有遗漏一些阻止回滚的内容；2）脚本需要在一定负载条件下测试，以确保在应用正在使用数据库的情况下脚本也能执行。
+* Restricted SQL queries in the application—The development team needs to disambiguate all SQL by removing all SELECT * queries and adding column names to all UPDATE statements. 在应用中约束SQL查询————开发团队需要通过删除所有SELECT *查询和在所有UPDATE声明中添加列名来消除SQL中的歧义。
+* Semantic changes of data—The development team must not change the definition of data within a release. An example would be a column in a ticket table that is currently being used as a status semaphore indicating three values such as assigned, fixed, or closed. The new version of the application cannot add a fourth status until code is first released to handle the new status. 数据语义的更新————开发团队不能在发布中更改数据的定义。例如，在一个ticket表的一列当前用于信号量的状态，可以指示三个值，分别为 assigned, fixed,或者closed。在新一版的应用中不能添加第四个状态，直到代码第一次发布支持新的状态为止。
+* Wire on/wire off—The application should have a framework added that allows code paths and features to be accessed by some users and not by others, based on an external configuration. This setting can be in a configuration file or a database table and should allow for both role-based access as well as access based on random percentage. This framework allows for beta testing of features with a limited set of users and allows for quick removal of a code path in the event of a major bug in the feature, without rolling back the entire code base.上线/下线————应用具有框架，能够基于外部的配置添加许可，允许一些用户访问代码路径和特性，而不允许其他用户访问。这些设置可能位于一个配置文件或者一个数据库表中，许可基于角色的访问和基于随机百分比的访问。这个框架既许可对于限定的用户集合进行特性的beta测试，也许可在特性中出现重大bud时在无需回滚全部代码的情况下快速地删除该特性所在的代码路径。
+
+# Chapter 8 Database Rules 数据库规则
+
+* Atomicity: All of the operations in the transaction will complete, or none will. 原子性：事务中的所有操作要么全部完成，要么什么也不操作。
+* Consistency: The database will be in a consistent state when the transaction begins and ends. 一致性：当事务开始和结束时，数据库将处于一致状态。
+* Isolation: The transaction will behave as if it is the only operation being performed upon the database. 隔离性： 事务运行就像在数据库中仅仅其一个事务在执行。
+* Durability:  Upon completion of the transaction, the operation will not be reversed。持久性：一旦事务完成，操作就不会被撤销。
+
+ACID properties are really powerful when we need to split up data into different entities, each of which has some number of relationships with other entities within the database. They are even more powerful when we want to process a large number of transactions through these entities and relationships: transactions consisting of reads of the data, updates to the data, the addition of new data (inserts or creates), and removal of certain data (deletes). While we should always strive to find more lightweight and faster ways to perform transactions, sometimes there simply isn’t an easy way around using a relational database, and sometimes the relational database is the best option for our implementation given the flexibility it affords.
+当我们需要将数据分解到不同的实体并且每个实体与数据库中的其他实体之间都有一些关系时，ACID性质就非常强大。当我们想要处理大量的、涉及实体和关系的事务时，ACID性质就更加强大了：这些事务由读取数据、更新数据、添加新数据（插入或者创建）以及删除特定数据（delete）组成。虽然我们一直在努力更轻量和更快速的方法执行事务，但是有时使用一个关系型数据库并不是一个简单的方式，有时对于我们的实现，关系数据库是最佳的选择，因此其提供了灵活性。
