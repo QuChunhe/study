@@ -250,13 +250,13 @@ Parallel collections
 
 ## A thread and its context 线程和其上下文
 
-the thread context. This context helps a thread keep its runtime information independent of another thread. The thread context holds the register set and the stack. 线程上下文帮助一个线程维持独立于其他线程的运行信息。线程上下文持有线程运行所需的寄存器集合和栈。
+the thread context. This context helps a thread keep its runtime information independent of another thread. The thread context holds the register set and the stack. 线程上下文帮助一个线程维护独立于其他线程的运行信息。线程上下文持有线程运行所需的寄存器集合和栈。
 
 The final and local variables (including function arguments) are always thread safe. You don't need any locks to protect them. The final variables are immutable (that is, read-only) so there is no question of multiple threads changing the value at the same time.
 常量和本地变量（包括函数参数）都是线程安全的。你无需使用任何锁来保护它们。常量是不变的（也就是只读的），因此没有多个线程在同一事件修改一个值的问题。
 
 Mutable Static and Instance Variables are unsafe! If these are not protected, we could easily create Race Conditions.
-可变静态变量和实例变量（对象属性）都不是线程安全的。如果没有保护，会非常容易造成额竞争条件。
+可变静态变量和实例变量（对象属性）都不是线程安全的。如果没有保护，会非常容易形成竞争条件。
 
 ## Race conditions 竞争条件
 
@@ -276,3 +276,17 @@ Store Barrier使得所有CPU（和在其上执行的线程）意识到状态已�
 
 
 https://dzone.com/articles/memory-barriersfences
+
+### The Monitor Pattern监视器模式
+
+These steps should be atomic, that is, indivisible; either a thread executes all of these operations or none of them. The monitor pattern is used for making such a sequence of operations atomic. Java provides a monitor via its synchronized keyword.
+这些步骤需要是原子的，也就是说，不可分割的，或者一个线程执行全部的操作，或者一个都不执行。监视器模式用于将这样的操作序列原子化。Java通过synchronized关键字提供一个监视器。
+
+Every Java object has a built-in lock, also known as an intrinsic lock. A thread entering the synchronized block acquires this lock. The lock is held till the block executes. When the thread exits the method (either because it completed the execution or due to an exception), the lock is released。
+每个Java对象都拥有一个内置的锁，也被称为内置锁。一个进入synchronized块的线程需要获取这个锁。这个线程持有该锁，直到整个块执行完为止。当线程结束这个方法（无论是执行完毕退出，还是由于异常跳出），锁都会被释放。
+
+The synchronized blocks are reentrant: the same thread holding the lock can reenter the block again.
+synchronized块是可重入的：持有对应锁的同一个线程可以再次进入块。
+
+
+Thread safety, correctness, and invariants
