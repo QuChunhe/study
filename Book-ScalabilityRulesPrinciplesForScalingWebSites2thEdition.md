@@ -932,8 +932,67 @@ The following bulleted points provided us and many other teams since then the ab
 
 * Atomicity: All of the operations in the transaction will complete, or none will. 原子性：事务中的所有操作要么全部完成，要么什么也不操作。
 * Consistency: The database will be in a consistent state when the transaction begins and ends. 一致性：当事务开始和结束时，数据库将处于一致状态。
-* Isolation: The transaction will behave as if it is the only operation being performed upon the database. 隔离性： 事务运行就像在数据库中仅仅其一个事务在执行。
-* Durability:  Upon completion of the transaction, the operation will not be reversed。持久性：一旦事务完成，操作就不会被撤销。
+* Isolation: The transaction will behave as if it is the only operation being performed upon the database. 隔离性： 事务运行就像在数据库中仅有其一个事务在执行。
+* Durability:  Upon completion of the transaction, the operation will not be reversed.持久性：一旦事务完成，操作就不会被撤销。
 
 ACID properties are really powerful when we need to split up data into different entities, each of which has some number of relationships with other entities within the database. They are even more powerful when we want to process a large number of transactions through these entities and relationships: transactions consisting of reads of the data, updates to the data, the addition of new data (inserts or creates), and removal of certain data (deletes). While we should always strive to find more lightweight and faster ways to perform transactions, sometimes there simply isn’t an easy way around using a relational database, and sometimes the relational database is the best option for our implementation given the flexibility it affords.
-当我们需要将数据分解到不同的实体并且每个实体与数据库中的其他实体之间都有一些关系时，ACID性质就非常强大。当我们想要处理大量的、涉及实体和关系的事务时，ACID性质就更加强大了：这些事务由读取数据、更新数据、添加新数据（插入或者创建）以及删除特定数据（delete）组成。虽然我们一直在努力更轻量和更快速的方法执行事务，但是有时使用一个关系型数据库并不是一个简单的方式，有时对于我们的实现，关系数据库是最佳的选择，因此其提供了灵活性。
+当我们需要将数据分解到不同的实体并且每个实体与数据库中其他实体之间都有一些关系时，ACID性质就非常强大。当我们想要处理大量的、涉及实体和关系的事务时，ACID性质就更加强大了：这些事务由读取数据、更新数据、添加新数据（插入或者创建）以及删除特定数据（delete）组成。我们一直在努力寻找更轻量的和更快速的方法执行事务，虽然有的时候使用一个关系型数据库并不是一种简单的方式，但是有的时候关系数据库为我们的实现提供了灵活性，因而是最佳的选择。
+
+
+## Rule 30—Remove Business Intelligence from Transaction Processing
+## 规则 30——从事务处理中移除商业智能
+
+
+三类不同的表
+* 事务型
+* 日志型
+* 汇总型
+
+两种处理
+* 统计分析
+* 事务处理
+ 
+**What:** Separate business systems from product systems and product intelligence from database systems. 将业务系统和产品系统分开，将产品智能与数据库系统分开。
+
+**When to use:** Anytime you are considering internal company needs and data transfer within, to, or from your product. 任何时候，当你考虑公司内部的需求，并且数据需要在你的产品内部传输、从外部传输到你的产品或者从你的产品传输到外部。
+
+**How to use:** Remove stored procedures from the database and put them in your application logic. Do not make synchronous calls between corporate and product systems. 在你的数据库中删除存储过程，并将处理过程放到你的应用逻辑中。不要在公司系统和产品系统之间采用同步调用。
+
+**Why:** Putting application logic in databases is costly and represents scale challenges. Tying corporate systems and product systems together is also costly and represents similar scale challenges as well as availability concerns. 将应用逻辑放到数据库中的代价高昂，而且成为扩展的挑战。将公司系统和产品系统绑定到一起的代价同样高昂，而且呈现类似的扩展型挑战性以及可用性问题。
+
+**Key takeaways:** Databases and internal corporate systems can be costly to scale due to license and unique system characteristics. As such, we want them dedicated to their specific tasks. In the case of databases, we want them focused on transactions rather than product intelligence. In the case of back-office systems (business intelligence), we do not want our product tied to their capabilities to scale. Use asynchronous transfer of data for business systems.  由于许可证和独特的系统属性，数据库和内部公司系统需要高昂的成本实现扩展。因此，我们期望它们专注于它们特定的任务。对于数据库而言，我们期望其聚焦于事务而不是产品智能。对于后台系统（商业智能），我们不期望我们的产品绑定它们的能力进行扩展。针对于商业系统，使用数据的异步传输。
+
+存储过程的问题
+* 可测试性问题
+* 可移植性问题
+* 可扩展性问题
+
+Given the emphasis on databases, why didn’t we put this rule in the chapter on databases? The answer is that the reason for our concerns about stored procedures is really the need to separate business intelligence and product intelligence from transaction processing. In general, this concept can be further abstracted to “Keep like transactions together (or alternatively separate unlike transactions) for the highest possible availability and scalability and best possible cost.”  将重点放在数据库上，我们为什么不将这个规则放到数据库章节中？答案是我们关注存储过程的原因是真的需要将商业智能和产品智能从事务处理中分离出来。通常情况下，这个概念能够进一步地被抽线为“为了获得最高的可用性和扩展性以及最好的成本，将像事务的放到一起（或者可以替换为将不像事务的分离出来）”。
+
+Ideally we want these systems to scale independently relative to their individual needs. When these systems are tied together, each of them needs to scale at the same rate as the system making requests of them. In some cases, as was the case with our database performing business logic, the systems may be more costly to scale. This is often the case with ERP systems that have licenses associated with CPUs to run them. Why would we possibly want to increase our cost of scale by making a synchronous call to the ERP system for each transaction? Moreover, why would we want to reduce the availability of our product platform by adding yet another system in series as we discuss in Rule 38 (Chapter 9, “Design for Fault Tolerance and Graceful Failure”)?
+理想情况下，我们希望这些根据自己的需求独立地扩展。当这些系统被捆绑到一起时，其中一个系统需要扩展时，系统会要求每一个系统以同样的速率扩展。在一些情况下，像我们数据库运行业务逻辑的情况，系统扩展成本可能更加高昂。ERP系统通常是这种情况，其使用许可是与运行它们的CPU相关联的。为什么我们要通过使用同步调用ERP系统来增加我们的扩展成本？进一步地，为什么我们要像我们在规则38（第9章，“为容错和优雅故障而设计”）中讨论的那样，通过添加另一个系统来降低我们产品平台的可用性，
+
+
+单一职责原则以及松耦合高内聚不仅仅适合于模块，同样适用于系统。
+
+Just as product intelligence should not be placed on databases, business intelligence should not be tied to product transactions. There are many cases where we need that data resident within our product, and in those cases we should do just that—make it resident within the product. We can select data sets from these other systems and represent them appropriately within our product offering. Often this data will be best served with a new or different representation, sometimes of a different normal form. Very often we need to move data from our product back to our business systems such as in the case of customer support systems, marketing systems, data warehouses, and ERP systems. In these cases, we will also likely want to summarize and/or represent the data differently. Furthermore, to increase our availability we will want these pieces of data moved asynchronously back and forth between the systems.
+正如产品智能不能放在数据库上，商业智能也不能与产品事务绑定在一起。在很多情况中，我们需要存储在我们产品中的数据，对于这种情况我们应该这样做————使数据存储在产品中。我们能够从其他系统中选择数据集合，并在我们产品中适当的表示它们。通常这些数据最
+
+For instance, you can select data elements over small time intervals and move those between your systems. Additionally, you can always publish the data on some sort of message bus for use on these other systems. The lowest-cost solution is batch extraction, but if temporal constraints don’t allow such cost-efficient movement, then message buses are absolutely an appropriate solution. Just remember to revisit our rules on message buses and asynchronous transactions in Chapter 11, “Asynchronous Communication and Message Buses.“
+例如，你可以在小的时间间隔内选择数据元素，然后在你的系统之间转移它们。此外，你可以将数据发布到某类消息总线，然后在其他系统使用这些数据。 成本最低廉的解决方案是批量提取，但是如果时间限制不允许这类经济有效的转移，那么消息总线绝对是一个合适的解决方案。只是要记住要重温在11章”异步通信和消息总线“中我们关于消息总线和异步事务的规则。
+
+
+## Rule 31—Be Aware of Costly Relationships
+## 规则31————注意昂贵的关系
+
+
+**What:** Be aware of relationships in the data model. 注意数据模型中的关系。
+
+**When to use:** When designing the data model, adding tables/columns, or writing queries, consider how the relationships between entities will affect performance and scalability in the long run. 当设计数据模型、添加表/列或者编写查询时，考虑实体之间的关系如何在长期会影响性能和扩展性
+
+**How to use:** Think about database splits and possible future data needs as you design the data model. 在你设计数据模型时，思考数据拆分以及未来可能的数据需求。
+
+**Why:** The cost of fixing a broken data model after it has been implemented is likely 100x as much as fixing it during the design phase. 对于有问题的数据模型，在被实现之后修复的成本可能是在设计阶段修复成本的100倍。
+
+**Key takeaways:** Think ahead and plan the data model carefully. Consider normalized forms, how you will likely split the database in the future, and possible data needs of the application.
+提前考量并仔细规划数据模型。考量范式，你在未来将如何拆分数据以及应用对于数据可能的需求。

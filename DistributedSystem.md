@@ -165,6 +165,20 @@ Front-End (FE) + Back-End (BE) Architecture
 从系统的生命周期看，分布化设计整个周期的各个阶段和环节
 Strategies --> design -> implement -> deployment -> operation(monitor, log)
 
+
+在用户向WEb服务器请求服务时，Web服务器
+用户与服务器之间的异步操作
+* 增加交互，例如返回确认界面，
+* 后台操作
+   * 基于WebSocket的站内消息
+   * 基于定时Ajax的消息
+
+服务器与服务器之间的异步操作
+* Future，不同管理域，即属于不同的管理者
+* 消息队列，同一管理域
+* Callback ，不同管理域和同一管理域都可以
+
+
 # Papers
 [1] Patrick O'Neil, Edward Cheng, Dieter Gawlick, Elizabetch O'Neil. The log-structured merge-tree (LSM-tree). Acta Informatica, 1996, 33(4): 351-385.
 
