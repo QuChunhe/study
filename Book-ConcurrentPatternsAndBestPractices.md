@@ -295,6 +295,8 @@ Thread safety, correctness, and invariants
 An invariant is a good vehicle for knowing the correctness of the code. 不变性是一个理解代码正确性的好工具。
 
 
-Sequential consistency
+Sequential consistency 顺序一致性
 
 Another tool for learning more about concurrent objects is Sequential Consistency.
+
+Visibility and final fields可见性和final字段
