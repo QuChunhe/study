@@ -290,3 +290,11 @@ synchronized块是可重入的：持有对应锁的同一个线程可以再次�
 
 
 Thread safety, correctness, and invariants
+
+
+An invariant is a good vehicle for knowing the correctness of the code. 不变性是一个理解代码正确性的好工具。
+
+
+Sequential consistency
+
+Another tool for learning more about concurrent objects is Sequential Consistency.
