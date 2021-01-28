@@ -995,4 +995,4 @@ For instance, you can select data elements over small time intervals and move th
 **Why:** The cost of fixing a broken data model after it has been implemented is likely 100x as much as fixing it during the design phase. 对于有问题的数据模型，在被实现之后修复的成本可能是在设计阶段修复成本的100倍。
 
 **Key takeaways:** Think ahead and plan the data model carefully. Consider normalized forms, how you will likely split the database in the future, and possible data needs of the application.
-提前考量并仔细规划数据模型。考量范式，你在未来将如何拆分数据以及应用对于数据可能的需求。
+提前考量并仔细规划数据模型。考量范式，你在未来将会如何拆分数据，以及应用对于数据可能的需求。
