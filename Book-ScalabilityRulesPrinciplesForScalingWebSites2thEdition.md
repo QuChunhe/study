@@ -996,3 +996,29 @@ For instance, you can select data elements over small time intervals and move th
 
 **Key takeaways:** Think ahead and plan the data model carefully. Consider normalized forms, how you will likely split the database in the future, and possible data needs of the application.
 提前考量并仔细规划数据模型。考量范式，你在未来将会如何拆分数据，以及应用对于数据可能的需求。
+
+
+Database relationships are determined by the data model, which captures the cardinality and referential integrity rules of the data. 数据库关系是由数据模型确定的，而数据模型数据满足基数和引用完整性规则。
+
+While there are all types of variations on this process, for a relational model the first step generally is to define the entities. 构建数据模型的过程可能千变万化，但是对于关系模型的第一步通常是定义实体。
+
+An entity is anything that can exist independently such as a physical object, event, or concept. Entities can have relationships with each other, and both the entity and the relationship can have attributes describing them. Using the common grammar analogy, entities are nouns, relationships are verbs, and attributes are adjectives or adverbs, depending on what they modify.
+一个实体可以是任何可以独立存储的东西，例如物理对象、事件或者概念。实体之间可能有关系，实体和关系都能有属性加以表示。使用常见的语法类比，实体是名词，关系是动词，而依赖于所修饰的内容，属性可以是形容词或者副词。
+
+In our database the entity is the equivalent of the row, and the entity set is the table. The unique attribute that describes the entity is the primary key of the table. Primary keys enforce entity integrity by uniquely identifying entity instances. The unique attributes that describe the relationship between entities are the foreign keys. Foreign keys enforce referential integrity by completing an association between two entities of different entity sets. Most commonly used to diagram entities, relationships, and attributes are entity relationship diagrams (ERDs). ERDs show the cardinality between entity sets, one-to-one, one-to-many, or many-to-many relationships.
+在我们的数据库中实体相当于行，而实体集合相当于表。描述实体唯一性的属性是表的主键。通过唯一地识别实体实例，主键强制实体的完整性。描述实体之间关系的唯一属性是外键。通过在不同实体集合的两个实现之间建立关联，外键强制引用完整性。最常使用的、绘制实体、关系和属性的工具是实体关系图。实体关系图通过实体集之间的基数来显示一对一、一对多或多对多的关系。
+
+The primary purpose of normalizing a data model is to ensure that the data is stored in a manner that allows for insert, update, select, and delete (aka CRUD: create, read, update, delete) with data integrity. Non-normalized data models have a high degree of data redundancy, which means that the risk of data integrity problems is greater. Normal forms build upon each other, meaning that for a database to satisfy the requirements for second normal form it first must satisfy those for first normal form.
+规范化数据模型的首要目的是确保数据以一种在保持数据完整性的情况许可插入、更新、选取和删除（又称为CRUD：创建、读取、更新和删除）的方式存储。非规范化的数据模型具有高度的数据冗余，这意味着具有更大风险面临数据完整性问题。范式是相互依赖的，意味着一个满分第二范式的数据库，其必须满足第一范式。
+
+Each higher normal form implies that it must satisfy lower forms. Generally a database is said to be in normal form if it adheres to third normal form. 每一个更高的范式需要满足更低级的范式。一般来说，如果一个数据库遵顼第三范式，这个数据库就被称为满足范式。
+* First normal form—Originally, as defined by Codd,1 the table should represent a relation and have no repeating groups. While “relation” is fairly well defined by Codd, the meaning of “repeating groups” is a source of debate. Controversy exists over whether tables are allowed to exist within tables and whether null fields are allowed. The most important concept is the ability to create a key.
+* Second normal form—Nonkey fields cannot be described by only one of the keys in a composite key.
+* Third normal form—All nonkey fields must be described by the key.
+* Boyce-Codd normal form—Every determinant is a candidate key.
+* Fourth normal form—A record type should not contain two or more multivalued facts.
+* Fifth normal form—Every nontrivial join dependency in the table is implied by the
+candidate keys.
+* Sixth normal form—No nontrivial join dependencies exist.
+
+An easy mnemonic for the first three normal forms is “1—The Key, 2—The Whole Key, and 3—Nothing but the Key.” 对于前三个范式，一个容易记忆的表述是：1——间，2——整个键，3——除了键什么也没有。
