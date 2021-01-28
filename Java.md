@@ -410,6 +410,46 @@ Copy-on-write collections are designed for cases where:
 
 ConcurrentLinkedQueue
 
+[Introduction to Lock-Free Data Structures with Java Examples](https://www.baeldung.com/lock-free-programming)
+
+* non-blocking data structures 非阻塞式数据结构
+  * obstruction-free
+  * lock-free
+  * wait-free
+* lock-based concurrent data structures 基于锁的并发数据结构
+
+non-blocking algorithms like CAS (compare-and-swap). 类似于CAS这样非阻塞式算法
+
+
+Lock Versus Starvation
+
+the difference between a blocked and a starving thread.
+
+a)锁方式，没有获得访问权的线程需要处于阻塞状态。被阻塞的线程放弃CPU，需要额外的上下文切换消耗。
+
+b） 饥饿方式，不使用锁，而是采用check-try方式，即检测，如果有其他线程正在访问数据结构，则返回后，并再尝试检测，直到能够访问数据结构为止。
+
+Thread 2 accesses the data structure but does not acquire a lock. Thread 1 attempts to access the data structure at the same time, detects the concurrent access, and returns immediately, informing the thread that it could not complete (red) the operation. Thread 1 will then try again until it succeeds to complete the operation (green).
+线程2访问数据结构，但是没有获得锁。与此同时，线程1尝试访问数据结构，检测到并发访问，然后立即返回，通知线程其不能完成此操作。线程1将会再次尝试，知道成功完成这个操作。
+
+The advantage of this approach is that we don't need a lock. However, what can happen is that if Thread 2 (or other threads) access the data structure with high frequency, then Thread 1 needs a large number of attempts until it finally succeeds. We call this starvation.
+这种方法好处是我们不需要锁。然而，如果线程2（或者其他线程）以更高的频率访问数据结构时，将会发生什么？线程1在其最终成功之前需要更多次的尝试。我们称之为饥饿。
+
+**Obstruction-freedom** is the weakest form of a non-blocking data structure. Here, we only require that a thread is guaranteed to proceed if all other threads are suspended.
+
+
+A data structure provides **lock-freedom** if, at any time, at least one thread can proceed. All other threads may be starving. The difference to obstruction-freedom is that there is at least one non-starving thread even if no threads are suspended.
+
+A data structure is **wait-free** if it's lock-free and every thread is guaranteed to proceed after a finite number of steps, that is, threads will not starve for an “unreasonably large” number of steps.
+
+Non-Blocking Primitives
+* Compare and Swap： CAS is an atomic operation, which means that fetch and update together are one single operation。 The important thing here is that CAS does not acquire a lock on the data structure but returns true if the update was successful, otherwise it returns false. Furthermore, compare-and-swap does not prevent the A-B-A problem
+* Load-Link/Store-Conditional： AtomicStampedReference v.t.  A-B-A problem
+* Fetch and Add
+
+
+
+[LMAX Disruptor](https://lmax-exchange.github.io/disruptor/)
 
 ## 原子操作
 
