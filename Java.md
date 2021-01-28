@@ -383,14 +383,18 @@ public void workOn(List<Operand> operands) {
 
 ## Concurrent Collections
 
+线程安全(thread-safty)的数据解构
+* 添加锁实现单线程访问，实现简单，但是效率不高 
+   * StringBuffer
+* 并发数据结构
+
 并发数据结构
-* 方法添加锁，实现简单，但是效率不高
 * copy-on-write， 
    * CopyOnWriteArrayList
    * CopyOnWriteArraySet
-* 分解锁，实现更大的并发操作能力
+* 分解数据结构，通过多个更小的锁，实现更大的并发操作能力
    * ConcurrentHashMap
-* 无所数据结构
+* 无锁数据结构
    * AbstractQueuedSynchronizer
    * Disruptor   
 
@@ -425,9 +429,9 @@ Lock Versus Starvation
 
 the difference between a blocked and a starving thread.
 
-a)锁方式，没有获得访问权的线程需要处于阻塞状态。被阻塞的线程放弃CPU，需要额外的上下文切换消耗。
+a）锁方式，没有获得访问权的线程需要处于阻塞状态。被阻塞的线程放弃CPU，需要额外的上下文切换消耗。
 
-b） 饥饿方式，不使用锁，而是采用check-try方式，即检测，如果有其他线程正在访问数据结构，则返回后，并再尝试检测，直到能够访问数据结构为止。
+b）饥饿方式，不使用锁，而是采用check-try方式，即检测，如果有其他线程正在访问数据结构，则返回后，并再尝试检测，直到能够访问数据结构为止。
 
 Thread 2 accesses the data structure but does not acquire a lock. Thread 1 attempts to access the data structure at the same time, detects the concurrent access, and returns immediately, informing the thread that it could not complete (red) the operation. Thread 1 will then try again until it succeeds to complete the operation (green).
 线程2访问数据结构，但是没有获得锁。与此同时，线程1尝试访问数据结构，检测到并发访问，然后立即返回，通知线程其不能完成此操作。线程1将会再次尝试，知道成功完成这个操作。
