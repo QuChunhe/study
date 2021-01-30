@@ -6,7 +6,7 @@ Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scali
 * 项目管理
 * 架构设计
 * 技术选型
-* 实用技巧
+* 编程技巧
 * 部署规范
 
 ## Chapter 1 Reduce the Equation 大道至简
@@ -1003,13 +1003,13 @@ Database relationships are determined by the data model, which captures the card
 While there are all types of variations on this process, for a relational model the first step generally is to define the entities. 构建数据模型的过程可能千变万化，但是对于关系模型的第一步通常是定义实体。
 
 An entity is anything that can exist independently such as a physical object, event, or concept. Entities can have relationships with each other, and both the entity and the relationship can have attributes describing them. Using the common grammar analogy, entities are nouns, relationships are verbs, and attributes are adjectives or adverbs, depending on what they modify.
-一个实体可以是任何可以独立存储的东西，例如物理对象、事件或者概念。实体之间可能有关系，实体和关系都能有属性加以表示。使用常见的语法类比，实体是名词，关系是动词，而依赖于所修饰的内容，属性可以是形容词或者副词。
+一个实体可以是任何可以独立存储的东西，例如物理对象、事件或者概念。实体之间可能有关系，实体和关系都能含有属性用于描述自己。使用常见的语法类比，实体是名词，关系是动词，而依赖于所修饰的内容，属性可以是形容词或者副词。
 
 In our database the entity is the equivalent of the row, and the entity set is the table. The unique attribute that describes the entity is the primary key of the table. Primary keys enforce entity integrity by uniquely identifying entity instances. The unique attributes that describe the relationship between entities are the foreign keys. Foreign keys enforce referential integrity by completing an association between two entities of different entity sets. Most commonly used to diagram entities, relationships, and attributes are entity relationship diagrams (ERDs). ERDs show the cardinality between entity sets, one-to-one, one-to-many, or many-to-many relationships.
-在我们的数据库中实体相当于行，而实体集合相当于表。描述实体唯一性的属性是表的主键。通过唯一地识别实体实例，主键强制实体的完整性。描述实体之间关系的唯一属性是外键。通过在不同实体集合的两个实现之间建立关联，外键强制引用完整性。最常使用的、绘制实体、关系和属性的工具是实体关系图。实体关系图通过实体集之间的基数来显示一对一、一对多或多对多的关系。
+在我们的数据库中实体相当于行，而实体集合相当于表。描述实体唯一性的属性是表的主键。通过唯一地识别实体实例，主键强制实体的完整性。描述实体之间关系的唯一属性是外键。通过在不同实体集合的两个实现之间建立关联，外键强制引用完整性。对于绘制实体、关系和属性，最常使用的工具是实体关系图。实体关系图通过实体集之间的基数来显示一对一、一对多或多对多的关系。
 
 The primary purpose of normalizing a data model is to ensure that the data is stored in a manner that allows for insert, update, select, and delete (aka CRUD: create, read, update, delete) with data integrity. Non-normalized data models have a high degree of data redundancy, which means that the risk of data integrity problems is greater. Normal forms build upon each other, meaning that for a database to satisfy the requirements for second normal form it first must satisfy those for first normal form.
-规范化数据模型的首要目的是确保数据以一种在保持数据完整性的情况许可插入、更新、选取和删除（又称为CRUD：创建、读取、更新和删除）的方式存储。非规范化的数据模型具有高度的数据冗余，这意味着具有更大风险面临数据完整性问题。范式是相互依赖的，意味着一个满分第二范式的数据库，其必须满足第一范式。
+规范化数据模型的首要目的是确保数据以一种在保持数据完整性的情况许可插入、更新、选取和删除（又称为CRUD：创建、读取、更新和删除）的方式存储。非规范化的数据模型具有高度的数据冗余，这意味着具有更大风险面临数据完整性问题。范式是相互依赖的，意味着一个满足第二范式的数据库，其必须满足第一范式。
 
 Each higher normal form implies that it must satisfy lower forms. Generally a database is said to be in normal form if it adheres to third normal form. 每一个更高的范式需要满足更低级的范式。一般来说，如果一个数据库遵顼第三范式，这个数据库就被称为满足范式。
 * First normal form—Originally, as defined by Codd,1 the table should represent a relation and have no repeating groups. While “relation” is fairly well defined by Codd, the meaning of “repeating groups” is a source of debate. Controversy exists over whether tables are allowed to exist within tables and whether null fields are allowed. The most important concept is the ability to create a key.
@@ -1021,4 +1021,33 @@ Each higher normal form implies that it must satisfy lower forms. Generally a da
 candidate keys.
 * Sixth normal form—No nontrivial join dependencies exist.
 
-An easy mnemonic for the first three normal forms is “1—The Key, 2—The Whole Key, and 3—Nothing but the Key.” 对于前三个范式，一个容易记忆的表述是：1——间，2——整个键，3——除了键什么也没有。
+An easy mnemonic for the first three normal forms is “1—The Key, 2—The Whole Key, and 3—Nothing but the Key.” 对于前三个范式，一个容易记忆的表述是：1——键，2——整个键，3——除了键什么也没有。
+
+
+As you have probably figured out by now, the relationships between entities dramatically affect how efficiently the data is stored, retrieved, and updated. They also play a large role in scalability as these relationships define how we are able to split or shard our database. If we are attempting to perform a Y axis split of our database by pulling out the order confirmation service, this might prove problematic if the order entity is extensively related to other entities. Trying to untangle this web of relationships is difficult after the fact. It is well worth the time spent up front in the design phase to save you 10x or 100x the effort when you need to split your databases.
+正如你现在可能已经了解到的，实体之间的关系极大地影响了数据存储、检索和更新的效率。这些关系定义了我们能够如何拆分或者分解我们的数据库，因此关系在可扩展性上也扮演了非常重要的角色。当我们期望通过拉出订单确认服务，以实施Y轴分解我们的数据库时，如果订单实体与其他实体广泛关联，那么这就可能会有问题。在遇到这种情况后，尝试解开这张关系网是非常困难的。因此，在设计阶段值得花费时间，从而与你需要分拆数据库时相比，可以节约十倍或者百倍的工作。
+
+You have probably noticed that there is a relationship between a desire for increased data integrity through normalization and the degree to which relationships must be used in a database. The higher the normal form, the greater the number of potential relationships as we create tables specific to such things as repeating values. What was once taught as a law years ago in database design (moving up in normal form is good) is now seen as more of a trade-off in high-transaction system design. This trade-off is similar to the trade-offs between risk and cost, cost and quality, time and cost, and so on; specifically, a decrease in one side typically implies an increase in the other. Often to increase scale, we look to reduce normal forms. Remember as we discussed in Chapter 4, when scale is desired and ACID properties aren’t necessary for your product, a NoSQL solution may be appropriate.
+你已经注意到了，在通过正规化以提高数据完整性的期望与在数据库中必须使用关系的程度之间存在关联。当我们针对于具有重复值的事物创建表时，范式的级别越高，潜在的关系数量越多。若干年之前在数据库设计中要求我们做为一种原则的那些东西（使用更高级别的范式是好的），现在更多地被看成是在高级事务系统设计中的一种权衡。这种权衡类似于风险与成本之间、成本与质量之间、时间与成本之间等等的权衡，特别是，在一个方面的减小通常意味着在另一方的增加。经常地未来提高可扩展项，我们期望减少正规化。记住我们在第四章所讨论的，当期望获得可扩展性，而ACID并不是我们产品所必须的，那么NoSQL解决方案可能会更加适合。
+
+When SQL queries perform poorly because of the requirements to join tables, there are several alternatives. The first is to tune the query. If this doesn’t help, another alternative is to create a view, materialized view, summary table, and so on that can preprocess the joins. Another alternative is to not join in the query but rather pull the data sets into the application and join in memory in the application. While this is more complex, it removes the processing of the join from the database, which is often the most difficult to scale, and puts it in the application server tier, which is easier to scale out with more commodity hardware. A final alternative is to push back on the business requirements. Often our business partners will come up with different solutions when it is explained that the way they have requested the report requires a 10% increase in hardware but the removal of a single column may make the report trivial in complexity and nearly equivalent in business value.
+当由于需要join表的原因使得执行SQL查询的性能不佳，有几种可选方案。第一种是优化查询。如果此种方案没有帮助，另一个可选方案是创建试图、物化试图或者汇总表等能够预先处理join的方式。另外一种方式是在查询中不使用join，而是将数据集合拽入到应用中并在应用的内存中join。后一种方案更加复杂，其从数据库删除了通常实现可扩展性最为困难的join处理，并将其放置到应用服务器级，而应用服务器级能够更容易地使用更多商品化硬件实现可扩展。最后一种方案是驳回业务需求。向我们的业务伙伴解释，实现他们所提出的报表需要增加10%的硬件，但是删除一列可能会使得报表的复杂性微不足道并且在业务价值上几乎相同，通常情况下他们会提出不同的解决方案。
+
+
+## Rule 32—Use the Right Type of Database Lock
+## 规则32——使用正确的数据库锁类型
+
+What: Be cognizant of the use of explicit locks and monitor implicit locks.要认识到显式锁的使用和监控隐式锁
+
+When to use: Anytime you employ relational databases for your solution. 任何时候，当你为你的解决方案部署关系型数据库时
+
+How to use: Monitor explicit locks in code reviews. Monitor databases for implicit locks and adjust explicitly as necessary to moderate throughput. Choose a database and storage engine that allow flexibility in types and granularity of locking. 在代码审查中检查显式锁。监控数据库的隐式锁，如果需要，则显式地调整以控制吞吐量。
+
+Why: Maximize concurrency and throughput in databases within your environment. 在你的环境中实现数据库的最大并发度和吞吐量。
+
+Key takeaways: Understand the types of locks and manage their usage to maximize database throughput and concurrency. Change lock types to get better utilization of databases, and look to split schemas or distribute databases as you grow. When choosing databases, ensure that you choose one that allows multiple lock types and granularity to maximize concurrency.
+理解锁的类型并管理它们的使用情况，以实现数据库的最大吞吐量和并发度。改变锁的类型以获得更好的数据库使用率，并且当使用率增长时，考虑拆分schemas或者分布数据库。在选择数据库时，确保你所选择数据库，许可多种锁类型和粒度以最大并发度。
+
+
+Locks are a fact of life within a database; they are the way in which databases allow concurrent users while helping to ensure the consistency and isolation components of the ACID properties of a database. But there are many different types of database locks, and even different approaches to implementing them.
+锁是数据库中的真实生活；它们是数据库所使用的方式，许可在并发用户使用的情况帮助确保在数据库中ACID属性的一致性和隔离性部分。有很多不同类型的数据库锁，甚至不同的方式实现它们。

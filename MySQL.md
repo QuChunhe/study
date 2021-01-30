@@ -1,6 +1,13 @@
 
+
+数据库在实际使用、部署和设计中需要依次考虑如下几个密切相关的问题
+* 数据库架构选择
+* 数据库的表设计
+* 数据库访问优化
+
+
 三类不同的表
-* 事务型
+* 业务型
 * 日志型
 * 汇总型
 
@@ -9,6 +16,18 @@
 * 事务处理
 
 如果数据规模比较庞大，为了优化性能，建议将上述三类表和两种处理分置到不同数据库中
+
+数据库规模扩大
+* 单个MySQL。MySQL数据库足够强大，通过选择适当的硬件和设计合理的表结构，单个数据库就能够支持几百G，甚至T级，的数据规模
+  * 针对三种不同类型的表，差异化处理。例如对于业务表尽量避免列数过多，而对于日志表和汇总表可以采用基于时间范围的partition
+  * 采用固态硬盘，如果数据规模庞大，可以根据访问频率，将数据表分别存在在固态硬盘和机械硬盘上
+* 采用repication机制组合的集群
+  *  针对三种不同类型的表和两类不同的处理，分别采用不同的数据库，以分担负载
+* 采用sharding  
+  * 关系（join）的处理
+  * 采用Engine或者中间件工具
+* 跨数据中心的数据同步
+
 
 优化MySQL性能
 * 硬件选择
@@ -20,6 +39,10 @@
   * monitor 发现和记录出现的问题
   * analysize 深入分析问题的根源
   * optimize 采取措施解决性能问题
+
+
+
+
 
 # Design Schema
 
@@ -1038,6 +1061,20 @@ innodb_*
 * thread_created
 
 # Lock
+
+加锁方式划分
+* Implicit Locking
+* Explicit Locking
+   * Select...For Update statement
+   * Lock Table statement
+   
+为了提供更好的并发性，对于读和写操作分别采用不同的锁，分别为
+* Shared Lock
+* Exclusive Lock
+
+根据锁的层级可以划分为
+* Row Level
+* Table Level
 
 [MySQL介于普通读和锁定读的加锁方式](https://mp.weixin.qq.com/s?__biz=MzIxNTQ3NDMzMw==&mid=2247484352&idx=1&sn=799a109943108ce3ed139d0b684f18f8&chksm=97968a32a0e10324bd808b23ab376796f49c5998c6d917bf8f0073936cf1b128ac30742aebb8&mpshare=1&scene=1&srcid=01046CqxEFUnP5P2zo7hKda5&sharer_sharetime=1578110785863&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AW49gRrpesj66SITcN8Z3Fg%3D&pass_ticket=kOI4SUiiSQZgtNAcX5IS41mTJmr%2FciBGq3MXwztfKxT51U1FpE7lMYqAa9JxIFu2#rd)
 
