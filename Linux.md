@@ -1394,3 +1394,8 @@ sysstat.x86_64
 
 mtr
 mtr.x86_64 
+# Operation System
+
+[Operating Systems: Three Easy Pieces](http://pages.cs.wisc.edu/~remzi/OSTEP/)
+
+[cs5460 Operating Systems](https://www.ics.uci.edu/~aburtsev/cs5460/)

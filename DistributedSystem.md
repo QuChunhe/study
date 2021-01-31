@@ -264,7 +264,10 @@ Andreas Meier, Michael Kaufmann,SQL & NoSQL Databases: Models, Languages, Consis
 
 # Course
 
+# Consensus
+[The Raft Consensus Algorithm](https://raft.github.io/)
 
+[Distributed Systems, Failures, and Consensus](https://www2.cs.duke.edu/courses/fall07/cps212/consensus.pdf)
 
 
 # Open Source
@@ -291,6 +294,8 @@ server.1=zoo1.example.com:2888:3888
 server.2=zoo2.example.com:2888:3888
 server.3=zoo3.example.com:2888:3888
 ```
+
+
 
 ## Mesos
 
