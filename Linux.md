@@ -1055,6 +1055,7 @@ firewall-cmd --permanent --zone=public --add-rich-rule 'rule family=ipv4 source 
 
 firewall-cmd --permanent --zone=public --add-rich-rule 'rule family=ipv4 forward-port port=80 protocol=tcp to-port=8080 to-addr=172.31.4.2'
 
+firewall-cmd  --permanent --zone=public --remove-rich-rule '.....'
 
 firewall-cmd --list-rich-rules
 
