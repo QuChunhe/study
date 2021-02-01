@@ -1095,8 +1095,14 @@ What: Do not use a multiphase commit protocol to store or process transactions. 
 
 When to use: Always pass or alternatively never use multiphase commits.总是避免或者不要使用多阶段提交
 
-How to use: Don’t use them; split your data storage and processing systems with Y or Z axis splits.不要使用它们；拆分
+How to use: Don’t use them; split your data storage and processing systems with Y or Z axis splits.不要使用它们；利用Y轴或者X轴分拆，拆分你的数据存储和处理系统。
 
-Why: A multiphase commit is a blocking protocol that does not permit other transactions to occur until it is complete.
+Why: A multiphase commit is a blocking protocol that does not permit other transactions to occur until it is complete. 多阶段提交是一个阻塞式的协议，不允许其他事务执行，直到其执行完毕为止，
 
-Key takeaways: Do not use multiphase commit protocols as a simple way to extend the life of your monolithic database. They will likely cause it to scale even less and result in an even earlier demise of your system.
+Key takeaways: Do not use multiphase commit protocols as a simple way to extend the life of your monolithic database. They will likely cause it to scale even less and result in an even earlier demise of your system. 不要将多阶段提交协议作为一种简单的方式，用于延长你庞大数据库的生命周期。它们将会大概率地造成系统具有更小的可扩展性，以及导致你系统更早地失败。
+
+Multiphase commit protocols, which include the popular two-phase commit (2PC) and three-phase commit (3PC), are specialized consensus protocols. The purpose of these protocols is to coordinate processes that participate in a distributed atomic transaction to determine whether to commit or abort (roll back) the transaction. Because of these algorithms’ capability to handle system-wide failures of the network or processes, they are often looked to as solutions for distributed data storage or processing.
+多阶段提交协议包括流行的两阶段提交2PC和三阶段提交3PC，是专门的一致性协议。这些协议的目的是协同参与一个分布式原子事务的进程，以确定是提交还是终止（回滚）事务。由于这些算法有能力处理系统层面的网络或者进程故障，因此被视为针对于分布式数据存储或处理的解决方案。
+
+The basic algorithm of 2PC consists of two phases. The first phase, the voting phase, is where the master storage or coordinator makes a “commit request” to all the cohorts or other storage devices. All the cohorts process the transaction up to the point of committing and then acknowledge that they can commit or vote “yes.” Thus begins the second phase or completion phase, where the master sends a commit signal to all cohorts that begin the commit of the data. If any cohorts should fail during the commit, then a rollbackis sent to all cohorts and the transaction is abandoned.
+2PC的基本算法有两个阶段组成。第一阶段，投票阶段，主储存或者协调器向全部群组或者其他存储设备发送一个”提交请求"。
