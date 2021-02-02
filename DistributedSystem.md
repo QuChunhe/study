@@ -917,10 +917,10 @@ The protocol assumes that there is stable storage at each node with a write-ahea
    
 2. 提交阶段（commit phase）：基于参与者的投票，协调者决定是提交事务（仅当所有参与者投“Yes”）、还是终止这个事务（其他情况），并将结果通告给所有的参与者。按照通告的要求，参与者随后针对与其本地事务资源（也被称为可恢复资源，例如数据库数据）执行所需的操作（提交或者终止）。
    * If the coordinator received an agreement message from all participants during the commit-request phase:
-      a. The coordinator sends a commit message to all the participants.
-      b. Each participant completes the operation, and releases all the locks and resources held during the transaction.
-      c. Each participant sends an acknowledgement to the coordinator.
-      d. The coordinator completes the transaction when all acknowledgments have been received.
+        1. The coordinator sends a commit message to all the participants.
+        2. Each participant completes the operation, and releases all the locks and resources held during the transaction.
+        3. Each participant sends an acknowledgement to the coordinator.
+        4. The coordinator completes the transaction when all acknowledgments have been received.
 
 2PC是安全的。不会有坏数据被写入数据库，但是其活跃性不好。
 
