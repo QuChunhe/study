@@ -902,9 +902,9 @@ Failures in todays complex, distributed and interconnected systems are not the e
 
 two-phase commit protocol (2PC) 
 
-2PC是一种分布式算法，用于在参与分布式原子事务的所有进程之间协调是提交、还是中止（回滚）事务（这是一种特殊的一致性协议）。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
+2PC是一种分布式算法，用于在参与分布式原子事务的所有节点（或进程）之间协调，确定是提交、还是中止（回滚）这个事务（这是一种特殊的一致性协议）。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
 
-在2PC协议中所有的节点（或进程）被划分为两类，其中一个被设计为协调者（coordinator），而其他的被设计为参与者（participants，cohorts或workers）。
+在2PC协议中将所有的节点（或进程）被划分为两类，其中一个被设计为协调者（coordinator），而其他的被设计为参与者（participants，cohorts或workers）。
 
 The protocol assumes that there is stable storage at each node with a write-ahead log, that no node crashes forever, that the data in the write-ahead log is never lost or corrupted in a crash, and that any two nodes can communicate with each other. The last assumption is not too restrictive, as network communication can typically be rerouted. The first two assumptions are much stronger; if a node is totally destroyed then data can be lost. 
 该协议假设每个节点都具有稳定的存储和一个预写日志，并且节点不会永远处于崩溃状态，因此预写日志的数据不会丢失，也不会在崩溃中损坏。任意两个节点之间都能够相互通讯。最后一个假设不太严格，因为网络通讯通常能够重新路由。前两个假设非常强，如果一个节点被完全摧毁，那么数据肯能会丢失。
@@ -915,7 +915,7 @@ The protocol assumes that there is stable storage at each node with a write-ahea
    2. The participants execute the transaction up to the point where they will be asked to commit. They each write an entry to their undo log and an entry to their redo log. 参与者执行截止到询问发起时间的所有事务操作，并将Undo信息和Redo信息写入日志。
    3. Each participant replies with an agreement message (participant votes Yes to commit), if the participant's actions succeeded, or an abort message (participant votes No, not to commit), if the participant experiences a failure that will make it impossible to commit. 如果参与者成功完成了操作，则响应一个同意消息（参与者投Yes表示提交）。如果节点遭遇到一个使得无法提交的失败，则应答一个”中止”消息。    
    
-2. 提交阶段（commit phase）：基于参与者的投票，协调者决定是提交事务（仅当所有参与者投“Yes”）、还是终止这个事务（其他情况），并将结果通告给所有的参与者。按照通告的要求，参与者随后针对与其本地事务资源（也被称为可恢复资源，例如数据库数据）执行所需的操作（提交或者终止）。
+2. 提交阶段（commit phase）：基于参与者的投票，协调者决定是提交事务（仅当所有参与者投“Yes”）、还是终止这个事务（其他情况），并将结果通告给所有的参与者。按照通告的要求，参与者随后针对其本地事务资源（也被称为可恢复资源，例如数据库数据）执行所需的操作（提交或者终止）。
    * If the coordinator received an agreement message from all participants during the commit-request phase:
         1. The coordinator sends a commit message to all the participants.
         2. Each participant completes the operation, and releases all the locks and resources held during the transaction.
