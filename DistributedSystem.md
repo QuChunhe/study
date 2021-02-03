@@ -902,7 +902,7 @@ Failures in todays complex, distributed and interconnected systems are not the e
 
 two-phase commit protocol (2PC) 
 
-2PC是一种分布式算法，用于在参与分布式原子事务的所有节点（或进程）之间协调，确定是提交、还是中止（回滚）这个事务（这是一种特殊的一致性协议）。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
+2PC是一种分布式算法，协调参与分布式原子事务的所有节点（或进程），以确定是提交、还是中止（回滚）这个事务（这是一种特殊的一致性协议）。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
 
 在2PC协议中将所有的节点（或进程）被划分为两类，其中一个被设计为协调者（coordinator），而其他的被设计为参与者（participants，cohorts或workers）。
 
@@ -912,17 +912,31 @@ The protocol assumes that there is stable storage at each node with a write-ahea
 任何分布式事务在“正常执行”的情况下（也就是说，当没有出现失败的情况下，但是在实际的大型分布式系统中故障是常态），2PC协议有两个阶段组成
 1. 请求阶段（commit-request phase，或称表决阶段，voting phase）。在此阶段，一个协调者尝试让所有参与者针对于是提交事务、还是终止这个事务进行投票，或者“Yes”： 提交（如果事务参与这本地部分正确执行），或者“No”：终止（如果检测到本的部分出现问题），
    1. The coordinator sends a query to commit message to all participants and waits until it has received a reply from all participants. 协调者向所有参与者发送询问是否提交操作，并一直等待，直到接收到来自所有参与者的响应。
-   2. The participants execute the transaction up to the point where they will be asked to commit. They each write an entry to their undo log and an entry to their redo log. 参与者执行截止到询问发起时间的所有事务操作，并将Undo信息和Redo信息写入日志。
+   2. The participants execute the transaction up to the point where they will be asked to commit. They each write an entry to their undo log and an entry to their redo log. 参与者执行所有截止到询问发起时间的事务操作，并将Undo信息和Redo信息写入日志。
    3. Each participant replies with an agreement message (participant votes Yes to commit), if the participant's actions succeeded, or an abort message (participant votes No, not to commit), if the participant experiences a failure that will make it impossible to commit. 如果参与者成功完成了操作，则响应一个同意消息（参与者投Yes表示提交）。如果节点遭遇到一个使得无法提交的失败，则应答一个”中止”消息。    
    
 2. 提交阶段（commit phase）：基于参与者的投票，协调者决定是提交事务（仅当所有参与者投“Yes”）、还是终止这个事务（其他情况），并将结果通告给所有的参与者。按照通告的要求，参与者随后针对其本地事务资源（也被称为可恢复资源，例如数据库数据）执行所需的操作（提交或者终止）。
-   * If the coordinator received an agreement message from all participants during the commit-request phase:
-        1. The coordinator sends a commit message to all the participants.
-        2. Each participant completes the operation, and releases all the locks and resources held during the transaction.
-        3. Each participant sends an acknowledgement to the coordinator.
-        4. The coordinator completes the transaction when all acknowledgments have been received.
+   * Success： If the coordinator received an agreement message from all participants during the commit-request phase:在请求阶段，如果协调者从所有的参与者接收到同意消息
+        1. The coordinator sends a commit message to all the participants. 协调者发送一个提交消息给所有的参与者。
+        2. Each participant completes the operation, and releases all the locks and resources held during the transaction.每个参与者完成操作，并释放在此事务期间持有的所有锁和资源。
+        3. Each participant sends an acknowledgement to the coordinator. 每个参与者发送一个确认消息给协调者。
+        4. The coordinator completes the transaction when all acknowledgments have been received. 当收到所有的确认消息时，协调着完成这个事务。
+   * Failure： If any participant votes No during the commit-request phase (or the coordinator's timeout expires)。在请求阶段，如果其中一个参与者投票为No（或者协调者时间过期）。
+        1. The coordinator sends a rollback message to all the participants. 协调者发送一个回滚消息给所有的参与者。
+        2. Each participant undoes the transaction using the undo log, and releases the resources and locks held during the transaction.每个参与者使用undo日志取消事务，并释放在此事务期间持有的所有锁和资源。
+        3. Each participant sends an acknowledgement to the coordinator. 每个参与者发送一个确认消息给协调者。
+        4. The coordinator undoes the transaction when all acknowledgements have been received. 当收到所有的确认消息时，协调着取消这个事务。
+
+
+The greatest disadvantage of the two-phase commit protocol is that it is a blocking protocol. If the coordinator fails permanently, some participants will never resolve their transactions: After a participant has sent an agreement message to the coordinator, it will block until a commit or rollback is received
+两阶段提交最大的缺点是其是一个阻塞式协议。如果协调者永久地时被，则一些参与者将不会释放它们的事务： 在一个参与者发送一个同意消息给协调者后，这个参与者将会一直阻塞，直到接收到提交或者回滚消息为止。
 
 2PC是安全的。不会有坏数据被写入数据库，但是其活跃性不好。
+
+A two-phase commit protocol cannot dependably recover from a failure of both the coordinator and a cohort member during the Commit phase. If only the coordinator had failed, and no cohort members had received a commit message, it could safely be inferred that no commit had happened. If, however, both the coordinator and a cohort member failed, it is possible that the failed cohort member was the first to be notified, and had actually done the commit. Even if a new coordinator is selected, it cannot confidently proceed with the operation until it has received an agreement from all cohort members, and hence must block until all cohort members respond.
+
+
+The three-phase commit protocol eliminates this problem by introducing the Prepared to commit state. If the coordinator fails before sending preCommit messages, the cohort will unanimously agree that the operation was aborted. The coordinator will not send out a doCommit message until all cohort members have ACKed that they are Prepared to commit. This eliminates the possibility that any cohort member actually completed the transaction before all cohort members were aware of the decision to do so (an ambiguity that necessitated indefinite blocking in the two-phase commit protocol). 
 
 2PC在这种fail-stop情况下会失败是因为voter在得知Propose Phase结果后就直接commit了, 而并没有在commit之前告知其他voter自己已收到Propose Phase的结果. 从而导致在coordinator和一个voter双双掉线的情况下, 其余voter不但无法复原Propose Phase的结果, 也无法知道掉线的voter是否打算甚至已经commit. 
 
