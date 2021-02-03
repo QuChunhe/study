@@ -1288,7 +1288,8 @@ Common Techiques
 
 * Execution Orchestrator: This model is based on an intelligent scheduler / orchestrator to schedule ready-to-run tasks (based on a dependency graph) across a clusters of dumb workers
 
-
+[ Distributed systems: for fun and profit
+](http://book.mixu.net/distsys/index.html)
 
 [A Distributed Systems Reading List](https://dancres.github.io/Pages/)
 

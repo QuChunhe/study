@@ -373,7 +373,7 @@ We’re interested in concurrency for two reasons: to make an application respon
 
 Visibility: Understand the Memory Barrier。
 
-
+[Is Parallel Programming Hard, And, If So, What Can You Do About It?](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html)
 
 
 
