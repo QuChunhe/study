@@ -9,7 +9,7 @@ Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scali
 * 编程技巧
 * 部署规范
 
-从层级上涉及如下
+从部署和功能的角度，有可以划分为如下层级
 * 数据层
 * 业务层
 * Web层
@@ -1126,19 +1126,22 @@ While 2PC might seem like a good alternative to actually splitting your database
 ## Rule 34—Try Not to Use Select for Update
 ## 规则34————尽量不要使用SELECT FOR UPDATE
 
-What: Minimize the use of the FOR UPDATE clause in a SELECT statement when declaring cursors.在声明游标时，在SELECT语句中最少化地使用FOR UPDATE子句。
+What: Minimize the use of the FOR UPDATE clause in a SELECT statement when declaring cursors.在声明游标时，在SELECT语句中尽可能地少用FOR UPDATE子句。
 
 When to use: Always. 总是
 
 How to use: Review cursor development and question every SELECT FOR UPDATE usage. 评审游标的开发并询问每个SELECT FOR UPDATE的使用。
 
-Why: Use of FOR UPDATE causes locks on rows and may slow down transactions. 使用FOR UPDATE导致对于行的锁定，并且可能拖慢事务。
+Why: Use of FOR UPDATE causes locks on rows and may slow down transactions. 使用FOR UPDATE导致在行上加锁，并且可能拖慢事务。
 
 Key takeaways: Cursors are powerful constructs that when properly used can actually make programming faster and easier while speeding up transactions. But FOR UPDATE cursors may cause long-held locks and slow transactions. Refer to your database documentation to determine whether you need to use the FOR READ ONLY clause to minimize locks.
-游标是一种强大的结构，如果使用得当，可以使得编程更快捷、更容易，同时加快事务处理速度。但是对于FOR UPDATE游标可能会导致长时间持有锁并且拖慢事务。请参阅数据库文档以确定是否需要使用FOR READ ONLY子句来最小化锁。
+游标是一种强大的结构，如果使用得当，可以使得编程更快捷、更容易，同时加快事务处理速度。但是对于FOR UPDATE游标可能会导致长时间地持有锁并且拖慢事务。请参阅数据库文档以确定是否需要使用FOR READ ONLY子句来最小化锁。
  
 Can you identify at least two potential problems with the “select for update” cursor? The first problem is that the cursor holds locks on rows within the database while you perform your actions. Granted, in many cases this might be useful, and in some smaller number of cases it either might be unavoidable or may be the best approach for the solution. But these locks are going to potentially cause other transactions to block or wait while you perform some number of actions. If these actions are complex or take some time, you may stack up a great number of pending transactions. If these other transactions also happen to be cursors expecting to perform a “select for update,” we may create a wait queue that simply will not be processed within our users’ acceptable time frame. In a Web environment, impatient users waiting on slowly responding requests may issue additional requests with the notion that perhaps the subsequent requests will complete more quickly. The result is a disaster of cascading failures; our systems come to a halt as pending requests stack up on the database and ultimately cause our Web servers to fill up their TCP ports and stop responding to users.
-你发现至少两个使用SELECT FOR UPDATE游标的问题吗？第一个问题是在你执行操作时，游标会一直持有数据库行上的锁。诚然，在很多情况下这也许是有用的，并且在更加少数的情况下这也许是不可避免或者可能是解决问题的最佳方案。然而，在你执行一定数量的操作时，这些锁将会潜在地导致其他事务阻塞或者等待。如果你所执行的操作很复杂或者需要花费一些时间，那么你可能堆积大量的挂起事务。如果这些被挂起的事务碰巧也是期望执行SELECT FOR UPDATE的游标，那么我们可能创建了一个等待队列，并且在用户可接受的时间范围内这个队列根本不会被处理。在一个Web环境中在等待响应缓慢的请求时，没有耐心的用户可能再次发出额外的请求，并且认为后续的请求可能会更快地完成。结果是一场级联失败的灾难；由于挂起的请求堆积在数据库上，我们的系统逐渐停止，并最终导致我们的Web服务器填满它们的TCP端口并停止响应用户。
+你能发现至少两个使用SELECT FOR UPDATE游标的问题吗？第一个问题是在你执行操作时，在数据库中游标会一直持有行上的锁。诚然，在很多情况下这也许是有用的，并且在更加少数的情况下这也许是不可避免或者可能是解决问题的最佳方案。然而，在你执行一定数量的操作时，这些锁将会潜在地导致其他事务阻塞或者等待。如果你所执行的操作很复杂或者需要花费一些时间，那么你可能堆积大量的挂起事务。如果这些被挂起的事务碰巧也期望执行SELECT FOR UPDATE的游标，那么我们可能创建了一个等待队列，并且在用户可接受的时间范围内这个队列根本不会被处理。在一个Web环境中等待响应缓慢的请求时，没有耐心的用户可能发出额外的请求，并且认为后续的请求可能会更快地完成。结果是一场级联失败的灾难；由于挂起的请求堆积在数据库上，我们的系统逐渐停止，并最终导致我们的Web服务器填满它们的TCP端口并停止响应用户。
 
 The second problem is the mirror image of our first problem and was hinted at previously. Future cursors desiring a lock on one or more rows that are currently locked will wait until other locks clear. Note that these locks don’t necessarily need to be placed by other cursors; they can be explicit locks from users or implicit locks from the RDBMS. The more locking that we have going on within the database, even while some of it is likely necessary, the more likely it is that we will have transactions backing up. Very longheld locks will engender slower response times for frequently requested data. Some databases, such as Oracle, include the optional keyword NOWAIT that releases control back to the process to perform other work or to wait before trying to reacquire the lock. But if the cursor must be processed for some synchronous user request, the end result to the user is the same—a long wait for a client request.
-第二个问题是我们前面所提到的第一个问题的镜像。由于一行或多行当前被锁定，那些未来期望在这些行上加锁的游标将会等待，直到其他锁定已经清除。要注意，这些锁不一定需要由其他游标放置；它们可以是来自用户的显式锁，也可以是来自RDBMS的隐式锁。我们在数据库中所使用的锁定越多，即使有些可能是必要的，我们也越有可能阻塞事务。长时间的持有的锁将会使得频繁请求数据的响应时间变得更慢。有些数据库，例如Oracle，包含可选关键字NOWAIT，用于将控制交回给进程以执行其他工作或在尝试重新获取锁之前等待。然而，如果必须为某个同步用户请求处理游标，则用户的最终结果是相同的——对客户端请求的长时间等待。 
+第二个问题是我们前面所提到的第一个问题的镜像。当前由于一行或多行被锁定，那些未来期望在这些行上加锁的游标将会等待，直到其他锁定已经清除。要注意，这些锁不一定需要由其他游标放置；它们可以是来自用户的显式锁，也可以是来自RDBMS的隐式锁。我们在数据库中所使用的锁定越多，即使有些可能是必要的，我们越可能阻塞事务。长时间的持有的锁将会使得频繁请求数据的响应时间变得更慢。有些数据库，例如Oracle，包含可选关键字NOWAIT，用于将控制交回给进程以执行其他工作或在尝试重新获取锁之前等待。然而，如果必须为某个同步用户请求处理游标，则用户的最终结果是相同的，即对客户端请求的长时间等待。 
+
+## Rule 35—Don’t Select Everything
+## 规则35————不要SELECT所有列
