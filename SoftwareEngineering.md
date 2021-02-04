@@ -50,6 +50,16 @@ modular programming,
 * 模块
 模块遵循架构的要求，而架构服务于业务。
 
+
+可以通过如下几个方面分解或者划分系统
+* 用户
+* 功能
+* 数据
+
+如果用户相同，但是功能和数据完全不同，可以将这些功能划分为不同的系统，并通过单点登录使得用户可以在多个系统之前切换。
+
+
+
 [Open–closed principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle)
 
 In object-oriented programming, the open–closed principle states "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"; that is, such an entity can allow its behaviour to be extended without modifying its source code. 
