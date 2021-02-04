@@ -14,7 +14,10 @@ Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scali
 * 业务层
 * Web层
 
-上述两个方面形成一个二维的
+上述两个方面形成一个二维的可扩展规则示意图
+
+
+不同于一般的数据操作，账户操作具有可逆性，从而可以大大简化分布式数据库环境的账户操作。
 
 ## Chapter 1 Reduce the Equation 大道至简
 
@@ -1091,30 +1094,51 @@ Finally, where we employ databases to do our work we should try to ensure that w
 ## Rule 33—Pass on Using Multiphase Commits
 ## 规则33————避免使用多阶段提交
 
-What: Do not use a multiphase commit protocol to store or process transactions. 不要使用多阶段提交协议存储或者处理事务
+What: Do not use a multiphase commit protocol to store or process transactions. 不要使用多阶段提交协议来存储或者处理事务
 
 When to use: Always pass or alternatively never use multiphase commits.总是避免或者不要使用多阶段提交
 
 How to use: Don’t use them; split your data storage and processing systems with Y or Z axis splits.不要使用它们；利用Y轴或者X轴分拆，拆分你的数据存储和处理系统。
 
-Why: A multiphase commit is a blocking protocol that does not permit other transactions to occur until it is complete. 多阶段提交是一个阻塞式的协议，不允许其他事务执行，直到其执行完毕为止，
+Why: A multiphase commit is a blocking protocol that does not permit other transactions to occur until it is complete. 多阶段提交是一个阻塞式的协议，直到其执行完毕为止不允许其他事务执行。
 
-Key takeaways: Do not use multiphase commit protocols as a simple way to extend the life of your monolithic database. They will likely cause it to scale even less and result in an even earlier demise of your system. 不要将多阶段提交协议作为一种简单的方式，用于延长你庞大数据库的生命周期。它们将会大概率地造成系统具有更小的可扩展性，以及导致你系统更早地失败。
+Key takeaways: Do not use multiphase commit protocols as a simple way to extend the life of your monolithic database. They will likely cause it to scale even less and result in an even earlier demise of your system. 不要将多阶段提交协议作为一种简单的方式，用于延长你庞大数据库的生命周期。它们将会大概率地造成系统具有更小的可扩展性，以及导致你系统更早的失败。
 
 Multiphase commit protocols, which include the popular two-phase commit (2PC) and three-phase commit (3PC), are specialized consensus protocols. The purpose of these protocols is to coordinate processes that participate in a distributed atomic transaction to determine whether to commit or abort (roll back) the transaction. Because of these algorithms’ capability to handle system-wide failures of the network or processes, they are often looked to as solutions for distributed data storage or processing.
 多阶段提交协议包括流行的两阶段提交2PC和三阶段提交3PC，其是专门的一致性协议。这些协议的目的是协同参与一个分布式原子事务的进程，以确定是提交、还是终止（回滚）事务。由于这些算法有能力处理由网络或者进程所造成的系统层面故障，因此被视为针对于分布式数据存储或处理的解决方案。
 
 The basic algorithm of 2PC consists of two phases. The first phase, the voting phase, is where the master storage or coordinator makes a “commit request” to all the cohorts or other storage devices. All the cohorts process the transaction up to the point of committing and then acknowledge that they can commit or vote “yes.” Thus begins the second phase or completion phase, where the master sends a commit signal to all cohorts that begin the commit of the data. If any cohorts should fail during the commit, then a rollbackis sent to all cohorts and the transaction is abandoned.
-2PC的基本算法有两个阶段组成。第一阶段，投票阶段，主储存或者协调者向全部参与者或者其他存储设备发送一个”提交请求"。所有的参与者处理直到提交时刻为止的事务，然后确认它们能够提交或者投票“Yes”。然后，开始第二阶段或者完成阶段。在此阶段，协调者发生一个提交信号给所有的参与者，让参与者开始提交数据。如果任何参与者在提交阶段失败了，则回滚消息会发生给所有的参与者，然后终止这个事务。
+2PC的基本算法有两个阶段组成。第一阶段，投票阶段，主储存或者协调者向全部参与者或者其他存储设备发送一个”提交请求"。所有的参与者处理直到提交时刻为止的事务，然后确认它们能够提交或者投票“Yes”。然后，开始第二阶段或者完成阶段。在此阶段，协调者发送一个提交信号给所有的参与者，让参与者开始提交数据。如果任何参与者在提交阶段失败了，则会发送回滚消息给所有的参与者，然后终止这个事务。
 
 So far this protocol probably sounds pretty good since it provides atomicity of transactions within a distributed database environment. Hold off on your judgment just a short while longer. In the example in Figure 8.1, notice that the app server initiated the transaction, step A. Then all the 2PC steps started happening and had to complete, step B, before the master database could acknowledge back to the app server that indeed that transaction was completed, step C. During that entire time the app server thread was held up waiting for the SQL query to complete and the database to acknowledge the transaction. This example is typical of almost any consumer purchase, registration, or bidding transaction on the Web where you might try to implement 2PC. Unfortunately, locking up the app server for that long can have dire consequences. While you might think either that you have plenty of capacity on your app servers or that you can scale them out pretty cost-effectively since they are commodity hardware, the locking also occurs on the database. Because you’re committing all rows of data—assuming you have row-level locking capabilities because it’s even worse for block level—you are locking up all those rows until everything commits and gives the “all clear.” Furthermore, if the coordinator fails permanently, some of the cohorts will never resolve their transactions, leaving locks in place. You can see how such scenarios would create a costly failure of your systems.
-因为其在分布式数据库环境中提供了事务原子性，所以到这里为止，这个协议听起来很不错。稍等一会，再作出判断。在如8.1中的例子，注意到在步骤A）app服务器发起事务。然后，在步骤B）所有2PC步骤开始发生，并且在步骤C）主数据库能够向app服务器确认事务已经被完成之前必须完成。这段时间内，app服务器的线程被挂起，等待SQL查询完成和数据库确认事务。这个例子在网络上几乎任何你可能实现2PC的购物、注册或者拍卖事务中非常典型。不幸的是，长时间地锁定应用服务器可能造成极其严重的问题。虽然你可能认为自己的app服务器上具有很大的容量，或者由于app服务器是商品化硬件，你能够你能够非常经济高效向外扩展这些服务器，但是锁定也可能出现在数据库上。你正在提交所有的数据行，因为对于块级锁来说情况会更加糟糕，因此假设你具有行级锁定功能，你要一直锁定所有这些行，直到每行都都已提交并发出“全部清除”的命令。此外，如果协调者永久失败，则某些参与者将永远无法处理这个事务，而锁却一直留在那里。您能够看到这样的场景将如何造成代价高昂的系统故障。
+因为其在分布式数据库环境中提供了事务原子性，所以到这里为止，这个协议听起来很不错。稍等一会，再作出判断。在如8.1中的例子，注意到在步骤A）app服务器发起事务。然后，在步骤B）所有2PC步骤开始发生，并且在步骤C）主数据库能够向app服务器确认事务已经完成之前必须完成。这段时间内，app服务器的线程被挂起，等待SQL查询完成和数据库确认事务。这个例子在网络上几乎任何你可能实现2PC的购物、注册或者拍卖事务中非常典型。不幸的是，长时间地锁定应用服务器可能造成极其严重的问题。虽然你可能认为自己的app服务器上具有很大的容量，或者由于app服务器是商品化硬件，你能够非常经济高效地向外扩展这些服务器，但是锁定也可能出现在数据库上。你正在提交所有的数据行，因为对于块级锁来说情况会更加糟糕，因此假设你具有行级锁定功能，你要一直锁定所有这些行，直到每行都都已提交并发出“全部清除”的命令。此外，如果协调者永久失败，则某些参与者将永远无法处理这个事务，而锁却一直留在那里。您能够看到这样的场景将如何造成代价高昂的系统故障。
 
 
 ![2PC example](pics/2PCexample.JPG)
 
 As we discussed in the introduction of this chapter, we’ve implemented (or rather failed to implement) 2PC on a large scale, and the results were disastrous and entirely due to the lock and wait nature of the approach. Our database could initially handle thousands of reads and writes a second prior to the 2PC implementation. After introducing 2PC for just a fraction of the calls (less than 2%), the site completely locked up before processing a quarter of the total number of transactions it could previously handle. While we could have added more application servers, the database was not able to process more queries because of locks on the data.
-正如我们在本章引言中所讨论的，我们已经大规模地实现了（或者说失败地实现了）2PC，但结果是灾难性的，这完全是因为这种方法所固有的锁和等待特性。在2PC实现之前，我们的数据库每秒钟可以处理成千次读写操作。在只有一小部分调用（不到2%）引入2PC后，当所处理的事务还不及之前操作事务总数的四分之一，网站就已经完全锁定了。虽然我们可以添加更多的应用程序服务器，但由于数据锁定，数据库无法处理更多的查询。
+正如我们在本章引言中所讨论的，我们已经大规模地实现了（或者说失败地实现了）2PC，但结果是灾难性的，这完全是因为这种方法所固有的锁和等待特性。在2PC实现之前，我们的数据库每秒钟可以处理成千次读写操作。在只有一小部分调用（不到2%）引入2PC后，在所处理的事务还不及之前操作事务总数的四分之一时，网站就已经完全锁定了。虽然我们可以添加更多的应用程序服务器，但由于数据锁定，数据库无法处理更多的查询。
 
 
 While 2PC might seem like a good alternative to actually splitting your database by a Y or Z axis split (Rules 8 and 9), think again. Pull apart (or separate) database tables the smart way instead of trying to extend the life of your monolithic database with a multiphase commit protocol.
+虽然2PC可能看起来像是一个好的替代方案，不用通过Y或者Z轴（规则8或9）拆分你的数据库，但是请三思。与其通过使用多阶段提交来延长你庞大数据库的生命，分离（或者分割）数据库表才是聪明的方式。
+
+## Rule 34—Try Not to Use Select for Update
+## 规则34————尽量不要使用SELECT FOR UPDATE
+
+What: Minimize the use of the FOR UPDATE clause in a SELECT statement when declaring cursors.在声明游标时，在SELECT语句中最少化地使用FOR UPDATE子句。
+
+When to use: Always. 总是
+
+How to use: Review cursor development and question every SELECT FOR UPDATE usage. 评审游标的开发并询问每个SELECT FOR UPDATE的使用。
+
+Why: Use of FOR UPDATE causes locks on rows and may slow down transactions. 使用FOR UPDATE导致对于行的锁定，并且可能拖慢事务。
+
+Key takeaways: Cursors are powerful constructs that when properly used can actually make programming faster and easier while speeding up transactions. But FOR UPDATE cursors may cause long-held locks and slow transactions. Refer to your database documentation to determine whether you need to use the FOR READ ONLY clause to minimize locks.
+游标是一种强大的结构，如果使用得当，可以使得编程更快捷、更容易，同时加快事务处理速度。但是对于FOR UPDATE游标可能会导致长时间持有锁并且拖慢事务。请参阅数据库文档以确定是否需要使用FOR READ ONLY子句来最小化锁。
+ 
+Can you identify at least two potential problems with the “select for update” cursor? The first problem is that the cursor holds locks on rows within the database while you perform your actions. Granted, in many cases this might be useful, and in some smaller number of cases it either might be unavoidable or may be the best approach for the solution. But these locks are going to potentially cause other transactions to block or wait while you perform some number of actions. If these actions are complex or take some time, you may stack up a great number of pending transactions. If these other transactions also happen to be cursors expecting to perform a “select for update,” we may create a wait queue that simply will not be processed within our users’ acceptable time frame. In a Web environment, impatient users waiting on slowly responding requests may issue additional requests with the notion that perhaps the subsequent requests will complete more quickly. The result is a disaster of cascading failures; our systems come to a halt as pending requests stack up on the database and ultimately cause our Web servers to fill up their TCP ports and stop responding to users.
+你发现至少两个使用SELECT FOR UPDATE游标的问题吗？第一个问题是在你执行操作时，游标会一直持有数据库行上的锁。诚然，在很多情况下这也许是有用的，并且在更加少数的情况下这也许是不可避免或者可能是解决问题的最佳方案。然而，在你执行一定数量的操作时，这些锁将会潜在地导致其他事务阻塞或者等待。如果你所执行的操作很复杂或者需要花费一些时间，那么你可能堆积大量的挂起事务。如果这些被挂起的事务碰巧也是期望执行SELECT FOR UPDATE的游标，那么我们可能创建了一个等待队列，并且在用户可接受的时间范围内这个队列根本不会被处理。在一个Web环境中在等待响应缓慢的请求时，没有耐心的用户可能再次发出额外的请求，并且认为后续的请求可能会更快地完成。结果是一场级联失败的灾难；由于挂起的请求堆积在数据库上，我们的系统逐渐停止，并最终导致我们的Web服务器填满它们的TCP端口并停止响应用户。
+
+The second problem is the mirror image of our first problem and was hinted at previously. Future cursors desiring a lock on one or more rows that are currently locked will wait until other locks clear. Note that these locks don’t necessarily need to be placed by other cursors; they can be explicit locks from users or implicit locks from the RDBMS. The more locking that we have going on within the database, even while some of it is likely necessary, the more likely it is that we will have transactions backing up. Very longheld locks will engender slower response times for frequently requested data. Some databases, such as Oracle, include the optional keyword NOWAIT that releases control back to the process to perform other work or to wait before trying to reacquire the lock. But if the cursor must be processed for some synchronous user request, the end result to the user is the same—a long wait for a client request.
+第二个问题是我们前面所提到的第一个问题的镜像。由于一行或多行当前被锁定，那些未来期望在这些行上加锁的游标将会等待，直到其他锁定已经清除。要注意，这些锁不一定需要由其他游标放置；它们可以是来自用户的显式锁，也可以是来自RDBMS的隐式锁。我们在数据库中所使用的锁定越多，即使有些可能是必要的，我们也越有可能阻塞事务。长时间的持有的锁将会使得频繁请求数据的响应时间变得更慢。有些数据库，例如Oracle，包含可选关键字NOWAIT，用于将控制交回给进程以执行其他工作或在尝试重新获取锁之前等待。然而，如果必须为某个同步用户请求处理游标，则用户的最终结果是相同的——对客户端请求的长时间等待。 
