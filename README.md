@@ -35,7 +35,7 @@ https://www.bradyneal.com/causal-inference-course
 
 [6.824: Distributed Systems](https://pdos.csail.mit.edu/6.824/schedule.html)
 
-[多变量/多元微积分 Understanding Multivariable Calculus 36集]https://www.bilibili.com/video/BV1hb411u7qv?t=6()
+[多变量/多元微积分 Understanding Multivariable Calculus 36集](https://www.bilibili.com/video/BV1hb411u7qv?t=6)
 
 [现代统计方法_张三国](http://v.ucas.ac.cn/course/CourseIndex.do?menuCode=2&courseid=10b0013342724a5e900b7e52bf0da2a9)
 
