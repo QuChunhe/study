@@ -934,9 +934,10 @@ The greatest disadvantage of the two-phase commit protocol is that it is a block
 2PC是安全的。不会有坏数据被写入数据库，但是其活跃性不好。
 
 A two-phase commit protocol cannot dependably recover from a failure of both the coordinator and a cohort member during the Commit phase. If only the coordinator had failed, and no cohort members had received a commit message, it could safely be inferred that no commit had happened. If, however, both the coordinator and a cohort member failed, it is possible that the failed cohort member was the first to be notified, and had actually done the commit. Even if a new coordinator is selected, it cannot confidently proceed with the operation until it has received an agreement from all cohort members, and hence must block until all cohort members respond.
-
+在提交阶段两阶段提交协议不能可靠地从协调者和参与者的故障中恢复。如果仅仅协调者失败，并且没有参与者收到提交消息，则能够安全地断定没有发生提交。但是，如果协调者和一个参与者都失败了，那么失败的那个参与者可能是第一个被通知的，并且已经完成了提交。即使选择了新的协调者，在收到来自所有参与者的同意之前，新协调者也无法自信地继续操作，因此必须阻止，直到所有参与者做出响应。 
 
 The three-phase commit protocol eliminates this problem by introducing the Prepared to commit state. If the coordinator fails before sending preCommit messages, the cohort will unanimously agree that the operation was aborted. The coordinator will not send out a doCommit message until all cohort members have ACKed that they are Prepared to commit. This eliminates the possibility that any cohort member actually completed the transaction before all cohort members were aware of the decision to do so (an ambiguity that necessitated indefinite blocking in the two-phase commit protocol). 
+三阶段提交协议通过引入准备提交（Prepared to commit）状态消除了这个问题。如果协调者在发送preCommit消息之前失败，参与者将一致同意操作被中止。协调者将不会发送doCommit消息，直到所有参与者已经确认他们准备提交。这就消除了如下的可能性，即在所有其他参与者知道决定如何操作之前，任意一个参与者已经完成事务（这种模糊性使得在两阶段提交协议中需要无限阻塞）。 
 
 2PC在这种fail-stop情况下会失败是因为voter在得知Propose Phase结果后就直接commit了, 而并没有在commit之前告知其他voter自己已收到Propose Phase的结果. 从而导致在coordinator和一个voter双双掉线的情况下, 其余voter不但无法复原Propose Phase的结果, 也无法知道掉线的voter是否打算甚至已经commit. 
 
@@ -1333,6 +1334,14 @@ https://www.bilibili.com/video/av89327823/
 https://pdos.csail.mit.edu/6.824/schedule.ht
 
 [Programming Models for Distributed Computing](https://heather.miller.am/teaching/cs7680/)
+
+[Distributed Systems: Paul Krzyzanowski](https://www.cs.rutgers.edu/%7Epxk/417/notes/index.html)
+
+[Distributed and Operating Systems: Lecture notes, handouts and schedule](http://lass.cs.umass.edu/~shenoy/courses/677/lectures.html)
+
+http://lass.cs.umass.edu/~shenoy/courses/spring19/readings.html
+
+[Distributed DBMS - Concepts](https://www.tutorialspoint.com/distributed_dbms/distributed_dbms_concepts.htm)
 
 Matthieu Perrin, Distributed Systems. Concurrency and Consistency,ISTE Press,2017
 
