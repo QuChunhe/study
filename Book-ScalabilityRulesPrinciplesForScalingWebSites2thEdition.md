@@ -18,7 +18,7 @@ Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scali
 
 
 不同于一般的数据操作，账户操作具有可逆性，从而可以大大简化分布式数据库环境的账户操作。
-对于账户a,其操作op为对于账号当前金额m的加或减,因此op(a)或者为m-x或者m+x，显然对于一个操作序列op<sub>１</sub>,...op<sub>n</sub>，op<sub>n</sub>(op<sub>n-1</sub>(...op<sub>1</sub>(a))))
+对于账户a,其操作op为对于账号当前金额m的加或减,因此op(a)或者为m-x或者m+x，显然对于一个操作序列op<sub>１</sub>,...op<sub>n</sub>，op<sub>n</sub>(...op<sub>2</sub>(op<sub>1</sub>(a)))...), op<sup>-1</sup><sub>1</sub>(op<sub>n</sub>(...op<sub>2</sub>(op<sub>1</sub>(a)))...))=op<sub>n</sub>，op<sub>n</sub>(...op<sub>2</sub>(a))...)
 
 ## Chapter 1 Reduce the Equation 大道至简
 
