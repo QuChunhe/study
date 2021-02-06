@@ -294,7 +294,7 @@ five criteria for modularity:
 
 Modular software ==> maintainable software:Uses divide and conquer principle
 
-三种编程范式Three Programming Styles： procedural programming, object oriented programming, and functional programming. 
+三种编程范式Three Programming Styles： procedural programming/structured programming（过程式编程/结构化编程）, object-oriented programming（面向对象编程）, and functional programming（函数式编程）. 
 
 
 [HOW DO COMMITTEES INVENT?](http://www.melconway.com/Home/pdf/committees.pdf)

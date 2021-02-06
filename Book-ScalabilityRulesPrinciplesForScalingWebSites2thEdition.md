@@ -1048,13 +1048,13 @@ When SQL queries perform poorly because of the requirements to join tables, ther
 ## Rule 32—Use the Right Type of Database Lock
 ## 规则32——使用正确的数据库锁类型
 
-What: Be cognizant of the use of explicit locks and monitor implicit locks.要认识到显式锁的使用和监控隐式锁
+**What:** Be cognizant of the use of explicit locks and monitor implicit locks.要认识到显式锁的使用和监控隐式锁
 
-When to use: Anytime you employ relational databases for your solution. 任何时候，当你为你的解决方案部署关系型数据库时
+**When to use:** Anytime you employ relational databases for your solution. 任何时候，当你为你的解决方案部署关系型数据库时
 
-How to use: Monitor explicit locks in code reviews. Monitor databases for implicit locks and adjust explicitly as necessary to moderate throughput. Choose a database and storage engine that allow flexibility in types and granularity of locking. 在代码审查中检查显式锁。监控数据库的隐式锁，如果需要，则显式地调整以控制吞吐量。
+**How to use:** Monitor explicit locks in code reviews. Monitor databases for implicit locks and adjust explicitly as necessary to moderate throughput. Choose a database and storage engine that allow flexibility in types and granularity of locking. 在代码审查中检查显式锁。监控数据库的隐式锁，如果需要，则显式地调整以控制吞吐量。
 
-Why: Maximize concurrency and throughput in databases within your environment. 在你的环境中实现数据库的最大并发度和吞吐量。
+**Why:** Maximize concurrency and throughput in databases within your environment. 在你的环境中实现数据库的最大并发度和吞吐量。
 
 Key takeaways: Understand the types of locks and manage their usage to maximize database throughput and concurrency. Change lock types to get better utilization of databases, and look to split schemas or distribute databases as you grow. When choosing databases, ensure that you choose one that allows multiple lock types and granularity to maximize concurrency.
 理解锁的类型并管理它们的使用情况，以实现数据库的最大吞吐量和并发度。改变锁的类型以获得更好的数据库使用率，并且当使用率增长时，考虑拆分schemas或者分布数据库。在选择数据库时，确保你所选择数据库，许可多种锁类型和粒度以最大并发度。
@@ -1095,15 +1095,15 @@ Finally, where we employ databases to do our work we should try to ensure that w
 ## Rule 33—Pass on Using Multiphase Commits
 ## 规则33————避免使用多阶段提交
 
-What: Do not use a multiphase commit protocol to store or process transactions. 不要使用多阶段提交协议来存储或者处理事务
+**What:** Do not use a multiphase commit protocol to store or process transactions. 不要使用多阶段提交协议来存储或者处理事务
 
-When to use: Always pass or alternatively never use multiphase commits.总是避免或者不要使用多阶段提交
+**When to use:** Always pass or alternatively never use multiphase commits.总是避免或者不要使用多阶段提交
 
-How to use: Don’t use them; split your data storage and processing systems with Y or Z axis splits.不要使用它们；利用Y轴或者X轴分拆，拆分你的数据存储和处理系统。
+**How to use:** Don’t use them; split your data storage and processing systems with Y or Z axis splits.不要使用它们；利用Y轴或者X轴分拆，拆分你的数据存储和处理系统。
 
-Why: A multiphase commit is a blocking protocol that does not permit other transactions to occur until it is complete. 多阶段提交是一个阻塞式的协议，直到其执行完毕为止不允许其他事务执行。
+**Why:** A multiphase commit is a blocking protocol that does not permit other transactions to occur until it is complete. 多阶段提交是一个阻塞式的协议，直到其执行完毕为止不允许其他事务执行。
 
-Key takeaways: Do not use multiphase commit protocols as a simple way to extend the life of your monolithic database. They will likely cause it to scale even less and result in an even earlier demise of your system. 不要将多阶段提交协议作为一种简单的方式，用于延长你庞大数据库的生命周期。它们将会大概率地造成系统具有更小的可扩展性，以及导致你系统更早的失败。
+**Key takeaways:** Do not use multiphase commit protocols as a simple way to extend the life of your monolithic database. They will likely cause it to scale even less and result in an even earlier demise of your system. 不要将多阶段提交协议作为一种简单的方式，用于延长你庞大数据库的生命周期。它们将会大概率地造成系统具有更小的可扩展性，以及导致你系统更早的失败。
 
 Multiphase commit protocols, which include the popular two-phase commit (2PC) and three-phase commit (3PC), are specialized consensus protocols. The purpose of these protocols is to coordinate processes that participate in a distributed atomic transaction to determine whether to commit or abort (roll back) the transaction. Because of these algorithms’ capability to handle system-wide failures of the network or processes, they are often looked to as solutions for distributed data storage or processing.
 多阶段提交协议包括流行的两阶段提交2PC和三阶段提交3PC，其是专门的一致性协议。这些协议的目的是协同参与一个分布式原子事务的进程，以确定是提交、还是终止（回滚）事务。由于这些算法有能力处理由网络或者进程所造成的系统层面故障，因此被视为针对于分布式数据存储或处理的解决方案。
@@ -1127,13 +1127,13 @@ While 2PC might seem like a good alternative to actually splitting your database
 ## Rule 34—Try Not to Use Select for Update
 ## 规则34————尽量不要使用SELECT FOR UPDATE
 
-What: Minimize the use of the FOR UPDATE clause in a SELECT statement when declaring cursors.在声明游标时，在SELECT语句中尽可能地少用FOR UPDATE子句。
+**What:** Minimize the use of the FOR UPDATE clause in a SELECT statement when declaring cursors.在声明游标时，在SELECT语句中尽可能地少用FOR UPDATE子句。
 
-When to use: Always. 总是
+**When to use:** Always. 总是
 
-How to use: Review cursor development and question every SELECT FOR UPDATE usage. 评审游标的开发并询问每个SELECT FOR UPDATE的使用。
+**How to use:** Review cursor development and question every SELECT FOR UPDATE usage. 评审游标的开发并询问每个SELECT FOR UPDATE的使用。
 
-Why: Use of FOR UPDATE causes locks on rows and may slow down transactions. 使用FOR UPDATE导致在行上加锁，并且可能拖慢事务。
+**Why:** Use of FOR UPDATE causes locks on rows and may slow down transactions. 使用FOR UPDATE导致在行上加锁，并且可能拖慢事务。
 
 Key takeaways: Cursors are powerful constructs that when properly used can actually make programming faster and easier while speeding up transactions. But FOR UPDATE cursors may cause long-held locks and slow transactions. Refer to your database documentation to determine whether you need to use the FOR READ ONLY clause to minimize locks.
 游标是一种强大的结构，如果使用得当，可以使得编程更快捷、更容易，同时加快事务处理速度。但是对于FOR UPDATE游标可能会导致长时间地持有锁并且拖慢事务。请参阅数据库文档以确定是否需要使用FOR READ ONLY子句来最小化锁。
@@ -1146,3 +1146,45 @@ The second problem is the mirror image of our first problem and was hinted at pr
 
 ## Rule 35—Don’t Select Everything
 ## 规则35————不要SELECT所有列
+
+
+**What:** Don’t use Select * in queries.不要在查询中使用SELECT *。
+
+**When to use:** Always use this rule (or, put another way, never select everything). 总是使用这个规则（或者，使用另一种形式，不要选择所有行）
+
+**How to use:** Always declare what columns of data you are selecting or inserting in a query. 总是在查询中声明所要选择或者插入的数据列
+
+**Why:** Selecting everything in a query is prone to break things when the table structure changes and it transfers unneeded data. 当改变表结构和传输不需要的数据时，在查询中选择所有的列更容易出现问题．
+
+**Key takeaways:** Don’t use wildcards when selecting or inserting data.在选择或插入数据时不要使用通配符。
+
+MySQL是行存储，因此即使SELECT一列数据，也需要把整行数据从磁盘中读取出来，但是SELECT特定行，需要：1）更小的内存，用于执行JOIN等处理；2）更少的存储，从Server发送会client。
+
+There are two primary problems with the Select *. The first is the probability of data mapping problems, and the second is the transfer of unnecessary data. When we execute a select query, we’re often expecting to display or manipulate that data, and to do so requires that we map the data into some type of variable.
+SELECT *有两个主要问题。首先是数据映射的可能性问题，其次是传输不必要数据。当我们执行一个SELECT查询时，我们通常希望显示或操作该数据，而这样做需要我们将数据映射到某种类型的变量中。
+
+
+The second big problem with Select * is that usually you don’t need all the data in all the columns. While the actual lookup of additional columns isn’t resource consuming, all that additional data being transferred from the database server to the application server can add up to a significant amount when that query gets executed dozens or even hundreds of times per minute for different users.
+SELECT *的第二个大问题是通常你并不需要所有列的数据。虽然查找额外的列实际上并不消耗资源，但是当查询每分钟针对不同用户执行几十或者上百次的时候，所有这些额外的数据从数据库服务器传输到应用服务器就会增加显著的开销。
+
+Lest you think this is all about the much-maligned Select statement, Insert can fall prey to the exact same problem of unspecified columns.
+避免使你认为这些全都是备受诟病的SELECT声明，INSERT可能会陷入同样的未指定列的问题。
+
+A much better way of inserting the data is to use the actual column names, like this：
+
+一种更好的插入数据方式是使用实际的列名，如下所示
+```sql
+INSERT INTO tbl_name(col_name [, col_name] ...)]
+{VALUES | VALUE} (value_list) [, (value_list)] 
+
+```
+
+# Chapter 9 Design for Fault Tolerance and Graceful Failure 为容错和优雅故障而设计
+
+The problem is that when something breaks, everything starts to break. It’s like the entire product had one giant fuse—and when that fuse blew, it would just take everything with it.
+问题是当有些服务出现问题时，所有的服务都开始出现问题。这就像整个产品有一个巨大的保险丝，一旦保险丝融化了，其将带走与之相关的一切。
+
+Big-traffic days could bring down absolutely everything. Furthermore, small failures in software or hardware could have a similar effect. One site, but operating on one fuse.
+流量巨大的日子会把一切搞砸。此外，在软件或者硬件中的小故障也会产生类似的影响。一个站点，但在一个保险丝上运行。
+
+"With AKF’s help we started redesigning aspects of the site to add fault isolation zones or ‘swim lanes.’ Basically, we wanted to take our single fuse in our fuse box and ensure that we had multiple fuses. Anytime one would break, only portions of the site would fail. This fault isolation approach allows us to separate software and database components into independent swim lanes, each of which is completely independent of other swim lanes. Different content areas of our site can be delivered from different swim lanes. If one of them fails, like the weather section, we can continue to deliver time-critical news. Furthermore, we can spend differently on high availability for each of the swim lanes. Swim lanes like news can get significantly greater redundancy than solutions of lower importance like weather. In the old solution, everything had the same availability and same costs; now we can make trade-offs to make news even more highly available without significantly increasing our costs.”

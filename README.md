@@ -85,6 +85,9 @@ https://www.bradyneal.com/causal-inference-course
 [数理逻辑（Mathematical Logic)](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 
+[複變函數論 Complex Analysis](http://ocw.nctu.edu.tw/course_detail.php?bgid=1&gid=1&nid=15&page=2)
+
+Complex Variables and Applications,James Ward Brown & Ruel V. Churchill,6th edition, McGraw-Hill, 1996.
 
 [新竹清华大学：并行计算与并行编程课程](https://www.bilibili.com/video/BV1Yt411W7td?from=search&seid=7327485488962960724)
 
