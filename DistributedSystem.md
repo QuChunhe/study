@@ -1303,8 +1303,27 @@ Common Techiques
 
 * Execution Orchestrator: This model is based on an intelligent scheduler / orchestrator to schedule ready-to-run tasks (based on a dependency graph) across a clusters of dumb workers
 
-[ Distributed systems: for fun and profit
-](http://book.mixu.net/distsys/index.html)
+
+[The Fundamental Mechanism of Scaling](http://brooker.co.za/blog/2021/01/22/cloud-scale.html)
+
+A common misconception among people picking up distributed systems is that replication and consensus protocols—Paxos, Raft, and friends—are the tools used to build the largest and most scalable systems.
+当人们学习分布式系统时一个常见的错误概念是复制和一致性协议（Paxos、Raft和frients？）是用来构建更大和高伸缩系统的工具。
+
+At the most basic level, though, they don't make systems scale.
+但是，在最基本的层面上，这些协议并不会使得系统具有可伸缩性。
+
+Instead, the fundamental approach used to scale distributed systems is avoiding co-ordination. Finding ways to make progress on work that doesn't require messages to pass between machines, between clusters of machines, between datacenters and so on. The fundamental tool of cloud scaling is coordination avoidance
+反而，用于扩展分布式系统的最基本方法是避免协作。寻找方法，既能够推进任务，又无需在机器之间、在机器集群之间、在数据中心之间传递消息。云实现可扩展的基本工具是避免协作。
+
+With this in mind, we can build a kind of spectrum of the amount of coordination required in different system designs:
+
+
+[Amazon Builders' Library中文](https://aws.amazon.com/cn/builders-library/?cards-body.sort-by=item.additionalFields.customSort&cards-body.sort-order=asc)
+
+[Amazon Builders' Library En](https://aws.amazon.com/builders-library/?nc1=h_ls&cards-body.sort-by=item.additionalFields.customSort&cards-body.sort-order=asc)
+
+
+[ Distributed systems: for fun and profit](http://book.mixu.net/distsys/index.html)
 
 [A Distributed Systems Reading List](https://dancres.github.io/Pages/)
 
@@ -1351,3 +1370,4 @@ M. Tamer Özsu, Patrick Valduriez, Principles Of Distributed Database Systems, S
 
 Alex Petrov, Database Internals: A deep-dive into how distributed data systems work, O’Reilly Media,2019
 
+[Marc's Blog](http://brooker.co.za/blog/)
