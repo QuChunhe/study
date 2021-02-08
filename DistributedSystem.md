@@ -264,10 +264,7 @@ Andreas Meier, Michael Kaufmann,SQL & NoSQL Databases: Models, Languages, Consis
 
 # Course
 
-# Consensus
-[The Raft Consensus Algorithm](https://raft.github.io/)
 
-[Distributed Systems, Failures, and Consensus](https://www2.cs.duke.edu/courses/fall07/cps212/consensus.pdf)
 
 
 # Open Source
@@ -889,7 +886,12 @@ Failures in todays complex, distributed and interconnected systems are not the e
   * Least Connections — 最少连接（Least Connections）这个算法意味着负载均衡器会选择当前连接最少的服务器。
   * 
 
-# 一致性（Consensus/)
+# 一致性（Consensus/Consistency)
+
+
+[The Raft Consensus Algorithm](https://raft.github.io/)
+
+[Distributed Systems, Failures, and Consensus](https://www2.cs.duke.edu/courses/fall07/cps212/consensus.pdf)
 
 分布式算法的两个属性
 * 安全性（safty）
@@ -899,10 +901,10 @@ Failures in todays complex, distributed and interconnected systems are not the e
 
 
 [Two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)
-
+[二阶段提交](https://zh.wikipedia.org/wiki/%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4)
 two-phase commit protocol (2PC) 
 
-2PC是一种分布式算法，协调参与分布式原子事务的所有节点（或进程），以确定是提交、还是中止（回滚）这个事务（这是一种特殊的一致性协议）。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
+2PC是一种针对分布式环境设计的一种算法，用于协调所有节点（或进程）在参与分布式原子事务时保持一致。在分布式系统中，每个节点虽然可以知晓自己的操作时成功或者失败，却无法知道其他节点的操作的成功或失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点（称作参与者）的操作结果并最终指示这些节点提交或者中止（回滚）这个事务。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
 
 在2PC协议中将所有的节点（或进程）被划分为两类，其中一个被设计为协调者（coordinator），而其他的被设计为参与者（participants，cohorts或workers）。
 
@@ -928,11 +930,14 @@ The protocol assumes that there is stable storage at each node with a write-ahea
         4. The coordinator undoes the transaction when all acknowledgements have been received. 当收到所有的确认消息时，协调着取消这个事务。
 
 
-The greatest disadvantage of the two-phase commit protocol is that it is a blocking protocol. If the coordinator fails permanently, some participants will never resolve their transactions: After a participant has sent an agreement message to the coordinator, it will block until a commit or rollback is received
-两阶段提交最大的缺点是其是一个阻塞式协议。如果协调者永久地时被，则一些参与者将不会释放它们的事务： 在一个参与者发送一个同意消息给协调者后，这个参与者将会一直阻塞，直到接收到提交或者回滚消息为止。
-
 2PC是安全的。不会有坏数据被写入数据库，但是其活跃性不好。
 
+2PC的第一个问题：同步阻塞问题。
+The greatest disadvantage of the two-phase commit protocol is that it is a blocking protocol. If the coordinator fails permanently, some participants will never resolve their transactions: After a participant has sent an agreement message to the coordinator, it will block until a commit or rollback is received
+两阶段提交最大的缺点是其是一个阻塞式协议。如果协调者永久地失效，则一些参与者将不会释放它们的事务： 在一个参与者发送一个同意消息给协调者后，这个参与者将会一直阻塞，直到接收到提交或者回滚消息为止。
+
+
+2PC的第二个问题：单点故障。
 A two-phase commit protocol cannot dependably recover from a failure of both the coordinator and a cohort member during the Commit phase. If only the coordinator had failed, and no cohort members had received a commit message, it could safely be inferred that no commit had happened. If, however, both the coordinator and a cohort member failed, it is possible that the failed cohort member was the first to be notified, and had actually done the commit. Even if a new coordinator is selected, it cannot confidently proceed with the operation until it has received an agreement from all cohort members, and hence must block until all cohort members respond.
 在提交阶段两阶段提交协议不能可靠地从协调者和参与者的故障中恢复。如果仅仅协调者失败，并且没有参与者收到提交消息，则能够安全地断定没有发生提交。但是，如果协调者和一个参与者都失败了，那么失败的那个参与者可能是第一个被通知的，并且已经完成了提交。即使选择了新的协调者，在收到来自所有参与者的同意之前，新协调者也无法自信地继续操作，因此必须阻止，直到所有参与者做出响应。 
 
@@ -941,18 +946,59 @@ The three-phase commit protocol eliminates this problem by introducing the Prepa
 
 2PC在这种fail-stop情况下会失败是因为voter在得知Propose Phase结果后就直接commit了, 而并没有在commit之前告知其他voter自己已收到Propose Phase的结果. 从而导致在coordinator和一个voter双双掉线的情况下, 其余voter不但无法复原Propose Phase的结果, 也无法知道掉线的voter是否打算甚至已经commit. 
 
-3PC就是把2PC的Commit阶段拆成了PreCommit和Commit两个阶段. 通过进入增加的这一个PreCommit阶段, voter可以得到Propose阶段的投票结果, 但不会commit; 而通过进入Commit阶段, voter可以盘出其他每个voter也都打算commit了, 从而可以放心的commit.
-
 3PC可以有效的处理fail-stop的模式, 但不能处理网络划分(network partition)的情况---节点互相不能通信. 假设在PreCommit阶段所有节点被一分为二, 收到preCommit消息的voter在一边, 而没有收到这个消息的在另外一边. 在这种情况下, 两边就可能会选出新的coordinator而做出不同的决定.
 
 
 除了网络划分以外, 3PC也不能处理fail-recover的错误情况. 简单说来当coordinator收到preCommit的确认前crash, 于是其他某一个voter接替了原coordinator的任务而开始组织所有voter commit. 而与此同时原coordinator重启后又回到了网络中, 开始继续之前的回合---发送abort给各位voter因为它并没有收到preCommit. 此时有可能会出现原coordinator和继任的coordinator给不同节点发送相矛盾的commit和abort指令, 从而出现个节点的状态分歧.
 
 
+3PC就是把2PC的Commit阶段拆成了PreCommit和DoCommit两个阶段. 通过进入增加的这一个PreCommit阶段, 参与者可以得到上一阶段的投票结果, 但不会提交; 而通过进入DoCommit阶段, 参与者才最终提交事务.
+1. CanCommit：此阶段类似于2PC的请求阶段。
+        1.协调者向所有参与者发出包含事务内容的CanCommit请求，询问是否可以提交事务，然后等待所有参与者的答复。
+        2.在收到CanCommit请求后，参与者如果认为自己可以执行事务操作，则应答YES并进入预备状态，否则应答NO。
+2. PreCommit
+   * 当所有参与者均应答YES时
+        1.协调者向所有参与者发出PreCommit请求，进入准备阶段。
+        2.参与者收到PreCommit请求后，执行事务操作，将Undo和Redo信息记入事务日志中（但不提交事务）。
+        3.各参与者向协调者应答Ack消息或No消息，并等待最终指令。 
+   * 当任何一个参与者反馈NO，或者等待超时后协调者尚无法收到所有参与者的应答时
+        1.协调者向所有参与者发出abort请求。
+        2.无论收到协调者发出的abort请求，或者在等待协调者请求过程中出现超时，参与者均会中断事务
+3. DoCommit
+   * 当所有参与者均反馈Ack响应时
+        1.如果协调者处于工作状态，则向所有参与者发出DoCommit请求。
+        2.参与者收到DoCommit请求后，会正式执行事务提交，并释放整个事务期间占用的资源。
+        3.各参与者向协调者应答Ack完成的消息。
+        4.协调者收到所有参与者的Ack消息后，即完成事务提交。
+   * 任何一个参与者反馈NO，或者等待超时后协调者尚无法收到所有参与者的反馈时
+        1.如果协调者处于工作状态，向所有参与者发出abort请求。
+        2.参与者使用阶段1中的Undo信息执行回滚操作，并释放整个事务期间占用的资源。
+        3.各参与者向协调者应答Ack完成的消息。
+        4.协调者收到所有参与者的Ack消息后，即完成事务中断
+
 XA规范，XA是由X/Open组织提出的分布式事务的规范，主要是给数据库提供一个标准，各家数据库可以根据这个标准完成自己的分布式事务协议
 
 
+Google Chubby的作者Mike Burrows说过， there is only one consensus protocol, and that’s Paxos” – all other approaches are just broken versions of Paxos. 意即世上只有一种一致性算法，那就是Paxos，所有其他一致性算法都是Paxos算法的不完整版。
 
+JTA（Java Transaction API）也定义了对XA事务的支持，实际上，JTA是基于XA架构上建模的，在JTA 中，事务管理器抽象为javax.transaction.TransactionManager接口，并通过底层事务服务（即JTS）实现
+
+Best efforts 1 Phase commit 
+
+笼统地讲，与事务在执行中发生错误后立即回滚的方式不同，事务补偿是一种事后检查并补救的措施，它只期望在一个容许时间周期内得到最终一致的结果就可以了。事务补偿的实现与系统业务紧密相关，并没有一种标准的处理方式。一些常见的实现方式有：对数据进行对帐检查;基于日志进行比对;定期同标准数据来源进行同步，等等
+
+[Distributed transactions in Spring, with and without XA](https://www.infoworld.com/article/2077963/distributed-transactions-in-spring--with-and-without-xa.html)
+
+TCC（Try-Confirm-Cancel）又称补偿事务。其核心思想是："针对每个操作都要注册一个与其对应的确认和补偿（撤销操作）"。它分为三个操作：
+* Try阶段：主要是对业务系统做检测及资源预留。
+* Confirm阶段：确认执行业务操作。
+* Cancel阶段：取消执行业务操作。
+TCC事务的处理流程与2PC两阶段提交类似，不过2PC通常都是在跨库的DB层面，而TCC本质上就是一个应用层面的2PC，需要通过业务逻辑来实现。这
+
+![Transactions Across Datacenters](pics/TransactionsAcrossDatacenters.png)
+
+[Google I/O 2009 - Transactions Across Datacenters.](https://www.youtube.com/watch?v=srOgpXECblk)
+[Google I/O 2009 跨数据中心事务](https://www.bilibili.com/video/av57190094/)
 
 # 杂项
 
