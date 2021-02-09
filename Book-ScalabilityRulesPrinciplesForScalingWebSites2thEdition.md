@@ -20,6 +20,8 @@ Martin L. Abbott and Michael T. Fisher, Scalability Rules：Principles for Scali
 不同于一般的数据操作，账户操作具有可逆性，从而可以大大简化分布式数据库环境的账户操作。
 对于账户a,其操作op为对于账号当前金额m的加或减,因此op(a)或者为m-x或者m+x，显然对于一个操作序列op<sub>１</sub>,...op<sub>n</sub>，op<sub>n</sub>(...op<sub>2</sub>(op<sub>1</sub>(a)))...), op<sup>-1</sup><sub>1</sub>(op<sub>n</sub>(...op<sub>2</sub>(op<sub>1</sub>(a)))...))=op<sub>n</sub>(...op<sub>2</sub>(a))...)
 
+单体
+
 ## Chapter 1 Reduce the Equation 大道至简
 
 match the effort and approach to the complexity of the problem. Not every solution has the same complexity—take the simplest approach to achieve the desired outcome。 努力和方法要与问题的复杂性相匹配。不是每个方案都有相同的复杂性，选取最简单的方法，实现所期望的结果
