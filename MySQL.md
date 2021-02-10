@@ -426,14 +426,81 @@ Normalization entails organizing the columns (attributes) and tables (relations)
 第一范式是关系数据库中关系的基本属性。
 
 Codd states that the "values in the domains on which each relation is defined are required to be atomic with respect to the DBMS." Codd defines an atomic value as one that "cannot be decomposed into smaller pieces by the DBMS (excluding certain special functions)" meaning a column should not be divided into parts with more than one kind of data in it such that what one part means to the DBMS depends on another part of the same column.
-Codd表述为“在定义每个关系的域中，其值对于DBMS必须是原子的”。Codd将一个原子值定义为“不能被DBMS分解为更小的部分（不包括某些特殊的函数）”，这意味着一列不应被分割为具有不止一种类型的多个部分，并且对于DBMS一部分依赖于同一列的另外部分。
+Codd表述为“在定义每个关系的域中，其值对于DBMS必须是原子的”。Codd将一个原子值定义为“不能被DBMS分解为更小的部分（不包括某些特殊的函数）”，这意味着一列不应被分割为具有不止一种类型的多个部分，并且对于DBMS而言一部分依赖于同一列的其他部分。
 
 Hugh Darwen and Chris Date have suggested that Codd's concept of an "atomic value" is ambiguous, and that this ambiguity has led to widespread confusion about how 1NF should be understood. In particular, the notion of a "value that cannot be decomposed" is problematic, as it would seem to imply that few, if any, data types are atomic: 
-Huge Darwen和Chis Date指出Codd的原子值概念具有歧义，并且这种歧义性会导致对于如何理解第一范式产生广泛的困惑。尤其是，对于“不能被分解的值”这一概念是有问题的，
-
+Huge Darwen和Chis Date指出Codd的原子值概念具有歧义，并且这种歧义性会导致对于如何理解第一范式产生普遍的困惑。尤其是，对于“不能被分解的值”这一概念是有问题的，因为这种定义意味着很少（如果有的话）数据类型是原子的。
+* A character string would seem not to be atomic, as the RDBMS typically provides operators to decompose it into substrings.字符串似乎不是原子的，因为RDBMS通常提供了用于将字符串分解为子串的操作符。
+* A fixed-point number would seem not to be atomic, as the RDBMS typically provides operators to decompose it into integer and fractional components.定点数似乎不是原子数，因为RDBMS通常提供了将其分解为整数和小数部分的运算符。
+ * An ISBN would seem not to be atomic, as it includes language and publisher identifier.ISBN似乎不是原子的，因为其包括语言和发行者标识符。
+ 
 
 Date suggests that "the notion of atomicity has no absolute meaning": a value may be considered atomic for some purposes, but may be considered an assemblage of more basic elements for other purposes. If this position is accepted, 1NF cannot be defined with reference to atomicity. Columns of any conceivable data type (from string types and numeric types to array types and table types) are then acceptable in a 1NF table—although perhaps not always desirable; for example, it may be more desirable to separate a Customer Name column into two separate columns as First Name, Surname.
-Date指出“原子性这一概念并不是绝对”：针对于一些使用场合，一个值可以被认为是原子的，但是对于其他一些使用场合这个值也可以被认为是由多个基本元素聚合而成。如果上述情况时可以被接受的，那么就不能引用原子性来定义第一范式。任何可以想象到的数据类型（从字符串类型和数值类型到数组类型和表类型）所定义的列都是可以被第一范式的表接受，尽管可能并不总是期望如此。first_name(名字）和surname（姓氏）
+Date指出“原子性这一概念并不是绝对”：针对于一些使用场合，一个值可以被认为是原子的，但是对于其他一些使用场合这个值也可以被认为是由多个基本元素组合而成。如果上述情况时可以被接受的，那么就不能引用原子性来定义第一范式。任何可以想到的数据类型（从字符串类型和数值类型到数组类型和表类型），其定义的列都是可以被第一范式的表接受，尽管可能并不总是期望如此。例如，可能更可取的做法是将一个Customer Name列分为两个单独的列，分别为first_name(名字）和surname（姓氏）。
+
+According to Date's definition, a table is in first normal form if and only if it is "isomorphic to some relation", which means, specifically, that it satisfies the following five conditions: 根据Date的定义，一个表是第一范式当且仅当它“同构于某个关系”，即它满足以下五个条件
+* There's no top-to-bottom ordering to the rows. 行没有从上到下的顺序关系。
+* There's no left-to-right ordering to the columns.列没有从左到右的顺序关系
+* There are no duplicate rows.没有重复的行
+* Every row-and-column intersection contains exactly one value from the applicable domain (and nothing else).在每一行与每一列的交叉处仅仅包含来自适用域的一个值(并没有其他东西)。
+* All columns are regular \[i.e. rows have no hidden components such as row IDs, object IDs, or hidden timestamps\].所有的行都是规则的\[亦即，列不存在任何隐藏的部分，例如行id，对象id或者隐藏的时间戳\]
+
+Violation of any of these conditions would mean that the table is not strictly relational, and therefore that it is not in first normal form.违反这些条件中的任何一个都意味着该表不是严格关系型的，因此其不是第一范式。
+
+Examples of tables (or views) that would not meet this definition of first normal form are:
+* A table that lacks a unique key constraint. Such a table would be able to accommodate duplicate rows, in violation of condition 3.
+* A view whose definition mandates that results be returned in a particular order, so that the row-ordering is an intrinsic and meaningful aspect of the view. (Such views cannot be created using SQL that conforms to the SQL:2003 standard.) This violates condition 1. The tuples in true relations are not ordered with respect to each other.
+* A table with at least one nullable attribute. A nullable attribute would be in violation of condition 4, which requires every column to contain exactly one value from its column's domain. This aspect of condition 4 is controversial. It marks an important departure from Codd's later vision of the relational model, which made explicit provision for nulls. First normal form, as defined by Chris Date, permits relation-valued attributes (tables within tables). Date argues that relation-valued attributes, by means of which a column within a table can contain a table, are useful in rare cases.
+
+[Second normal form](https://en.wikipedia.org/wiki/Second_normal_form)
+
+2NF was originally defined by E. F. Codd in 1971.
+第二范式最初是由E. F. Codd在1971年定义的。
+
+A relation is in the second normal form if it fulfills the following two requirements:如果满足以下两个要求，则关系是第二范式
+* It is in first normal form.它是第一范式。
+* It does not have any non-prime attribute that is functionally dependent on any proper subset of any candidate key of the relation. A non-prime attribute of a relation is an attribute that is not a part of any candidate key of the relation.它不具有任何这样的非主属性，其在功能上依赖于关系的一个候选键的真子集。关系的非主属性不是关系的一个候选键一部分的属性。 
+
+Put simply, a relation is in 2NF if it is in 1NF and every non-prime attribute of the relation is dependent on the whole of every candidate key. Note that it does not put any restriction on the non-prime to non-prime attribute dependency. 
+简单而言，如果一个关系是第一范式，并且关系的每个非主属性都依赖于每个候选键的整体，而不是一部分，则这个关系是2NF。注意，它没有限制从非主属性到非主属性的依赖关系。
+
+A functional dependency on part of any candidate key is a violation of 2NF. In addition to the primary key, the relation may contain other candidate keys; it is necessary to establish that no non-prime attributes have part-key dependencies on any of these candidate keys. 
+对候选键的一部分的函数依赖是违反2NF的。除了主键之外，关系还可能包含其他候选键；必须确定非主属性对这些候选键中的任何一个具有部分键不具有依赖性。 
+
+
+[Third normal form](https://en.wikipedia.org/wiki/Third_normal_form)
+
+Third normal form (3NF) is a database schema design approach for relational databases which uses normalizing principles to reduce the duplication of data, avoid data anomalies, ensure referential integrity, and simplify data management. It was defined in 1971 by Edgar F. Codd.
+
+
+A database relation (e.g. a database table) is said to meet third normal form standards if all the attributes (e.g. database columns) are functionally dependent on solely the primary key. Codd defined this as a relation in second normal form where all non-prime attributes depend only on the candidate keys and do not have a transitive dependency on another key.
+
+A hypothetical example of a failure to meet third normal form would be a hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors. The negative outcome of such a design is that a doctor's number will be duplicated in the database if they have multiple patients, thus increasing both the chance of input error and the cost and risk of updating that number should it change (compared to a third normal form-compliant data model that only stores a doctor's number once on a doctor table).
+
+Codd later realized that 3NF did not eliminate all undesirable data anomalies and developed a stronger version to address this in 1974, known as Boyce–Codd normal form. 
+
+Codd's definition states that a table is in 3NF if and only if both of the following conditions hold:
+* The relation R (table) is in second normal form (2NF).
+* Every non-prime attribute of R is non-transitively dependent on every key of R.
+
+A non-prime attribute of R is an attribute that does not belong to any candidate key of R.[3] A transitive dependency is a functional dependency in which X → Z (X determines Z) indirectly, by virtue of X → Y and Y → Z (where it is not the case that Y → X).
+
+A 3NF definition that is equivalent to Codd's, but expressed differently, was given by Carlo Zaniolo in 1982. This definition states that a table is in 3NF if and only if for each of its functional dependencies X → A, at least one of the following conditions holds:
+* X contains A (that is, A is a subset of X, meaning X → A is trivial functional dependency),
+* X is a superkey,
+* every element of A\X, the set difference between A and X, is a prime attribute (i.e., each attribute in A\X is contained in some candidate key).
+
+Zaniolo's definition gives a clear sense of the difference between 3NF and the more stringent Boyce–Codd normal form (BCNF). BCNF simply eliminates the third alternative ("Every element of A \ X, the set difference between A and X, is a prime attribute."). 
+
+[Boyce–Codd normal form](https://en.wikipedia.org/wiki/Boyce%E2%80%93Codd_normal_form)
+
+Boyce–Codd normal form (or BCNF or 3.5NF) is a normal form used in database normalization. It is a slightly stronger version of the third normal form (3NF). BCNF was developed in 1974 by Raymond F. Boyce and Edgar F. Codd to address certain types of anomalies not dealt with by 3NF as originally defined.
+If a relational schema is in BCNF then all redundancy based on functional dependency has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce–Codd normal form if and only if for every one of its dependencies X → Y, at least one of the following conditions hold:
+* X → Y is a trivial functional dependency (Y ⊆ X),
+* X is a superkey for schema R.
+
+Only in rare cases does a 3NF table not meet the requirements of BCNF. A 3NF table that does not have multiple overlapping candidate keys is guaranteed to be in BCNF. Depending on what its functional dependencies are, a 3NF table with two or more overlapping candidate keys may or may not be in BCNF. 
+
 
 [database-normalization](https://www.learncomputerscienceonline.com/database-normalization/)
 第一范式
