@@ -903,6 +903,11 @@ http://www.johngustafson.net/pubs/pub13/amdahl.htm
 
 [Resilient design 101 (BuildStuff LT 2017)](https://www.slideshare.net/AvishaiIshShalom/resilient-design-101-82223160)
 
+# Concurrency Patterns 并发模式
+
+[Category Concurrency Patterns](http://wiki.c2.com/?CategoryConcurrencyPatterns)
+
+
 # Asynchrony
 
 [Async fun ](https://www.slideshare.net/TomaszKogut/async-fun?qid=13cbb241-6304-44be-a0a0-ed9e05782a3d&v=&b=&from_search=65)
