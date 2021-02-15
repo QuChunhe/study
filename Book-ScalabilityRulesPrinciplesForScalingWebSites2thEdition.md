@@ -1190,3 +1190,37 @@ Big-traffic days could bring down absolutely everything. Furthermore, small fail
 流量巨大的日子会把一切搞砸。此外，在软件或者硬件中的小故障也会产生类似的影响。一个站点，但在一个保险丝上运行。
 
 "With AKF’s help we started redesigning aspects of the site to add fault isolation zones or ‘swim lanes.’ Basically, we wanted to take our single fuse in our fuse box and ensure that we had multiple fuses. Anytime one would break, only portions of the site would fail. This fault isolation approach allows us to separate software and database components into independent swim lanes, each of which is completely independent of other swim lanes. Different content areas of our site can be delivered from different swim lanes. If one of them fails, like the weather section, we can continue to deliver time-critical news. Furthermore, we can spend differently on high availability for each of the swim lanes. Swim lanes like news can get significantly greater redundancy than solutions of lower importance like weather. In the old solution, everything had the same availability and same costs; now we can make trade-offs to make news even more highly available without significantly increasing our costs.”
+在AKF的帮助下，为了添加故障隔离区或“泳道”,我们开始重新设计站点的各个方面。基本上，我们希望在保险盒中取代单个保险丝，并且确保使用多个保险丝。任何时候如果只有一个发生故障，那么只有部分网站会失效。这种故障隔离方法允许我们将软件和数据库组件分离成独立的泳道，每个泳道完全独立于其他泳道。我们网站的不同内容区域可以从不同的泳道发布。如果其中一个失败了，比如天气预报，我们可以继续发布时效性的新闻。此外针对每个泳道，我们可以在高可用泳道上花费不同的成本。与天气这样重要性较低的解决方案相比，像新闻这样的泳道可以显著地得到更多的冗余。在旧的解决方案中，每个内容都具有相同的可用性和相同的成本；现在，我们可以在不显著增加我们成本的情况下进行权衡，使新闻具有更高的可用性。”
+
+
+“And it’s not just our Web site that receives this level of attention. When you operate a product on the Internet, you rely on any number of tools and unique infrastructure to help you deliver your product.” Grant concluded, “We now apply these same concepts to the way in which we monitor, release solutions, et cetera. Everything that is critical has its own set of swim lanes such that a failure in our tooling won’t bring all of our other tools and monitors down.”
+“不仅仅是我们的网站受到了这种级别的关注。当你在互联网上运营一个产品时，你依赖于一定数量的工具和唯一的基础设施来帮助你交付产品。”Grant总结到，“现在我们将同样的概念应用到我们监控和发布等解决方案上，所有关键的东西都有自己的泳道集合，这样我们的工具出现故障就不会让我们的其他工具和监视器全部瘫痪。” 
+
+
+Our experience is that most engineering teams are very good at, and are very focused on, delivering systems that work properly. Additionally, most engineers understand that it is impossible to create defect-free solutions and that as a result it is impossible to create a system that will not fail. Even with this in mind, very few engineers spend any significant time outlining and limiting the “blast radius” of any given failure.
+我们的经验是，大多数工程团队非常擅长并非常专注于交付正常工作的系统。虽然大多数工程师都明白，不可能创建无缺陷的解决方案，因此不可能创建一个不会失败的系统。然而即使考虑到这一点，但是很少有工程师会花大量时间概括和限制任意给定故障的“爆炸半径”。
+
+When a system is under incredible load, say during peak times of demand, even small failures of certain features can back up transactions and bring the whole product to its knees。
+当一个系统处于大负载时，比如说在需求高峰时期，即使某些功能的小故障也可以阻塞事务，并使整个产品瘫痪。
+
+
+## Rule 36—Design Using Fault-Isolative “Swim Lanes”
+## 规则36——设计使用能够隔离故障的泳道
+
+What: Implement fault isolation zones or swim lanes in your designs.在设计中实现故障隔离区或者泳道
+
+When to use: Whenever you are beginning to split up persistence tiers (e.g., databases) and/or services to scale. 当你为了扩展开始拆分持久层（例如数据库）和/或服务的时候
+
+How to use: Split up persistence tiers and services along the Y or Z axis and disallow synchronous communication or access between fault-isolated services and data. 沿着Y或者Z轴拆分持久层和服务，并且在被故障隔离的服务和数据之间不许可同步通信或者访问
+
+Why: Increase availability and scalability. Reduce both incident identification and resolution. Reduce time to market and cost. 提高可用性和可扩展性。减小事故识别和处理。减小上市时间和成本。
+
+Key takeaways: Fault isolation consists of eliminating synchronous calls between fault isolation domains, limiting asynchronous calls and handling synchronous call failure, and eliminating the sharing of services and data between swim lanes.
+故障隔离包括在故障隔离区域消除同步调用、限制异步调用并处理同步调用失败、消除在泳道之间共享服务和数据。
+
+
+|Split Name(拆分称呼)  | Description(描述)|
+| :------------ | :------------ |  
+|Pod |Pacemaker, anti-lock brakes |Microseconds–milliseconds |None—total system failure, potential loss of life|
+|Soft |	Airline reservation system,online stock quotes, VoIP (Skype) |	Milliseconds–seconds |Low—no system failure, no life at risk|  
+|Near |Skype video, home automation |Seconds–minutes| High—no system failure,no life at risk |

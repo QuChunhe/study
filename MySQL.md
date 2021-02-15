@@ -7,7 +7,7 @@
   * 关系型数据库能够提供完善的事务和查询支持，但是可扩展性较差。相反地，NoSQL数据库具有很好的可扩展性，能够支持大规模的数据存储和并发访问，但是不能支持事务。此外，NoSQL的表设计严重依赖于数据查询模式。为了支持不同的查询，需要设计不同的表结构
 * MySQL数据库架构选择
    * 选择单体部署，还是数据库集群
-   * 针对于不同的需求，选择不同架构：数据备份、高可用、高访问量、大数据规模。主要的架构包括：数据复制、读写分离以及sharding。
+   * 针对于不同的需求，选择不同架构：数据备份、高可用、高吞吐(支持更多的事务或者查询)、低时延（更少响应时间）、大数据规模。主要的架构包括：数据复制、读写分离以及sharding。
 * 数据库的表设计
 * 数据库访问优化
 
@@ -66,10 +66,8 @@ C.J. Date, Database Design and Relational Theory: Normal Forms and All That Jazz
 * alternate keys
 * foreign key
 
-Logical design is concerned with what the database looks like to the user (which means,
-loosely, what relvars exist and what constraints apply to those relvars); physical design,
-by contrast, is concerned with how a given logical design maps to physical storage
-
+Logical design is concerned with what the database looks like to the user (which means, loosely, what relvars exist and what constraints apply to those relvars); physical design,
+by contrast, is concerned with how a given logical design maps to physical storage.
 为开发者和设计者提供了适用的、可遵循的指南。
 
 
