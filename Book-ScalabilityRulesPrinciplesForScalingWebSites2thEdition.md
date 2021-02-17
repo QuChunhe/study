@@ -1221,6 +1221,6 @@ Key takeaways: Fault isolation consists of eliminating synchronous calls between
 
 |Split Name(拆分称呼)  | Description(描述)|
 | :------------ | :------------ |  
-|Pod |Pacemaker, anti-lock brakes |Microseconds–milliseconds |None—total system failure, potential loss of life|
+|Pod |Pods are self-contained sets of functionality containing app servers, persistent　storage (such as a database or other persistent and shared file system), or　both. Pods are most often splits along the Z axis, as in a split of customers　into separate pods. Pod is sometimes used interchangeably with the term swim　lane. It has also been used interchangeably with the term pool when referring　to Web or application services.Pods是自包含功能集合，包括应用服务器、持久存储（例如数据库或者其他持久的和共享的文件系统），或者同时包含两者。Pods通常是|
 |Soft |	Airline reservation system,online stock quotes, VoIP (Skype) |	Milliseconds–seconds |Low—no system failure, no life at risk|  
 |Near |Skype video, home automation |Seconds–minutes| High—no system failure,no life at risk |
