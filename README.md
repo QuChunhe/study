@@ -136,6 +136,13 @@ https://www.youtube.com/playlist?list=PLUl4u3cNGP63ctJIEC1UnZ0btsphnnoHR
 
 [清华大学公开课 李子奈 计量经济](https://www.bilibili.com/video/BV1Eb411B78w/?spm_id_from=333.788.videocard.0)
 
+[高等代数学-复旦大学-谢启鸿-高清](https://www.bilibili.com/video/BV1mJ411r7ZB/?spm_id_from=333.788.videocard.3)
+
+[高等代数学 第3版](https://max.book118.com/html/2018/1029/5012021312001323.shtm)
+
+
+https://max.book118.com/html/2018/1029/5012021312001323.shtm
+
 https://cacm.acm.org/magazines/2017/12/223054-parallel-computational-thinking/fulltext
 
 https://cacm.acm.org/magazines/2017/12/223046-automatically-accelerating-non-numerical-programs-by-architecture-compiler-co-design/fulltext
