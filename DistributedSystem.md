@@ -191,8 +191,24 @@ Strategies --> design -> implement -> deployment -> operation(monitor, log)
 # Papers
 [1] Patrick O'Neil, Edward Cheng, Dieter Gawlick, Elizabetch O'Neil. The log-structured merge-tree (LSM-tree). Acta Informatica, 1996, 33(4): 351-385.
 
+[Brewer’s Conjecture and the Feasibility ofConsistent, Available, Partition-Tolerant WebServices](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.67.6951&rep=rep1&type=pdf)
+
+It is impossible for a web service to provide the following three guarantees:
+* Consistency
+* Availability
+* Partition-tolerance
+
+ACID
+
+Interactions with web services are expected to behave in a transactional manner: operations commit or fail in their entirety (atomic), committed transactions are visible to all future transactions (consistent), uncommitted transactions are isolated from each other (isolated), and once a transaction is committed it is permanent (durable).
 
 
+Atomic , or linearizable , consistency is the condition expected by most web services today.
+
+
+Alan Fekete, David Gupta, Victor Luchangco, Nancy Lynch, and Alex Shvartsman. Eventually-serializable data services. Theoretical Computer Science, 220(1):113–156, June 1999.
+
+[Keeping CALM: When Distributed Consistency is Easy](https://arxiv.org/pdf/1901.01930.pdf)
 
 # Books
 
@@ -1368,9 +1384,13 @@ At the most basic level, though, they don't make systems scale.
 但是，在最基本的层面上，这些协议并不会使得系统具有可伸缩性。
 
 Instead, the fundamental approach used to scale distributed systems is avoiding co-ordination. Finding ways to make progress on work that doesn't require messages to pass between machines, between clusters of machines, between datacenters and so on. The fundamental tool of cloud scaling is coordination avoidance
-反而，用于扩展分布式系统的最基本方法是避免协作。寻找方法，既能够推进任务，又无需在机器之间、在机器集群之间、在数据中心之间传递消息。云实现可扩展的基本工具是避免协作。
+反而，用于扩展分布式系统的最基本方法是避免协作。寻找方法，既能够完成工作，又无需在机器之间、在机器集群之间、在数据中心之间传递消息。云扩展的基本工具是避免协作。
 
 With this in mind, we can build a kind of spectrum of the amount of coordination required in different system designs:
+* Coordinated. These are the kind that use paxos, raft, chain replication or some other protocol to make a group of nodes work closely together. The amount of work done by the system generally scales with the offered work (W) and the number of nodes (N), something like O(N * W) (or, potentially, worse under some kinds of failures).
+*Data-dependent Coordination. These systems break their workload up into uncoordinated pieces (like shards), but offer ways to coordinate across shards where needed. Probably the most common type of system in this category is sharded databases, which break data up into independent pieces, but then use some kind of coordination protocol (such as two-phase commit) to offer cross-shard transactions or queries. Work done can vary between O(W) and O(N * W) depending on access patterns, customer behavior and so on.
+* Leveraged Coordination. These systems take a coordinated system and build a layer on top of it that can do many requests per unit of coordination. Generally, coordination is only needed to handle failures, scale up, redistribute data, or perform other similar management tasks. In the happy case, work done in these kinds of systems is O(W). In the bad case, where something about the work or environment forces coordination, they can change to O(N * W) (see Some risks of coordinating only sometimes for more). Despite this risk, this is a rightfully popular pattern for building scalable systems.
+* Uncoordinated These are the kinds of systems where work items can be handled independently, without any need for coordination. You might think of them as embarrassingly parallel, sharded, partitioned, geo-partitioned, or one of many other ways of breaking up work. Uncoordinated systems scale the best. Work is always O(W).
 
 
 [Amazon Builders' Library中文](https://aws.amazon.com/cn/builders-library/?cards-body.sort-by=item.additionalFields.customSort&cards-body.sort-order=asc)
@@ -1426,3 +1446,6 @@ M. Tamer Özsu, Patrick Valduriez, Principles Of Distributed Database Systems, S
 Alex Petrov, Database Internals: A deep-dive into how distributed data systems work, O’Reilly Media,2019
 
 [Marc's Blog](http://brooker.co.za/blog/)
+
+
+
