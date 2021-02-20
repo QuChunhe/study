@@ -328,6 +328,23 @@ server.3=zoo3.example.com:2888:3888
 ## Kafka
 
 
+Kafka Producer配置需要在两个方面的折中考虑
+* 吞吐（时延）和可靠性之间的折中
+* 丢失消息和重复消息之间的折中
+较大的消息吞吐和较小的发送时延需要以降低消息可靠性为代价，容易出现消息丢失或重复消息的问题，反之亦然，提高可靠性需要降低。类似地，
+文中介绍的是如果接受到ack，那么确保消息不会丢失。另一种常见情况是在超时之后还没有受到ack，Producer如何处理？如果重传，可能出现消息重复，如果不重传，可能出现消息丢失
+
+可靠性相关的配置参数
+* Topic
+  * replication-factor:replication-factor不能超过Borker的数量，数值越大，可靠性消息可靠性越高
+
+* Producer
+  * acks: 
+  * min.insync.replicas
+
+[Kafka 如果丢了消息，怎么处理？](https://mp.weixin.qq.com/s/TcN5kslQxRQOBlkSjg7_Sg)
+
+
 [kafka-examples](https://github.com/gwenshap/kafka-examples)
 
 ### Broker Configuration

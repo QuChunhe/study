@@ -8,6 +8,11 @@
 
 [Resource Management Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/resource_management_guide/index)
 
+
+监控和分析系统/应用的性能，判断性能瓶颈，提供方案优化性能。
+* 配置Linux和系统软件
+* 重构和优化应用代码
+
 应用类型
 * IO密集型(IO Bound)
 * CPU密集型(CPU Bound)
@@ -39,6 +44,18 @@
 * confiuration 配置，包括硬件组件、操作系统、系统软件(MySQL)和应用系统
 * 架构，增加缓存等
 * 代码优化
+
+Linux可以通过不同的纬度来刻画
+* 变化快慢
+  * 属性
+  * 状态
+  * 性能
+* 所属层次
+  * 操作系统：CPU、内存、磁盘和网络
+  * 应用层次：进程和线程
+
+
+
 
 The field of performance includes the following activities, listed in an ideal order of execution:
 1. Setting performance objectives and performance modeling
@@ -556,6 +573,20 @@ Response Time = Queue time + Service time
 
 #### CPU
 
+
+**系统负载(System load)**
+
+通过如下三个命令查看系统负载
+```
+uptime
+
+cat /proc/loadavg
+
+top
+```
+The three load-average values in the first line of top output are the 1-minute, 5-minute and 15-minute average.
+
+
 [CPU Utilization is Wrong](http://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
 
 The metric we call CPU utilization is really "non-idle time": the time the CPU was not running the idle thread. Your operating system kernel (whatever it is) usually tracks this during context switch. If a non-idle thread begins running, then stops 100 milliseconds later, the kernel considers that CPU utilized that entire time.
@@ -608,7 +639,12 @@ For real-world applications, here's how I'd interpret the IPC:
 
 
 
-CPU utilization  
+**CPU utilization(CPU使用率)**  
+
+* idle: 可用, 等待工作
+* user: 在用户状态下运行，执行高级别的功能和数据移动.
+* system: 在内核状态下运行，执行内核功能、I/O和其他硬件交互
+* nice: 类似于用户，一个低优先级的任务会把CPU让给另一个高优先级的任务。
 
 The measure of CPU utilization spans all clock cycles for eligible activities, including memory
 stall cycles. It may seem a little counter intuitive, but a CPU may be highly utilized because it is often
@@ -834,6 +870,17 @@ perf/cpustat
 
 ```
 
+* %usr – % CPU usage at the user level
+* %nice – % CPU usage for user processes labeled “nice”
+* %sys – % CPU usage at the system (Linux kernel) level
+* %iowait – % CPU usage idling waiting on a disk read/write
+* %irq – % CPU usage handling hardware interrupts
+* %soft – % CPU usage handing software interrupts
+* %steal – % CPU usage being forced to wait for a hypervisor handling other virtual processors
+* %guest – % CPU usage spent running a virtual processor
+* %idle – % CPU usage on idle time (no processes, and not waiting on a disk read/write)
+
+
 Basic attributes for characterizing CPU workload are
 * Load averages (utilization + saturation)
 * User-time to system-time ratio
@@ -864,6 +911,19 @@ tuned-adm profile latency-performance
 
 CPU cache warmth. On Linux-based systems, the exclusive CPU sets approach can be implemented using cpusets
 
+
+Interrupts: Most I/O devices use interrupts to signal the CPU when there is work for it to do. Watching the count of each interrupt can give you a rough idea of how much load the associated device is handling.
+
+
+Context Switching: By watching the amount of this activity, you will learn to recognize when a system has a lot of tasks actively consuming resources.
+
+Memory: When many processes are running and using up available memory, the system will slow down as processes get paged or swapped out to make room for other processes to run. 
+
+Paging: As mentioned above, when available memory begins to get scarce, the virtual memory system will start writing pages of real memory out to the swap device, freeing up space for active processes. Disk drives are fast, but when paging gets beyond a certain point, the system can spend all of its time shuttling pages in and out. Paging on a Linux system can also be increased by the loading of programs, as Linux “demand pages” each portion of an executable as needed.
+
+Swapping:
+
+Disk I/O: Linux keeps statistics on the first four disks; total I/O, reads, writes, block reads and block writes. These numbers can show uneven loading of multiple disks and show the balance of reads versus writes.
 
 #### Network
 
@@ -898,9 +958,7 @@ tcpdump -i eth0 -w /tmp/out.tcpdump
 
 lsof -iTCP -sTCP:ESTABLISHED
 
-lscpu
 
-more /proc/cpuinfo
 
 ethtool eth0 
 
@@ -912,6 +970,106 @@ yum install dstat.noarch
 
 dstat -N em1 1
 ```
+![Three-Way Handshake](pics/TCP3WayHandshaking.png)
+三次握手
+
+![Four-Way Handshake](pics/TCP4WayHandshaking.png)
+四次挥手
+
+![TCP State Transition Diagram](pics/TCPStateTransitionDiagram.gif)
+TCP状态转移图
+
+```
+ss : socket statistics 
+  -n, --numeric
+         Do not try to resolve service names. Show exact bandwidth values, instead of human-readable.
+
+  -r, --resolve
+         Try to resolve numeric address/ports.
+
+  -a, --all
+         Display both listening and non-listening (for TCP this means established connections) sockets.
+
+  -l, --listening
+         Display only listening sockets (these are omitted by default).
+
+  -o, --options
+         Show timer information. For TCP protocol, the output format is:
+
+         timer:(<timer_name>,<expire_time>,<retrans>)
+
+         <timer_name>
+             the name of the timer, there are five kind of timer names:
+
+             on : means one of these timers: TCP retrans timer, TCP early retrans timer and tail loss probe timer
+
+             keepalive: tcp keep alive timer
+
+             timewait: timewait stage timer
+
+             persist: zero window probe timer
+
+             unknown: none of the above timers
+
+         <expire_time>
+             how long time the timer will expire
+
+         <retrans>
+             how many times the retransmission occured
+
+```
+The TCP Keepalive Timer feature provides a mechanism to identify dead connections.
+
+When a TCP connection on a routing device is idle for too long, the device sends a TCP keepalive packet to the peer with only the Acknowledgment (ACK) flag turned on. If a response packet (a TCP ACK packet) is not received after the device sends a specific number of probes, the connection is considered dead and the device initiating the probes frees resources used by the TCP connection.
+
+```
+  ip - show / manipulate routing, network devices, interfaces and tunnels
+
+  ip [ OPTIONS ] OBJECT { COMMAND | help }
+
+  ip [ -force ] -batch filename
+
+  OBJECT := { link | address | addrlabel | route | rule | neigh | ntable | tunnel | tuntap | maddress | mroute | mrule | monitor | xfrm | netns | l2tp | tcp_metrics | token |
+         macsec | vrf | mptcp }
+
+  OPTIONS := { -V[ersion] | -h[uman-readable] | -s[tatistics] | -d[etails] | -r[esolve] | -iec | -f[amily] { inet | inet6 | link } | -4 | -6 | -I | -D | -B | -0 | -l[oops] {
+          maximum-addr-flush-attempts } | -o[neline] | -rc[vbuf] [size] | -t[imestamp] | -ts[hort] | -n[etns] name | -N[umeric] | -a[ll] | -c[olor] | -br[ief] | -j[son] |
+          -p[retty] }
+
+```
+
+[TCP Timers](https://www.geeksforgeeks.org/tcp-timers/)
+
+What are the default values of TCP KeepAlive setting ?
+```
+cat /proc/sys/net/ipv4/tcp_keepalive_intvl
+cat /proc/sys/net/ipv4/tcp_keepalive_probes
+cat /proc/sys/net/ipv4/tcp_keepalive_time
+
+sysctl -a | grep tcp_keepalive
+```
+
+* tcp_keepalive_time, the parameter represents the value in seconds for idle time of a connection, before starting TCP keep alive probe.
+* tcp_keepalive_intvl, have value in seconds. The time interval between consecutive keepalive probes.
+* tcp_keepalive_probes,  an integer value. Represents the number of retries, after which TCP marks the connection dead
+
+1. Edit your /etc/sysctl.conf
+```
+# vi /etc/sysctl.conf
+```
+2. Add the following setting :
+```
+net.ipv4.tcp_keepalive_time = 60
+net.ipv4.tcp_keepalive_intvl = 10
+net.ipv4.tcp_keepalive_probes = 6
+```
+Explanation for above parameter in section a), b) and c).
+
+3. To load settings, enter the following command :
+```
+# sysctl -p
+```
+
 查看DNS
 ```
 dig www.bing.com
@@ -919,7 +1077,22 @@ dig www.bing.com
 nslookup www.bing.com
 ```
 
-#### IO
+#### Disk(磁盘）
+
+transfers per second (tps)
+
+Input/Output Operations Per Second (IOPS)
+
+IOPS are a function of rotational speed (aka spindle speed), latency and seek time. The equation is pretty simple, 1/(seek + latency) = IOPS.
+
+[Analyzing I/O performance in Linux](https://cmdln.org/2010/04/22/analyzing-io-performance-in-linux/)
+
+
+* Rotational speed (aka spindle speed). Measured in revolutions per minute (RPM), most disks you'll consider for enterprise storage rotate at speeds of 7,200, 10,000 or 15,000 RPM with the latter two being the most common. A higher rotational speed is associated with a higher performing disk. This value is not used directly in calculations, but it is highly important. The other three values depend heavily on the rotational speed, so I've included it for completeness.
+* Average latency. The time it takes for the sector of the disk being accessed to rotate into position under a read/write head.
+* Average seek time. The time (in ms) it takes for the hard drive's read/write head to position itself over the track being read or written. There are both read and write seek times; take the average of the two values.
+
+Average IOPS = 1 / (average latency in ms + average seek time in ms)
 
 ```
 #page size
@@ -934,6 +1107,10 @@ iotop –d 5 -P
 #### Memory
 
 
+#### Application
+
+
+[Perf- A Performance Monitoring and Analysis Tool for Linux](https://www.tecmint.com/perf-performance-monitoring-and-analysis-tool-for-linux/)
 
 # Command
 
@@ -1164,6 +1341,8 @@ cat /proc/cpuinfo | grep 'siblings' | sort | uniq
 display information about the CPU architecture
 ```
 lscpu
+
+more /proc/cpuinfo
 ```
 
 
@@ -1395,6 +1574,8 @@ sysstat.x86_64
 
 mtr
 mtr.x86_64 
+
+
 # Operation System
 
 [Operating Systems: Three Easy Pieces](http://pages.cs.wisc.edu/~remzi/OSTEP/)
