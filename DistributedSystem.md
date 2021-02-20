@@ -675,6 +675,8 @@ MTBF = (total elapsed time – sum of downtime)/number of failures
 
 [https://akfpartners.com/growth-blog/akf-availability-cube](https://akfpartners.com/growth-blog/akf-availability-cube)
 
+[Site Reliability Engineering (SRE)](https://github.com/upgundecha/howtheysre)
+
 **Patterns of Resilience-A Small Pattern Language**
 
 Availability ≔ MTTF /(MTTF + MTTR)
