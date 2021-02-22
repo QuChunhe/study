@@ -1041,8 +1041,10 @@ TCC事务的处理流程与2PC两阶段提交类似，不过2PC通常都是在�
 
 
 分布式事务
-
-XA  TCC  SAGA  事务消息
+* XA  
+* TCC  
+* SAGA 
+* 事务消息
 
 ![Transactions Across Datacenters](pics/TransactionsAcrossDatacenters.png)
 
