@@ -1039,6 +1039,11 @@ TCC（Try-Confirm-Cancel）又称补偿事务。其核心思想是："针对每�
 * Cancel阶段：取消执行业务操作。
 TCC事务的处理流程与2PC两阶段提交类似，不过2PC通常都是在跨库的DB层面，而TCC本质上就是一个应用层面的2PC，需要通过业务逻辑来实现。这
 
+
+分布式事务
+
+XA  TCC  SAGA  事务消息
+
 ![Transactions Across Datacenters](pics/TransactionsAcrossDatacenters.png)
 
 [Google I/O 2009 - Transactions Across Datacenters.](https://www.youtube.com/watch?v=srOgpXECblk)
