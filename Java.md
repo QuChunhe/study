@@ -664,8 +664,7 @@ Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Poin
 The new API makes a distinction between how dates and times are used by machines and humans. Machines deal with time as continual ticks as a single incrementing number measured in seconds, milliseconds, etc. Humans use a calendar system to deal with time in terms of year, month, day, hour, minute, and second. The Date-Time API has a separate set of classes to deal with machine-based time and calendar-based human time. It lets you convert machine-based time to human-based time and vice versa.
 
 
-协调世界时，又称世界统一时间、世界标准时间、国际协调时间,从英文“Coordinated Universal Time”／法文“Temps Universel Cordonné”
-而来.协调世界时是以原子时秒长为基础，在时刻上尽量接近于世界时的一种时间计量系统。
+UTC时间（英文“Coordinated Universal Time”／法文“Temps Universel Cordonné”），也被称为协调世界时、世界统一时间、世界标准时间、国际协调时间。协调世界时是以原子时秒长为基础，在时刻上尽量接近于世界时的一种时间计量系统。协调世界时间原来也被称为格林威治时间（Greenwich Mean Time： GMT） 。日期时间的国际标准
 
 国际原子时(TAI，来自法国名字temps atomique International)是一个高精度的原子坐标时间标准:取1958年1月1日0时0分0秒世界时(UT)的瞬间作为同年同月同日0时0分0秒TAI。
 

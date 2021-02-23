@@ -970,6 +970,15 @@ yum install dstat.noarch
 
 dstat -N em1 1
 ```
+
+![TCP Header](pics/TCPHeader.png)
+
+* Sequence number: The sequence number, a 32-bit number assigned to the first bit of data. It is used to initiate and make connections. Usually, sequence numbers are only used once in a connection.
+* Acknowledgment Number: Usually one greater than the Sequence number received from the sender. This helps to confirm to the other party that they accepted SYN.
+* SYN flag: SYN stands for Synchronization. This can be described as a request to establish a connection. If SYN is 1 (one) it means the device wants to establish a secure connection.
+* ACK flag: ACK stands for Acknowledgement. This can be explained as a response to SYN. If the ACK is 1 (one), means that the device has received the SYN message.
+* FIN flag: FIN means Finished. Used to end a connection. If FIN is 1 (one), the device wants to disconnect or terminate the connection.
+
 ![Three-Way Handshake](pics/TCP3WayHandshaking.png)
 三次握手
 
@@ -978,6 +987,16 @@ dstat -N em1 1
 
 ![TCP State Transition Diagram](pics/TCPStateTransitionDiagram.gif)
 TCP状态转移图
+
+
+
+
+* Netid – Type of socket. Common types are TCP, UDP, u_str (Unix stream), and u_seq (Unix sequence).
+* State – State of the socket. Most commonly ESTAB (established), UNCONN (unconnected), LISTEN (listening).
+* Recv-Q – Number of received packets in the queue.
+* Send-Q – Number of sent packets in the queue.
+* Local address:port – Address of local machine and port.
+* Peer address:port – Address of remote machine and port.
 
 ```
 ss : socket statistics 
@@ -1016,8 +1035,75 @@ ss : socket statistics
 
          <retrans>
              how many times the retransmission occured
+  -m, --memory
+         Show socket memory usage. The output format is:
+
+         skmem:(r<rmem_alloc>,rb<rcv_buf>,t<wmem_alloc>,tb<snd_buf>,
+             f<fwd_alloc>,w<wmem_queued>,o<opt_mem>,
+             bl<back_log>,d<sock_drop>)
+
+         <rmem_alloc>
+             the memory allocated for receiving packet
+
+         <rcv_buf>
+             the total memory can be allocated for receiving packet
+
+         <wmem_alloc>
+             the memory used for sending packet (which has been sent to layer 3)
+
+         <snd_buf>
+             the total memory can be allocated for sending packet
+
+         <fwd_alloc>
+             the  memory  allocated  by  the socket as cache, but not used for receiving/sending packet yet. If need memory to send/receive packet, the memory in this cache
+             will be used before allocate additional memory.
+
+         <wmem_queued>
+             The memory allocated for sending packet (which has not been sent to layer 3)
+
+         <ropt_mem>
+             The memory used for storing socket option, e.g., the key for TCP MD5 signature
+
+         <back_log>
+             The memory used for the sk backlog queue. On a process context, if the process is receiving packet, and a new packet is received, it will be put  into  the  sk
+             backlog queue, so it can be received by the process immediately
+
+         <sock_drop>
+             the number of packets dropped before they are de-multiplexed into the socket
+
+  -p, --processes
+         Show process using socket.
+
+  -i, --info
+         Show internal TCP information. Below fields may appear:
+
 
 ```
+
+```
+ss dst <address>
+ss src <addresss>
+
+ss state <name of state>
+ss -t state listening
+ss <options> dst :<port number or name>
+```
+
+SYN攻击(SYN Flood Attack):Syn攻击是一个典型的DDOS(Distributed Denial of Service)攻击，利用部分正常的TCP三次握手来消耗目标服务器的资源，使得其无法响应正常的请求。
+
+在三次握手过程中，服务器在发送SYN-ACK之后、在收到客户端的ACK之前的TCP连接称为半连接(half-open connect).此时服务器处于SYN_RECV状态。SYN攻击是攻击者使用伪造的IP地址在短时间内大量重复地发送SYN。如果服务器无法识别这些攻击，就会当作成长的TCP请求，应答SYN-ACK包，并等待客户端应答的SYN-ACK。由于客户端的IP地址是伪造的，服务器不会接收到所期望的SYN-ACK。这使得服务器将会一直等待SYN-ACK，直到超时为止。大量重复地发送和等待SYN-ACK包，会持续地挤占服务器的资源，甚至消耗掉全部可用资源，造成系统瘫痪。
+检测SYN攻击非常的方便，当你在服务器上看到大量的半连接状态时，特别是源IP地址是随机的，基本上可以断定这是一次SYN攻击。
+```
+ss -t | grep SYN_RECV
+```
+There are a number of common techniques to mitigate SYN flood attacks, including:
+* Micro blocks—administrators can allocate a micro-record (as few as 16 bytes) in the server memory for each incoming SYN request instead of a complete connection object.
+* SYN cookies—using cryptographic hashing, the server sends its SYN-ACK response with a sequence number (seqno) that is constructed from the client IP address, port number, and possibly other unique identifying information. When the client responds, this hash is included in the ACK packet. The server verifies the ACK, and only then allocates memory for the connection.
+* RST cookies—for the first request from a given client, the server intentionally sends an invalid SYN-ACK. This should result in the client generating an RST packet, which tells the server something is wrong. If this is received, the server knows the request is legitimate, logs the client, and accepts subsequent incoming connections from it.
+* Stack tweaking—administrators can tweak TCP stacks to mitigate the effect of SYN floods. This can either involve reducing the timeout until a stack frees memory allocated to a connection, or selectively dropping incoming connections.
+
+
+
 The TCP Keepalive Timer feature provides a mechanism to identify dead connections.
 
 When a TCP connection on a routing device is idle for too long, the device sends a TCP keepalive packet to the peer with only the Acknowledgment (ACK) flag turned on. If a response packet (a TCP ACK packet) is not received after the device sends a specific number of probes, the connection is considered dead and the device initiating the probes frees resources used by the TCP connection.

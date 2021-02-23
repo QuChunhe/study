@@ -23,11 +23,13 @@ https://akfpartners.com/growth-blog
 
 
 分布式的目的
-* 提高吞吐量
-* 提高可靠性，（可用性）
-* 降低响应时间，减小等待时延。功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是: a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
+* 提高吞吐量 （improve throughtput) 
+* 提高可靠性，实现可用性（High availability & Fault tolerance）
+* 降低响应时间，减小等待时延(reduce latency)。功能和模块的分布式部署，增加了调用的时延，通常会增加服务的响应时间。但是: a)如果充分挖掘任务蕴含的并发性和充分使用分布式系统的并行处理能力，可以弥补分布式处理带来的时间损耗，降低服务时延;b)通过平衡负载，减小等待实际，实现更快的的响应能力
 
 上述三个目标是相互冲突和矛盾，虽然降低响应时间，能够提高吞吐量，但是提高吞吐量的很多措施却很增加服务的响应时间。类似于的，为了
+
+作为常见的目标是：在确保一定响应时延的情况下。提高系统的吞吐和可靠性。
 
 分布式的对象
 * 数据(data)，存储的分布化
@@ -53,6 +55,50 @@ https://akfpartners.com/growth-blog
 
 线性扩展
 
+A collection of independent computers connected through a communication network that work together to accomplish some goal 一组相互独立的并且通过网络连接的计算机能够相互协同工作，从而实现特定的目标。
+* No shared operating system
+* No shared memory
+* No shared clock
+
+Collection of independent computers that appears as a single system to the user(s) 从用户的视角一组相互独立的计算机就像单一的系统
+* Independent = autonomous, self-contained 独立的：自治的、子包含的
+* Single system = user not aware of distribution 单一系统=用户无法感知到分布性。
+
+
+Multiprocessors
+* Shared memory
+* Shared clock
+* Shared operating system
+* All-or-nothing failure
+
+supercomputer：Parallel systems
+* Distribued memoery 分布式内存
+* No shared global clock 没有全局共享时钟
+* Shared operating system 共享的操作系统
+* Partial failures 部分失败
+* dedicated network 抓门的网络
+
+Multicomputers (networks of computers) ⇒ distributed systems
+* No shared memory
+* No shared clock
+* Partial failures
+* Inter-computer communication mechanism needed: the network
+
+
+More cores per chip：requires multithreaded programming
+* There are limits to the die size and # of transistors
+* CPU主频存在上限
+
+为什么需要分布式系统：我们的计算需求已经超过了CPU的进步。Our computing needs exceed CPU advances
+
+Redundancy = replicated components
+
+Service can run even if some systems die
+* Series system: The system fails if ANY of its components fail
+* Parallel system: The system fails only if ALL of its components fail
+
+
+[Eight Fallacies of Distributed Computing ](https://samirbehara.com/2019/05/16/eight-fallacies-of-distributed-computing/)
 分布式引入的问题
 
 The 8 fallacies of distributed computing
@@ -65,9 +111,92 @@ The 8 fallacies of distributed computing
 7. Transport cost is zero.
 8. The network is homogeneous.
 
+
+Network messages may take a long time to arrive
+* Synchronous network model
+   * There is some upper bound, T, between when a node sends a message and another node receives it
+   * Knowing T enables a node to distinguish between a node that has failed and a node that is taking a long time to respond
+* Partially synchronous network model
+   * There’s an upper bound for message communication but the programmer doesn’t know it – it has to be discovered
+   * Protocols will operate correctly only if all messages are received within some time, T. We cannot make assumptions on the delay time distribution
+* Asynchronous network model
+   * Messages can take arbitrarily long to reach a peer node
+   * This is what we get from the Internet!
+
+
+Messages may take an unpredictable amount of time
+– We may think a message is lost but it’s really delayed
+– May lead to retransmissions à duplicate messages
+– May lead us to assume a service is dead when it isn’t
+– May mess with our perception of time
+– May cause messages to arrive in a different order
+
+You know you have a distributed system when the crash of a computer you’ve never heard of stops you from getting any work done. — Leslie Lamport
+
+Failure is a fact of life in distributed systems!
+* In local systems, failure is usually total (all-or-nothing)
+* In distributed systems, we get partial failure
+
+
+Handling failure
+* Handle detection, recovery, and restart
+* Availability = fraction of time system is usable
+  * Achieve with redundancy
+  * But then consistency is an issue!
+* Reliability: data must not get lost
+  * Includes security
+
+三者的区别与联系
+* Fault Tolerance 容错性
+* Availability 可用性
+* Reliability 可靠性
+
+System Failure Types
+* Fail-stop
+  * Failed component stops functioning
+  * Halting = stop without notice
+  * Detect failed components via timeouts
+        * But you can’t count on timeouts in asynchronous networks：And what if the network isn’t reliable?
+        * Sometimes we guess
+* Fail-restart
+  * Component stops but then restarts
+  * Danger: stale state
+
+系统故障类型
+* 停止响应
+* 错误响应：系统重启或者软硬件故障等
+* 超时响应
+
+Network Failure Types
+* Omission
+  * Failure to send or receive messages：Due to queue overflow in router, corrupted data, receive buffer overflow
+* Timing
+  * Messages take longer than expected：We may assume a system is dead when it isn't
+  * Unsynchronized clocks can alter process coordination
+* Partition
+  * Network fragments into two or more sub-networks that cannot communicate with each other
+
+网络故障类型
+* 丢包增加
+* 传输超时
+* 链路中断
+* 网络分裂
+
+Network & System Failure Types
+* Fail-silent
+  * A failed component (process or hardware) does not produce any output
+* Byzantine failures
+  * Instead of stopping, a component produces faulty data
+  * Due to bad hardware, software, network problems, or malicious interference
+
+We deal with failures by adding redundancy： Replicated components
+But this means we need to keep the state of those components replicated.
+
+Nobody has the true global state of a system
+
 [Fallacies of Distributed Computing Explained](http://rgoarchitects.com/Files/fallacies.pdf)
 
-[Eight Fallacies of Distributed Computing ](https://samirbehara.com/2019/05/16/eight-fallacies-of-distributed-computing/)
+
 
 请求分解为多个请求：请求数据，检查数据是否准备完成，下载数据
 
@@ -513,6 +642,13 @@ A third type of supported operator state is the Broadcast State. Broadcast state
 
 MapReduce pattern
 * map part (distribution of work).
+
+
+# 逻辑时间（Logical Time)
+
+[Clock Synchronization：Getting the right time](https://www.cs.rutgers.edu/%7Epxk/417/notes/clocks.html)
+
+Goal: Enable clocks on multiple machines to synchronize to the same time.使得多台机器上的时钟同步到相同的时间。
 
 
 ＃ Patterns
@@ -1474,4 +1610,5 @@ Alex Petrov, Database Internals: A deep-dive into how distributed data systems w
 [Marc's Blog](http://brooker.co.za/blog/)
 
 
+[Distributed Systems: Paul Krzyzanowski](https://www.cs.rutgers.edu/%7Epxk/417/notes/index.html)
 
