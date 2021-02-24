@@ -648,10 +648,68 @@ MapReduce pattern
 
 [Clock Synchronization：Getting the right time](https://www.cs.rutgers.edu/%7Epxk/417/notes/clocks.html)
 
+[Precision Time Protocol: Clock synchronization that computes latency and offset](https://www.cs.rutgers.edu/%7Epxk/417/notes/ptp.html)
+
+[Logical clocks： Causality and concurrency](https://www.cs.rutgers.edu/%7Epxk/417/notes/logical-clocks.html)
+
 Goal: Enable clocks on multiple machines to synchronize to the same time.使得多台机器上的时钟同步到相同的时间。
 
+Keeping track of time is difficult. No two clocks tick in perfect synchrony with each other. Quartz oscillators, which drive the timekeeping mechanisms of clock circuits, are not consistent over time and no two tick at exactly the same rate. The difference between two clocks at any given instant is the clock offset. The rate at which the clocks are drifting is the clock drift. The variation of network delay is called jitter. Jitter is useful for assessing the consistency of our interaction with servers.
+保持正确的计时是困难的。没有两个时钟相互之间是完美同步的。驱动时钟电路计时机制的时英振荡器会随着时间出现不一致，两个滴答不再是精确的、相同的速率。在任意给定时刻两个时钟之间的差是时钟偏移。时钟正在偏移的速度就是时钟漂移(clock drift)。网络时延的变化被称为抖动。抖动对于评估我们与服务器交互中的一致性非常有用。
 
-＃ Patterns
+We can correct for drift simply by changing the value of a system’s clock to reflect that of UTC time. However, we do not want to provide the illusion of time moving backward to any process that is observing the clock. A linear compensation function adjusts the rate at which time is measured on a computer (e.g., number of ticks that make up a second).
+我们可以通过改变系统时钟的值来简单地纠正时间漂移，显示UTC时间。但是，我们不想使得任何正在观察时钟的进程产生时间正在倒流的错觉。为此，采用一个线性补偿函数(linear compensation function)调整在计算上测量时间的速率（例如构成一秒的滴答数）
+
+Cristian’s algorithm 
+
+Berkeley algorithm
+
+Network Time Protocol, NTP
+
+Simple Network Time Protocol, SNTP
+
+The formula for NTP and SNTP is time_offset = (T2 - T1 + T3 - T4)/2 where T1 is the time the message left the client, T2 is the time it arrived at the server, T3 is the time the response left the server, and T4 is the time that it arrived at the client. If we let TS = (T2 + T3)/2 then we arrive at Cristian’s formula.
+
+
+
+* Offset（偏移）: The difference between the client’s clock and the server’s. This is how much the client needs to offset its clock to set it to the server’s time.
+* Delay（时延）: This is an estimate of the time spent sending or receiving the message. It is one half of the round-trip time minus the estimate of time spent on the server.
+* Jitter（抖动）: Jitter measures the variation in delay among multiple messages to the server. It gives us an idea of how consistent the latency is between the client and server.
+* Dispersion（散布）: Dispersion is the estimated maximum error for the computed offset. It takes into account the root delay (total delay, not just to the server but the delay from the server to the ultimate time source), estimated server clock drift, and jitter. 
+
+
+Precision Time Protocol (PTP, an IEEE standard)
+
+
+The Precision Time Protocol, PTP, is designed to synchronize clocks on a local area network (LAN) to sub-microsecond precision. 
+设计精确时间协议PTP是为了在局域网（LAN）上实现亚微秒精度的时钟同步。
+
+An advantage of synchronizing via the LAN is that latency becomes far more predictable.
+通过局域网进行同步的一个优点是延迟变得更加可预测。
+
+
+Goal of logical clocks: Allow processes on different systems to identify causal relationships and their ordering among events, particularly among messages between different systems. 逻辑时钟的目的：允许不同系统上的进程识别在不同系统上的事件之间的，特别是消息之间的，因果关系及其顺序。
+
+
+Lamport clocks allow processes to assign sequence numbers (“timestamps”) to messages and other events so that all cooperating processes can agree on the order of related events. There is no assumption of a central time source and no concept of when events took place. Events are causally related if one event may potentially influence the outcome of another event. 
+Lamport时钟允许进程赋予消息和其他事件一个序列号（时间戳），使得所有在协作中的进程能够对相关时间的顺序达成一致。没有假设集中的时间源，也没有事件发生时间的概念。如果一个事件可能潜在地影响另一个事件的发生，那么称事件是因果相关的。
+
+The central concept with logical clocks is the **happened-before** relation: a→b represents that event a occurred before event b. This order is imposed upon consecutive events at a process and also upon a message being sent before it is received at another process. Beyond that, we can use the transitive property of the relationship to determine causality: if a→b and b→c then a→c.
+逻辑时钟的核心概念是happen-before关系：a→b代表了事件a出现在事件b之前。这种顺序施加于在一个进程中相继发生的事件以及在消息被另一个进程接收之前的消息发送。除此之外，我们可以利用关系的传递性来确定因果关系：如果a→b和b→c，那么a→c。
+
+If there is no causal relationship between two events (e.g., they occur on different processes that do not exchange messages or have not yet exchanged messages, even indirectly), then the events are **concurrent**.
+如果两个事件之间没有因果关系（例如，它们发生在不交换消息的，或者尚未交换消息的不同进程上，甚至是间接地），那么这些事件就是并发的。
+
+
+A message comprises two events: (1) at the sender, we have the event of sending the message and (2) at the receiver, we have the event of receiving the message. The clock is a process-wide counter (e.g., a global variable) and is always incremented before each event. When a message arrives, if the receiver’s clock is less than or equal to the message’s timestamp, the clock is set to the message timestamp + 1. This ensures that the timestamp marking the event of a received message will always be greater than the timestamp of that sent message.
+一个消息有两个事件组成
+1. 在发送端，存在发送消息的事件
+2. 在接收端，存在接收消息的事件
+时钟是一个进程范围的计数器（例如一个全局变量），并在每个事件发生前总是递增。当一个消息到达时，如果接收者的时钟小于或等于消息的时间戳，那么这个时钟被设置为消息时间戳+1。这确保了由接收消息事件标记的时间戳将会一直大于发送消息的时间戳。
+
+
+
+# Patterns
 
 [稳定性模式大全（Stability Patterns）](https://mp.weixin.qq.com/s?__biz=MzIxMzEzMjM5NQ==&mid=2651036295&idx=2&sn=84c81f52fd1d915e7a8a70985d3e9d16&chksm=8c4c4f83bb3bc695cad976bbafc7e977995b548e5545c319ec1487fb32bd25dbf554702e7eff&mpshare=1&scene=1&srcid=0504wRpYm31npqZ7x6azDg5r&sharer_sharetime=1588554674432&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=Aa9aSiFEz46Dkrw1Lg%2Be0T8%3D&pass_ticket=a43aJERQMX9BbF%2FHWomrWkZFBaA3Ze0Kb4Lh0aokJrwblRbybCbiYCDvafpfxaWM#rd)
 
