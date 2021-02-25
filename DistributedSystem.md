@@ -652,13 +652,13 @@ MapReduce pattern
 
 [Logical clocks： Causality and concurrency](https://www.cs.rutgers.edu/%7Epxk/417/notes/logical-clocks.html)
 
-Goal: Enable clocks on multiple machines to synchronize to the same time.使得多台机器上的时钟同步到相同的时间。
+Goal: Enable clocks on multiple machines to synchronize to the same time.使得多台机器上的时钟能够同步到相同的时间。
 
 Keeping track of time is difficult. No two clocks tick in perfect synchrony with each other. Quartz oscillators, which drive the timekeeping mechanisms of clock circuits, are not consistent over time and no two tick at exactly the same rate. The difference between two clocks at any given instant is the clock offset. The rate at which the clocks are drifting is the clock drift. The variation of network delay is called jitter. Jitter is useful for assessing the consistency of our interaction with servers.
-保持正确的计时是困难的。没有两个时钟相互之间是完美同步的。驱动时钟电路计时机制的时英振荡器会随着时间出现不一致，两个滴答不再是精确的、相同的速率。在任意给定时刻两个时钟之间的差是时钟偏移。时钟正在偏移的速度就是时钟漂移(clock drift)。网络时延的变化被称为抖动。抖动对于评估我们与服务器交互中的一致性非常有用。
+保持正确的计时是困难的。没有两个时钟之间是完美同步的。驱动时钟电路计时机制的时英振荡器会随着时间出现不一致，两个滴答不再是精确的、相同的速率。在任意给定时刻两个时钟之间的差是时钟偏移。时钟正在偏移的速度就是时钟漂移(clock drift)。网络时延的变化被称为抖动（jitter）。抖动对于评估我们与服务器交互中的一致性非常有用。
 
 We can correct for drift simply by changing the value of a system’s clock to reflect that of UTC time. However, we do not want to provide the illusion of time moving backward to any process that is observing the clock. A linear compensation function adjusts the rate at which time is measured on a computer (e.g., number of ticks that make up a second).
-我们可以通过改变系统时钟的值来简单地纠正时间漂移，显示UTC时间。但是，我们不想使得任何正在观察时钟的进程产生时间正在倒流的错觉。为此，采用一个线性补偿函数(linear compensation function)调整在计算上测量时间的速率（例如构成一秒的滴答数）
+我们可以通过改变系统时钟的值来简单地纠正时间漂移，从而显示UTC时间。但是，我们不想使得任何正在观察时钟的进程产生时间正在倒流的错觉。为此，采用一个线性补偿函数(linear compensation function)调整在计算机上测量时间的速率（例如构成一秒的滴答数）
 
 Cristian’s algorithm 
 
@@ -688,11 +688,11 @@ An advantage of synchronizing via the LAN is that latency becomes far more predi
 通过局域网进行同步的一个优点是延迟变得更加可预测。
 
 
-Goal of logical clocks: Allow processes on different systems to identify causal relationships and their ordering among events, particularly among messages between different systems. 逻辑时钟的目的：允许不同系统上的进程识别在不同系统上的事件之间的，特别是消息之间的，因果关系及其顺序。
+Goal of logical clocks: Allow processes on different systems to identify causal relationships and their ordering among events, particularly among messages between different systems. 逻辑时钟的目的：允许不同系统上的进程识别在不同系统上的事件之间的（特别是消息之间的）因果关系及其顺序。
 
 
 Lamport clocks allow processes to assign sequence numbers (“timestamps”) to messages and other events so that all cooperating processes can agree on the order of related events. There is no assumption of a central time source and no concept of when events took place. Events are causally related if one event may potentially influence the outcome of another event. 
-Lamport时钟允许进程赋予消息和其他事件一个序列号（时间戳），使得所有在协作中的进程能够对相关时间的顺序达成一致。没有假设集中的时间源，也没有事件发生时间的概念。如果一个事件可能潜在地影响另一个事件的发生，那么称事件是因果相关的。
+Lamport时钟允许进程赋予消息和其他事件一个序列号（时间戳），使得所有在协作中的进程能够对相关事件的顺序达成一致。没有假设集中的时间源，也没有事件发生时间的概念。如果一个事件可能潜在地影响另一个事件的发生，那么称事件是因果相关的。
 
 The central concept with logical clocks is the **happened-before** relation: a→b represents that event a occurred before event b. This order is imposed upon consecutive events at a process and also upon a message being sent before it is received at another process. Beyond that, we can use the transitive property of the relationship to determine causality: if a→b and b→c then a→c.
 逻辑时钟的核心概念是happen-before关系：a→b代表了事件a出现在事件b之前。这种顺序施加于在一个进程中相继发生的事件以及在消息被另一个进程接收之前的消息发送。除此之外，我们可以利用关系的传递性来确定因果关系：如果a→b和b→c，那么a→c。
@@ -707,6 +707,10 @@ A message comprises two events: (1) at the sender, we have the event of sending 
 2. 在接收端，存在接收消息的事件
 时钟是一个进程范围的计数器（例如一个全局变量），并在每个事件发生前总是递增。当一个消息到达时，如果接收者的时钟小于或等于消息的时间戳，那么这个时钟被设置为消息时间戳+1。这确保了由接收消息事件标记的时间戳将会一直大于发送消息的时间戳。
 
+This simple incrementing counter does not give us results that are consistent with causal events. If event a happened before event b then we expect clock(a) \< clock(b).
+这种简单的递增计数器不能为我们提供因果事件的一致性。如果事件a在事件b之前发生，我们期望clock(a) \<clock(b)。
+
+To make this work, Lamport timestamp generation has an extra step. If an event is the sending of a message then the timestamp of that event is sent along with the message. If an event is the receipt of a message then the the algorithm instructs you to compare the current value of the process' timestamp counter (which was just incremented before this event) with the timestamp in the received message. If the timestamp of the received message is greater than or equal to that of the event, the event and the process' timestamp counter are both updated with the value of the timestamp in the received message plus one. This ensures that the timestamp of the received event and all further timestamps on that process will be greater than that of the timestamp of the event of sending the message as well as all previous messages on that process.
 
 
 # Patterns
