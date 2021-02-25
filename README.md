@@ -11,7 +11,6 @@
 
 How to Measure Anything_
 
-\< \>
 
 
 # LaTex
