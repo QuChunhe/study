@@ -1,5 +1,5 @@
 
-
+# Idea
 [scalability-availability-stability-patterns](https://www.slideshare.net/jboner/scalability-availability-stability-patterns)
 
 https://akfpartners.com/growth-blog
@@ -7,15 +7,11 @@ https://akfpartners.com/growth-blog
 
 [从事分布式系统、计算、hadoop 等方面工作需要哪些基础](https://www.zhihu.com/question/19868791/answer/88873783l)
 
-* Horizontal scaling(水平缩放):scale out 向外伸缩
-* Vertical scaling(垂直缩放):Scale up 向上伸缩
+* Horizontal scaling(水平扩展):scale out 向外伸缩，通过添加服务器，实现可扩展性
+* Vertical scaling(垂直扩展):Scale up 向上伸缩，通过升级硬件，实现可扩展。
 
 
-性能指标
-* 系统容量，即系统最大的吞吐量
-* 响应时间，平均响应时间，总的请求中，响应时间低于一个特定阈值的请求所占比例
-
-# Idea
+通过网络连接的计算机，能够向一台计算机一样向外提供服务。
 
 分布式字面上的意思是通过多个服务器或者阶段协同提高服务
 
@@ -30,6 +26,24 @@ https://akfpartners.com/growth-blog
 上述三个目标是相互冲突和矛盾，虽然降低响应时间，能够提高吞吐量，但是提高吞吐量的很多措施却很增加服务的响应时间。类似于的，为了
 
 作为常见的目标是：在确保一定响应时延的情况下。提高系统的吞吐和可靠性。
+
+评价分布式方案或者系统的几个方面
+* 可扩展性
+* 性能
+* 可靠性
+
+
+性能指标
+* 系统容量，即系统最大的吞吐量
+* 响应时间，平均响应时间，总的请求中，响应时间低于一个特定阈值的请求所占比例
+
+三者的区别与联系
+* Fault Tolerance 容错性
+   * Detection：发现故障
+   * Isolation & Failover：故障隔离和服务切换
+   * Recovery: 故障恢复
+* Availability 可用性
+* Reliability 可靠性
 
 分布式的对象
 * 数据(data)，存储的分布化
@@ -60,7 +74,7 @@ A collection of independent computers connected through a communication network 
 * No shared memory
 * No shared clock
 
-Collection of independent computers that appears as a single system to the user(s) 从用户的视角一组相互独立的计算机就像单一的系统
+Collection of independent computers that appears as a single system to the user(s) 从用户的视角一组相互独立的计算机就像单一的系统一样提供服务
 * Independent = autonomous, self-contained 独立的：自治的、子包含的
 * Single system = user not aware of distribution 单一系统=用户无法感知到分布性。
 
@@ -146,10 +160,6 @@ Handling failure
 * Reliability: data must not get lost
   * Includes security
 
-三者的区别与联系
-* Fault Tolerance 容错性
-* Availability 可用性
-* Reliability 可靠性
 
 System Failure Types
 * Fail-stop
@@ -163,9 +173,9 @@ System Failure Types
   * Danger: stale state
 
 系统故障类型
-* 停止响应
-* 错误响应：系统重启或者软硬件故障等
-* 超时响应
+* 停止响应：
+* 错误响应：系统重启或者软硬件故障等导致返回错误的响应
+* 超时响应：虽然能够返回响应，但是系统的响应时间超长。
 
 Network Failure Types
 * Omission
@@ -177,10 +187,12 @@ Network Failure Types
   * Network fragments into two or more sub-networks that cannot communicate with each other
 
 网络故障类型
-* 丢包增加
-* 传输超时
-* 链路中断
-* 网络分裂
+* 丢包增加：
+* 传输超时：
+* 无法传输：由链路中断和网络分裂造成，网络分裂被链路中断更加严重。
+
+
+对于可断而言，仅仅根据响应情况，常常难以确定是服务系统问题，还是传输网络问题。
 
 Network & System Failure Types
 * Fail-silent
@@ -421,227 +433,6 @@ Andreas Meier, Michael Kaufmann,SQL & NoSQL Databases: Models, Languages, Consis
 
 
 
-# Open Source
-
-## Zookeeper
-
-### command
-
-srvr
-
-### configuration
-
-```
-tickTime=2000
-dataDir=/var/lib/zookeeper
-clientPort=2181
-#the initLimit is the amount of time to allow followers to connect with a leader.
-initLimit=20
-#The syncLimit value limits how out-of-sync followers can be with the leader.
-syncLimit=5
-		
-#server.X=hostname:peerPort:leaderPort
-server.1=zoo1.example.com:2888:3888
-server.2=zoo2.example.com:2888:3888
-server.3=zoo3.example.com:2888:3888
-```
-
-
-
-## Mesos
-
-
-[Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center](https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf)
-
-
-## Kafka
-
-
-Kafka Producer配置需要在两个方面的折中考虑
-* 吞吐（时延）和可靠性之间的折中
-* 丢失消息和重复消息之间的折中
-较大的消息吞吐和较小的发送时延需要以降低消息可靠性为代价，容易出现消息丢失或重复消息的问题，反之亦然，提高可靠性需要降低。类似地，
-文中介绍的是如果接受到ack，那么确保消息不会丢失。另一种常见情况是在超时之后还没有受到ack，Producer如何处理？如果重传，可能出现消息重复，如果不重传，可能出现消息丢失
-
-可靠性相关的配置参数
-* Topic
-  * replication-factor:replication-factor不能超过Borker的数量，数值越大，可靠性消息可靠性越高
-
-* Producer
-  * acks: 
-  * min.insync.replicas
-
-[Kafka 如果丢了消息，怎么处理？](https://mp.weixin.qq.com/s/TcN5kslQxRQOBlkSjg7_Sg)
-
-
-[kafka-examples](https://github.com/gwenshap/kafka-examples)
-
-### Broker Configuration
-
-```
-zookeeper.connect
-broker.id
-```
-
-kafka-run-class.sh
-```
-LOG_DIR="/home/admkafka/logs"
-```
-
-```
-nohup /usr/local/kafka_2.12-1.1.0/bin/kafka-server-start.sh /usr/local/kafka_2.12-1.1.0/config/server.properties &
-nohup /usr/local/kafka_2.12-1.1.0/bin/zookeeper-server-start.sh /usr/local/kafka_2.12-1.1.0/config/zookeeper.properties &
-```
-
-Command
-```
-kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
-kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --replication-factor 1 --partitions 1 --topic mysql
-kafka-topics.sh --zookeeper 127.0.0.1:2181 --delete --topic mysql
-kafka-topics.sh --zookeeper 127.0.0.1:2181 --alter --topic mysql --partitions 5
-
-kafka-consumer-groups.sh --bootstrap-server 127.0.0.1:9092  --list
-kafka-consumer-groups.sh --bootstrap-server 127.0.0.1:9092  --describe --group trader
-
-kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic reports --from-beginning
-
-kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic service-request --property print.key=true
-```
-#### Neha Narkhede, Gwen Shapira, and Todd Palino. Kafka: The Definitive Guide. O’Reilly Media, Inc. 2017
-
-There are three primary methods of sending messages:
-- Fire-and-forget
-- Synchronous send
-- Asynchronous send
-
-[73]
-Setting session.timeout.ms lower than the default will allow consumer groups to detect and recover from failure
-sooner, but may also cause unwanted rebalances as a result of consumers taking longer to complete the poll loop or garbage collection. Setting session.timeout.ms higher will reduce the chance of accidental rebalance, but also means it will take
-longer to detect a real failure.
-
-
-[75]
-receive.buffer.bytes and send.buffer.bytes: It can be a good idea to increase those when producers or consumers communicate with brokers in a different datacenter, because those network links typically have higher latency and lower bandwidth.
-
-
-[77]
-By setting auto.commit.offset=false, offsets will only be committed when the application explicitly chooses to do so. The simplest and most reliable of the commit APIs is commitSync().
-
-
-[78]~[80]  
-Combining Synchronous and Asynchronous Commits
-- commitSync() will retry the commit until it either succeeds or encounters a nonretriable failure,
-- commitAsync() will not retry
-
-[86]  
-Note that consumer.wakeup() is the only consumer method that is safe to call from a different thread.  
-Before exiting the thread, you must call consumer.close().
-
-
-
-
-
-
-## Spark
-
-### Build
-
-#if use scala 2.12
-./dev/change-scala-version.sh 2.12
-
-build/mvn -Pmesos -DskipTests clean package
-
-[Running Spark on Mesos](https://spark.apache.org/docs/latest/running-on-mesos.html)
-
-hadoop fs -copyFromLocal spark-2.4.0-bin-custom-spark.tgz  hdfs://master.hadoop:10000/spark/lib/
-
-### Configuration
-
-vim conf/spark-env.sh
-```
-# Options read by executors and drivers running inside the cluster
-# - SPARK_LOCAL_IP, to set the IP address Spark binds to on this node
-# - SPARK_PUBLIC_DNS, to set the public DNS name of the driver program
-# - SPARK_CLASSPATH, default classpath entries to append
-# - SPARK_LOCAL_DIRS, storage directories to use on this node for shuffle and RDD data
-# - MESOS_NATIVE_JAVA_LIBRARY, to point to your libmesos.so if you use Mesos
-MESOS_NATIVE_JAVA_LIBRARY=/usr/local/mesos/lib/libmesos.so
-SPARK_EXECUTOR_URI=hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-spark.tgz
-SPARK_LOG_DIR=hdfs://master.hadoop:10000/spark/logs
-SPARK_LOCAL_IP=192.168.1.5
-SPARK_LOCAL_DIRS=/home/hadoop/spark
-```
-
-vim conf/spark-defaults.conf
-```
-spark.executor.uri  hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-spark.tgz
-spark.master        mesos://192.168.1.5:7077
-spark.eventLog.dir  hdfs://master.hadoop:10000/spark/logs
-```
-vim /etc/profile
-```
-SPARK_HOME=/usr/local/spark
-EXPORT SPARK_HOME
-```
-
-configure hostname for every nodes   
-
-vim /etc/hostname
-```
-node7.beijing
-```
-vim /etc/sysconfig/network
-```
-HOSTNAME=node7.beijing
-```
-vim /etc/hosts
-```
-192.168.1.7 node7.beijing
-192.168.1.6 node6.beijing
-192.168.1.5 node5.beijing
-192.168.1.3 node3.beijing
-192.168.1.2 node2.beijing
-```
-
-```
-hostname node5.beijing
-```
-
-### Run
-
-```
-/usr/local/spark/sbin/start-mesos-dispatcher.sh -m mesos://192.168.1.5:5050 -h 192.168.1.5 --webui-port 8087 --name SparkFramework
-
-http://192.168.1.5:8087/
-```
-
-```
-export PYSPARK_PYTHON=/usr/local/anaconda3/bin/python3
-```
-
-
-
-  
-## Flink
-There are two basic kinds of state in Flink: Keyed State and Operator State.
-
-Keyed State is always relative to keys and can only be used in functions and operators on a KeyedStream.
-
-With Operator State (or non-keyed state), each operator state is bound to one parallel operator instance. The Kafka Connector is a good motivating example for the use of Operator State in Flink. 
-
-Keyed State and Operator State exist in two forms: managed and raw.
-
-Managed State is represented in data structures controlled by the Flink runtime, such as internal hash tables, or RocksDB. Examples are “ValueState”, “ListState”, etc. Flink’s runtime encodes the states and writes them into the checkpoints.
-
-Raw State is state that operators keep in their own data structures. When checkpointed, they only write a sequence of bytes into the checkpoint. Flink knows nothing about the state’s data structures and sees only the raw bytes.
-
-A third type of supported operator state is the Broadcast State. Broadcast state was introduced to support use cases where some data coming from one stream is required to be broadcasted to all downstream tasks, where it is stored locally and is used to process all incoming elements on the other stream.
-
-
-* Pattern
-
-MapReduce pattern
-* map part (distribution of work).
 
 
 # 逻辑时间（Logical Time)
@@ -690,6 +481,13 @@ An advantage of synchronizing via the LAN is that latency becomes far more predi
 
 Goal of logical clocks: Allow processes on different systems to identify causal relationships and their ordering among events, particularly among messages between different systems. 逻辑时钟的目的：允许不同系统上的进程识别在不同系统上的事件之间的（特别是消息之间的）因果关系及其顺序。
 
+逻辑时间需要考虑两个方面
+* 如果a→b, 那么clock(a) \<clock(b)
+* 如果clock(a) \<clock(b)， 那么必有a→b
+
+两个关系
+* These events are concurrent这些事件是并发的
+* Otherwise, they are causal。否则，它们是因果关系
 
 Lamport clocks allow processes to assign sequence numbers (“timestamps”) to messages and other events so that all cooperating processes can agree on the order of related events. There is no assumption of a central time source and no concept of when events took place. Events are causally related if one event may potentially influence the outcome of another event. 
 Lamport时钟允许进程赋予消息和其他事件一个序列号（时间戳），使得所有在协作中的进程能够对相关事件的顺序达成一致。没有假设集中的时间源，也没有事件发生时间的概念。如果一个事件可能潜在地影响另一个事件的发生，那么称事件是因果相关的。
@@ -707,11 +505,42 @@ A message comprises two events: (1) at the sender, we have the event of sending 
 2. 在接收端，存在接收消息的事件
 时钟是一个进程范围的计数器（例如一个全局变量），并在每个事件发生前总是递增。当一个消息到达时，如果接收者的时钟小于或等于消息的时间戳，那么这个时钟被设置为消息时间戳+1。这确保了由接收消息事件标记的时间戳将会一直大于发送消息的时间戳。
 
+
+
+**Lamport Clocks**
+
 This simple incrementing counter does not give us results that are consistent with causal events. If event a happened before event b then we expect clock(a) \< clock(b).
 这种简单的递增计数器不能为我们提供因果事件的一致性。如果事件a在事件b之前发生，我们期望clock(a) \<clock(b)。
 
 To make this work, Lamport timestamp generation has an extra step. If an event is the sending of a message then the timestamp of that event is sent along with the message. If an event is the receipt of a message then the the algorithm instructs you to compare the current value of the process' timestamp counter (which was just incremented before this event) with the timestamp in the received message. If the timestamp of the received message is greater than or equal to that of the event, the event and the process' timestamp counter are both updated with the value of the timestamp in the received message plus one. This ensures that the timestamp of the received event and all further timestamps on that process will be greater than that of the timestamp of the event of sending the message as well as all previous messages on that process.
+为了实现这一点，生成Lamport时间戳有一个额外步骤。如果一个事件是发送一个消息，那么这个事件的时间戳也与这个消息一同发送。如果一个消息是接收一个消息，那么算法会比较进程时间戳计数器的当前值（在这个事件之前刚刚递增）和所接收消息的时间戳。如果所接收消息的时间戳大于或者等于当前事件的时间戳，则当前事件和进程时间戳计数器都被更新为接收消息时间戳加一的值。这确保了接收事件的时间戳以及在那个进程上所有后续的时间戳将会大于发送事件的以及这个进程发送消息之前的时间戳。
 
+![Lamport Clock Assignment](pics/clocks-lamport.png)
+
+With Lamport timestamps, we are assured that two causally-related events will have timestamps that reflect the order of events. For example, event h happened before event m in the Lamport causal sense. The chain of causal events is h→c, c→d, and d→m. Since the happened-before relationship is transitive, we know that h→m (h happened before m). Lamport timestamps reflect this. The timestamp for h (1) is less than the timestamp for m (7). However, just by looking at timestamps we cannot conclude that there is a causal happened-before relation. For instance, because the timestamp for k (1) is less than the timestamp for i (3) does not mean that k happened before i. Those events happen to be concurrent but we cannot discern that by looking at Lamport timestamps. We need need to employ a different technique to be able to make that determination. That technique is the use of vector timestamps.
+通过Lamport时间戳，我们可以确定对于两个因果相关的事件，其时间戳会反映事件的顺序。例如，在Lamport因果意义上，事件h在事件m之前发生。因为存在因果关系事件链 h→c、c→d和 d→m。又因为happened-before关系是可传递的，所以我们可以得到 h→m（事件h在事件m之前发生）。Lamport时间戳反映了这个。h的时间戳1小于事件m的时间戳7。但是，仅仅通过查看时间戳，我们无法得出这是一个因果happerned-before关系的结论。例如k的时间戳1小于事件i的时间戳3，但是不意味着k先于i发生。这些事件碰巧是并发的，但我们无法通过查看Lamport时间戳来辨别。我们需要采用一种不同的技术来确定。这种技术就是使用向量时间戳。
+
+Lamport timestamps allow us to maintain time ordering among related events： Partial ordering
+* 第一个问题在不同进程上的多个事件可能标记相同的时间戳
+* 第二个问题是Lamport时间戳（仅仅通过通过查看时间戳）不能决定两个事件之间的因果关系。
+
+
+**Vector Clocks**
+
+Unique timestamps (total ordering)
+
+
+A vector clock is no longer a single value but rather a vector of numbers, with each element corresponding to a process.一个向量时钟不再是一个单一值，而是一个数字向量，向量中的每一个元素对应一个进程。
+
+Each process knows its position in the vector. For example, in the example below, the vector elements correspond to the processes (P0, P1, P2).每个进程直到其在这个向量中的为止。例如，在下文的例子中向量元素对应于进程(P0, P1, P2)。
+
+The rules for updating vector clocks are as follows:更新向量时钟的规则如下
+1. Before affixing a vector timestamp to an event, a process increments the element of its local vector that corresponds to its position in the vector. For example, process 0 increments element 0 of its vector, process 1 increments element 1 of its vector, and so on.在给一个事件添加时间戳向量之前，一个进程会增加在其本地向量中对应在向量中位置的元素。
+2. When a process receives a message, it also first increments its element of the vector (i.e., it applies the previous rule). It then sets the vector of the received event to a set of values that contains the higher of two values when doing and element-by-element comparison of the original event’s vector and the vector received in the message.  当一个进程接收一个消息，其也要首先更新向量中的元素（例如，像上一个规则所应用的那样）。然后，在原来的事件向量和在消息中接收到的向量之间一个一个元素的对照，两个元素中取较大的值设置接收事件的向量。
+
+
+To determine if two events, V and W, are concurrent, do an element-by-element comparison of the corresponding timestamps. If each element of timestamp V is less than or equal to the corresponding element of timestamp W then V causally precedes W and the events are not concurrent. If each element of timestamp V is greater than or equal to the corresponding element of timestamp W then W causally precedes V and the events are not concurrent. If, on the other hand, neither of those conditions apply and some elements in V are greater than while others are less than the corresponding element in W then the events are concurrent. 
+为了确定两个事件V和W是否并发，只要逐个元素地比较对应的时间戳。如果V中时间戳的每个元素小于或者等于W中时间戳的对应元素，那么V就因果地先于W，两个事件不是并发的。如果V中时间戳的每个元素大于或者等于W中时间戳的对应元素，则W逻辑地先于V，两个事件不是并发的。另一个方面，如果上面两个条件都不适用，也就是，V中的一些元素大于而另外一些则小于W中的对应元素，则两个事件是并发的。
 
 # Patterns
 
@@ -786,8 +615,15 @@ Always use timeouts (if possible)
 * Availability
 * Reliability
 * Resiliency
+* Stability
+* Fault Tolerance 
 
-Stability 
+
+Availability refers to the fraction of time that the system as a whole is usable. Since individual systems may fail, we achieve high availability via redundancy: deploying duplicate, triplicate (and more) systems.可用性是指系统作为一个整体可用时间的比例。因为单个系统可能会失效，所以我们通过冗余来实现高可用性：部署双重、三重（和更多重）的系统。 
+
+
+* 复制/克隆：并联系统，
+* 分解/划分：串联系统，
 
 
 Mean time between failures (MTBF)，平均无故障工作时间或者平均故障间隔时间，在工作环境条件下两个故障之间时间的平均值。MTBF越长表示可靠性越高正确工作能力越强 。
@@ -1142,18 +978,22 @@ Failures in todays complex, distributed and interconnected systems are not the e
 安全性是指坏的事情不会发生，而活跃性是指某些号的事情最终一定会发生。
 
 
+# 分布式事务(Distributed Transactions)
+
+Handling Failure in Commit 在提交中处理失败。
+
 [Two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)
 [二阶段提交](https://zh.wikipedia.org/wiki/%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4)
 two-phase commit protocol (2PC) 
 
-2PC是一种针对分布式环境设计的一种算法，用于协调所有节点（或进程）在参与分布式原子事务时保持一致。在分布式系统中，每个节点虽然可以知晓自己的操作时成功或者失败，却无法知道其他节点的操作的成功或失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点（称作参与者）的操作结果并最终指示这些节点提交或者中止（回滚）这个事务。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
+2PC是针对分布式环境设计的一种算法，用于协调所有节点（或进程）在参与分布式原子事务时保持一致。在分布式系统中，每个节点虽然可以知晓自己的操作是成功或是失败，但无法确定其他节点的操作是成功还是失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点（称作参与者）的操作结果并最终指示这些节点提交或者中止（回滚）这个事务。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
 
-在2PC协议中将所有的节点（或进程）被划分为两类，其中一个被设计为协调者（coordinator），而其他的被设计为参与者（participants，cohorts或workers）。
+在2PC协议中将所有的节点（或进程）被划分为两类，其中一个被设计为协调者（Coordinator），而其他的被设计为参与者（Participants，Cohorts或Workers）。
 
 The protocol assumes that there is stable storage at each node with a write-ahead log, that no node crashes forever, that the data in the write-ahead log is never lost or corrupted in a crash, and that any two nodes can communicate with each other. The last assumption is not too restrictive, as network communication can typically be rerouted. The first two assumptions are much stronger; if a node is totally destroyed then data can be lost. 
-该协议假设每个节点都具有稳定的存储和一个预写日志，并且节点不会永远处于崩溃状态，因此预写日志的数据不会丢失，也不会在崩溃中损坏。任意两个节点之间都能够相互通讯。最后一个假设不太严格，因为网络通讯通常能够重新路由。前两个假设非常强，如果一个节点被完全摧毁，那么数据肯能会丢失。
+该协议假设每个节点都具有稳定的存储和一个预写日志，并且节点不会永远处于崩溃状态，因此预写日志的数据不会丢失，也不会在崩溃中损坏。任意两个节点之间都能够相互通讯。最后一个假设不太严格，因为网络通讯通常能够重新路由。前两个假设非常强，如果一个节点被完全摧毁，那么数据可能会丢失。
 
-任何分布式事务在“正常执行”的情况下（也就是说，当没有出现失败的情况下，但是在实际的大型分布式系统中故障是常态），2PC协议有两个阶段组成
+2PC协议有两个阶段组成
 1. 请求阶段（commit-request phase，或称表决阶段，voting phase）。在此阶段，一个协调者尝试让所有参与者针对于是提交事务、还是终止这个事务进行投票，或者“Yes”： 提交（如果事务参与这本地部分正确执行），或者“No”：终止（如果检测到本的部分出现问题），
    1. The coordinator sends a query to commit message to all participants and waits until it has received a reply from all participants. 协调者向所有参与者发送询问是否提交操作，并一直等待，直到接收到来自所有参与者的响应。
    2. The participants execute the transaction up to the point where they will be asked to commit. They each write an entry to their undo log and an entry to their redo log. 参与者执行所有截止到询问发起时间的事务操作，并将Undo信息和Redo信息写入日志。
@@ -1164,7 +1004,7 @@ The protocol assumes that there is stable storage at each node with a write-ahea
         1. The coordinator sends a commit message to all the participants. 协调者发送一个提交消息给所有的参与者。
         2. Each participant completes the operation, and releases all the locks and resources held during the transaction.每个参与者完成操作，并释放在此事务期间持有的所有锁和资源。
         3. Each participant sends an acknowledgement to the coordinator. 每个参与者发送一个确认消息给协调者。
-        4. The coordinator completes the transaction when all acknowledgments have been received. 当收到所有的确认消息时，协调着完成这个事务。
+        4. The coordinator completes the transaction when all acknowledgments have been received. 当收到所有的确认消息时，协调者完成这个事务。
    * Failure： If any participant votes No during the commit-request phase (or the coordinator's timeout expires)。在请求阶段，如果其中一个参与者投票为No（或者协调者时间过期）。
         1. The coordinator sends a rollback message to all the participants. 协调者发送一个回滚消息给所有的参与者。
         2. Each participant undoes the transaction using the undo log, and releases the resources and locks held during the transaction.每个参与者使用undo日志取消事务，并释放在此事务期间持有的所有锁和资源。
@@ -1673,4 +1513,242 @@ Alex Petrov, Database Internals: A deep-dive into how distributed data systems w
 
 
 [Distributed Systems: Paul Krzyzanowski](https://www.cs.rutgers.edu/%7Epxk/417/notes/index.html)
+
+
+[Spring 2020 Reading List](https://www.cs.rutgers.edu/~pxk/417/readinglist.html)
+
+[CS6450 Distributed Systems](http://www.cs.utah.edu/~stutsman/cs6450/calendar/)
+
+[A Distributed Systems Reading List](https://dancres.github.io/Pages/)
+
+[distributed_systems_readings](https://github.com/feilengcui008/distributed_system_readings)
+
+[Distributed Systems (Spring 2021)](http://homes.sice.indiana.edu/prateeks/dist-sys-course.html)
+
+[awesome-distributed-systems](https://github.com/theanalyst/awesome-distributed-systems)
+
+[Advanced Topics in Distributed System](https://www.cs.purdue.edu/homes/clifton/cs603/)
+
+# Open Source
+
+## Zookeeper
+
+### command
+
+srvr
+
+### configuration
+
+```
+tickTime=2000
+dataDir=/var/lib/zookeeper
+clientPort=2181
+#the initLimit is the amount of time to allow followers to connect with a leader.
+initLimit=20
+#The syncLimit value limits how out-of-sync followers can be with the leader.
+syncLimit=5
+		
+#server.X=hostname:peerPort:leaderPort
+server.1=zoo1.example.com:2888:3888
+server.2=zoo2.example.com:2888:3888
+server.3=zoo3.example.com:2888:3888
+```
+
+
+
+## Mesos
+
+
+[Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center](https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf)
+
+
+## Kafka
+
+
+Kafka Producer配置需要在两个方面的折中考虑
+* 吞吐（时延）和可靠性之间的折中
+* 丢失消息和重复消息之间的折中
+较大的消息吞吐和较小的发送时延需要以降低消息可靠性为代价，容易出现消息丢失或重复消息的问题，反之亦然，提高可靠性需要降低。类似地，
+文中介绍的是如果接受到ack，那么确保消息不会丢失。另一种常见情况是在超时之后还没有受到ack，Producer如何处理？如果重传，可能出现消息重复，如果不重传，可能出现消息丢失
+
+可靠性相关的配置参数
+* Topic
+  * replication-factor:replication-factor不能超过Borker的数量，数值越大，可靠性消息可靠性越高
+
+* Producer
+  * acks: 
+  * min.insync.replicas
+
+[Kafka 如果丢了消息，怎么处理？](https://mp.weixin.qq.com/s/TcN5kslQxRQOBlkSjg7_Sg)
+
+
+[kafka-examples](https://github.com/gwenshap/kafka-examples)
+
+### Broker Configuration
+
+```
+zookeeper.connect
+broker.id
+```
+
+kafka-run-class.sh
+```
+LOG_DIR="/home/admkafka/logs"
+```
+
+```
+nohup /usr/local/kafka_2.12-1.1.0/bin/kafka-server-start.sh /usr/local/kafka_2.12-1.1.0/config/server.properties &
+nohup /usr/local/kafka_2.12-1.1.0/bin/zookeeper-server-start.sh /usr/local/kafka_2.12-1.1.0/config/zookeeper.properties &
+```
+
+Command
+```
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --replication-factor 1 --partitions 1 --topic mysql
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --delete --topic mysql
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --alter --topic mysql --partitions 5
+
+kafka-consumer-groups.sh --bootstrap-server 127.0.0.1:9092  --list
+kafka-consumer-groups.sh --bootstrap-server 127.0.0.1:9092  --describe --group trader
+
+kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic reports --from-beginning
+
+kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic service-request --property print.key=true
+```
+#### Neha Narkhede, Gwen Shapira, and Todd Palino. Kafka: The Definitive Guide. O’Reilly Media, Inc. 2017
+
+There are three primary methods of sending messages:
+- Fire-and-forget
+- Synchronous send
+- Asynchronous send
+
+[73]
+Setting session.timeout.ms lower than the default will allow consumer groups to detect and recover from failure
+sooner, but may also cause unwanted rebalances as a result of consumers taking longer to complete the poll loop or garbage collection. Setting session.timeout.ms higher will reduce the chance of accidental rebalance, but also means it will take
+longer to detect a real failure.
+
+
+[75]
+receive.buffer.bytes and send.buffer.bytes: It can be a good idea to increase those when producers or consumers communicate with brokers in a different datacenter, because those network links typically have higher latency and lower bandwidth.
+
+
+[77]
+By setting auto.commit.offset=false, offsets will only be committed when the application explicitly chooses to do so. The simplest and most reliable of the commit APIs is commitSync().
+
+
+[78]~[80]  
+Combining Synchronous and Asynchronous Commits
+- commitSync() will retry the commit until it either succeeds or encounters a nonretriable failure,
+- commitAsync() will not retry
+
+[86]  
+Note that consumer.wakeup() is the only consumer method that is safe to call from a different thread.  
+Before exiting the thread, you must call consumer.close().
+
+
+
+
+
+
+## Spark
+
+### Build
+
+#if use scala 2.12
+./dev/change-scala-version.sh 2.12
+
+build/mvn -Pmesos -DskipTests clean package
+
+[Running Spark on Mesos](https://spark.apache.org/docs/latest/running-on-mesos.html)
+
+hadoop fs -copyFromLocal spark-2.4.0-bin-custom-spark.tgz  hdfs://master.hadoop:10000/spark/lib/
+
+### Configuration
+
+vim conf/spark-env.sh
+```
+# Options read by executors and drivers running inside the cluster
+# - SPARK_LOCAL_IP, to set the IP address Spark binds to on this node
+# - SPARK_PUBLIC_DNS, to set the public DNS name of the driver program
+# - SPARK_CLASSPATH, default classpath entries to append
+# - SPARK_LOCAL_DIRS, storage directories to use on this node for shuffle and RDD data
+# - MESOS_NATIVE_JAVA_LIBRARY, to point to your libmesos.so if you use Mesos
+MESOS_NATIVE_JAVA_LIBRARY=/usr/local/mesos/lib/libmesos.so
+SPARK_EXECUTOR_URI=hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-spark.tgz
+SPARK_LOG_DIR=hdfs://master.hadoop:10000/spark/logs
+SPARK_LOCAL_IP=192.168.1.5
+SPARK_LOCAL_DIRS=/home/hadoop/spark
+```
+
+vim conf/spark-defaults.conf
+```
+spark.executor.uri  hdfs://master.hadoop:10000/spark/lib/spark-2.4.0-bin-custom-spark.tgz
+spark.master        mesos://192.168.1.5:7077
+spark.eventLog.dir  hdfs://master.hadoop:10000/spark/logs
+```
+vim /etc/profile
+```
+SPARK_HOME=/usr/local/spark
+EXPORT SPARK_HOME
+```
+
+configure hostname for every nodes   
+
+vim /etc/hostname
+```
+node7.beijing
+```
+vim /etc/sysconfig/network
+```
+HOSTNAME=node7.beijing
+```
+vim /etc/hosts
+```
+192.168.1.7 node7.beijing
+192.168.1.6 node6.beijing
+192.168.1.5 node5.beijing
+192.168.1.3 node3.beijing
+192.168.1.2 node2.beijing
+```
+
+```
+hostname node5.beijing
+```
+
+### Run
+
+```
+/usr/local/spark/sbin/start-mesos-dispatcher.sh -m mesos://192.168.1.5:5050 -h 192.168.1.5 --webui-port 8087 --name SparkFramework
+
+http://192.168.1.5:8087/
+```
+
+```
+export PYSPARK_PYTHON=/usr/local/anaconda3/bin/python3
+```
+
+
+
+  
+## Flink
+There are two basic kinds of state in Flink: Keyed State and Operator State.
+
+Keyed State is always relative to keys and can only be used in functions and operators on a KeyedStream.
+
+With Operator State (or non-keyed state), each operator state is bound to one parallel operator instance. The Kafka Connector is a good motivating example for the use of Operator State in Flink. 
+
+Keyed State and Operator State exist in two forms: managed and raw.
+
+Managed State is represented in data structures controlled by the Flink runtime, such as internal hash tables, or RocksDB. Examples are “ValueState”, “ListState”, etc. Flink’s runtime encodes the states and writes them into the checkpoints.
+
+Raw State is state that operators keep in their own data structures. When checkpointed, they only write a sequence of bytes into the checkpoint. Flink knows nothing about the state’s data structures and sees only the raw bytes.
+
+A third type of supported operator state is the Broadcast State. Broadcast state was introduced to support use cases where some data coming from one stream is required to be broadcasted to all downstream tasks, where it is stored locally and is used to process all incoming elements on the other stream.
+
+
+* Pattern
+
+MapReduce pattern
+* map part (distribution of work).
+
 

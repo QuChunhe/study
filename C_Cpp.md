@@ -5,6 +5,35 @@
 
 [Profiling Software Using perf and Flame Graphs](https://www.percona.com/blog/2019/11/20/profiling-software-using-perf-and-flame-graphs/)
 
+掌握如下三个方面就应对95%的C/C++实际编程问题
+* 高效的文件读写
+  * 机械硬盘
+  * 固态硬盘
+* 高效的网络操作
+  * 服务端
+  * 客户端
+* 高效的并发处理
+  * 锁的使用
+  * 并发数据结构
+  * 并发编程模式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
 
 ```
 #include <stdio.h>
