@@ -971,12 +971,35 @@ yum install dstat.noarch
 dstat -N em1 1
 ```
 
-![TCP Header](pics/TCPHeader.png)
 
-* Sequence number: The sequence number, a 32-bit number assigned to the first bit of data. It is used to initiate and make connections. Usually, sequence numbers are only used once in a connection.
-* Acknowledgment Number: Usually one greater than the Sequence number received from the sender. This helps to confirm to the other party that they accepted SYN.
-* SYN flag: SYN stands for Synchronization. This can be described as a request to establish a connection. If SYN is 1 (one) it means the device wants to establish a secure connection.
-* ACK flag: ACK stands for Acknowledgement. This can be explained as a response to SYN. If the ACK is 1 (one), means that the device has received the SYN message.
+* TCP Header
+* TCP Three-Way Handshake
+* TCP Four-Way Handshake
+* TCP Keep Alive
+* TCP Flow Control
+* TCP Retransmission
+
+
+![TCP Header](pics/TCPHeader.png)
+TCP报文（TCP segment）由两个部分组成，一部分是TCP头部，另一个部分是用户/应用数据。TCP头部携带了用于处理消息的协议信息。
+* Source Port（发送端口16位）
+* Destination Port（接收端口16位）
+* Sequence number（序列号32位）: It is used to initiate and make connections. Usually, sequence numbers are only used once in a connection.
+* Acknowledgment Number（确认序列号32位）: Usually one greater than the Sequence number received from the sender. This helps to confirm to the other party that they accepted SYN.
+* Header Lengh（头部长度4位）
+* Reserved（保留6位）
+* Flags（标志6位）
+* Window（窗口16位）：用于流量控制
+* Checksum（校验16位）
+* Urgent Pointer（紧急指针16位）
+* Options （可选16位）
+
+6个标志位分别位
+* URG：If Urgent Pointer Field is valid and then urgent pointer value is set.
+* ACK:ACK stands for Acknowledgement. This can be explained as a response to SYN. If the ACK is 1 (one), means that the device has received the SYN message.
+* PSH：Push request.TCP tries to send the maximum number of bytes in a single segment. Maximum Transmission Unit (MTU) is the network parameter which decides the size.TCP provides a mechanism where an application can instruct the layer not to buffer user data. Once the no buffering is set TCP sends the segments immediately. The setting results in the PSH flag set in the TCP header.
+* RST
+* SYN: SYN stands for Synchronization. This can be described as a request to establish a connection. If SYN is 1 (one) it means the device wants to establish a secure connection.
 * FIN flag: FIN means Finished. Used to end a connection. If FIN is 1 (one), the device wants to disconnect or terminate the connection.
 
 ![Three-Way Handshake](pics/TCP3WayHandshaking.png)
@@ -1155,6 +1178,46 @@ Explanation for above parameter in section a), b) and c).
 ```
 # sysctl -p
 ```
+
+[TCP Timers | Time Out Timer | Time Wait Timer](https://www.gatevidyalay.com/tcp-timers-transmission-control-protocol/)
+
+The 4 important timers used by a TCP implementation are
+* Time Out Timer: TCP uses a time out timer for retransmission of lost segments.
+   * Sender starts a time out timer after transmitting a TCP segment to the receiver.
+   * If sender receives an acknowledgement before the timer goes off, it stops the timer.
+   * If sender does not receives any acknowledgement and the timer goes off, then TCP Retransmission occurs.
+   * Sender retransmits the same segment and resets the timer.
+   * The value of time out timer is dynamic and changes with the amount of traffic in the network.
+   * Time out timer is also called as Retransmission Timer.
+
+* Time Wait Timer: TCP uses a time wait timer during connection termination.
+   * Sender starts the time wait timer after sending the ACK for the second FIN segment.
+   * It allows to resend the final acknowledgement if it gets lost.
+   * It prevents the just closed port from reopening again quickly to some other application.
+   * It ensures that all the segments heading towards the just closed port are discarded.
+   * The value of time wait timer is usually set to twice the lifetime of a TCP segment.
+
+* Keep Alive Timer: TCP uses a keep alive timer to prevent long idle TCP connections.
+   * Each time server hears from the client, it resets the keep alive timer to 2 hours.
+   * If server does not hear from the client for 2 hours, it sends 10 probe segments to the client.
+   * These probe segments are sent at a gap of 75 seconds.
+   * If server receives no response after sending 10 probe segments, it assumes that the client is down.
+   * Then, server terminates the connection automatically.
+* Persistent Timer
+   * TCP uses a persistent timer to deal with a zero-widow-size deadlock situation.
+   * It keeps the window size information flowing even if the other end closes its receiver window.
+
+TCP Retransmission
+
+SACK is an option in TCP, which enables the receiver to send an acknowledgment packet with the range (block) of sequence numbers over a connection.  There could be multiple ranges in a SACK message.  Each block start sequence number is Left Edge and the last is Right Edge.
+
+[TCP Congestion Control | Congestion in Network](https://www.gatevidyalay.com/tcp-congestion-control-tcp-protocol-tcp/)
+
+TCP flow control
+1. Slow Start
+2. Congestion Avoidance
+3. Congestion Detection
+
 
 查看DNS
 ```
