@@ -11,7 +11,37 @@ https://akfpartners.com/growth-blog
 * Vertical scaling(垂直扩展):Scale up 向上伸缩，通过升级硬件，实现可扩展。
 
 
-通过网络连接的计算机，能够向一台计算机一样向外提供服务。
+分布式系统的定义：一组独立的并通过网络连接的计算机，能够相互协作完成特定的任务，就像一台计算机一样。
+
+Multiprocessors（多处理器系统）
+* Shared memory共享内存
+    * uniform memory access (UMA) architecture
+	* Non-uniform memory access (NUMA) architecture
+* Shared clock共享时钟
+* Shared operating system共享操作系统
+* All-or-nothing failure或者全部失效或者没有失效
+
+
+supercomputer：Parallel systems（超级计算机/大规模并行系统）
+* Distribued memoery 分布式内存
+* No shared global clock 没有全局共享时钟
+* Shared operating system 共享的操作系统
+* Partial failures 部分失效
+* dedicated network 专门的网络
+
+Multicomputers (networks of computers)：distributed systems（分布式系统）
+* No shared memory 没有共享的内存
+* No shared clock 没有共享的时钟
+* Partial failures 部分失效
+* common network 通用网络
+
+分布式系统依赖于网络可以划分为
+* 强耦合系统（strongly coupled systems）：通过局域网络连接，更大的带宽以及通信时延更加可预测
+* 松耦合系统（weakly coupled systems）：通过广域网络连接。
+
+通过商品化硬件构建分布式系统，能够以比超算更加低廉的价格，提供远高于单个多处理系统的性能。
+* 超级计算器（超算）：采用专用的硬件和软件，价格贵，性能高
+* 多处理器系统：
 
 分布式字面上的意思是通过多个服务器或者阶段协同提高服务
 
@@ -29,13 +59,14 @@ https://akfpartners.com/growth-blog
 
 评价分布式方案或者系统的几个方面
 * 可扩展性
-* 性能
-* 可靠性
+* 性能指标
+* 复杂程度
 
 
 性能指标
 * 系统容量，即系统最大的吞吐量
 * 响应时间，平均响应时间，总的请求中，响应时间低于一个特定阈值的请求所占比例
+* 可靠性，
 
 三者的区别与联系
 * Fault Tolerance 容错性
@@ -79,24 +110,7 @@ Collection of independent computers that appears as a single system to the user(
 * Single system = user not aware of distribution 单一系统=用户无法感知到分布性。
 
 
-Multiprocessors
-* Shared memory
-* Shared clock
-* Shared operating system
-* All-or-nothing failure
 
-supercomputer：Parallel systems
-* Distribued memoery 分布式内存
-* No shared global clock 没有全局共享时钟
-* Shared operating system 共享的操作系统
-* Partial failures 部分失败
-* dedicated network 抓门的网络
-
-Multicomputers (networks of computers) ⇒ distributed systems
-* No shared memory
-* No shared clock
-* Partial failures
-* Inter-computer communication mechanism needed: the network
 
 
 More cores per chip：requires multithreaded programming
@@ -353,7 +367,30 @@ Alan Fekete, David Gupta, Victor Luchangco, Nancy Lynch, and Alex Shvartsman. Ev
 
 # Books
 
-### Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algorithms, and Systems. Cambridge University Press. 2008
+## Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algorithms, and Systems. Cambridge University Press. 2008
+
+
+### Chapter 1
+
+
+1.4 Relation to parallel multiprocessor/multicomputer systems
+
+The degree of coupling among a set of modules, whether hardware or software, is measured in terms of the interdependency and binding and/or homogeneity among the modules. When the degree of coupling is high (low), the modules are said to be tightly (loosely) coupled.
+
+Parallelism or speedup of a program on a specific system. The speedup depends on the number of processors and the mapping of the code to the processors. It is expressed as the ratio of the time T(1) with a single processor, to the time T(n) with n processors.
+
+Parallelism within a parallel/distributed program. This is an aggregate measure of the percentage of time that all the processors are executing CPU instructions productively, as opposed to waiting for communication (either via shared memory or message-passing) operations to complete.
+
+Concurrency of a program
+
+The parallelism/concurrency in a parallel/distributed program can be measured by the ratio of the number of local (non-communication and non-shared memory access) operations to the total number of operations, including the communication or shared memory access operations.
+
+
+Granularity of a program 
+
+The ratio of the amount of computation to the amount of communication within the parallel/distributed program is termed as granularity. If the degree of parallelism is coarse-grained (fine-grained), there are relatively many more (fewer) productive CPU instruction executions, compared to the number of times the processors communicate either via shared memory or messagepassing and wait to get synchronized with the other processors.
+
+1.5 Message-passing systems versus shared memory systems
 
 causality, physical time, logical time
 

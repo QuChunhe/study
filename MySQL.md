@@ -1378,6 +1378,12 @@ Dedicated Server
  * Only works on the clustered index (yet) 
  
  
+# Course
+
+[CMU 15-445/645 :: Intro to Database Systems](https://15445.courses.cs.cmu.edu/fall2020/schedule.html) 
+
+[CMU 15-721 :: Advanced Database Systems](https://15721.courses.cs.cmu.edu/spring2020/schedule.html)
+
 # Books
 
 
