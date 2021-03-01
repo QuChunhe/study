@@ -1016,6 +1016,13 @@ Failures in todays complex, distributed and interconnected systems are not the e
 
 
 # 分布式事务(Distributed Transactions)
+[七种分布式事务的解决方案，一次讲给你听](https://mp.weixin.qq.com/s?__biz=Mzk0MjA4ODcxNQ==&mid=2247497900&idx=1&sn=bc852ce0d95cba8e38b88bd2c770fb61&chksm=c2cacfc8f5bd46dec369e3ae19fd38a1f1c84c865166128888b898d1fb7d13749c5bcce32561&mpshare=1&scene=1&srcid=0301XK8c2GVwrBp3v3e7VhOs&sharer_sharetime=1614588764353&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=ARxc9hSIw3%2BQ80qPYtwZBAQ%3D&pass_ticket=hTYUAL4XFSBHRHnHATvHraAh%2Fz6yBvuhenUPU0Uj6K%2FyI8AFZ8qSJuFXYU4y5fFj&wx_header=0#rd)
+
+事务的ACID属性
+* 原子性（Atomicity）：一个事务中的所有操作，要么全部完成，要么全部不完成，不会存在部分操作完成的情况。
+* 一致性（Consistency）：在事务开始之前和事务结束以后，数据库将会保持一致的状态，即数据的完整性不会受到被破坏。
+* 隔离性（Isolation）：数据库允许多个并发事务执行，但是每个事务的执行过程就像仅仅有自己一个事务执行一样。
+* 持久性（Durability）：一旦事务结束，对数据的修改就是永久的，即便系统故障也不会丢失。
 
 Handling Failure in Commit 在提交中处理失败。
 
@@ -1023,7 +1030,7 @@ Handling Failure in Commit 在提交中处理失败。
 [二阶段提交](https://zh.wikipedia.org/wiki/%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4)
 two-phase commit protocol (2PC) 
 
-2PC是针对分布式环境设计的一种算法，用于协调所有节点（或进程）在参与分布式原子事务时保持一致。在分布式系统中，每个节点虽然可以知晓自己的操作是成功或是失败，但无法确定其他节点的操作是成功还是失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点（称作参与者）的操作结果并最终指示这些节点提交或者中止（回滚）这个事务。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标，因此其被广泛使用。 
+2PC是针对分布式环境而设计的一种算法，用于协调所有节点（或进程）在参与分布式原子事务时保持一致。在分布式系统中，每个节点虽然可以知晓自己的操作是成功或是失败，但无法确定其他节点的操作是成功还是失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点（称作参与者）的操作结果并最终指示这些节点提交或者中止（回滚）这个事务。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标。 
 
 在2PC协议中将所有的节点（或进程）被划分为两类，其中一个被设计为协调者（Coordinator），而其他的被设计为参与者（Participants，Cohorts或Workers）。
 
