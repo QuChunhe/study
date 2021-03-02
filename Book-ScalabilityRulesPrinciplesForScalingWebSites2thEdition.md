@@ -1207,15 +1207,15 @@ When a system is under incredible load, say during peak times of demand, even sm
 ## Rule 36—Design Using Fault-Isolative “Swim Lanes”
 ## 规则36——设计使用能够隔离故障的泳道
 
-What: Implement fault isolation zones or swim lanes in your designs.在设计中实现故障隔离区或者泳道
+**What:** Implement fault isolation zones or swim lanes in your designs.在设计中实现故障隔离区或者泳道
 
-When to use: Whenever you are beginning to split up persistence tiers (e.g., databases) and/or services to scale. 当你为了扩展开始拆分持久层（例如数据库）和/或服务的时候
+**When to use:** Whenever you are beginning to split up persistence tiers (e.g., databases) and/or services to scale. 当你为了扩展开始拆分持久层（例如数据库）和/或服务的时候
 
-How to use: Split up persistence tiers and services along the Y or Z axis and disallow synchronous communication or access between fault-isolated services and data. 沿着Y或者Z轴拆分持久层和服务，并且在被故障隔离的服务和数据之间不许可同步通信或者访问
+**How to use:** Split up persistence tiers and services along the Y or Z axis and disallow synchronous communication or access between fault-isolated services and data. 沿着Y或者Z轴拆分持久层和服务，并且在被故障隔离的服务和数据之间不许可同步通信或者访问
 
-Why: Increase availability and scalability. Reduce both incident identification and resolution. Reduce time to market and cost. 提高可用性和可扩展性。减小事故识别和处理。减小上市时间和成本。
+**Why:** Increase availability and scalability. Reduce both incident identification and resolution. Reduce time to market and cost. 提高可用性和可扩展性。减小事故识别和处理。减小上市时间和成本。
 
-Key takeaways: Fault isolation consists of eliminating synchronous calls between fault isolation domains, limiting asynchronous calls and handling synchronous call failure, and eliminating the sharing of services and data between swim lanes.
+**Key takeaways:** Fault isolation consists of eliminating synchronous calls between fault isolation domains, limiting asynchronous calls and handling synchronous call failure, and eliminating the sharing of services and data between swim lanes.
 故障隔离包括在故障隔离区域消除同步调用、限制异步调用并处理同步调用失败、消除在泳道之间共享服务和数据。
 
 
@@ -1229,29 +1229,57 @@ Swim lane | Swim lane is a term used to identify a fault isolation domain. Synch
 
 
 From our perspective, the most important differentiation among these terms is that most are focused on a division of labor or transactions but only one is focused solely on limiting the propagation of failure. Whereas pool, shard, cluster, and pod might refer to either how something is implemented in a production environment or how one might divide or scale customers or services, swim lane is an architectural concept around creating fault isolation domains. A fault isolation domain is an area in which, should a physical or logical service fail to work appropriately, whether that failure is a slow response time or an absolute failure to respond, the only services affected are those within the failure domain. Swim lanes extend the concepts provided within shards and pods by extending the failure domain to the front door of your services—the entry into your data center. At the extreme it means providing separate Web, application, and database servers by function or fault isolation zone. At its heart, a swim lane is about both scalability and availability, rather than just a mechanism by which one can scale transactions.
-从我们的视角来看，这些术语最重要的区别是大多数术语聚焦于服务器或事务的划分，仅仅一个术语是只聚焦于限制故障的传播。其中池化、分配、集群和pod指的是或者如何在一个生产环境实现，或者如何划分或者扩展客户或服务，泳道是一个围绕创建故障隔离域的架构概念。一个故障隔离域是一个区域，在这个区域内如果一个物理的或者逻辑的服务不能正常地工作，无论这个故障是一个较慢地响应，还是彻底地无法响应，受到此故障影响的那些服务仅在这个失效的域内。通过将故障域扩展到你服务的前门（数据中心的入口），扩展了在分片和pods中所提供的概念。在极端情况情况，其意味着按照功能或者故障隔离区提供分离的Web、应用和数据库服务器。泳道的核心是可伸缩性和可用性，而不仅仅是一种可以扩展事务的机制。
+从我们的视角来看，这些术语最重要的区别是大多数术语聚焦于服务器或事务的划分，仅有一个术语只聚焦于限制故障的传播。其中池化、分配、集群和pod指的是或者如何在一个生产环境实现，或者如何划分或者扩展客户或服务，而泳道是一个围绕创建故障隔离域的架构概念。一个故障隔离域是一个区域，在这个区域内如果一个物理的或者逻辑的服务不能正常地工作，无论这个故障是一个较慢地响应，还是彻底地无法响应，受到此故障影响的那些服务仅在这个失效的域内。通过将故障域扩展到你服务的前门（数据中心的入口），扩展了在分片和pods中所提供的概念。在极端情况情况，其意味着按照功能或者故障隔离区提供分离的Web、应用和数据库服务器。泳道的核心是可伸缩性和可用性，而不仅仅是一种可以扩展事务的机制。
 
 We felt the term swim lane was a great metaphor for fault isolation as in swimming pools the lines between lanes of swimmers help keep those swimmers from interfering with each other during the course of their swim. Similarly, “lines” between groupings of customers, or functionality across which synchronous transactions do not occur, can help ensure that failures in one lane don’t adversely affect the operations of other lanes.
-我们感觉针对于故障隔离，泳道这个术语是一个很好的比喻，因为在游泳池中游泳者泳道之间的线有助于在游泳过程中避免这些游泳者之间相互干扰。类似地，在客户组或者功能组之间跨越组的同步事务是不会出现的，从而有助于确保在一个通道内的失效不会影响其他道上的操作。
+我们感觉针对于故障隔离，泳道这个术语是一个很好的比喻，因为在游泳池中游泳者泳道之间的线有助于在游泳过程中避免这些游泳者之间相互干扰。类似地，在客户组或者功能组之间跨越组的同步事务是不会出现的，从而有助于确保在一个通道内的失效不会影响其他通道上的操作。
 
 
 We rely on four principles that both define swim lanes and help us in designing them. The first is that nothing is shared between swim lanes. We typically exempt major network components such as inbound border routers and some core routers but include switches unique to the service being fault isolated. It is also common to share some other devices such as a very large switched storage area network or load balancers in a smaller site. Wherever possible, and within your particular cost constraints, try to share as little as possible. Databases and servers should never be shared. Because swim lanes are partially defined by a lack of sharing, the sharing of servers and databases is always the starting point for identifying where swim lane boundaries truly exist. Due to the costs of network gear and storage subsystems, these are sometimes shared across swim lanes during the initial phases of growth.
-我们依赖四个原则来定义泳道并帮助我们设计泳道。第一个原则是泳道之间不要共享任何东西。我们通常从泳道中排除主要的网络组件，如入口边界路由器和一些核心路由器，但是包括服务所专有的交换机在内是需要故障隔离的。在较小的站点中共享一些其他设备也很常见，例如非常大的交换存储区域网络或负载均衡器。如果有可能，并且在你特定的成本限制内，那么尽可能地少共享。不要共享数据库和服务器。由于泳道部分地是由没有共享来定义的，因此服务器和数据库的共享始终是确定泳道边界真正存在的起点。由于网络设备和存储子系统的成本，在增长的初始阶段，有时会在泳道上共享它们。
+我们依赖四个原则来定义泳道并帮助我们设计泳道。第一个原则是泳道之间不要共享任何东西。我们通常从泳道中排除主要的网络组件，如入口边界路由器和一些核心路由器，但是包括服务所专有的交换机在内都是需要故障隔离的。在较小的站点中共享一些其他设备也很常见，例如非常大的交换存储区域网络或负载均衡器。如果有可能，并且在你特定的成本限制内，那么尽可能地少共享。不要共享数据库和服务器。由于泳道部分地是由没有共享来定义的，因此服务器和数据库的共享始终是确定泳道边界真正存在的起点。由于网络设备和存储子系统的成本，在增长的初始阶段，有时会在泳道上共享它们。
 
 
 The second principle of swim lanes is that no synchronous calls happen between swim lanes. Because synchronous calls tie services together, the failure of a service being called can propagate to all other systems calling it in a synchronous and blocking fashion. Therefore, it would violate the notion of fault isolation if a failure of a service we hoped to be in one swim lane could cause the failure of a service in another swim lane.
-泳道的第二个原则是泳道之间不会存在同步调用。因为同步调用将服务捆绑在一起，一个被调用服务的失效能够传播到以同步的和阻塞的方式地调用这个服务的所有其他系统。这使得一个泳道中一个服务的失效可能会造成其他泳道中服务的失效，从而违法故障隔离的观念。
+泳道的第二个原则是泳道之间不要存在同步调用。因为同步调用会将服务捆绑在一起，一个被调用服务的失效能够传播到以同步的和阻塞的方式地调用这个服务的所有其他系统。这使得一个泳道中一个服务的失效可能会造成其他泳道中服务的失效，从而违法故障隔离的观念。
 
 
 The third principle limits asynchronous calls between swim lanes. While asynchronous calls are much less likely than synchronous calls to propagate failures across systems, there still exists an opportunity to reduce our availability with these calls. Sudden surges in requests may make certain systems slow, such as in the case of messages being generated subsequent to a denial-of-service attack. An overwhelming number of these messages may back up queues, start to fill up TCP ports, and even bring database processing of synchronous requests to a standstill if not properly implemented. Thus, we try to limit the number of these transactions crossing swim lane boundaries.
-第三个原则限制泳道之间的异步调用。虽然异步调用不像同步调用跨域系统传播故障，但是使用异步调用仍然存在降低可用性的可能性。突发请求可能导致特定系统变慢，例如因为拒绝服务攻击所产生的消息的情况。大部分消息可能阻塞在队列中，开始占满TCP端口，甚至如果没有正确地实现，将会使得同步请求的数据库处理限于停滞。因此，我们试图限制这些跨越泳道边界的事务数量。
+第三个原则限制泳道之间的异步调用。虽然异步调用不像同步调用那样跨域系统传播故障，但是使用异步调用仍然存在降低可用性的可能性。突发的请求可能导致特定系统变慢，例如因为拒绝服务攻击产生消息的情况。大部分消息可能阻塞在队列中，开始占满TCP端口，甚至如果没有正确地实现，将会使得处理同步请求的数据库限于停滞。因此，我们试图限制这些跨越泳道边界的事务数量。
 
 The last principle of swim lanes addresses how to implement asynchronous transmissions across swim lane boundaries when they are absolutely necessary. Put simply, anytime we are going to communicate asynchronously across a swim lane, we need the ability to “just not care” about the transaction. In some cases, we may time out the transaction and forget about it. Potentially we are just “informing” another swim lane of some action, and we don’t care to get a response at all. In all cases we should implement logic to “wire off ” or “toggle off ” the communication based on a manual switch, an automatic switch, or both. Our communications should be able to be switched off by someone monitoring the system and identifying a failure (the manual switch) and should sense when things aren’t going well and stop communicating (the automatic switch).
-泳道的最后一个原则是如果绝对需要的情况下，如何解决跨越泳道边界实现异步传输。间而言之，任何我们需要跨越泳道进行异步通信的时候，我们需要具有“不关注”事务的能力。在一些情况中，我们可能事务超时，并且忘记这个事务。潜在地，我们仅仅通知另一个泳道执行一些行为，并且我们根本不关心其响应。在所有的情况中，我们需要基于手工切换、自动切换或者两者，实现逻辑，支持离线或者关闭通信。我们的通信应该能够被监控系统并识别故障的人（手动开关）关闭，并且当系统不能正常工作时应该能够感知到，并停止通信（自动开关）。
+泳道的最后一个原则是在绝对需要的情况下，如何解决跨越泳道边界实现异步传输。简而言之，任何我们需要跨越泳道进行异步通信的时候，我们需要具有“不关注”事务的能力。在一些情况中，我们可能事务超时，并且忘记这个事务。潜在地，我们仅仅通知另一个泳道执行一些行为，并且我们根本不关心其响应。在所有的情况中，我们需要基于手工切换、自动切换或者两者，实现逻辑，以支持离线或者关闭通信。我们的通信应该能够被正在监控系统并且能够识别故障的人（手动开关）关闭，并且当不能正常工作时，系统应该能够感知到，并停止通信（自动开关）。
+
+Fault Isolation Principles(故障隔离原则)
+|Principle(原则))  | Description(描述)|
+| :------------ | :------------ |  
+|Share nothing 不共享| Swim lanes should not share services. Some sharing of network gear such as border routers and load balancers is acceptable. If necessary, storage area networks can be shared. Databases and servers should never be shared. 泳道之间不应共享服务。共享一些网络设备，例如边界路由器和负载均衡器，是可以接受的。如果必要，存储区域网络也能被共享。数据库和服务器不应该被共享|
+|No synchronous calls between swim lanes 泳道之间没有同步调用| Synchronous calls are never allowed across swim lane boundaries. Put another way, a swim lane is the smallest unit across which no synchronous calls happen. 不允许跨越泳道边界的同步调用。换言之，一个泳道是相互之间不存在同步调用的最小单位|
+|Limit asynchronous calls between swim lanes 限制泳道之间的异步调用| Asynchronous calls should be limited across swim lanes. They are permitted, but the more calls that are made, the greater the chance of failure propagation. 跨域泳道的异步调用应该受到限制。虽然允可异步调用，但是越多的异步调用，故障传播的可能性越大。|
+|Use time-outs and wire on/wire off with asynchronous calls在异步调用中使用过期时间和上线/下线| Asynchronous calls should be implemented with time-outs and the ability to turn off the call when necessary due to failures in other services. See Rule 39. 异步调用实现时应该使用时间超时，并且在其他服务失效时如果需要，能够下线这个调用。|
+
+How about the case where we want fault isolation but need synchronous communication or access to another data source? In the former case, we can duplicate the service that we believe we need and put it in our swim lane. Payment gateways are one example of this approach. If we were to swim-lane along a Z axis by customer, we probably don’t want each of our customer swim lanes synchronously (blocking) calling a single payment gateway for a service like checkout. We could simply implement N payment gateways where N is the degree of customer segmentation or number of customer swim lanes.
+对于我们想要故障隔离但是也需要同步通信或者访问另一个数据源的情况，如何处理？对于前一种情况，我们可以复制服务，将我们认为我们需要的服务放到我们的泳道中。支付网关就是这种方法的一个例子。如果我们通过客户沿着Z轴构建泳道，我们可能不想让每个客户的泳道针对于类似于结账这样的服务同步（阻塞）调用单个支付网关。我们可以简单地实现N个支付网关，其中N是客户细分的程度或者客户泳道的数目。
 
 
+What if there is some shared information to which we need access in each of these swim lanes such as in the case of login credentials? Maybe we have separated authentication and sign-in/login into its own Y axis split, but we need to reference the associated credentials from time to time on a read-only basis within each customer (Z axis) swim lane. We often use read replicas of databases for such purposes, putting one read replica in each swim lane. Many databases offer this replication technology out of the box and even allow you to slice it up into smaller pieces, meaning that we don’t need to duplicate 100% of the customer data in each of our swim lanes. Some customers cache relevant information for read-only purposes in distributed object caches within the appropriate swim lane.
+如果我们需要在每个泳道中访问一些共享的信息，例如在登录凭证的例子汇总，应该如何处理？也许我们已经将认证和登录/注册分离到其各自的Y轴隔断，但是在每个用户（Z轴）的泳道内我们需要时常地以只读方式查询相关联的凭证。针对此种目的，我们经常使用数据库的读复制，在每个泳道放置一个读复制。很多数据库提供开箱即用的复制基数，甚至许可你将数据切分为更小的部分，一位置我们无需在每个我们的泳道中复制100%的客户数据。在一些合适的泳道中一些客户为了只读目的在分布式对象缓存中缓存相关的信息。
+
+One question that we commonly get is how to implement swim lanes in a virtualized server world. Virtualization adds a new dimension to fault isolation—the dimension of logical (or virtual) in addition to physical failures. If virtualization is implemented primarily to split up larger machines into smaller ones, you should continue to view the physical server as the swim lane boundary. In other words, don’t mix virtual servers from different swim lanes on the same physical device. Some of our customers, however, have such a variety of product offerings with varying demand characteristics throughout the year that they rely on virtualization as a way of flexing capacity across these product offerings. In these cases, we try to limit the number of swim lanes that are mixed on a virtual server. Ideally, you would flex an entire physical server in and out of a swim lane rather than mix swim lanes on that server.
+我们经常遇到的一个问题是如何在虚拟化服务器的世界中实现泳道。虚拟化为故障隔离添加了一个新维度，即除了物理失效之外的逻辑（或者虚拟化）维度。虚拟化在根本上实现了将较大的机器分割为较小的机器。换言之，一种不要在同一个物理设备上混合不同泳道的虚拟机。然后，一些我们的客户全年都要提供各种各种针对于不同的需求特性产品，所以他们依赖于虚拟化作为一种方式，跨越所提供的产品动态伸缩容量。在这些例子中我们尝试限制在一个虚拟服务器上相互混合的泳道的数量。理性情况下，我们能够将整个服务服务器加入或者剔出一个泳道，而不是在这个服务器上混合多个泳道。
 
 
+## Rule 37—Never Trust Single Points of Failure
+## 规则37——从不相信单点故障
 
+**What:** Never implement and always eliminate single points of failure. 从不实现并且总是消除单点故障。
+
+**When to use:** During architecture reviews and new designs.在架构审查和新设计期间
+
+**How to use:** Identify single instances on architectural diagrams. Strive for active/active configurations. 在架构图中识别单个实例。努力实现活跃/活跃的配置。
+
+**Why:** Maximize availability through multiple instances. 通过多个实例实现可用性的最大化。
+
+
+**Key takeaways:** Strive for active/active rather than active/passive solutions. Use load balancers to balance traffic across instances of a service. Use control services with active/passive instances for patterns that require singletons.
 
 
