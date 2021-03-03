@@ -1262,10 +1262,10 @@ How about the case where we want fault isolation but need synchronous communicat
 
 
 What if there is some shared information to which we need access in each of these swim lanes such as in the case of login credentials? Maybe we have separated authentication and sign-in/login into its own Y axis split, but we need to reference the associated credentials from time to time on a read-only basis within each customer (Z axis) swim lane. We often use read replicas of databases for such purposes, putting one read replica in each swim lane. Many databases offer this replication technology out of the box and even allow you to slice it up into smaller pieces, meaning that we don’t need to duplicate 100% of the customer data in each of our swim lanes. Some customers cache relevant information for read-only purposes in distributed object caches within the appropriate swim lane.
-如果我们需要在每个泳道中访问一些共享的信息，例如在登录凭证的例子汇总，应该如何处理？也许我们已经将认证和登录/注册分离到其各自的Y轴隔断，但是在每个用户（Z轴）的泳道内我们需要时常地以只读方式查询相关联的凭证。针对此种目的，我们经常使用数据库的读复制，在每个泳道放置一个读复制。很多数据库提供开箱即用的复制基数，甚至许可你将数据切分为更小的部分，一位置我们无需在每个我们的泳道中复制100%的客户数据。在一些合适的泳道中一些客户为了只读目的在分布式对象缓存中缓存相关的信息。
+如果我们需要在每个泳道中访问一些共享的信息，例如在登录凭证的例子中，应该如何处理？也许我们已经将认证和登录/注册分离到其各自的Y轴隔断，但是在每个用户（Z轴）的泳道内我们需要时常地以只读方式查询相关联的凭证。针对此种目的，我们经常使用数据库的读复制，在每个泳道放置一个读复制。很多数据库提供开箱即用的复制技术，甚至许可你将数据切分为更小的部分，即我们无需在每个我们的泳道中复制100%的客户数据。在一些适当的泳道中一些客户为了只读目的在分布式对象缓存中缓存相关的信息。
 
 One question that we commonly get is how to implement swim lanes in a virtualized server world. Virtualization adds a new dimension to fault isolation—the dimension of logical (or virtual) in addition to physical failures. If virtualization is implemented primarily to split up larger machines into smaller ones, you should continue to view the physical server as the swim lane boundary. In other words, don’t mix virtual servers from different swim lanes on the same physical device. Some of our customers, however, have such a variety of product offerings with varying demand characteristics throughout the year that they rely on virtualization as a way of flexing capacity across these product offerings. In these cases, we try to limit the number of swim lanes that are mixed on a virtual server. Ideally, you would flex an entire physical server in and out of a swim lane rather than mix swim lanes on that server.
-我们经常遇到的一个问题是如何在虚拟化服务器的世界中实现泳道。虚拟化为故障隔离添加了一个新维度，即除了物理失效之外的逻辑（或者虚拟化）维度。虚拟化在根本上实现了将较大的机器分割为较小的机器。换言之，一种不要在同一个物理设备上混合不同泳道的虚拟机。然后，一些我们的客户全年都要提供各种各种针对于不同的需求特性产品，所以他们依赖于虚拟化作为一种方式，跨越所提供的产品动态伸缩容量。在这些例子中我们尝试限制在一个虚拟服务器上相互混合的泳道的数量。理性情况下，我们能够将整个服务服务器加入或者剔出一个泳道，而不是在这个服务器上混合多个泳道。
+我们经常遇到的一个问题是如何在虚拟化服务器的世界中实现泳道。虚拟化为故障隔离添加了一个新维度，即除了物理失效之外的逻辑（或者虚拟化）维度。虚拟化在根本上实现了将较大的机器分割为较小的机器。换言之，不要在同一个物理设备上混合不同泳道的虚拟机。然而，一些我们的客户全年都要提供各种各样针对于不同需求特性的产品，所以他们依赖于虚拟化作为一种方式，跨越所提供的产品动态伸缩容量。在这些例子中我们尝试限制在一个虚拟服务器上相互混合的泳道的数量。理性情况下，我们能够将整个服务服务器加入或者剔出一个泳道，而不是在这个服务器上混合多个泳道。
 
 
 ## Rule 37—Never Trust Single Points of Failure
@@ -1275,11 +1275,34 @@ One question that we commonly get is how to implement swim lanes in a virtualize
 
 **When to use:** During architecture reviews and new designs.在架构审查和新设计期间
 
-**How to use:** Identify single instances on architectural diagrams. Strive for active/active configurations. 在架构图中识别单个实例。努力实现活跃/活跃的配置。
+**How to use:** Identify single instances on architectural diagrams. Strive for active/active configurations. 在架构图中识别单个实例。努力实现active/active的配置。
 
 **Why:** Maximize availability through multiple instances. 通过多个实例实现可用性的最大化。
 
 
-**Key takeaways:** Strive for active/active rather than active/passive solutions. Use load balancers to balance traffic across instances of a service. Use control services with active/passive instances for patterns that require singletons.
+**Key takeaways:** Strive for active/active rather than active/passive solutions. Use load balancers to balance traffic across instances of a service. Use control services with active/passive instances for patterns that require singletons. 努力实现active/active解决方法，而不是active/passive解决方案。使用负载均衡器在服务的多个实例之间均衡流量。对于需要单例的模式，使用带有active/passive的控制服务。
+
+In system architecture, the singleton pattern, or more aptly the singleton antipattern, is known as a single point of failure (SPOF). This is when there exists only one instance of a component within a system that when it fails will cause a system-wide incident.
+在系统架构中，单例模式，或者更恰当地称为单例反模式，被认为是单点故障（SPOF）。这是指当在一个系统中仅仅有组件的一个实例时，如果该实例失效，将会造成系统级的事故。
+
+SPOFs can be anywhere in the system from a single Web server or single network device, but most often the SPOF in a system is the database. The reason for this is that the database is often the most difficult to scale across multiple nodes and therefore gets left as a singleton.
+单点故障可以出现在系统中的任何地方，从单个web服务器到单个网络设备，但是在系统中最常见的单点故障是数据库。导致此种问题的原因是数据库通常是最难扩展到多个节点的，因此只能让数据库为单个实例。
+
+The solution to most SPOFs is simply requisitioning another piece of hardware and running two or more of every service by cloning that service as described in our X axis of scale. Unfortunately, this isn’t always so easy.
+针对大多数单点故障的解决方案是要求额外的硬件，并通过像X轴扩展所描述的那样克隆每个服务，从而运行两个或者更多的服务。不幸的是，这并不是总是那么容易。
 
 
+The first and simplest solution is to use an active/passive configuration. The service would run actively on one server and passively (not taking traffic) on a second server. This hot/cold configuration is often used with databases as a first step in removing a SPOF. The next alternative would be to use another component in the system to control the access to data. If the SPOF is the database, a master/slave configuration can be set up,and the application can control access to the data with writes/updates going to the master and reads/selects going to the slave. In addition to mitigating the SPOF, introducing read-only replicas of databases with high read-to-write ratios will reduce the load on your master database and allow you to take advantage of more cost-effective hardware as discussed in Rule 11, “Use Commodity Systems (Goldfish Not Thoroughbreds)” (see Chapter 3, “Design to Scale Out Horizontally”). A last configuration that can be used to fix a SPOF is a load balancer. If the service on a Web or application server is a SPOF and cannot be eliminated in code, the load balancer can often be used to fix a user’s request to only one server in the pool. This is done through session cookies, which are set on the user’s browser and allow the load balancer to redirect that user’s requests to the same Web or application server each time, resulting in a consistent state.
+第一个也是最简单的解决方案是是采用active/passive配置。服务在一个服务器上主动运行，而在第二个服务器上被动运行（不处理流量）。这种热/冷配置经常被用在数据库中，实现移除单点故障的第一步。另一种可选方案是使用系统中的另一个组件控制访问数据。如果单点故障是数据库，可以构建master/slave配置，而应用能够控制对于数据的访问，写入/更新访问主库，而读取/选择访问从库。除了消除单点故障，对于具有高读写比的数据库，引入只读的副本可以降低主库的负载，并且正像规则11“使用商品化系统”讨论的那样，许可你充分地利用更多的高性价比硬件。最后一个能够用来解决单点故障的配置是负载均衡器。如果在Web或者应用服务器上的服务是一个单点故障，并且不能在代码中消除，那么能够使用负载均衡器来解决用户请求仅仅发送给服务器池中的一个。这是通过会话cookies实现的，会话cookies是在用户的浏览器中设置，并且许可负载均衡器每次总是将用户请求重定向到相同的web或应用服务器，从而保持一致的状态。
+
+
+## Rule 38—Avoid Putting Systems in Series
+## 规则38——避免串联放置系统
+
+**What:** Reduce the number of components that are connected in series. 减小以串联方式连接组件的数量。
+
+**When to use:** Anytime you are considering adding components. 任何你考虑添加组件的时候。
+
+**How to use:** Remove unnecessary components, collapse components, or add multiple parallel components to minimize the impact.
+**Why:** Components in series are subject to the multiplicative effect of failure.
+**Key takeaways:** Avoid adding components to your system that are connected in series. When it is necessary to do so, add multiple versions of that component so that if one fails, others are available to take its place.
