@@ -1226,6 +1226,29 @@ dig www.bing.com
 nslookup www.bing.com
 ```
 
+
+
+
+Ubuntu更改网络配置
+
+```
+vim /etc/netplan/01-network-manager-all.yml
+
+network:
+  ethernets:
+    enp0s3:
+            addresses: [192.168.101.79/24]
+            dhcp4: no
+            optional: true
+            gateway4: 192.168.101.62
+            nameservers:
+                    addresses: [192.168.101.62]
+  version: 2
+
+netplan apply
+
+```
+
 #### Disk(磁盘）
 
 transfers per second (tps)
