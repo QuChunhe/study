@@ -1016,18 +1016,23 @@ Failures in todays complex, distributed and interconnected systems are not the e
 
 
 # 分布式事务(Distributed Transactions)
+
 [七种分布式事务的解决方案，一次讲给你听](https://mp.weixin.qq.com/s?__biz=Mzk0MjA4ODcxNQ==&mid=2247497900&idx=1&sn=bc852ce0d95cba8e38b88bd2c770fb61&chksm=c2cacfc8f5bd46dec369e3ae19fd38a1f1c84c865166128888b898d1fb7d13749c5bcce32561&mpshare=1&scene=1&srcid=0301XK8c2GVwrBp3v3e7VhOs&sharer_sharetime=1614588764353&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=ARxc9hSIw3%2BQ80qPYtwZBAQ%3D&pass_ticket=hTYUAL4XFSBHRHnHATvHraAh%2Fz6yBvuhenUPU0Uj6K%2FyI8AFZ8qSJuFXYU4y5fFj&wx_header=0#rd)
-
-事务的ACID属性
-* 原子性（Atomicity）：一个事务中的所有操作，要么全部完成，要么全部不完成，不会存在部分操作完成的情况。
-* 一致性（Consistency）：在事务开始之前和事务结束以后，数据库将会保持一致的状态，即数据的完整性不会受到被破坏。
-* 隔离性（Isolation）：数据库允许多个并发事务执行，但是每个事务的执行过程就像仅仅有自己一个事务执行一样。
-* 持久性（Durability）：一旦事务结束，对数据的修改就是永久的，即便系统故障也不会丢失。
-
-Handling Failure in Commit 在提交中处理失败。
-
 [Two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)
 [二阶段提交](https://zh.wikipedia.org/wiki/%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4)
+
+
+事务的ACID属性
+* 原子性（Atomicity）：一个事务中的所有操作是一个不可分割的整体，要么全部完成，要么全部不完成，不会存在仅仅完成部分操作的情况。
+* 一致性（Consistency）：在事务开始之前和事务结束以后，数据库将会保持一致的状态，即数据的完整性不会受到被破坏。
+* 隔离性（Isolation）：数据库允许多个事务并发执行，但是相互隔离，互不干扰，就像仅仅有一个事务执行一样。
+* 持久性（Durability）：一旦事务结束，对数据的修改就是永久的，即便系统故障也不会丢失。
+
+分布式事务的解决方案
+* 两阶段提交（two-phase commit protocol, 2PC）
+* 三阶段提交（two-phase commit protocol, 3PC）
+* 补偿事务（Try,Confirm,Cancel, TCC）
+
 two-phase commit protocol (2PC) 
 
 2PC是针对分布式环境而设计的一种算法，用于协调所有节点（或进程）在参与分布式原子事务时保持一致。在分布式系统中，每个节点虽然可以知晓自己的操作是成功或是失败，但无法确定其他节点的操作是成功还是失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点（称作参与者）的操作结果并最终指示这些节点提交或者中止（回滚）这个事务。 即使遇到系统故障（涉及进程、网络节点、通信等的故障）的情况下，该协议也能达到其目标。 
@@ -1103,7 +1108,9 @@ The three-phase commit protocol eliminates this problem by introducing the Prepa
         4.协调者收到所有参与者的Ack消息后，即完成事务中断
 
 XA规范，XA是由X/Open组织提出的分布式事务的规范，主要是给数据库提供一个标准，各家数据库可以根据这个标准完成自己的分布式事务协议
-
+X/Open主要提供了以下参考文档：
+DTP 参考模型： [Distributed Transaction Processing: Reference Model](pubs.opengroup.org/onlinepubs/9294999599/toc.pdf)
+DTP XA规范： [Distributed Transaction Processing: The XA Specification](pubs.opengroup.org/onlinepubs/009680699/toc.pdf)
 
 Google Chubby的作者Mike Burrows说过， there is only one consensus protocol, and that’s Paxos” – all other approaches are just broken versions of Paxos. 意即世上只有一种一致性算法，那就是Paxos，所有其他一致性算法都是Paxos算法的不完整版。
 
@@ -1115,11 +1122,16 @@ Best efforts 1 Phase commit
 
 [Distributed transactions in Spring, with and without XA](https://www.infoworld.com/article/2077963/distributed-transactions-in-spring--with-and-without-xa.html)
 
+
+关于TCC（Try-Confirm-Cancel）的概念，最早是由Pat Helland于2007年发表的一篇名为《Life beyond Distributed Transactions:an Apostate’s Opinion》的论文提出。在该论文中，TCC还是以Tentative-Confirmation-Cancellation命名。正式以Try-Confirm-Cancel作为名称的是Atomikos公司，其注册了TCC商标。
+
 TCC（Try-Confirm-Cancel）又称补偿事务。其核心思想是："针对每个操作都要注册一个与其对应的确认和补偿（撤销操作）"。它分为三个操作：
 * Try阶段：主要是对业务系统做检测及资源预留。
 * Confirm阶段：确认执行业务操作。
 * Cancel阶段：取消执行业务操作。
 TCC事务的处理流程与2PC两阶段提交类似，不过2PC通常都是在跨库的DB层面，而TCC本质上就是一个应用层面的2PC，需要通过业务逻辑来实现。这
+
+[MySQL XA Transactions](https://dev.mysql.com/doc/refman/8.0/en/xa.html)
 
 
 分布式事务
