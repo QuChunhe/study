@@ -1286,14 +1286,14 @@ In system architecture, the singleton pattern, or more aptly the singleton antip
 在系统架构中，单例模式，或者更恰当地称为单例反模式，被认为是单点故障（SPOF）。这是指当在一个系统中仅仅有组件的一个实例时，如果该实例失效，将会造成系统级的事故。
 
 SPOFs can be anywhere in the system from a single Web server or single network device, but most often the SPOF in a system is the database. The reason for this is that the database is often the most difficult to scale across multiple nodes and therefore gets left as a singleton.
-单点故障可以出现在系统中的任何地方，从单个web服务器到单个网络设备，但是在系统中最常见的单点故障是数据库。导致此种问题的原因是数据库通常是最难扩展到多个节点的，因此只能让数据库为单个实例。
+单点故障可以出现在系统中的任何地方，从单个web服务器到单个网络设备，但是在系统中最常见的单点故障是数据库。导致此种问题的原因是数据库通常是最难于扩展到多个节点，因此只能让数据库为单个实例。
 
 The solution to most SPOFs is simply requisitioning another piece of hardware and running two or more of every service by cloning that service as described in our X axis of scale. Unfortunately, this isn’t always so easy.
-针对大多数单点故障的解决方案是要求额外的硬件，并通过像X轴扩展所描述的那样克隆每个服务，从而运行两个或者更多的服务。不幸的是，这并不是总是那么容易。
+针对大多数单点故障的解决方案是要求额外的硬件，并通过像X轴扩展所描述的那样克隆服务，从而每个服务都有两个或者更多的实例在运行。不幸的是，这并不是总是那么容易。
 
 
 The first and simplest solution is to use an active/passive configuration. The service would run actively on one server and passively (not taking traffic) on a second server. This hot/cold configuration is often used with databases as a first step in removing a SPOF. The next alternative would be to use another component in the system to control the access to data. If the SPOF is the database, a master/slave configuration can be set up,and the application can control access to the data with writes/updates going to the master and reads/selects going to the slave. In addition to mitigating the SPOF, introducing read-only replicas of databases with high read-to-write ratios will reduce the load on your master database and allow you to take advantage of more cost-effective hardware as discussed in Rule 11, “Use Commodity Systems (Goldfish Not Thoroughbreds)” (see Chapter 3, “Design to Scale Out Horizontally”). A last configuration that can be used to fix a SPOF is a load balancer. If the service on a Web or application server is a SPOF and cannot be eliminated in code, the load balancer can often be used to fix a user’s request to only one server in the pool. This is done through session cookies, which are set on the user’s browser and allow the load balancer to redirect that user’s requests to the same Web or application server each time, resulting in a consistent state.
-第一个也是最简单的解决方案是是采用active/passive配置。服务在一个服务器上主动运行，而在第二个服务器上被动运行（不处理流量）。这种热/冷配置经常被用在数据库中，实现移除单点故障的第一步。另一种可选方案是使用系统中的另一个组件控制访问数据。如果单点故障是数据库，可以构建master/slave配置，而应用能够控制对于数据的访问，写入/更新访问主库，而读取/选择访问从库。除了消除单点故障，对于具有高读写比的数据库，引入只读的副本可以降低主库的负载，并且正像规则11“使用商品化系统”讨论的那样，许可你充分地利用更多的高性价比硬件。最后一个能够用来解决单点故障的配置是负载均衡器。如果在Web或者应用服务器上的服务是一个单点故障，并且不能在代码中消除，那么能够使用负载均衡器来解决用户请求仅仅发送给服务器池中的一个。这是通过会话cookies实现的，会话cookies是在用户的浏览器中设置，并且许可负载均衡器每次总是将用户请求重定向到相同的web或应用服务器，从而保持一致的状态。
+第一个也是最简单的解决方案是是采用active/passive配置。服务在一个服务器上主动运行，而在第二个服务器上被动运行（不处理流量）。这种热/冷配置经常被用在数据库中，实现移除单点故障的第一步。另一种可选方案是使用系统中的另一个组件控制访问数据。如果单点故障是数据库，可以构建master/slave配置，而应用能够控制对于数据的访问，写入/更新访问去主库，而读取/选择访问去从库。除了消除单点故障，对于具有高读写比的数据库，引入只读的副本可以降低主库的负载，并且正像规则11“使用商品化系统”讨论的那样，许可你充分地利用更多的高性价比硬件。最后一个能够用来解决单点故障的配置是负载均衡器。如果在Web或者应用服务器上的服务是一个单点故障，并且不能在代码中消除，那么能够使用负载均衡器来解决用户请求仅仅发送给服务器池中的一个。这是通过会话cookies实现的，会话cookies是在用户的浏览器中设置，并且许可负载均衡器每次总是将用户请求重定向到相同的web或应用服务器，从而保持一致的状态。
 
 
 ## Rule 38—Avoid Putting Systems in Series
@@ -1303,6 +1303,13 @@ The first and simplest solution is to use an active/passive configuration. The s
 
 **When to use:** Anytime you are considering adding components. 任何你考虑添加组件的时候。
 
-**How to use:** Remove unnecessary components, collapse components, or add multiple parallel components to minimize the impact.
-**Why:** Components in series are subject to the multiplicative effect of failure.
-**Key takeaways:** Avoid adding components to your system that are connected in series. When it is necessary to do so, add multiple versions of that component so that if one fails, others are available to take its place.
+**How to use:** Remove unnecessary components, collapse components, or add multiple parallel components to minimize the impact.移除不必要的组件和折叠的组件，或者添加多个并联组件来将影响降到最低。
+
+**Why:** Components in series are subject to the multiplicative effect of failure.串联的组件易于受到故障倍增效果的影响。
+
+**Key takeaways:** Avoid adding components to your system that are connected in series. When it is necessary to do so, add multiple versions of that component so that if one fails, others are available to take its place. 避免以串联连接方式将组件添加到你的系统中。如果必需这么做，那么就添加该组件的多个版本，从而当一个失效时，其他的还可用，能够替换已经失效的。
+
+
+
+
+ 
