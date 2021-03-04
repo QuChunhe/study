@@ -757,6 +757,25 @@ MTBF = (total elapsed time – sum of downtime)/number of failures
 
 [Site Reliability Engineering (SRE)](https://github.com/upgundecha/howtheysre)
 
+
+
+Hot Standby
+
+Hot standby is a redundant method in which one system runs simultaneously with an identical primary system. Upon failure of the primary system, the hot standby system immediately takes over, replacing the primary system. However, data is still mirrored in real time. Thus, both systems have identical data.
+
+Hot standby is also known as hot spare, especially at the component level, such as a hard drive in a disk array.
+
+Hot standby also is described as a failover technique to ensure system reliability and security, which is achieved by having a standby device or system ready to take over in the event of device or system failure. Hot standby also describes the ability of a software or hardware component to connect to a server and run read-only queries while in standby or recovery mode. Additionally, it describes the ability of a server to continually answer queries while maintaining open connections for users during recovery to normal operations.
+
+
+* Hot Standby (active-passive) mode
+* Cluster (active-active) mode
+Active-Active vs. Active-Passive High-Availability Clustering
+
+* cold site
+* warm site
+* hot site
+
 **Patterns of Resilience-A Small Pattern Language**
 
 Availability ≔ MTTF /(MTTF + MTTR)
