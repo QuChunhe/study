@@ -1309,7 +1309,31 @@ The first and simplest solution is to use an active/passive configuration. The s
 
 **Key takeaways:** Avoid adding components to your system that are connected in series. When it is necessary to do so, add multiple versions of that component so that if one fails, others are available to take its place. 避免以串联连接方式将组件添加到你的系统中。如果必需这么做，那么就添加该组件的多个版本，从而当一个失效时，其他的还可用，能够替换已经失效的。
 
+电路系统
+* 串联
+* 并联
+
+In regard to the network components, we often see architectures that pay a lot of attention to connecting servers in parallel but completely ignore the network devices, especially firewalls.
+对于网络组件，我们经常看到一些架构，非常重视以并行方式连接服务器，但是完全忽略网络设备，特别是防火墙。
+
+Items in series have a multiplicative effect on risk of failure. As a simple example, if we have two servers in series, each with 99.9% availability or uptime, then our total availability of the system cannot be greater than 99.9% × 99.9% = 99.8%. If we add a third component, in series, at the same three-nines availability of 99.9%, we get an even lower availability of 99.9% × 99.9% × 99.9% = 99.7%. The more components that are placed in series, the lower the system’s availability.
+串联设备对于失败风险具有倍增效应。举一个简单例子，如果我们有两个串行服务器，每个具有99.9%的可用性或者正常运行比率，那么系统总的可用性不可能高于99.9% × 99.9% = 99.8%。如果我们以串联方式添加第三个具有同样三个九99.9%可用性的组件，我们会得到一个更低的可用性99.9% × 99.9% × 99.9% = 99.7%。串联更多的组件，系统的可用性越低。
+
+For every component (at 99.9% availability) that we add to the system in series, we are adding ~43 minutes of downtime per month. However, for every pair of components (at 99.9% availability each) that we add together in parallel, the downtime added drops down to less than a minute (~26 seconds) per month. This improvement is even more drastic when you parallelize components that have lower individual availability.
+对于我们以串行方式添加到系统中的每个组件（99.9%可用性），我们会每个月增加大约43分钟的宕机时间。然而，对于我们以并行方式一块添加的一对组件（每个99.9%可用性），每个月所增加的宕机时间减小到不足一分钟（大约26秒）。当你并行化的组件具有较低的单个可用性时，这种提高会更加剧烈。
 
 
+## Rule 39—Ensure That You Can Wire On and Off Features
+## 规则39——确保你能够开启和关闭特性
 
- 
+**What:** Create a framework to disable and enable features of your product.创建一个框架用于打开和禁用产品的特性。
+
+**When to use:** For functionality that is newly developed, noncritical, or dependent on a third party, consider using a wire-on/wire-off framework.  对于新开发的、非关键性的或者依赖于第三方的功能，考虑使用开启/禁用框架。
+
+**How to use:** Develop shared libraries to allow automatic or on-demand enabling and disabling of features. See Table 9.5 for recommendations. 开发共享库，以许可自动地或者按需地打开或者禁用特性。见表9.5中的建议。
+
+**Why:** Turning off broken functionality or noncritical functionality in order to protect and preserve critical functionality is important for end users. 对于最终用户而言，关闭有问题的功能或者不关键的功能以保护和保留关键功能是非常重要的。
+
+**Key takeaways:** Implement wire-on/wire-off frameworks whenever the cost of implementation is less than the risk and associated cost. Work to develop shared libraries that can be reused to lower the cost of future implementation. 只要实现的成本低于风险和相关的成本，就实现开启/关闭框架。开发能够被复用的共享库，以降低未来实现的成本。
+
+
