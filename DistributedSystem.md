@@ -658,7 +658,7 @@ Always use timeouts (if possible)
 
 
 三个的区别与联系
-* Availability
+* Availability：High availability (HA) is the ability of a system or system component to be continuously operational for a desirably long length of time. 高可用时指一个系统或者系统组件具有能力，能够在所期望长的时间范围持续运营。
 * Reliability
 * Resiliency
 * Stability
@@ -667,6 +667,10 @@ Always use timeouts (if possible)
 
 Availability refers to the fraction of time that the system as a whole is usable. Since individual systems may fail, we achieve high availability via redundancy: deploying duplicate, triplicate (and more) systems.可用性是指系统作为一个整体可用时间的比例。因为单个系统可能会失效，所以我们通过冗余来实现高可用性：部署双重、三重（和更多重）的系统。 
 
+
+Typically, an availability percentage is calculated as follows:
+
+Availability = (minutes in a month -  minutes of downtime) * 100/minutes in a month
 
 * 复制/克隆：并联系统，
 * 分解/划分：串联系统，
@@ -757,6 +761,22 @@ MTBF = (total elapsed time – sum of downtime)/number of failures
 
 [Site Reliability Engineering (SRE)](https://github.com/upgundecha/howtheysre)
 
+* [Keepalived](https://www.keepalived.org/) 
+* [Nginx](https://nginx.org/en/) v.t. [HAProxy](https://www.haproxy.org/)
+* [Linux Virtual Server (IPVS)](http://www.linux-vs.org/)
+
+[high availability (HA)](https://searchdatacenter.techtarget.com/definition/high-availability)
+
+如何实现高可用性（high avaiability)
+* 消除单点故障或者任何当其功能失效时会影响整个系统的那些节点。
+* 确保所有系统和数据都要进行备份，并能够通过简单地方式恢复。
+* 使用负载均衡在服务器和其他硬件之间分配应用和网络流量。负载均衡器一个流行的例子时HAProxy
+* 持续地监控后台服务器的运行状况
+* 为了应对断电或者自然灾害，在不同地理位置分配资源。
+* 实现可靠的切换或者故障迁移。对于存储，独立磁盘冗余阵列（RAID）或存储区域网络（SAN）是常见的方法。
+* 建立系统，一旦出现故障就能够尽可能快地检测到。
+* 为高可用性设计系统部件，并在实现之前测试其功能。
+
 
 
 Hot Standby
@@ -775,6 +795,14 @@ Active-Active vs. Active-Passive High-Availability Clustering
 * cold site
 * warm site
 * hot site
+
+4 practical methods to increase service resilience
+* Implement rolling upgrades.实现滚动更新。不要同时更新/部署全部服务器，而是每次更新/部署一台服务器，并检测其运行状况，确保之前的更新/上线没有问题的情况下，再继续更新/部署下一台服务器。此种方式也被称为金丝雀部署（canary deployment），能够帮助识别问题，以避免问题扩大造成重大损失。需要确保你能够聚合和记录任何指示性能问题的数据，并在正式发布前解决这些问题。
+* Retry functionality and make services asynchronous.重新审视功能，实现服务异步化。
+* Test in production with synthetic transactions. 在生产系统上使用合成事务。Those types of small test scripts that run in production and provide user experience information are called synthetic transactions. Some frameworks provide them out of the box, but others might require a test tool. I personally prefer Document Object Model-to-database tests -- little snippets that check one particular piece of functionality all the time, logging the results and timing. Teams can even visualize these results on a dashboard.
+* Engineer for redundancy, then ...
+
+
 
 **Patterns of Resilience-A Small Pattern Language**
 
