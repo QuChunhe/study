@@ -1326,14 +1326,26 @@ For every component (at 99.9% availability) that we add to the system in series,
 ## Rule 39—Ensure That You Can Wire On and Off Features
 ## 规则39——确保你能够开启和关闭特性
 
-**What:** Create a framework to disable and enable features of your product.创建一个框架用于打开和禁用产品的特性。
+**What:** Create a framework to disable and enable features of your product.创建一个框架用于启用和禁用产品的特性。
 
-**When to use:** For functionality that is newly developed, noncritical, or dependent on a third party, consider using a wire-on/wire-off framework.  对于新开发的、非关键性的或者依赖于第三方的功能，考虑使用开启/禁用框架。
+**When to use:** For functionality that is newly developed, noncritical, or dependent on a third party, consider using a wire-on/wire-off framework.  对于新开发的、非关键性的或者依赖于第三方的功能，考虑使用开启/关闭框架。
 
-**How to use:** Develop shared libraries to allow automatic or on-demand enabling and disabling of features. See Table 9.5 for recommendations. 开发共享库，以许可自动地或者按需地打开或者禁用特性。见表9.5中的建议。
+**How to use:** Develop shared libraries to allow automatic or on-demand enabling and disabling of features. See Table 9.5 for recommendations. 开发共享库，以许可自动地或者按需地启用或者禁用特性。见表9.5中的建议。
 
-**Why:** Turning off broken functionality or noncritical functionality in order to protect and preserve critical functionality is important for end users. 对于最终用户而言，关闭有问题的功能或者不关键的功能以保护和保留关键功能是非常重要的。
+**Why:** Turning off broken functionality or noncritical functionality in order to protect and preserve critical functionality is important for end users. 对于最终用户而言，关闭有问题的功能或者不关键的功能以保护和保留关键的功能是非常重要的。
 
 **Key takeaways:** Implement wire-on/wire-off frameworks whenever the cost of implementation is less than the risk and associated cost. Work to develop shared libraries that can be reused to lower the cost of future implementation. 只要实现的成本低于风险和相关的成本，就实现开启/关闭框架。开发能够被复用的共享库，以降低未来实现的成本。
+
+We introduced the notion of what we call wire-on/wire-off frameworks in Chapter 7, “Learn from Your Mistakes,” while discussing rollbacks and mentioned it again in this chapter while we were discussing fault isolation as a method of design. Ultimately these types of frameworks help to ensure that your systems can either fail gracefully (in the event of self-diagnosing frameworks) or operate with certain functionality disabled by human intervention. Sometimes companies refer to similar functionality as “feature toggles” or “circuit breakers.”
+在第7章“从你的错误中学习”中讨论回滚时，我们介绍了我们称为开启/关闭框架的概念，并且在本章我们讨论将故障隔离作为一种设计方法时又再次谈及。这类框架最终有助于确保你的系统能够或者优雅地失败（在自诊断框架的情况下）或者通过人为干预禁用特点功能情况下运行。有时候公司将类似的功能称为“特性切换器“或者”断路器“
+
+
+Feature Wire-On/Wire-Off Approaches
+|Approach方法 | Description描述 | Pro优点 |  Con缺点|
+| :------------ | :------------ |:------------ |:------------ |
+| Automatic markdown based on time-outs | When calls to third parties become slow, the application logic will mark this functionality as “off” for a period of time or until manual intervention re-enables it. | Fastest way to mark down a service that might bring several other services down when slow or unavailable. | Sensitive to “false failures” or incorrect identification of a failing service. When coupled with auto markup, may cause a “pinging” effect of the service. Every service needs to make its own decision.|
+
+
+
 
 
