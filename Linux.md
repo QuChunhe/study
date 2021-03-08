@@ -532,6 +532,41 @@ LIBRARY_PATH=$LIBRARY_PATH:/MyLib
 export LIBRARY_PATH
 ```
 
+
+ Ubuntu’s Advanced Packaging Tool (APT) 
+更新已安装的软件包
+
+sudo apt-get  upgrade
+
+查看软件包信息
+
+sudo apt-cache show package_name
+
+搜索软件
+```
+sudo  apt-cache  search  package_name
+```
+
+安装软件
+```
+sudo apt-get install  package_name
+```
+
+卸载一个软件包但是保留相关的配置文件
+```
+sudo apt-get remove package_name
+```
+
+
+卸载一个软件包同时删除配置文件
+```
+apt-get -purge remove package_name
+```
+
+
+
+
+
 # Performance
 
 ```

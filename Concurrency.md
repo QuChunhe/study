@@ -432,6 +432,12 @@ thread level parallelism (TLP)
 
 [queue.acm concurrency](https://queue.acm.org/listing.cfm?item_topic=Concurrency&qc_type=theme_list&filter=Concurrency&page_title=Concurrency&order=desc)
 
+## False Sharing 注意伪共享
+
+如果存在如下情况，就可能造成伪共享
+* 在一个数据结构中具有多个元素存储在相邻的位置
+* 多线程以方法方式访问（读和写）不同的元素
+
 # Reactive Design Patterns
 
 message-driven
@@ -720,13 +726,17 @@ onerous.
 **Consider memory retiring to implement per-chain hash-table locks.**
 
 
-**Be aware of false sharing.**
+**Be aware of false sharing.**注意伪共享
+
 
 False sharing is a common problem in shared memory parallel processing. It occurs when two or more cores hold a copy of the same memory cache line.
+伪共享是在共享内存并行处理中的一个常见问题。当两个或者更多内核持有同一个内存cache line的副本时，就会发生伪共享。
 
-If one core writes, the cache line holding the memory line is invalidated on other cores. Even though another core may not be using that data (reading or writing), it may be using another element of data on the same cache line. The second core will need to reload the line before it can access its own data again.
+If one core writes, the cache line holding the memory line is invalidated on other cores. Even though another core may not be using that data (reading or writing), it may be using another element of data on the same cache line. The second core will need to reload the line before it can access its own data again. 
+如果一个内核写入数据，那么在其他内核中持有该内存线的cache line将会失效。即使另一个内核可能不会使用这个数据（读取或者写入），而是可能使用在同一个cache line上的另一个数据元素。其他内核还是需要在访问其自己的数据之前，重新向这个cache line加载数据。
 
 The cache hardware ensures data coherency, but at a potentially high performance cost if false sharing is frequent. A good technique to identify false sharing problems is to catch unexpected sharp increases in last-level cache misses using hardware counters or other performance tools.
+缓存硬件确保了数据的一致性，但如果频繁地发生伪共享，还是会付出很高的性能代价。识别伪共享问题的一个好方法是使用硬件计数器或其他性能工具捕捉在最后一级缓存中意外急剧增加的缓存未命中。
 
 **Consider using nonblocking synchronization routines to monitor contention.**
 

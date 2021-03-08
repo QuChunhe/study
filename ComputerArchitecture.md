@@ -1,3 +1,6 @@
+
+translation lookaside buffer TLB 旁路转换缓冲，或称为页表缓冲
+
 [45-year CPU evolution: one law and two equations](https://arxiv.org/ftp/arxiv/papers/1803/1803.00254.pdf)
 
 John L. Hennessy, David A. Patterson, A New Golden Age for Computer Architecture, Communications of the ACM, February 2019, Vol. 62 No. 2, Pages 48-6
@@ -220,6 +223,42 @@ alignment：对于alignment为A的任意类型的变量，他的地址必须是A
 
 
 Memory Barriers: a Hardware View for Software Hackers
+
+# Cache
+
+[CPU cache](https://en.wikipedia.org/wiki/CPU_cache)
+
+Most modern desktop and server CPUs have at least three independent caches: an **instruction cache** to speed up executable *instruction fetch, a **data cache** to speed up data fetch and store, and a **translation lookaside buffer (TLB)** used to speed up virtual-to-physical address translation for both executable instructions and data. A single TLB can be provided for access to both instructions and data, or a separate Instruction TLB (ITLB) and data TLB (DTLB) can be provided.[2] The data cache is usually organized as a hierarchy of more cache levels (L1, L2, etc.; see also multi-level caches below). However, the TLB cache is part of the memory management unit (MMU) and not directly related to the CPU caches. 
+
+
+Data is transferred between memory and cache in blocks of fixed size, called **cache lines** or cache blocks. When a cache line is copied from memory into the cache, a cache entry is created. The cache entry will include the copied data as well as the requested memory location (called a tag).
+
+If the processor finds that the memory location is in the cache, a cache hit has occurred. However, if the processor does not find the memory location in the cache, a cache miss has occurred. In the case of a cache hit, the processor immediately reads or writes the data in the cache line. For a cache miss, the cache allocates a new entry and copies data from main memory, then the request is fulfilled from the contents of the cache. 
+
+* Replacement policies.  One popular replacement policy, **least-recently used (LRU)**, replaces the least recently accessed entry.
+* Write policies. In a **write-through** cache, every write to the cache causes a write to main memory. Alternatively, in a **write-back or copy-back cache**, writes are not immediately mirrored to the main memory, and the cache instead tracks which locations have been written over, marking them as dirty. The data in these locations is written back to the main memory only when that data is evicted from the cache.
+
+
+Cached data from the main memory may be changed by other entities (e.g., peripherals using direct memory access (DMA) or another core in a multi-core processor), in which case the copy in the cache may become out-of-date or stale. Alternatively, when a CPU in a multiprocessor system updates data in the cache, copies of data in caches associated with other CPUs become stale. Communication protocols between the cache managers that keep the data consistent are known as **cache coherence protocols**. 
+
+**CPU stalls**.
+The time taken to fetch one cache line from memory (read latency due to a cache miss) matters because the CPU will run out of things to do while waiting for the cache line. When a CPU reaches this state, it is called a stall.
+
+If the placement policy is free to choose any entry in the cache to hold the copy, the cache is called fully associative. At the other extreme, if each entry in main memory can go in just one place in the cache, the cache is direct mapped. Many caches implement a compromise in which each entry in main memory can go to any one of N places in the cache, and are described as N-way set associative.
+
+* 全关联(fully-associative)
+* 直接映射(direct map)
+* 组关联(set associative):
+
+the main differences between dynamic RAM (DRAM) and static RAM (SRAM).
+|Feature          |Dynamic RAM (DRAM) | Static RAM (SRAM) |
+|:--------------- |:------------------|:------------------|
+|Storage circuit存储电路 | Capacitor电容器       |Flip-flop |
+|Transfer speed传送速率  |Slower than CPU慢于CPU |Same as CPU与CPU一样快|
+|Latency 时延            |High高                |Low低         |
+|Density密度             |High高                | Low低|
+|Power Consumption能耗   |Low低                 |High高     |
+|Cost价格                |Cheap便宜             |Expensive昂贵|
 
 #ARM
 
