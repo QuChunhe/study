@@ -608,6 +608,55 @@ Response Time = Queue time + Service time
 
 #### CPU
 
+查看CPU信息
+
+```
+cat /proc/cpuinfo
+
+processor	: 2
+
+physical id	: 0
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+
+```
+查看 CPU 个数：
+```
+cat /proc/cpuinfo | grep 'physical id' | sort | uniq | wc -l
+```
+查看 CPU 物理核数：
+```
+cat /proc/cpuinfo | grep 'cpu cores' | sort | uniq
+```
+查看 CPU 逻辑核数：
+```
+cat /proc/cpuinfo | grep 'siblings' | sort | uniq
+```
+
+display information about the CPU architecture
+```
+lscpu
+
+more /proc/cpuinfo
+```
+
+dmidecode is a tool for dumping a computer's DMI (some say SMBIOS) table contents in a human-readable format.
+```
+dmidecode 
+```
+
+```
+lshw -C CPU
+```
+
+lstopo is a tool provided by the Portable Hardware Locality(HWLOC) project.
+它可以图片的形式显示计算机的结构。包括处理图的结构，物理核心数，虚拟核心数，和对应的各级缓存，还有总线上的元件。
+```
+yum install  hwloc-gui  hwloc-libs
+
+lstopo
+```
 
 **系统负载(System load)**
 
@@ -1519,38 +1568,7 @@ yum install  hwloc-gui  hwloc-libs
 lstopo
 ```
 
-查看CPU信息
 
-```
-cat /proc/cpuinfo
-
-processor	: 2
-
-physical id	: 0
-siblings	: 4
-core id		: 2
-cpu cores	: 4
-
-```
-查看 CPU 个数：
-```
-cat /proc/cpuinfo | grep 'physical id' | sort | uniq | wc -l
-```
-查看 CPU 物理核数：
-```
-cat /proc/cpuinfo | grep 'cpu cores' | sort | uniq
-```
-查看 CPU 逻辑核数：
-```
-cat /proc/cpuinfo | grep 'siblings' | sort | uniq
-```
-
-display information about the CPU architecture
-```
-lscpu
-
-more /proc/cpuinfo
-```
 
 
 top free ps df 

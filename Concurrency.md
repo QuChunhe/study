@@ -420,6 +420,17 @@ Finally, how should the independent tasks communicate? A key is to have the comm
 
 A "critical section" is a region of code that shall execute in isolation with respect to some or all other code in the program, and every kind of synchronization you've ever heard of is a way to express critical sections.
 
+# Caching
+
+[Intro to Caching,Caching algorithms and caching frameworks part 1](https://javalandscape.blogspot.com/2009/01/cachingcaching-algorithms-and-caching.html)
+[Intro to Caching,Caching algorithms and caching frameworks part 2](https://javalandscape.blogspot.com/2009/01/intro-to-cachingcaching-algorithms-and.html)
+[Intro to Caching,Caching algorithms and caching frameworks part 3](https://javalandscape.blogspot.com/2009/02/intro-to-cachingcaching-algorithms-and.html)
+[Intro to Caching,Caching algorithms and caching frameworks part 4](https://javalandscape.blogspot.com/2009/03/intro-to-cachingcaching-algorithms-and.html)
+[Intro to Caching,Caching algorithms and caching frameworks part 5](https://javalandscape.blogspot.com/2009/05/intro-to-cachingcaching-algorithms-and.html)
+
+为什么要使用缓存
+* 暂时性地保存临时数据
+* 保持数据的一个副本，使得应用能够以更快的速度访问数据。
 
 # Concurrency
 
@@ -432,8 +443,27 @@ thread level parallelism (TLP)
 
 [queue.acm concurrency](https://queue.acm.org/listing.cfm?item_topic=Concurrency&qc_type=theme_list&filter=Concurrency&page_title=Concurrency&order=desc)
 
-## False Sharing 注意伪共享
+## Cache-Friendly Code & False Sharing 缓存友好的代码和缓存的伪共享
 
+cache位于CPU和主存之间，用于适配CPU和内存之间的速度差距。
+
+与主存相比，cache有两点根本性的不同
+* cache采用静态随机存储器（SRAM），而主存采用冬天随机存储器（DRAM）
+* cache距离CPU更近
+上述两点不同，使得cache虽然具有更小的存储容量，但是具有更快的访问速率。从上个世纪80年代开始，主存与CPU之间的速度差距持续增大。为此，cache的大小和级数也在不断增加。目前主流的CPU一般有三级cache。
+
+|         |CPU周期   |1级cache(L1 cache)|2级cache(L2 cache)|3级cache(L3 cache)|
+|:------- |:---------|:----------------|:-----------------|:----------------|
+|绝对时间  | 0.3ns    | 0.9ns           |  3ns             | 10ns            | 
+|相对时间  |1个CPU周期 | 3个CPU周期       |  10个CPU周期      | 33个CPU周期      |
+
+可以通过分别通过lscpu（cat /proc/cpuinfo）命令查看CPU和cache的信息，通过lstopo查看cpu和cache的拓扑连接关系。
+
+L1 cache一般会细分位数据cache（L1d cache）和指令cache（L1i cache）。
+
+读取（内存）的时延。CPU和内存的速度失配。
+
+引用的局部性
 如果存在如下情况，就可能造成伪共享
 * 在一个数据结构中具有多个元素存储在相邻的位置
 * 多线程以方法方式访问（读和写）不同的元素
