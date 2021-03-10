@@ -468,6 +468,9 @@ L1 cache一般会细分位数据cache（L1d cache）和指令cache（L1i cache�
 * 在一个数据结构中具有多个元素存储在相邻的位置
 * 多线程以方法方式访问（读和写）不同的元素
 
+[Concurrency Hazards: False Sharing](https://www.codeproject.com/articles/51553/concurrency-hazards-false-sharing)
+
+
 # Reactive Design Patterns
 
 message-driven
