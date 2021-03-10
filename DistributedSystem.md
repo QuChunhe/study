@@ -1727,6 +1727,43 @@ kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic reports --from-begi
 
 kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic service-request --property print.key=true
 ```
+
+
+迁移或者更改topic的partition
+```
+vim topics-to-move.json
+{
+  "topics": [
+    {"topic": "facebook_reports"},
+    {"topic": "trace"},
+    {"topic": "history"},
+    {"topic": "admweb"}
+  ],
+  "version":1
+}
+
+/usr/local/kafka/bin/kafka-reassign-partitions.sh --zookeeper 192.168.1.6:2181 --topics-to-move-json-file topics-to-move.json --generate --broker-list "10"
+
+```
+
+```
+vim expand-cluster-reassignment.json
+{"version":1,
+  "partitions":[{"topic":"facebook_reports","partition":0,"replicas":[10]},
+ 		{"topic":"trace","partition":1,"replicas":[10]},
+                {"topic":"history","partition":0,"replicas":[10]},
+                {"topic":"admweb","partition":0,"replicas":[10]}]
+}
+
+/usr/local/kafka/bin/kafka-reassign-partitions.sh --zookeeper 192.168.1.6:2181 --reassignment-json-file expand-cluster-reassignment.json --execute
+
+```
+
+```
+/usr/local/kafka/bin/kafka-reassign-partitions.sh --zookeeper 192.168.1.6:2181 --reassignment-json-file expand-cluster-reassignment.json --verify
+```
+
+
 #### Neha Narkhede, Gwen Shapira, and Todd Palino. Kafka: The Definitive Guide. O’Reilly Media, Inc. 2017
 
 There are three primary methods of sending messages:
