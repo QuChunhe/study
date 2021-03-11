@@ -321,8 +321,10 @@ X: S-->R
 
 
 
+https://en.wikipedia.org/wiki/Talk:Poisson_distribution/Archive_1#Derivation_of_the_Poisson_Distribution_from_the_Exponential_Distribution
 
 
+https://stats.stackexchange.com/questions/2092/relationship-between-poisson-and-exponential-distribution
 
 # Statistics
 
