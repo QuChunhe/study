@@ -1368,16 +1368,44 @@ We recommend implementing wire-on/wire-off frameworks for a couple of key reason
 # Chapter 10 Avoid or Distribute State 避免状态或者分布状态
 
 Rick and the Amazon team learned a lot about the costs associated with maintaining state in large distributed systems. Put simply, Rick’s hard-earned advice is to avoid state wherever possible. “Everyone thinks of Amazon as one of the world’s largest stateless engines,” Rick stated. “In truth, there are notions of state built into the system. Order workflow, for instance, needs to have a notion of state as an order progresses from the shopping cart through fulfillment and finally shipping. But we learned early on that state also has a very high cost and that the cost associated with it increases significantly in a highly distributed system.”
-Rick和Amazon团体学到了很多与在大型分布式系统中维护状态相关联的代价。简单而言，Rick来之不易的建议是尽可能地避免状态。“每个人都认为Amazon是世界最大的无状态引擎之一，”Rick说。“事实上，存在构建到系统中的状态信息。例如，订单工作流需要一个状态信息作为订单的处理进展，从购物车到履行完毕和到最终发货。但是我们很早就了解到状态具有非常高的成本，并且在一个高度分布式的系统中与状态关联的成本会显著增长。
+Rick和Amazon团队学到了很多在大型分布式系统中与维护状态相关联的代价。简单而言，Rick来之不易的建议是尽可能地避免状态。“每个人都认为Amazon是世界最大的无状态引擎之一，”Rick说。“事实上，存在构建到系统中的状态信息。例如，订单工作流需要一个状态信息作为订单的处理进度，从购物车到履行完毕和到最终发货。但是我们很早就了解到状态具有非常高的成本，并且在一个高度分布式的系统中与状态关联的成本会显著增长。
 
 
 “When a request comes into the Amazon.com Web site, that request may in turn be farmed out to tens or hundreds of other processes, each of which does its work in a largely asynchronous fashion. Imagine the cost and complexity associated with each of these processes maintaining some notion of state. Coordination would become mind-boggling. The costs associated with compute time and storage for the state would increase significantly. Now, imagine transferring that state across each of these services. Now you are in this crazy game of synchronizing process states. Or you try to get smart and attempt to force consistent state between processes through two-phase commit.1 All of these things are really, really costly in small systems; imagine their cost across hundreds, thousands, tens of thousands, and so on, servers and services."
-”当一个请求进入Amazon.com的网站，这个请求可能依次提交给数十或者数百其他处理过程，每个过程以一种很大程度上的异步模式完成其工作。设想一下为了维护一些状态信息，与每个处理过程相关联的成本和复杂度。协同将会变得十分惊人。针对于状态，与计算时间和存储相关的成本将会显著地增加。现在想象一下，跨越这些服务传递状态。现在你在一个疯狂的同步处理状态的游戏中。或者你尝试变得聪明，并试图通过两阶段提交在处理过程之间强制一致的状态。在小型系统中所有这些事情是非常非常昂贵的，设想一下跨越成百上千、上万，甚至更多，服务器和服务的成本。"
+”当一个请求进入Amazon.com的网站后，这个请求可能依次提交给数十或者数百其他处理过程，每个过程以一种在很大程度上的异步模式完成其工作。设想一下为了维护一些状态信息，与每个处理过程相关联的成本和复杂度。协同将会变得十分惊人。针对于状态，与计算时间和存储相关的成本将会显著地增加。现在想象一下，跨越这些服务传递状态。现在你在一个疯狂的同步处理状态的游戏中。或者你尝试变得聪明，并试图通过两阶段提交在处理过程之间强制一致的状态。在小型系统中所有这些事情是非常非常昂贵的，设想一下跨越成百上千、上万，甚至更多，服务器和服务的成本。"
 
 “We tried all the ways you can think of to synchronize and manage state, and then we just decided we needed to avoid it. Here’s the other thing: when you have a stateful system and something fails, now you have some real problems. How do you recover that state? How long are you willing to wait to allow it to fully recover?"
-"我们尝试了所有你能够想到的方式，来同步和关联状态，但最终我们决定我们需要避免它。另一个事情是：当你有一个有状态的系统，但是一些东西失效了，那么你就遇到了一些真正的问题。你如何恢复状态？你愿意等多长时间让它完全恢复？"
+"我们尝试了所有你能想到的方式，来同步和关联状态，但最终我们决定我们需要避免它。另一个事情是：当你有一个有状态的系统，但是一些东西失效了，那么你就遇到了一些现实的问题。你如何恢复状态？你愿意等多长时间让它完全恢复？"
 
 While we would prefer to avoid state at all cost, it is sometimes valuable to our business. Indeed, the very nature of some applications (such as the order workflow system that Rick described) requires user state. If state is necessary, we need to implement it in a fault-tolerant, highly available, and cost-effective way such as distributing it to our end users (Rule 41) or positioning it on a special service within our infrastructure (Rule 42).
-虽然我们期望不惜一切代价地避免状态，但是有时状态对我们的业务是有价值的。实际上，一些应用（例如Rick所描述的订单工作流系统）在本质上非常需要用户状态。如果状态是必需的，那么我们需要以一种容错的、高可用和经济高效的方式实现它，例如将其分发给我们的最终用户（规则41）或者将其放置到在我们基础设施中的一个特殊的服务上。
+虽然我们期望不惜一切代价地避免状态，但是有时状态对我们的业务是有价值的。实际上，一些应用（例如Rick所描述的订单工作流系统）在本质上非常需要用户状态。如果状态是必需的，那么我们需要以一种容错的、高可用和经济高效的方式实现它，例如将其分发给我们的最终用户（规则41）或者将其放置到在我们基础设施中一个特殊的服务上（规则42）。
 
 ![Decision flowchart for implementing state in a Web application](pics/avoid_state.JPG)
+
+
+* 状态存储在用户端
+* 状态存储服务端的基础设施中
+* 状态在消息中携带
+
+Rule 40—Strive for Statelessness
+规则 40-力争无状态性
+
+**What:** Design and implement stateless systems. 设计和实现无状态的系统。
+
+**When to use:** During design of new systems and redesign of existing systems.在设计新的系统和重新设计已有的系统时
+
+**How to use:** Choose stateless implementations whenever possible. If stateful implementations are warranted for business reasons, refer to Rules 41 and 42. 如有可能则尽可能地选择无状态的实现。如果出于业务原因，有状态的实现是有必要的，那么参考规则41和42。
+
+**Why:** The implementation of state limits scalability, decreases availability, and increases cost. 有状态的实现限制可扩展性，降低可用性和提高成本。
+
+**Key takeaways:** Always push back on the need for state in any system. Use business metrics and multivariate (or A/B) testing to determine whether state in an application truly results in the expected user behavior and business value. 在任何系统中总是推迟对于状态的需求。使用业务度量和多元（或者A/B）测试确定在一个应用中的状态是否真地造成所期望的用户行为和业务价值。
+
+
+We can sometimes rely on session replication technologies to help us scale, but these approaches also have limits that are quickly outgrown. As we described in Chapter 2, “Distribute Your Work,” you will soon find yourself replicating too much information in memory across too many application servers. Very likely you will need to perform a Y or Z axis split.
+我们有时能够依赖会话复制技术帮助我们实现扩展，但是这些方法也存在局限，很快会超过其处理能力。正像我们在第二章“分布化你的工作”所描述的，你将会很快发现你自己在非常多的应用服务的内存中复制了太多的信息。你很可能需要执行Y轴或者X轴拆分。
+
+
+Many of our clients simply stop at these splits and rely on affinity maintained through a load balancer to handle session and state needs. Once a user logs in, or starts some flow specific to a pool of application servers, he or she maintains affinity to that application server until the function (in the case of a Y axis split where different pools provide different functions) or session (in the case of a Z axis split where customers are segmented into pools) is complete. This is an adequate approach for many products where growth has slowed or where customers have more relaxed availability requirements. Maintaining affinity drives increased cost; capacity planning can become troublesome when several high-volume or long-running sessions become bound to a handful of servers, and availability for certain customers will be impacted when the application server on which they are running fails. While it is possible to rely on session replication to create another host to which we might move in the event of a system failure, this approach is costly and requires duplicate memory consumption as well as increased system capacity.
+我们的许多客户简单地停留在这些拆分上，并且依赖于由负载均衡器维护的亲和性来处理会话和状态需求。一旦一个用户登录或者针对一个应用服务器池开始一些流特性，他或她维护针对于应用服务器的亲和性，直到功能（对于在Y轴拆分中不同池提供不同功能的情况）或者会话（对于在Z轴拆分中客户被划分到不同池的情况）结束。对于大多数产品，如果其增长放缓或者客户对于可用性需求较为宽松，那么这种方式是适当的。维护亲和性会驱动增加成本；当数个大容量或者长时间运行的会话受到少数服务器的局限时，容量规划将会变得非常扎手，当运行会话的应用服务器失效时，对于特定客户的可用性将会受到影响。虽然可以依赖于会话复制，创建另一个主机并且在出现系统失效时转移到这个主机上，但是这种方法是昂贵的并且需要重复地消耗内存和增加系统容量。
+
+
