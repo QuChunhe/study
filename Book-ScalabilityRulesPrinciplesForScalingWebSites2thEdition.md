@@ -1461,3 +1461,9 @@ Second, don’t use state or session replication services such as those within s
 
 Third, when choosing a session cache or persistence engine, locate that cache away from the servers performing the actual work. While a small improvement, it helps with availability because when you lose a server, you either lose the cache associated with that server or the service running on it and not both. Creating a cache (or persistent) tier also allows us to scale that tier based on the cache accesses alone rather than needing to accommodate both the application service and the internal and remote cache services.
 第三，当选择一个会话缓存或者持久化引擎时，要将缓存部署到执行实际工作的服务器外面。虽然这是一个小的改进，但是其有助于可用性，因为当你丢失了一个服务器，你或者丢失与这个服务器关联的缓存或者在这个服务器上运行的服务，而不会丢失两者。基于仅仅是缓存访问而不容纳应用服务或者内部和远端的服务，创建一个缓存（或持久化）级还许可我们扩展这一级。
+
+
+Here are three approaches to avoid in implementing a cache to manage session or state:在通过缓存管理会话或者状态时要避免如下三个方式
+* Don’t implement systems that require affinity to a server to function properly.不要实现需要与服务器紧密关联才能正常工作的系统
+* Don’t use state or session replication to create duplicates of data on different systems.
+* Don’t locate the cache on the system doing the work (this doesn’t mean you shouldn’t have a local application cache—just that session information is best handled in its own tier of servers).
