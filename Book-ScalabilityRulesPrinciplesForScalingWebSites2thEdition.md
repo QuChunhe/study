@@ -1402,10 +1402,62 @@ Rule 40—Strive for Statelessness
 
 
 We can sometimes rely on session replication technologies to help us scale, but these approaches also have limits that are quickly outgrown. As we described in Chapter 2, “Distribute Your Work,” you will soon find yourself replicating too much information in memory across too many application servers. Very likely you will need to perform a Y or Z axis split.
-我们有时能够依赖会话复制技术帮助我们实现扩展，但是这些方法也存在局限，很快会超过其处理能力。正像我们在第二章“分布化你的工作”所描述的，你将会很快发现你自己在非常多的应用服务的内存中复制了太多的信息。你很可能需要执行Y轴或者X轴拆分。
+我们有时能够依赖会话复制技术帮助我们实现扩展，但是这些方法也存在局限，很快会超过其处理能力。正像我们在第二章“分布化你的工作”所描述的，你将会很快发现你自己在很多应用服务的内存中复制了太多的信息。你很可能需要执行Y轴或者X轴拆分。
 
 
 Many of our clients simply stop at these splits and rely on affinity maintained through a load balancer to handle session and state needs. Once a user logs in, or starts some flow specific to a pool of application servers, he or she maintains affinity to that application server until the function (in the case of a Y axis split where different pools provide different functions) or session (in the case of a Z axis split where customers are segmented into pools) is complete. This is an adequate approach for many products where growth has slowed or where customers have more relaxed availability requirements. Maintaining affinity drives increased cost; capacity planning can become troublesome when several high-volume or long-running sessions become bound to a handful of servers, and availability for certain customers will be impacted when the application server on which they are running fails. While it is possible to rely on session replication to create another host to which we might move in the event of a system failure, this approach is costly and requires duplicate memory consumption as well as increased system capacity.
 我们的许多客户简单地停留在这些拆分上，并且依赖于由负载均衡器维护的亲和性来处理会话和状态需求。一旦一个用户登录或者针对一个应用服务器池开始一些流特性，他或她维护针对于应用服务器的亲和性，直到功能（对于在Y轴拆分中不同池提供不同功能的情况）或者会话（对于在Z轴拆分中客户被划分到不同池的情况）结束。对于大多数产品，如果其增长放缓或者客户对于可用性需求较为宽松，那么这种方式是适当的。维护亲和性会驱动增加成本；当数个大容量或者长时间运行的会话受到少数服务器的局限时，容量规划将会变得非常扎手，当运行会话的应用服务器失效时，对于特定客户的可用性将会受到影响。虽然可以依赖于会话复制，创建另一个主机并且在出现系统失效时转移到这个主机上，但是这种方法是昂贵的并且需要重复地消耗内存和增加系统容量。
 
+Ultimately, the solution that serves a majority of our hyper-growth clients the best is to eliminate the notion of state wherever possible.
+最终对于大多数超快速增长的客户，服务其的最佳解决方案是尽可能地消除状态信息。
 
+The point is that session and state cost money, and you should implement them only where there is a clear competitive advantage backed up by operating metrics (determined through A/B or multivariate analysis). Session and state require memory and generally require greater code complexity, meaning longer-running transactions.
+关键是会话和状态花费金钱，仅当存在基于运营指标（通过A/B测试或者多元分析确定）支撑的明显竞争优势，你才去实现它们。会话和状态需要内存，通常需要更大的编码复杂性，意味着运行更长时间的事务。
+
+
+## Rule 41—Maintain Sessions in the Browser When Possible
+## 规则41——尽可能地在浏览器中维护会话
+
+**What:** Try to avoid session data completely, but when needed, consider putting the data in users’ browsers. 尽量完全避免会话数据，但是当需要时，考虑将这些数据放到用户的浏览器中。
+
+**When to use:** Anytime that you need session data for the best user experience.任何你需要会话数据以获得最佳用户体验的时候。
+
+**How to use:** Use cookies to store session data in the users’ browsers. 使用cookies将会话数据存储在用户浏览器中。
+
+**Why:** Keeping session data in the users’ browsers allows the user request to be served by any Web server in the pool and reduces storage requirements. 将会话数据保存在用户浏览器使，得在池中的任何一个Web服务器都能够服务于用户的请求，从而减小了存储需求。
+
+**Key takeaways:** Using cookies to store session data is a common approach and has advantages in terms of ease of scale. One of the most concerning drawbacks is that unsecured cookies can easily be captured and used to log in to people’s accounts. 使用cookie存储会话数据是一种通用方法，具有易于扩展方面的优势。最令人关注的一个缺点是不安全的cookies非常容易被捕获并用于登录用户账户。
+
+使用此种方法的好处
+* 减轻了系统在存储和负载方面的大量负担
+* 用户请求能够被池中任意一个服务器处理。
+使用此种方法的问题
+* 会话数据需要在浏览器和服务器之间来回传输，从而降低传输和处理的性能
+* 可能带来一些安全问题
+
+## Rule 42—Make Use of a Distributed Cache for States
+## 规则42-针对状态使用一个分布式缓存
+
+**What:** Use a distributed cache when storing session data in your system.当需要在你的系统中存储会话数据时，使用一个分布式缓存。
+
+**When to use:** Anytime you need to store session data and cannot do so in users’ browsers.任何你需要存储会话数据并且不能在用户浏览器存储的时候。
+
+**How to use:** Watch for some common mistakes such as a session management system that requires affinity of a user to a Web server. 注意一些常见错误，例如在会话关联系统中需要将用户针紧密关联到一个Web服务器。
+
+**Why:** Careful consideration of how to store session data can help ensure that your system will continue to scale.仔细考虑如何存储会话数据，这能够有助于确保你的系统将可以持续地扩展。
+
+**Key takeaways:** Many Web servers or languages offer simple server-based session management, but these are often fraught with problems such as user affiliation with specific servers. Implementing a distributed cache allows you to store session data in your system and continue to scale. 很多Web服务器或者语言提供了简单的基于服务器的会话管理，但是这些充斥着问题，例如用户紧密关联到特定服务器。实现一个分布式缓存允许你在你的系统中存储会话数据并能够持续地扩展。
+
+
+Conceding that point, let’s move on to a few rules for what not to do when you maintain state within your application.
+承认这一点，针对于当你要在你的应用中维护状态时不能做什么，让我们继续讨论一些规则。
+
+First and foremost, stay away from state systems that require affinity to an application or Web server. If the server dies, all session information (including state) on that server will likely be lost, requiring those customers (potentially numbering into the thousands) to restart whatever process they were in. Even if you persist the data in some local or network-enabled storage, there will be an interruption of service and the user will need to start again on another server.
+第一也是最重要的，远离那些需要紧密关联到应用或者Web服务器的状态系统。如果服务器宕机，这个服务器上所有的会话信息（包括状态）都可能丢失，从而需要那些客户（潜在的数量可能成千上万）重新开始他们所处的处理过程。即使你将数据持久化到本地或者网络支持的存储中，服务也会被中断并且用户需要在另一个服务器上重新开始。
+
+Second, don’t use state or session replication services such as those within some application servers or third-party “clustering” servers. As stated previously in this chapter, such systems simply don’t scale well as modifications to session need to be propagated to multiple nodes. Furthermore, in choosing to do this type of implementation we are creating a new concern for scalability in how much memory we use on our systems.
+第二，不要使用状态或者会话复制服务，例如在一些应用服务器中或者第三方“集群”服务器中服务。正如本章前面所描述的，由于更改会话需要传播到多个节点，这类系统不能简单地实现扩展。此外，在选择执行这类实现的过程中，对于在我们的系统中需要使用多少内存的伸缩性，我们创建了一个新的关注。
+
+
+Third, when choosing a session cache or persistence engine, locate that cache away from the servers performing the actual work. While a small improvement, it helps with availability because when you lose a server, you either lose the cache associated with that server or the service running on it and not both. Creating a cache (or persistent) tier also allows us to scale that tier based on the cache accesses alone rather than needing to accommodate both the application service and the internal and remote cache services.
+第三，当选择一个会话缓存或者持久化引擎时，要将缓存部署到执行实际工作的服务器外面。虽然这是一个小的改进，但是其有助于可用性，因为当你丢失了一个服务器，你或者丢失与这个服务器关联的缓存或者在这个服务器上运行的服务，而不会丢失两者。基于仅仅是缓存访问而不容纳应用服务或者内部和远端的服务，创建一个缓存（或持久化）级还许可我们扩展这一级。
