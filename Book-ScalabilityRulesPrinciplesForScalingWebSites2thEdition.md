@@ -1442,11 +1442,11 @@ The point is that session and state cost money, and you should implement them on
 
 **When to use:** Anytime you need to store session data and cannot do so in users’ browsers.任何你需要存储会话数据并且不能在用户浏览器存储的时候。
 
-**How to use:** Watch for some common mistakes such as a session management system that requires affinity of a user to a Web server. 注意一些常见错误，例如在会话关联系统中需要将用户针紧密关联到一个Web服务器。
+**How to use:** Watch for some common mistakes such as a session management system that requires affinity of a user to a Web server. 注意一些常见错误，例如在管理关联系统中需要将用户针紧密关联到一个Web服务器。
 
-**Why:** Careful consideration of how to store session data can help ensure that your system will continue to scale.仔细考虑如何存储会话数据，这能够有助于确保你的系统将可以持续地扩展。
+**Why:** Careful consideration of how to store session data can help ensure that your system will continue to scale.仔细考虑如何存储会话数据，这有助于确保你的系统将可以持续地扩展。
 
-**Key takeaways:** Many Web servers or languages offer simple server-based session management, but these are often fraught with problems such as user affiliation with specific servers. Implementing a distributed cache allows you to store session data in your system and continue to scale. 很多Web服务器或者语言提供了简单的基于服务器的会话管理，但是这些充斥着问题，例如用户紧密关联到特定服务器。实现一个分布式缓存允许你在你的系统中存储会话数据并能够持续地扩展。
+**Key takeaways:** Many Web servers or languages offer simple server-based session management, but these are often fraught with problems such as user affiliation with specific servers. Implementing a distributed cache allows you to store session data in your system and continue to scale. 很多Web服务器或者语言提供了简单的基于服务器的会话管理，但是这些会话管理充斥着问题，例如用户紧密关联到特定服务器。实现一个分布式缓存允许你在你的系统中存储会话数据并能够持续地扩展。
 
 
 Conceding that point, let’s move on to a few rules for what not to do when you maintain state within your application.
@@ -1456,14 +1456,37 @@ First and foremost, stay away from state systems that require affinity to an app
 第一也是最重要的，远离那些需要紧密关联到应用或者Web服务器的状态系统。如果服务器宕机，这个服务器上所有的会话信息（包括状态）都可能丢失，从而需要那些客户（潜在的数量可能成千上万）重新开始他们所处的处理过程。即使你将数据持久化到本地或者网络支持的存储中，服务也会被中断并且用户需要在另一个服务器上重新开始。
 
 Second, don’t use state or session replication services such as those within some application servers or third-party “clustering” servers. As stated previously in this chapter, such systems simply don’t scale well as modifications to session need to be propagated to multiple nodes. Furthermore, in choosing to do this type of implementation we are creating a new concern for scalability in how much memory we use on our systems.
-第二，不要使用状态或者会话复制服务，例如在一些应用服务器中或者第三方“集群”服务器中服务。正如本章前面所描述的，由于更改会话需要传播到多个节点，这类系统不能简单地实现扩展。此外，在选择执行这类实现的过程中，对于在我们的系统中需要使用多少内存的伸缩性，我们创建了一个新的关注。
+第二，不要使用状态或者会话复制服务，例如在一些应用服务器中或者第三方“集群”服务器中的服务。正如本章前面所描述的，由于更改会话需要将会话数据传播到多个节点，这类系统不能简单地实现扩展。此外，在选择实现这类系统过程中，对于在我们的系统中需要使用多少内存的伸缩性，我们创建了一个新的关注。
 
 
 Third, when choosing a session cache or persistence engine, locate that cache away from the servers performing the actual work. While a small improvement, it helps with availability because when you lose a server, you either lose the cache associated with that server or the service running on it and not both. Creating a cache (or persistent) tier also allows us to scale that tier based on the cache accesses alone rather than needing to accommodate both the application service and the internal and remote cache services.
-第三，当选择一个会话缓存或者持久化引擎时，要将缓存部署到执行实际工作的服务器外面。虽然这是一个小的改进，但是其有助于可用性，因为当你丢失了一个服务器，你或者丢失与这个服务器关联的缓存或者在这个服务器上运行的服务，而不会丢失两者。基于仅仅是缓存访问而不容纳应用服务或者内部和远端的服务，创建一个缓存（或持久化）级还许可我们扩展这一级。
+第三，当选择一个会话缓存或者持久化引擎时，要将缓存部署到执行实际工作的服务器之外。虽然这是一个小的改进，但是其有助于可用性，因为当你丢失了一个服务器，你或者丢失与这个服务器关联的缓存或者丢失了这个服务器上正在运行的服务，而不会丢失两者。创建一个缓存（或持久化）级，还许可我们基于缓存访问而不是需要容纳的应用服务以及内部和远端的服务，来扩展这一级。
 
 
-Here are three approaches to avoid in implementing a cache to manage session or state:在通过缓存管理会话或者状态时要避免如下三个方式
+Here are three approaches to avoid in implementing a cache to manage session or state:在实现缓存来管理会话或者状态的过程中要避免如下三个方式
 * Don’t implement systems that require affinity to a server to function properly.不要实现需要与服务器紧密关联才能正常工作的系统
-* Don’t use state or session replication to create duplicates of data on different systems.
-* Don’t locate the cache on the system doing the work (this doesn’t mean you shouldn’t have a local application cache—just that session information is best handled in its own tier of servers).
+* Don’t use state or session replication to create duplicates of data on different systems. 不用使用状态或者会话复制在不同的系统中创建数据的副本。
+* Don’t locate the cache on the system doing the work (this doesn’t mean you shouldn’t have a local application cache—just that session information is best handled in its own tier of servers).不要将缓存放置到做这个工作的系统上（这并不意味着你不该拥有一个本地的应用缓存，只是会话信息最好在其自己的服务器层级中处理）。
+
+
+This brings us to the question of what to use for a cache. The question really comes down to reliability and persistence versus cost. If you expect to keep session or state information for quite some time, such as in the case of a shopping cart, you may decide that for some or all of your session information you are going to rely on a solution that allows lengthy and durable persistence. In many cases databases are used for these implementations. Clearly, however, a database will cost you more per transaction than a simpler solution such as a nonpersisting distributed object cache.
+这就带来一个问题，即如何利用缓存。这个问题实际上可以归结为可靠性和持久性与成本之间考量。如果你希望将会话或者状态信息保留相当长的一段时间，例如在购物车的例子中，那么你可能决定对于你的一些或者全部会话信息，你将会依赖于一个支持长期持久化的解决方案。在很多例子中，数据库被用于这些情况。然而，与更加简单的解决方案（例如非持久化的分布式对象缓存）相比，数据库显然在每个事务上的开销更大。
+
+
+If you don’t need persistence and durability, you can choose from one of many object caches. Refer to Chapter 6, “Use Caching Aggressively,” for a discussion of object caches and their uses. In some cases, you may decide that you want both the persistence of a database and the relative low cost for performance of a cache in front of that database. Such an implementation gives you the persistence of a database while allowing you to scale the transactions more cost-effectively through a cache that front-ends that database.
+如果不需要持续性和持久性，你可以从众多的对象缓存中选择一个。参考第6章“大胆地使用缓存"中关于对象缓存和其使用的讨论。在一些例子中，你可能决定既要数据库的持久性，也要在数据库之前缓存相对低廉的性能成本。这样的实现给你提供了数据库的持久性，同时允许你通过在数据库之前的缓存，更加经济高效地扩展事务。
+
+Here are three common implementations for distributed caches and some notes on their benefits and drawbacks:如下是分布式缓存的三种常见实现方式以及关于其优缺点的一些说明
+* Database-only implementations are the most costly overall but allow all data to be persisted and handle conflicts between updates and reads very well in a distributed environment.仅有数据库的实现是总体上成本最高的，但是允许数据被持久化存储，并且在分布式环境中很好地处理更新和读取之间的冲突
+* Nonpersistent object caches are fast and comparatively inexpensive, but they do not allow data to be recovered upon failure and aren’t good for implementations with long periods between accesses by users. 非持久化对象缓存是最快的并且相对不贵，但是其不许可在故障后恢复数据，并且不适合用户访问间隔较长的实现。
+* Hybrid solutions with databases providing persistence and caches providing cost-effective scale are great when persistence is required and low relative cost is preferred. 当需要持久化并且倾向于相对低的成本市，，由数据库提供持久化而有缓存提供经济高效扩展的混合解决方案是非常好的选择。
+
+
+
+# Chapter 11 Asynchronous Communication and Message Buses 异步通信和消息总线
+
+The lesson here is that a single overlooked synchronous call that works well for years can cause a site-wide outage when processing slows down enough to exceed capacity.
+这里的教训是一个被忽视的同步调用，虽然其能够正常工作多年，但是当其处理变慢到超过容量时就会造成整个网站宕机。
+
+As a rule, we favor asynchronous communication whenever possible. As we discuss in this chapter, this favorable treatment requires that one not only communicates in an asynchronous fashion but actually develops the application to be asynchronous in behavior. This means, in large part, moving away from request/reply protocols—at least those with temporal constraints on responses. At the very least it requires aggressive time-outs and exception handling when responses are required within a specified period. These defense mechanisms can be difficult to implement even for the most experienced teams.
+作为一个规则，我会尽可能地采用异步通信。正像我们在本章所讨论的，这种倾向性的处理不仅需要以一种异步范式进行通信，而且实际开发应用在行为上也是异步的。
