@@ -11,7 +11,7 @@
 
 How to Measure Anything_
 
-
+http://highscalability.com/blog/category/distirbuted
 
 # LaTex
 [LaTeX公式手册](https://www.cnblogs.com/1024th/p/11623258.html)
