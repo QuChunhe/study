@@ -18,11 +18,7 @@ Software talks to hardware through a vocabulary called an instruction set archit
 * The Memory Wall means 1000 pins on a CPU package is way too many.
 * ILP Wall means a deeper instruction pipeline really means digging a deeper power hole. (ILP stands for instruction level parallelism.)
 
-[The future of computers – Part 1: Multicore and the Memory Wall](https://www.edn.com/the-future-of-computers-part-1-multicore-and-the-memory-wall/)
 
-[The future of computers - Part 2: The Power Wall](https://www.edn.com/future-of-computers-part-2-the-power-wall/)
-
-[The future of computing - Part 3: The ILP Wall and pipelines](https://www.edn.com/future-of-computing-part-3-the-ilp-wall-and-pipelines/)
 
 四十年来CPU发展的推动力
 * 半导体工艺：更高的频率、更多的晶体管
@@ -55,38 +51,20 @@ CPU Die之间通过片外总线（Infinity Fabric）互联，并且不同CPU Die
 
 CPU Socket(NUMA Node)--> CPU Die --> CPU Core (Physic CPU)--> HyperThread (logic CPU)
 
-* socket ⇄ node
+* socket <-> node
 
 socket是一个物理上的概念，指的是主板上的cpu插槽。node是一个逻辑上的概念，对应于socket。
 
-* core ⇄ 物理cpu
+* core <-> 物理cpu
 
 core就是一个物理cpu,一个独立的硬件执行单元
 
-* thread ⇄ 逻辑cpu
+* thread <-> 逻辑cpu
 
 socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执行的硬件单元，比如寄存器，计算单元等; Thread：就是超线程hyperthread的概念，逻辑的执行单元，独立的执行上下文，但是共享core内的寄存器和计算单元。
 
 # Memory
 
-[Memory Hierarchy Design – Part 1. Basics of Memory Hierarchie](https://www.edn.com/memory-hierarchy-design-part-1-basics-of-memory-hierarchies/)
-
-[ Memory Hierarchy Design – Part 2. Ten advanced optimizations of cache performance](https://www.edn.com/memory-hierarchy-design-part-2-ten-advanced-optimizations-of-cache-performance/)
-
-[Memory Hierarchy Design – Part 3. Memory technology and optimizations](https://www.edn.com/memory-hierarchy-design-part-3-memory-technology-and-optimizations/)
-
-[Memory Hierarchy Design – Part 4. Virtual memory and virtual machines](https://www.edn.com/memory-hierarchy-design-part-4-virtual-memory-and-virtual-machines/)
-
-[Memory Hierarchy Design – Part 5. Crosscutting issues and the memory design of the ARM Cortex-A8](https://www.edn.com/memory-hierarchy-design-part-5-crosscutting-issues-and-the-memory-design-of-the-arm-cortex-a8/)
-
-[Memory Hierarchy Design – Part 6. The Intel Core i7, fallacies, and pitfalls](https://www.edn.com/memory-hierarchy-design-part-6-the-intel-core-i7-fallacies-and-pitfalls/)
-
-
-Demand for increasing functionality and performance in systems designs continues to drive the need for more memory even as hardware engineers balance the dynamics of system capability, power, and cost against the growing performance gap between processor and memory. Architectures based on memory hierarchy address these issues.
-即使硬件工程师平衡系统容量、功耗和成本三者之间的大小程度，以对抗处理器和内存之间不断增长的性能差距，在系统设计中对于功能和性能不断增加的需求持续还是推动了对于更多内存的需求。基于内存层次的架构解决了这个问题。
-
-Computer pioneers correctly predicted that programmers would want unlimited amounts of fast memory. An economical solution to that desire is a memory hierarchy , which takes advantage of locality and trade-offs in the cost-performance of memory technologies. The principle of locality , presented in the first chapter, says that most programs do not access all code or data uniformly. Locality occurs in time (temporal locality ) and in space (spatial locality ). This principle, plus the guideline that for a given implementation technology and power budget smaller hardware can be made faster, led to hierarchies based on memories of different speeds and sizes.
-计算机先驱们正确地预测了程序员将会需要无限量高速内存。一个所期望的、经济的解决方案是内存层次结构，其利用局部性以及内存技术在性能和价格之间折中。在第一章介绍的
 
 [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 
@@ -268,3 +246,20 @@ the main differences between dynamic RAM (DRAM) and static RAM (SRAM).
 #ARM
 
 [ARM Manul](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cacghbij.html)
+
+
+# Books
+
+John L. Hennessy, David A. Patterson, Computer Architecture: A Quantitative Approach Sixth Edition, Morgan Kaufmann, 2017
+
+Chapter 1 Fundamentals of Quantitative Design and Analysis
+
+
+
+Cahpter 2 Memory Hierarchy Design
+
+Demand for increasing functionality and performance in systems designs continues to drive the need for more memory even as hardware engineers balance the dynamics of system capability, power, and cost against the growing performance gap between processor and memory. Architectures based on memory hierarchy address these issues.
+即使硬件工程师平衡系统容量、功耗和成本三者之间的大小程度，以对抗处理器和内存之间不断增长的性能差距，在系统设计中对于功能和性能不断增加的需求持续还是推动了对于更多内存的需求。基于内存层次的架构解决了这个问题。
+
+Computer pioneers correctly predicted that programmers would want unlimited amounts of fast memory. An economical solution to that desire is a memory hierarchy , which takes advantage of locality and trade-offs in the cost-performance of memory technologies. The principle of locality , presented in the first chapter, says that most programs do not access all code or data uniformly. Locality occurs in time (temporal locality ) and in space (spatial locality ). This principle, plus the guideline that for a given implementation technology and power budget smaller hardware can be made faster, led to hierarchies based on memories of different speeds and sizes.
+计算机先驱们正确地预测了程序员将会需要无限量高速内存。一个所期望的、经济的解决方案是内存层次结构，其利用局部性以及内存技术在性能和价格之间折中。在第一章介绍的
