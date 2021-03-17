@@ -82,6 +82,11 @@ socket就是主板上的CPU插槽; Core就是socket里独立的一组程序执�
 [Memory Hierarchy Design – Part 6. The Intel Core i7, fallacies, and pitfalls](https://www.edn.com/memory-hierarchy-design-part-6-the-intel-core-i7-fallacies-and-pitfalls/)
 
 
+Demand for increasing functionality and performance in systems designs continues to drive the need for more memory even as hardware engineers balance the dynamics of system capability, power, and cost against the growing performance gap between processor and memory. Architectures based on memory hierarchy address these issues.
+即使硬件工程师平衡系统容量、功耗和成本三者之间的大小程度，以对抗处理器和内存之间不断增长的性能差距，在系统设计中对于功能和性能不断增加的需求持续还是推动了对于更多内存的需求。基于内存层次的架构解决了这个问题。
+
+Computer pioneers correctly predicted that programmers would want unlimited amounts of fast memory. An economical solution to that desire is a memory hierarchy , which takes advantage of locality and trade-offs in the cost-performance of memory technologies. The principle of locality , presented in the first chapter, says that most programs do not access all code or data uniformly. Locality occurs in time (temporal locality ) and in space (spatial locality ). This principle, plus the guideline that for a given implementation technology and power budget smaller hardware can be made faster, led to hierarchies based on memories of different speeds and sizes.
+计算机先驱们正确地预测了程序员将会需要无限量高速内存。一个所期望的、经济的解决方案是内存层次结构，其利用局部性以及内存技术在性能和价格之间折中。在第一章介绍的
 
 [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 

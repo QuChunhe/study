@@ -445,17 +445,17 @@ thread level parallelism (TLP)
 
 ## Cache-Friendly Code & False Sharing 缓存友好的代码和缓存的伪共享
 
-cache位于CPU和主存之间，用于适配CPU和内存之间的速度差距。从上个世纪80年代开始，主存与CPU之间的速度差距持续增大。为此，cache的大小和级数也在不断增加。上述两点不同，使得cache虽然具有更小的存储容量，但是具有更快的访问速率。
+cache位于CPU和主存之间，用于适配CPU和内存之间的速度差距。从上个世纪80年代开始，主存与CPU之间的速度差距持续增大。为此，cache的大小和级数也在不断增加。目前主流的CPU一般有三级cache，三级cache和主存的访问速度如下表所示
+。
+|         |CPU周期   |1级cache(L1 cache)|2级cache(L2 cache)|3级cache(L3 cache)| 主存(Maini Memory)|
+|:------- |:---------|:----------------|:-----------------|:----------------|:------------------|
+|绝对时间  | 0.3ns    | 0.9ns           |  3ns             | 10ns            | 100ns             |
+|相对时间  |1个CPU周期 | 3个CPU周期       |  10个CPU周期      | 33个CPU周期      | 333个CPU周期       |
 
-与主存相比，cache有两点根本性的不同
+与主存相比，cache具有更快的访问速度。之所以如此，是因为如下两个根本性原因
 * cache采用静态随机存储器（SRAM），而主存采用动态随机存储器（DRAM）。
 * cache距离CPU更近
-
-目前主流的CPU一般有三级cache。
-|         |CPU周期   |1级cache(L1 cache)|2级cache(L2 cache)|3级cache(L3 cache)|
-|:------- |:---------|:----------------|:-----------------|:----------------|
-|绝对时间  | 0.3ns    | 0.9ns           |  3ns             | 10ns            | 
-|相对时间  |1个CPU周期 | 3个CPU周期       |  10个CPU周期      | 33个CPU周期      |
+上述两点使得cache具有更快的访问速率，但是也使得其存储容量受到限制。静态随机存储器更
 
 可以通过分别通过lscpu（cat /proc/cpuinfo）命令查看CPU和cache的信息，通过lstopo查看cpu和cache的拓扑连接关系。
 

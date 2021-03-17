@@ -8,6 +8,10 @@
 
 [Resource Management Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/resource_management_guide/index)
 
+需要关注的系统层面的信息可以划分位如下三类
+* 属性信息。依赖于硬件，为只读信息，不能更改。
+* 配置信息。除非手工更改，否则不会随着时间和应用而发生改变。
+* 性能信息。依赖于运行的应用或者任务，而随着时间动态变化。
 
 监控和分析系统/应用的性能，判断性能瓶颈，提供方案优化性能。
 * 配置Linux和系统软件
