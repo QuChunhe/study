@@ -22,18 +22,18 @@ Multiprocessors（多处理器系统）
 * All-or-nothing failure或者全部失效或者没有失效
 
 
-supercomputer：Parallel systems（超级计算机/大规模并行系统）
+supercomputer：Parallel systems（超级计算机/大型计算机）：针对于大型的、计算密集(浮点运算)的和对于通信时延的任务
 * Distribued memoery 分布式内存
 * No shared global clock 没有全局共享时钟
 * Shared operating system 共享的操作系统
-* Partial failures 部分失效
+* Partial failures 部分失效，在硬件和操作系统层面处理失效，上层应用和任务无感知。
 * dedicated network 专门的网络
 
-Multicomputers (networks of computers)：distributed systems（分布式系统）
+Multicomputers (networks of computers)：distributed systems（分布式系统）：针对于交互性的任务或者数据处理任务
 * No shared memory 没有共享的内存
 * No shared clock 没有共享的时钟
-* Partial failures 部分失效
-* common network 通用网络
+* Partial failures 部分失效，使用冗余地部署商用组件或者商业系统，依赖于应用层检测、隔离和迁移故障。
+* common local area network 通用的局域网
 
 分布式系统依赖于网络可以划分为
 * 强耦合系统（strongly coupled systems）：通过局域网络连接，更大的带宽以及通信时延更加可预测
