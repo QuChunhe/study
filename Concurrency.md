@@ -445,24 +445,49 @@ thread level parallelism (TLP)
 
 ## Cache-Friendly Code & False Sharing 缓存友好的代码和缓存的伪共享
 
-cache位于CPU和主存之间，用于适配CPU和内存之间的速度差距。从上个世纪80年代开始，主存与CPU之间的速度差距持续增大。为此，cache的大小和级数也在不断增加。目前主流的CPU一般有三级cache，三级cache和主存的访问速度如下表所示
+cache位于CPU和主存之间，用于适配CPU和内存之间的速度差距。从上个世纪80年代开始，主存与CPU之间的速度差距持续增大，例如从1986年到2000年，CPU速度以每年55%的速度提高，而内存速度每年仅仅提高了10%。长期累积下来，内存像墙一样阻止了CPU性能的发挥，因此也被称之为内存墙(Memory wall)。为此，cache的大小和级数也在不断增加。目前主流的CPU一般有三级cache，三级cache和主存的访问速度如下表所示
 。
-|         |CPU周期   |1级cache(L1 cache)|2级cache(L2 cache)|3级cache(L3 cache)| 主存(Maini Memory)|
+|         |CPU周期   |1级cache(L1 cache)|2级cache(L2 cache)|3级cache(L3 cache)| 主存(Main Memory)|
 |:------- |:---------|:----------------|:-----------------|:----------------|:------------------|
 |绝对时间  | 0.3ns    | 0.9ns           |  3ns             | 10ns            | 100ns             |
 |相对时间  |1个CPU周期 | 3个CPU周期       |  10个CPU周期      | 33个CPU周期      | 333个CPU周期       |
 
-与主存相比，cache具有更快的访问速度。之所以如此，是因为如下两个根本性原因
-* cache采用静态随机存储器（SRAM），而主存采用动态随机存储器（DRAM）。
-* cache距离CPU更近
-上述两点使得cache具有更快的访问速率，但是也使得其存储容量受到限制。静态随机存储器更
+与主存相比，cache之所以具有更快的访问速度，是因为如下两个根本性原因
+* cache采用静态随机存储器（SRAM），而主存采用动态随机存储器（DRAM）。静态随机存储器虽然存取速度更快，但是其电路更加复杂、能耗更高、价格更贵、晶体管密度更低。
+* cache位于CPU内部，具有更短的传输距离。L1、L2和L3三级cache随着与内核距离的逐渐增加，访问时延逐渐增大。
+显然，上述两个原因也使得受限于CPU芯片的大小和成本，cache容量不能随意增加。
 
-可以通过分别通过lscpu（cat /proc/cpuinfo）命令查看CPU和cache的信息，通过lstopo查看cpu和cache的拓扑连接关系。
+近十几年来随着多核/众核的发展，内存墙问题还变得越来越严重。内核的流水线经常需要停顿下来，以等待从内存获取数据。这使得对多核处理器性能提升形成的严重阻碍和制约
+
+优化使用cache，能够充分发挥多核CPU的潜力，幅度提升CPU的处理性能
+
+可以通过分别通过lscpu或者cat /proc/cpuinfo命令查看CPU和cache的信息，通过lstopo查看cpu和cache的拓扑连接关系。
+
+
+dmidecode -t cache
 
 L1 cache一般会细分位数据cache（L1d cache）和指令cache（L1i cache）。
 
-读取（内存）的时延。CPU和内存的速度失配。
+读取（内存）的时延。CPU和内存的速度失配。内存的存取速度严重滞后
 
+
+在cache中的数据被划分为不同块，每一个块被称为一个缓存行（cache line），一个cache line通常为64或128字节的宽度。cache line是从内存读取或写入到内存的最小单元。在内存中相互邻近的数据通常被一个特定的线程在相近的时间访问，这在大多数程序中都是正确的。然而，这种局部性是虚假分享问题的根源。
+
+Modern processors use the MESI protocol to implement cache coherence. This basically means each cache line can be in one of four states:
+* **M**odified
+* **E**xclusive
+* **S**hared
+* **I**nvalid
+
+When a core modifies any data in a cache line, it transitions to "Modified", and any other caches that hold a copy of the same cache line are forced to "Invalid". The other cores must then read the data from main memory next time they need it. 
+
+embarrassingly parallel（(also called pleasingly parallel or perfectly parallel) ），完美并行，这个术语字面难以理解，意指任务之间没有依赖或者依赖很少，可以完美并行。尽管这意味着你可能会对代码能如此简单的并行而感到尴尬，但这是好事。
+
+设想一下，两个不同的变量被两个运行在不同内核上的线程使用。不同线程使用相互独立的数据，这显然是一个完美并行。但是，如果两个变量位于同一个cache line中并且至少有一个便利被更改，那么就会出现cache line的竞争。这就是伪共享。之所以被称为伪共享，是因为虽然不同的线程没有共享数据，但是它们无意中共享了一个cache line。
+
+
+* Padding 填充
+* spacing 间距
 
 cache友好代码的两个例子
 * 矩阵的处理
@@ -476,6 +501,11 @@ cache友好代码的两个例子
 如果存在如下情况，就可能造成伪共享
 * 在一个数据结构中具有多个元素存储在相邻的位置
 * 多线程以方法方式访问（读和写）不同的元素
+
+```
+perf stat ./yourapp
+```
+
 
 [Concurrency Hazards: False Sharing](https://www.codeproject.com/articles/51553/concurrency-hazards-false-sharing)
 

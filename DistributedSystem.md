@@ -11,12 +11,12 @@ https://akfpartners.com/growth-blog
 * Vertical scaling(垂直扩展):Scale up 向上伸缩，通过升级硬件，实现可扩展。
 
 
-分布式系统的定义：一组独立的并通过网络连接的计算机，能够相互协作完成特定的任务，就像一台计算机一样。
+分布式系统的定义：一组独立的并通过网络连接的计算机，能够相互协作完成特定的任务，就像一台计算机一样向外提供服务。
 
 Multiprocessors（多处理器系统）
 * Shared memory共享内存
     * uniform memory access (UMA) architecture
-	* Non-uniform memory access (NUMA) architecture
+    * Non-uniform memory access (NUMA) architecture
 * Shared clock共享时钟
 * Shared operating system共享操作系统
 * All-or-nothing failure或者全部失效或者没有失效
@@ -33,7 +33,7 @@ Multicomputers (networks of computers)：distributed systems（分布式系统�
 * No shared memory 没有共享的内存
 * No shared clock 没有共享的时钟
 * Partial failures 部分失效，使用冗余地部署商用组件或者商业系统，依赖于应用层检测、隔离和迁移故障。
-* common local area network 通用的局域网
+* common network 通用的局域网
 
 分布式系统依赖于网络可以划分为
 * 强耦合系统（strongly coupled systems）：通过局域网络连接，更大的带宽以及通信时延更加可预测
@@ -43,7 +43,7 @@ Multicomputers (networks of computers)：distributed systems（分布式系统�
 * 超级计算器（超算）：采用专用的硬件和软件，价格贵，性能高
 * 多处理器系统：
 
-分布式字面上的意思是通过多个服务器或者阶段协同提高服务
+分布式字面上的意思是通过多个服务器或者阶段协同提供服务
 
 分布式的不同视角或者侧面:目的、对象、方法和问题
 
@@ -95,8 +95,15 @@ Multicomputers (networks of computers)：distributed systems（分布式系统�
 * 在出现故障时，确保数据不丢失或者少丢失。需要数据完整的数据备份方案
 * 在出现故障时，能够及时地确定故障并尽快地恢复。
 
+可扩展性包括两个方面
+* 管理：随着人员的增加，能够完成更多的工作和实现更多的产出
+* 系统：随着资源的增加，能够处理更多的任务
+  * 设计阶段
+  * 开发阶段
+  * 运维阶段
+   
 
-可扩展性（可伸缩性）描述了一个系统随着添加资源，能够在满足服务水平的情况下处理更多工作的能力，包括更多的请求、更大的数据和更高的精度
+对于系统而言，可扩展性（可伸缩性）描述了一个系统随着添加资源，能够在满足服务水平的情况下处理更多工作的能力，包括更多的请求、更大的数据和更高的精度
 * 更多的服务请求
 * 更大的数据规模
 * 更高的计算精度

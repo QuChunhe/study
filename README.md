@@ -11,7 +11,16 @@
 
 How to Measure Anything_
 
+# Web
 http://highscalability.com/blog/category/distirbuted
+
+[ACM Queue](https://queue.acm.org/)
+
+[Percona Blog](https://www.percona.com/blog/)
+
+[Brendan D. Gregg](http://www.brendangregg.com/)
+
+[How they SRE](https://github.com/upgundecha/howtheysre)
 
 # LaTex
 [LaTeX公式手册](https://www.cnblogs.com/1024th/p/11623258.html)

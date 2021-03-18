@@ -597,7 +597,7 @@ Headroom is available usable resources
 * Total Capacity minus Peak Utilization and Margin
 * Applies to CPU, RAM, Net, Disk and OS
 
-![headroom](https://github.com/QuChunhe/study/raw/master/pics/Headroom.png)
+![headroom](pics/Headroom.png)
 
 Utilization
 * Utilization is the proportion of busy time
@@ -677,11 +677,31 @@ The three load-average values in the first line of top output are the 1-minute, 
 
 [CPU Utilization is Wrong](http://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
 
+
+![](pics/cpubusystalledidle.png)
+
+stalled（waiting）意味着处理器没有在执行指令，通常是是因为处理器在等待内存读写。
+
 The metric we call CPU utilization is really "non-idle time": the time the CPU was not running the idle thread. Your operating system kernel (whatever it is) usually tracks this during context switch. If a non-idle thread begins running, then stops 100 milliseconds later, the kernel considers that CPU utilized that entire time.
+我们称之为CPU利用率的度量实际上是"非空闲时间": CPU没有运行空闲线程的时间。操作系统内核（无论是何种）通常在上下文切换过程中跟踪这一点。如果一个非空闲线程开始运行，然后在100毫米后停止，那么内核认为CPU一直在被使用。
 
 Nowadays, CPUs have become much faster than main memory, and waiting on memory dominates what is still called "CPU utilization". When you see high %CPU in top(1), you might think of the processor as being the bottleneck – the CPU package under the heat sink and fan – when it's really those banks of DRAM.
+如今，CPU已经变得比主存快很多，而等待内存占据了所谓“CPU使用率”的主要地位。当你在使用top看到高%CPU时，你也许认为处理器（在散热器和风扇下的CPU包）是那个瓶颈，而实际上是DRAM.
 
 多CPU、多核和超线程加剧了CPU等待内存的停顿。
+
+解释和可采取的行动
+* 如果IPC\<1，那么很可能是内存停顿。软件调优策略包括减小内存读写、提高CPU缓存和内存局部性，特别是在NUMA系统中。硬件调优包括使用具有更大CPU cache的处理器以及更快的内存、总线和连接器。
+* 如果IPC\>1，那么可能是指令受限。寻找减小代码执行的方法：减小不必要的工作、缓存操作等等。CPU火焰图是针对这种调查的一个有用工具。对于硬件调优，尝试更快的时钟速率以及更多的内核/超线程。
+
+It's not just memory stall cycles that makes CPU utilization misleading. Other factors include:
+* Temperature trips stalling the processor.
+* Turboboost varying the clockrate.
+* The kernel varying the clock rate with speed step.
+* The problem with averages: 80% utilized over 1 minute, hiding bursts of 100%.
+* Spin locks: the CPU is utilized, and has high IPC, but the app is not making logical forward progress.
+
+As for top(1), there is tiptop(1) for Linux, which shows IPC by process:
 
 CPU处理指令的一般步骤
 1. Instruction Fetch. Obtain instruction from program memory. The Program Counter (PC) points to the instruction to be processed
@@ -689,6 +709,13 @@ CPU处理指令的一般步骤
 3. Operand Fetch. Locate and obtain operand data. From data memory or registers
 4. Execute..Compute result value or status
 5. Result Store. Deposit results in storage (data memory or register) for later use
+
+instructions per cycle (insns per cycle: IPC),
+```
+ yum install tiptop.x86_64
+```
+
+可以分别采用tiptop和perf查看整个系统和单个应用的IPC。
 
 The average instruction executed takes a number of cycles per instruction (CPI) to be completed.
 – Measured in: cycles/instruction, CPI, Or Instructions Per Cycle (IPC)
@@ -1335,6 +1362,20 @@ network:
 
 netplan apply
 
+```
+
+
+[云网络丢包故障定位全景指南](https://blog.csdn.net/21cnbao/article/details/114385134?spm=1001.2014.3001.5501)
+
+```
+ethtool - query or control network driver and hardware settings
+   ethtool -S em1
+
+cat /proc/net/dev
+
+ifconfig
+
+netstat -s
 ```
 
 #### Disk(磁盘）

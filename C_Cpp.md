@@ -17,6 +17,7 @@
   * 并发数据结构
   * 并发编程模式
 
+[李浩: 再谈 volatile 关键字](https://blog.csdn.net/21cnbao/article/details/114362308?spm=1001.2014.3001.5501)
 
 
 
