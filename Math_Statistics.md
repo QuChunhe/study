@@ -219,8 +219,11 @@ F(x)连续不一定是连续型随机变量，只有f(x)连续才行
 正态分布 （常态分布）
 
 
-
-
+* 正态分布（normal distribution）
+* 偏态分布（skewed distribution）
+   * 左偏态：left skewed distribution，负偏态（negatively skewed distribution），主要在左侧；
+   * 右偏态：right skewed distribution，正偏态（positively skewed distribution），主要在右侧；
+————————————————
 
 随机变量函数的分布
 
