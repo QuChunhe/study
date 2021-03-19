@@ -22,6 +22,12 @@ http://highscalability.com/blog/category/distirbuted
 
 [How they SRE](https://github.com/upgundecha/howtheysre)
 
+[Marc's Blog](http://brooker.co.za/blog/)
+
+[Amazon 如何构建和运营软件](https://aws.amazon.com/cn/builders-library/?cards-body.sort-by=item.additionalFields.customSort&cards-body.sort-order=asc)
+
+[The Amazon Builders' Library:How Amazon builds and operates software](https://aws.amazon.com/builders-library)
+
 # LaTex
 [LaTeX公式手册](https://www.cnblogs.com/1024th/p/11623258.html)
 
