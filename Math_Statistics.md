@@ -612,6 +612,9 @@ Histograms are most useful for describing data sets when the number of data poin
 * skewed to the right(偏向右边)
 * skewed to the left(偏向左边)
 
+[The Evolution of the Normal Distribution](https://www.maa.org/sites/default/files/pdf/upload_library/22/Allendoerfer/stahl96.pdf)
+
+[History of the Normal Distribution](https://www.math.utah.edu/~kenkel/normaldistributiontalk.pdf)
 
 exploratory data analysis(探索性数据分析)
 
