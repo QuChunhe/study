@@ -711,6 +711,10 @@ CPU处理指令的一般步骤
 5. Result Store. Deposit results in storage (data memory or register) for later use
 
 instructions per cycle (insns per cycle: IPC),
+
+类似于top命令，tiptop可以查看系统中各个进程的IPC，而perf可以参看单个程序的IPC
+
+
 ```
  yum install tiptop.x86_64
 ```
@@ -1664,7 +1668,6 @@ tracker reset -r
 ```
 
 
-
 邹恒明著，计算机的心智：操作系统之哲学原理，机械工业出版社，2009
 
 Wiliam Stallings, Operating Systems: Internals and Design Princiles (Ninth Edition),Pearson Education Limited, 2018
@@ -1838,11 +1841,28 @@ gsettings set org.freedesktop.Tracker.Miner.Files enable-monitors false
 echo y | LANG=en tracker reset --hard
 ```
 
+# Linux Commands
 
-sar
-sysstat.x86_64 
+## SAR
 
-mtr
+SAR stands for System Activity Report, as its name suggest sar command is used to collect,report & save CPU, Memory, I/O usage in Unix like operating system. 
+```
+yum install sysstat
+
+systemctl status sysstat
+
+systemctl start sysstat
+systemctl enable sysstat
+
+sar -[ options ] [ interval [ count ]]
+
+```
+
+
+
+## mtr
+
+
 mtr.x86_64 
 
 
