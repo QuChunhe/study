@@ -1076,4 +1076,39 @@ How can we improve the mean response time>
  [Quantifying Scalability with the USL](https://www.xaprb.com/slides/dataengconf-2018-quantifying-scalability-universal-scalability-law/1)
  
  Gunther, N.  Guerrilla Capacity Planning. Springer, Berlin Heidelberg 2007.
+
+
+
+Thread Saftey线程安全性：在并发环境中多个线程能够同时访问（读和写）一个数据结构，而不会出现不期望的结果。
+
+
+
+* 无共享状态，仅仅是局部变量而无全局变量
+* 线程私有数据，即Thread-local storage线程本地存储
+* 不可变对象
+* 互斥执行：利用锁机制以串行方式访问共享数据
+* 原子型操作
+
+There are basically below approaches to make an object thread safe in java :
+* Using Synchronized keyword
+* Make it immutable
+* Use a thread safe wrapper
+* Using Concurrency Locks
+* Using volatile keyword
+* copy on write
+* 原子对象
  
+线程安全的数据结构的指标
+* 并发能力：许可多少线程同时访问数据
+* 可扩展性：随内核增加而提高并发能力
+
+[A Short Guide to Mastering Thread-Safety](http://www.thinkingparallel.com/2006/10/15/a-short-guide-to-mastering-thread-safety/)
+
+We have multiple ways to deal with it, some of which are highlighted in the following list:
+* Put a big, fat lock right at the start of the function and unlock it at the end of the function.对于访问数据的方法或者过程上锁
+* Put one or many smaller locks in the function around the data that actually need protection. 采用多个更小的锁在数据访问的过程中以更细的粒度保护数据，从而提高并发能力。
+* Protect the data instead of the code. Instead of protecting a small region of code with a lock where critical data is accessed, associate a lock with the critical data in question. This may allow you to use two different locks for the same region of code but when working on different data, allowing concurrent execution by multiple threads. An example: When you have written a function that multiplies each element of an array by two, you can associate a different lock to different arrays, allowing two threads to carry out the function concurrently when working on two different arrays. 保护数据而不是保护代码。使用锁不是保护一小段访问关键数据的代码，而是将锁与正在被并发访问的关键数据相关联。这可能会使你针对工作在不同数据上的相同代码段使用不同的锁，从而许可多个线程并发执行。一个例子：当你编写一个功能将一个数组中的每个元素乘以2的过程时，可以将不同的锁关联到不同的数组，从而在处理两个不同数组时，允许两个线程并发执行。
+* Use atomic operations to change the data that need protection. 在更改需要保护的数据时采用原子操作。
+* Change your functions to only work on thread-private data. This may sound harder than it actually is, but many times shared data are not really necessary. Even if they may seem necessary, there is little trick that can change this quite often: delegate the shared data to the caller of the function, which passes it in as a parameter (most likely a pointer or a reference in C++) and document that the caller is responsible for protecting that data before the function is called. This may sound not like a solution, but rather like a delegation of the whole problem. But considering that the caller may have more knowledge about the present state of the program and its data, it makes a whole lot of sense. As an example, the caller may know, that no other thread presently calls that function with the same data and therefore no protection from concurrent access is necessary. Of course, the moment you employ this last technique, the function is not thread-safe anymore, so make really sure to document this properly! It also changes the interface of the function, which may not be doable for your particular case.更改你的过程，从而仅仅工作于线程私有的数据。这听起来比实际上要困难，很多时候共享数据并不是真正必须的。即使共享数据可能看起来时必须的，但是只要很少的技巧就能够改变这种情况：
+
+[Reading 20: Thread Safety](http://web.mit.edu/6.031/www/fa17/classes/20-thread-safety/)
