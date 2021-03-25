@@ -36,6 +36,13 @@ multiprogramming　--> multithread (Concurrency) --> multiprocessor (parallelism
    * 线程间的任务协调和数据通信占用太多的时间
    * CPU的负载不均匀
  
+
+
+充分利用计算资源，通过多线程提高代码的性能
+* 吞吐量
+* 处理时间，加速比
+
+
  
  [The Memory Wall Is Ending Multicore Scaling](https://www.electronicdesign.com/technologies/analog/article/21794572/the-memory-wall-is-ending-multicore-scaling)
  
@@ -443,7 +450,7 @@ thread level parallelism (TLP)
 
 [queue.acm concurrency](https://queue.acm.org/listing.cfm?item_topic=Concurrency&qc_type=theme_list&filter=Concurrency&page_title=Concurrency&order=desc)
 
-## Cache-Friendly Code & False Sharing 缓存友好的代码和缓存的伪共享
+## CPU Cache
 
 cache位于CPU和主存之间，用于适配CPU和内存之间的速度差距。从上个世纪80年代开始，主存与CPU之间的速度差距持续增大，例如从1986年到2000年，CPU速度以每年55%的速度提高，而内存速度每年仅仅提高了10%。长期累积下来，内存像墙一样阻止了CPU性能的发挥，因此也被称之为内存墙(Memory wall)。为此，cache的大小和级数也在不断增加。目前主流的CPU一般有三级cache，三级cache和主存的访问速度如下表所示
 。
@@ -469,6 +476,13 @@ dmidecode -t cache
 L1 cache一般会细分位数据cache（L1d cache）和指令cache（L1i cache）。
 
 读取（内存）的时延。CPU和内存的速度失配。内存的存取速度严重滞后
+
+在内存和不同的cache中存在多个副本或者拷贝，需要实现数据的寻址和影射，并确保数据的一致性，不仅仅大大增加了硬件的复杂度，而且给软件的开发和编写带来了条件。一方面，需要充分利用CPU cache提高CPU的处理性能，另一方面要避免由于cache而引起问题。
+三个问题
+* cache友好性Cache-Friendl
+* 伪共享 False Sharing
+* 可见性
+Cache-Friendly Code & False Sharing 缓存友好的代码和缓存的伪共享
 
 
 在cache中的数据被划分为不同块，每一个块被称为一个缓存行（cache line），一个cache line通常为64或128字节的宽度。cache line是从内存读取或写入到内存的最小单元。在内存中相互邻近的数据通常被一个特定的线程在相近的时间访问，这在大多数程序中都是正确的。然而，这种局部性是虚假分享问题的根源。
@@ -1079,7 +1093,7 @@ How can we improve the mean response time>
 
 
 
-Thread Saftey线程安全性：在并发环境中多个线程能够同时访问（读和写）一个数据结构，而不会出现不期望的结果。
+Thread Saftey线程安全性：无需额外的协同机制，就许可多个线程以并发方式访问（读和写）一个数据结构，并能够正确地执行和得到所期望的结果。
 
 
 
@@ -1099,7 +1113,7 @@ There are basically below approaches to make an object thread safe in java :
 * 原子对象
  
 线程安全的数据结构的指标
-* 并发能力：许可多少线程同时访问数据
+* 并发能力：许可多少线程同时访问数据。在不是并发访问
 * 可扩展性：随内核增加而提高并发能力
 
 [A Short Guide to Mastering Thread-Safety](http://www.thinkingparallel.com/2006/10/15/a-short-guide-to-mastering-thread-safety/)
@@ -1112,3 +1126,104 @@ We have multiple ways to deal with it, some of which are highlighted in the foll
 * Change your functions to only work on thread-private data. This may sound harder than it actually is, but many times shared data are not really necessary. Even if they may seem necessary, there is little trick that can change this quite often: delegate the shared data to the caller of the function, which passes it in as a parameter (most likely a pointer or a reference in C++) and document that the caller is responsible for protecting that data before the function is called. This may sound not like a solution, but rather like a delegation of the whole problem. But considering that the caller may have more knowledge about the present state of the program and its data, it makes a whole lot of sense. As an example, the caller may know, that no other thread presently calls that function with the same data and therefore no protection from concurrent access is necessary. Of course, the moment you employ this last technique, the function is not thread-safe anymore, so make really sure to document this properly! It also changes the interface of the function, which may not be doable for your particular case.更改你的过程，从而仅仅工作于线程私有的数据。这听起来比实际上要困难，很多时候共享数据并不是真正必须的。即使共享数据可能看起来时必须的，但是只要很少的技巧就能够改变这种情况：
 
 [Reading 20: Thread Safety](http://web.mit.edu/6.031/www/fa17/classes/20-thread-safety/)
+
+
+There are basically four ways to make variable access safe in shared-memory concurrency:
+* Confinement. Don’t share the variable between threads. This idea is called confinement, and we’ll explore it today.
+* Immutability. Make the shared data immutable. We’ve talked a lot about immutability already, but there are some additional constraints for concurrent programming that we’ll talk about in this reading.
+* Threadsafe data type. Encapsulate the shared data in an existing threadsafe data type that does the coordination for you. We’ll talk about that today.
+* Synchronization. Use synchronization to keep the threads from accessing the variable at the same time. Synchronization is what you need to build your own threadsafe data type.
+
+[What is Thread-Safety and How to Achieve it?](https://www.baeldung.com/java-thread-safety)
+
+
+[Accelerators at Virginia Tech](https://accel.cs.vt.edu/courses.php)
+
+chip multiprocessors (CMPs), e.g., traditional & massively parallel multicore
+
+parallelism models, communication models
+
+
+A multicore chip is a single silicon die containing multiple fully functional sequential processor cores tied together to form a small parallel computer.
+
+How to Improve Performance
+* Increase instructions per clock cycle.
+* Increase throughput or work completed per unit time.
+* Lower latencies intrinsic in the system that limit the above metrics.
+
+
+Pipelining：Breakdown complex instructions into a set of smaller steps that are executed in order like a factory assembly line.
+* 充分利用硬件
+* 实现并行处理
+
+Power and cooling are design constraints of equal importance to performance now.
+
+Power Density： Watts/cm2
+
+Power is really a function of ...
+* Die size：More transistors and wires to feed
+* Frequency f -> How often do you need to feed them
+* Voltage V -> At what level do you need to feed them
+
+
+
+Pipelining: A double-edged sword，Better Performance (Maybe) and Higher Power Consumption
+* Increase # of small steps to realize an instruction.   
+More small steps = deeper pipeline = higher f and V, thus enabling better performance but
+* Better performance only if pipeline can be kept full. Difficult to do as pipelines get deeper.
+
+
+Smaller steps = deeper pipeline = more ILP = higher f but
+* Hardware much more complex.
+* Hardware runs hotter.
+* Deeper pipelines and better ILP identification is getting harder and more costly -> diminishing returns
+
+
+Hyperthreading： “virtual cores”
+
+
+Multicore Classes
+* Homogenous Multicore：Replication of the same processor type on the die as a shared memory multiprocessor.
+* Heterogeneous/Hybrid Multicore： Different processor types on a die
+
+Homogeneous Multicore：This will work for now, but it likely will not scale to high core counts. Why?
+
+CPU cache是一个关键的性能特性，充分利用CPU cache，尤其是很对于计算密集型的应用，可以大大提高CPU的处理速度。
+
+引入cache用于解决内存墙问题
+
+Utilization = (t total – t idle ) / t total
+
+Decreased utilization = less work per unit time.
+
+Caches: 预先读取内存数据；代表CPU将数据写入内存。一方面使得CPU在读取/写入数据时无需等待内存，另一方面CPU cache能够与CPU并行工作，即在CPU处理指令时执行内存读写。
+* Access a location in memory.
+* Copy the location and its neighbors into the faster memories closer to the CPU.
+
+Locality：Spatial and Temporal。局部性：空间局部性和时间局部性。
+Locations near each other in space (address) are highly likely to be accessed near each other in time.
+
+Burden?
+* The machine makes sure that memory is kept consistent. If a part of cache must be reused, the cache system writes the data back to main memory before overwriting it with new data.
+* Hardware cache design deals with managing mappings between the different levels and deciding when to write back down the hierarchy.
+
+Burden?
+* The machine makes sure that memory is kept consistent. If a part of cache must be reused, the cache system writes the data back to main memory before overwriting it with new data.
+* Hardware cache design deals with managing mappings between the different levels and deciding when to write back down the hierarchy.
+
+Common Memory Models
+* Shared Memory Architecture
+ * UMA
+ * NUMA 
+* Distributed Memory Architecture
+
+
+
+Memory Consistency
+
+
+Memory Coherence
+
+
+* Write-Back：On a write miss, the CPU reads the entire block from memory where the write address is, updates the value in cache, and marks the block as modified (aka dirty).
+* Write-Through： When the processor writes, even to a block in cache, a bus write is generated.
