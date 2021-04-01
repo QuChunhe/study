@@ -390,13 +390,13 @@ Strategies --> design -> implement -> deployment -> operation(monitor, log)
   
 
 服务器与服务器之间的异步操作
-* Future，不同管理域，即属于不同的管理者，请求者轮训任务状态或者处理结果
+* 定时轮训（Future），不同管理域，即属于不同的管理者，请求者轮训任务状态或者处理结果
   * 直接返回结果：任务未完成，返回running状态，否则返回success和任务结果
   * 两次获取结果：任务非完成，返回running状态，否则返回success和任务结果地址。请求者根据返回的结果地址，在发起请求获得对应的结果。
-* 消息队列，同一管理域，调用双方的耦合性最低
+* 消息队列（MQ），同一管理域，调用双方的耦合性最低
   * 通过消息队列发起请求
   * 从消息队列中接收结果
-* Callback ，不同管理域和同一管理域都可以
+* 服务回调（Callback） ，不同管理域和同一管理域都可以
   * 请求方仅仅发起请求
   * 由被调用方将结果提交给请求方。
 
@@ -431,62 +431,7 @@ Alan Fekete, David Gupta, Victor Luchangco, Nancy Lynch, and Alex Shvartsman. Ev
 
 # Books
 
-## Ajay D. Kshemkalyani and Mukesh Singhal. Distributed Computing: Principles, Algorithms, and Systems. Cambridge University Press. 2008
 
-
-### Chapter 1
-
-
-1.4 Relation to parallel multiprocessor/multicomputer systems
-
-The degree of coupling among a set of modules, whether hardware or software, is measured in terms of the interdependency and binding and/or homogeneity among the modules. When the degree of coupling is high (low), the modules are said to be tightly (loosely) coupled.
-
-Parallelism or speedup of a program on a specific system. The speedup depends on the number of processors and the mapping of the code to the processors. It is expressed as the ratio of the time T(1) with a single processor, to the time T(n) with n processors.
-
-Parallelism within a parallel/distributed program. This is an aggregate measure of the percentage of time that all the processors are executing CPU instructions productively, as opposed to waiting for communication (either via shared memory or message-passing) operations to complete.
-
-Concurrency of a program
-
-The parallelism/concurrency in a parallel/distributed program can be measured by the ratio of the number of local (non-communication and non-shared memory access) operations to the total number of operations, including the communication or shared memory access operations.
-
-
-Granularity of a program 
-
-The ratio of the amount of computation to the amount of communication within the parallel/distributed program is termed as granularity. If the degree of parallelism is coarse-grained (fine-grained), there are relatively many more (fewer) productive CPU instruction executions, compared to the number of times the processors communicate either via shared memory or messagepassing and wait to get synchronized with the other processors.
-
-1.5 Message-passing systems versus shared memory systems
-
-causality, physical time, logical time
-
-monotonicity property associated with causality in distributed systems.
-
-Causality (or the causal precedence relation)
-
-[51] Every event is assigned a timestamp and the causality relation between events can be generally inferred from their timestamps. The timestamps assigned to events obey the fundamental monotonicity property; that is, if an event a causally affects an event b, then the timestamp of a is smaller than the timestamp of b.  
-[52] A system of logical clocks consists of a time domain T and a logical clock C. Elements of T form a partially ordered set over a relation <. This relation is usually called the happened before or causal precedence. 
-
-This monotonicity property is called the clock consistency condition
-
-
-clock consistency condition v.t. strongly consistent
-
-[52] Implementation of logical clocks requires addressing two issues [19]: data structures local to every process to represent logical time and a protocol (set of rules) to update the data structures to ensure the consistency condition.
-
-
-two capabilities:
-- A local logical clock, denoted by lci,
-- A logical global clock, denoted by gci
-A local logical clock v.t. A logical global clock,
-
-two rules:
-- R1 This rule governs how the local logical clock is updated by a process when it executes an event (send, receive, or internal).
-- R2 This rule governs how a process updates its global logical clock to update its view of the global time and global progress.
-
-scalar time, vector time, and matrix time
-
-Total Ordering
-
-The system of scalar clocks is not strongly consistent;
 
 Isomorphism
 
@@ -1070,7 +1015,7 @@ Failures are the normal case. Failures are not predictable.
    * Escalation
    
    
-![Patterns of Resilience](https://github.com/QuChunhe/study/blob/master/pics/ResiliencePatterns.png)
+![Patterns of Resilience](pics/ResiliencePatterns.png)
 
 
 ”Resilience reloaded-More resilience patterns“
