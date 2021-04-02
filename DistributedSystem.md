@@ -35,6 +35,12 @@ Multicomputers (networks of computers)：distributed systems（分布式系统�
 * Partial failures 部分失效，使用冗余地部署商用组件或者商业系统，依赖于应用层检测、隔离和迁移故障。
 * common network 通用的局域网
 
+分布式系统与并行系统（超级计算机）的区别：面对的任务类型不同
+* 请求量：请求密集型
+* 数据量：数据密集型
+* 计算量：计算密集型
+分布式系统主要面向请求密集型的应用或者需要较少通信的数据密集型/计算密集型
+
 分布式系统依赖于网络可以划分为
 * 强耦合系统（strongly coupled systems）：通过局域网络连接，更大的带宽以及通信时延更加可预测
 * 松耦合系统（weakly coupled systems）：通过广域网络连接。
