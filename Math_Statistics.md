@@ -6,6 +6,8 @@
 特征函数与分布函数是一一对应的
 ![](https://github.com/QuChunhe/study/blob/master/pics/statistics_framework.JPG)
 
+[Measures of Shape: Skewness and Kurtosis](https://brownmath.com/stat/shape.htm)
+
 # Probability
 
 
