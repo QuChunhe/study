@@ -6,13 +6,14 @@ https://www.itcodemonkey.com/article/15901.html
 
 * 归纳，通过特例，分析和总结经验
 
-* 联想，通过
+* 联想和关联，通过
 
 * 尝试
 
 * 类比，相关的事件和经验，能够进行关联和对比
 
 * 本能，天生的或者经过反复训练具有的一些条件反射或者直觉。
+* 记忆
 
 
 [TensorFlow Examples](https://github.com/aymericdamien/TensorFlow-Examples)
