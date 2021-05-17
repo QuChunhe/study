@@ -9,7 +9,7 @@ https://www.itcodemonkey.com/article/15901.html
 * 归纳，通过特例，分析和总结经验
 
 * 联想：将不相关的事件关联起来、
-* 
+
 * 关联，
 
 * 尝试
