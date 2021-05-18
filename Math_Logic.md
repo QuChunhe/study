@@ -70,6 +70,9 @@ Lp，L代表语言，p代表proposition
 
 原子公式Atom(Lp)　公式Form(Lp)
 
+
+逻辑推论和形式推演是不同的事情，前者属于语义，而后者属于语法。
+
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 [Insights into Mathematics](https://www.youtube.com/user/njwildberger)  -->A Grief history of Logic
