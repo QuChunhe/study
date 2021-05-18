@@ -73,6 +73,8 @@ Lp，L代表语言，p代表proposition
 
 逻辑推论和形式推演是不同的事情，前者属于语义，而后者属于语法。
 
+范式是具有标准形式的公式。公式可以经过变换成为范式。析取范式，合取范式
+
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 [Insights into Mathematics](https://www.youtube.com/user/njwildberger)  -->A Grief history of Logic
