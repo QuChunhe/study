@@ -154,6 +154,19 @@ Lp，L代表语言，p代表proposition
 
 逻辑等价
 
+Semantic Consequence 语义推论
+
+G推理系统，此系统最早是由逻辑学家Gentzen给出（Gentzen 1969），Gallier的符号
+
+推理规则的可靠性（soundness）
+
+推理规则的完全性（completeness）
+
+sequent， 前提（antecedent），结论（succedent）
+
+deduction trees
+
+
 Propositional logic
 
 natural deduction
