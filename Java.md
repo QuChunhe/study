@@ -697,6 +697,14 @@ The Calendar class is an abstract class that provides methods for converting bet
 
 A clock providing access to the current instant, date and time using a time-zone.    
 
+表示时间的两种方式
+* human time 人类时间
+* machine time 机器时间
+
+时间的两种形式
+* 时刻，某个特点的时间点
+* 时长，时间点之间的间隔
+
 
 
 # SPI
