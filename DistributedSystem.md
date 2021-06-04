@@ -413,6 +413,18 @@ Strategies --> design -> implement -> deployment -> operation(monitor, log)
 4. 请求方从相应的FTP服务器（每个用户一个用户名和密码）下载这个报告
 
 
+
+
+Fault Tolerance
+* 所有网络调用都要设置time out
+  * connect timeout
+  * read timeout
+  * write timeout
+
+系统优雅的退出：避免数据丢失或者数据异常
+* 所有模块要实现Stopable接口(主动终止)
+* 线程要接收和处理Interrupt信号(被动终止)
+
 # Papers
 [1] Patrick O'Neil, Edward Cheng, Dieter Gawlick, Elizabetch O'Neil. The log-structured merge-tree (LSM-tree). Acta Informatica, 1996, 33(4): 351-385.
 
