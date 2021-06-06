@@ -44,6 +44,10 @@ http://highscalability.com/blog/category/distirbuted
 
 [高等概率论教程](https://www.bilibili.com/video/BV1uV411k7L3?p=15&share_medium=android&share_plat=android&share_source=COPY&share_tag=s_i&timestamp=1596707895&unique_k=hD9YGn)
 
+
+[高等概率论 (Probability Theory) ](https://www.bilibili.com/video/BV1u5411c79Y/?spm_id_from=333.788.recommend_more_video.8)
+
+
 [麻省理工：多变量微积分](https://www.bilibili.com/video/BV1nt411d7bu?from=search&seid=16719183116098574772)
 
 [《因果推理导论》课程(2020) by Brady Neal](https://www.bilibili.com/video/BV1nZ4y1K78i?p=1)
