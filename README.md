@@ -128,6 +128,12 @@ Complex Variables and Applications,James Ward Brown & Ruel V. Churchill,6th edit
 
 [【MIT公开课】6.824 分布式系统 · 2020年春（完结·中英字幕·机翻)](https://www.bilibili.com/video/BV1qk4y197bB/?spm_id_from=333.788.videocard.10)
 
+[MIT 6.824: Distributed Systems (Spring 2020)](https://www.bilibili.com/video/BV1rp4y1k7nL?from=search&seid=16001120256272896804)
+
+[Distributed Systems-Martin Kleppmann, 分布式系统课，剑桥大学，2020](https://www.bilibili.com/video/BV1fV41187sH?from=search&seid=16001120256272896804)
+
+[【加州大学】CSE138-分布式系统 (Distributed Systems)](https://www.bilibili.com/video/BV1Ey4y1k7zd?from=search&seid=16001120256272896804)
+
 [【MIT公开课】 6.854 高级算法 (完结)](https://www.bilibili.com/video/BV11E411u73m/?spm_id_from=333.788.videocard.0)
 
 [【教育】并行计算机架构与编程 第一讲](https://www.bilibili.com/video/BV1Dx411673i?from=search&seid=7184861422555047434)
