@@ -162,9 +162,24 @@ G推理系统，此系统最早是由逻辑学家Gentzen给出（Gentzen 1969）
 
 推理规则的完全性（completeness）
 
+
+In our attempt to falsify A, the tree is constructed in such a way that we are trying to find a valuation that makes every proposition occurring in the first component of a pair labeling a node true, and all propositions occurring in the second component of that pair false. Hence, we are naturally led to deal with pairs of finite sequences of propositions called sequents.
+
 sequent， 前提（antecedent），结论（succedent）
 
 deduction trees
+
+
+
+Gentzen system G
+
+inference rules:premises,conclusion
+
+Falsifiable and Valid Sequents
+
+
+
+
 
 
 Propositional logic
