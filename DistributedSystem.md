@@ -1205,6 +1205,9 @@ TCC（Try-Confirm-Cancel）又称补偿事务。其核心思想是："针对每�
 * Cancel阶段：取消执行业务操作。
 TCC事务的处理流程与2PC两阶段提交类似，不过2PC通常都是在跨库的DB层面，而TCC本质上就是一个应用层面的2PC，需要通过业务逻辑来实现。这
 
+只有在满足操作结果与顺序无关，才能应用TCC，即对于任意两个操作op1和op2，依照顺序执行op1和op2与依序执行op2和op1的结果相同，才能应用TCC。
+
+
 [MySQL XA Transactions](https://dev.mysql.com/doc/refman/8.0/en/xa.html)
 
 
