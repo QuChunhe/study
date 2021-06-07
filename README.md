@@ -244,3 +244,20 @@ vim /etc/hosts
 108.174.11.74 www.slideshare.net slideshare.net
 
 ```
+
+```
+git clone https://github.com/mkubecek/vmware-host-modules.git
+
+cd vmware-host-modules
+
+git checkout workstation-15.5.1
+
+make
+
+make install
+
+/etc/init.d/vmware start
+
+xhost +
+vmplayer
+```
