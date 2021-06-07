@@ -18,7 +18,34 @@ javap
 
 -XX:+UseParNewGC
 
-[Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html)
+
+[HotSpot Virtual Machine Garbage Collection Tuning Guide Release 11](https://docs.oracle.com/en/java/javase/11/gctuning/index.html)
+
+**1 Introduction to Garbage Collection Tuning **
+
+The Java HotSpot garbage collectors employ various techniques to improve the efficiency of these operations:Java HotSpot垃圾回收器采用各种技术，以提高这些操作的效率
+* Use generational scavenging in conjunction with aging to concentrate their efforts on areas in the heap that most likely contain a lot of reclaimable memory areas. 分代清除与老化相结合使用，从而集中精力在堆中，堆是最可能保护大量可回收内存的区域。
+* Use multiple threads to aggressively make operations parallel, or perform some long-running operations in the background concurrent to the application.使用多个线程，以主动地使操作并向，或者在后台相当于应用并发地执行一些长时间运行的操作。
+* Try to recover larger contiguous free memory by compacting live objects. 通过压缩活跃对象来尝试恢复更大的连续可用内存。
+
+
+The Java HotSpot VM provides a selection of garbage collection algorithms to choose from.Java HotSpot虚拟机提供了一个可以选择的垃圾回收算法集合。
+
+In the Java platform, there are currently four supported garbage collection alternatives and all but one of them, the serial GC, parallelize the work to improve performance. It's very important to keep the overhead of doing garbage collection as low as possible. 
+在Java平台中当前由四种受到支持的垃圾回收可选方案，除了其中一个serial GC之外，都并行工作，以提高性能。保持尽可能低的垃圾回收开销是非常重要的。
+
+![Comparing Percentage of Time Spent in Garbage Collection](pics/jsgct_dt_005_gph_pc_vs_tp.png)
+
+This figure shows that negligible throughput issues when developing on small systems may become principal bottlenecks when scaling up to large systems. However, small improvements in reducing such a bottleneck can produce large gains in performance. For a sufficiently large system, it becomes worthwhile to select the right garbage collector and to tune it if necessary.
+这个图表明在，在小型系统上开发时无不足道的吞吐，在扩展到大型系统时就可能变为主要的瓶颈。然而，在减小这类瓶颈中小的改进能够在性能上产生很大的收益。对于足够大的系统，如果需要，值得选择正确的垃圾回收器并且对其调优。
+
+The serial collector is usually adequate for most small applications, in particular those requiring heaps of up to approximately 100 megabytes on modern processors. The other collectors have additional overhead or complexity, which is the price for specialized behavior. If the application does not need the specialized behavior of an alternate collector, use the serial collector. One situation where the serial collector isn't expected to be the best choice is a large, heavily threaded application that runs on a machine with a large amount of memory and two or more processors. When applications are run on such server-class machines, the Garbage-First (G1) collector is selected by default;
+对于大多数小应用而言，串行回收器通常已经足够了，特别是那些在现代处理器上需要高达100M左右堆空间的应用。其他收集器有额外的开销或者复杂性，作为专门行为的代价。如果应用程序不需要专门的行为，使用串行收集器。串行收集器不是所期望的最佳选择的一个场合时大型的、重线程化应用，其运行在具有大量内存和两个或者多个处理器的机器上。当应用运行在这类服务器级别的机器上时，Garbage-First（G1）收集器是默认选择。
+
+[Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide Release 8](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html)
+
+
+
 
 垃圾收集器(Garbage Collector: GC)是一个内存管理工具。通过如下操作，其实现了自动内存管理
 * Allocating objects to a young generation and promoting aged objects into an old generation.
