@@ -54,10 +54,13 @@ Multicomputers (networks of computers)：distributed systems（分布式系统�
 分布式的不同视角或者侧面:目的、对象、方法和问题
 
 
-分布式的目的
-* 提高吞吐量 （improve throughtput) 
-* 提高可靠性，实现可用性（High availability & Fault tolerance）
-* 降低响应时间，减小等待时延(reduce latency)。
+实现分布式的可能目标或者潜在好处包括：
+* 提高系统的吞吐量 （improve throughtput) ，实现更强大的处理能力
+* 快速响应业务增长，满足业务高速增长的需求
+* 增加服务的可靠性，提高可用性或者容错性（High availability & Fault tolerance）
+* 降低请求响应时间，减小客户等待时延(reduce latency)。
+* 降低系统硬件要求，使用普通的商品化服务器
+不仅仅能够提供较大的吞吐量，而且能够随着需求快速地增加或者减小系统吞吐能力。
 
 分布式系统对于处理时延带来两个相互冲突的影响
 * 增加处理时延。任务的分布式执行，需要额外增加协调处理过程。特别是，功能和服务的分布式部署使得相互之间调用依赖于网络传输，从而大大增加了响应时间。
