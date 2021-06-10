@@ -107,11 +107,8 @@ This defines utilization in terms of capacity instead of time. It implies that a
 
 Saturation begins to occur at 100% utilization (capacity-based), as extra work cannot be processed and begins to queue.
 
-In the field of computing performance, profiling is typically performed by sampling the state of the system at timed intervals,
-and then studying the set of samples.
-Unlike the previous metrics covered, including IOPS and throughput, the use of sampling provides
-a coarse view of the target’s activity, depending on the rate of sampling.
-
+In the field of computing performance, profiling is typically performed by sampling the state of the system at timed intervals, and then studying the set of samples. Unlike the previous metrics covered, including IOPS and throughput, the use of sampling provides a coarse view of the target’s activity, depending on the rate of sampling.
+在计算机性能领域，剖析通常是按照时间间隔抽样系统的状态，然后研究样本集。不同于之前介绍的指标，包括IOPS和吞吐，使用抽样提供了一个目标活动的粗粒度视图，这个视图依赖于抽样速率。
 
 Most recently used (MRU) refers to a cache retention policy, which decides what to favor keeping in the cache: the objects that have been used most recently. Least recently used (LRU) can refer to an equivalent cache eviction policy, deciding what objects to remove from the cache when more space is needed. There are also most frequently used (MFU) and least frequently used (LFU)
 policies.
@@ -578,6 +575,27 @@ yum install sysstat
 yum install iotop
 ```
 
+
+可观测性（Observability），工具baok
+* counters计数器
+* profiling分析
+* tracing跟踪
+客观性范围
+* system-wide 系统层级
+* pre-process 进程层级
+
+可观测值的形式
+* counters 计数器，随着时间累加的整数
+* statistics 统计，随着时间变化的速率、均值和百分百等
+* metric指标
+
+
+![Observability Tool Types](pics/ObservabilityToolTypes.JPG)
+
+
+Event-based tools include profilers and tracers. Profilers observe activity by taking a series of snapshots on events, painting a coarse picture of the target. Tracers instrument every event of interest, and may perform processing on them, for example to generate customized counters.
+基于事件的工具保护分析器和跟踪器。分析器通过对事件记录一些列快照，来绘制目标的粗粒度画像。跟踪器检测每一个感兴趣的事件，并可能对这些事件进行处理，例如生成自定义计数器。
+
 ## Methodologies  
 [The USE Method](http://www.brendangregg.com/usemethod.html)
 The USE Method can be summarized as:  For every resource, check utilization, saturation, and errors.
@@ -970,7 +988,14 @@ Global-defaults
 ()[]
 Linux always tries to use RAM to speed up disk operations by using available memory for buffers (file system metadata) and cache (pages with actual contents of files or block devices). 
 
+
+
+mpstat( multiple processors statistics)
+
 ```
+ mpstat [ -A ] [ -n ] [ -u ] [ -V ] [ -I { keyword [,...] | ALL } ] [ -N { node_list | ALL } ] [ -o JSON ] [ -P { cpu_list | ALL } ] [ interval [ count ] ]
+
+
 mpstat -P ALL 1
 
 mpstat -I SCPU
@@ -1006,6 +1031,14 @@ Basic attributes for characterizing CPU workload are
 * Syscall rate
 * Voluntary context switch rate
 * Interrupt rate
+
+
+ vmstat（virtual memory statistics）
+```shell
+vmstat [options] [delay [count]]
+
+```
+
 
 
 ```
@@ -1843,9 +1876,9 @@ echo y | LANG=en tracker reset --hard
 
 # Linux Commands
 
-## SAR
+## SAR 
 
-SAR stands for System Activity Report, as its name suggest sar command is used to collect,report & save CPU, Memory, I/O usage in Unix like operating system. 
+SAR(System Activity Reporter) stands for System Activity Report, as its name suggest sar command is used to collect,report & save CPU, Memory, I/O usage in Unix like operating system. 
 ```
 yum install sysstat
 
