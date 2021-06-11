@@ -1169,3 +1169,109 @@ Overriding means having two methods with the same method name and parameters (i.
 # Input/Output
 
 [Title: Java I/O, NIO and NIO.2](http://libgen.gs/ads.php?md5=6163B19E28BC766958B2F6721E750175)
+
+# 异常（Exception）
+
+Java的异常机制包括Error和Exception两个部分，二者都继承了共同的基类Throwable。 只有实例化Throwable或者其子类的对象才能被Java 虚拟机和Java throw 声明抛出。类似地，Throwable 或者其子类才能作为catch子句的参数类型。
+
+作为Throwable的两个直接子类，Error和Exception按照常规被用于表明异常出现的不同位置。Error 通常属于JVM 运行中发生的系统级错误，虽然并不属于开发人员的范畴，但是有些Error还是由代码引起的，例如StackOverflowError 经常由递归操作超过栈的容量限制所引起。这类错误开发者一般无法挽救，只能靠JVM。Exception往往是应用级的，并假设程序员会去处理这些异常。Exception被进一步划分为两类：检查类型（checked）和未检查类型（unchecked）。检查类型的异常需要在编译时通过try..catch..语句来进行处理，如果Java 编译器发现没有所编译的代码没用使用try..catch.. 语句处理检查类型的异常，就会抛出一个编译异常。非检查类型的异常无法在编译时间进行验证，其大部分产生自变成错误，例如空对象、越界访问数组的元素或使用非法参数调用方法等。非检查类型的类型是RuntimeException的直接子类。
+
+Java是目前主流编程语言中唯一一个推崇使用检查类型异常的。一方面，检查类型的异常破坏了代码，降低了代码的可读性，另一方面检查类型的异常增加了代码的健壮性和稳定性。
+
+![Java异常分类](pics/Exception.JPG)
+
+
+
+Fail Fast:就是要尽早的抛出异常，这样有有助于更加精确的定位出错的地点和原因。
+
+
+Catch late:不要在方法内部过早的处理异常，特别是什么也不做的处理。一个好的经验是将异常处理交给调用者，方法只在及时的地方抛出异常，技术上实现的方式就是给方法声明throws，标出所有可能要抛出的异常。
+
+Doc：文档的重要性，特别是非检查的异常，一定要在文档中注明。
+
+在java多线程程序中，所有线程都不允许抛出未捕获的checked exception，也就是说各个线程需要自己把自己的checked exception处理掉。这一点是通过java.lang.Runnable.run() 方法声明(因为此方法声明上没有throw exception 部分)进行了约束。但是线程依然有可能抛出unchecked exception，当此类异常跑抛出时，线程就会终结，而对于主线程和其他线程完全不受影响，且完全感知不到某个线程抛出的异常(也是说完全无法catch 到这个异常)。JVM 的这种设计源自于这样一种理念：“线程是独立执行的代码片断，线程的问题应该由线程自己来解决，而不要委托到外部。”基于这样的设计理念，在Java 中，线程方法的异常(无论是checked 还是unchecked exception)，都应该在线程代码边界之内(run 方法内)进行try catch并处理掉.
+
+但如果线程确实没有自己try catch某个unchecked exception，而我们又想在线程代码边界之外(run 方法之外)来捕获和处理这个异常的话，java 为我们提供了一种线程内发生异常时能够在线程代码边界之外处理异常的回调机制，即Thread对象提供的setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh) 方法。
+
+通过该方法给某个thread设置一个UncaughtExceptionHandler，可以确保在该线程出现异常时能通过回调UncaughtExceptionHandler 接口的public void uncaughtException(Thread t, Throwable e) 方法来处理异常，这样的好处或者说目的是可以在线程代码边界之外(Thread 的run() 方法之外)，有一个地方能处理未捕获异常。但是要特别明确的是：虽然是在回调方法中处理异常，但这个回调方法在执行时依然还在抛出异常的这个线程中.
+
+
+1）为可恢复的错误使用检查型异常，为编程错误使用非检查型错误。
+
+2）在finally程序块中关闭或者释放资源
+
+3）在堆栈跟踪中包含引起异常的原因
+
+4）始终提供关于异常的有意义的完整的信息
+
+5）避免过度使用检查型异常
+
+6）将检查型异常转为运行时异常。这是在像Spring之类的多数框架中用来限制使用检查型异常的技术之一，大部分出自于JDBC 的检查型异常，都被包装进DataAccessException 中，而（DataAccessException）异常是一种非检查型异常。这是Java最佳实践带来的好处，特定的异常限制到特定的模块，像 SQLException 放到DAO 层，将意思明确的运行时异常抛到客户层。
+
+
+7）记住对性能而言，异常代价高昂
+
+9）使用标准异常
+
+10）记录任何方法抛出的异常
+
+
+
+非检查异常 
+    非检查异常为 Error 和 RuntimeException 及其子类, javac 在编译时，不会提示和发现这样的异常，不要求在程序处理这些异常。所以如果愿意，我们可以编写代码处理（使用 try…catch…finally ）这样的异常，也可以不处理。对于这些异常，我们应该修正代码，。如除 0 错误 ArithmeticException ，错误的强制类型转换错误 ClassCastException ，数组索引越界 ArrayIndexOutOfBoundsException ，使用了空对象 NullPointerException 等等
+
+
+检查异常
+    检查异常则是除了 Error 和 RuntimeException 的其它异常。javac强制要求程序员为这样的异常做预备处理工作（使用 try…catch…finally 或者 throws ）。在方法中要么用try-catch语句捕获它并处理，要么用 throws 子句
+声明抛出它，否则编译不会通过。如 SQLException , IOException , ClassNotFoundException 等
+
+
+
+Thread的run()并不会抛出任何异常，但是线程本身会因为所执行的代码抛出一个异常而终止本线程的执行。对于
+* 需要长时间运行的服务线程，
+* 向线程池提交的任务线程或者工作线程
+需要在run()方法中主动地捕获和处理异常，例如如下服务线程，需要一直运行。知道调用stop()方法终止该服务线程为止。
+```java
+
+    public void stop() {
+        this.doesStop = true;
+    }
+
+    @Override
+    public void run(){
+        while(doesStop){
+            try{
+                \\do somethine
+            }(Throwable e) {
+                \\ do log
+            }finally{
+                \\release resources
+            }
+        }
+    }
+
+    private volatile boolean doesStop = false;
+
+```
+
+此外，JDK中还提供了Thread.UncaughtExceptionHandler接口，当线程由于一个未捕获的异常而终止时，Java虚拟机会调用其处理异常。
+```java
+    @FunctionalInterface
+    public interface UncaughtExceptionHandler {
+        /**
+         * Method invoked when the given thread terminates due to the
+         * given uncaught exception.
+         * <p>Any exception thrown by this method will be ignored by the
+         * Java Virtual Machine.
+         * @param t the thread
+         * @param e the exception
+         */
+        void uncaughtException(Thread t, Throwable e);
+    }
+```
+
+可以通过两种方式设置UncaughtExceptionHandler。
+* 通过Thread类的静态方法setDefaultUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置默认UncaughtExceptionHandler。
+* 通过Thread对象的方法setUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置特定对象的UncaughtExceptionHandler。
+
+

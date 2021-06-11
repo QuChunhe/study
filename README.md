@@ -11,6 +11,10 @@
 
 How to Measure Anything_
 
+
+* 学习是known unknown 知道自己不知道
+* 创新是unknown unknown 不知道自己不知道
+
 # Web
 http://highscalability.com/blog/category/distirbuted
 

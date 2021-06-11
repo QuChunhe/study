@@ -9,24 +9,29 @@
 * ThreadLocal类
 * ThreadFactory接口
 
-start()方法用于创建线程，其由本地方法实现，而run() 方法用于调度和运行线程。
-
-
-Java 中如何停止一个线程？JDK 1.0 本来有一些像 stop ()， suspend () 和 resume ()的控制方法但是由于潜在的死锁威胁因此在后续的 JDK 版本中他们被弃用了，之后 Java API 的设计者就没有提供一个兼容且线程安全的方法来停止一个线程。
 
 
 daemon threads
 
-两类线程：用户线程（user thread）和精灵线程（daemon thread）
+两类线程：用户线程（user thread）和守护线程（daemon thread）。
+
+守护线程
+* 针对于后台支撑任务为用户线程提供服务。
+* 其生命周期依赖于用户线程
+* 其是一个低优先级的线程
+可以通过调用Thread对象的setDaemon(true)方法来设置守护线程。在使用守护线程时需要注意一下几点：
+* thread.setDaemon(true)必须在thread.start()之前设置，否则抛出一个IllegalThreadStateException异常。 
+* 在Daemon线程中产生的新线程也是Daemon的。
+
+
 
 程序是从main()方法开始运行一样，而新线程是从run()方法开始运行。线程之间是相对独立的，即每一个进程都有自己的Java栈存储局部变量，也就是说，一个线程中每一个方法的局部变量都是和其他线程完全分离的，而对象内部定义的属性变量(不是在方法中定义的实例变量)可以在Java 线程之间共享。
 
-
-通过调用Thread对象的start()方法将导致JVM调用本地方法分配线程资源，而JVM则负责调用run()方法调度执行线程。主线程(调用start()方法的线程)并不需要调用run() 方法，虽然可以调用run()方法，并且其效果相当于一个线程调用另一个对象的方法。
-
-存在两种创建新线程的方法：
+存在两种直接创建新线程的方法：
 * 继承方式：声明一个继承Thread类的子类，该子类必须覆盖Thread的run()方法。
-* 委托方式：声明一个实现Runnable接口的类，该类实现了run()方法，并且作为一个Thread对象构造函数的参数。
+* 委托方式：声明一个实现Runnable接口的类，该类实现了run()方法，并且作为一个Thread构造函数的参数。
+在创建线程之后，上述两种方法都需要调用Thread对象的start()方法，开始一个线程，线程状态由New变为RUNNABLE，JVM调用本地方法分配线程资源，而JVM则负责调用run()方法调度执行线程。主线程(调用start()方法的线程)并不需要调用run()方法。
+
 
 
 
@@ -41,13 +46,28 @@ Java通过int类型的priority表示线程的优先级，最大优先级不能�
 | 1      |  Run only if nothing else can（仅在没有任何线程运行时运行的）  |
 
 
+线程状态（Thread.State）
+* NEW：刚刚生成线程对象，还没有执行start()
+* RUNNABLE：一个处于RUNNABLE状态的线程正在Java虚拟机中执行，当时也可能正在等待操作系统分配其他资源，如处理器。
+*  BLOCKED：一个处于BLOCKED状态的线程正在等待一个监视器锁。换言之，一个被阻塞的线程正在等待一个监视器锁，以便进入一个synchronized 块/方法或者在调用Object.wait()之后再次进入一个synchronized块/方法。
+* WAITING：一个线程处于WAITING状态是因为调用如下三个方法之一
+   * 没有超时设置的Object.wait()
+   * 没有超时设置的Thread.joint()
+   * LockSupport.park()
+* TIMED_WAITING：一个线程处于TIMED\_WAITING状态是因为调入如下几个方法之一
+   * Thread.sleep()
+   * 具有定时设置的Object.wait()
+   * 具有定时设置的Thread.join()
+   * LockSupport.parkNanos
+   * LockSupport.parkUntil
+* TERMINATED：一个处于TERMIINATED的线程已经执行完毕。
 
-run()并不会抛出任何异常，而是由Thread.UncaughtExceptionHandler接口的实现类来处理未被捕获的异常。
 
-sleep()方法使得当前正在执行的调用线程进入TIMED\_WAITING状态，暂停执行一段时间，从而让出CUP 给其他线程。 作为一个静态方法，其不能改变对象所专有的属性，因此不会放弃出CPU 之外的任何资源，也不会失去任何监视器的所有权。此外，中断可以终止线程休眠，并抛出InterruptedException。 因此，sleep() 方法不能精确保证休眠的时间。需要注意的是一个线程并不能通过sleep 方法使得另一个线程暂停，也就是说如果一个线程调用另一个进程t 的sleep() 方法，t 并不会终止运行。
+sleep()方法使得当前正在执行的调用线程进入TIMED_WAITING状态，暂停执行一段时间，从而让出CUP 给其他线程。 作为一个静态方法，其不能改变对象所专有的属性，因此不会放弃出CPU 之外的任何资源，也不会失去任何监视器的所有权。此外，中断可以终止线程休眠，并抛出InterruptedException。 因此，sleep() 方法不能精确保证休眠的时间。需要注意的是一个线程并不能通过sleep 方法使得另一个线程暂停，也就是说如果一个线程调用另一个进程t的sleep() 方法，t 并不会终止运行。
 
+Java在很早期的版本中分别给出了stop()、suspend()和resume ()三个方法用于控制线程的运行，但是很快在随后的版本中弃用了上述三个方法。
 
-suspend()和resume()方法不推荐使用，而是由LockSupport的park()和unpark()方法所替代。
+是由LockSupport的park()和unpark()方法所替代。
 
 
 实现取消任务的最佳技术是使用线程的中断状态，这个状态由interrupt()设置，可被isInterrupted() 检测到，通过Thread.interrupted()清除。
@@ -96,18 +116,4 @@ interrupted()方法是一个静态方法，检测当前线程是否被中断。�
 
 
 
-线程状态（Thread.State）
-* NEW：刚刚生成线程对象，还没有执行start()
-* RUNNABLE：一个处于RUNNABLE状态的线程正在Java虚拟机中执行，当时也可能正在等待操作系统分配其他资源，如处理器。
-*  BLOCKED：一个处于BLOCKED状态的线程正在等待一个监视器锁。换言之，一个被阻塞的线程正在等待一个监视器锁，以便进入一个synchronized 块/方法或者在调用Object.wait()之后再次进入一个synchronized块/方法。
-* WAITING：一个线程处于WAITING状态是因为调用如下三个方法之一
-   * 没有超时设置的Object.wait()
-   * 没有超时设置的Thread.joint()
-   * LockSupport.park()
-* TIMED_WAITING：一个线程处于TIMED\_WAITING状态是因为调入如下几个方法之一
-   * Thread.sleep()
-   * 具有定时设置的Object.wait()
-   * 具有定时设置的Thread.join()
-   * LockSupport.parkNanos
-   * LockSupport.parkUntil
-* TERMINATED：一个处于TERMIINATED的线程已经执行完毕。
+

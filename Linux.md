@@ -1077,6 +1077,17 @@ Swapping:
 
 Disk I/O: Linux keeps statistics on the first four disks; total I/O, reads, writes, block reads and block writes. These numbers can show uneven loading of multiple disks and show the balance of reads versus writes.
 
+
+
+Memory Overcommit的意思是操作系统承诺给进程的内存大小超过了实际可用的内存。
+
+内核参数 vm.overcommit_memory 接受三种取值：
+* 0 – Heuristic overcommit handling. 这是缺省值，它允许overcommit，但过于明目张胆的overcommit会被拒绝，比如malloc一次性申请的内存大小就超过了系统总内存。Heuristic的意思是“试探式的”，内核利用某种算法（对该算法的详细解释请看文末）猜测你的内存申请是否合理，它认为不合理就会拒绝overcommit。
+* 1 – Always overcommit. 允许overcommit，对内存申请来者不拒。
+* 2 – Don’t overcommit. 禁止overcommit。
+
+
+
 #### Network
 
 The loopback address
