@@ -1124,13 +1124,23 @@ System.nanoTime与System.currentTimeMillis
 * System.currentTimeMillis : the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
 
 
+[](https://docs.oracle.com/javase/8/docs/api/java/lang/ref/package-summary.html#reachability)
 * 强引用（StrongReference）
 * 软引用（SoftReference）
 * 弱引用（WeakReference）
 * 虚引用（PhantomReference）
 
+ 强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。
 
+
+  如果一个对象只具有软引用，则内存空间足够，垃圾回收器就不会回收它；如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。
+
+弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。
+WeakReference的一个特点是它何时被回收是不可确定的, 因为这是由GC运行的不确定性所确定的. 所以, 一般用weak reference引用的对象是有价值被cache, 而且很容易被重新被构建, 且很消耗内存的对象.
   
+
+
+
  方法的覆盖(Overriding )vs.重载(Overloading)
  
 Overloading occurs when two or more methods in one class have the same method name but different parameters.
