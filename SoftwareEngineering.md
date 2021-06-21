@@ -73,8 +73,130 @@ modular programming,
 * 数据规模
 * 相互关系
 
-。
+一些软件设计原则：
+* Don’t Repeat Yourself (DRY)。
+  DRY 系统的每一个功能都应该有唯一的实现，即不能重复开发相同的功能。因此，也被称为"一次且仅一次原则"(Once and Only Once)。《The Pragmatic Programmer》首次提出，在遇到相似或者相同的代码时，需要抽象出公共的解决方案，避免相同的或相似的代码。
+  \href{http://en.wikipedia.org/wiki/KISS_principle}{DRY}
 
+* Keep It Simple, Stupid (KISS)
+  把一个事情搞复杂是一件简单的事，但要把一个复杂的事变简单，这是一件复杂的事。
+  \href{http://en.wikipedia.org/wiki/KISS_principle}{KISS}
+
+* Program to an interface, not an implementation。
+  这是设计模式中最根本的哲学，与 Composition over inheritance（喜欢组合而不是继承）原则一起被称为23个经典设计模式中的设计原则。模块之间依赖于接口，而不是实现。接口是抽象的和稳定的，而实现则是多种多样的。该原则可以认为是依赖倒置原则的另一种描述形式。，就是这个原则的的另一种样子。还有一条原则叫。
+
+* Command-Query Separation (CQS) – 命令-查询分离原则。
+  查询：当一个方法返回一个值来回应一个问题的时候，它就具有查询的性质；
+  命令：当一个方法要改变对象的状态的时候，它就具有命令的性质；
+  通常，一个方法可能是纯的Command模式或者是纯的Query模式，或者是两者的混合体。在设计接口时，如果可能，应该尽量使接口单一化，保证方法的行为严格的是命令或者是查询，这样查询方法不会改变对象的状态，没有副作用，而会改变对象的状态的方法不可能有返回值。也就是说：如果我们要问一个问题，那么就不应该影响到它的答案。实际应用，要视具体情况而定，语义的清晰性和使用的简单性之间需要权衡。将Command和Query功能合并入一个方法，方便了客户的使用，但是，降低了清晰性，而且，可能不便于基于断言的程序设计并且需要一个变量来保存查询结果。在系统设计中，很多系统也是以这样原则设计的，查询的功能和命令功能的系统分离，这样有则于系统性能，也有利于系统的安全性。
+  \href{http://en.wikipedia.org/wiki/Command-query_separation}{COS}
+
+* 接口隔离原则（ISP）	1.使用多个专门的接口比使用单一的总接口总要好。换而言之，从一个客户类的角度来讲：一个类对另外一个类的依赖性应当是建立在最小接口上的。2．过于臃肿的接口是对接口的污染。不应该强迫客户依赖于它们不用的方法。
+
+* You aren't gonna need it (YAGNI)。
+  除了最核心的功能，其他功能一概不要部署，这样可以大大加快开发，其背后的指导思想，就是尽可能快、尽可能简单地让软件运行起来（do the simplest thing that could possibly work）。
+  这个原则简而言之为——只考虑和设计必须的功能，避免过度设计。只实现目前需要的功能，在以后您需要更多功能时，可以再进行添加。如无必要，勿增复杂性。软件开发先是一场沟通博弈。我们的程序员或是架构师在设计系统的时候，会考虑很多扩展性的东西，导致在架构与设计方面使用了大量折衷，最后导致项目失败。这是个令人感到讽刺的教训，因为本来希望尽可能延长项目的生命周期，结果反而缩短了生命周期。
+  \href{http://en.wikipedia.org/wiki/You_Ain%27t_Gonna_Need_It}{YAGNI}
+
+* Law of Demeter – 迪米特法则.
+  迪米特法则(Law of Demeter)，又称“最少知识原则”（Principle of Least Knowledge），其来源于1987年荷兰大学的一个叫做Demeter 的项目。Craig Larman把Law of Demeter 又称作“不要和陌生人说话”。在《程序员修炼之道》中讲LoD的那一章叫作“解耦合与迪米特法则”。
+
+  \item Single Responsibility Principle (SRP) – 职责单一原则.
+  单一职责原则的核心思想为：一个类仅负责一项职责，只做一件事并将其做好。单一职责原则可以看作是低耦合、高内聚在面向对象原则上的一个应用。如果一个类负责的职责过多，就使得多个职责在一个类中高度耦合，当其中一个职责变化或者改动时，可能会导致其他职责的故障。单一职责，通常意味着单一的功能，为类之间和模块之间划分清晰的职责和边界。
+* Open/Closed Principle (OCP) – 开闭原则.
+  开发封闭的核心思想是：Software entities should be open for extension,but closed for modification，即软件模块对扩展是开放的，但对修改是封闭的。换而言之年，模块是可扩展的，而不可修改的。对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。对修改封闭，意味着类一旦设计完成，就可以独立完成其工作，而不要对类进行任何修改。开闭规则的核心好处：1) 弹性扩展已有的系统,增加新的功能,以满足新的需求。这使得软件系统具有一定的适应性和灵活性；2)不用修改已有的软件模块，这使得系统具有一定的稳定性和延续性。
+  \item Liskov substitution principle (LSP) – 里氏代换原则.
+  软件工程大师Robert C. Martin把里氏代换原则最终简化为一句话：“Subtypes must be substitutable for their base types”。也就是，子类必须能够替换成它们的基类。即：子类应该可以替换任何基类能够出现的地方，并且经过替换以后，代码还能正常工作。另外，不应该在代码中出现if/else之类对子类类型进行判断的条件。里氏替换原则LSP 是使代码符合开闭原则的一个重要保证。正是由于子类型的可替换性才使得父类型的模块在无需修改的情况下就可以扩展。
+* Interface Segregation Principle (ISP) – 接口隔离原则.
+  接口隔离原则意思是把功能实现在接口中，而不是类中，使用多个专门的接口比使用单一的总接口要好。
+* Dependency Inversion Principle (DIP) – 依赖倒置原则.
+  高层模块不应该依赖于低层模块的实现，而是依赖于高层抽象。
+  \item Common Closure Principle（CCP）– 共同封闭原则.
+  一个包中所有的类应该对同一种类型的变化关闭。一个变化影响一个包，便影响了包中所有的类。一个更简短的说法是：一起修改的类，应该组合在一起（同一个包里）。如果必须修改应用程序里的代码，我们希望所有的修改都发生在一个包里（修改关闭），而不是遍布在很多包里。CCP原则就是把因为某个同样的原因而需要修改的所有类组合进一个包里。如果2个类从物理上或者从概念上联系得非常紧密，它们通常一起发生改变，那么它们应该属于同一个包。
+* Common Reuse Principle (CRP) – 共同重用原则.
+  包的所有类被一起重用。如果你重用了其中的一个类，就重用全部。换个说法是，没有被一起重用的类不应该被组合在一起。CRP原则帮助我们决定哪些类应该被放到同一个包里。依赖一个包就是依赖这个包所包含的一切。当一个包发生了改变，并发布新的版本，使用这个包的所有用户都必须在新的包环境下验证他们的工作，即使被他们使用的部分没有发生任何改变。因为如果包中包含有未被使用的类，即使用户不关心该类是否改变，但用户还是不得不升级该包并对原来的功能加以重新测试。
+* Hollywood Principle – 好莱坞原则.
+  好莱坞原则就是一句话——“don’t call us, we’ll call you.”。意思是，好莱坞的经纪人们不希望你去联系他们，而是他们会在需要的时候来联系你。也就是说，所有的组件都是被动的，所有的组件初始化和调用都由容器负责。组件处在一个容器当中，由容器负责管理。
+  简单的来讲，就是由容器控制程序之间的关系，而非传统实现中，由程序代码直接操控。这也就是所谓“控制反转”的概念所在：
+
+  1.不创建对象，而是描述创建对象的方式。
+
+  2.在代码中，对象与服务没有直接联系，而是容器负责将这些联系在一起。
+
+  控制权由应用代码中转到了外部容器，控制权的转移，是所谓反转。好莱坞原则就是IoC（Inversion of Control）或DI（Dependency Injection ）的基础原则。这个原则很像依赖倒置原则，依赖接口，而不是实例，但是这个原则要解决的是怎么把这个实例传入调用类中？你可能把其声明成成员，你可以通过构造函数，你可以通过函数参数。但是 IoC可以让你通过配置文件，一个由Service Container 读取的配置文件来产生实际配置的类。但是程序也有可能变得不易读了，程序的性能也有可能还会下降。
+* High Cohesion \& Low/Loose coupling  – 高内聚， 低耦合
+  这个原则是UNIX操作系统设计的经典原则，把模块间的耦合降到最低，而努力让一个模块做到精益求精。
+  内聚：一个模块内各个元素彼此结合的紧密程度
+  耦合：一个软件结构内不同模块之间互连程度的度量
+  内聚意味着重用和独立，耦合意味着多米诺效应牵一发动全身
+
+* Convention over Configuration（CoC）– 惯例优于配置原则
+  简单点说，就是将一些公认的配置方式和信息作为内部缺省的规则来使用。例如，Hibernate的映射文件，如果约定字段名和类属性一致的话，基本上就可以不要这个配置文件了。你的应用只需要指定不convention 的信息即可，从而减少了大量convention 而又不得不花时间和精力啰里啰嗦的东东。配置文件很多时候相当的影响开发效率。
+  Rails 中很少有配置文件（但不是没有，数据库连接就是一个配置文件），Rails 的fans号称期开发效率是 java 开发的 10 倍，估计就是这个原因。Maven也使用了CoC原则，当你执行mvn -compile命令的时候，不需要指源文件放在什么地方，而编译以后的class文件放置在什么地方也没有指定，这就是CoC原则。
+
+* Separation of Concerns (SoC) – 关注点分离.
+  SoC 是计算机科学中最重要的努力目标之一。这个原则，就是在软件开发中，通过各种手段，将问题的各个关注点分开。如果一个问题能分解为独立且较小的问题，就是相对较易解决的。问题太过于复杂，要解决问题需要关注的点太多，而程序员的能力是有限的，不能同时关注于问题的各个方面。实现关注点分离的方法主要有两种，一种是标准化，另一种是抽象与包装。标准化就是制定一套标准，让使用者都遵守它，将人们的行为统一起来，这样使用标准的人就不用担心别人会有很多种不同的实现，使自己的程序不能和别人的配合。Java EE就是一个标准的大集合。每个开发者只需要关注于标准本身和他所在做的事情就行了。就像是开发镙丝钉的人只专注于开发镙丝钉就行了，而不用关注镙帽是怎么生产的，反正镙帽和镙丝钉按标来就一定能合得上。不断地把程序的某些部分抽像差包装起来，也是实现关注点分离的好方法。一旦一个函数被抽像出来并实现了，那么使用函数的人就不用关心这个函数是如何实现的，同样的，一旦一个类被抽像并实现了，类的使用者也不用再关注于这个类的内部是如何实现的。诸如组件，分层，面向服务，等等这些概念都是在不同的层次上做抽像和包装，以使得使用者不用关心它的内部实现细节。
+
+* Design by Contract (DbC) – 契约式设计
+
+* Acyclic Dependencies Principle (ADP) – 无环依赖原则.
+  包之间的依赖结构必须是一个直接的无环图形，也就是说，在依赖结构中不允许出现环（循环依赖）。如果包的依赖形成了环状结构，怎么样打破这种循环依赖呢？有2种方法可以打破这种循环依赖关系：第一种方法是创建新的包，如果A、B、C形成环路依赖，那么把这些共同类抽出来放在一个新的包D里。这样就把C 依赖A变成了C依赖D以及A依赖D，从而打破了循环依赖关系。第二种方法是使用DIP （依赖倒置原则）和ISP （接口分隔原则）设计原则。
+  无环依赖原则（ADP）为我们解决包之间的关系耦合问题。在设计模块时，不能有循环依赖。
+
+*  Encapsulate What Changes -封装经常修改的代码
+在软件领域永远不变的是“变化”，所以把您认为或怀疑将来要被修改的代码封装起来。这种面向对象设计模式的优点是：易于测试和维护恰当封装的代码。
+
+* Rule Of Three。Rule of three 称为"三次原则"，指的是当某个功能第三次出现时，才进行"抽象化"
+
+*  Favor Composition over Inheritance -优先使用组合而非继承。
+
+  如果可以的话，要优先使用组合而非继承。
+
+
+
+
+
+单一职责原则（SRP）	就一个类而言，应该仅有一个引起它变化的原因。
+
+”开放－封闭”原则(OCP)	在软件设计模式中，这种不能修改，但可以扩展的思想也是最重要的一种设计原则。即软件实体（类、模板、函数等等）应该可以扩展，但是不可修改。
+
+里氏代换原则（LSP）一个软件实体如果使用的是一个父类的话，那么一定适用于该子类，而且他觉察不出父类对象和子类对象的区别。也就是说，在软件里面，把父类都替换成它的子类，程序的行为没有变化。
+
+依赖倒置原则(DIP)	高层模块不应该依赖于底层模块。两个都应该依赖抽象。2.抽象不应该依赖于细节，细节依赖于抽象。针对接口编程，不要针对实现编程。
+
+
+
+合成/聚合复用原则（CARP）	尽量使用合成/聚合，尽量不要使用类继承。聚合：表示一种弱的拥有关系，体现的是A 对象可以包含B对象，但B 对象不是A对象的一部分。合成：一种强的拥有关系，提现了严格的部分和整体的关系，部分和整体的生存周期一致。
+
+迪米特法则（LoD）强调类之间的松耦合。即：如果两个类不必彼此直接通信，那么着两个类就不应当发送直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。
+
+SOLID中的字母“O”指的是打开/关闭设计原则。单一职责原则是另外一个SOLID设计原则，SOLID中的字母“S”指的就是它
+SOLID中的字母“D”指的就是Dependency Injection or Inversion principle。SOLID中的字母“L”指的就是 LSP设计原则
+
+
+《The Art of Unix Programming》总结了下面这些哲学，都是至理名言啊。
+* Rule of Modularity: Write simple parts connected by clean interfaces.
+* Rule of Clarity: Clarity is better than cleverness.
+* Rule of Composition: Design programs to be connected to other programs.
+* Rule of Separation: Separate policy from mechanism; separate interfaces from engines.
+* Rule of Simplicity: Design for simplicity; add complexity only where you must.
+  简单原则：设计要简单；如无必要，切勿增加复杂性
+* Rule of Parsimony: Write a big program only when it is clear by demonstration that nothing else will do.
+* Rule of Transparency: Design for visibility to make inspection and debugging easier.
+* Rule of Robustness: Robustness is the child of transparency and simplicity.
+* Rule of Representation: Fold knowledge into data so program logic can be stupid and robust.
+* Rule of Least Surprise: In interface design, always do the least surprising thing.
+* Rule of Silence: When a program has nothing surprising to say, it should say nothing.
+* Rule of Repair: When you must fail, fail noisily and as soon as possible.
+* Rule of Economy: Programmer time is expensive; conserve it in preference to machine time.
+* Rule of Generation: Avoid hand-hacking; write programs to write programs when you can.
+* Rule of Optimization: Prototype before polishing. Get it working before you optimize it.
+  优化原则：在打磨之前先有原型，在优化之前先能工作
+* Rule of Diversity: Distrust all claims for “one true way”.
+* Rule of Extensibility: Design for the future, because it will be here sooner than you think.
+
+
+传统软件开发过程划分为相互衔接但泾渭分明的若干阶段，分别为需求分析、系统设计、代码开发和测试验收等。之所以称为敏捷开发，是相对于传统开发的迟钝而言，其敏捷性主要体现在：1）设计、编码和测试更加紧密地揉合一起，相关的人员和过程没有清晰的分割，因此可以更加地进入代码开发；2）设计、编码和测试是相互不断迭代的过程，出现问题或者偏差可以更快地优化设计和重构代码。
 
 
 [Open–closed principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle)

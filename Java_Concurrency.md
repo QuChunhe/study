@@ -129,7 +129,52 @@ notifyAll()唤醒在此上等待的所有线程。
 o.waite()和o.notify()必需synchronized(o)修饰的方法或者块中，也就是说waite()和notify()依赖于被调用对象的监视器。
 
 
+Thread的run()并不会抛出任何异常，但是线程本身会因为所执行的代码抛出一个异常而终止本线程的执行。对于
+* 需要长时间运行的服务线程，
+* 向线程池提交的任务线程或者工作线程
+需要在run()方法中主动地捕获和处理异常，例如如下服务线程，需要一直运行。知道调用stop()方法终止该服务线程为止。
+```java
 
+    public void stop() {
+        this.doesStop = true;
+    }
+
+    @Override
+    public void run(){
+        while(doesStop){
+            try{
+                \\do somethine
+            }(Throwable e) {
+                \\ do log
+            }finally{
+                \\release resources
+            }
+        }
+    }
+
+    private volatile boolean doesStop = false;
+
+```
+
+此外，JDK中还提供了Thread.UncaughtExceptionHandler接口，当线程由于一个未捕获的异常而终止时，Java虚拟机会调用其处理异常。
+```java
+    @FunctionalInterface
+    public interface UncaughtExceptionHandler {
+        /**
+         * Method invoked when the given thread terminates due to the
+         * given uncaught exception.
+         * <p>Any exception thrown by this method will be ignored by the
+         * Java Virtual Machine.
+         * @param t the thread
+         * @param e the exception
+         */
+        void uncaughtException(Thread t, Throwable e);
+    }
+```
+
+可以通过两种方式设置UncaughtExceptionHandler。
+* 通过Thread类的静态方法setDefaultUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置默认UncaughtExceptionHandler。
+* 通过Thread对象的方法setUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置特定对象的UncaughtExceptionHandler。
 
 
 

@@ -1125,19 +1125,20 @@ System.nanoTime与System.currentTimeMillis
 
 
 [](https://docs.oracle.com/javase/8/docs/api/java/lang/ref/package-summary.html#reachability)
-* 强引用（StrongReference）
-* 软引用（SoftReference）
-* 弱引用（WeakReference）
+* 强引用（StrongReference）.强引用是使用最普遍的引用。如果一个对象具有强引用，那GC绝不会回收它。当内存空间不足，GC宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。
+* 软引用（SoftReference）.如果一个对象只具有软引用，那么当内存空间足够时，GC就不会回收它，但是当内存空间不足了，GC就会回收这些对象的内存。一旦软引用的对象被垃圾回收器收回，则该对象就不能被程序所使用。因此，软引用可用来实现内存敏感的缓存。
+* 弱引用（WeakReference）.弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。GC一旦发现了只具有弱引用的对象，不管当前内存空间是否足够，都会回收其内存空间。由于依赖于GC的执行，弱引用何时被回收是不可确定的。 因为这是由GC运行的不确定性所确定的. 所以, 弱引用用于实现那些不阻止其key(或值）被回收的正规化映射。  
 * 虚引用（PhantomReference）
 
- 强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。
+软引用和弱引用应用的场景
+* 对象能够被重新构建和初始化
+* 对象需要占用或消耗大量内存
+ 
+可达性（Reachability）
 
-
-  如果一个对象只具有软引用，则内存空间足够，垃圾回收器就不会回收它；如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。
-
-弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。
-WeakReference的一个特点是它何时被回收是不可确定的, 因为这是由GC运行的不确定性所确定的. 所以, 一般用weak reference引用的对象是有价值被cache, 而且很容易被重新被构建, 且很消耗内存的对象.
   
+
+
 
 
 
@@ -1237,51 +1238,6 @@ Doc：文档的重要性，特别是非检查的异常，一定要在文档中�
 
 
 
-Thread的run()并不会抛出任何异常，但是线程本身会因为所执行的代码抛出一个异常而终止本线程的执行。对于
-* 需要长时间运行的服务线程，
-* 向线程池提交的任务线程或者工作线程
-需要在run()方法中主动地捕获和处理异常，例如如下服务线程，需要一直运行。知道调用stop()方法终止该服务线程为止。
-```java
 
-    public void stop() {
-        this.doesStop = true;
-    }
-
-    @Override
-    public void run(){
-        while(doesStop){
-            try{
-                \\do somethine
-            }(Throwable e) {
-                \\ do log
-            }finally{
-                \\release resources
-            }
-        }
-    }
-
-    private volatile boolean doesStop = false;
-
-```
-
-此外，JDK中还提供了Thread.UncaughtExceptionHandler接口，当线程由于一个未捕获的异常而终止时，Java虚拟机会调用其处理异常。
-```java
-    @FunctionalInterface
-    public interface UncaughtExceptionHandler {
-        /**
-         * Method invoked when the given thread terminates due to the
-         * given uncaught exception.
-         * <p>Any exception thrown by this method will be ignored by the
-         * Java Virtual Machine.
-         * @param t the thread
-         * @param e the exception
-         */
-        void uncaughtException(Thread t, Throwable e);
-    }
-```
-
-可以通过两种方式设置UncaughtExceptionHandler。
-* 通过Thread类的静态方法setDefaultUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置默认UncaughtExceptionHandler。
-* 通过Thread对象的方法setUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置特定对象的UncaughtExceptionHandler。
 
 

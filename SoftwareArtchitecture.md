@@ -1,5 +1,13 @@
 
 
+软件架构由多个不同的架构组成，每个架构是软件的一个视图，用于刻画软件系统的一个方面
+* 业务架构
+* 功能架构
+* 技术架构
+* 数据架构
+* 集成架构
+* 部署架构
+
 <<Patterns of Enterprise Application Architecture>>
 
 * Usually, there are two common elements:
