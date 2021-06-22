@@ -176,6 +176,38 @@ Thread的run()并不会抛出任何异常，但是线程本身会因为所执行
 * 通过Thread类的静态方法setDefaultUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置默认UncaughtExceptionHandler。
 * 通过Thread对象的方法setUncaughtExceptionHandler(UncaughtExceptionHandler eh)，设置特定对象的UncaughtExceptionHandler。
 
+每个Thread对象中存在属性threadLocals，其类型为ThreadLocalMap，为一个定制化的map。采用一个数组Entry[] table保存记录，每个ThreadLocal对象中包含属性threadLocalHashCode，其对应一个自增整数，为ThreadLoacal对象在数组table中初始位置，由于。如下所示，每个记录Entry是WeakReference的子类。WeakReference保存key，在Entry中采用Object value来保存value，
 
+在执行如下两个方法时
+* 部分执行get()时，包括：1）获取初始值，即首次执行get()时；2）当前ThreadLocal对象对应的key已经被GC回收
+* set(T value)
+* remove()
+会清理那些key已经被GC回收的记录。
+
+
+ThreadLocalMap
+
+```java
+static class ThreadLocalMap {
+
+        /**
+         * The entries in this hash map extend WeakReference, using
+         * its main ref field as the key (which is always a
+         * ThreadLocal object).  Note that null keys (i.e. entry.get()
+         * == null) mean that the key is no longer referenced, so the
+         * entry can be expunged from table.  Such entries are referred to
+         * as "stale entries" in the code that follows.
+         */
+        static class Entry extends WeakReference<ThreadLocal<?>> {
+            /** The value associated with this ThreadLocal. */
+            Object value;
+
+            Entry(ThreadLocal<?> k, Object v) {
+                super(k);
+                value = v;
+            }
+        }
+}
+```
 
 

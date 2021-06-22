@@ -1125,9 +1125,9 @@ System.nanoTime与System.currentTimeMillis
 
 
 [](https://docs.oracle.com/javase/8/docs/api/java/lang/ref/package-summary.html#reachability)
-* 强引用（StrongReference）.强引用是使用最普遍的引用。如果一个对象具有强引用，那GC绝不会回收它。当内存空间不足，GC宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。
-* 软引用（SoftReference）.如果一个对象只具有软引用，那么当内存空间足够时，GC就不会回收它，但是当内存空间不足了，GC就会回收这些对象的内存。一旦软引用的对象被垃圾回收器收回，则该对象就不能被程序所使用。因此，软引用可用来实现内存敏感的缓存。
-* 弱引用（WeakReference）.弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。GC一旦发现了只具有弱引用的对象，不管当前内存空间是否足够，都会回收其内存空间。由于依赖于GC的执行，弱引用何时被回收是不可确定的。 因为这是由GC运行的不确定性所确定的. 所以, 弱引用用于实现那些不阻止其key(或值）被回收的正规化映射。  
+* 强引用（StrongReference）.强引用是最为常见也是使用最为普遍的一种引用形式。如果一个对象具有强引用，那GC绝不会回收它。当内存空间不足，GC终止程序的正常执行，并抛出OutOfMemoryError错误。
+* 软引用（SoftReference）.如果一个对象只具有软引用，那么当内存空间足够时，GC并不会回收它，但是当内存空间不足了，GC就会回收这些对象的内存。一旦软引用的对象被垃圾回收器收回，则该对象就不能被程序所使用。因此，软引用可用来实现内存敏感的缓存。
+* 弱引用（WeakReference）.与软引用相比，弱引用的对象拥有更短暂的生命周期。GC一旦发现只具有弱引用的对象，不管当前内存空间是否足够，都会回收其内存空间。由于依赖于GC的执行，弱引用何时被回收是不可确定的。 弱引用用于实现那些不阻止其key(或值）被回收的正规化映射。  
 * 虚引用（PhantomReference）
 
 软引用和弱引用应用的场景
@@ -1135,11 +1135,52 @@ System.nanoTime与System.currentTimeMillis
 * 对象需要占用或消耗大量内存
  
 可达性（Reachability）
+从最强到最弱，可达性的不同等级反映了一个对象的生命周期。它们在操作上的定义如下：
+* 强可达性（Strong Reachability）。如果一些线程无需遍历任何引用对象就能够到达一个对象，那么这个对象就是强可达的。
+* 软可达性（Software Reachability）。如果一个对象不是强可达的，但可以通过遍历软引用到达，那么这个对象就是软可达的。
+* 弱可达性（Weak Reachability）。如果一个对象既不是强可达的，也不是软可达的，但是能够通过遍历弱引用对象到达，那么这个对象就是弱可达的。当一个指向一个弱可达对象的弱引用被清除时，那么这个对象就能够被终止。
+* 幻影可达性（Phantom Reachability）
+在一些场景中在将一个对象注册到一个特定的引用对象后，程序需要知道这个对象的可达性发生了改变，即这个被引用的对象已经被GC所回收。
 
-  
+ReferenceQueue为Java代码提供了三个方法
+* poll() 查询队列看是否存在应用。如果存在，则立即返回这个引用并从队列中将其删除，否则立即返回null。
+* remove() 删除队列中下一个引用对象，如果不存在，则处于阻塞状态，直到存在引用对象为止。
+* remove(long TimeOut) 删除队列中下一个引用对象，如果不存在，则处于阻塞状态，直到存在引用对象或者到达timeout时间为止。
 
 
+ReferenceQueue: you don't enque stuff in there. gc will do for you. They allows you to know when some references get released, without having to check them one by one.
 
+If the garbage collector discovers an object that is weakly reachable, the following occurs:
+1. The WeakReference object's referent field is set to null, thereby making it not refer to the heap object any longer. 
+2. The heap object that had been referenced by the WeakReference is declared finalizable. 
+3. The WeakReference object is added to its ReferenceQueue. Then the heap object's finalize() method is run and its memory freed. 
+
+
+```java
+public static void main(String[] args) throws InterruptedException {
+      SavePoint savePoint = new SavePoint("Random"); // a strong object
+
+      ReferenceQueue<SavePoint> savepointQ = new ReferenceQueue<SavePoint>();// the ReferenceQueue
+      WeakReference<SavePoint> savePointWRefernce = new WeakReference<SavePoint>(savePoint, savepointQ);
+
+      System.out.println("SavePoint created as a weak ref " + savePointWRefernce);
+      Runtime.getRuntime().gc();
+      System.out.println("Any weak references in Q ? " + (savepointQ.poll() != null));
+      savePoint = null; // the only strong reference has been removed. The heap
+                        // object is now only weakly reachable
+
+      System.out.println("Now to call gc...");
+      Runtime.getRuntime().gc(); // the object will be cleared here - finalize will be called.
+
+      System.out.println("Any weak references in Q ? " + (savepointQ.remove() != null));
+      System.out.println("Does the weak reference still hold the heap object ? " + (savePointWRefernce.get() != null));
+      System.out.println("Is the weak reference added to the ReferenceQ  ? " + (savePointWRefernce.isEnqueued()));
+
+   }
+```
+
+
+[Reference Queues](http://learningviacode.blogspot.com/2014/02/reference-queues.html)
 
 
  方法的覆盖(Overriding )vs.重载(Overloading)
