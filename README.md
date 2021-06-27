@@ -94,6 +94,10 @@ https://www.bradyneal.com/causal-inference-course
 
 [多元统计分析](https://www.bilibili.com/video/BV1VQ4y1K7Pz/?spm_id_from=333.788.videocard.5)
 
+[统计学-新竹清华大学-郑少为](https://www.bilibili.com/video/BV1Zb41157jp?from=search&seid=11159462894064586936)
+
+[统计学2-新竹清华大学-郑少为](https://www.bilibili.com/video/BV1Qb411G7qM/?spm_id_from=333.788.recommend_more_video.2)
+
 [研究生 数理统计](https://www.bilibili.com/video/BV1F741127Jp/?spm_id_from=333.788.videocard.14)
 
 [应用回归分析——上海立信会计金融学院](https://www.bilibili.com/video/BV1KJ411x7xb?from=search&seid=15994992527821645519)
