@@ -113,6 +113,7 @@ https://www.bradyneal.com/causal-inference-course
 
 [数理逻辑（Mathematical Logic)](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
+[数理逻辑-冯琦](https://www.bilibili.com/video/BV16p4y1i7qk?from=search&seid=12548937970640255728)
 
 [複變函數論 Complex Analysis](http://ocw.nctu.edu.tw/course_detail.php?bgid=1&gid=1&nid=15&page=2)
 
