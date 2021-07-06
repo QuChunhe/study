@@ -210,4 +210,31 @@ static class ThreadLocalMap {
 }
 ```
 
+VarHandle是在JDK 9中引入的一个工具 
 
+FutureTask的代码片段
+```java
+    // VarHandle mechanics
+    private static final VarHandle STATE;
+    private static final VarHandle RUNNER;
+    private static final VarHandle WAITERS;
+    static {
+        try {
+            MethodHandles.Lookup l = MethodHandles.lookup();
+            STATE = l.findVarHandle(FutureTask.class, "state", int.class);
+            RUNNER = l.findVarHandle(FutureTask.class, "runner", Thread.class);
+            WAITERS = l.findVarHandle(FutureTask.class, "waiters", WaitNode.class);
+        } catch (ReflectiveOperationException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+
+        // Reduce the risk of rare disastrous classloading in first call to
+        // LockSupport.park: https://bugs.openjdk.java.net/browse/JDK-8074773
+        Class<?> ensureLoaded = LockSupport.class;
+    }
+
+```
+
+Callable, Future, and FutureTask ...
+
+LockSupport.

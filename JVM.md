@@ -19,6 +19,41 @@ javap
 -XX:+UseParNewGC
 
 
+* -XX:+PrintGCDetails 在完成每次垃圾回收之后，打印详细的GC日志消息
+* -XX:+PrintGCDateStamps 打印日历时期的时间戳
+* -XX:+PrintGCTimeStamps 打印相对于JVM起始时间的时间戳 
+* -Xloggc:/home/admstats/admservice/logs/gc.log（对于JDK 9或者更高版本-Xlog:gc*:file=<PATH_TO_GC_LOG_FILE>） 指定GC日志消息打印到指定的目录和文件
+* -XX:NumberOfGCLogFiles=10 保存多少日志文件，太老的文件将被清除
+* -XX:GCLogFileSize=10M 设置GC日志文件的大小的上限。达到此值后文件会比替换。
+* -XX:+UseGCLogFileRotation 满足设置条件后GC日志文件会被替换 
+* -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -XX:+PrintPromotionFailure -XX:PrintFLSStatistics=1 
+
+[Understanding Java Garbage Collection Logging: What Are GC Logs and How to Analyze Them](https://sematext.com/blog/java-garbage-collection-logs/#:~:text=What%20Are%20Garbage%20Collection%20%28GC%29%20Logs%20The%20garbage,collector%20behaves%20and%20how%20much%20resources%20it%20uses.)
+
+
+The garbage collection logs will be able to answer questions like:
+* When was the young generation garbage collector used?
+* When was the old generation garbage collector used?
+* How many garbage collections were run?
+* For how long were the garbage collectors running?
+* What was the memory utilization before and after garbage collection?
+
+
+![GC日志文件格式]{pics/java-gc-log-format.png}
+1. 垃圾回收发生的时间(timestamp of event)
+2. 垃圾回收的类型(garbage collection type) 
+   * Minor garbage collection：the young generation space clearing event was performed
+   * Major garbage collection：the tenured generation clearing event was performed.
+   * Full garbage collection： Full GC， both the young and old generation was cleared. 
+
+3. 触发垃圾回收的原因(garbage collection cause)
+   * 分配失败(Allocation Failure)：在Eden中没有足够的空间来创建对象
+   * 调用垃圾回收(System.gc())
+4. 279616K->146232K – The occupied heap memory before and after the GC, respectively (separated by an arrow)
+5. (1013632K) – The current capacity of the heap
+6. 0.3318607 secs – The duration of the GC event in seconds
+
+
 [HotSpot Virtual Machine Garbage Collection Tuning Guide Release 11](https://docs.oracle.com/en/java/javase/11/gctuning/index.html)
 
 ### 1 Introduction to Garbage Collection Tuning
@@ -68,7 +103,7 @@ The pause time is the duration during which the garbage collector stops the appl
 The maximum pause-time goal is specified with the command-line option *-XX:MaxGCPauseMillis=<nnn>*. This is interpreted as a hint to the garbage collector that a pause-time of<nnn> milliseconds or fewer is desired. The garbage collector adjusts the Java heap size and other parameters related to garbage collection in an attempt to keep garbage collection pauses shorter than <nnn> milliseconds. 
 最大暂停时间目标由命令行选项*-XX:MaxGCPauseMillis=<nnn>*指定。这被解释为对垃圾回收器的提示，即需要<nnn>毫秒或更短的暂停时间。 垃圾回收器会调整Java堆的大小和其他与垃圾回收相关的参数，以尝试使垃圾回收暂停少于<nnn>毫秒。
 
-**Throughput Goal**
+**Throughput Goal**吞吐量目标
 
 The throughput goal is measured in terms of the time spent collecting garbage, and the time spent outside of garbage collection is the application time.
 吞吐量目标依据回收垃圾所消耗的时间来衡量，而在垃圾回收之外消耗的时间就是应用时间。
@@ -84,6 +119,62 @@ The time spent in garbage collection is the total time for all garbage collectio
 
 If the throughput and maximum pause-time goals have been met, then the garbage collector reduces the size of the heap until one of the goals (invariably the throughput goal) can't be met. The minimum and maximum heap sizes that the garbage collector can use can be set using *-Xms=<nnn>* and *-Xmx=<mmm>* for minimum and maximum heap size respectively.
 如果达到了吞吐量和最大暂停时间目标，那么垃圾回收器会减小堆的大小，直到无法满足其中一个目标（始终为吞吐量目标）。垃圾回收器能够使用的最小和最大的堆大小能够分别使用*-Xms=<nnn>*和*-Xmx=<mmm>*来设置。 
+
+
+**Tuning Strategy**调整策略
+
+The heap grows or shrinks to a size that supports the chosen throughput goal. Learn about heap tuning strategies such as choosing a maximum heap size, and choosing maximum pause-time goal.
+堆的大小会增长或缩小，以支持所选定的吞吐量目标。了解堆的调整策略，例如选择最大的堆大小和选择最大的暂停时间目标。
+
+
+Don't choose a maximum value for the heap unless you know that you need a heap greater than the default maximum heap size. Choose a throughput goal that's sufficient for your application.
+不要为堆选择一个最大值，除非你知道你需要一个大于默认最大堆大小的堆。选择一个足以满足你应用的吞吐量目标。
+
+A change in the application's behavior can cause the heap to grow or shrink. For example, if the application starts allocating at a higher rate, then the heap grows to maintain the same throughput.
+更改应用行为能够造成堆的增长或缩小。例如，如果应用开始以更高的速率分配，那么堆会增加，以保持相同的吞吐量。
+
+
+If the heap grows to its maximum size and the throughput goal isn't being met, then the maximum heap size is too small for the throughput goal. Set the maximum heap size to a value that's close to the total physical memory on the platform, but doesn't cause swapping of the application. Execute the application again. If the throughput goal still isn't met, then the goal for the application time is too high for the available memory on the platform.
+如果堆已经增加到其最大大小并且尚未满足吞吐量目标，那么这个最大堆大小对于吞吐量目标来说就太小了。将最大堆大小设置为接近平台总物理内存的值，但不会导致应用使用交换分区。再次执行应用程序。如果仍然没有达到吞吐量目标，那么应用时间的目标对于平台上的可用内存来说太高了。
+
+
+If the throughput goal can be met, but pauses are too long, then select a maximum pause-time goal. Choosing a maximum pause-time goal may mean that your throughput goal won't be met, so choose values that are an acceptable compromise for the application.
+如果可以达到吞吐量目标，但暂停时间太长，则选择一个最大暂停时间目标。选择最大暂停时间目标可能意味着无法满足你的吞吐量目标，因此为应用选择一个可接受的折衷值。
+
+
+It's typical that the size of the heap oscillates as the garbage collector tries to satisfy competing goals. This is true even if the application has reached a steady state. The pressure to achieve a throughput goal (which may require a larger heap) competes with the goals for a maximum pause-time and a minimum footprint (which both may require a small heap).
+随着垃圾回收器试图满足相互冲突的目标，堆的大小通常会上下波动。即使应用已达到稳定状态，也是如此。实现吞吐量目标（可能需要更大的堆）的压力是与最大暂停时间和最小占用空间（两者都可能需要小堆）的目标相互冲突。
+
+#### 3 Garbage Collector Implementation 垃圾回收器的实现
+
+One strength of the Java SE platform is that it shields the developer from the complexity of memory allocation and garbage collection.
+Java SE平台的优势之一是其向开发者屏蔽了内存分配和垃圾回收的复杂性。
+
+
+However, when garbage collection is the principal bottleneck, it's useful to understand some aspects of the implementation. Garbage collectors make assumptions about the way applications use objects, and these are reflected in tunable parameters that can be adjusted for improved performance without sacrificing the power of the abstraction.
+然而，当垃圾回收是主要瓶颈时，了解一些实现还是很有用的。 垃圾回收器对应用使用对象的方式做出假设，这些假设反映在可调参数中，可以在不牺牲抽象能力的情况下调整这些参数来提高性能。 
+
+
+**Generational Garbage Collection**分代垃圾回收
+
+An object is considered garbage and its memory can be reused by the VM when it can no longer be reached from any reference of any other live object in the running program.
+在一个正在运行的程序中当一个对象不能通过任何其他活动对象的任何应用被访问到时，这个对象就被认为是垃圾并且其内部能够被VM再次使用。
+
+
+A theoretical, most straightforward garbage collection algorithm iterates over every reachable object every time it runs. Any leftover objects are considered garbage. The time this approach takes is proportional to the number of live objects, which is prohibitive for large applications maintaining lots of live data.
+一个理论上最直接的垃圾回收算法在其每次运行时遍历每个可达的对象。任何剩余的对象都被看作垃圾。这个方法所花费的时间正比于活跃对象的数量，对于维护大量活跃对象的大型应用而言这个是难以承受的。
+
+The Java HotSpot VM incorporates a number of different garbage collection algorithms that all use a technique called generational collection. While naive garbage collection examines every live object in the heap every time, generational collection exploits several empirically observed properties of most applications to minimize the work required to reclaim unused (garbage) objects. The most important of these observed properties is the weak generational hypothesis, which states that most objects survive for only a short period of time. 
+Java HotSpot虚拟机吸收了很多不同的垃圾回收算法，所有算法都使用一种称为分代回收的技术。虽然原始的垃圾回收每次检测在堆中的每个活跃对象，但是分代回收利用了大多数应用的几个经验性观测属性，来最小化回收不再使用的（垃圾）对象所需要的工作。这些观察到的特性中最重要的是弱世代假设，它指出大多数对象只能存活很短的时间。 
+
+
+**Generations**分代
+
+To optimize for this scenario, memory is managed in generations (memory pools holding objects of different ages). Garbage collection occurs in each generation when the generation fills up.
+为了优化这种场景，以分代（持有不同年龄的对象的内存池）方式管理内存。当每一个代被填满时，该代就会进行垃圾回收。
+
+The vast majority of objects are allocated in a pool dedicated to young objects (the young generation), and most objects die there. When the young generation fills up, it causes a minor collection in which only the young generation is collected; garbage in other generations isn't reclaimed. The costs of such collections are, to the first order, proportional to the number of live objects being collected; a young generation full of dead objects is collected very quickly. Typically, some fraction of the surviving objects from the young generation are moved to the old generation during each minor collection. Eventually, the old generation fills up and must be collected, resulting in a major collection, in which the entire heap is collected. Major collections usually last much longer than minor collections because a significantly larger number of objects are involved. Figure 3-2 shows the default arrangement of generations in the serial garbage collector: 
+绝大多数对象在专用于年轻对象（年轻代）的池中分配，并且大多数对象都会在此死亡。
 
 [Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide Release 8](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html)
 
