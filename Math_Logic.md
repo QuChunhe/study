@@ -1,3 +1,6 @@
+
+Michael Huth and Mark Ryan, Logic in Computer Science: Modelling and Reasoning about Systems 2ed, Cambridge University Press, 2004.
+
 [陆钟万 数理逻辑](https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819)　
 
 数理逻辑的四个分支
