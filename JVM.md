@@ -27,16 +27,24 @@ javap
 * -XX:GCLogFileSize=10M 设置GC日志文件的大小的上限。达到此值后文件会比替换。
 * -XX:+UseGCLogFileRotation 满足设置条件后GC日志文件会被替换 
 * -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -XX:+PrintPromotionFailure -XX:PrintFLSStatistics=1 
+* -XX:+PrintSafepointStatistics  -XX:PrintSafepointStatisticsCount=1
 
 [Understanding Java Garbage Collection Logging: What Are GC Logs and How to Analyze Them](https://sematext.com/blog/java-garbage-collection-logs/#:~:text=What%20Are%20Garbage%20Collection%20%28GC%29%20Logs%20The%20garbage,collector%20behaves%20and%20how%20much%20resources%20it%20uses.)
 
 
 The garbage collection logs will be able to answer questions like:
-* When was the young generation garbage collector used?
+* When was the young generation garbage collector used? 
 * When was the old generation garbage collector used?
 * How many garbage collections were run?
 * For how long were the garbage collectors running?
 * What was the memory utilization before and after garbage collection?
+
+垃圾回收日志将能够回答类似如下的问题
+* 什么时候使用了新生代垃圾回收器
+* 什么时候使用了老年代垃圾回收器
+* 运行了多少次垃圾回收
+* 垃圾回收器运行了多长时间
+* 在垃圾回收之前和回收之后内存的使用率是多少
 
 
 ![GC日志文件格式]{pics/java-gc-log-format.png}
@@ -174,7 +182,42 @@ To optimize for this scenario, memory is managed in generations (memory pools ho
 为了优化这种场景，以分代（持有不同年龄的对象的内存池）方式管理内存。当每一个代被填满时，该代就会进行垃圾回收。
 
 The vast majority of objects are allocated in a pool dedicated to young objects (the young generation), and most objects die there. When the young generation fills up, it causes a minor collection in which only the young generation is collected; garbage in other generations isn't reclaimed. The costs of such collections are, to the first order, proportional to the number of live objects being collected; a young generation full of dead objects is collected very quickly. Typically, some fraction of the surviving objects from the young generation are moved to the old generation during each minor collection. Eventually, the old generation fills up and must be collected, resulting in a major collection, in which the entire heap is collected. Major collections usually last much longer than minor collections because a significantly larger number of objects are involved. Figure 3-2 shows the default arrangement of generations in the serial garbage collector: 
-绝大多数对象在专用于年轻对象（年轻代）的池中分配，并且大多数对象都会在此死亡。
+绝大多数对象分配在专用于年轻对象（年轻代）的池中，并且大多数对象都会在此消亡。当新生被填满时，会导致一个在小回收，仅仅在新生代上的回收，而在其他代中的垃圾不会被回收。这种回收的成本与正在被回收的活跃对象的数量成正比；充满死对象的新生代会很快地被回收。通常，一部分存活的对象会从新生代转移到老年代。最终，老年代被填满，必须进行回收，从而导致主回收，即整个堆进行回收。因为涉及从黑茶大量的对象，所以主回收通常被小回收持续更长时间。图3-2显示了在串行垃圾回收器中代的默认布局。
+
+The entire address space covering the Java heap is logically divided into young and old generations. 
+Java堆所占用的整个地址空间被逻辑地划分为新生代和老年代。
+
+The young generation consists of eden and two survivor spaces. Most objects are initially allocated in eden. One survivor space is empty at any time, and serves as the destination of live objects in eden and the other survivor space during garbage collection; after garbage collection, eden and the source survivor space are empty. In the next garbage collection, the purpose of the two survivor spaces are exchanged. The one space recently filled is a source of live objects that are copied into the other survivor space. Objects are copied between survivor spaces in this way until they've been copied a certain number of times or there isn't enough space left there. These objects are copied into the old region. This process is also called aging. 
+新生代由eden和两个survivor空间组成。 大多数对象最初被分配在eden中。 一个survivor空间在任何时候总是空的，在垃圾回收过程中作为eden和另一个survivor空间中活跃对象的目的地；在垃圾回收之后，eden和源survivor空间是空的。 在接下来的垃圾回收中，两个survivor空间交换了用途。 最近被填充的一个空间是活跃对象的源，会被复制到另一个survivor空间。对象以这种方式在两个survivor空间之间被复制，直到它们被复制了一定次数或survivor已经没有足够的剩余空间。 这些对象被复制到老年区。 这个过程也称为老化。 
+
+**Performance Considerations**性能考虑
+
+The primary measures of garbage collection are throughput and latency.垃圾回收的主要衡量是吞吐量和时延
+* Throughput is the percentage of total time not spent in garbage collection considered over long periods of time. Throughput includes time spent in allocation (but tuning for speed of allocation generally isn't needed).吞吐量是在经历一段较长的时期后没有消耗在垃圾回收上的总时间所占的百分百。吞吐量包括空间分配所消耗的时间（通常不需要为分配速率调优）。
+* Latency is the responsiveness of an application. Garbage collection pauses affect the responsiveness of applications.时延是一个应用的响应能力。垃圾回收停顿影响了应用的响应能力。
+
+
+Some users are sensitive to other considerations. Footprint is the working set of a process, measured in pages and cache lines. On systems with limited physical memory or many processes, footprint may dictate scalability. Promptness is the time between when an object becomes dead and when the memory becomes available, an important consideration for distributed systems, including Remote Method Invocation (RMI). 
+一些用户对其他考虑因素很敏感。Footprint是进程的工作集合，通过页面和缓存行来衡量。在物理内存受限或有许多进程的系统上，Footprint可能决定了可扩展性。及时性是从一个对象失效到该对象所占内存变为可用之间的时间，这对于分布式系统来说是一个重要的因素，包括远程方法调用 (RMI)。 
+
+
+In general, choosing the size for a particular generation is a trade-off between these considerations. For example, a very large young generation may maximize throughput, but does so at the expense of footprint, promptness, and pause times. Young generation pauses can be minimized by using a small young generation at the expense of throughput. The sizing of one generation doesn't affect the collection frequency and pause times for another generation.
+通常，为特定代选择大小是在这些考虑因素之间的权衡。 例如，一个非常大的新生代可能会实现吞吐量的最大化，但是会以footprint、及时性和暂停时间为代价。 通过使用小的新生代，可以使得新生代暂停时间最小化，但是会以吞吐量为代价。一代的大小并不会影响另一代的回收频率和暂停时间。 
+
+There is no one right way to choose the size of a generation. The best choice is determined by the way the application uses memory as well as user requirements. Thus the virtual machine's choice of a garbage collector isn't always optimal and may be overridden with command-line options;
+对于选择代的大小，并没有一种正确的方式。最好的选择是由应用使用内存的方式以及用户需求来确定。虚拟机对于垃圾回收器的选择并不总是最佳的选择，可以被命令行选项所覆盖。
+
+
+**Throughput and Footprint Measurement**
+
+Throughput and footprint are best measured using metrics particular to the application.
+
+
+#### 4 Factors Affecting Garbage Collection Performance 影响垃圾回收性能的因素
+
+The two most important factors affecting garbage collection performance are total available memory and proportion of the heap dedicated to the young generation.
+影响垃圾回收性能的两个最重要因素是总的可用内存和专用于新生代的堆的比例。
+
 
 [Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide Release 8](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html)
 
@@ -344,3 +387,35 @@ Because application threads and the garbage collector thread run concurrently du
 #JMM
 
 [Java Memory Model Pragmatics (transcript)](https://shipilev.net/blog/2014/jmm-pragmatics/)
+
+
+
+
+[java GC进入safepoint的时间为什么会这么长](https://www.zhihu.com/question/57722838)
+
+
+physical memory called the heap.
+
+
+内存泄漏  OutOfMemory
+
+extensive resource usage and slow down your application or even stop its execution.
+
+https://sematext.com/blog/java-garbage-collection/
+
+ Runtime.getRuntime().gc() call
+
+If you want to force garbage collection you can use the System object from the java.lang package and its gc() method or the Runtime.getRuntime().gc() call.
+
+In general, using the System.gc() is considered a bad practice and we should tune the work of the garbage collector instead of calling it explicitly.
+
+
+It can be as simple as adjusting the heap size – the -Xmx and -Xms parameters. 
+
+ For example, to set the heap size for our application to be of size 2GB we would add -Xms2g -Xmx2g to our application startup parameters. In most cases, I would also set them to the same value to avoid heap resizing and in addition to that I would add the -XX:+AlwaysPreTouch flag as well to load the memory pages into memory at the start of the application.
+
+The parameters to specify minimum and maximum heap size are -Xms<heap size>[unit] and -Xmx<heap size>[unit], respectively. The unit is the unit you want to initialize the memory in. It can be ‘g’ (GB), ‘m’ (MB), or ‘k’ (KB).
+
+https://sematext.com/blog/jvm-performance-tuning/
+
+
