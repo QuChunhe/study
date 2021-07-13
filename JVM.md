@@ -11,6 +11,13 @@ javap
 
 # GC
 
+[JVM Tuning: How to Prepare Your Environment for Performance Tuning](https://sematext.com/blog/jvm-performance-tuning/)
+
+Set your JVM Performance Goals
+* Latency is the amount of time required to run a garbage collection event.
+* Throughput is the percentage of time the VM spends executing the application versus time spent performing garbage collection.
+* Footprint is the amount of memory required by the garbage collector to run smoothly.
+
 [Do It Yourself (OpenJDK) Garbage Collector](https://shipilev.net/jvm/diy-gc/)
 
 -XX:+UseSerialGC, -XX:+UseParallelGC, -XX:+UseConcMarkSweepGC, -XX:ParallelCMSThreads=2, -XX:ParallelCMSThreads=4, -XX:+UseG1GC
@@ -217,6 +224,137 @@ Throughput and footprint are best measured using metrics particular to the appli
 
 The two most important factors affecting garbage collection performance are total available memory and proportion of the heap dedicated to the young generation.
 影响垃圾回收性能的两个最重要因素是总的可用内存和专用于新生代的堆的比例。
+
+
+**Total Heap**
+
+The most important factor affecting garbage collection performance is total available memory. Because collections occur when generations fill up, throughput is inversely proportional to the amount of memory available.
+影响垃圾回收性能最重要的因素是总的可用内存。因为代填满时就会发生垃圾回收，所以吞吐量反比于可用内存数量。
+
+**Heap Options Affecting Generation Size**影响代大小的堆选项
+
+[Heap Option"](pics/JVMHeapOptions.png)
+
+
+
+committed space and virtual space in the heap
+* 初始分配的堆空间，committed space ，通过-Xms来设置
+* 预留下来尚未分配的空间称为virtual space，一般为最大可用堆内存-最小可用堆内存
+
+This target range is set as a percentage by the options -XX:MinHeapFreeRatio=<minimum> and -XX:MaxHeapFreeRatio=<maximum>, and the total size is bounded below by –Xms<min> and above by –Xmx<max>. 
+最终的范围是由选项-XX:MinHeapFreeRatio=<minimum> 和 -XX:MaxHeapFreeRatio=<maximum>来设定百分百，并且总的大小不能低于–Xms<min>，但也不能高于–Xmx<max>。
+
+
+With these options, if the percent of free space in a generation falls below 40%, then the generation expands to maintain 40% free space, up to the maximum allowed size of the generation. Similarly, if the free space exceeds 70%, then the generation contracts so that only 70% of the space is free, subject to the minimum size of the generation.
+使用这些选项，如果在某一代中可用空间的百分比低于40%，则该代会扩展以保持40%的可用空间，直至该代的最大允许大小。 类似地，如果空闲空间超过70%，那么这代就收缩，直到有70%空间是空闲的，受限于代的最小大小。
+
+The following are general guidelines regarding heap sizes for server applications:如下是关于服务器应用堆大小的一般原则
+* Unless you have problems with pauses, try granting as much memory as possible to the virtual machine. The default size is often too small.除非你遇到暂停问题，否则尝试分配尽可能多的内存给虚拟机。默认大小常常太小了。
+* Setting -Xms and -Xmx to the same value increases predictability by removing the most important sizing decision from the virtual machine. However, the virtual machine is then unable to compensate if you make a poor choice. 将-Xms和-Xmx设置为相同的值可以从虚拟机中取消最重要的、设置大小的决策，从而增加可预测性。然后，如果你作出错误选择，那么虚拟机将不能进行补偿。
+* In general, increase the memory as you increase the number of processors, because allocation can be made parallel.通常，你要随着处理器数目的增加而增加内存，因为能够并行进行回收。
+
+* -Xms
+* -Xmx
+* -XX:MinHeapFreeRatio
+* -XX:MaxHeapFreeRatio
+* -XX:-ShrinkHeapInSteps： In addition, you can specify -XX:-ShrinkHeapInSteps, which immediately reduces the Java heap to the target size (specified by the parameter -XX:MaxHeapFreeRatio). You may encounter performance degradation with this setting. 
+
+**The Young Generation**
+
+After total available memory, the second most influential factor affecting garbage collection performance is the proportion of the heap dedicated to the young generation.
+在总的可用内存之后，影响垃圾回收性能的第二大因素是专用于新生代的堆的比例。
+
+
+The bigger the young generation, the less often minor collections occur. However, for a bounded heap size, a larger young generation implies a smaller old generation, which will increase the frequency of major collections. The optimal choice depends on the lifetime distribution of the objects allocated by the application.
+新生代越大，小回收发生的频率就越低。 然而，对于堆的大小受限的情况，较大的新生代意味着较小的老年代，从而会增加主回收的频率。最佳选择取决于应用所分配对象的生命周期分布。 
+
+* -XX:NewRatio=3
+* -XX:NewSize 
+* -XX:MaxNewSize
+
+
+For example, setting -XX:NewRatio=3 means that the ratio between the young and old generation is 1:3. In other words, the combined size of the eden and survivor spaces will be one-fourth of the total heap size.
+例如，设置-XX:NewRatio=3意味着新生代代和老年代的比例为1:3。 换句话说，edon和survivor空间的总大小将是总堆大小的四分之一。
+
+
+The options -XX:NewSize and -XX:MaxNewSize bound the young generation size from below and above. Setting these to the same value fixes the young generation, just as setting -Xms and -Xmx to the same value fixes the total heap size. This is useful for tuning the young generation at a finer granularity than the integral multiples allowed by -XX:NewRatio.
+选项-XX:NewSize 和 -XX:MaxNewSize分别从下和上限制了新生代的大小。 将其设置为相同的值可以固定年轻代，就像将-Xms和-Xmx设置为相同的值可以固定堆的总大小一样。 相比于使用XX:NewRatio许可的整数倍，这对于以更细粒度调整新生代是有用的。 
+
+**Survivor Space Sizing**
+
+You can use the option -XX:SurvivorRatio to tune the size of the survivor spaces, but often this isn't important for performance.
+你能够使用选项-XX:SurvivorRatio来调整survivor空间的大小，但这通常对性能并不重要。
+
+
+For example, -XX:SurvivorRatio=6 sets the ratio between eden and a survivor space to 1:6. In other words, each survivor space will be one-sixth of the size of eden, and thus one-eighth of the size of the young generation (not one-seventh, because there are two survivor spaces). 
+例如，-XX:SurvivorRatio=6 会设置eden和survivor空间之间的比率为 1:6。 换句话说，每个survivor空间将是eden空间大小的六分之一， 新生代大小的八分之一（不是七分之一，因为有两个survivor空间）。 
+
+
+
+#### 5 Available Collectors可用的回收器
+
+The Java HotSpot VM includes three different types of collectors, each with different performance characteristics.
+Java HotSpot虚拟机包含了三种不同类型的回收器，每种回收器具有不同的性能特征。 
+
+**Serial Collector**串行回收器
+
+The serial collector uses a single thread to perform all garbage collection work, which makes it relatively efficient because there is no communication overhead between threads.
+串行回收器使用单个线程来执行所有垃圾回收工作，这使得其相对高效，因为不存在线程之间的通信开销。
+
+
+It's best-suited to single processor machines because it can't take advantage of multiprocessor hardware, although it can be useful on multiprocessors for applications with small data sets (up to approximately 100 MB). The serial collector is selected by default on certain hardware and operating system configurations, or can be explicitly enabled with the option -XX:+UseSerialGC.
+串行回收器不能利用多处理器硬件，因此其最适合于单处理器的机器，但是对于运行在多处理器上的并且具有小数据集（最多约 100 MB）的应用，其是很有用的。在某些特定硬件和操作系统上将串行回收器配置为默认，或者可以通过选项 XX:+UseSerialGC 显式启用。
+
+
+**Parallel Collector**并行回回收器
+
+The parallel collector is also known as throughput collector, it's a generational collector similar to the serial collector. The primary difference between the serial and parallel collectors is that the parallel collector has multiple threads that are used to speed up garbage collection.
+并行回收器也被称为吞吐量收集器。它是一种类似于串行回收器的分代回收器。串行回收器和并行回收器之间的主要区别是并行回收器采用多线程来加速垃圾回收。
+
+The parallel collector is intended for applications with medium-sized to large-sized data sets that are run on multiprocessor or multithreaded hardware. You can enable it by using the -XX:+UseParallelGC option.
+并行回收器是针对于具有中型到大型数据集的并且运行在多处理器或多线程硬件上的应用。 你能够使用-XX:+UseParallelGC选项来启用它。
+
+
+Parallel compaction is a feature that enables the parallel collector to perform major collections in parallel. Without parallel compaction, major collections are performed using a single thread, which can significantly limit scalability. Parallel compaction is enabled by default if the option -XX:+UseParallelGC has been specified. You can disable it by using the -XX:-UseParallelOldGC option.
+并行压缩是一个特性，其使得并行回收器可以并行地执行major回收。 如果没有并行压缩，major回收会使用单个线程来执行，这会显著地限制可伸缩性。 如果已指定选项-XX:+UseParallelGC，那么会默认启用并行压缩。 你可以使用-XX:-UseParallelOldGC选项禁用它。
+
+
+**The Mostly Concurrent Collectors**通常并发回收器
+
+Concurrent Mark Sweep (CMS) collector and Garbage-First (G1) garbage collector are the two mostly concurrent collectors. Mostly concurrent collectors perform some expensive work concurrently to the application. 并发标记清除回收器和G1垃圾回收器是两个通常并发的回收器。通常并发的回收器相对于应用以并发方式执行一些昂贵的工作。
+* G1 garbage collector: This server-style collector is for multiprocessor machines with a large amount of memory. It meets garbage collection pause-time goals with high probability, while achieving high throughput. G1垃圾回收器：这种服务器风格的回收器是为了拥有大量内存的多处理器机器。其能够以很大概率满足垃圾回收的暂停时间目标，同时实现高吞吐量。
+
+G1 is selected by default on certain hardware and operating system configurations, or can be explicitly enabled using-XX:+UseG1GC. 在特定的硬件和操作系统配置下，默认选择G1,或者使用-XX:+UseG1GC来显式地启用它。
+
+* CMS collector: This collector is for applications that prefer shorter garbage collection pauses and can afford to share processor resources with the garbage collection.
+
+Use the option -XX:+UseConcMarkSweepGC to enable the CMS collector
+
+The CMS collector is deprecated as of JDK 9.CMS回收器在JDK 9中被弃用。
+
+**The Z Garbage Collector**Z垃圾回收器
+
+The Z Garbage Collector (ZGC) is a scalable low latency garbage collector. ZGC performs all expensive work concurrently, without stopping the execution of application threads.
+Z 垃圾收集器 (ZGC) 是一种可扩展的、低延迟的垃圾回收器。ZGC并发地执行所有昂贵的工作，而不用停止应用线程的执行。
+
+ZGC is intended for applications which require low latency (less than 10 ms pauses) and/or use a very large heap (multi-terabytes). You can enable is by using the -XX:+UseZGC option.
+ZGC针对于需要低延迟（小于10毫秒的暂停）和/或使用非常大的堆（数T字节）的应用。你能够通过使用-XX:+UseZGC选项来启用它。
+
+ZGC is available as an experimental feature, starting with JDK 11.
+从JDK 11开始，ZGC被启用，作为一种实验特性。
+
+**Selecting a Collector**
+
+If necessary, adjust the heap size to improve performance. If the performance still doesn't meet your goals, then use the following guidelines as a starting point for selecting a collector:如有必要，就调整堆的大小以提高性能。如果性能仍然不能满足你的目标，则使用以下指南作为选择回收器的起点：
+* If the application has a small data set (up to approximately 100 MB), then select the serial collector with the option -XX:+UseSerialGC. 如果应用具有很小的数据集（最多约100MB），那么使用选项-XX:+UseSerialGC来选择串行回收器。
+* If the application will be run on a single processor and there are no pause-time requirements, then select the serial collector with the option -XX:+UseSerialGC. 如果应用将会运行在单处理器上并且没有暂停时间的要求，那么使用选项-XX:+UseSerialGC来选择串行回收器。
+* If (a) peak application performance is the first priority and (b) there are no pause-time requirements or pauses of one second or longer are acceptable, then let the VM select the collector or select the parallel collector with -XX:+UseParallelGC. 如果 (a) 应用的峰值性能是第一优先级并且 (b) 没有暂停时间的要求或者可以接受一秒或更长的暂停，那么让VM选择回收器器或使用-XX:+UseParallelGC来选择并行回收器。
+* If response time is more important than overall throughput and garbage collection pauses must be kept shorter than approximately one second, then select a mostly concurrent collector with -XX:+UseG1GC or -XX:+UseConcMarkSweepGC. 如果响应时间比整体吞吐量更重要，并且垃圾回收的暂停必须要少于一秒，那么使用-XX:+UseG1GC 或 -XX:+UseConcMarkSweepGC来选择通常并发的回收器。
+* If response time is a high priority, and/or you are using a very large heap, then select a fully concurrent collector with -XX:UseZGC. 如果响应时间具有一个高优先级，和/或你正在使用一个非常大的堆，那么使用-XX:UseZGC来选择一个完全并发的回收器。 
+
+#### 6 The Parallel Collector并行回收器 
+
+
 
 
 [Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide Release 8](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html)
