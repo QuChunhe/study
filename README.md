@@ -83,6 +83,7 @@ https://www.bradyneal.com/causal-inference-course
 [多元统计分析Multivariate Analysis](https://www.bilibili.com/video/BV1s4411h7w2/?spm_id_from=333.788.videocard.4)
 
 [多元统计2020 spring HUST math](https://www.bilibili.com/video/BV1NE411F7ma?from=search&seid=12611584210525499987)
+
 [多元统计分析Multivariate Analysi 台湾交大](https://www.bilibili.com/video/BV1s4411h7w2/?spm_id_from=333.788.recommend_more_video.5)
 
 Applied Multivariate Statistical Analysis (6th Edition). Prentice HallJohnson, R.A. and Wichern, D.W., 
@@ -104,6 +105,13 @@ Applied Multivariate Statistical Analysis (6th Edition). Prentice HallJohnson, R
 [统计学2-新竹清华大学-郑少为](https://www.bilibili.com/video/BV1Qb411G7qM/?spm_id_from=333.788.recommend_more_video.2)
 
 [研究生 数理统计](https://www.bilibili.com/video/BV1F741127Jp/?spm_id_from=333.788.videocard.14)
+
+[贝叶斯统计课程 A Student's Guide to Bayesian Statistics by Ben Lambert](https://www.bilibili.com/video/BV1iV411v7Yw?from=search&seid=2797862519305688037)
+
+
+[《统计反思:贝叶斯课程(with Code Examples in R/Stan/Python/Julia)》(2019) by Richard McElrea](https://www.bilibili.com/video/BV1ya411A7ih?from=search&seid=7910571451600650021)
+
+[应用贝叶斯统计学](https://www.bilibili.com/video/BV17v4y1f7SS?from=search&seid=12851258088606987393)
 
 [应用回归分析——上海立信会计金融学院](https://www.bilibili.com/video/BV1KJ411x7xb?from=search&seid=15994992527821645519)
 
