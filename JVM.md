@@ -354,6 +354,13 @@ If necessary, adjust the heap size to improve performance. If the performance st
 
 #### 6 The Parallel Collector并行回收器 
 
+The parallel collector is enabled with the command-line option -XX:+UseParallelGC. By default, with this option, both minor and major collections are run in parallel to further reduce garbage collection overhead. 
+使用命令行选项-XX:+UseParallelGC可以启用并行回收器。这个选项在默认情况下，minor和major回收都会以并行方式运行，以进一步减小垃圾回收开销。
+
+##Number of Parallel Collector Garbage Collector Threads##
+
+On a machine with <N> hardware threads where <N> is greater than 8, the parallel collector uses a fixed fraction of <N> as the number of garbage collector threads. 
+在有N个硬件线程的机器上，其中N大于9,并行回收器使用固定
 
 
 
