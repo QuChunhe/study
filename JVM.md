@@ -357,14 +357,78 @@ If necessary, adjust the heap size to improve performance. If the performance st
 The parallel collector is enabled with the command-line option -XX:+UseParallelGC. By default, with this option, both minor and major collections are run in parallel to further reduce garbage collection overhead. 
 使用命令行选项-XX:+UseParallelGC可以启用并行回收器。这个选项在默认情况下，minor和major回收都会以并行方式运行，以进一步减小垃圾回收开销。
 
-##Number of Parallel Collector Garbage Collector Threads##
+**Number of Parallel Collector Garbage Collector Threads**
 
 On a machine with <N> hardware threads where <N> is greater than 8, the parallel collector uses a fixed fraction of <N> as the number of garbage collector threads. 
-在有N个硬件线程的机器上，其中N大于9,并行回收器使用固定
+在有N个硬件线程并且N大于8的机器上,并行回收器使用固定比例的N作为并行回收器线程的数量
+
+The fraction is approximately 5/8 for large values of <N>. At values of <N> below 8, the number used is <N>. On selected platforms, the fraction drops to 5/16. The specific number of garbage collector threads can be adjusted with a command-line option (which is described later). On a host with one processor, the parallel collector will likely not perform as well as the serial collector because of the overhead required for parallel execution (for example, synchronization). However, when running applications with medium-sized to large-sized heaps, it generally outperforms the serial collector by a modest amount on computers with two processors, and usually performs significantly better than the serial collector when more than two processors are available. 
+对于N值很大的情况，这个比例大概是5/8。在N值小于8的情况下，所使用的数值是N。在选定的平台上，这个比例降到5/16.垃圾回收器线程的特定数量能够通过命令行选项（稍后将介绍）来调整。由于并行执行（例如，同步）所需要的开销，在只有一个处理器的主机上并行回收器可能性能并不如串行回收器。然而，当运行具有中型到大型堆的应用时，在具有两个处理器的计算机上，它一般在性能上要超过串行回收器一些，如果可用的处理器超过两个，那么提拔歌词尕不过性能要被串行回收器好很多。
+
+The number of garbage collector threads can be controlled with the command-line option -XX:ParallelGCThreads=<N>. If you are tuning the heap with command-line options, then the size of the heap needed for good performance with the parallel collector is the same as needed with the serial collector. However, enabling the parallel collector should make the collection pauses shorter. Because multiple garbage collector threads are participating in a minor collection, some fragmentation is possible due to promotions from the young generation to the old generation during the collection. Each garbage collection thread involved in a minor collection reserves a part of the old generation for promotions and the division of the available space into these "promotion buffers" can cause a fragmentation effect. Reducing the number of garbage collector threads and increasing the size of the old generation will reduce this fragmentation effect. 
+垃圾回收器的线程数量可以通过命令行选项-XX:ParallelGCThreads=<N>来控制。如果你正在通过命令行选项来调整堆，那么并行回收器为了实现良好性能所需要的堆大小与串行回收器所需要的堆大小相同。启用并行回收器将会使得回收的暂停时间更短。因为多个垃圾回收器线程同时参与minor回收，在回收期间从新生代到老年代的迁移可能会导致一些碎片。在minor回收中所涉及的每个垃圾回收线程会为了迁移而保留一部分老年代，将可用的空间划分为“迁移buffers”会够造成碎片化效应。减小垃圾回收线程数目和增加老年代的大小将会减小碎片化效应。
+
+**Options to Specify Parallel Collector Behaviors**用于指定并行回收器行为的选项
+
+You can specify maximum garbage collection pause time, throughput, and footprint (heap size).你能够指定最大垃圾回收暂停时间、吞吐量和占用空间（堆大小）
+* Maximum garbage collection pause time: The maximum pause time goal is specified with the command-line option -XX:MaxGCPauseMillis=<N>. This is interpreted as a hint that pause times of <N> milliseconds or less are desired; by default, no maximum pause- time goal. If a pause-time goal is specified, the heap size and other parameters related to garbage collection are adjusted in an attempt to keep garbage collection pauses shorter than the specified value; however, the desired pause-time goal may not always be met. These adjustments may cause the garbage collector to reduce the overall throughput of the application.最大垃圾回收暂停时间：使用命令行选项-XX:MaxGCPauseMillis=<N>指定最大暂停时间目标。这被解释为一种提示，期望<N>毫秒或更少的暂停时间；在默认情况下，并没有最大暂停时间目标。如果指定了暂停时间目标，则为了使垃圾回收的暂停时间短于指定值，会试图调整堆的大小以及其他与垃圾回收相关的参数；然而。所期望的暂停时间目标可能并不总是被满足。这些调整可能会导致垃圾回收器降低应用的总体吞吐量。
+* Throughput: The throughput goal is measured in terms of the time spent doing garbage collection versus the time spent outside of garbage collection, referred to as application time. The goal is specified by the command-line option -XX:GCTimeRatio=<N>, which sets the ratio of garbage collection time to application time to 1 / (1 + <N>).吞吐量：吞吐量目标是根据垃圾回收所花费的时间与在垃圾回收之外所花费的时间（称为应用时间）之比来衡量的。目标可以通过命令行选项-XX:GCTimeRatio=<N>来指定，其将垃圾回收时间与应用时间的比率设置为1/（1+<N>）
+
+For example, -XX:GCTimeRatio=19 sets a goal of 1/20 or 5% of the total time in garbage collection. The default value is 99, resulting in a goal of 1% of the time in garbage collection.例如，-XX:GCTimeRatio=19设置目标为垃圾回收占总时间的1/20或5%。默认值为99，这将导致目标是垃圾回收的时间为1%。
+* Footprint: The maximum heap footprint is specified using the option -Xmx<N>. In addition, the collector has an implicit goal of minimizing the size of the heap as long as the other goals are being met.
+占用空间：通过选项-Xmx<N>来指定堆的最大占用空间。此外，回收器还有一个隐含的、使得堆大小最小化的目标以及其他一些目标需要满足。
+
+**Priority of Parallel Collector Goals**并行回收器目标的优先级
+
+The goals are maximum pause-time goal, throughput goal, and minimum footprint goal, and goals are addressed in that order:
+目标是最大暂停时间目标、吞吐量目标和最小占用空间目标，这些目标按以下顺序处理：
+
+The maximum pause-time goal is met first. Only after it's met is the throughput goal addressed. Similarly, only after the first two goals have been met is the footprint goal considered.
+最大暂停时间是首先满足的目标。只有在达到这个目标之后，才能实现吞吐量目标。类似地，只有在实现前两个目标之后，才会考虑最大占用空间目标。
+
+
+**Parallel Collector Generation Size Adjustments**
+
+The exception is that explicit garbage collections, for example, calls to System.gc()are ignored in terms of keeping statistics and making adjustments to the sizes of generations. 
+
+
+Growing and shrinking the size of a generation is done by increments that are a fixed percentage of the size of the generation so that a generation steps up or down toward its desired size. Growing and shrinking are done at different rates. By default, a generation grows in increments of 20% and shrinks in increments of 5%. The percentage for growing is controlled by the command-line option -XX:YoungGenerationSizeIncrement=<Y> for the young generation and -XX:TenuredGenerationSizeIncrement=<T> for the old generation. The percentage by which a generation shrinks is adjusted by the command-line flag -XX:AdaptiveSizeDecrementScaleFactor=<D>. If the growth increment is X%, then the decrement for shrinking is X/D%. 
+
+If the maximum pause-time goal isn't being met, then the size of only one generation is shrunk at a time. If the pause times of both generations are above the goal, then the size of the generation with the larger pause time is shrunk first.
+
+If the throughput goal isn't being met, then the sizes of both generations are increased. Each is increased in proportion to its respective contribution to the total garbage collection time. For example, if the garbage collection time of the young generation is 25% of the total collection time and if a full increment of the young generation would be by 20%, then the young generation would be increased by 5%.
+
+**Parallel Collector Default Heap Size**
+
+Unless the initial and maximum heap sizes are specified on the command line, they're calculated based on the amount of memory on the machine. The default maximum heap size is one-fourth of the physical memory while the initial heap size is 1/64th of physical memory. The maximum amount of space allocated to the young generation is one third of the total heap size.
+
+#### 7 The Mostly Concurrent Collectors通常并发回收器
+
+**Overhead of Mostly Concurrent Collectors**通常并发回收器的开销
+
+The mostly concurrent collector trades processor resources (which would otherwise be available to the application) for shorter major collection pause time.
+通常并发回收器以处理器资源为代价（否则应用将可以使用这些资源），实现更短的majoir回收暂停时间。
+
+The most visible overhead is the use of one or more processors during the concurrent parts of the collection. On an N processor system, the concurrent part of the collection uses K/N of the available processors, where 1 <= K <= ceiling{N/4}. In addition to the use of processors during concurrent phases, additional overhead is incurred to enable concurrency. Thus, while garbage collection pauses are typically much shorter with the concurrent collector, application throughput also tends to be slightly lower than with the other collectors. 
+最显而易见的开销是在回收的并发部分期间使用一个或多个处理器。在具有N个处理器的系统上，回收的并发部分使用K/N个可用处理器的，其中1<=K<=ceiling{N/4}。除了在并发阶段使用处理器，为了实现并发还会引起额外的开销。因此，虽然使用并发回收器，垃圾回收的暂停时间通常要短得多，但应用吞吐量也往往略低于其他收集器。
+
+
+#### 9 Garbage-First Garbage Collector 
+
+**Introduction to Garbage-First Garbage Collector**
+
+The Garbage-First (G1) garbage collector is targeted for multiprocessor machines with a large amount of memory. It attempts to meet garbage collection pause-time goals with high probability while achieving high throughput with little need for configuration. G1 aims to provide the best balance between latency and throughput using current target applications and environments whose features include:G1垃圾回收器的目标是具有很大内存数量的多处理器机器。其试图满足垃圾
+* Heap sizes up to ten of GBs or larger, with more than 50% of the Java heap occupied with live data.
+* Rates of object allocation and promotion that can vary significantly over time.
+* A significant amount of fragmentation in the heap.
+* Predictable pause-time target goals that aren’t longer than a few hundred milliseconds, avoiding long garbage collection pauses.
 
 
 
-[Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide Release 8](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/index.html)
+
+
+
+[Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide Release 8](https://docs.oracle/javase/8/docs/technotes/guides/vm/gctuning/index.html)
 
 
 
