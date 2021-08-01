@@ -70,7 +70,7 @@ https://www.bradyneal.com/causal-inference-course
 
 [中国科学院大学-自然语言处理-2018](https://www.bilibili.com/video/BV14b411E7RB?from=search&seid=13130800206221963093)
 
-[随机过程 - 中国科学院大学](https://www.bilibili.com/video/BV1z7411L7Qw/?spm_id_from=333.788.videocard.4)
+[随机过程 - 中国科学院大学](https://www.bilibili.com/video/BV1cy4y1x799?from=search&seid=3830269499474329188)
 
 [模式识别19-20秋季-中国科学院大学](https://www.bilibili.com/video/BV19J411j7tU?from=search&seid=4892424083475395943)
 
