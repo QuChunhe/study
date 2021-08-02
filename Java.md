@@ -1020,6 +1020,9 @@ Six specializations of the Function<T,R> interface exist:
 * ToLongFunction<T>
 * ToDoubleFunction<T>
 
+Functional interfaces are used in two contexts by two different types of users:
+* By library designers for designing APIs
+* By library users for using the APIs
 
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
