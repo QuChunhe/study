@@ -971,10 +971,54 @@ System.out.println("People older than 20: " + olderThan20);
 ```
 
 
+* Lambda Epression
+* Target Typing
+* Functional Interface 
+* Mathod Rference
+
 We’ll use lambda expressions to easily separate logic from functions, making them more extensible.
 
 Constructor Reference is used to refer to a constructor without instantiating the named class.
 
+A lambda expression is an unnamed block of code (or an unnamed function) with a list of formal parameters and a body. Sometimes a lambda expression is simply called a lambda. The body of a lambda expression can be a block statement or an expression. An arrow (->) is used to separate the list of parameters and the body. The term “lambda” has its origin in Lambda calculus that uses the Greek letter lambda (λ) to denote a function abstraction.
+
+Unlike a method, a lambda expression does
+not have the following four parts:
+* A lambda expression does not have a name.
+* A lambda expression does not have a return type. It is inferred by the compiler from the context of its use and from its body.
+* A lambda expression does not have a throws clause. It is inferred from the context of its use and its body.
+* A lambda expression cannot declare type parameters. That is, a lambda expression cannot be generic.
+
+
+The compiler infers the type of a lambda expression. The context in which a lambda expression is used expects a type, which is called the target type. The process of inferring the type of a lambda expression from the context is known as target typing.
+
+Changing the behavior of a method through its parameters is known as behavior parameterization. This is also known as passing code as data because you pass code (logic, functionality, or behavior) encapsulated in lambda expressions to methods as if it were data.
+
+The following types of methods in an interface do not count for defining a functional interface:
+* Default methods
+* static methods
+* Public methods inherited from the Object class
+
+Java 8 introduced a new type called an intersection type that is an intersection (or subtype) of multiple types. An intersection type may appear as the target type in a cast. An ampersand (&) is used between two types, such as (Type1 & Type2 & Type3), and it represents a new type that is an intersection of Type1, Type2, and Type3.
+
+
+* Function<T,R>: R apply(T t) 
+* BiFunction<T,U,R>: R apply(T t, U u) 
+* Predicate<T>: boolean test(T t) 
+* BiPredicate<T,U>: boolean test(T t, U u)
+* Consumer<T> :void accept(T t) 
+* BiConsumer<T,U>: void accept(T t, U u) 
+* Supplier<T>: T get() 
+* UnaryOperator<T>: T apply(T t)
+* BinaryOperator<T>: T apply(T t1, T t2)
+
+Six specializations of the Function<T,R> interface exist:
+* IntFunction<R>
+* LongFunction<R>
+* DoubleFunction<R>
+* ToIntFunction<T>
+* ToLongFunction<T>
+* ToDoubleFunction<T>
 
 
 Tell-Don't-Ask
@@ -1280,5 +1324,5 @@ Doc：文档的重要性，特别是非检查的异常，一定要在文档中�
 
 
 
-
+l
 
