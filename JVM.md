@@ -189,7 +189,7 @@ To optimize for this scenario, memory is managed in generations (memory pools ho
 为了优化这种场景，以分代（持有不同年龄的对象的内存池）方式管理内存。当每一个代被填满时，该代就会进行垃圾回收。
 
 The vast majority of objects are allocated in a pool dedicated to young objects (the young generation), and most objects die there. When the young generation fills up, it causes a minor collection in which only the young generation is collected; garbage in other generations isn't reclaimed. The costs of such collections are, to the first order, proportional to the number of live objects being collected; a young generation full of dead objects is collected very quickly. Typically, some fraction of the surviving objects from the young generation are moved to the old generation during each minor collection. Eventually, the old generation fills up and must be collected, resulting in a major collection, in which the entire heap is collected. Major collections usually last much longer than minor collections because a significantly larger number of objects are involved. Figure 3-2 shows the default arrangement of generations in the serial garbage collector: 
-绝大多数对象分配在专用于年轻对象（年轻代）的池中，并且大多数对象都会在此消亡。当新生被填满时，会导致一个在小回收，仅仅在新生代上的回收，而在其他代中的垃圾不会被回收。这种回收的成本与正在被回收的活跃对象的数量成正比；充满死对象的新生代会很快地被回收。通常，一部分存活的对象会从新生代转移到老年代。最终，老年代被填满，必须进行回收，从而导致主回收，即整个堆进行回收。因为涉及从黑茶大量的对象，所以主回收通常被小回收持续更长时间。图3-2显示了在串行垃圾回收器中代的默认布局。
+绝大多数对象分配在专用于年轻对象（新生代）的池中，并且大多数对象都会在此消亡。当新生代被填满时，会导致一个在小回收，仅仅在新生代上的回收，而在其他代中的垃圾不会被回收。这种回收的成本与正在被回收的活跃对象的数量成正比；充满死对象的新生代会很快地被回收。通常，一部分存活的对象会从新生代转移到老年代。最终，老年代被填满，必须进行回收，从而导致大回收，即整个堆进行回收。因为涉及非常大量的对象，所以大回收通常比小回收持续更长时间。图3-2显示了在串行垃圾回收器中代的默认布局。
 
 The entire address space covering the Java heap is logically divided into young and old generations. 
 Java堆所占用的整个地址空间被逻辑地划分为新生代和老年代。
@@ -274,7 +274,7 @@ The bigger the young generation, the less often minor collections occur. However
 
 
 For example, setting -XX:NewRatio=3 means that the ratio between the young and old generation is 1:3. In other words, the combined size of the eden and survivor spaces will be one-fourth of the total heap size.
-例如，设置-XX:NewRatio=3意味着新生代代和老年代的比例为1:3。 换句话说，edon和survivor空间的总大小将是总堆大小的四分之一。
+例如，设置-XX:NewRatio=3意味着新生代和老年代的比例为1:3。 换句话说，edon和survivor空间的总大小将是总堆大小的四分之一。
 
 
 The options -XX:NewSize and -XX:MaxNewSize bound the young generation size from below and above. Setting these to the same value fixes the young generation, just as setting -Xms and -Xmx to the same value fixes the total heap size. This is useful for tuning the young generation at a finer granularity than the integral multiples allowed by -XX:NewRatio.
@@ -363,10 +363,10 @@ On a machine with <N> hardware threads where <N> is greater than 8, the parallel
 在有N个硬件线程并且N大于8的机器上,并行回收器使用固定比例的N作为并行回收器线程的数量
 
 The fraction is approximately 5/8 for large values of <N>. At values of <N> below 8, the number used is <N>. On selected platforms, the fraction drops to 5/16. The specific number of garbage collector threads can be adjusted with a command-line option (which is described later). On a host with one processor, the parallel collector will likely not perform as well as the serial collector because of the overhead required for parallel execution (for example, synchronization). However, when running applications with medium-sized to large-sized heaps, it generally outperforms the serial collector by a modest amount on computers with two processors, and usually performs significantly better than the serial collector when more than two processors are available. 
-对于N值很大的情况，这个比例大概是5/8。在N值小于8的情况下，所使用的数值是N。在选定的平台上，这个比例降到5/16.垃圾回收器线程的特定数量能够通过命令行选项（稍后将介绍）来调整。由于并行执行（例如，同步）所需要的开销，在只有一个处理器的主机上并行回收器可能性能并不如串行回收器。然而，当运行具有中型到大型堆的应用时，在具有两个处理器的计算机上，它一般在性能上要超过串行回收器一些，如果可用的处理器超过两个，那么提拔歌词尕不过性能要被串行回收器好很多。
+对于N值很大的情况，这个比例大概是5/8。在N值小于8的情况下，所使用的数值是N。在选定的平台上，这个比例降到5/16.垃圾回收器线程的特定数量能够通过命令行选项（稍后将介绍）来调整。由于并行执行（例如，同步）所需要的开销，在只有一个处理器的主机上并行回收器可能性能并不如串行回收器。然而，当运行具有中型到大型堆的应用时，在具有两个处理器的计算机上，它一般在性能上要超过串行回收器一些，如果可用的处理器超过两个，那么通常其性能要比串行回收器好很多。
 
 The number of garbage collector threads can be controlled with the command-line option -XX:ParallelGCThreads=<N>. If you are tuning the heap with command-line options, then the size of the heap needed for good performance with the parallel collector is the same as needed with the serial collector. However, enabling the parallel collector should make the collection pauses shorter. Because multiple garbage collector threads are participating in a minor collection, some fragmentation is possible due to promotions from the young generation to the old generation during the collection. Each garbage collection thread involved in a minor collection reserves a part of the old generation for promotions and the division of the available space into these "promotion buffers" can cause a fragmentation effect. Reducing the number of garbage collector threads and increasing the size of the old generation will reduce this fragmentation effect. 
-垃圾回收器的线程数量可以通过命令行选项-XX:ParallelGCThreads=<N>来控制。如果你正在通过命令行选项来调整堆，那么并行回收器为了实现良好性能所需要的堆大小与串行回收器所需要的堆大小相同。启用并行回收器将会使得回收的暂停时间更短。因为多个垃圾回收器线程同时参与minor回收，在回收期间从新生代到老年代的迁移可能会导致一些碎片。在minor回收中所涉及的每个垃圾回收线程会为了迁移而保留一部分老年代，将可用的空间划分为“迁移buffers”会够造成碎片化效应。减小垃圾回收线程数目和增加老年代的大小将会减小碎片化效应。
+垃圾回收器的线程数量可以通过命令行选项-XX:ParallelGCThreads=\<N\>来控制。如果你正在通过命令行选项来调整堆，那么并行回收器为了实现良好性能所需要的堆大小与串行回收器所需要的堆大小相同。启用并行回收器将会使得回收的暂停时间更短。因为多个垃圾回收器线程同时参与minor回收，在回收期间从新生代到老年代的迁移可能会导致一些碎片。在minor回收中所涉及的每个垃圾回收线程会为了迁移而保留一部分老年代，将可用的空间划分为“迁移buffers”会够造成碎片化效应。减小垃圾回收线程数目和增加老年代的大小将会减小碎片化效应。
 
 **Options to Specify Parallel Collector Behaviors**用于指定并行回收器行为的选项
 
