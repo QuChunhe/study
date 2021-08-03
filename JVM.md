@@ -87,15 +87,15 @@ In the Java platform, there are currently four supported garbage collection alte
 ![Comparing Percentage of Time Spent in Garbage Collection](pics/jsgct_dt_005_gph_pc_vs_tp.png)
 
 This figure shows that negligible throughput issues when developing on small systems may become principal bottlenecks when scaling up to large systems. However, small improvements in reducing such a bottleneck can produce large gains in performance. For a sufficiently large system, it becomes worthwhile to select the right garbage collector and to tune it if necessary.
-这个图表明，在小型系统上开发时无不足道的吞吐，在扩展到大型系统时就可能变为主要的瓶颈。然而，在减小这类瓶颈中小的改进能够在性能上产生很大的收益。对于足够大的系统，如果需要，值得选择正确的垃圾回收器并且对其调优。
+这个图表明，在小型系统上开发时微不足道的吞吐，在扩展到大型系统时就可能变为主要的瓶颈。然而，在减小这类瓶颈时小的改进能够在性能上产生很大的收益。对于足够大的系统，如果需要，那么选择正确的垃圾回收器并且对其调优是值得做。
 
 The serial collector is usually adequate for most small applications, in particular those requiring heaps of up to approximately 100 megabytes on modern processors. The other collectors have additional overhead or complexity, which is the price for specialized behavior. If the application does not need the specialized behavior of an alternate collector, use the serial collector. One situation where the serial collector isn't expected to be the best choice is a large, heavily threaded application that runs on a machine with a large amount of memory and two or more processors. When applications are run on such server-class machines, the Garbage-First (G1) collector is selected by default;
-对于大多数小应用而言，串行回收器通常已经足够了，特别是那些在现代处理器上需要高达100M左右堆空间的应用。其他回收器有额外的开销或者复杂性，作为专门行为的代价。如果应用程序不需要专门的行为，使用串行回收器。串行回收器不是所期望的最佳选择的一个场合时大型的、重线程化应用，其运行在具有大量内存和两个或者多个处理器的机器上。当应用运行在这类服务器级别的机器上时，Garbage-First（G1）回收器是默认选择。
+对于大多数小应用而言，串行回收器通常已经足够了，特别是那些在现代处理器上需要高达100M左右堆空间的应用。其他回收器具有额外的开销或者复杂性，作为专门行为的代价。如果应用程序不需要专门的行为，就使用串行回收器。串行回收器不是所期望的最佳选择的一个场合是大型的、重线程化的应用，其运行在具有大量内存以及两个或者多个处理器的机器上。当应用运行在这类服务器级别的机器上时，Garbage-First（G1）回收器是默认选择。
 
 ### 2 Ergonomics
 
 The JVM provides platform-dependent default selections for the garbage collector, heap size, and runtime compiler. These selections match the needs of different types of applications while requiring less command-line tuning. In addition, behavior-based tuning dynamically optimizes the sizes of the heap to meet a specified behavior of the application. 
-JVM为垃圾回收器、堆大小和运行时编译器提供了与平台相关的默认选项。 这些选项适合于不同类型应用程序的需求，同时需要更少的命令行调优。 此外，基于行为的调优动态地优化堆的大小，以满足应用程序的特定行为。 
+JVM为垃圾回收器、堆大小和运行时编译器提供了与平台相关的默认选项。 这些选项适合于不同类型应用程序的需求，同时需要更少的命令行调整。 此外，基于行为的调优动态地优化堆的大小，以满足应用程序的特定行为。 
 
 These are important garbage collector, heap size, and runtime compiler default selections: 
 * Garbage-First (G1) collector
