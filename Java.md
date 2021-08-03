@@ -1024,6 +1024,20 @@ Functional interfaces are used in two contexts by two different types of users:
 * By library designers for designing APIs
 * By library users for using the APIs
 
+
+A method reference is a shorthand way to create a lambda expression using an existing method. Using method references makes your lambda expressions more readable and concise; it also lets you use the existing methods as lambda expressions. If a lambda expression contains a body that is an expression using a method call, you can use a method reference in place of that lambda expression.
+
+The general syntax for a method reference is
+```
+<Qualifier>::<MethodName>
+```
+A method reference does not call the method when it is declared. The method is called later when the method of its target type is called.
+
+Using method references may be a little confusing in the beginning. The main point of confusion is the process of mapping the number and type of arguments in the actual method to the method reference.
+
+
+
+
 Tell-Don't-Ask
 [TellDontAsk](https://www.martinfowler.com/bliki/TellDontAsk.html)
 
