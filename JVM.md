@@ -407,7 +407,7 @@ Unless the initial and maximum heap sizes are specified on the command line, the
 **Overhead of Mostly Concurrent Collectors**通常并发回收器的开销
 
 The mostly concurrent collector trades processor resources (which would otherwise be available to the application) for shorter major collection pause time.
-通常并发回收器以处理器资源为代价（否则应用将可以使用这些资源），实现更短的majoir回收暂停时间。
+通常并发回收器以处理器资源为代价（否则应用将可以使用这些资源），实现更短的major回收暂停时间。
 
 The most visible overhead is the use of one or more processors during the concurrent parts of the collection. On an N processor system, the concurrent part of the collection uses K/N of the available processors, where 1 <= K <= ceiling{N/4}. In addition to the use of processors during concurrent phases, additional overhead is incurred to enable concurrency. Thus, while garbage collection pauses are typically much shorter with the concurrent collector, application throughput also tends to be slightly lower than with the other collectors. 
 最显而易见的开销是在回收的并发部分期间使用一个或多个处理器。在具有N个处理器的系统上，回收的并发部分使用K/N个可用处理器的，其中1<=K<=ceiling{N/4}。除了在并发阶段使用处理器，为了实现并发还会引起额外的开销。因此，虽然使用并发回收器，垃圾回收的暂停时间通常要短得多，但应用吞吐量也往往略低于其他收集器。
