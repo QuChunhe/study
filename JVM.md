@@ -372,11 +372,11 @@ The number of garbage collector threads can be controlled with the command-line 
 
 You can specify maximum garbage collection pause time, throughput, and footprint (heap size).你能够指定最大垃圾回收暂停时间、吞吐量和占用空间（堆大小）
 * Maximum garbage collection pause time: The maximum pause time goal is specified with the command-line option -XX:MaxGCPauseMillis=<N>. This is interpreted as a hint that pause times of <N> milliseconds or less are desired; by default, no maximum pause- time goal. If a pause-time goal is specified, the heap size and other parameters related to garbage collection are adjusted in an attempt to keep garbage collection pauses shorter than the specified value; however, the desired pause-time goal may not always be met. These adjustments may cause the garbage collector to reduce the overall throughput of the application.最大垃圾回收暂停时间：使用命令行选项-XX:MaxGCPauseMillis=<N>指定最大暂停时间目标。这被解释为一种提示，期望<N>毫秒或更少的暂停时间；在默认情况下，并没有最大暂停时间目标。如果指定了暂停时间目标，则为了使垃圾回收的暂停时间短于指定值，会试图调整堆的大小以及其他与垃圾回收相关的参数；然而。所期望的暂停时间目标可能并不总是被满足。这些调整可能会导致垃圾回收器降低应用的总体吞吐量。
-* Throughput: The throughput goal is measured in terms of the time spent doing garbage collection versus the time spent outside of garbage collection, referred to as application time. The goal is specified by the command-line option -XX:GCTimeRatio=<N>, which sets the ratio of garbage collection time to application time to 1 / (1 + <N>).吞吐量：吞吐量目标是根据垃圾回收所花费的时间与在垃圾回收之外所花费的时间（称为应用时间）之比来衡量的。目标可以通过命令行选项-XX:GCTimeRatio=<N>来指定，其将垃圾回收时间与应用时间的比率设置为1/（1+<N>）
+* Throughput: The throughput goal is measured in terms of the time spent doing garbage collection versus the time spent outside of garbage collection, referred to as application time. The goal is specified by the command-line option -XX:GCTimeRatio=<N>, which sets the ratio of garbage collection time to application time to 1 / (1 + \<N\>).吞吐量：吞吐量目标是根据垃圾回收所花费的时间与在垃圾回收之外所花费的时间（称为应用时间）之比来衡量的。目标可以通过命令行选项-XX:GCTimeRatio=\<\>来指定，其将垃圾回收时间与应用时间的比率设置为1/（1+\<N\>）
 
 For example, -XX:GCTimeRatio=19 sets a goal of 1/20 or 5% of the total time in garbage collection. The default value is 99, resulting in a goal of 1% of the time in garbage collection.例如，-XX:GCTimeRatio=19设置目标为垃圾回收占总时间的1/20或5%。默认值为99，这将导致目标是垃圾回收的时间为1%。
-* Footprint: The maximum heap footprint is specified using the option -Xmx<N>. In addition, the collector has an implicit goal of minimizing the size of the heap as long as the other goals are being met.
-占用空间：通过选项-Xmx<N>来指定堆的最大占用空间。此外，回收器还有一个隐含的、使得堆大小最小化的目标以及其他一些目标需要满足。
+* Footprint: The maximum heap footprint is specified using the option -Xmx\<N\>. In addition, the collector has an implicit goal of minimizing the size of the heap as long as the other goals are being met.
+占用空间：通过选项-Xmx\<N\>来指定堆的最大占用空间。此外，回收器还有一个隐含的、使得堆大小最小化的目标以及其他一些目标需要满足。
 
 **Priority of Parallel Collector Goals**并行回收器目标的优先级
 
