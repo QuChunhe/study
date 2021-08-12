@@ -658,6 +658,26 @@ Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Poin
 
 [Java命令行工具之 jstat ](https://mp.weixin.qq.com/s?__biz=MzU3Mjc5NjAzMw==&mid=2247484257&idx=1&sn=555158f962cfa2fad3fd9b5ee43d3f5d&exportkey=AWVZr0rfIXoe7A%2F4RS39IA4%3D&pass_ticket=E6xf44phJMVDAosPSXbBiREJLPMNAecAB%2FfhyIbrCbLED1COVgSeTl9cLBpSwz1u)
 
+
+
+jps
+
+jinfo
+
+jvisualvm
+
+jconsole
+
+jstat
+
+jstack
+
+jcmd
+
+jmap
+
+[【JVM进阶之路】十：JVM调优总结](https://www.cnblogs.com/three-fighter/p/14644152.html)
+
 # Date Time
 [Java Date Time](https://www.joda.org/joda-time/)
 
@@ -1028,7 +1048,7 @@ Functional interfaces are used in two contexts by two different types of users:
 A method reference is a shorthand way to create a lambda expression using an existing method. Using method references makes your lambda expressions more readable and concise; it also lets you use the existing methods as lambda expressions. If a lambda expression contains a body that is an expression using a method call, you can use a method reference in place of that lambda expression.
 
 The general syntax for a method reference is
-```
+```java
 <Qualifier>::<MethodName>
 ```
 A method reference does not call the method when it is declared. The method is called later when the method of its target type is called.
@@ -1036,6 +1056,35 @@ A method reference does not call the method when it is declared. The method is c
 Using method references may be a little confusing in the beginning. The main point of confusion is the process of mapping the number and type of arguments in the actual method to the method reference.
 
 
+Instance Method References
+
+In a method reference of an instance method, you can specify the receiver of the method invocation explicitly or you can provide it implicitly when the method is invoked. The former is called a bound receiver and the latter is called an unbound receiver. The syntax for an instance method reference supports two variants:
+```java
+ objectRef::instanceMethod
+ ClassName::instanceMethod
+```
+
+In the beginning, this is confusing for two reasons:
+* The syntax is the same as the syntax for a method reference to a static method.
+* It raises a question: which object is the receiver of the instance method invocation?
+
+The first confusion can be cleared up by looking at the method name and checking whether it is a static or instance method. If the method is an instance method, the method reference represents an instance method reference.
+
+
+Constructor References
+
+
+The syntax for using a constructor is as follows:
+```java
+  ClassName::new
+  ArrayTypeName::new
+```
+
+Like a local and anonymous inner class, a lambda expression can access effectively final local variables. A local variable is effectively final in the following two cases:
+* It is declared final.
+* It is not declared final, but initialized only once.
+
+A lambda expression can access instance and class variables of a class whether they are effectively final or not. If instance and class variables are not final, they can be modified inside the body of the lambda expressions. A lambda expression keeps a copy of the local variables used in its body. If the local variables are reference variables, a copy of the references is kept, not a copy of the objects.
 
 
 Tell-Don't-Ask
@@ -1061,7 +1110,12 @@ trampoline calls
 
 Plain-Vanilla Recursion
 
-# 范型
+# 范型(Generics)
+
+A type with type parameters in its declaration is called a generic type.
+
+They let you specify a type parameter with a type (class or interface). Such a type is called a generic type (more specifically generic class or generic interface). The type parameter value could be specified when you declare a variable of the generic type and create an object of your generic type.
+
 
 一些常用的泛型类型变量：
 * E：元素（Element），多用于java集合框架
