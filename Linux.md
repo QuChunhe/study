@@ -26,7 +26,7 @@
 
 
 [Brendan Gregg,LISA2019 Linux Systems Performance](http://www.brendangregg.com/blog/2020-03-08/lisa2019-linux-systems-performance.html)
-
+ipc
 * 编写代码
 * 优化性能
 * 排除bug
@@ -774,7 +774,9 @@ For real-world applications, here's how I'd interpret the IPC:
 * IPC > 1: likely instruction bound. Look to tune instructions: a CPU flame graph will show which code is on-CPU doing instructions: find ways to reduce executed code.
 
 
-
+CPU Utilization includes stall cycles
+* Memory stalls (local and remote over an interconnect), resource stalls.
+* It’s a fundamental metric. We shouldn’t need to “well, actually”-explain it.
 
 **CPU utilization(CPU使用率)**  
 

@@ -303,6 +303,12 @@ Program Structures
 
 # Concurrency
 
+CAS(Compare-and-Swap),Mamory Barriers, Cache Line, False Sharing, Cache line padding
+
+
+
+
+
 并发模型
 * Lock-base Concurrency
 * Actor-based Concurrency

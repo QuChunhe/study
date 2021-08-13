@@ -1117,6 +1117,8 @@ A type with type parameters in its declaration is called a generic type.
 They let you specify a type parameter with a type (class or interface). Such a type is called a generic type (more specifically generic class or generic interface). The type parameter value could be specified when you declare a variable of the generic type and create an object of your generic type.
 
 
+The purpose of using generics is to have compiletime type-safety. As long as the compiler is satisfied that the operation will not produce any surprising results at runtime, it allows the operation on the wildcard generic type reference.
+
 一些常用的泛型类型变量：
 * E：元素（Element），多用于java集合框架
 * K：关键字（Key）
