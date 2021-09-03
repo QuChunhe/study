@@ -1119,6 +1119,17 @@ They let you specify a type parameter with a type (class or interface). Such a t
 
 The purpose of using generics is to have compiletime type-safety. As long as the compiler is satisfied that the operation will not produce any surprising results at runtime, it allows the operation on the wildcard generic type reference.
 
+Using only a question mark as a parameter type (<?>) is known as an unbounded wildcard. It places no bounds as to what type it can refer. You can also place an upper bound or a lower bound with a wildcard. 
+
+Unbounded Wildcards
+
+Upper-Bounded Wildcards
+
+Lower-Bounded Wildcards
+
+Type parameters defined for a generic type are not available in static methods of that type. Therefore, if a static method needs to be generic, it must define its own type parameters. If a method needs to be generic, define just that method as generic rather than defining the entire type as generic.
+
+
 一些常用的泛型类型变量：
 * E：元素（Element），多用于java集合框架
 * K：关键字（Key）
