@@ -121,3 +121,37 @@ Ex.1 f(x)=sinx/x on [1,∞)
 Ex.2 sin(1/x)/x on (0.1)
 
 f(x) Riemann integrable, |f(x)| not Rieman integrable, not Lebbesgue integrable
+
+
+Real Analysis (4th Edition) (2010, Prentice Hall)
+
+a mapping or function function from A into B, 
+inverse,
+domain, image or range, onto, one-to-one, invertible, one-to-one correspondence betwwen the sets A and B,  the inverse of f, equipotent
+
+
+the inverse image of E under f.
+
+
+the restriction of f to A',
+
+
+relation
+
+A relation R on a set X is called an equivalence relation provided it is reflexive, symmetric, and transitive.
+
+the equivalence class of x (with respect to R).
+
+the cardinality of the set
+
+a partial ordering,totally ordered, an upper bound for a subset E
+
+Field Axioms, Positivity Axioms, and Completeness Axiom
+
+the least upper bound of E,the supremum of E and denoted by sup S
+
+the greatest lower bound,  the infimum of E
+
+
+extended real numbers
+
