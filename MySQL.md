@@ -1391,3 +1391,35 @@ Jesper Wisborg Krogh, MySQL Concurrency: Locking and Transactions for MySQL Deve
 
 
 Jesper Wisborg Krogh, MySQL 8 Query Performance Tuning:A Systematic Method for Improving Execution Speeds, Apress, 2020
+
+
+文件目录
+* 配置文件
+  /etc/my.cnf, /etc/mysql/my.cnf, /usr/local/mysql/etc/my.cnf, ~/.my.cnf
+  
+* 日志文件
+  error log, general log, binary log, relay log, slow query log
+
+
+InnoDB中有共享表空间和独立表空间的概念。共享表空间就是ibdata1，独立表空间放在每个表的.ibd（数据和索引）和.frm（表结构）为后缀的文件中。单独的表空间只存储该表的数据，索引和插入缓冲的BITMAP等信息，其余还放在共享表空间中
+
+https://mariadb.com/kb/en/innodb-system-tablespaces/
+
+数据文件
+* ibdata1: 如果不指定innodb_file_per_table=ON参数单独保存每个表的数据，MySQL的数据都会存放在ibdata1文件里. InnoDB使用这个系统表空间存储数据目录、更改换成和undo日志。
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
