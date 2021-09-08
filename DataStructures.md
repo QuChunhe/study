@@ -12,6 +12,24 @@ Peter Brass, Advanced Data Structures, Cambridge University Press,2008
 
 slots/buckets/segement(槽/桶/段)
 
+# Tree（树）
+
+是否有序
+* 无序树：树中的节点之间没有顺序关系
+* 有序树：树中的节点之间存在预先定义的顺序关系
+
+按照节点包含子树个数：
+* 二叉树：每个节点最多含有两个子树的树称为二叉树;
+   * 二叉查找树：首先它是一颗二叉树，若左子树不空，则左子树上所有结点的值均小于它的根结点的值;若右子树不空，则右子树上所有结点的值均大于它的根结点的值;左、右子树也分别为二叉排序树;
+   * 满二叉树：叶节点除外的所有节点均含有两个子树的树被称为满二叉树;
+   * 完全二叉树：如果一颗二叉树除去最后一层节点为满二叉树，且最后一层的结点依次从左到右分布
+   * 霍夫曼树：带权路径最短的二叉树。
+   * 红黑树：红黑树是一颗特殊的二叉查找树，每个节点都是黑色或者红色，根节点、叶子节点是黑色。如果一个节点是红色的，则它的子节点必须是黑色的。
+   * 平衡二叉树(AVL)：一 棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树
+* B树和B+树
+
+
+
 
 # Slides
 
@@ -25,7 +43,7 @@ Better data structures significantly mitigate the insert/query/freshness tradeof
 These strunctures scale to much larger sizes while efficiently using the memory-hierarchy.
 
 
-Module1: I/O Model and Cache-Oblivious Analysis
+Module 1: I/O Model and Cache-Oblivious Analysis
 
 How computation works
 * Data is transferred in blocks between RAM and disk.
@@ -39,4 +57,37 @@ Module 2: Write-Optimized Data Structures
 * Write-optimized structures significantly mitigate the insert/query/freshness tradeoff.
 * One can insert 10x~100x faster than B-Trees while achieving similar point query performance.
 
+A balanced binary tree with buffers of size B
+
+
+Module 4: Paging
+
+Goal: minimize number block transfers
+
+When a blaock is cached, the access cost is 0. Otherwise it's 1.
+
+Paging Algorithms
+* LRU (least recently used): Discard block whose most recent access is earliest.
+* FIFO (first in, first out): Discard the block brought in longest ago.
+* LFU (least frequently used): Discard the least popular block.
+* Random
+* LFD (longest forward distance)=OPT: Discard block whose next access is farthest in the future.
+
+Module 5: What to Index
+
+1. Indexes can reduce the amount of retrieved.
+2. Indexes can improved locality
+   * Not all data access cost is the same
+   * Sequential access is MUCH faster than random access
+3. Indexes can presort data
+   * GROUP BY and ORDER BY queries do post-retrieval work
+   * Indexing can help get rid of this work.
+
+
+An index can select needed rows.
+
+Module 6: Log Structured Merge Trees
+
+
+Module &: Bloom Filters
 
