@@ -676,3 +676,6 @@ https://khalilstemmler.com/articles/software-design-architecture/full-stack-soft
 
 
 [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/patterns/conversation/toc.html)
+
+
+[隔舱模式](https://docs.microsoft.com/zh-cn/azure/architecture/patterns/bulkhead)

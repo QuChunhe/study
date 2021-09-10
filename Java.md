@@ -1130,6 +1130,22 @@ Lower-Bounded Wildcards
 Type parameters defined for a generic type are not available in static methods of that type. Therefore, if a static method needs to be generic, it must define its own type parameters. If a method needs to be generic, define just that method as generic rather than defining the entire type as generic.
 
 
+type inference step
+1. First, it tries to infer the type parameter from the static type of the constructorarguments. Note that constructor-arguments may be empty, for example, new ArrayList<>(). If the type parameter is inferred in this step, the process continues to the next step.
+2. It uses the left side of the assignment operator to infer the type. In the previous statement, it will infer T2 as the type if the constructor-arguments are empty. Note that an object-creation expression may not be part of an assignment statement. In such cases, it will use the next step.
+3.If the object-creation expression is used as an actual parameter for a method call, the compiler tries to infer the type by looking at the type of the formal parameter for the method being called.
+4.If all else fails and it cannot infer the type using these steps, it infers Object as the type parameter.
+
+No Generic Exception Classes
+
+No Generic Anonymous Classes
+
+
+Most generic types are non-reifiable because generics are implemented using erasure, which removes the type’s　parameters information at compile time. For example, when you write Wrapper<String>, the compiler　removes the type parameter <String> and the runtime sees only Wrapper instead of Wrapper<String>.
+
+Heap pollution is a situation that occurs when a variable of a parameterized type refers to an object not of the same parameterized type. The compiler issues an unchecked warning if it detects possible heap pollution. If your program compiles without any unchecked warnings, heap pollution will not occur.
+
+
 一些常用的泛型类型变量：
 * E：元素（Element），多用于java集合框架
 * K：关键字（Key）

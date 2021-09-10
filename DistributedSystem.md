@@ -1931,3 +1931,10 @@ MapReduce pattern
 * map part (distribution of work).
 
 
+[CS5412: Topics in Cloud Computing(Spring 2021 focus: Using the Cloud to Create Smart IoT Systems)](http://www.cs.cornell.edu/courses/cs5412/2021sp/)
+
+[Consistency in Distributed Systems ](https://mwhittaker.github.io/consistency_in_distributed_systems/index.html)
+
+[Caches, Modes, and Unstable Systems](https://brooker.co.za/blog/2021/08/27/caches.html)
+
+[The Fundamental Mechanism of Scaling](https://brooker.co.za/blog/2021/01/22/cloud-scale.html#foot3)

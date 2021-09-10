@@ -35,4 +35,10 @@ Layering（分层）
 * The hardest part of a layered architecture is deciding what layers to have and what the responsibility of each layer should be
 
 
+[微服务架构及其最重要的 10 个设计模式](https://www.infoq.cn/article/Kdw69bdimlX6FSGz1bg3)
 
+[微服务架构设计模式](https://www.cnblogs.com/xmzJava/p/12637238.html)
+
+[六种微服务架构的设计模式](https://blog.csdn.net/zl1zl2zl3/article/details/103556901)
+
+[《微服务架构设计模式》之二：服务的拆分策略](http://www.uml.org.cn/wfw/202004242.asp?artid=23208)

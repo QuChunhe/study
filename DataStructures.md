@@ -91,3 +91,10 @@ Module 6: Log Structured Merge Trees
 
 Module &: Bloom Filters
 
+[Probabilistic algorithms for fun and pseudorandom profit](https://bravenewgeek.com/tag/count-min-sketch/)
+
+[Data Stream Algorithms](http://keshavbashyal.github.io/blog/2015/12/19/data-stream-algorithms/)
+
+[CS 598: Algorithms for Big Data](https://courses.engr.illinois.edu/cs598csc/fa2014/)
+
+[CMPSCI 711: More Advanced Algorithms](https://people.cs.umass.edu/~mcgregor/courses/CS711S12/index.html)

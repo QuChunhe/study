@@ -1233,3 +1233,11 @@ Memory Coherence
 
 * Write-Back：On a write miss, the CPU reads the entire block from memory where the write address is, updates the value in cache, and marks the block as modified (aka dirty).
 * Write-Through： When the processor writes, even to a block in cache, a bus write is generated.
+
+
+
+
+[Quantitative System Performance: Computer System Analysis Using Queueing Network Models](https://homes.cs.washington.edu/~lazowska/qsp/)
+
+
+
