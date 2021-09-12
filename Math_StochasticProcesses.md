@@ -5,13 +5,22 @@
 * 马尔可夫过程(Markov Property) Poisson Processes
    * Discrete Time
    * Continuous Time
-* 鞅(martingale)
+* 鞅(martingale)： Financial App
+   * Optional Theorem
 
 相关的两种定义
 
 E(XY)
 
+Mean Square Error
+
+E(Y-aX)^2
+
+a=E(XY)/E(X^2)
+
 E(X-E(X))E(Y-E(Y))=E(XY)-E(X)E(Y)
+
+Linear correction
 
 不相关（Uncorrelated) E(XY)=E(X)E(Y)=0
 

@@ -1,4 +1,8 @@
 
+Lebesgue is a French name. According to wikipedia it is prononced [ləˈbɛg]. 
+
+
+
 
 [数学|数学中的英语名词汇](https://zhuanlan.zhihu.com/p/134603058)
 
@@ -155,3 +159,5 @@ the greatest lower bound,  the infimum of E
 
 extended real numbers
 
+
+若尔当容度(Jordan content)是长度(或面积、体积)概念的一种推广。若尔当容度具有非负、单调、有限可加及在正交变换下(可测性及容度)不变等性质。它是由佩亚诺(Peano，G.)于1887年、若尔当(Jordan，M.E.C.)于1892年提出的。若尔当在其1893年出版的《分析教程》中对它作了详细阐述，提出的目的主要是为了完善黎曼意义下的二重积分理论
