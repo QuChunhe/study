@@ -104,3 +104,14 @@ https://www.emqx.com/zh/blog/mqtt5-enhanced-authentication
 [请求响应 - MQTT 5.0 新特性](https://www.emqx.com/zh/blog/mqtt5-request-response)
 
 与 HTTP 的请求响应模式不同，MQTT 的请求响应是异步的，这带来了一个问题，即响应消息与请求消息如何关联。最常用的办法就是在请求消息中携带一个特征字段，响应方在响应时将收到的字段原封不动地返回，请求方在收到响应消息时就可以根据其中的特征字段来匹配相应的请求。很显然 MQTT 也是这么考虑的，所以为 PUBLISH 报文新增了一个 对比数据（Correlation Data） 属性。
+
+
+# gRPC
+
+https://zhuanlan.zhihu.com/p/363672930
+
+我们可以大致了解下gRPC的通信流程：
+1. gRPC通信的第一步是定义IDL，即我们的接口文档（后缀为.proto）
+2. 第二步是编译proto文件，得到存根（stub）文件，即上图深绿色部分。
+3. 第三步是服务端（gRPC Server）实现第一步定义的接口并启动，这些接口的定义在存根文件里面
+4. 最后一步是客户端借助存根文件调用服务端的函数，虽然客户端调用的函数是由服务端实现的，但是调用起来就像是本地函数一样。
