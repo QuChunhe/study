@@ -172,3 +172,32 @@ mid- 中间的
 post- 后来的
 
 step- 后来的
+
+
+
+
+ad
+
+ad作前置词〔拉丁语〕。意思有达，到(＝ to; towards)；根据(＝ up to; according to)。ad加在在单词或词根前，还表示”做…，加强…”。
+
+比如adapt适应（ad+apt能力→有适应能力）、adept熟练的（ad+ept能力→有做事能力→熟练的）、adopt收养；采纳（ad+opt选择→选出来→采纳）、adhere坚持（ad+here粘→粘在一起→坚持）、adjacent邻近的（ad+jacent躺→躺在一起→邻近的）
+
+adjust
+英 [əˈdʒʌst] 美 [əˈdʒʌst]
+调整、调节；适应、习惯；整理
+
+admixture
+英 [ədˈmɪkstʃə(r)] 美 [ədˈmɪkstʃər]
+【正式用语】混合、混合物、结合体；掺入物
+
+adventure
+英 [ədˈventʃə(r)] 美 [ədˈventʃər]
+冒险、冒险经历、奇遇；冒险的刺激、大胆开拓
+
+admonition
+英 [ˌædməˈnɪʃn] 美 [ˌædməˈnɪʃn]
+【正式用语】警告、告诫
+
+adjoin
+英 [əˈdʒɔɪn] 美 [əˈdʒɔɪn]
+【正式用语】紧挨、邻接、毗连
