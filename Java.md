@@ -1424,5 +1424,8 @@ Doc：文档的重要性，特别是非检查的异常，一定要在文档中�
 
 
 
-l
+float  BigDecimal: float不能精确比较，只能比较位于一定范围，Math.abs(f1-f2)<diff ，而BigDecimal能过精确比较，bd1.equals(bd2)
+
+
+serialVersionUID和Serializable：serialVersionUID必须在序列化和反序列化过程中匹配。
 
