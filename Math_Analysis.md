@@ -2,7 +2,7 @@
 Lebesgue is a French name. According to wikipedia it is prononced [ləˈbɛg]. 
 
 
-
+Riemann [ree-mahn; English ree-mahn, -muhn]
 
 [数学|数学中的英语名词汇](https://zhuanlan.zhihu.com/p/134603058)
 
@@ -21,6 +21,9 @@ There are basically two types of problems that lead us to define improper integr
 * The  integrand  may  fail  to  be  defined,  or  fail  to  be  continuous,  at  a  point  in  theinterval of integration, typically an endpoint.  This leads to what is sometimes calledan em Improper Integral of Type 2.
 
 For unbounded functions or for unbounded intervals of integration, one defines the Riemann integral as an improper integral.
+
+In elementary calculus, various “improper” Riemann integrals are introduced in order to relax the two requirements (compact domain, boundedness). 
+
 
 [Measurable functions](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes_ch3.pdf)
 
@@ -161,3 +164,5 @@ extended real numbers
 
 
 若尔当容度(Jordan content)是长度(或面积、体积)概念的一种推广。若尔当容度具有非负、单调、有限可加及在正交变换下(可测性及容度)不变等性质。它是由佩亚诺(Peano，G.)于1887年、若尔当(Jordan，M.E.C.)于1892年提出的。若尔当在其1893年出版的《分析教程》中对它作了详细阐述，提出的目的主要是为了完善黎曼意义下的二重积分理论
+
+outer Jordan content， inner Jordan content
