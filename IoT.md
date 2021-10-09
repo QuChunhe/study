@@ -180,3 +180,10 @@ https://zhuanlan.zhihu.com/p/363672930
 # AVRO
 
 [AVRO](https://avro.apache.org/releases.html)
+
+
+[thing model definition](https://help.aliyun.com/document_detail/213902.html?spm=a2c4g.11186623.0.0.7bd846a5OR5Bgl)
+
+https://ietf-wg-asdf.github.io/SDF/sdf.html
+
+https://www.ietf.org/archive/id/draft-ietf-asdf-sdf-05.html

@@ -1429,3 +1429,13 @@ float  BigDecimal: float不能精确比较，只能比较位于一定范围，Ma
 
 serialVersionUID和Serializable：serialVersionUID必须在序列化和反序列化过程中匹配。
 
+
+# JSON
+
+
+com.fasterxml.jackson
+
+Jackson有三种方式处理Json：
+1. 使用底层的基于Stream的方式对Json的每一个小的组成部分进行控制
+2. 使用Tree Model，通过JsonNode处理单个Json节点
+3. 使用databind模块，直接对Java对象进行序列化和反序列化
