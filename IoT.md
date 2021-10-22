@@ -187,3 +187,22 @@ https://zhuanlan.zhihu.com/p/363672930
 https://ietf-wg-asdf.github.io/SDF/sdf.html
 
 https://www.ietf.org/archive/id/draft-ietf-asdf-sdf-05.html
+
+# 设备虚拟化
+
+k8s (Kubernetes ) 虚拟化  Docker
+
+ocker的构想是要实现“Build, Ship and Run Any App, Anywhere”，即通过对应用的封装（Packaging）、分发（Distribution）、部署（Deployment）、运行（Runtime）生命周期进行管理，达到应用组件级别的“一次封装，到处运行”。这里的应用组件，既可以是一个Web应用、一个编译环境，也可以是一套数据库平台服务，甚至是一个操作系统或集群。
+
+
+声明式API
+
+
+上位机  
+
+edgenesis os： shifu
+
+
+
+"unit", "maximum", "minimum", "step", "maxItems", "minItems", "values", "format", "maxLength", "minLength", 
+b9c98e499e734e9eb906d73ceb7162091eb52a32
