@@ -12,6 +12,19 @@ partial 偏表示部分的意思
 
 # Real Analysis
 
+
+> 紧是这样一种性质: 若一个集合的任意开覆盖都存在有限子覆盖, 则称这个集合为紧集.  
+可以仅凭有界闭集的这条性质证明以下在数学分析中非常重要的定理:
+* 极大值定理
+* 一致连续定理
+
+在实数空间，紧集=闭集且有界.有限覆盖是个好东西，可以把无限转换到有限，减小讨论的难度。
+
+> 如果一个拓扑空间每一个序列都有收敛的子序列，则称它是列紧的。
+> 如果每一个拓扑空间的开覆盖都有有限的子覆盖，则称它是紧致的。
+
+紧致C1空间列紧。
+
 Cauchy Criterion for uniform
 
 [Improper Integrals](https://www2.math.uconn.edu/~stein/virtual/Notes/Calculus/improperintegrals.pdf)

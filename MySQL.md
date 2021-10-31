@@ -1133,6 +1133,30 @@ innodb_*
 * threads_connected
 * thread_created
 
+
+InnoDB中有共享表空间和独立表空间的概念。共享表空间就是ibdata1，独立表空间放在每个表的.ibd（数据和索引）和.frm（表结构）为后缀的文件中。单独的表空间只存储该表的数据，索引和插入缓冲的BITMAP等信息，其余还放在共享表空间中
+
+
+[InnoDB File-Per-Table Tablespaces](https://mariadb.com/kb/en/innodb-file-per-table-tablespaces/)
+
+
+```
+innodb_file_per_table=ON
+```
+
+* 默认情况下，InnoDB的表空间创建在系统数据目录中，其根据系统配置参数*datadir*来配置
+* 也可以通过innodb_data_home_dir系统变量来设置InnoDB的表空间存储位置
+* 还可以通过DIRECTORY来设置每个表的存储位置
+```
+CREATE TABLE test.t1 (
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   name VARCHAR(50)
+) ENGINE=InnoDB
+DATA DIRECTORY = "/data/contact";
+```
+
+
+
 # Lock
 
 加锁方式划分
