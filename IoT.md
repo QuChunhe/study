@@ -206,3 +206,5 @@ edgenesis os： shifu
 
 "unit", "maximum", "minimum", "step", "maxItems", "minItems", "values", "format", "maxLength", "minLength", 
 b9c98e499e734e9eb906d73ceb7162091eb52a32
+
+[protobuf mask](https://pinkiepractices.com/posts/protobuf-field-masks/)
