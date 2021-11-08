@@ -1,4 +1,7 @@
 
+
+[Leo Breiman, Statistical Modeling: The Two Cultures](http://cda.psych.uiuc.edu/statistical_learning_course/breiman_two_cultures.pdf) 
+
 https://www.itcodemonkey.com/article/15901.html
 
 智能

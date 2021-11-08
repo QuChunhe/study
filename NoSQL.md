@@ -4,7 +4,96 @@
 https://github.com/influxdata/influxdb
 
 
-### Cassandra
+https://jasper-zhang1.gitbooks.io/influxdb/content/Write_protocols/line_protocol.html
+
+概念
+* database	
+* field set
+* field key	
+* field value	
+* measurement	
+* point
+* retention policy	
+* series	
+* tag key
+* tag set	
+* tag value	
+* timestamp
+
+每组field key和field value的集合组成了field set。
+
+
+field是InfluxDB数据结构所必需的一部分——在InfluxDB中不能没有field。还要注意，field是没有索引的。如果使用field value作为过滤条件来查询，则必须扫描其他条件匹配后的所有值。因此，这些查询相对于tag上的查询（下文会介绍tag的查询）性能会低很多。
+
+
+tag由tag key和tag value组成。tag key和tag value都作为字符串存储，并记录在元数据中。
+
+
+tag不是必需的字段，但是在你的数据中使用tag总是大有裨益，因为不同于field， tag是索引起来的。这意味着对tag的查询更快，tag是存储常用元数据的最佳选择。
+
+measurement作为tag，fields和time列的容器，measurement的名字是存储在相关fields数据的描述。 measurement的名字是字符串，对于一些SQL用户，measurement在概念上类似于表。
+
+在InfluxDB中，series是共同retention policy，measurement和tag set的集合。
+
+point就是具有相同timestamp的相同series的field集合。 每个点由其series和timestamp唯一标识。
+
+schema
+
+数据在InfluxDB里面怎么组织。InfluxDB的schema的基础是database，retention policy，series，measurement，tag key，tag value以及field keys。
+
+
+server
+
+一个运行InfluxDB的服务器，可以使虚拟机也可以是物理机。每个server上应该只有一个InfluxDB的进程。
+
+shard
+
+shard包含实际的编码和压缩数据，并由磁盘上的TSM文件表示。 每个shard都属于唯一的一个shard group。多个shard可能存在于单个shard group中。每个shard包含一组特定的series。给定shard group中的给定series上的所有点将存储在磁盘上的相同shard（TSM文件）中。
+
+shard duration
+
+shard duration决定了每个shard group跨越多少时间。具体间隔由retention policy中的SHARD DURATION决定。
+
+
+tsm(Time Structured Merge tree)
+
+
+wal(Write Ahead Log)
+
+最近写的点数的临时缓存。为了减少访问永久存储文件的频率，InfluxDB将最新的数据点缓冲进WAL中，直到其总大小或时间触发然后flush到长久的存储空间。这样可以有效地将写入batch处理到TSM中。
+
+可以查询WAL中的点，并且系统重启后仍然保留。在进程开始时，在系统接受新的写入之前，WAL中的所有点都必须flushed。
+
+
+
+一般来说，你的查询可以指引你哪些数据放在tag中，哪些放在field中。
+* 把你经常查询的字段作为tag
+* 如果你要对其使用GROUP BY()，也要放在tag中
+* 如果你要对其使用InfluxQL函数，则将其放到field中
+* 如果你需要存储的值不是字符串，则需要放到field中，因为tag value只能是字符串
+
+
+TLV协议
+
+ASN.1是一种ISO/ITU-T 标准。其中一种编码BER（Basic Encoding Rules）简单好用，它使用三元组编码，简称TLV编码。
+它是由数据的类型Tag（T），数据的长度Length（L），数据的值Value（V）构成的一组数据报文。TLV是基于二进制编码的，将数据以（T -L- V）的形式编码为字节数组，即TLV是字节流的数据传输协议。它规定了一帧数据的首个字节或几个字节来表示数据类型，紧接着一个或几个字节表示数据长度，最后是数据的内容。
+
+
+```
+SHOW DATABASES
+SHOW RETENTION POLICIES
+SHOW SERIES
+SHOW MEASUREMENTS
+SHOW TAG KEYS
+SHOW TAG VALUES
+SHOW FIELD KEYS
+```
+
+
+
+
+
+# Cassandra
 
 [Cassandra集群优化与运维](https://www.jianshu.com/p/5bacb06e334b)
 
@@ -24,9 +113,16 @@ nodetool rebuild
 nodetool repair
 
 ```
+/usr/local/etc/influxdb2
 
 
 
+```
+influx config create  -n local-config  -u http://127.0.0.1:8086 -o local-test -t ""
+
+
+influx setup --skip-verify --bucket sandbox --org local-test --username administrator --password quchunhe --retention 0 --token ""
+```
 
 [Adding nodes to an existing cluster](https://docs.datastax.com/en/archived/cassandra/3.0/cassandra/operations/opsAddNodeToCluster.html)
 
@@ -34,7 +130,7 @@ nodetool repair
 
 [Updating the replication factor](https://docs.datastax.com/en/archived/cql/3.3/cql/cql_using/useUpdateKeyspaceRF.html)
 
-#### Book
+## Book
 ###### Expert Apache Cassandra Adminitration, Apress, 2018.
 
 [p100]  
