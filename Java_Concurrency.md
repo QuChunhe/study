@@ -246,3 +246,36 @@ CompletionService-->ExecutorCompletionService
 
 
 -XX:+UseBiasedLocking
+
+# Locks
+
+* ReentrantLock
+* StampedLock
+* ReentrantReadWriteLock
+
+底层支持
+* AbstractQueuedSynchronizer/AbstractQueuedLongSynchronizer
+* LockSupport
+
+
+StampedLock
+基于能力的锁，针对于读/写访问具有三种模式。StampedLock的状态由一个版本和模式组成。
+
+Semaphore
+
+
+CLH lock is Craig, Landin, and Hagersten (CLH) locks, CLH lock is a spin lock, can ensure no hunger, provide fairness first come first service. The CLH lock is a scalable, high performance, fairness and spin lock based on the list, the application thread spin only on a local variable, it constantly polling the precursor state, if it is found that the pre release lock end spin.
+
+* Cache Consistency: order of reads and writes between memory locations. What is the model presented to the programmer?
+* Cache Coherence: data movement caused by reads and writes for a single memory location. How is the system implementing the model in the presence of private caches?
+
+
+Cache coherence in computer architecture refers to the consistency of shared resource data that is stored in multiple local caches. Cache coherence is the discipline that ensures that changes in the values of shared operands are propagated throughout the system in a timely manner.
+
+
+https://www.geeksforgeeks.org/difference-between-cache-coherence-and-memory-consistency/
+
+MCS也是人名简写：John M. Mellor-Crummey and Michael L. Scott
+
+
+Nir Shavit-Modern High-Performance Locking

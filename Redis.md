@@ -364,3 +364,28 @@ It's important to note that even when a command fails, all the other commands in
 
 Redis commands can fail during a transaction, but still Redis will execute the rest of the transaction instead of rolling back.
 
+# 缓存一致性
+
+* 先更新缓存，再更新数据库
+* 先更新数据库，再更新缓存
+
+数据不一致会造成哪些业务上的影响
+
+
+* Cache Aside Pattern
+* Read/Write Through Pattern
+* Write Behind Caching Pattern(Write Back)
+
+
+[Redis Anti-Patterns Every Developer Should Avoid](https://developer.redis.com/howtos/antipatterns/?continueFlag=f17d716399b252c759046586f450405e)
+
+
+Unfortunately the terminology is inconsistent 
+* Coherence: properties about the behavior of multiple reads/writes to same object
+* Consistency: properties about behavior of multiple reads/writes to different object
+
+
+What do we do with writes?
+* update the cache first, then update the database 
+* synchronously (write-through): safe but slow 
+* asynchronously (write-back): fast but not crash-safe
