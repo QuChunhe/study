@@ -1437,7 +1437,7 @@ https://mariadb.com/kb/en/innodb-system-tablespaces/
   
   
   
-  
+   'utf8_unicode_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead. 
   
   
   

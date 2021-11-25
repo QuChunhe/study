@@ -278,4 +278,4 @@ https://www.geeksforgeeks.org/difference-between-cache-coherence-and-memory-cons
 MCS也是人名简写：John M. Mellor-Crummey and Michael L. Scott
 
 
-Nir Shavit-Modern High-Performance Locking
+Lock Convoy（锁封护）与Priority Inversion（优先级反转）

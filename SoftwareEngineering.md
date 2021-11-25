@@ -683,3 +683,6 @@ https://khalilstemmler.com/articles/software-design-architecture/full-stack-soft
 
 
 幂等这个概念，是一个数学上的概念，即：f……(f(f(x))) = f(x)。用在计算机领域，指的是系统里的接口或方法对外的一种承诺，使用相同参数对同一资源重复调用某个接口或方法的结果与调用一次的结果相同
+
+
+The situation where the number of classes increases to an unmanageable extent is called a class explosion and the java.io package is a good example of that.

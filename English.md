@@ -12,6 +12,9 @@ Sometimes the last letter of a root changes (or is dropped) to make the pronunci
 A root may also appear in slightly different forms in different words.
 
 
+[前缀、后缀、词根总结](https://www.cnblogs.com/chenxi188/p/10748496.html)
+
+
 
 1，前缀-表正负（正=重复、加强；负=否定）
 

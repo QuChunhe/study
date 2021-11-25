@@ -247,7 +247,40 @@ par-do, do in parallel
  end for
 ```
 
+https://www.cs.rice.edu/~vs3/comp422/lecture-notes/comp422-lec20-s08-v1.pdf
 
+并行计算模型
+* Provides a way to think about computers. Influences design of:
+  * Architectures
+  * Languages
+  * Algorithms
+* Provides a way of estimating how well a program will perform.Cost in model should be roughly same as cost of executing program
+
+
+
+1. The Random Access Machine Model
+  * Memory is a sequence of words, each  capable of containing an integer.
+  * Each memory access takes one unit of time
+
+
+PRAM [Parallel Random Access Machine] 
+* EREW - exclusive read, exclusive write
+A program isn’t allowed to have two processors access the same memory location at the same time.
+* CREW - concurrent read, exclusive write
+* CRCW - concurrent read, concurrent write 
+Needs protocol for arbitrating write conflicts
+* CROW – concurrent read, owner write
+Each memory location has an official “owner”
+
+
+Parallel Memory Hierarchy (PMH) model
+
+BSP (Bulk Synchronous Parallel) Model
+* BSP programs composed of supersteps.
+* In each superstep, processors execute up to L computational steps using locally stored data, and also can send and receive messages 
+* Processors synchronize at end of superstep (at which time all messages have been received)
+
+LogP Model
 
 
 [Is Parallel Programming Hard, And, If So, What Can You Do About It?](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html)
@@ -527,7 +560,23 @@ perf stat ./yourapp
 ```
 
 
+内存屏障(Memory Barrier)
+
+Memory Model由Instruction Reordering和Store Atomicity来定义。总是就是每种模型对于乱序的定义不太一样。
+
+memory fence instruction
+
+[Memory Barriers: a Hardware View for Software Hackers](http://www.rdrop.com/users/paulmck/scalability/paper/whymb.2010.07.23a.pdf)
+
+[membarrier(2) — Linux manual page](https://man7.org/linux/man-pages/man2/membarrier.2.html)
+
+[The design of memory barrier in Linux kernel (I)](https://developpaper.com/the-design-of-memory-barrier-in-linux-kernel-i/)
+
+[ Memory barriers in C](https://mariadb.org/wp-content/uploads/2017/11/2017-11-Memory-barriers.pdf)
+
 [Concurrency Hazards: False Sharing](https://www.codeproject.com/articles/51553/concurrency-hazards-false-sharing)
+
+
 
 
 # Reactive Design Patterns
@@ -540,6 +589,14 @@ message-driven
 * It must react to inputs (message-driven). 消息驱动
 
 # Lock
+
+[Mutual Exclusion: Classical Algorithms for Locks](https://www.cs.rice.edu/~vs3/comp422/lecture-notes/comp422-lec19-s08-v1.pdf)
+
+[Modern High-Performance Locking](https://neerc.ifmo.ru/sptcc/slides/slides-shavit.pdf)
+
+[Effective Synchronization on Linux/NUMA Systems](http://www.lameter.com/gelato2005.pdf)
+
+
 
 [Lecture Locking](https://www.ics.uci.edu/~aburtsev/cs5460/lectures/lecture11-locking/lecture11-locking.pdf)
 
@@ -579,6 +636,20 @@ it works (avoids data corruption) and doesn’t hang (avoids deadlock and livelo
 
 
 乐观并发控制/乐观锁基于出现写竞争的情况是一个小概率事件，即使出现写竞争，操作者也可通过检查状态发现并容忍操作失败时回滚操作。操作步骤：1）Begin；2）Modify；3）Validate；4）Commit/Rollback。『Optimistic concurrency control - Wikipedia, the free encyclopedia』http://t.cn/R5j2lUV
+
+
+
+
+Problems with Locks
+* Conceptual
+  * coarse-grained: poor scalability 降低并发度
+  * fine-grained: hard to write 增加锁开销
+* Semantic 
+  * deadlock
+  * riority inversion
+* Performance 
+  * convoying
+  * intolerance of page faults and preemption
 
 [Linux中常见同步机制设计原理](http://www.wowotech.net/kernel_synchronization/445.html)
 
