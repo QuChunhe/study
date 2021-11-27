@@ -1930,3 +1930,18 @@ https://www.cnblogs.com/Courage129/p/14299759.html
 [Operating Systems: Three Easy Pieces](http://pages.cs.wisc.edu/~remzi/OSTEP/)
 
 [cs5460 Operating Systems](https://www.ics.uci.edu/~aburtsev/cs5460/)
+
+
+# Ubuntu
+
+```shell
+#  sudo权限用户身份或者 root身份运行命令
+sudo apt update
+
+sudo apt install build-essential
+
+# 查看GCC版本，验证 GCC编译器是否安装成功
+gcc --version
+
+sudo snap install intellij-idea-community --classic
+```
