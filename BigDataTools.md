@@ -1,3 +1,9 @@
+[Harvard CS 229r: Algorithms for Big Data](http://people.seas.harvard.edu/~minilek/cs229r/)
+
+UIUC CS598CSC
+
+
+[Sketching Algotithms](https://www.sketchingbigdata.org)
 
 # Hive
 
