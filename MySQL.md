@@ -1438,12 +1438,16 @@ https://mariadb.com/kb/en/innodb-system-tablespaces/
   
   
    'utf8_unicode_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead. 
+
+   mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -h 127.0.0.1 mysql -p
   
   
   
   
   
-  
+  select @@global.sql_mode;
+
+  https://dev.mysql.com/doc/refman/8.0/en/mysql-tzinfo-to-sql.html
   
   
   

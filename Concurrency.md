@@ -1306,7 +1306,16 @@ Memory Coherence
 * Write-Through： When the processor writes, even to a block in cache, a bus write is generated.
 
 
+在一个DistributedSystem中，最容易想到的是使用一个Global Time Scale决定存储器访问次序，从而判断Most Recent，这种Memory Consistency Model即为Strict Consistency，也被称为Atomic Consistency。Global Time Scale不容易以较小的代价实现，退而求其次采用每一个处理器的Local Time Scale确定Most Recent的方法被称为Sequential Consistency[56]。
 
+与SequentialConsistency要求不同处理器的写操作对于所有处理器具有一致的Order不同，Causal Consistency要求具有Inter-Process Order的写操作具有一致的Order，是Sequential Consistency的一种弱化形式。Processor Consistency进一步弱化，要求来自同一个处理器的写操作具有一致的Order即可。Slow Memory是最弱化的模型，仅要求同一个处理器对同一地址的写操作具有一致的Order[56]。
+
+
+![Different kinds of cache](pics/cach-kinds.png)
+
+
+* Look-aside / demand-fill cache: 
+For look-aside cache, client will query cache first before querying the data store. If it's a HIT, it will return the value in cache. If it's a MISS, it will return the value from data store. That's it. It says nothing about how the cache should be filled. It just specifies how it would be queried. But usually, it's demand-fill. Demand-fill means in the case of MISS, client will not only uses the value from data store, but also puts that value into cache. 
 
 [Quantitative System Performance: Computer System Analysis Using Queueing Network Models](https://homes.cs.washington.edu/~lazowska/qsp/)
 
