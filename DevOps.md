@@ -7,3 +7,13 @@
 * 业务监控
   * 业务指标
   * 用户使用
+
+
+
+ to get useful insights about the cluster's performance, utilization, and troubleshooting outages.
+
+
+You should deploy a monitoring and alerting stack, such as Node Exporter, Prometheus, and Grafana, and deploy a central logging stack, such as ELK (Elasticsearch, Logstash, and Kibana). 
+
+# Books
+Pipeline as Code Continuous Delivery with Jenkins, Kubernetes, and Terraform

@@ -42,3 +42,5 @@ Object-oriented  programming
  multi-tier architecture 多级架构
  
   multi-layer architecture　多层架构
+
+认证 (authentication) 和授权 (authorization)
