@@ -156,3 +156,5 @@ cluster.shutdown()
     yum install MySQL-python (Linux Fedora, CentOS ...)
 
 ```
+
+[Apache Superset](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose)

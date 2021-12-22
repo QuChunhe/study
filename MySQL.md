@@ -1448,6 +1448,50 @@ https://mariadb.com/kb/en/innodb-system-tablespaces/
   select @@global.sql_mode;
 
   https://dev.mysql.com/doc/refman/8.0/en/mysql-tzinfo-to-sql.html
+
+
+https://dev.mysql.com/doc/refman/8.0/en/grant.html#:~:text=Privileges%20Supported%20by%20MySQL%20%20%20%20Privilege,%20d%20...%20%2029%20more%20rows%20
+
+  ```
+
+  SET GLOBAL validate_password.policy=LOW;
+-- 创建用户
+
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
+
+-- 查看用户
+
+SELECT user, host, authentication_string FROM mysql.user WHERE user=‘myuser‘;
+
+-- 删除用户
+DROP USER 'root'@'localhost';
+
+-- 修改用户密码
+
+SET PASSWORD FOR 'jeffrey'@'localhost' = 'auth_string';
+
+
+-- 查看权限
+
+SHOW GRANTS FOR myuser;
+
+-- 授予权限
+
+GRANT ALL ON db1.* TO 'root'@'localhost';
+
+GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
+
+-- 生效(刷新权限)
+
+FLUSH PRIVILEGES;
+
+-- 撤销权限
+
+REVOKE ALL ON robotbi.* FROM 'quchunhe'@'192.168.%';
+REVOKE 'role1', 'role2' FROM 'user1'@'localhost', 'user2'@'localhost';
+REVOKE SELECT ON world.* FROM 'role3';
+
+  ```
   
   
   
