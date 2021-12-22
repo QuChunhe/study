@@ -12,6 +12,19 @@ Peter Brass, Advanced Data Structures, Cambridge University Press,2008
 
 slots/buckets/segement(槽/桶/段)
 
+
+SHA（Secure Hash Algorithm），安全哈希算法，包括SHA-1、SHA-256、SHA-512等。
+
+* MD5（Message Digest Algorithm 5），消息摘要算法第五版。128-bits的算法。经过程序流程，生成四个32位数据，最后联合起来成为一个128-bits散列
+
+* SHA-1：Secure Hash Algorithm 1 安全散列算法1。SHA-1可以生成一个被称为消息摘要的160位（20字节）散列值，散列值通常的呈现形式为40个十六进制数。
+
+* SHA-2。 SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, and SHA-512/256并称为SHA-2。
+
+* SHA-3。之前名为Keccak算法，是一个加密杂凑算法
+
+
+
 # Tree（树）
 
 是否有序
