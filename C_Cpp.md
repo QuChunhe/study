@@ -25,6 +25,59 @@
 
 
 
+# GCC
+
+GCC（英文全拼：GNU Compiler Collection）
+
+```
+gcc [options] file...
+```
+
+选项：
+* -pass-exit-codes ：从一个阶段以最高错误代码退出。
+* --target-help ：显示特定于目标的命令行选项。
+* --help={common|optimizers|params|target|warnings|[^]{joined|separate|undocumented}}[,...] ：显示特定类型的命令行选项（使用 -v --help 显示子进程的命令行选项）。
+* -dumpspecs ：显示所有内置规范字符串。
+* -dumpversion ：显示编译器的版本。
+* -dumpmachine ：显示编译器的目标处理器。
+* -print-search-dirs ：显示编译器搜索路径中的目录。
+* -print-libgcc-file-name ：显示编译器配套库的名称。
+* -print-file-name=<lib> ：显示库 <lib> 的完整路径。
+* -print-prog-name=<prog> ：显示编译器组件 <prog> 的完整路径。
+* -print-multiarch ：显示目标的规范化 GNU 三元组，用作库路径中的一个组件。
+* -print-multi-directory ：显示 libgcc 版本的根目录。
+* -print-multi-lib ：显示命令行选项和多个库搜索目录之间的映射。
+* -print-multi-os-directory ：显示操作系统库的相对路径。
+* -print-sysroot ：显示目标库目录。
+* -print-sysroot-headers-suffix ：显示用于查找标题的 sysroot 后缀。
+* -Wa,<options> ：将逗号分隔的 <options> 传递给汇编器（assembler）。
+* -Wp,<options> ：将逗号分隔的 <options> 传递给预处理器（preprocessor）。
+-Wl,<options> ：将逗号分隔的 <options> 传递给链接器（linker）。
+-Xassembler <arg> ：将 <arg> 传递给汇编器（assembler）。
+-Xpreprocessor <arg> ：将 <arg> 传递给预处理器（preprocessor）。
+-Xlinker <arg> ：将 <arg> 传递给链接器（linker）。
+-save-temps ：不用删除中间文件。
+-save-temps=<arg> ：不用删除指定的中间文件。
+-no-canonical-prefixes ：在构建其他 gcc 组件的相对前缀时，不要规范化路径。
+-pipe ：使用管道而不是中间文件。
+-time ：为每个子流程的执行计时。
+-specs=<file> ：使用 <file> 的内容覆盖内置规范。
+-std=<standard> ：假设输入源为 <standard>。
+--sysroot=<directory> ：使用 <directory> 作为头文件和库的根目录。
+-B <directory> ：将 <directory> 添加到编译器的搜索路径。
+-v ：显示编译器调用的程序。
+-### ：与 -v 类似，但引用的选项和命令不执行。
+-E ：仅执行预处理（不要编译、汇编或链接）。
+-S ：只编译（不汇编或链接）。
+-c ：编译和汇编，但不链接。
+-o <file> ：指定输出文件。
+-pie ：创建一个动态链接、位置无关的可执行文件。
+-I ：指定头文件的包含路径。
+-L ：指定链接库的包含路径。
+-shared ：创建共享库/动态库。
+-static ：使用静态链接。
+--help ：显示帮助信息。
+--version ：显示编译器版本信息。
 
 
 
@@ -54,3 +107,10 @@ $ strace ./hello
 
 
  Michael J. Donahoo and Kenneth L. Calvertm, TCP/IP Sockets in C: Practical Guide for Programmers, 2nd Edition, Morgan Kaufmann, 2009 [source code](http://cs.ecs.baylor.edu/~donahoo/practical/CSockets2/textcode.html)
+
+
+ # Courses
+
+ [南科大课堂原版 - C/C++：从基础语法到优化策略（2021年秋季版本）](https://www.bilibili.com/video/BV1Vf4y1P7pq?p=1)
+
+ https://github.com/ShiqiYu/CPP

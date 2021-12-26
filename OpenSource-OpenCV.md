@@ -11,6 +11,11 @@ mkdir ~/opencv_build && cd ~/opencv_build
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_EXTRA_MODULES_PATH=~/opencv_build/opencv_contrib/modules -D BUILD_EXAMPLES=ON ..
 ```
 
-Books
+# Books
 
 Building Computer Vision Projects with OpenCV 4 and C++
+
+
+# Course
+
+[作品](https://www.bilibili.com/video/BV1i54y1m7tw/?spm_id_from=333.788.recommend_more_video.7)

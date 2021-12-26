@@ -20,6 +20,14 @@ Git 有三种状态，你的文件可能处于其中之一：已提交（committ
 
 Git 项目的三个工作区域的概念：Git 仓库、工作目录以及暂存区域。
 
+```
+```
+
+```
+git config --global user.name "Qu Chunhe"
+git config --global user.email quchunhe@example.com
+
+```
 
 # Maven
 

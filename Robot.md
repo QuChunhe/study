@@ -53,3 +53,7 @@ SLAM优秀开源 https://www.bilibili.com/video/BV19M4y1A79B?from=search&seid=16
   * LVI-SAM
   
 [机器人学：建模、控制与视觉——华中科技大学](https://www.bilibili.com/video/BV1x3411z7jQ?from=search&seid=11003862869781264087&spm_id_from=333.337.0.0)    
+
+[机器人理论最好中文入门课程](https://www.bilibili.com/video/BV19z4y197cf/?spm_id_from=333.788.recommend_more_video.1)
+
+[2021讲的最好的人工智能之CV计算机视觉集训营](https://www.bilibili.com/video/BV1tP4y1L7LK?from=search&seid=13847806216932040406&spm_id_from=333.337.0.0)
