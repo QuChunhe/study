@@ -81,7 +81,9 @@ gcc [options] file...
 
 
 
-
+```
+c99 -Wall -o getting-started getting-started.c -lm
+```
 
 
 

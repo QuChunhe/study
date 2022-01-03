@@ -100,6 +100,8 @@ docker version
 docker-compose version
 ```
 
+https://docs.docker.com/engine/reference/run/
+
 
 ```
 docker container rm -f $(docker container ls -aq)
