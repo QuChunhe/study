@@ -114,3 +114,9 @@ $ strace ./hello
  [南科大课堂原版 - C/C++：从基础语法到优化策略（2021年秋季版本）](https://www.bilibili.com/video/BV1Vf4y1P7pq?p=1)
 
  https://github.com/ShiqiYu/CPP
+
+
+
+[黑马程序员-Linux系统编程](https://www.bilibili.com/video/BV1KE411q7ee?p=1)
+
+[Linux系统编程（李慧琴）](https://www.bilibili.com/video/BV1yJ411S7r6?from=search&seid=13482678134358786324&spm_id_from=333.337.0.0)

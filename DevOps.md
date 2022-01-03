@@ -1,4 +1,6 @@
 
+[dɪ'vɑːpz] 
+
 监控的层次
 * 系统监控
    * 服务器硬件CPU
@@ -78,6 +80,74 @@ https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-in
 [](https://docs.docker.com/engine/install/ubuntu/)
 
 https://chinese.freecodecamp.org/news/the-docker-handbook/
+
+
+
+
+
+
+Manning’s Docker in Action, second edition
+
+
+Manning.Learn.Docker.in.a.Month.of.Lunches
+
+[open source](https://github.com/sixeyed/diamol)
+
+There’s a powerful framework for implementing DevOps called CALMS—Culture, Automation, Lean, Metrics, and Sharing. Docker works on all those initiatives: automation is central to running containers, distributed apps are built on lean principles, metrics from production apps and from the deployment process can be easily published, and Docker Hub is all about sharing and not duplicating effort.
+
+```
+docker version
+docker-compose version
+```
+
+
+```
+docker container rm -f $(docker container ls -aq)
+
+docker image rm -f $(docker image ls -f reference='diamol/*' -q)
+
+
+docker container run diamol/ch02-hello-diamol
+
+
+docker container run --interactive --tty diamol/base
+
+docker container ls
+
+docker container top f1
+
+docker container logs f1
+
+docker container inspect f1
+
+docker container ls --all
+
+docker container run --detach --publish 8088:80 diamol/ch02-hello-diamol-web
+
+docker container stats 
+
+docker container rm --force $(docker container ls --all --quiet
+
+```
+
+
+* --detach—Starts the container in the background and shows the container ID 
+* --publish—Publishes a port from the container to the computer
+
+
+https://hub.docker.com/settings/security
+
+
+Linux kernel namespaces, such as process ID (pid) namespaces or network (net) namespaces, allow Docker to encapsulate or sandbox processes that run inside the container. Control Groups make sure that containers cannot suffer from the noisy-neighbor syndrome, where a single application running in a container can consume most or all of the available resources of the whole Docker host. Control Groups allow Docker to limit the resources, such as CPU time or the amount of RAM, that each container is allocated.
+
+ [containerd – an industry-standard container runtime](https://containerd.io)
+
+ https://github.com/PacktPublishing/Learn-Docker---Fundamentals-of-Docker-19.x-Second-Edition
+
+
+ 192.168.65.0/24
+
+[docker镜像仓库](https://www.jianshu.com/p/fecbe5602cae)
 
 # Books
 Pipeline as Code Continuous Delivery with Jenkins, Kubernetes, and Terraform
