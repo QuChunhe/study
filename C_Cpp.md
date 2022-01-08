@@ -111,6 +111,21 @@ $ strace ./hello
  Michael J. Donahoo and Kenneth L. Calvertm, TCP/IP Sockets in C: Practical Guide for Programmers, 2nd Edition, Morgan Kaufmann, 2009 [source code](http://cs.ecs.baylor.edu/~donahoo/practical/CSockets2/textcode.html)
 
 
+
+# C
+
+declarations, definitions, and statements.
+
+All identifiers in a program have to be declared.
+
+keywords are predefined by the language and must not be declared or redefined.
+
+```shell
+apropos printf
+man printf
+man 3 printf
+```
+
  # Courses
 
  [南科大课堂原版 - C/C++：从基础语法到优化策略（2021年秋季版本）](https://www.bilibili.com/video/BV1Vf4y1P7pq?p=1)
