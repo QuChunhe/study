@@ -1,41 +1,145 @@
 
 数据类型
-* 业务数据：随机的增删改查
+* 业务数据：随机增删改查
 * 日志数据：只增不改不删
 * 汇总数据：顺序增少量改
 
 
-* 数据来源：业务书和日志数据
-* 大数据系统：方便地接受来自不同数据源的数据，经过处理后，按需地将数据发送
+* 数据来源：业务数据和日志数据
+* 大数据系统：方便地接受来自不同数据源的数据，经过处理后，按需地将数据发送目标系统
   * 传: 
      * 构造插入命令和预处理数据：通用、可配置，少定制化开发
-	 * 缓存或者存储：a）传输时延，尤其是跨数据中心的数据传输；b）目标系统的吞吐问题；c）网络或者目标系统不可用，例如网络传输丢包；d）降低系统耦合性和提高数据复用性。
-	 * Kafka和FTP是比较常用的存储/缓存数据工具
+	   * 缓存或者存储：a）传输时延，尤其是跨数据中心的数据传输；b）目标系统的吞吐问题；c）网络或者目标系统不可用，例如网络传输丢包；d）降低系统耦合性、提高系统安全性和提高数据复用性。
+     * Kafka和FTP是比较常用的存储/缓存数据工具
   * 存
-     * 数据规模
+     * 数据规模：
      * 数据类型：结构化数据和非结构化数据
-	 * 访问模式：避免无效访问数据的规模
+	   * 访问模式：避免无效访问数据的规模
   * 算
-     * 定时任务
-	 * 实时处理
+     * 批量处理：大多数为定时任务，少部分为即席计算
+	   * 实时处理：流式计算
 * 应用系统：
-  * 写入存储：
-    * 比较常用的就是MySQL和Redis
-	* 大多数是业务数据和汇总数据，少数情况下会访问原始日志数据（经过裁剪的日志数据）
+  * 写入存储：大多数是业务数据和汇总数据，少数情况下会访问原始日志数据（经过裁剪的日志数据）
+     * 比较常用的就是MySQL（集群）和Redis（集群）
+     * 少数情况是HBase和ES这类NoSQL
   * 触发应用：触发报警或者调用接口等	
-  * 特殊用户：数据分析人员、开发工程师和机器学习应用等：a）访问频率并不高；建立专用系统，代价过于高昂；b）访问数据规模大，对于其他数据访问应用会有一定影响。
+  * 即席计算：面向公司内部用户，例如数据分析员、开发工程师和机器学习应用等：a）访问频率并不高；建立专用系统，使用/投入比低；b）访问数据规模大，对于其他数据访问应用会有一定影响；c）访问模式差异大
+
+支撑功能
+* 定时调度
+* 访问控制：身份认证和资源限制
+* 监控集成：集成到现有的监控系统
+* 持续发布：集成都git的pipeline
+* 自动配置：例如调整处理参数，能够自动生效
 
 
 高度重视实时处理
 * 提高时效性，能够提高数据价值
 * 批量处理可能造成目标系统的突发负载
 * 实时处理+触发应用：有很多业务应用空间
-   * 设备故障实时报警
-   * 水量和耗材的提前预计
-   * 每天发送定时执行报告
-   * 等等
-   
-不要忽视非结构化数据   
+
+不要忽视非结构化数据 
+
+
+* 业务目标
+   * 有哪些不同的角色
+   * 不同角色的核心诉求和痛点
+   * 公司和部门发展规划和目标
+* 演进步骤
+   * 业务效果和基础设施之间的平衡
+   * 确保每个季度都要有业务成果
+* 技术选型：概念多、系统多、发展快。没有最好的技术，只有最合适的业务。
+  * 算：flink，spark
+  * 存：MySQL集群、HBase，Hive、...,Data Lake,Data Lakehouse（湖仓一体）
+
+
+分散在各个平台和数据库的系统 chaos
+
+统一的数仓中，集中仓库  order
+
+Data Warehouse 所有的主题 , Data Mart特定的主题
+
+two approaches for building data warehouses
+* Kimball methodology(Dimensional Modeling):Bottom up aproach
+   * Facts and dimensions, star schema
+   * less tables, but have duplicate data
+   * Easier for user to understand
+   * Slowly changing dimensions, surrogate keys.
+* Inmon Methodology (Relation Modeling)： Top-down approach
+   * Entity-RelationShip model
+   * Many tables using joins
+   * History tables, natural keys
+   * Goog for indirect end-user access of data
+
+
+Multidimensional data model (MDDM)
+* Data Cube Model
+* Start Schema Model: Star join Schema
+* Snow Flake Schema Model
+* Fact Constellations
+
+ The two primary component of dimensional model 
+ * Dimensions:- Texture Attributes to analyses data. 
+ * Facts:- Numeric volume to analyze business. 
+
+Fact Table ◦ Fact table consists of the measurements and facts of the business process. ◦ A fact table typically has two types of columns: those that contains facts(numerical values) and those that are foreign key to dimension tables.
+
+Dimension Table ◦ The dimension table provides the detailed information about the attributes in the fact table. ◦ Fact tables connect to one or more dimension tables, but fact tables do not have direct relationships to one another.
+
+The MDDM involve two types of tables
+* Dimension Table:  
+   * Consists of tupple of attributes of dimension. 
+   * It is Simple Primary Key.  
+* Fact Table
+   * A Fact table has tuples, one per a recorded fact.  
+   * It is Compound primary key. 
+
+
+Fact Table
+*  Measure
+*  dimension :keys
+
+Star Scheme 
+* In the star schema design, a single object (the fact table) sits in the middle and is connected to other surrounding objects (dimension tables) like a star. 
+* A star schema has one dimension table for each dimension.
+
+
+Snowflake Scheme 
+* Snowflake schemas contain several dimension tables for each dimension. *◦ 
+* The main advantage of the snowflake schema is that it reduces the space required to hold the data and the number of places where it need to be updated if the data changes. 
+* The main disadvantage of the snowflake schema is that it increase the number of tables that need to join in order to perform the given query.
+
+Levels of data modeling:
+* Conceptual Data Model • A conceptual data model identifies the highestlevel relationships between the different entities.
+* Logical Data Model • A logical data model describes the data in as much detail as possible, without regard to how they will be physical implemented in the database. • Identify entity and relationships. • All attributes of each entity. • Identify primary and foreign key.
+* Physical Data Model • Physical data model represents how the model will be built in the database.
+
+
+Entity Relationship models
+* entities
+* Attributes:
+* relationships:
+
+
+relationships among those entities and relationships among those atributes.
+
+
+
+recursive relationship
+
+Keys: Natural vs. Surrogate 
+* Natural keys are based on business rules and logic that determine how an individual instance can be uniquely identified. 
+* Surrogate keys are often used instead, which are system-generated unique identifiers. e.g. Customer ID, Product ID, etc. — While surrogate keys are more efficient, important business rules are lost when they are used. 
+It’s a balancing act
+
+
+OLTP
+* 避免数据冗余
+* 确保数据一致性
+
+
+https://www.slideshare.net/ivoandreev/data-warehouse-design-and-best-practices
+
 
 Apache HAWQ
 
