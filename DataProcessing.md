@@ -4,7 +4,11 @@
 * 日志数据：只增不改不删
 * 汇总数据：顺序增少量改
 
+两类应用
+* OLAP – Online Analytical Processing
+* OLTP – Online Transactional Processing
 
+![大数据集成架构](pics/big-date-integration.jpg)
 * 数据来源：业务数据和日志数据
 * 大数据系统：方便地接受来自不同数据源的数据，经过处理后，按需地将数据发送目标系统
   * 传: 
@@ -59,6 +63,25 @@
 
 Data Warehouse 所有的主题 , Data Mart特定的主题
 
+
+Modern Data Warehouse
+1. Ingest: Data orchestration and monitoring
+2. Store; Big Data store
+3. PREP: Transform & Clean
+4. Model & Serve(& Store): Data warehouse
+
+应用
+* BI + reporting
+* Advanced Analytics
+* AI + ML
+  
+Use a data lake: 
+* All data has potential value 
+* Data hoarding 
+* No defined schema—stored in native format 
+* Schema is imposed and transformations are done at query time (schema-on-read). 
+* Apps and users interpret the data as they see fit 
+
 two approaches for building data warehouses
 * Kimball methodology(Dimensional Modeling):Bottom up aproach
    * Facts and dimensions, star schema
@@ -71,12 +94,99 @@ two approaches for building data warehouses
    * History tables, natural keys
    * Goog for indirect end-user access of data
 
+自顶向下的方法
+* 先有模型
+* 确定需要解决的问题
+
+自底向上的方法
+* 后有模型
+* 不确定需要解决的问题
+
+The  "data lake" uses A bottoms-up approach.
+
+* 大宽表：NoSQL，避免JOIN，查询模式固定。数据规模超大，多为日志数据，字段多样并且多为字符串类型，例如商品的特性(不同类型的商品具有迥异的特性)。复杂运算、海量检索
+* 小表+业务表：MySQL，可以join，查询模式多样。汇总数据中小，多为汇总数据，字段固定并且多为数字类型。部分检索（条件为主键或者索引）、reduce(例如count、sum、max等)和map运算
+  
+  汇总表
+* 维度：最新粒度+基本维度。为了性能考虑，可能需要建立不同粒度和不同维度的汇总表
+* 统计值
+完成基本指标的
+* 多个粒度：reduce运算+join
+* 特定维度：group
+
+Exactly what is a data lake? A storage repository, usually Hadoop, that holds a vast amount of raw data in its native format until it is needed. 
+* Inexpensively store unlimited data 
+* Centralized place for multiple subjects (single version of the truth) 
+* Collect all data “just in case” (data hoarding) 
+* Easy integration of differently-structured data
+* Store data with no modeling – “Schema on read” 
+* Complements enterprise data warehouse (EDW) 
+* Frees up expensive EDW resources for queries instead of using EDW resources for transformations (avoiding user contention) • 
+* Hadoop cluster offers faster ETL processing over SMP solutions 
+* Quick user access to data for power users/data scientists (allowing for faster ROI) 
+* Data exploration to see if data valuable before writing ETL and schema for relational database, or use for one-time report 
+* Allows use of Hadoop tools such as ETL and extreme analytics • Place to land IoT streaming data • On-line archive or backup for data warehouse data 
+* With Hadoop/ADLS, high availability and disaster recovery built in 
+* Keep raw data so don’t have to go back to source if need to re-run • Allows for data to be used many times for different analytic needs and use cases 
+* Cost savings and faster transformations: storage tiers with lifecycle management; separation of storage and compute resources allowing multiple instances of different sizes working with the same data simultaneously vs scaling data warehouse; low-cost storage for raw data saving space on the EDW 
+* Extreme performance for transformations by having multiple compute options each accessing different folders containing data 
+* The ability for an end-user or product to easily access the data from any location
+
+Data Analysis Paradigm Shift
+* old way: Structure -> ingest -> Analyze
+* new way: Ingest -> Analyze -> Structure
+
+Data lake layers
+* Raw Data layer 
+* cleansed Data layer 
+* application data layer 
+* sandbox data layer
+
+
+Organizing a  Data lake - Folder structure
+* Plan the structure based on optimal data retrieval
+* Avoid a chaotic, unorganized data swamp
+
+Common ways to organize the data
+* Time partitioning: 不要过大或者过小
+* Subject Area
+* Security Boundaries
+  * Department
+  * Business unit
+* Downstream App/Purpose
+* Data Retention Policy
+   * Temporary Data
+   * permanent data
+   * Applicable period
+* Business Impact /Criticality
+  * High
+  * Medium
+  * Low
+* Owner /Steward/SME
+* Probability of Data Access
+  * Recent /current data
+  * historical data
+* Confidential Classification
+  * public information
+  * internal user only
+  * supplier/partner confidential
+  * sensitive - financial
+
+organizing
+* evn
+  * test
+  * staging
+  * product
+* report/mysql/video
+* data source/subject  
+* time
+
 
 Multidimensional data model (MDDM)
 * Data Cube Model
-* Start Schema Model: Star join Schema
-* Snow Flake Schema Model
-* Fact Constellations
+* Start Schema Model: Star join Schema 星形模式（一个事实表，多个维度表）每个维度仅仅存在一个表
+* Snow Flake Schema Model：雪花模式（一个事实表，多个维度表）每个维度可能存在多个相关联的表
+* Fact Constellations：事实星座模式（多个事实表）
 
  The two primary component of dimensional model 
  * Dimensions:- Texture Attributes to analyses data. 
@@ -115,6 +225,9 @@ Levels of data modeling:
 * Physical Data Model • Physical data model represents how the model will be built in the database.
 
 
+* 关系模型
+* 维度模型
+
 Entity Relationship models
 * entities
 * Attributes:
@@ -123,7 +236,7 @@ Entity Relationship models
 
 relationships among those entities and relationships among those atributes.
 
-
+成本、性能和三者之间平衡
 
 recursive relationship
 
@@ -138,8 +251,133 @@ OLTP
 * 确保数据一致性
 
 
-https://www.slideshare.net/ivoandreev/data-warehouse-design-and-best-practices
 
+* ODS：Operation Data Store 最贴近数据源的一层，为接收到的最原始数据，用于数据溯源。
+* DWD：data warehouse details 细节数据层，是业务层与数据仓库的隔离层。主要对ODS数据层做去噪、去重、异常值处理和规范化等操作。命名规范化、设置维度表
+* DWB：data warehouse base 数据基础层，存储的是客观数据，确定核心指标，执行一些轻度聚会和常用计算。
+* DWS：data warehouse service 数据服务层，基于DWB上的基础数据，整合汇总成分析某一个主题域的服务数据层，一般是宽表。用于提供后续的业务查询，OLAP分析，数据分发等。
+* ADS （ADS，Application Data Service）数据应用层，
+
+
+https://www.slideshare.net/ivoandreev/data-warehouse-design-and-best-practices
+https://www.slideshare.net/jamserra/is-the-traditional-data-warehouse-dead 
+https://www.slideshare.net/jamserra/data-warehousing-trends-best-practices-and-future-outlook
+
+Reasons not to user Hadoop as your DW
+* Query performance not as good as relational database 
+* Complex query support not good due to lack of query optimizer, in-database operators, advanced memory management, concurrency, dynamic workload management and robust indexing 
+* Concurrency limitations • 
+* No concept of “hot” and “cold” data storage with different levels of performance to reduce cost 
+* Not a DBMS so lack of features such as update/delete of data, referential integrity, statistics, ACID compliance, data security 
+* File based so no granular security definition at the column level 
+* No metadata stored in HDFS, so another tool required adding complexity and slowing performance 
+* Finding expertise in Hadoop is very difficult 
+* Super complex, with lot’s of integration with multiple technologies to make it work 
+* Many tools/technologies/versions/vendors (fragmentation), no standards, and it is difficult to make it a corporate standard 
+* Lack of master data management tools for Hadoop • Requires end-users to learn new reporting tools and Hadoop technologies to query the data • 
+* Pace of change is so quick many Hadoop technologies become obsolete, adding risk • Lack of cost savings: cloud consumption, support, licenses, training, and migration costs
+* Need conversion process to convert data to a relational format if a reporting tool requires it 
+* Some reporting tools don’t work against Hadoop
+
+
+
+Data Lake + Data Warehouse
+
+
+https://www.slideshare.net/ecastrom/data-warehouase-best-practices
+
+Consider partitioning large fact tables 
+* Consider partitioning fact tables that are 50 to 100GB or larger. 
+* Partitioning can provide manageability and often performance benefits.  
+   * Faster, more granular index maintenance. 
+   * More flexible backup / restore options. 
+   * Faster data loading and deleting 
+   * Faster queries when restricted to a single partition.
+* Typically partition the fact table on the date key. •
+   * Enables sliding window. 
+* Enables partition elimination. Source. 
+
+
+Build clustered index on the date key of the fact table 
+* This supports efficient queries to populate cubes or retrieve a historical data slice. 
+* If you load data in a batch window for the clustered index on the fact table then use the options 
+  
+  ALLOW_ROW_LOCKS = OFF and ALLOW_PAGE_LOCKS = OFF 
+* This helps speed up table scan operations during query time and helps avoid excessive locking activity during large updates.
+* Build nonclustered indexes for each foreign key. 
+  *This helps ‘pinpoint queries' to extract rows based on a selective dimension predicate. 
+* Use filegroups for administration requirements such as backup / restore, partial database availability, etc. 
+
+Choose partition grain carefully
+* 数据规模
+* 最多可用的parttion数量
+
+
+Design dimension tables appropriately 
+* Use integer surrogate keys for all dimensions, other than the Date dimension. 
+* Use the smallest possible integer for the dimension surrogate keys. This helps to keep fact table narrow. 
+* Use a meaningful date key of integer type derivable from the DATETIME data type (for example: 20060215). 
+* Don't use a surrogate Key for the Date dimension Source. 
+* Build a clustered index on the surrogate key for each dimension table  
+* Build a non-clustered index on the Business Key (potentially combined with a row-effective-date) to support surrogate key lookups during loads. 
+* Build nonclustered indexes on other frequently searched dimension columns. 
+* Avoid partitioning dimension tables. 
+* Avoid enforcing foreign key relationships between the fact and the dimension tables, to allow faster data loads. 
+* You can create foreign key constraints with NOCHECK to document the relationships; but don’t enforce them. 
+* Ensure data integrity though Transform Lookups, or perform the data integrity checks at the source of the data. 
+
+
+Write effective queries for partition elimination 
+* Whenever possible, place a query predicate (WHERE condition) directly on the partitioning key (Date dimension key) of the fact table.
+
+Use Sliding Window technique to maintain data 
+* Maintain a rolling time window for online access to the fact tables. Load newest data, unload oldest data. 
+* Always keep empty partitions at both ends of the partition range to guarantee that the partition split (before loading new data) and partition merge (after unloading old data) do not incur any data movement. 
+* Avoid split or merge of populated partitions. Splitting or merging populated partitions can be extremely inefficient, as this may cause as much as 4 times more log generation, and also cause severe locking.
+* Create the load staging table in the same filegroup as the partition you are loading. 
+* Create the unload staging table in the same filegroup as the partition you are deleteing. 
+* It is fastest to load newest full partition at one time, but only possible when partition size is equal to the data load frequency (for example, you have one partition per day, and you load data once per day). 
+* If the partition size doesn't match the data load frequency, incrementally load the latest partition. • 
+* Various options for loading bulk data into a partitioned table are discussed in the whitepaper • http://www.microsoft.com/technet/prodtechnol/sql/be stpractice/loading_bulk_data_partitioned_table.mspx. 
+*  Always unload one partition at a time. 
+
+
+
+数据同步
+* full extraction - all data (usually dimension tables)
+* incremental extraction - only data changed from last run (fast tables)
+* how to determine data that has changed
+  * Timestamp - Last updated
+  * change data capture (CDC)
+  * Partitioning by date
+  * Triggers on tables
+  * MERGE SQL Statement
+  * Column DEFAULT value populated with date
+* Online extraction - data from source
+  * Replication
+  * database snapshot
+  * availability groups
+* Offline extraction - data from flat file
+
+ETL vs ELT 
+* Extract, Transform, and Load (ETL) 
+  * Transform while hitting source system 
+  * No staging tables 
+  * Processing done by ETL tools (SSIS) 
+* Extract, Load, Transform (ELT) 
+  * Uses staging tables 
+  * Processing done by target database engine (SSIS: Execute T-SQL Statement task instead of Data Flow Transform tasks) 
+  * Use for big volumes of data 
+  * Use when source and target databases are the same 
+  * Use with the Analytics Platform System (APS) 
+  
+  Multiple Parallel processing MPP
+
+
+
+
+
+  https://zhuanlan.zhihu.com/p/443564318
 
 Apache HAWQ
 
@@ -148,6 +386,9 @@ Apache HAWQ
 lakehouse
 
 Parquet
+
+
+
 
 
 大数据（Big Data）包括两个部分
