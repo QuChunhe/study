@@ -228,11 +228,13 @@ Levels of data modeling:
 * 关系模型
 * 维度模型
 
-Entity Relationship models
-* entities
-* Attributes:
-* relationships:
-
+Entity Relationship models关系-实体模型，表间的交互关系可以表示为实体-关系图
+* entities： Attributes:
+* relationships
+  * 一对一
+  * 一对多
+  * 多对多
+满足3NF
 
 relationships among those entities and relationships among those atributes.
 
