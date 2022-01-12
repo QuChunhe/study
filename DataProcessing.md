@@ -8,6 +8,28 @@
 * OLAP – Online Analytical Processing
 * OLTP – Online Transactional Processing
 
+There are two types of schemas:
+* Predefined
+* Dynamic
+
+There are two types of data models:
+* Relational
+* Nonrelational
+
+In addition to making updates and reads very fast, normalization eliminates the risk of inconsistent data.
+
+
+模型的层次
+* Conceptual Model (概念模型)
+* Logical Model (逻辑模型)
+* Pyhsical Model (物理模型)
+
+[The Snowflake Elastic Data Warehouse](http://pages.cs.wisc.edu/~yxy/cs839-s20/papers/snowflake.pdf)
+
+[NoSQL Data Modeling Techniques](https://www.cnblogs.com/balaamwe/archive/2012/05/02/2478699.html)
+
+[NoSQL Data Modeling Techniques](https://www.idc-online.com/technical_references/pdfs/information_technology/NoSQL_Data_Modeling_Techniques.pdf)
+
 ![大数据集成架构](pics/big-date-integration.jpg)
 * 数据来源：业务数据和日志数据
 * 大数据系统：方便地接受来自不同数据源的数据，经过处理后，按需地将数据发送目标系统
@@ -101,6 +123,15 @@ two approaches for building data warehouses
 自底向上的方法
 * 后有模型
 * 不确定需要解决的问题
+
+两类主键
+* natural keys：自然主键，有业务含义。A natural key is a single column or set of columns that uniquely identifies a single record in a table, where the key columns are made up of real data.  A natural key is a column value that has a relationship with the rest of the column values in a given data record。
+  * 需要更少的表以及更少的join操作
+  * 主键为业务数据，可以之间进行检索，更加利于查询
+  * 便于partition和sharding
+* surrogate keys：人工主键，自增ID或者UUID。The surrogate key is just a value that is generated and then stored with the rest of the columns in a record.  The key value is typically generated at run time right before the record is inserted into a table. 
+  * 一般为整数，4或8个字节，占用更少的键存储，便于索引
+  * 
 
 The  "data lake" uses A bottoms-up approach.
 
@@ -261,6 +292,23 @@ OLTP
 * ADS （ADS，Application Data Service）数据应用层，
 
 
+Raw Zone -> Gold Zone
+* 剔除重复数据
+* 处理异常数据
+* 规范数据定义
+* 汇总业务指标
+
+应用范式 Application paradigm
+
+Data products can process data in real time or in batches.
+
+real-time applications and data products 
+* Dashboards 仪表盘
+* Automated actions 自动操作，complex event processing (CEP)
+* Alerts and notifications 报警和通知
+* Data sets
+
+
 https://www.slideshare.net/ivoandreev/data-warehouse-design-and-best-practices
 https://www.slideshare.net/jamserra/is-the-traditional-data-warehouse-dead 
 https://www.slideshare.net/jamserra/data-warehousing-trends-best-practices-and-future-outlook
@@ -376,10 +424,143 @@ ETL vs ELT
   Multiple Parallel processing MPP
 
 
+Four Types of NoSQL Databases
+* Key-Value Store
+* Document-Based Store:Full Text Search Engines
+* Column-Based Store: BigTable-style 
+* Graph-Based Store
 
 
+One of the most significant shortcomings of the Key-Value model is a poor applicability to cases that require processing of key ranges. Ordered Key-Value model overcomes this limitation and significantly improves aggregation capabilities.
+
+
+* Relational modeling is typically driven by the structure of available data. The main design theme is “What answers do I have?”
+* NoSQL data modeling is typically driven by application-specific access patterns, i.e. the types of queries to be supported. The main design theme is “What questions do I have?”
+  * NoSQL data modeling often requires a deeper understanding of data structures and algorithms than relational database modeling does. In this article I describe several well-known data structures that are not specific for NoSQL, but are very useful in practical NoSQL modeling.
+  * Data duplication and denormalization are first-class citizens.
+
+In general, denormalization is helpful for the following trade-offs:
+* Query data volume or IO per query VS total data volume.
+* Processing complexity VS total data volume. 在分布式环境中，join操作显著低增加了处理复杂性和处理时间
+
+ Entity Aggregation：嵌入式的数据或者嵌套的数据，比如数组、map等数据类型
+
+All major genres of NoSQL provide soft schema capabilities in one way or another:
+* Key-Value Stores and Graph Databases typically do not place constraints on values, so values can be comprised of arbitrary format.
+* BigTable models support soft schema via a variable set of columns within a column family and a variable number of versions for one cell.
+* Document databases are inherently schema-less, although some of them allow one to validate incoming data using a user-defined schema.
+
+
+* Minimization of one-to-many relationships by means of nested entities and, consequently, reduction of joins.
+* Masking of “technical” differences between business entities and modeling of heterogeneous business entities using one collection of documents or one table.
+
+
+Application Side Joins。
+Joins are rarely supported in NoSQL solutions.
+
+Query time joins almost always mean a performance penalty, but in many cases one can avoid joins using Denormalization and Aggregates, i.e. embedding nested entities. 
+
+
+Atomic Aggregates
+
+ Enumerable Keys
+
+ Dimensionality Reduction
+
+
+Dimensionality Reduction is a technique that allows one to map multidimensional data to a Key-Value model or to other non-multidimensional models.
+
+
+Traditional geographic information systems use some variation of a Quadtree or R- Tree for indexes.A Geohash uses a Z-like scan to fill 2D space and each move is encoded as 0 or 1 depending on direction.
+
+Index Table
+
+Composite Key Index
+
+[Understanding NoSQL Data Modeling Technique](https://phoenixnap.com/kb/nosql-data-modeling)
+
+NoSQL Data Modeling Techniques
+* Conceptual techniques
+  * Denormalization 反范式
+  * Aggregates 聚合
+  * Application Side Joins
+* General modeling techniques
+  * Enumerable Keys 可枚举的键
+  * Dimensionality Reduction.
+* Hierarchy modeling techniques
+  * Tree Aggregation
+  * Adjacency Lists.
+  * Materialized Paths
+  * Nested Sets.
+  * Nested Documents Flattening: Numbered Field Names
+  * Nested Documents Flattening: Proximity Queries. 
+  * Batch Graph Processing. 
 
   https://zhuanlan.zhihu.com/p/443564318
+
+
+[Scaling GIS Data in Non-relational Data Stores](Scaling GIS Data in Non-relational Data Stores)
+
+
+At the conceptual level, the multidimensional modelling gave birth to the concepts of fact and dimension. The most popular models used to design data warehouses are the star, snowflake, and constellation schemas . These models are then converted to the logical models which depend on the storage mode that will be adapted at the physical level . Classically, the mapping from the conceptual to the logical model is made according to three approaches; ROLAP (Relational-OLAP), MOLAP (Multidimensional-OLAP) and HOLAP (Hybrid-OLAP)
+
+
+[Data Modeling Guidelines for NoSQL Document-Store Databases](https://thesai.org/Downloads/Volume9No10/Paper_66-Data_Modeling_Guidelines.pdf)
+
+One of the most successful implementation of OLAP systems uses relational databases (R-OLAP implementations). 
+* Each dimension is a table that uses the same name. Table attributes are derived from attributes of the dimension (called parameters and weak attributes). The root parameter is the primary key.
+* Each fact is a table that uses the same name, with attributes derived from 1) fact attributes (called measures) and 2) the root parameter of each associated dimension. Attributes derived from root parameters are foreign keys linking each dimension table to the fact table and form a compound primary key of the table.
+
+
+Some of these questions are (i) how to model one-to-N relationships in document databases, (ii) how to know when to reference instead of embedding a document, and (iii) whether document databases allow Entity Relationship modeling at all. 
+
+
+NoSQL relation- ship modeling
+* embedding: Characteristically, embedding provides better read performance when retrieving data from document- store databases. However, when writing data to database, it can be exceedingly slower, unlike refer- encing which uses the concept of writing data hori- zontally into smaller files.
+* referencing: Typically referencing provides better write perfor- mance. However reading data may require more round trips to the server.
+* bucketing: Bucketing enhances data retrieval by partitioning document with large contents into smaller affordable sizes.
+* general: Normalizing data may help to save some space, but with the current advancement of technology, space is not a problem anymore.
+
+Finally, understand the data access patterns, the nature of the data to be used in the application, the rate of updates on a particular field, and the cardinality re- lationships between entities. Such information shapes the design and modeling structure of document-store databases.
+
+* Gl Embed sub-documents unless forced otherwise
+* G2 Use array concept when embedding
+* G3 Define array upper bound in parent document
+* G4 Embed records which are managed together
+* G5 Embed dependent documents
+* G6 Embed one-to-one relationships
+* G7 Group data with same volatility
+* G8 Two-way embedding is preferred when N size is close to the M size in N:M relationship
+* G9 One-way embedding is preferred if there’s hug gap in size between N to M
+* G10 Reference highly volatile document
+* G11 Reference standalone entities
+* G12 Use array of references for the many side of the relationship
+* G13 Parent referencing is recommended for large quantity of entities
+* G14 Do not embed sub-documents if they are many
+* G15 Index all documents for better performance
+* G16 Combine embedding and referencing if necessary
+* G17 Bucket documents with large content
+* G18 Denormalize document when read write frequency is very low
+* G19  Denormalize two connected documents for semi-combined re- trieval
+* G20 Use tags implementation style for data transfer
+* G21 Use directory hierarchies if security is a priority
+* G22 Use document collections implementation style
+* G23 Use Non-visible metadata for data transfer between nodes or server
+
+
+Traditional Model – “Schema on Write”
+
+
+Relational model vs Aggregate model
+
+Big data Model: Schema on read.  With the Big Data and NoSQL paradigm, “Schema-on-Read” means you do not need to know how you will use your data when you are storing it. 
+
+
+
+
+https://www.slideshare.net/fabiofumarola1/data-modeling-for-nosql-12
+
+https://www.slideshare.net/fabiofumarola1/6-data-modeling-for-nosql-22
 
 Apache HAWQ
 

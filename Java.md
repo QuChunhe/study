@@ -1,5 +1,7 @@
 
 
+Power of 2 sized allocation
+
 ＃ Parallelism
 
 [Java多线程及并行编程基础 莱斯大学](https://www.bilibili.com/video/BV1St411i7oa?from=search&seid=7184861422555047434)
