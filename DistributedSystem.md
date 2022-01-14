@@ -1938,3 +1938,6 @@ MapReduce pattern
 [Caches, Modes, and Unstable Systems](https://brooker.co.za/blog/2021/08/27/caches.html)
 
 [The Fundamental Mechanism of Scaling](https://brooker.co.za/blog/2021/01/22/cloud-scale.html#foot3)
+
+
+[分布式和存储的那些事](https://www.zhihu.com/column/distributed-storage)

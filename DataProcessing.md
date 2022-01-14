@@ -20,9 +20,11 @@ In addition to making updates and reads very fast, normalization eliminates the 
 
 
 模型的层次
-* Conceptual Model (概念模型)
-* Logical Model (逻辑模型)
-* Pyhsical Model (物理模型)
+* Conceptual Model (概念模型): 实体和关系
+* Logical Model (逻辑模型)：实体、关系和属性（列）
+* Pyhsical Model (物理模型)：实体、关系和属性（列）、属性类型、主键和外键
+
+[Dimensional Modeling Techniques](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/)
 
 [The Snowflake Elastic Data Warehouse](http://pages.cs.wisc.edu/~yxy/cs839-s20/papers/snowflake.pdf)
 
@@ -86,6 +88,8 @@ In addition to making updates and reads very fast, normalization eliminates the 
 Data Warehouse 所有的主题 , Data Mart特定的主题
 
 
+
+
 Modern Data Warehouse
 1. Ingest: Data orchestration and monitoring
 2. Store; Big Data store
@@ -105,7 +109,7 @@ Use a data lake:
 * Apps and users interpret the data as they see fit 
 
 two approaches for building data warehouses
-* Kimball methodology(Dimensional Modeling):Bottom up aproach
+* Kimball methodology(Dimensional Modeling): Bottom up aproach
    * Facts and dimensions, star schema
    * less tables, but have duplicate data
    * Easier for user to understand
@@ -116,6 +120,94 @@ two approaches for building data warehouses
    * History tables, natural keys
    * Goog for indirect end-user access of data
 
+Ralph Kimball introduced the data warehouse/business intelligence industry to dimensional modeling in 1996 with his seminal book, The Data Warehouse Toolkit.
+
+Dimensional models have two distinctly different expressions, logical and physical. 不同的存储引擎会以迥然不同的方式存储数据。维度模型实际上是数据仓库应用编程接口（API）。The power of this API lies in the consistent and uniform interface seen by all observers, both users and BI applications. We see that it doesn’t matter where the bits are stored or how they are delivered when an API request is launched.
+
+
+[Kimball Dimensional Modeling Techniques](http://www.kimballgroup.com/wp-content/uploads/2013/08/2013.09-Kimball-Dimensional-Modeling-Techniques11.pdf)
+
+Dimension Surrogate Keys: The DW/BI system needs to claim control of the primary keys of all dimensions; rather than using explicit natural keys or natural keys with appended dates, you should create anonymous integer primary keys for every dimension. These dimension surrogate keys are simple integers, assigned in sequence, starting with the value 1, every time a new key is needed. The date dimension is exempt from the surrogate key rule; this highly predictable and stable dimension can use a more meaningful primary key.
+
+
+The four key decisions made during the design of a dimensional model include:
+1. Select the business process.
+2. Declare the grain.
+3. Identify the dimensions.
+4. Identify the facts
+
+
+Natural, Durable, and Supernatural Keys.
+Natural keys created by operational source systems are subject to business rules outside the control of the DW/BI system.
+
+a new durable key must be created that is persistent and does not change in this situation. This key is sometimes referred to as a durable supernatural key.
+
+
+Slowly Changing Dimension Techniques
+* Type 0: Retain Original. With slowly changing dimension type 0, the dimension attribute value never changes, so facts are always grouped by this original value. 
+* Type 1: Overwrite. With slowly changing dimension type 1, the old attribute value in the dimension row is overwritten with the new value; type 1 attributes always reflects the most recent assignment, and therefore this technique destroys history. 
+* Type 2: Add New Row. Slowly changing dimension type 2 changes add a new row in the dimension with the updated attribute values.
+* Type 3: Add New Attribute. Slowly changing dimension type 3 changes add a new attribute in the dimension to preserve the old attribute value; the new value overwrites the main attribute as in a type 1 change. This kind of type 3 change is sometimes called an alternate reality.
+* Type 4: Add Mini-Dimension. Slowly changing dimension type 4 is used when a group of attributes in a dimension rapidly changes and is split off to a mini-dimension. This situation is sometimes called a rapidly changing monster dimension.
+* Type 5: Add Mini-Dimension and Type 1 Outrigger.
+Slowly changing dimension type 5 is used to accurately preserve historical attribute values, plus report historical facts according to current attribute values. Type 5 builds on the type 4 mini- dimension by also embedding a current type 1 reference to the mini-dimension in the base dimension.
+* ...
+
+Advanced Fact Table Techniques
+* Fact Table Surrogate Keys. Surrogate keys are used to implement the primary keys of almost all dimension tables. In addition, single column surrogate fact keys can be useful, albeit not required. 
+* Centipede Fact Tables. Some designers create separate normalized dimensions for each level of a many-to- one hierarchy. This results in a centipede fact table with dozens of hierarchically related dimensions. Centipede fact tables should be avoided.
+* Numeric Values as Attributes or Facts. Designers sometimes encounter numeric values that don’t clearly fall into either the fact or dimension attribute categories. If the numeric value is used primarily for calculation purposes, it likely belongs in the fact table. If a stable numeric value is used predominantly for filtering and grouping, it should be treated as a dimension attribute; the discrete numeric values can be supplemented with value band attributes (such as $0-50).
+* Lag/Duration Facts.
+
+
+http://databaseanswers.org/downloads/Dimensional_Modelling_by_Example.pdf
+
+
+A general fact table consists of two main attribute groups:
+* Foreign keys to dimensional tables
+* Measures
+
+Measures (i.e. metrics or business facts) in a fact table can be:
+* Additive: summable across any dimension
+* Semi-additive: summable across some dimensions
+* Non-additive: not summable (e.g. various ratios)
+
+dim_, fact,
+
+事实表的类型
+* Transaction Fact Tables
+* Periodic Snapshot Fact Tables
+* Factless Fact Tables；student attendance
+
+Accumulating Snapshot Fact Tables
+
+https://vertabelo.com/blog/facts-about-facts-organizing-fact-tables-in-data-warehouse-systems/
+
+
+
+Business Events can can be classified in to 3 types:
+* Discrete. Discrete Events are represented as Transaction Fact tables in the Data Warehouse.
+* Evolving. Accumulating Snapshot Fact
+* Recurring. Periodic Snapshot Fact
+
+
+Dimensions provide the “who, what, where, when, why, and how” context of a business process event. Dimension tables contain the descriptive attributes used by BI applications for filtering and grouping the facts.
+
+Slowly Changing Dimensions
+
+Dimensions are often referred to as ‘Slowly Changing Dimensions’. This describes the fact that dimensions members are relatively static but do change, albeit slowly, over time.
+
+Hierarchies
+* Natural Hierarchies.
+* Parent-Child Hierarchies. Parent-Child Hierarchies are also know as Ragged Hierarchies.
+
+Role Play Dimension.A Fact can be associated with a Dimension more than once in a different role. These secondary associations are known as Role Play Dimensions. 
+
+Junk Dimensions. Transactions typically produce a set of miscellaneous, low-cardinality flags and indicators. E.g. Sale Type, Sale Status etc. Rather than making separate dimensions for each flag, you combine them in a single junk dimension. This dimension does not need to be (but can be) the Cartesian product of all the attributes’ possible values, but should contain the combination of values that actually occur in the source data.
+
+
+Conformed Dimensions are Dimensions that are shared by the Fact tables.
+
 自顶向下的方法
 * 先有模型
 * 确定需要解决的问题
@@ -124,10 +216,59 @@ two approaches for building data warehouses
 * 后有模型
 * 不确定需要解决的问题
 
+
+
+organizing:S3
+
+environment/dataType/dataSource/dateTime/partitionDimention
+* environment
+  * test
+  * staging
+  * product
+* dataType
+  * report
+  * mysql
+  * video
+  * image
+* dataSource
+  * report: robot
+  * mysql: 平台名称  
+* dateTime 
+  * 根据数据规模选择粒度，年/月/日/时
+  * 采用整数表示，便于根据范围查询：例如日采用yyyyMMdd, 小时采用yyMMddhh
+  * 仅仅对于日志数据和汇总数据采用dateTime，对于业务数据，不采用dateTime
+* partitionDimention：根据应用和需求，可以没有
+
+
+所有的时间
+* 对于时刻，如Datetime和timestamp类型，都采用unix时间戳
+* 对于时段，采用开始的时刻和结束时刻的unix时间戳，如果是固定时长，开始时刻或者
+
+默认值和null
+* 尽量避免null值
+  * 会带来运算上的问题，例如筛选条件和排序等，往往需要增加额外逻辑处理null值
+  * 如果不参与运算并且null值代表特殊情况，比如耗材使用量中，采用nul代表没有此种耗材
+* 尽量采用默认值
+  * 默认值和无效值
+  * 对于耗材使用量，可以采用默认值-1，代表不存在这种耗材
+  * 对于维度，可以定义专门的值，用于代表为止
+
+[Design Tip #128 Selecting Default Values for Nulls](https://www.kimballgroup.com/2010/10/design-tip-128-selecting-default-values-for-nulls/)
+
+* data source/subject /catalog 
+* time
+
+关联关系
+* 增加列，对于一对一的关系
+* 迭代数据：多个一对一的关系，或者一对多的关系，多对多的关系
+* 外建
+* 采用桶/路径
+
+
 两类主键
 * natural keys：自然主键，有业务含义。A natural key is a single column or set of columns that uniquely identifies a single record in a table, where the key columns are made up of real data.  A natural key is a column value that has a relationship with the rest of the column values in a given data record。
   * 需要更少的表以及更少的join操作
-  * 主键为业务数据，可以之间进行检索，更加利于查询
+  * 主键为业务数据，可以直接进行检索，更加利于查询
   * 便于partition和sharding
 * surrogate keys：人工主键，自增ID或者UUID。The surrogate key is just a value that is generated and then stored with the rest of the columns in a record.  The key value is typically generated at run time right before the record is inserted into a table. 
   * 一般为整数，4或8个字节，占用更少的键存储，便于索引
@@ -135,15 +276,33 @@ two approaches for building data warehouses
 
 The  "data lake" uses A bottoms-up approach.
 
-* 大宽表：NoSQL，避免JOIN，查询模式固定。数据规模超大，多为日志数据，字段多样并且多为字符串类型，例如商品的特性(不同类型的商品具有迥异的特性)。复杂运算、海量检索
-* 小表+业务表：MySQL，可以join，查询模式多样。汇总数据中小，多为汇总数据，字段固定并且多为数字类型。部分检索（条件为主键或者索引）、reduce(例如count、sum、max等)和map运算
+* 宽表：列多，表少，列之间存在依赖关系，反范式
+  * 不变的或者缓慢变化的维度
+  * 依赖于应用，不同的应用往往需要不同的表和字段
+  * 检索模式固定，
+  * 采用NoSQL存储
+  * 为了避免JOIN：不支持JOIN或者JOIN的成本很高
+  * 数据规模超大，多为日志数据。
+  * 字段多样并且多为字符串类型，例如商品的特性(不同类型的商品具有迥异的特性)。
+  * 复杂运算、海量检索
+* 窄表：列少，表多，除少数情况外，基本上遵循范式，换言之，采用实时表/小汇总表加上维度表/业务表的方式 
+  * 能够支持更多的应用 
+  * 采用关系数据库，例如MySQL，
+  * 能够JOIN操作，查询模式多样。汇总数据中小，多为汇总数据，字段固定并且多为数字类型。部分检索（条件为主键或者索引）、reduce(例如count、sum、max等)和map运算
   
+denormalized data models
+
+
   汇总表
 * 维度：最新粒度+基本维度。为了性能考虑，可能需要建立不同粒度和不同维度的汇总表
 * 统计值
 完成基本指标的
 * 多个粒度：reduce运算+join
 * 特定维度：group
+
+Facts tables and Measures
+
+Dimensions and Attributes
 
 Exactly what is a data lake? A storage repository, usually Hadoop, that holds a vast amount of raw data in its native format until it is needed. 
 * Inexpensively store unlimited data 
@@ -203,14 +362,6 @@ Common ways to organize the data
   * supplier/partner confidential
   * sensitive - financial
 
-organizing
-* evn
-  * test
-  * staging
-  * product
-* report/mysql/video
-* data source/subject  
-* time
 
 
 Multidimensional data model (MDDM)
@@ -562,6 +713,83 @@ https://www.slideshare.net/fabiofumarola1/data-modeling-for-nosql-12
 
 https://www.slideshare.net/fabiofumarola1/6-data-modeling-for-nosql-22
 
+
+
+Dimensional Modeling for Analytics
+
+If data from all the source systems is kept in the same dimension tables in the same destination format, these tables are said to be conforming.
+
+
+
+Integrating Data from Disparate Sources 集成来自不同来源的数据
+
+Thus, the first challenge solved by ETL tools is converting records from the normalized schemas favored by operational systems to the denormalized schemas favored by data warehouses, as described in the previous section.
+The second challenge is converting data from many different operational applications to a single common schema and representation—the “conforming” data mentioned in that section. 
+
+Preserving History Using Slowly Changing Dimensions
+
+Limitations of the Data Warehouse as a Historical Repository
+
+Moving to a Data Pond
+* Keeping History in a Data Pond。Let’s first examine how history is kept in the data pond using partitions, and the limi‐ tations of this approach for keeping track of slowly changing dimensions. 
+* Implementing Slowly Changing Dimensions in a Data Pond.
+
+
+Denormalizing attributes to preserve state: Another option is to denormalize the data and add all the important attributes to the file containing the transaction data. We can add only the fields for which we would provide slowly changing dimensions in a data warehouse.
+
+snapshots
+
+Preserving state using snapshots。Yet another alternative is to ingest the latest version of the data every day. To support this, we would have a directory tree of dimensional data, but instead of a folder for each day being part of the data set (a partition), each day’s folder would be a complete version or snapshot of the data set.
+
+
+Raw Data
+* Data breadth
+* Original or raw data。This type of change is known as data interpolation, a routine analytic activity
+* Non-tabular formats
+
+
+Lambda Architecture
+
+
+<<Big Data: Principles and Best Prac‐ tices of Scalable Realtime Data Systems>>
+
+Kappa Architecture
+
+
+ transform data to an analytics-friendly schema for performance reasons.
+
+
+
+Open file formats, such as Apache Parquet and ORC
+
+
+record
+
+ Apache Parquet has become the de facto file format to store data for the unstructured portion of a data lakehouse. 
+
+
+
+ These open metadata layers transform the unstructured portion of the data lake from being managed at the file- level to a logical table-level. Examples of this transformation include Delta Lake (created by Databricks), Hudi (created by Uber), and Iceberg (created by Netflix).
+
+
+ Lineage of data
+
+ KPIs (Key Performance Indicators) are probably the most important indicators the end user can provide the organization. 
+
+
+ Gartner refers to Data Lakes in broad terms as “enterprise-wide data management platforms for analysing disparate sources of data in its native format”.
+
+ Data Pond also known as Data Puddles (in Australia we could also refer to them as Data Billabongs)
+
+ Before data can be loaded into a data warehouse, it must have some shape and structure—in other words, a model. The process of giving data some shape and structure is called schema-on-write. 
+
+ A data lake, on the other hand, accepts data in its raw form. When you do need to use data, you have to give it shape and structure. This is called schema-on-read, a very different way of processing data
+
+
+ * A data puddle is basically a single-purpose or single-project data mart built using big data technology.
+ * A data pond is a collection of data puddles. It may be like a poorly designed data warehouse, which is effectively a collection of colocated data marts, or it may be an offload of an existing data warehouse.
+ * A data lake is different from a data pond in two important ways. First, it supports self-service, where business users are able to find and use data sets that they want to use without having to rely on help from the IT department. Second, it aims to contain data that business users might possibly want even if there is no project requiring it at the time.
+* A data ocean expands self-service data and data-driven decision making to all enterprise data, wherever it may be, regardless of whether it was loaded into the data lake or not.
 Apache HAWQ
 
 

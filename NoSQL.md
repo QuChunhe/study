@@ -244,3 +244,46 @@ the command names.
 
 
 Alex Petrov，Database Internals： A Deep Dive into How Distributed Data Systems Work
+
+
+
+# TiDB
+
+```shell
+git clone https://github.com/pingcap/tidb-docker-compose.git
+
+cd tidb-docker-compose 
+
+docker-compose pull
+
+docker-compose up -d
+
+mysql -h127.0.0.1 -P 4000 -u root
+
+http://localhost:3000
+
+admin  admin
+
+```
+
+
+```sql
+ALTER TABLE table_name SET TIFLASH REPLICA count;
+
+```
+count 表示副本数，0 表示删除。
+
+```
+SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = '<db_name>' and TABLE_NAME = '<table_name>'
+```
+* VAILABLE 字段表示该表的 TiFlash 副本是否可用。1 代表可用，0 代表不可用。副本状态为可用之后就不再改变，如果通过 DDL 命令修改副本数则会重新计算同步进度。
+* PROGRESS 字段代表同步进度，在 0.0~1.0 之间，1 代表至少 1 个副本已经完成同步
+  
+
+[Large-scale Incremental Processing Using Distributed Transactions and Notifications](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36726.pdf)
+ # RocksDB
+ 
+ [RocksDB](https://rocksdb.org) 
+
+
+  Log Structured-Merge Tree（日志结构合并树）
