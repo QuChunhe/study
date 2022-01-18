@@ -921,6 +921,16 @@ Optimization with Innodb
 
 [采坑之使用MySQL，SQL_MODE有哪些坑](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
 
+
+```sql
+SELECT @@GLOBAL.sql_mode;
+SELECT @@SESSION.sql_mode;
+```
+
+Use IFNULL or COALESCE:
+
+The COALESCE function accepts two arguments and returns the second argument if the first argument is NULL; otherwise, it returns the first argument.
+
 [Server SQL Modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
 
 
@@ -1442,10 +1452,13 @@ https://mariadb.com/kb/en/innodb-system-tablespaces/
    mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -h 127.0.0.1 mysql -p
   
   
+  MySQL FROM_UNIXTIME(date) 函数把 UNIX 时间戳转换为普通格式的日期时间值，与 UNIX_TIMESTAMP 函数互为反函数.TIME_FORMAT(time, format) 
+
+  CONVERT_TZ (datetime, from_tz, to_tz)
   
-  
-  
+```
   select @@global.sql_mode;
+```
 
   https://dev.mysql.com/doc/refman/8.0/en/mysql-tzinfo-to-sql.html
 

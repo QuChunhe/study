@@ -4,33 +4,7 @@
 * 日志数据：只增不改不删
 * 汇总数据：顺序增少量改
 
-两类应用
-* OLAP – Online Analytical Processing
-* OLTP – Online Transactional Processing
 
-There are two types of schemas:
-* Predefined
-* Dynamic
-
-There are two types of data models:
-* Relational
-* Nonrelational
-
-In addition to making updates and reads very fast, normalization eliminates the risk of inconsistent data.
-
-
-模型的层次
-* Conceptual Model (概念模型): 实体和关系
-* Logical Model (逻辑模型)：实体、关系和属性（列）
-* Pyhsical Model (物理模型)：实体、关系和属性（列）、属性类型、主键和外键
-
-[Dimensional Modeling Techniques](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/)
-
-[The Snowflake Elastic Data Warehouse](http://pages.cs.wisc.edu/~yxy/cs839-s20/papers/snowflake.pdf)
-
-[NoSQL Data Modeling Techniques](https://www.cnblogs.com/balaamwe/archive/2012/05/02/2478699.html)
-
-[NoSQL Data Modeling Techniques](https://www.idc-online.com/technical_references/pdfs/information_technology/NoSQL_Data_Modeling_Techniques.pdf)
 
 ![大数据集成架构](pics/big-date-integration.jpg)
 * 数据来源：业务数据和日志数据
@@ -88,7 +62,38 @@ In addition to making updates and reads very fast, normalization eliminates the 
 Data Warehouse 所有的主题 , Data Mart特定的主题
 
 
+两类应用
+* OLAP – Online Analytical Processing
+* OLTP – Online Transactional Processing
 
+There are two types of schemas:
+* Predefined。Traditional Model – “Schema on Write”
+* Dynamic。Big data Model -  Schema on read.  With the Big Data and NoSQL paradigm, “Schema-on-Read” means you do not need to know how you will use your data when you are storing it. 
+
+
+Relational model vs Aggregate model
+
+
+
+There are two types of data models:
+* Relational
+* Nonrelational
+
+In addition to making updates and reads very fast, normalization eliminates the risk of inconsistent data.
+
+
+模型的层次
+* Conceptual Model (概念模型): 实体和关系
+* Logical Model (逻辑模型)：实体、关系和属性（列）
+* Pyhsical Model (物理模型)：实体、关系和属性（列）、属性类型、主键和外键
+
+[Dimensional Modeling Techniques](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/)
+
+[The Snowflake Elastic Data Warehouse](http://pages.cs.wisc.edu/~yxy/cs839-s20/papers/snowflake.pdf)
+
+[NoSQL Data Modeling Techniques](https://www.cnblogs.com/balaamwe/archive/2012/05/02/2478699.html)
+
+[NoSQL Data Modeling Techniques](https://www.idc-online.com/technical_references/pdfs/information_technology/NoSQL_Data_Modeling_Techniques.pdf)
 
 Modern Data Warehouse
 1. Ingest: Data orchestration and monitoring
@@ -102,10 +107,10 @@ Modern Data Warehouse
 * AI + ML
   
 Use a data lake: 
-* All data has potential value 
-* Data hoarding 
-* No defined schema—stored in native format 
-* Schema is imposed and transformations are done at query time (schema-on-read). 
+* All data has potential value 所有数据都有潜在价值
+* Data hoarding 数据存储
+* No defined schema—stored in native format 并不定义数据模式，以天然格式存储 
+* Schema is imposed and transformations are done at query time (schema-on-read). 在查询时施加模式并执行转换
 * Apps and users interpret the data as they see fit 
 
 two approaches for building data warehouses
@@ -220,11 +225,18 @@ Conformed Dimensions are Dimensions that are shared by the Fact tables.
 
 organizing:S3
 
-environment/dataType/dataSource/dateTime/partitionDimention
+命名是个大问题
+* 符合英语使用习惯
+* 能够标识使用目的
+* 便于实现分权管理
+* 易于被检索和使用
+
+environment/dataType/dataSource/dateTime/partitionDimention/fileName
 * environment
   * test
   * staging
   * product
+  * private: 依据国家法规或者公司规定，需要特殊权限才能访问的数据
 * dataType
   * report
   * mysql
@@ -234,63 +246,102 @@ environment/dataType/dataSource/dateTime/partitionDimention
   * report: robot
   * mysql: 平台名称  
 * dateTime 
-  * 根据数据规模选择粒度，年/月/日/时
+  * 根据数据规模选择粒度，年/月/日/时，要避免数据规模较小而时间粒度又太小，而导致的大量小文件问题。
   * 采用整数表示，便于根据范围查询：例如日采用yyyyMMdd, 小时采用yyMMddhh
   * 仅仅对于日志数据和汇总数据采用dateTime，对于业务数据，不采用dateTime
 * partitionDimention：根据应用和需求，可以没有
+* fileName要有业务含义，以便于根据文件名区分和检索文件
+  * 类似的数据具有相同的文件名前缀
+  * 前缀能够支持partition，例如采用family code或者sn作为文件名前缀
 
 
 所有的时间
-* 对于时刻，如Datetime和timestamp类型，都采用unix时间戳
-* 对于时段，采用开始的时刻和结束时刻的unix时间戳，如果是固定时长，开始时刻或者
+* 时刻（Instant），通常作为事件数据或状态数据的维度，类型为Datetime和Timestamp类型。为了避免时区问题，可以采用unix时间戳，根据精度要求，可以选择秒或者毫秒。
+* 时段（Duration），一般包括开始时刻和结束时刻，做完的unix时间戳，如果是固定时长，开始时刻或者
 
-默认值和null
-* 尽量避免null值
-  * 会带来运算上的问题，例如筛选条件和排序等，往往需要增加额外逻辑处理null值
+尽量避免使用null值，而是采用适当的默认值
+* null值会带来复杂性
+  * null会使运算出现异常，例如筛选条件和排序等，往往需要增加额外逻辑处理null值
+  * null会使得join操作无效，例如出现总和大于各个部分之和的问题
   * 如果不参与运算并且null值代表特殊情况，比如耗材使用量中，采用nul代表没有此种耗材
-* 尽量采用默认值
-  * 默认值和无效值
-  * 对于耗材使用量，可以采用默认值-1，代表不存在这种耗材
-  * 对于维度，可以定义专门的值，用于代表为止
+* 尽量采用默认值，选择默认值时注意如下几种不同情况
+  * 缺失：应该有，但是没有。
+  * 无效：有值但是超过许可范围，例如
+  * 无值：在这个维度不可应用，例如，对于40机型，不存在耗材使用量，可以采用默认值-1，代表不存在这种耗材
+如果对于数据质量要求较高的场景，可以采用不同的取值以缺别上述不同的情况，从而将处理留给数据的使用者来处理。例如对于维度，可以分别定义专门的值，用来代表缺失、无效和无值的情况。
+
+* 作为数据的统一出口，支撑不同的应用。
+  * 报表
+  * 机器学习
+* 汇聚全公司各种类型的数据
+  * 激光雷达数据、视频数据，甚至现场测量数据
+  * “无用数据”可能并非没有价值
+
+目录服务
+
+包括
+* 说明文档
+* 数据组织
+* 数据定义
+* 通用接口：SQL
+
+数据服务
+
+* 及时入湖
+* 实时如仓
+* 按需处理
+
+Virtualization versus a catalog-based logical data lake
 
 [Design Tip #128 Selecting Default Values for Nulls](https://www.kimballgroup.com/2010/10/design-tip-128-selecting-default-values-for-nulls/)
 
 * data source/subject /catalog 
 * time
 
-关联关系
-* 增加列，对于一对一的关系
-* 迭代数据：多个一对一的关系，或者一对多的关系，多对多的关系
-* 外建
-* 采用桶/路径
+在NoSQL中实现关联关系的方法
+* 增加新列，增加一列或者多列来存储所需要的关联数据
+* 嵌套数据：很多数据库支持复合数据类型，例如数组和map等，从而可以在一列中存储多个不同的数据。这使得可以采用嵌套数据方式存储所关联的数据
+* 外建引用：能够支持JOIN的数据库，并且相关联的两个或者多个表中，最多只有一个数据规模比较大，那么可以考虑采用采用外建方式关联数据。
+* 采用分区：使用JOIN条件作为分区条件，有效的降低JOIN代价。
 
 
 两类主键
-* natural keys：自然主键，有业务含义。A natural key is a single column or set of columns that uniquely identifies a single record in a table, where the key columns are made up of real data.  A natural key is a column value that has a relationship with the rest of the column values in a given data record。
-  * 需要更少的表以及更少的join操作
+* natural keys：自然主键，也被称为业务数据，其采用具有业务含义的一列或者多列作为主键。A natural key is a single column or set of columns that uniquely identifies a single record in a table, where the key columns are made up of real data.  A natural key is a column value that has a relationship with the rest of the column values in a given data record。
   * 主键为业务数据，可以直接进行检索，更加利于查询
-  * 便于partition和sharding
-* surrogate keys：人工主键，自增ID或者UUID。The surrogate key is just a value that is generated and then stored with the rest of the columns in a record.  The key value is typically generated at run time right before the record is inserted into a table. 
-  * 一般为整数，4或8个字节，占用更少的键存储，便于索引
-  * 
+  * 便于根据主键进行partition和sharding，例如MySQL分区字段必须包含在主键中
+  * 便于聚会数据，从而减小无效数据读取和传输
+* Surrogate Keys：人工主键，也被称为代理主键，其采用与业务无关的整数作为主键，数据类型为整数或者UUID。The surrogate key is just a value that is generated and then stored with the rest of the columns in a record.  The key value is typically generated at run time right before the record is inserted into a table.。建议采用整数作为人工主键，因为整数仅仅占用4或8个字节，占用更少存储和缓存空间，尤其是键存储空间，便于索引。存在如下两种具体的整数人工主键生成方式
+  * 数据库生成，自增长主键或者利用Sequence（有些数据库支持Sequence）
+  * 由应用生成，这个整数可以存在特定结构，例如SnowFlake ID
+  
+
+
+UUID 是指Universally Unique Identifier，翻译为中文是 通用唯一识别码
+
+[UUIDs are Popular, but Bad for Performance — Let’s Discuss](https://www.percona.com/blog/2019/11/22/uuids-are-popular-but-bad-for-performance-lets-discuss/)
+
+复合主键设计是需要考虑
+* 避免访问热点。针对于OLTP应用，根据标识符获取对应的少量数据。
+* 减小数据扫描。针对于OLAP应用，根据查询条件范围读取大量数据。基于clustered index， 合理设计主键，使得那些经常一块被访问的数据聚合在一起，从而减小不必要的数据操作。
 
 The  "data lake" uses A bottoms-up approach.
 
-* 宽表：列多，表少，列之间存在依赖关系，反范式
+* 宽表：列多，表少，在一个表的不同列之间存在依赖关系。因此，宽表是反范式的，但是不需要JOIN或者需要很少的JOIN操作
   * 不变的或者缓慢变化的维度
-  * 依赖于应用，不同的应用往往需要不同的表和字段
-  * 检索模式固定，
-  * 采用NoSQL存储
+  * 表设计依赖于应用，不同的应用往往需要不同的表和字段
+  * 检索模式固定，在一些情况下需要针对不同查询模式，
+  * 采用NoSQL存储或者在MySQL中需要对于数量巨大的两个表做JOIN操作。
   * 为了避免JOIN：不支持JOIN或者JOIN的成本很高
   * 数据规模超大，多为日志数据。
   * 字段多样并且多为字符串类型，例如商品的特性(不同类型的商品具有迥异的特性)。
   * 复杂运算、海量检索
-* 窄表：列少，表多，除少数情况外，基本上遵循范式，换言之，采用实时表/小汇总表加上维度表/业务表的方式 
-  * 能够支持更多的应用 
-  * 采用关系数据库，例如MySQL，
+* 窄表：列少，表多，除了少数情况外，基本上遵循范式，换言之，采用事实表表加上维度表/业务表的方式 
+  * 能够灵活地支持更多的应用 
+  * 采用关系数据库或者有效支持JOIN操作的NoSQL数据库，
   * 能够JOIN操作，查询模式多样。汇总数据中小，多为汇总数据，字段固定并且多为数字类型。部分检索（条件为主键或者索引）、reduce(例如count、sum、max等)和map运算
   
 denormalized data models
+
 
 
   汇总表
@@ -315,9 +366,12 @@ Exactly what is a data lake? A storage repository, usually Hadoop, that holds a 
 * Hadoop cluster offers faster ETL processing over SMP solutions 
 * Quick user access to data for power users/data scientists (allowing for faster ROI) 
 * Data exploration to see if data valuable before writing ETL and schema for relational database, or use for one-time report 
-* Allows use of Hadoop tools such as ETL and extreme analytics • Place to land IoT streaming data • On-line archive or backup for data warehouse data 
+* Allows use of Hadoop tools such as ETL and extreme analytics 
+* Place to land IoT streaming data 
+* On-line archive or backup for data warehouse data 
 * With Hadoop/ADLS, high availability and disaster recovery built in 
-* Keep raw data so don’t have to go back to source if need to re-run • Allows for data to be used many times for different analytic needs and use cases 
+* Keep raw data so don’t have to go back to source if need to re-run 
+* Allows for data to be used many times for different analytic needs and use cases 
 * Cost savings and faster transformations: storage tiers with lifecycle management; separation of storage and compute resources allowing multiple instances of different sizes working with the same data simultaneously vs scaling data warehouse; low-cost storage for raw data saving space on the EDW 
 * Extreme performance for transformations by having multiple compute options each accessing different folders containing data 
 * The ability for an end-user or product to easily access the data from any location
@@ -699,12 +753,6 @@ Finally, understand the data access patterns, the nature of the data to be used 
 * G23 Use Non-visible metadata for data transfer between nodes or server
 
 
-Traditional Model – “Schema on Write”
-
-
-Relational model vs Aggregate model
-
-Big data Model: Schema on read.  With the Big Data and NoSQL paradigm, “Schema-on-Read” means you do not need to know how you will use your data when you are storing it. 
 
 
 
@@ -790,6 +838,79 @@ record
  * A data pond is a collection of data puddles. It may be like a poorly designed data warehouse, which is effectively a collection of colocated data marts, or it may be an offload of an existing data warehouse.
  * A data lake is different from a data pond in two important ways. First, it supports self-service, where business users are able to find and use data sets that they want to use without having to rely on help from the IT department. Second, it aims to contain data that business users might possibly want even if there is no project requiring it at the time.
 * A data ocean expands self-service data and data-driven decision making to all enterprise data, wherever it may be, regardless of whether it was loaded into the data lake or not.
+
+
+Organizing the Data Lake
+* A raw or landing zone where data is ingested and kept as close as possible to its original state.
+* A gold or production zone where clean, processed data is kept.
+* A dev or work zone where the more technical users such as data scientists and data engineers do their work. This zone can be organized by user, by project, by subject, or in a variety of other ways. Once the analytics work performed in the work zone gets productized, it is moved into the gold zone.
+* A sensitive zone that contains sensitive data.
+
+
+分析的四个步骤
+1. Find and Understand data： Documenting the Enterprise。To bridge that gap, many enterprises are investing in data catalogs that associate business terms or tags with data sets and their fields, allowing analysts to quickly find data sets using such tags and to understand these data sets by looking at the tags associated with each field. Usually, multiple data sets contain the data that analysts need, so the next step becomes selecting which one to use. Analysts usually include judgments about how complete, accurate, and trustworthy the data is when making their choices
+2. Provision
+3. Prep: clean it and convert it to a format appropriate for analy‐ sis.
+4. Analyze
+
+
+
+The 6 dimensions of data quality are: Completeness, Consistency, Conformity, Accuracy, Integrity and Timeliness
+
+
+There are three main use cases for metadata repositories:
+* Finding data assets
+* Tracking lineage (provenance)
+* Impact analysis
+
+Moving to a Data Pond
+* Keeping History in a Data Pond
+* Implementing Slowly Changing Dimensions in a Data Pond
+* Denormalizing attributes to preserve state
+* Preserving state using snapshots
+
+
+Growing Data Ponds into a Data Lake—Loading Data That’s Not in the Data Warehouse
+* Data breadth
+* Original or raw data
+* Non-tabular formats
+
+Data from the data lake can be consumed by a variety of target systems. 
+* Data warehouses
+* Operational data stores (ODSs)
+* Real-time applications and data products
+
+the data warehouses are not designed to handle a large volume of ad hoc queries and analytics.
+数仓并不能处理大数据规模的即席查询和分析。
+
+
+https://www.cdc.gov/ncbddd/hearingloss/documents/dataqualityworksheet.pdf
+
+basic operation
+* put(key, value)
+* get(key)
+* delete(key)
+* merge(key, delta)
+
+
+The Four Pillars of the Data Warehouse
+* Oriented to a single subject or a particular functional area. For example, it is oriented to company sales.
+* They unify and create consistency among data from disparate sources.
+* Persistent and immutable. Once data enters a data warehouse, it stays there and does not change.
+* Structured in time intervals. To provide information from a historical perspective, data warehouses record information over different intervals, such as weekly, monthly, quarterly, etc.
+
+
+钻取（Drill-down）：在维的不同层次间的变化，从上层降到下一层，或者说是将汇总数据拆分到更细节的数据，比如通过对2010年第二季度的总销售数据进行钻取来查看2010年第二季度4、5、6每个月的消费数据，如上图；当然也可以钻取浙江省来查看杭州市、宁波市、温州市……这些城市的销售数据。
+
+　　上卷（Roll-up）：钻取的逆操作，即从细粒度数据向高层的聚合，如将江苏省、上海市和浙江省的销售数据进行汇总来查看江浙沪地区的销售数据，如上图。
+
+　　切片（Slice）：选择维中特定的值进行分析，比如只选择电子产品的销售数据，或者2010年第二季度的数据。
+
+　　切块（Dice）：选择维中特定区间的数据或者某批特定值进行分析，比如选择2010年第一季度到2010年第二季度的销售数据，或者是电子产品和日用品的销售数据。
+
+　　旋转（Pivot）：即维的位置的互换，就像是二维表的行列转换，如图中通过旋转实现产品维和地域维的互换。
+
+
 Apache HAWQ
 
 

@@ -283,7 +283,250 @@ SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = '<db_name>
 [Large-scale Incremental Processing Using Distributed Transactions and Notifications](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36726.pdf)
  # RocksDB
  
- [RocksDB](https://rocksdb.org) 
+[RocksDB](https://rocksdb.org) 
 
 
-  Log Structured-Merge Tree（日志结构合并树）
+* TiDB  
+* TiKV : PRF(gRPC), Transaction, MVCC, Raft, RocksDB
+* PD（Placement Driver）
+   * Meta data management
+   * Load balance management
+
+Join Operator selection
+* Hash join
+* index lookup join
+* sort-merge join
+
+ACID Transaction
+* Based on Google Percolator
+* 'Almost' decentralizeed 2-phase commit
+
+Fractal Tree: B-Tree
+
+
+
+Log Structured-Merge Tree（日志结构合并树）
+1. MemTable, Active MemTable -> write 
+2. Immutable MemTable: ReadOnly MemTable -> read
+3. SSTable(Sorted String Table): LSM-> compaction
+
+Three Basic Constructs of RocksDB 
+* Memtable 
+  * in-memory data structure 
+  * A buffer, temporarily host the incoming writes 
+* Logfile 
+  * Sequentially-written file 
+  * On storage
+* SSTable(=SSTfile) 
+  * Sorted Static Table on storage 
+  * A file which contains a set of arbitrary, sorted key-value pairs inside 
+  * Organized in levels 
+  * Immutable in its life time 
+  * sorted data -> to facilitate easy lookup of keys 
+  * Storage of the entire database
+
+
+MySQL binlog format
+
+Mapping table data to kv store
+
+Secondary index
+
+coprocessor
+
+Multi-Region/Geo-Distributed
+
+Compact操作是十分关键的操作，否则SSTable数量会不断膨胀。在Compact策略上，主要介绍两种基本策略：size-tiered和leveled。
+1. 读放大(Read Amplification):读取数据时实际读取的数据量大于真正的数据量。例如在LSM树中需要先在MemTable查看当前key是否存在，不存在继续从SSTable中寻找。
+2. 写放大(Write Amplification):写入数据时实际写入的数据量大于真正的数据量。例如在LSM树中写入时可能触发Compact操作，导致实际写入的数据量远大于该key的数据量。
+3. 空间放大(Space Amplification):数据实际占用的磁盘空间比数据的真正大小更多。上面提到的冗余存储，对于一个key来说，只有最新的那条记录是有效的，而之前的记录都是可以被清理回收的。
+
+* Memtable, 64MB
+* Level 0, 256MB
+* Level 1, 512MB
+* Level 2, 5GB
+* Level 3, 50GB
+
+Writes 
+* Foreground: 
+  * Writes go to memtable (skiplist) + write-ahead log
+* Background: 
+  * When memtable is full, we flush to Level 0 
+  * When a level is full, we run compaction
+
+Reads 
+* Point queries  
+  * Bloom filters reduce reads from storage •  
+  * Usually only 1 read IO 
+* Range scans 
+  * Bloom filters don’t help 
+  * Depends on amount of memory, 1-2 IO
+
+TiDB 以 Region 为单位对数据进行切分，每个 Region 有大小限制（默认为 96MB）。Region 的切分方式是范围切分。每个 Region 会有多个副本，每一组副本，称为一个 Raft Group。每个 Raft Group 中由 Leader 负责执行这块数据的读和写（TiDB 即将支持 Follower-Read）。Leader 会自动地被 PD 组件均匀调度在不同的物理节点上，以均分读写压力。
+
+对于 Index，TiDB 不止需要支持 Primary Index，还需要支持 Secondary Index。
+
+查询的时候有两种模式，一种是点查.另一种是 Range 查询.
+
+TiDB 对每个表分配一个 TableID，每一个索引都会分配一个 IndexID，每一行分配一个 RowID（如果表有整数型的 Primary Key，那么会用 Primary Key 的值当做 RowID），其中 TableID 在整个集群内唯一，IndexID/RowID 在表内唯一，这些 ID 都是 int64 类型
+
+[三篇文章了解 TiDB 技术内幕 - 说计算](https://pingcap.com/zh/blog/tidb-internal-2)
+
+[三篇文章了解 TiDB 技术内幕 - 说存储](https://pingcap.com/zh/blog/tidb-internal-1)
+
+[为什么要进行调度](https://pingcap.com/zh/blog/tidb-internal-3)
+
+Table files are immutable 
+
+ Other files are append-only 
+
+ Universal Style Compaction
+
+ [](http://www.kereno.com/rocksdb-rof.pdf)
+
+ https://zhuanlan.zhihu.com/p/361390089
+
+ https://blog.csdn.net/junior77/article/details/121809037
+
+* TiKV, a row-based storage engine for TiDB Online Transactional Processing (OLTP), row-based storage engine
+* TiFlash, a columnar storage engine for TiDB Online Analytical Processing (OLAP).columnar storage engine
+
+
+https://docs.pingcap.com/tidb/stable/tiflash-configuration
+
+
+
+Some database management systems refer to clustered indexes as index-organized tables (IOT).
+
+
+Currently, tables containing primary keys in TiDB are divided into the following two categories:
+* NONCLUSTERED: 
+* CLUSTERED
+
+
+
+```sql
+CREATE TABLE t (a BIGINT, b VARCHAR(255), PRIMARY KEY(a, b) CLUSTERED);
+CREATE TABLE t (a BIGINT, b VARCHAR(255), PRIMARY KEY(a, b) NONCLUSTERED);
+```
+
+Note that keywords KEY and PRIMARY KEY have the same meaning in the column definition.
+
+
+In v5.0, using the clustered index feature together with TiDB Binlog is not supported. After TiDB Binlog is enabled, TiDB only allows creating a single integer column as the clustered index of a primary key. 
+
+In v5.0, using the clustered index feature together with TiDB Binlog is not supported. After TiDB Binlog is enabled, TiDB only allows creating a single integer column as the clustered index of a primary key. 
+
+json
+```sql
+CREATE TABLE city (
+    id INT PRIMARY KEY,
+    detail JSON,
+    population INT AS (JSON_EXTRACT(detail, '$.population')),
+    index index_name (population)
+    );
+INSERT INTO city (id,detail) VALUES (1, '{"name": "Beijing", "population": 100}');
+SELECT id FROM city WHERE population >= 100;
+```
+
+https://docs.pingcap.com/tidb/stable/optimistic-transaction
+
+```sql
+CREATE TABLE quarterly_report_status (
+    report_id INT NOT NULL,
+    report_status VARCHAR(20) NOT NULL,
+    report_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+
+PARTITION BY RANGE ( UNIX_TIMESTAMP(report_updated) ) (
+    PARTITION p0 VALUES LESS THAN ( UNIX_TIMESTAMP('2008-01-01 00:00:00') ),
+    PARTITION p1 VALUES LESS THAN ( UNIX_TIMESTAMP('2008-04-01 00:00:00') ),
+    PARTITION p2 VALUES LESS THAN ( UNIX_TIMESTAMP('2008-07-01 00:00:00') ),
+    PARTITION p3 VALUES LESS THAN ( UNIX_TIMESTAMP('2008-10-01 00:00:00') ),
+    PARTITION p4 VALUES LESS THAN ( UNIX_TIMESTAMP('2009-01-01 00:00:00') ),
+    PARTITION p5 VALUES LESS THAN ( UNIX_TIMESTAMP('2009-04-01 00:00:00') ),
+    PARTITION p6 VALUES LESS THAN ( UNIX_TIMESTAMP('2009-07-01 00:00:00') ),
+    PARTITION p7 VALUES LESS THAN ( UNIX_TIMESTAMP('2009-10-01 00:00:00') ),
+    PARTITION p8 VALUES LESS THAN ( UNIX_TIMESTAMP('2010-01-01 00:00:00') ),
+    PARTITION p9 VALUES LESS THAN (MAXVALUE)
+);
+```
+
+
+```sql
+set @@session.tidb_enable_list_partition = ON
+
+CREATE TABLE employees_1 (
+    id INT NOT NULL,
+    fname VARCHAR(30),
+    lname VARCHAR(30),
+    hired DATE NOT NULL DEFAULT '1970-01-01',
+    separated DATE DEFAULT '9999-12-31',
+    job_code INT,
+    store_id INT,
+    city VARCHAR(15)
+)
+PARTITION BY LIST COLUMNS(city) (
+    PARTITION pRegion_1 VALUES IN('LosAngeles', 'Seattle', 'Houston'),
+    PARTITION pRegion_2 VALUES IN('Chicago', 'Columbus', 'Boston'),
+    PARTITION pRegion_3 VALUES IN('NewYork', 'LongIsland', 'Baltimore'),
+    PARTITION pRegion_4 VALUES IN('Atlanta', 'Raleigh', 'Cincinnati')
+);
+```
+
+
+混合事务型和分析型处理的引擎，
+基于行式存储，在执行读操作时，具有更高的性能
+采用异步复制，以非阻塞方式写入TiKV。智能选择
+
+https://docs.pingcap.com/tidb/stable/tune-tiflash-performance
+```sql
+set @@tidb_distsql_scan_concurrency = 80;
+set @@tidb_allow_batch_cop = 1;
+set @@tidb_opt_agg_push_down = 1;
+set @@tidb_opt_distinct_agg_push_down = 1;
+```
+
+对于 OLAP 类型的 Query，往往需要较高的并发度。所以 TiDB 支持通过 System Variable 来调整查询并发度。
+* tidb_distsql_scan_concurrency 在进行扫描数据的时候的并发度，这里包括扫描 Table 以及索引数据。
+* tidb_index_lookup_size 如果是需要访问索引获取行 ID 之后再访问 Table 数据，那么每次会把一批行 ID 作为一次请求去访问 Table 数据，这个参数可以设置 Batch 的大小，较大的 Batch 会使得延迟增加，较小的 Batch 可能会造成更多的查询次数。这个参数的合适大小与查询涉及的数据量有关。一般不需要调整。
+* tidb_index_lookup_concurrency 如果是需要访问索引获取行 ID 之后再访问 Table 数据，每次通过行 ID 获取数据时候的并发度通过这个参数调节。
+
+https://docs.pingcap.com/tidb/stable/json-functions
+
+如果有 Unique Key 并且业务端可以保证数据中没有冲突，可以在 Session 内打开这个开关：
+```
+SET @@session.tidb_skip_constraint_check=1;
+```
+另外为了提高写入性能，可以对 TiKV 的参数进行调优。 请特别注意这个参数：
+```
+[raftstore]
+# 默认为 true，表示强制将数据刷到磁盘上。如果是非金融安全级别的业务场景，建议设置成 false，
+# 以便获得更高的性能。
+sync-log = true
+```
+
+
+Partition Pruning
+
+TiDB supports several operators which make use of indexes to speed up query execution:
+* IndexLookup
+* IndexReader
+* Point_Get and Batch_Point_Get
+* IndexFullScan
+
+
+https://book.tidb.io/session4/chapter8/add-index-internal.html
+
+OLAP 类的查询通常具有以下几个特点：
+* 每次查询读取大量的行，但是仅需要少量的列
+* 宽表，即每个表包含着大量的列
+* 查询通过一张或多张小表关联一张大表，并对大表上的列做聚合
+
+https://book.tidb.io/session1/chapter7/sequence.html
+
+
+配合源于 ClickHouse 的极致向量化计算引擎，更少的废指令，SIMD 加速
+
+
+列存更新的主流设计是 Delta Main 方式，基本思想是，由于列存块本身更新消耗大，因此往往设计上使用缓冲层容纳新写入的数据。然后再逐渐和主列存区进行合并。
