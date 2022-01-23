@@ -8,6 +8,11 @@
 
 [Measures of Shape: Skewness and Kurtosis](https://brownmath.com/stat/shape.htm)
 
+
+ Multivariate Statistics
+ 
+ High-dimensional Data 
+
 # Probability
 
 
