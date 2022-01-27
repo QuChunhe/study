@@ -130,6 +130,8 @@ docker container stats
 
 docker container rm --force $(docker container ls --all --quiet
 
+docker ps -a
+
 ```
 
 

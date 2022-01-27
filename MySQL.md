@@ -1490,7 +1490,7 @@ SHOW GRANTS FOR myuser;
 
 -- 授予权限
 
-GRANT ALL ON db1.* TO 'root'@'localhost';
+GRANT ALL ON db1.* TO 'root'@'localhost'gr;
 
 GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
 
@@ -1507,4 +1507,7 @@ REVOKE SELECT ON world.* FROM 'role3';
   ```
   
   
-  
+```
+SHOW FULL TABLES 
+WHERE table_type = 'VIEW'
+```

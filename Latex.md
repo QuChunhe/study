@@ -12,3 +12,19 @@ https://www.tug.org/mactex/
 
 
 http://tug.ctan.org/info/visualtikz/VisualTikZ.pdf
+
+
+```
+/System/Library/Fonts
+
+/Library/Application Support/MiKTeX/texmfs/config/fontconfig/config
+
+ vim localfonts2.conf   
+<fontconfig>
+<dir>/System/Library/PrivateFrameworks/FontServices.framework/Versions/A/Resources/Fonts/Subsets</dir>
+<dir>/System/Library/PrivateFrameworks/FontServices.framework/Versions/A/Resources/Fonts/Subsets</dir>
+</fontconfig>
+
+```
+
+[MikTex+TexStudio配置论文写作环境](https://zhuanlan.zhihu.com/p/42844087)
