@@ -1,4 +1,4 @@
-
+[神经网络与深度学习 邱锡鹏](https://nndl.github.io/)
 
 [Leo Breiman, Statistical Modeling: The Two Cultures](http://cda.psych.uiuc.edu/statistical_learning_course/breiman_two_cultures.pdf) 
 
