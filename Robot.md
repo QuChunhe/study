@@ -59,3 +59,8 @@ SLAM优秀开源 https://www.bilibili.com/video/BV19M4y1A79B?from=search&seid=16
 [2021讲的最好的人工智能之CV计算机视觉集训营](https://www.bilibili.com/video/BV1tP4y1L7LK?from=search&seid=13847806216932040406&spm_id_from=333.337.0.0)
 
 ROS Navigation
+
+
+[智能机器人系统(国防科技大学)](https://www.bilibili.com/video/BV1aE411R7AS/?spm_id_from=333.788.recommend_more_video.3)
+
+[现代机器人学 | Modern Robotics](https://www.bilibili.com/video/BV1KV411Z7sC/?spm_id_from=333.788.recommend_more_video.6)

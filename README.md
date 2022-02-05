@@ -14,6 +14,8 @@ How to Measure Anything_
 
 * 学习是known unknown 知道自己不知道
 * 创新是unknown unknown 不知道自己不知道
+  
+[Computer Science courses with video lectures]{https://github.com/Developer-Y/cs-video-courses}
 
 [intellij-java-google-style](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml)
 

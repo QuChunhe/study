@@ -13,6 +13,10 @@
  
  High-dimensional Data 
 
+analysis of variance (ANOVA) and regression,
+
+方差分析（ANOVA）又称“变异数分析”或“F检验”，是由罗纳德·费雪爵士发明的，用于两个及两个以上样本均数差别的显著性检验
+
 # Probability
 
 

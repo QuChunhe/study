@@ -135,8 +135,12 @@ docker ps -a
 ```
 
 
+-p（小写）则可以指定要映射的IP和端口，但是在一个指定端口上只可以绑定一个容器。支持的格式有 hostPort:containerPort、ip:hostPort:containerPort、 ip::containerPort
+
 * --detach—Starts the container in the background and shows the container ID 
 * --publish—Publishes a port from the container to the computer
+
+
 
 
 https://hub.docker.com/settings/security
