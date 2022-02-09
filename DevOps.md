@@ -157,5 +157,7 @@ Linux kernel namespaces, such as process ID (pid) namespaces or network (net) na
 
 [docker镜像仓库](https://www.jianshu.com/p/fecbe5602cae)
 
+[Container Training](https://container.training)
+
 # Books
 Pipeline as Code Continuous Delivery with Jenkins, Kubernetes, and Terraform

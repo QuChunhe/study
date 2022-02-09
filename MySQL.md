@@ -1466,6 +1466,8 @@ https://mariadb.com/kb/en/innodb-system-tablespaces/
 https://dev.mysql.com/doc/refman/8.0/en/grant.html#:~:text=Privileges%20Supported%20by%20MySQL%20%20%20%20Privilege,%20d%20...%20%2029%20more%20rows%20
 
   ```
+ALTER USER 'metabase'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;
+alter user 'metabase'@'%' identified with mysql_native_password by 'quchunhe';
 
   SET GLOBAL validate_password.policy=LOW;
 -- 创建用户
@@ -1474,7 +1476,7 @@ CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
 
 -- 查看用户
 
-SELECT user, host, authentication_string FROM mysql.user WHERE user=‘myuser‘;
+SELECT user, host, authentication_string FROM mysql.user WHERE user='myuser';
 
 -- 删除用户
 DROP USER 'root'@'localhost';
@@ -1511,3 +1513,21 @@ REVOKE SELECT ON world.* FROM 'role3';
 SHOW FULL TABLES 
 WHERE table_type = 'VIEW'
 ```
+
+
+[Subqueries](https://mariadb.com/kb/en/subqueries/)
+
+[Correlated subquery](https://en.wikipedia.org/wiki/Correlated_subquery)
+
+In a SQL database query, a correlated subquery (also known as a synchronized subquery) is a subquery (a query nested inside another query) that uses values from the outer query. Because the subquery may be evaluated once for each row processed by the outer query, it can be slow.
+
+```sql
+SELECT employee_number, name
+FROM employees emp
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department = emp.department);
+```
+
+

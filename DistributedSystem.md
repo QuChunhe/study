@@ -1089,6 +1089,9 @@ Failures in todays complex, distributed and interconnected systems are not the e
 
 [The Raft Consensus Algorithm](https://raft.github.io/)
 
+在容错的分布式系统中一致性是一个基本问题。一致性涉及多个服务器在数值上达成一致。一旦他们在一个数值上作出决定，这个决定就是最终的。当多数服务器可用的时候，通常的一致性算法就能够生效。
+
+
 [Distributed Systems, Failures, and Consensus](https://www2.cs.duke.edu/courses/fall07/cps212/consensus.pdf)
 
 分布式算法的两个属性
@@ -1941,3 +1944,5 @@ MapReduce pattern
 
 
 [分布式和存储的那些事](https://www.zhihu.com/column/distributed-storage)
+
+[CSE 552: Distributed Systems](https://courses.cs.washington.edu/courses/cse552/19au/schedule/)
