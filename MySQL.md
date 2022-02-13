@@ -192,7 +192,12 @@ Rule 1: What is the nature of the application (OLTP or OLAP)?
 
 OnLine Transaction Processing 联机事务处理过程(OLTP)，也称为面向交易的处理过程，
 
-联机分析处理（Online Analytical Processing ）
+联机分析处理（Online Analytical Processing ）的概念最早是由关系数据库之父E. F. Codd博士在1993年提出来的。
+
+
+OLTP是实时系统，支持并发的增、删、改、查操作。
+
+
 
 [OLAP、OLTP的介绍和比较](https://www.cnblogs.com/hhandbibi/p/7118740.html)
 
@@ -554,7 +559,26 @@ This is why it’s very important to use a natural primary key whenever possible
 Data Warehouse: Star Index-De-normalize schemas 
 
 
-[Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
+聚簇索引 (主键索引)（Clustered Index (Primary Index)）
+
+
+InnoDB中的聚簇索引采用B-Tree组织起来，每个节点都是一个Page（InnoDB存储记录的最小单位）；非叶节点存 Key 的值和指向孩子节点的指针，叶子节点则存储记录和指向相邻叶节点的指针（所有叶节点构成一个双向链表）
+
+
+二级索引（Secondary Index）。二级索引同样使用B-Tree数据结构，不同的是叶节点只存储二级索引的键值和聚簇索引键值（通常是Primary Key），聚簇索引键值是用于回表查询该条记录
+
+聚簇索引问题：
+* 插入速度严重依赖于插入顺序。按照主键顺序往InnoDB中进行数据导入是最快的。如果不是按照主键插入，最好在导入完成后使用OPTIMIZE TABLE命令重新组织一下表。
+* 聚簇索引在插入新行和更新主键时，可能导致“页分裂”问题：当插入到某个已满的叶子结点时，B+树会分裂成两个页来容纳新插入的行数据。页分裂会导致表占用更多的磁盘空间（不要用UUID或随机数做主键，而应该使用单调递增的值做主键）。
+
+
+
+
+[Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/8.0/en/innodb-index-types.html)
+
+通常，聚簇索引是主键索引的同义词。聚簇索引等同于主键索引。
+
+除了空间索引（Spatial index）之外，InnoDB索引采用B树数据结构。空间索引使用R束，其是一种专门用于索引多维数据的数据结构。
 
 Every I
 Database Internals： A Deep Dive into How Distributed Data Systems WorknnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key.
@@ -1167,6 +1191,89 @@ DATA DIRECTORY = "/data/contact";
 
 
 
+文件目录
+* 配置文件
+  /etc/my.cnf, /etc/mysql/my.cnf, /usr/local/mysql/etc/my.cnf, ~/.my.cnf
+  
+* 日志文件
+  error log, general log, binary log, relay log, slow query log
+
+
+InnoDB中有共享表空间和独立表空间的概念。共享表空间就是ibdata1，独立表空间放在每个表的.ibd（数据和索引）和.frm（表结构）为后缀的文件中。单独的表空间只存储该表的数据，索引和插入缓冲的BITMAP等信息，其余还放在共享表空间中
+
+https://mariadb.com/kb/en/innodb-system-tablespaces/
+
+数据文件
+* ibdata1: 如果不指定innodb_file_per_table=ON参数单独保存每个表的数据，MySQL的数据都会存放在ibdata1文件里. InnoDB使用这个系统表空间存储数据目录、更改换成和undo日志。
+  
+  
+  
+  
+  
+  
+   'utf8_unicode_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead. 
+
+   mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -h 127.0.0.1 mysql -p
+  
+  
+  MySQL FROM_UNIXTIME(date) 函数把 UNIX 时间戳转换为普通格式的日期时间值，与 UNIX_TIMESTAMP 函数互为反函数.TIME_FORMAT(time, format) 
+
+  CONVERT_TZ (datetime, from_tz, to_tz)
+  
+```
+  select @@global.sql_mode;
+```
+
+  https://dev.mysql.com/doc/refman/8.0/en/mysql-tzinfo-to-sql.html
+
+
+## 权限
+
+https://dev.mysql.com/doc/refman/8.0/en/grant.html#:~:text=Privileges%20Supported%20by%20MySQL%20%20%20%20Privilege,%20d%20...%20%2029%20more%20rows%20
+
+  ```
+ALTER USER 'metabase'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;
+alter user 'metabase'@'%' identified with mysql_native_password by 'quchunhe';
+
+  SET GLOBAL validate_password.policy=LOW;
+-- 创建用户
+
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
+
+-- 查看用户
+
+SELECT user, host, authentication_string FROM mysql.user WHERE user='myuser';
+
+-- 删除用户
+DROP USER 'root'@'localhost';
+
+-- 修改用户密码
+
+SET PASSWORD FOR 'jeffrey'@'localhost' = 'auth_string';
+
+
+-- 查看权限
+
+SHOW GRANTS FOR myuser;
+
+-- 授予权限
+
+GRANT ALL ON db1.* TO 'root'@'localhost'gr;
+
+GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
+
+-- 生效(刷新权限)
+
+FLUSH PRIVILEGES;
+
+-- 撤销权限
+
+REVOKE ALL ON robotbi.* FROM 'quchunhe'@'192.168.%';
+REVOKE 'role1', 'role2' FROM 'user1'@'localhost', 'user2'@'localhost';
+REVOKE SELECT ON world.* FROM 'role3';
+
+```
+
 # Lock
 
 加锁方式划分
@@ -1311,10 +1418,34 @@ RR级别中一旦建立了快照版本，则在该事务的后续查询中均采
 
 # SQL
 
+
+## Subquery 子查询
+
 [Subqueries](https://dev.mysql.com/doc/refman/5.7/en/subqueries.html)
 
 
+  
+  
+```
+SHOW FULL TABLES 
+WHERE table_type = 'VIEW'
+```
 
+
+[Subqueries](https://mariadb.com/kb/en/subqueries/)
+
+[Correlated subquery](https://en.wikipedia.org/wiki/Correlated_subquery)
+
+In a SQL database query, a correlated subquery (also known as a synchronized subquery) is a subquery (a query nested inside another query) that uses values from the outer query. Because the subquery may be evaluated once for each row processed by the outer query, it can be slow.
+
+```sql
+SELECT employee_number, name
+FROM employees emp
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department = emp.department);
+```
 
 
 # Availability & Reliability
@@ -1427,107 +1558,17 @@ Jesper Wisborg Krogh, MySQL Concurrency: Locking and Transactions for MySQL Deve
 Jesper Wisborg Krogh, MySQL 8 Query Performance Tuning:A Systematic Method for Improving Execution Speeds, Apress, 2020
 
 
-文件目录
-* 配置文件
-  /etc/my.cnf, /etc/mysql/my.cnf, /usr/local/mysql/etc/my.cnf, ~/.my.cnf
-  
-* 日志文件
-  error log, general log, binary log, relay log, slow query log
+
+Daniel Nichter, Efficient MySQL Performance: Best Practices and Techniques, 2022
+
+[Code Examples](https://github.com/efficient-mysql-performance/examples)
 
 
-InnoDB中有共享表空间和独立表空间的概念。共享表空间就是ibdata1，独立表空间放在每个表的.ibd（数据和索引）和.frm（表结构）为后缀的文件中。单独的表空间只存储该表的数据，索引和插入缓冲的BITMAP等信息，其余还放在共享表空间中
-
-https://mariadb.com/kb/en/innodb-system-tablespaces/
-
-数据文件
-* ibdata1: 如果不指定innodb_file_per_table=ON参数单独保存每个表的数据，MySQL的数据都会存放在ibdata1文件里. InnoDB使用这个系统表空间存储数据目录、更改换成和undo日志。
-  
-  
-  
-  
-  
-  
-   'utf8_unicode_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead. 
-
-   mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -h 127.0.0.1 mysql -p
-  
-  
-  MySQL FROM_UNIXTIME(date) 函数把 UNIX 时间戳转换为普通格式的日期时间值，与 UNIX_TIMESTAMP 函数互为反函数.TIME_FORMAT(time, format) 
-
-  CONVERT_TZ (datetime, from_tz, to_tz)
-  
-```
-  select @@global.sql_mode;
-```
-
-  https://dev.mysql.com/doc/refman/8.0/en/mysql-tzinfo-to-sql.html
+Performance is query response time. 性能指的是查询的响应时间。
 
 
-https://dev.mysql.com/doc/refman/8.0/en/grant.html#:~:text=Privileges%20Supported%20by%20MySQL%20%20%20%20Privilege,%20d%20...%20%2029%20more%20rows%20
-
-  ```
-ALTER USER 'metabase'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;
-alter user 'metabase'@'%' identified with mysql_native_password by 'quchunhe';
-
-  SET GLOBAL validate_password.policy=LOW;
--- 创建用户
-
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
-
--- 查看用户
-
-SELECT user, host, authentication_string FROM mysql.user WHERE user='myuser';
-
--- 删除用户
-DROP USER 'root'@'localhost';
-
--- 修改用户密码
-
-SET PASSWORD FOR 'jeffrey'@'localhost' = 'auth_string';
 
 
--- 查看权限
 
-SHOW GRANTS FOR myuser;
-
--- 授予权限
-
-GRANT ALL ON db1.* TO 'root'@'localhost'gr;
-
-GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
-
--- 生效(刷新权限)
-
-FLUSH PRIVILEGES;
-
--- 撤销权限
-
-REVOKE ALL ON robotbi.* FROM 'quchunhe'@'192.168.%';
-REVOKE 'role1', 'role2' FROM 'user1'@'localhost', 'user2'@'localhost';
-REVOKE SELECT ON world.* FROM 'role3';
-
-  ```
-  
-  
-```
-SHOW FULL TABLES 
-WHERE table_type = 'VIEW'
-```
-
-
-[Subqueries](https://mariadb.com/kb/en/subqueries/)
-
-[Correlated subquery](https://en.wikipedia.org/wiki/Correlated_subquery)
-
-In a SQL database query, a correlated subquery (also known as a synchronized subquery) is a subquery (a query nested inside another query) that uses values from the outer query. Because the subquery may be evaluated once for each row processed by the outer query, it can be slow.
-
-```sql
-SELECT employee_number, name
-FROM employees emp
-WHERE salary > (
-    SELECT AVG(salary)
-    FROM employees
-    WHERE department = emp.department);
-```
 
 

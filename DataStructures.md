@@ -42,6 +42,10 @@ SHA（Secure Hash Algorithm），安全哈希算法，包括SHA-1、SHA-256、SH
 * B树和B+树
 
 
+二叉查找树（Binary Search Tree），平衡二叉查找树（Balanced Binary Search Tree），红黑树(Red-Black Tree )是典型的二叉查找树结构，其查找的时间复杂度O(log2N)与树的深度相关
+
+B-tree/B+-tree/ B*-tree (B~Tree)。B 树是为了磁盘或其它存储设备而设计的一种多叉平衡查找树
+
 
 
 # Slides
