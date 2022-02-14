@@ -19,6 +19,8 @@ Robot Operating System (ROS)
 map,odom
 
 
+规划与控制（Planning and Control，PnC）
+
 ORB_SLAM3
 [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3)
 
