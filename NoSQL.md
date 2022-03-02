@@ -376,6 +376,17 @@ TiDB 对每个表分配一个 TableID，每一个索引都会分配一个 IndexI
 
 [为什么要进行调度](https://pingcap.com/zh/blog/tidb-internal-3)
 
+支持MySQL SQL。
+兼容事务和分析两大类处理场景。，TiDB 100%地兼容MySQL OLTP场景，支持80%的OLAP场景
+
+可以做数据横向扩展，解决了单机容量扩展的问题
+
+TiDB在逻辑上支持以表方式存储数据和关系模型，在底层采用KV结构（RockDB）存储表数据。将表数据映射到KV存储方式，
+
+
+对于 Index，TiDB 不止需要支持 Primary Index，还需要支持 Secondary Index
+
+
 Table files are immutable 
 
  Other files are append-only 
