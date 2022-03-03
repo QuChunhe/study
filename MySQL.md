@@ -1,4 +1,20 @@
 
+MySQL性能优化，包括如下三个方面
+* schema设置，
+  * 存储引擎的选择
+  * 表的划分和关联
+  * 列类型的定义
+  * 主键和索引的设计以及partition和sharding的设置
+* 查询优化，充分利用索引和查询条件，避免无效数据扫描
+* 配置设置
+
+MySQL操作的主要瓶颈
+* Disk寻址
+* 磁盘读取和吸入
+* 内存计算
+
+
+
 # Ideal(想法) 
 
 数据库在实际使用、部署和设计中需要依次考虑如下几个密切相关的问题
@@ -126,7 +142,7 @@ A database is in first normal form if it satisfies the following conditions:
 * InnoDB具有更好的并发性，采用表锁
 * InnoDB具有更好的缓存，InnoDB Buffer
 
-InnoDB的插入性能比较差。
+与MyISAM相比，InnoDB的数据插入性能比较差。
 
 范式与例外
 
@@ -589,6 +605,88 @@ All indexes other than the clustered index are known as secondary indexes. In In
 [日常 Explain SQL，慢慢就懂得SQL调优了](https://mp.weixin.qq.com/s?__biz=Mzg3NjIxMjA1Ng==&mid=2247484371&idx=1&sn=2dd8269b94188240f0055a03a7ddd62d&chksm=cf34f9e4f84370f27e4a0154ee3f4ae8cf4b0ed78b4ea08adcba2d259a56c541e9083e3abc60&mpshare=1&scene=1&srcid=&sharer_sharetime=1590161808351&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=AVvFPMTM%2BMmRiXHYR%2FX9SLA%3D&pass_ticket=MEmx%2FMYK8VidR%2FIzGjGwl831u7rhFBT3A8aHASx6xXXS8VO%2BGLjQV%2BNTc5FUYxmf#rd)
 
 
+ 派生表（Derived Table）
+
+[EXPLAIN Output Format](https://dev.mysql.com/doc/refman/8.0/en/explain-output.html)
+
+
+ select_type 
+* SIMPLE: Simple SELECT (not using UNION or subqueries)
+* PRIMARY:	Outermost SELECT
+* UNION:	Second or later SELECT statement in a UNION
+* DEPENDENT UNION:	Second or later SELECT statement in a UNION, dependent on outer query
+* UNION RESULT:	Result of a UNION.
+* SUBQUERY:	First SELECT in subquery
+* DEPENDENT SUBQUERY:	First SELECT in subquery, dependent on outer query
+* DERIVED:	Derived table
+* DEPENDENT DERIVED	:	Derived table dependent on another table
+* MATERIALIZED:	Materialized subquery
+* UNCACHEABLE SUBQUERY: A subquery for which the result cannot be cached and must be re-evaluated for each row of the outer query
+* UNCACHEABLE UNION	:	The second or later select in a UNION that belongs to an uncacheable subquery (see UNCACHEABLE SUBQUERY)
+
+
+type
+* system
+* const
+* eq_ref
+* ref
+* fulltext
+* ref_or_null
+* index_merge
+* unique_subquery
+* index_subquery
+* range
+* index
+* all
+
+
+* Using temporary; 
+  * 增加tmp_table_size和max_heap_table_size，内存表和临时表的大小取上面两个参数的最小值
+  * 下推条件
+* Using filesort
+  * 去掉order by
+  * sort_buffer_size
+* Using index: 表示直接访问索引就足够获取到所需要的数据，不需要通过索引回表
+* Using where;表示优化器需要通过索引回表查询数据；
+* Using index condition:先条件过滤索引，过滤完索引后找到所有符合索引条件的数据行，随后用 WHERE 子句中的其他条件去过滤这些数据行
+
+
+
+
+
+
+
+```sql
+show variables like '%profil%';
+
+set  profiling=ON;
+
+show  profile;
+
+show profiles;
+show profile all for query 9;
+```
+
+[Using temporary与Using filesort](https://blog.csdn.net/sz85850597/article/details/91907988)
+
+
+
+ICP（Index Condition Pushdown）索引条件下推
+* 尽可量利用二级索引，筛除不符合where条件的记录，从而减少整行记录读取，也就是要减少IO操作
+* 对于InnoDB的聚簇索引来说，完整的行记录已经加载到缓存区了，索引下推也就没什么意义了。
+* 子查询中的条件不能下推
+
+[Index Condition Pushdown Optimization](https://dev.mysql.com/doc/refman/8.0/en/index-condition-pushdown-optimization.html)
+
+
+```
+SET optimizer_switch = 'index_condition_pushdown=off';
+SET optimizer_switch = 'index_condition_pushdown=on';
+```
+
+
+
+
 Index Types
 * Primary key vs Unique Key
   * Unique can be null
@@ -826,6 +924,10 @@ ALTER TABLE TITLE ADD KEY(TITLE(20)); –
 join_buffer_size
 
 ICP(Index Condition Pushdown)
+
+
+
+
 
 
 # Cluster
@@ -1258,7 +1360,7 @@ SHOW GRANTS FOR myuser;
 
 -- 授予权限
 
-GRANT ALL ON db1.* TO 'root'@'localhost'gr;
+GRANT ALL ON db1.* TO 'root'@'localhost';
 
 GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
 

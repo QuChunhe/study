@@ -1,4 +1,6 @@
 
+
+
 # InfluxDB
 
 https://github.com/influxdata/influxdb
@@ -376,16 +378,69 @@ TiDB 对每个表分配一个 TableID，每一个索引都会分配一个 IndexI
 
 [为什么要进行调度](https://pingcap.com/zh/blog/tidb-internal-3)
 
-支持MySQL SQL。
-兼容事务和分析两大类处理场景。，TiDB 100%地兼容MySQL OLTP场景，支持80%的OLAP场景
+无论是NoSQL，还是MySQL都需要使得如下三者相互匹配
+* Schema设计，包括数据拆分、主键/索引/行键/键的设计以及partition/partition的选择和字段的定义
+* 存储方式，数据库采用何种方式存储数据和检索数据
+* 查询模式，经常以哪些字段为参数访问和检索数据
+充分利用数据存储和检索方式，避免不必要的数据读取和传输。
 
-可以做数据横向扩展，解决了单机容量扩展的问题
+
+TiDB在技术上的三个优点
+* 支持MySQL SQL，通过MySQL Client就能够连接和使用TiDB，从而减小了学习和迁移成本。
+* 兼容事务和分析两大类处理场景。TiDB 100%地兼容MySQL OLTP场景，支持80%的OLAP场景， HTAP 数据库
+* 具有横向扩展能力，解决了单机容量扩展的问题
+
+在商业模式上，开源，又有专业团队来支撑。
 
 TiDB在逻辑上支持以表方式存储数据和关系模型，在底层采用KV结构（RockDB）存储表数据。将表数据映射到KV存储方式，
 
+Key-Value pair 按照 Key 的二进制顺序有序，也就是我们可以 Seek 到某一个 Key 的位置，然后不断的调用 Next 方法以递增的顺序获取比这个 Key 大的 Key-Value。RocksDB 是一个非常优秀的开源的单机存储引擎。
+另一种是分 Range，某一段连续的 Key 都保存在一个存储节点上，将整个 Key-Value 空间分成很多段，每一段是一系列连续的 Key，我们将每一段叫做一个 Region，并且我们会尽量保持每个 Region 中保存的数据不超过一定的大小(这个大小可以配置，目前默认是 96mb)。每一个 Region 都可以用 StartKey 到 EndKey 这样一个左闭右开区间来描述。TiKV 是以 Region 为单位做数据的复制，也就是一个 Region 的数据会保存多个副本，我们将每一个副本叫做一个 Replica。Replica 之间是通过 Raft 来保持数据的一致。每个 Region 负责存储一个 Key Range（从 StartKey 到 EndKey 的左闭右开区间）的数据，每个 TiKV 节点会负责多个 Region
 
 对于 Index，TiDB 不止需要支持 Primary Index，还需要支持 Secondary Index
 
+* TiKV ：采用了行式存储，更适合 TP 类型的业务；负责存储数据，从外部看 TiKV 是一个分布式的提供事务的 Key-Value 存储引擎。存储数据的基本单位是 Region，每个 Region 负责存储一个 Key Range（从 StartKey 到 EndKey 的左闭右开区间）的数据，每个 TiKV 节点会负责多个 Region。
+* TiFlash：TiFlash 采用列式存储，擅长 AP 类型的业务，主要的功能是为分析型的场景加速
+
+
+上述所有编码规则中的 tablePrefix、recordPrefixSep 和 indexPrefixSep 都是字符串常量
+    tablePrefix     = []byte{'t'}
+    recordPrefixSep = []byte{'r'}
+    indexPrefixSep  = []byte{'i'}  
+
+ MaxInt64
+
+    Key:   tablePrefix{TableID}_recordPrefixSep{RowID}
+    Value: [col1, col2, col3, col4]
+
+
+其中
+* TiDB 会为每个表分配一个表 ID，用 TableID 表示
+* TiDB 会为表中每行数据分配一个行 ID，用 RowID 表示。行 ID 也是一个整数，在表内唯一。对于行 ID，TiDB 做了一个小优化，如果某个表有整数型的主键，TiDB 会使用主键的值当做这一行数据的行 ID。
+  
+
+对于主键和唯一索引，需要根据键值快速定位到对应的 RowID，因此，按照如下规则编码成 (Key, Value) 键值对：
+    Key:   tablePrefix{tableID}_indexPrefixSep{indexID}_indexedColumnsValue
+    Value: RowID
+
+对于不需要满足唯一性约束的普通二级索引，一个键值可能对应多行，需要根据键值范围查询对应的 RowID。
+
+    Key:   tablePrefix{TableID}_indexPrefixSep{IndexID}_indexedColumnsValue_{RowID}
+    Value: null
+
+计算应该需要尽量靠近存储节点，以避免大量的 RPC 调用。首先，SQL 中的谓词条件 name = "TiDB" 应被下推到存储节点进行计算，这样只需要返回有效的行，避免无意义的网络传输。然后，聚合函数 Count(*) 也可以被下推到存储节点，进行预聚合，每个节点只需要返回一个 Count(*) 的结果即可，再由 SQL 层将各个节点返回的 Count(*) 的结果累加求和
+
+
+开启 Region Merge。与 Region Split 相反，Region Merge 是通过调度把相邻的小 Region 合并的过程。在集群有删除数据或者进行过 Drop Table/Truncate Table 后，可以将那些小 Region 甚至空 Region 进行合并以减少资源的消耗。
+
+
+
+
+Delta Tree 的架构设计充分参考了 B+ Tree 和 LSM Tree 的设计思想。从整体上看，Delta Tree 将表数据按照主键进行 range 分区，切分后的数据块称为 Segment；然后 Segment 内部则采用了类似 LSM Tree 的分层结构。
+
+所以 Delta Tree 只需要固定的两层，即 Delta Layer 和 Stable Layer，分别对应 LSM Tree 的 L0 和 L1
+
+[TiDB 的列式存储引擎是如何实现的？](https://zhuanlan.zhihu.com/p/164490310)
 
 Table files are immutable 
 
@@ -405,7 +460,7 @@ Table files are immutable
 
 https://docs.pingcap.com/tidb/stable/tiflash-configuration
 
-
+https://docs.pingcap.com/zh/tidb/stable/tidb-storage
 
 Some database management systems refer to clustered indexes as index-organized tables (IOT).
 

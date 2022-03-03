@@ -17,6 +17,8 @@ How to Measure Anything_
   
 [Computer Science courses with video lectures]{https://github.com/Developer-Y/cs-video-courses}
 
+[book](https://zh.u1lib.org)
+
 [intellij-java-google-style](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml)
 
 # Web
