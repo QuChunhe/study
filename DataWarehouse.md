@@ -16,3 +16,10 @@ OLAP的基本多维分析操作包括
 * 钻取：（Drill-up和Drill-down）：改变维度的层次，变化分析的粒度
 * 切片（Slice）、切块（Dice）
 * 旋转（Pivot）：变换维度的方向
+
+* ODS (Operational Data Store) 简称ODS  操作数据存储 也称为贴源层。
+* DWD：data warehouse details 细节数据层，是业务层与数据仓库的隔离层。主要对ODS数据层做一些数据清洗和规范化的操作。
+* DWB：data warehouse base 数据基础层，存储的是客观数据，一般用作中间层，可以认为是大量指标的数据层。
+* DWS：data warehouse service 数据服务层，基于DWB上的基础数据，整合汇总成分析某一个主题域的服务数据层，一般是宽表。用于提供后续的业务查询，OLAP分析，数据分发等。
+
+ODD：Operation Data Store 数据准备区，也称为贴源层。

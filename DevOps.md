@@ -128,7 +128,7 @@ docker container run --detach --publish 8088:80 diamol/ch02-hello-diamol-web
 
 docker container stats 
 
-docker container rm --force $(docker container ls --all --quiet
+docker container rm --force $(docker container ls --all --quiet)
 
 docker ps -a
 
