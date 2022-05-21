@@ -74,3 +74,19 @@ sudo flink run -s s3://bigdata-staging-cn-northwest-1-s3-statistics-escargot/too
 
 
 ```
+
+
+
+Flink DataStream API 为用户提供了3个算子来实现双流 join，分别是：
+* join()
+* coGroup()
+* intervalJoin()
+
+```java
+stream.join(otherStream)
+    .where(<KeySelector>)
+    .equalTo(<KeySelector>)
+    .window(<WindowAssigner>)
+    .apply(<JoinFunction>)
+```
+TimestampsAndWatermarks
