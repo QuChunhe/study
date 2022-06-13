@@ -10,6 +10,10 @@
   * 业务指标
   * 用户使用
 
+
+
+
+
 CI/CD 
 
 持续集成、持续交付和持续部署
@@ -161,3 +165,18 @@ Linux kernel namespaces, such as process ID (pid) namespaces or network (net) na
 
 # Books
 Pipeline as Code Continuous Delivery with Jenkins, Kubernetes, and Terraform
+
+* Cloud-native architecture
+* DevOps 
+
+pipeline-as-code approach.
+
+
+ the microservice architectural style 
+
+ Jenkins (www.jenkins.io), Spinnaker (https:// spinnaker.io/), or GoCD (www.gocd.org)
+
+ 
+Pipeline as code (PaC) 
+
+infrastructure as code (IaC)

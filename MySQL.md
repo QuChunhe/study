@@ -587,8 +587,22 @@ InnoDB中的聚簇索引采用B-Tree组织起来，每个节点都是一个Page�
 * 插入速度严重依赖于插入顺序。按照主键顺序往InnoDB中进行数据导入是最快的。如果不是按照主键插入，最好在导入完成后使用OPTIMIZE TABLE命令重新组织一下表。
 * 聚簇索引在插入新行和更新主键时，可能导致“页分裂”问题：当插入到某个已满的叶子结点时，B+树会分裂成两个页来容纳新插入的行数据。页分裂会导致表占用更多的磁盘空间（不要用UUID或随机数做主键，而应该使用单调递增的值做主键）。
 
+主键的选择和设计
+* 主键的大小：是否需要通过该主键进行关联？最好是整数或者可枚举类型
+* 写入性能和读取性能之间的折中？
+* 访问模式：单个访问，还是批量查询和汇总？
 
+[SQL queries on clustered and non-clustered Indexes](https://www.geeksforgeeks.org/sql-queries-on-clustered-and-non-clustered-indexes/?ref=lbp)
 
+There are two types of indexing in SQL.
+* Clustered index：数据存储的顺序与数据索引的顺序是一致的。
+* Non-clustered index：A Non-clustered index stores the data at one location and indices at another location. The index contains pointers to the location of that data. 
+
+KEY DIFFERENCE
+* Cluster index is a type of index that sorts the data rows in the table on their key values whereas the Non-clustered index stores the data at one location and indices at another location.
+* Clustered index stores data pages in the leaf nodes of the index while Non-clustered index method never stores data pages in the leaf nodes of the index.
+* Cluster index doesn’t require additional disk space whereas the Non-clustered index requires additional disk space.
+* Cluster index offers faster data accessing, on the other hand, Non-clustered index is slower.
 
 [Clustered and Secondary Indexes](https://dev.mysql.com/doc/refman/8.0/en/innodb-index-types.html)
 
