@@ -38,13 +38,30 @@ HADOOP_COMMON_HOME=$HADOOP_HOME
 ```
 
 
-[HDFS](http://localhost:9870/)
+[HDFS 3](http://localhost:9870/)
+
+http://127.0.0.1:50070/dfshealth.html#tab-overview
+
+```sql
+set execution.result-mode=tableau;
+
+set read.tasks=1;
+set write.tasks=1;
+set path=hdfs://127.0.0.1:9000/user/hudi/warehouse;
+set read.streaming.enabled=true;
+```
+
+export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
+
+/usr/local/flink-1.14.4/bin/sql-client.sh embedded -j /usr/local/hudi/hudi-flink-bundle/target/hudi-flink1.14-bundle_2.12-0.11.0.jar -j /usr/local/flink-cdc/flink-sql-connector-mysql-cdc-2.2.1.jar shell
 
 
 TEZ：是基于Hadoop YARN之上的DAG（有向无环图，Directed Acyclic Graph）计算框架。核心思想是将Map和Reduce两个操作进一步拆分，即Map被拆分成Input、Processor、Sort、Merge和Output， Reduce被拆分成Input、Shuffle、Sort、Merge、Processor和Output等。这样，这些分解后的元操作可以任意灵活组合，产生新的操作，这些操作经过一些控制程序组装后，可形成一个大的DAG作业，从而可以减少Map/Reduce之间的文件存储，同时合理组合其子过程，也可以减少任务的运行时间。
 
 
-
+ mvn clean install -DskipTests -Dspark3.2 -Dscala-2.12  -Drat.skip=true -Dhadoop.version=2.10.2 -Dflink1.14 
 
 
 ORC的全称是(Optimized Record Columnar)
+
+https://cloud.tencent.com/developer/article/1961354
