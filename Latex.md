@@ -27,4 +27,12 @@ http://tug.ctan.org/info/visualtikz/VisualTikZ.pdf
 
 ```
 
+
+```
+vim ~/Library/Application\ Support/MiKTeX/texmfs/config/fontconfig/config/localfonts2.conf
+
+ <dir>/System/Library/AssetsV2/com_apple_MobileAsset_Font6</dir>
+ 
+```
+
 [MikTex+TexStudio配置论文写作环境](https://zhuanlan.zhihu.com/p/42844087)

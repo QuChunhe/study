@@ -163,6 +163,32 @@ Linux kernel namespaces, such as process ID (pid) namespaces or network (net) na
 
 [Container Training](https://container.training)
 
+[kubernetes](https://kubernetes.io/docs/home/)
+
+
+```
+
+minikube start --image-mirror-country cn --registry-mirror https://registry.docker-cn.com  --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers --vm-driver=docker
+
+minikube delete --all 
+
+minikube ssh
+
+minikube dashboard
+
+ls ~/.minikube
+
+
+ kubectl cluster-info  
+
+
+
+docker exec -it gitlab-runner /bin/bash
+
+```
+
+
+
 # Books
 Pipeline as Code Continuous Delivery with Jenkins, Kubernetes, and Terraform
 

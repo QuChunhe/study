@@ -18,6 +18,8 @@ How to Measure Anything_
   https://zh.u1lib.org
 
 
+[git-lfs](https://git-lfs.github.com)
+
 
 [Computer Science courses with video lectures]{https://github.com/Developer-Y/cs-video-courses}
 

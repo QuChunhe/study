@@ -90,3 +90,10 @@ stream.join(otherStream)
     .apply(<JoinFunction>)
 ```
 TimestampsAndWatermarks
+
+
+
+* 窗口的划分
+* 数据乱序、延迟到达
+* 何时触发窗口计算
+* 计算状态的存储和过期
