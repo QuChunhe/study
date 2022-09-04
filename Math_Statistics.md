@@ -17,6 +17,12 @@ analysis of variance (ANOVA) and regression,
 
 方差分析（ANOVA）又称“变异数分析”或“F检验”，是由罗纳德·费雪爵士发明的，用于两个及两个以上样本均数差别的显著性检验
 
+[回首过去50年，有哪些重要的统计思想？](https://mp.weixin.qq.com/s?__biz=MzA5MjEyMTYwMg==&mid=2650266333&idx=1&sn=0eb554e049833eaa876e0c227bc1b886&chksm=887285b0bf050ca6603afe20c1e47f686aa09404ac63dbb8b50033295e8e884a1a1e27ed21dd&mpshare=1&scene=1&srcid=0804NsleGnW5bRoEYjvpMNqX&sharer_sharetime=1659609472408&sharer_shareid=6cf5f9bc7b3d07e703236236e2df3f84&exportkey=Aft2aEbi7lS7g19IVu3cb5I%3D&acctmode=0&pass_ticket=%2FfY4TB26JPF8DDrzCX37H4I3CK8FdSGChE92J%2FG34sOU5b6P4nl6JQ9TvfPeGuI0&wx_header=0#rd)
+
+Gelman A., and Vehtari A. What are the most important statistical ideas of the past 50 years? [J]. Journal of the American Statistical Association, 2021, ahead-of-print, 1-11.
+
+[概率论与数理统计讲义](http://staff.ustc.edu.cn/%7Ezwp/teach/Prob-Stat/probstat.htm)
+
 # Probability
 
 

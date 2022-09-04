@@ -2,7 +2,7 @@
 
 gradle
 
-
+./gradlew Dependencies
 
 # Configuration
 

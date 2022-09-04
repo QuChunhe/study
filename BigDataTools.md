@@ -111,3 +111,19 @@ set hoodie.datasource.write.table.type=MERGE_ON_READ;
 
 
 
+```
+yarn top
+yarn logs -applicationId application_1528080031923_0064
+
+yarn application -appStates All -list | grep robot-stream
+
+```
+
+vim /etc/taihao-apps/yarn-conf/yarn-site.xml
+
+
+task.cancellation.timeout: 0
+
+hadoop dfsadmin -report
+
+hadoop fs -df -h

@@ -23,6 +23,8 @@ https://www.itcodemonkey.com/article/15901.html
 * 记忆
 
 
+[李沐的深度学习笔记来了](https://mp.weixin.qq.com/s?__biz=MzIyNjM2MzQyNg==&mid=2247623390&idx=1&sn=8b1df80bf7bc63ef240c5d8ba6ce9ba8&chksm=e87d3393df0aba858deafe2928d3fd5f95485e1d2d45485876efaf2a958aa5bd9e6a936fb98b&mpshare=1&scene=1&srcid=0804HXDZngMv97BJEXM5ZT6f&sharer_sharetime=1659585056484&sharer_shareid=6cf5f9bc7b3d07e703236236e2df3f84&exportkey=AXWqPjhZ3DQRsKl5A7mGi7I%3D&acctmode=0&pass_ticket=%2FfY4TB26JPF8DDrzCX37H4I3CK8FdSGChE92J%2FG34sOU5b6P4nl6JQ9TvfPeGuI0&wx_header=0#rd)
+
 [TensorFlow Examples](https://github.com/aymericdamien/TensorFlow-Examples)
 
 
