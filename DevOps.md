@@ -108,6 +108,9 @@ https://docs.docker.com/engine/reference/run/
 
 
 ```
+docker info
+
+
 docker container rm -f $(docker container ls -aq)
 
 docker image rm -f $(docker image ls -f reference='diamol/*' -q)
@@ -187,6 +190,22 @@ docker exec -it gitlab-runner /bin/bash
 
 ```
 
+
+
+https://hub.docker.com/u/dockerinaction/
+
+
+The specific features are as follows:
+* PID namespace—Process identifiers and capabilities
+* UTS namespace—Host and domain name
+* MNT namespace—Filesystem access and structure
+* IPC namespace—Process communication over shared memory  NET namespace—Network access and structure
+* USR namespace—User names and identifiers
+* chrootsyscall—Controls the location of the filesystem root  cgroups—Resource protection
+* CAP drop—Operating system feature restrictions
+* Security modules—Mandatory access controls
+
+The component that fills the shipping container role is called an image.
 
 
 # Books
