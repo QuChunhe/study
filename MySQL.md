@@ -1345,6 +1345,12 @@ https://mariadb.com/kb/en/innodb-system-tablespaces/
 
 ## 权限
 
+```
+sudo systemctl status mysql
+
+sudo systemctl restart mysql
+```
+
 https://dev.mysql.com/doc/refman/8.0/en/grant.html#:~:text=Privileges%20Supported%20by%20MySQL%20%20%20%20Privilege,%20d%20...%20%2029%20more%20rows%20
 
   ```
@@ -1374,7 +1380,7 @@ SHOW GRANTS FOR myuser;
 
 -- 授予权限
 
-GRANT ALL ON db1.* TO 'root'@'localhost';
+GRANT ALL  PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password';
 
 GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
 
