@@ -596,3 +596,5 @@ https://book.tidb.io/session1/chapter7/sequence.html
 
 
 列存更新的主流设计是 Delta Main 方式，基本思想是，由于列存块本身更新消耗大，因此往往设计上使用缓冲层容纳新写入的数据。然后再逐渐和主列存区进行合并。
+
+[TiDB In Action: based on 4.0](https://github.com/tidb-incubator/tidb-in-action)
