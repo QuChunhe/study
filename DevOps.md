@@ -10,6 +10,10 @@
   * 业务指标
   * 用户使用
 
+
+
+
+
 CI/CD 
 
 持续集成、持续交付和持续部署
@@ -104,6 +108,9 @@ https://docs.docker.com/engine/reference/run/
 
 
 ```
+docker info
+
+
 docker container rm -f $(docker container ls -aq)
 
 docker image rm -f $(docker image ls -f reference='diamol/*' -q)
@@ -128,7 +135,7 @@ docker container run --detach --publish 8088:80 diamol/ch02-hello-diamol-web
 
 docker container stats 
 
-docker container rm --force $(docker container ls --all --quiet
+docker container rm --force $(docker container ls --all --quiet)
 
 docker ps -a
 
@@ -159,5 +166,62 @@ Linux kernel namespaces, such as process ID (pid) namespaces or network (net) na
 
 [Container Training](https://container.training)
 
+[kubernetes](https://kubernetes.io/docs/home/)
+
+
+```
+
+minikube start --image-mirror-country cn --registry-mirror https://registry.docker-cn.com  --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers --vm-driver=docker
+
+minikube delete --all 
+
+minikube ssh
+
+minikube dashboard
+
+ls ~/.minikube
+
+
+ kubectl cluster-info  
+
+
+
+docker exec -it gitlab-runner /bin/bash
+
+```
+
+
+
+https://hub.docker.com/u/dockerinaction/
+
+
+The specific features are as follows:
+* PID namespace—Process identifiers and capabilities
+* UTS namespace—Host and domain name
+* MNT namespace—Filesystem access and structure
+* IPC namespace—Process communication over shared memory  NET namespace—Network access and structure
+* USR namespace—User names and identifiers
+* chrootsyscall—Controls the location of the filesystem root  cgroups—Resource protection
+* CAP drop—Operating system feature restrictions
+* Security modules—Mandatory access controls
+
+The component that fills the shipping container role is called an image.
+
+
 # Books
 Pipeline as Code Continuous Delivery with Jenkins, Kubernetes, and Terraform
+
+* Cloud-native architecture
+* DevOps 
+
+pipeline-as-code approach.
+
+
+ the microservice architectural style 
+
+ Jenkins (www.jenkins.io), Spinnaker (https:// spinnaker.io/), or GoCD (www.gocd.org)
+
+ 
+Pipeline as code (PaC) 
+
+infrastructure as code (IaC)

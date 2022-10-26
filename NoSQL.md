@@ -1,5 +1,26 @@
 
 
+如下三者要相互匹配
+* schema设计
+* 数据存储和索引方式
+* 数据访问模式
+
+
+[Database index](https://en.wikipedia.org/wiki/Database_index#Types_of_indexes)
+
+实现亚线性查找，从而提高性能。需要在多个目标之间进行折中
+* 数据查找性能
+* 索引更新性能
+* 索引存储大小
+
+索引的类型
+* Bitmap index
+* Dense index
+* Sparse index
+* Sparse index
+* Primary index
+* Hash index
+
 
 # InfluxDB
 
@@ -597,4 +618,217 @@ https://book.tidb.io/session1/chapter7/sequence.html
 
 列存更新的主流设计是 Delta Main 方式，基本思想是，由于列存块本身更新消耗大，因此往往设计上使用缓冲层容纳新写入的数据。然后再逐渐和主列存区进行合并。
 
+<<<<<<< HEAD
 [TiDB In Action: based on 4.0](https://github.com/tidb-incubator/tidb-in-action)
+=======
+[tidb开发规范](https://developer.aliyun.com/article/834144)
+
+[在阿里云上部署 TiDB 集群](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/deploy-on-alibaba-cloud)
+
+
+# ClickHouse
+
+两大类表引擎
+* MergeTree家族：适合高负载任务，若干子引擎，支持复制和分区
+* Log家族。
+
+其中MergeTree作为 家族中最基础的表引擎，提供了主键索引、数据分区、数据副本和数 据采样等基本能力，而家族中其他的表引擎则在MergeTree的基础之 上各有所长。例如ReplacingMergeTree表引擎具有删除重复数据的 特性，而SummingMergeTree表引擎则会按照排序键自动聚合数 据。如果给合并树系列的表引擎加上Replicated前缀，又会得到一组 支持数据副本的表引擎，例如ReplicatedMergeTree、 ReplicatedReplacingMergeTree、 ReplicatedSummingMergeTree等
+
+
+* partition:分区目录，余下各类数据文件(primary.idx、 [Column].mrk、[Column].bin等)
+* columns.txt:列信息文件，使用明文格式存储。用于保存 此数据分区下的列字段信息
+* count.txt:计数文件，使用明文格式存储。用于记录当前 数据分区目录下数据的总行数
+* primary.idx:一级索引文件，使用二进制格式存储
+* [Column].bin:数据文件，使用压缩格式存储，默认为 LZ4压缩格式，用于存储某一列的数据。
+* [Column].mrk:列字段标记文件，使用二进制格式存储。 标记文件中保存了.bin文件中数据的偏移量信息。标记文件与稀疏索引 对齐，又与.bin文件一一对应，所以MergeTree通过标记文件建立了 primary.idx稀疏索引与.bin数据文件之间的映射关系。
+
+
+   PartitionID_MinBlockNum_MaxBlockNum_Level
+
+* MergeTree engine
+* ReplacingMergeTree engine
+* SummingMergeTree engine
+* AggregatingMergeTree engine 
+* CollapsingMergeTree engine 
+* VersionedCollapsingMergeTree engine 
+* ReplicatedMergeTree engine
+
+基于Zookeeper支持数据复制，支持数据分区，基于主键排序和存储，支持数据抽样
+
+在表中存储的数据被划分为颗粒（granule），在读取数据事，ClikHouse会读取颗粒中的全部数据。颗粒大小通过使用index_granularity and index_granularity_bytes来设定。也就是说，每个颗粒就是一个索引的粒度。ClickHouse提供了自适应粒度 大小的特性
+
+ClickHouse使用稀疏索引，从而可以显著减小索引文件大小，使得系统能够将大表的全部索引加载到内存中。在每个分区中索引是在primary.idx文件中维护的。
+
+MarkRange 在ClickHouse中是用于定义标记区间的对象。
+
+```sql
+CREATE TABLE [IF NOT EXISTS] [database_name.]table_name [ON CLUSTER cluster_name]
+(
+  column1 [datatype1] [DEFAULT|MATERIALIZED|ALIAS expr1] [TTL expr1],
+  column2 [datatype2] [DEFAULT|MATERIALIZED|ALIAS expr2] [TTL expr2],
+  ...
+  ...
+) ENGINE = MergeTree() [PARTITION BY expr] [ORDER BY expr]
+[PRIMARY KEY expr] [SAMPLE BY expr]
+[TTL expr]
+[SETTINGS name=value, ...]  
+
+```
+
+
+Minimum time delay in seconds before repeating a merge with TTL.
+
+
+ReplacingMergeTree:不期望出现重复数据，在合并操作中，基于在order by中指定的列，删除重复
+
+```sql
+ENGINE = ReplacingMergeTree(ver)
+```
+其中，ver是选填参数，会指定一个UInt*、Date或者DateTime 类型的字段作为版本号。这个参数决定了数据去重时所使用的算法。
+* 如果没有设置ver版本号，则保留同一组重复数据中的最后一
+行。
+* 如果设置了ver版本号，则保留同一组重复数据中ver字段取值 最大的那一行。
+
+```sql
+
+OPTIMIZE TABLE mergetree_testing.replacingmergetree FINAL;
+```
+
+ReplacingMergeTree接受一个可选的参数，其确定替换重复行的逻辑，如果一行被这个参数指定，那么在出现重复数据时，会保留该列具有最大值的行。
+
+SummingMergeTree接受一个可选的参数，其是列数组，基于所指定的列数组具有相同值的行进行累加，
+
+```sql
+ENGINE = SummingMergeTree((col1,col2,...))
+```
+其中，col1、col2为columns参数值，这是一个选填参数，用于 设置除主键外的其他数值类型字段，以指定被SUM汇总的列字段。如 若不填写此参数，则会将所有非主键的数值类型字段进行SUM汇总。
+
+AggregatingMergeTree
+
+因为SummingMergeTree与
+AggregatingMergeTree的聚合都是根据ORDER BY进行的。由此可 以引出两点原因:主键与聚合的条件定义分离，为修改聚合条件留下 空间。
+
+AggregatingMergeTree更为常见的应用方式是结合物化视图使 用，将它作为物化视图的表引擎。
+```sql
+CREATE MATERIALIZED VIEW mergetree_testing.aggregatingmergetree_mat_view ENGINE = AggregatingMergeTree()
+ORDER BY (Name)
+AS SELECT
+Name,
+avgState(toFloat64(Quantity)) as Quantity_Average, 
+minState(toFloat64(Quantity)) as Quantity_Minimum,
+maxState(toFloat64(Quantity)) as Quantity_Maximum
+FROM mergetree_testing.mergetree GROUP BY Name;
+```
+
+CollapsingMergeTree:当数据需要持续变更，不得不频繁更新行。 sign 列的取值可以为1或者-1。1位状态行，-1位取消行，
+
+CollapsingMergeTree就是一种通过以增代删的思路，支持行级 数据修改和删除的表引擎。它通过定义一个sign标记位字段，记录数 据行的状态。如果sign标记为1，则表示这是一行有效的数据;如果 sign标记为-1，则表示这行数据需要被删除。
+
+VersionedCollapsing MergeTree
+```sql
+CREATE TABLE IF NOT EXISTS mergetree_testing.versionedcollapsingmergetree( ID String,
+  Count UInt64,
+  Sign Int8,
+ 
+   Version UInt32)
+ENGINE = VersionedCollapsingMergeTree(Sign, Version) ORDER BY (ID);
+```
+
+
+数据复制仅仅在MergeTree表引擎家族中支持
+* ReplicatedMergeTree
+* ReplicatedSummingMergeTree 
+* ReplicatedReplacingMergeTree 
+* ReplicatedAggregatingMergeTree 
+* ReplicatedCollapsingMergeTree 
+* ReplicatedVersionedCollapsingMergeTree 
+* ReplicatedGraphiteMergeTree
+
+ 
+MergeTree family engines are the most powerful and feature-rich engines in ClickHouse.
+
+ReplacingMergeTree engine is useful when data deduplication based on the primary/sorting key is required.
+
+SummingMergeTree engine is used to sum the numeric columns with the same primary/sorting key.
+
+AggregatingMergeTree is used to store the aggregating states of the columns, which can be later used for getting aggregated values.
+
+CollapsingMergeTree is useful when their records are continuously changing. The data deletion is based on the sign column.
+
+VersionedCollapsingMergeTree is similar to but an additional version column is used for deleting the old records.
+
+
+目前，MergeTree共支持4种跳数索引，分别是minmax、set、 ngrambf_v1和tokenbf_v1。一张数据表支持同时声明多个跳数索 引，
+```sql
+CREATE TABLE skip_test (
+  ID String,
+  URL String,
+  Code String,
+  EventTime Date,
+  INDEX a ID TYPE minmax GRANULARITY 5,
+  INDEX b(length(ID) * 8) TYPE **set**(2) GRANULARITY 5,
+  INDEX c(ID，Code) TYPE ngrambf_v1(3, 256, 2, 0) GRANULARITY 5, INDEX d ID TYPE tokenbf_v1(256, 2, 0) GRANULARITY 5
+) ENGINE = MergeTree()
+```
+
+
+```shell
+clickhouse-client -h ch7.nauu.com --send_logs_level=trace <<< 'SELECT * FROM
+   hits_v1' > /dev/null
+```
+
+通过ClickHouse提供的clickhouse-compressor工具，能够查 询某个.bin文件中压缩数据的统计信息
+
+
+
+```sql
+CREATE TABLE default.test ON CLUSTER mycluster_1
+(
+    `id` Int64,
+    `ymd` Int64
+)
+ENGINE = ReplicatedMergeTree('/clickhouse/tables/replicated/{shard}/test', '{replica}')
+PARTITION BY ymd
+ORDER BY id
+```
+
+
+
+SSTables
+
+存储和索引比较简洁
+ * 存储：SSTable，采用partition，granule和columns.bin文件三个层次
+ * 索引：主键/排序列的区间标记，采用primary.idx和[Column].mrk两级
+自动实时汇总数据：基于物化试图和AggregatingMergeTree，在插入明细数据时汇总到特定维度（排序列）
+
+合并机制问题：删除更新等操作合并时才会生效，随机写入和更新的性能非常糟糕，仅仅适合增量添加数据
+分布式性能？：基于zookeeper实现数据复制。如何在分布式cluster环境提高读写性能？
+
+# Hudi
+
+Hudi经常被拿来跟Delta，Iceberg一起，并称为“数据湖三剑客”
+
+[ApacheHudi](https://www.zhihu.com/column/ApacheHudi)
+
+
+[分布式和存储的那些事](https://www.zhihu.com/column/distributed-storage)
+
+
+Hudi的标志性功能——Upsert。
+
+Upsert可以说是Hudi的招牌，正如上一节所说，Hudi最初的设计目标就是在hadoop上实现数据的update。于是这里的核心问题就是
+
+如何在一个只能overwrite的文件系统上实现update操作？
+
+，Hudi的定义是流式数据湖平台，它支持海量数据更新，内置表格式以及支持事务的储存，一系列列表服务包括Clean、Archive、Compaction、Clustering等，以及开箱即用的数据服务，以及本身自带的运维工具和指标监控，提供很好的运维能力。
+
+* Merge on Read（MOR表）
+* Transactional（事务）
+* Incremental Query（增量查询
+
+
+对于MOR表，Hudi支持3种query类型，分别是
+* Snapshot Query
+* Incremental Query
+* Read Optimized Query
+>>>>>>> 20ba7485168611e7d8b0a220265026768f06f53f

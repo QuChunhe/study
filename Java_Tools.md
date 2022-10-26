@@ -2,7 +2,7 @@
 
 gradle
 
-
+./gradlew Dependencies
 
 # Configuration
 
@@ -12,3 +12,6 @@ gradle
 # Command-Line Interfaces
 
 [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/usage.html)
+
+
+[shadow](https://imperceptiblethoughts.com/shadow/introduction/#benefits-of-shadow)

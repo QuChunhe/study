@@ -22,3 +22,6 @@ Mathematics in Thress Fundamental Areas
   * 1879, Gottlob Frege: first order logic, that extends Boole's logic to include objects and relations.弗雷格：一阶逻辑，扩展了布尔逻辑，增加了对象和关系。
   * Alfred Tarski (1902~1983): theory of reference, that shows how to relate the objects in a logic to objects.塔斯基：指称理论，其揭示了在逻辑中如何关联对象。
 * Computation -- What can be computed?计算 -- 什么是可计算的？
+
+
+四大自动驾驶软件开源平台分别是百度的阿波罗、Autoware基金会的Autoware、英伟达的Drive（主要是DriveWorks）和大陆汽车子公司Elektrobit的EB robinsand Predictor。
