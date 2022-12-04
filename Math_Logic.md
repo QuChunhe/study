@@ -3,6 +3,12 @@ Michael Huth and Mark Ryan, Logic in Computer Science: Modelling and Reasoning a
 
 数理逻辑17.flv
 
+Completeness Compactness consistency  
+
+ induction on the complexity of the formula, or induction on the structure of the formula
+
+ Free variables are the variables upon which the truth value of a formula may depend.
+
 [陆钟万 数理逻辑](https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819)　
 
 数理逻辑的四个分支
@@ -217,3 +223,5 @@ all propositions in PROP
 * Associativity rules
 * Commutativity rules:
 * Distributivity rules:
+
+BeiJing21

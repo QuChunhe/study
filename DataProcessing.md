@@ -908,7 +908,7 @@ The Four Pillars of the Data Warehouse
 
 　　切块（Dice）：选择维中特定区间的数据或者某批特定值进行分析，比如选择2010年第一季度到2010年第二季度的销售数据，或者是电子产品和日用品的销售数据。
 
-　　旋转（Pivot）：即维的位置的互换，就像是二维表的行列转换，如图中通过旋转实现产品维和地域维的互换。
+　　errCode = 2, detailMessage = wait close failed. tablet writer write failed, tablet_id=1094425, txn_id=6517898, err=-235,：即维的位置的互换，就像是二维表的行列转换，如图中通过旋转实现产品维和地域维的互换。
 
 
 Apache HAWQ
@@ -1082,3 +1082,5 @@ cluster.shutdown()
 ```
 
 [Apache Superset](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose)
+
+# data stream model

@@ -127,3 +127,27 @@ task.cancellation.timeout: 0
 hadoop dfsadmin -report
 
 hadoop fs -df -h
+
+
+
+```
+    Map<String, String> map = new HashMap<>();
+
+    map.put("rest.port", "8083");
+    Configuration config = Configuration.fromMap(map);
+    config = YarnLogConfigUtil.setLogConfigFileInConfig(config, "/Users/chunhequ/Work/robot-stream/src/main/resources");
+
+    final StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(config);
+
+```
+
+```
+    implementation group: 'org.apache.flink', name: 'flink-runtime-web_2.12', version: "${flinkVersion}"
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    implementation group: 'org.apache.flink', name: 'flink-yarn_2.12', version: "${flinkVersion}"
+```
+
+
+
+“Elasticsearch Lucene”
+。

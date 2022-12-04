@@ -115,3 +115,18 @@ Module &: Bloom Filters
 [CS 598: Algorithms for Big Data](https://courses.engr.illinois.edu/cs598csc/fa2014/)
 
 [CMPSCI 711: More Advanced Algorithms](https://people.cs.umass.edu/~mcgregor/courses/CS711S12/index.html)
+
+
+# common method
+
+## Decrease and Conquer 减而治之
+
+[Decrease and Conquer](https://iq.opengenus.org/decrease-and-conquer/)
+
+
+## Backtracking 回溯
+
+Backtracking can be defined as a general algorithmic technique that considers searching every possible combination in order to solve a computational problem
+
+
+## Greedy Algorithm
