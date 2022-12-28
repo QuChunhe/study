@@ -55,6 +55,8 @@ http://highscalability.com/blog/category/distirbuted
 
 # Courses
 
+[High-Dimensional Probability](https://www.math.uci.edu/~rvershyn/teaching/hdp/hdp.html)
+
 [中科大 高等数理统计](https://www.bilibili.com/video/BV1Hz411B76u?from=search&seid=18439276058552710538)
 
 高等统计学概论， 赵林城、王占峰， 高教出版社， 2016
