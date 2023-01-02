@@ -123,6 +123,8 @@ Applied Multivariate Statistical Analysis (6th Edition). Prentice HallJohnson, R
 
 [贝叶斯统计课程 A Student's Guide to Bayesian Statistics by Ben Lambert](https://www.bilibili.com/video/BV1iV411v7Yw?from=search&seid=2797862519305688037)
 
+[Princeton University Introduction to Robotics](http://irom-lab.princeton.edu/intro-to-robotics/?continueFlag=1bafdcd5c034def869fecb4f3bdaed70)
+
 
 [《统计反思:贝叶斯课程(with Code Examples in R/Stan/Python/Julia)》(2019) by Richard McElrea](https://www.bilibili.com/video/BV1ya411A7ih?from=search&seid=7910571451600650021)
 
