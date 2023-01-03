@@ -1003,7 +1003,7 @@ System.out.println("People older than 20: " + olderThan20);
 * Lambda Epression
 * Target Typing
 * Functional Interface 
-* Mathod Rference
+* Method Rference
 
 We’ll use lambda expressions to easily separate logic from functions, making them more extensible.
 

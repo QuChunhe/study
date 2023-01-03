@@ -55,7 +55,11 @@ http://highscalability.com/blog/category/distirbuted
 
 # Courses
 
+
 [High-Dimensional Probability](https://www.math.uci.edu/~rvershyn/teaching/hdp/hdp.html)
+
+[国科大最新课程：深度学习绝](https://www.bilibili.com/video/BV1jW4y147aq/)
+
 
 [中科大 高等数理统计](https://www.bilibili.com/video/BV1Hz411B76u?from=search&seid=18439276058552710538)
 

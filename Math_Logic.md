@@ -9,6 +9,9 @@ Completeness Compactness consistency
 
  Free variables are the variables upon which the truth value of a formula may depend.
 
+
+ 形式语义（formal semantics）以及可靠（sound）和完备（完备）的推理规则。
+
 [陆钟万 数理逻辑](https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819)　
 
 数理逻辑的四个分支
