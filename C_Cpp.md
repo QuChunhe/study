@@ -21,8 +21,13 @@
 
 
 
-
-
+C -std
+* ANSI C Standard (referred to as ANSI C and C89)
+* C90 (official name: ISO/IEC 9899:1990; it is the ANSI C Standard adopted by ISO; the C89 and C90 are the same things)
+* C99 (ISO/IEC 9899:1999)
+* C11 (ISO/IEC 9899:2011)
+* C17 (ISO/IEC 9899:2018)
+* The upcoming standard informally named C2x
 
 
 # GCC
