@@ -10,7 +10,9 @@ partial 偏表示部分的意思
 * 偏导数 部分导入
 * 偏序(Partial Order)，部分有序
 
+[Dedekind切割定理与实数连续性](https://zhuanlan.zhihu.com/p/43168454)
 
+[用Dedekind分割构造实数](https://zhuanlan.zhihu.com/p/266213204)
 
 # Real Analysis
 

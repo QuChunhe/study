@@ -1,4 +1,8 @@
 
+```
+ zip file.pdf.zip --out file.zip -s 45m
+```
+
 # Git
 
 
