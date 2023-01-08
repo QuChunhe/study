@@ -1,6 +1,9 @@
 
 ```
  zip file.pdf.zip --out file.zip -s 45m
+
+ cat file.z* > newFile.zip
+ unzip -q newFile.zip
 ```
 
 # Git

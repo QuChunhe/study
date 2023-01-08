@@ -131,6 +131,57 @@ man printf
 man 3 printf
 ```
 
+
+> ++ -- postfix increment and decrement
+> () function call operator
+> [] array subscript
+> . structure member access
+> -> structure member access through a pointer
+> ++ -- prefix increment and decrement
+> + - unary plus and minus
+> ! logical NOT
+> (type_name) cast operator
+> * dereference operator
+> & address-of
+> * / % multiplication, division, and remainder
+> + - addition and subtraction
+> << >> bitwise left shift and right shift
+> < <= relational operators
+> >= relational operators
+> == != equality operators
+> && logical AND
+> || logical OR
+> ?: ternary conditional operator
+> = assignment operator
+> += -= compound assignments
+
+[var arg](https://www.tutorialspoint.com/c_standard_library/c_macro_va_arg.htm)
+
+```c
+#include <stdarg.h>
+
+va_list arg_ptr;
+
+type va_arg(
+   va_list arg_ptr,
+   type 
+);
+void va_end(
+   va_list arg_ptr 
+);
+void va_start(
+   va_list arg_ptr,
+   prev_param 
+);
+```
+
+>va_list  建参数列表
+>va_start(ap, num_args) 初始化列表为传入的可变长参数
+>va_arg(ap, int) 依次读取参数列表中的参数。ap指参数列表，type指转换类型
+>va_end(ap) 放参数列表。
+
+
+
  # Courses
 
  [南科大课堂原版 - C/C++：从基础语法到优化策略（2021年秋季版本）](https://www.bilibili.com/video/BV1Vf4y1P7pq?p=1)
