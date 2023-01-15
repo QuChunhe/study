@@ -14,6 +14,10 @@ partial 偏表示部分的意思
 
 [用Dedekind分割构造实数](https://zhuanlan.zhihu.com/p/266213204)
 
+Lebesgue and Borel sets
+
+https://www.doc88.com/p-2982472257242.html?r=1
+
 # Real Analysis
 
 

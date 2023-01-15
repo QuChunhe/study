@@ -26,6 +26,10 @@ https://zh.book4you.org
 
 [book](https://zh.u1lib.org)
 
+[letmeread](https://www.letmeread.net/category/computers-technology/)
+[coderprog](https://coderprog.com)
+
+
 [intellij-java-google-style](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml)
 
 # Web
