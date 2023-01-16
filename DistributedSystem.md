@@ -1947,3 +1947,5 @@ MapReduce pattern
 [分布式和存储的那些事](https://www.zhihu.com/column/distributed-storage)
 
 [CSE 552: Distributed Systems](https://courses.cs.washington.edu/courses/cse552/19au/schedule/)
+
+[Consensus: Bridging Theory and Practice](https://github.com/ongardie/dissertation)
