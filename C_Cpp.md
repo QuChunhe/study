@@ -132,6 +132,17 @@ man 3 printf
 ```
 
 
+```c
+int main(int argc, char *argv[])
+```
+argc表示参数个数（argument count），而argc表示参数向量（argument vector）.
+
+第一个参数argc是传递的参数数量加1，包括了执行程序的名字。因此，args总是大于0，而argv[0]是正在持续程序的名字（包括了路径）
+
+
+
+
+预算优先级
 > ++ -- postfix increment and decrement
 > () function call operator
 > [] array subscript
