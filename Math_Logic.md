@@ -100,13 +100,14 @@ Lp，L代表语言，p代表proposition
 
 
 * 项(term)
-* 原子公式(atom forumla)
+* 原子公式(atomic forumla)
 * 公式(formula)
 * 语句(sentence)
 * 论域  L-structure(结构) universe of L-structure
+* model
 
 
-赋值  解释 
+赋值  解释 assignment function
 
 
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
