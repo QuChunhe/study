@@ -142,7 +142,7 @@ argc表示参数个数（argument count），而argc表示参数向量（argumen
 
 
 
-预算优先级
+优先级
 > ++ -- postfix increment and decrement
 > () function call operator
 > [] array subscript
@@ -165,6 +165,15 @@ argc表示参数个数（argument count），而argc表示参数向量（argumen
 > ?: ternary conditional operator
 > = assignment operator
 > += -= compound assignments
+
+
+&  *
+* definition
+  * 指针: *
+  * 引用: & 
+* operator
+  * 取zhi(解引用): *
+  * 取址: &
 
 [var arg](https://www.tutorialspoint.com/c_standard_library/c_macro_va_arg.htm)
 
@@ -191,6 +200,12 @@ void va_start(
 >va_arg(ap, int) 依次读取参数列表中的参数。ap指参数列表，type指转换类型
 >va_end(ap) 放参数列表。
 
+
+But the pointer of type void* can point to any type. All pointer types are implicitly convertible to type void*. The void* type is also called a pointer to void or a generic pointer type.
+
+When a pointer has a value of NULL, it does not point to any other object.
+
+The p[i] expression is equivalent to *(p+i). Using a subscript operator with an index on a pointer as in p[i] means increment a pointer by i places and dereference it.
 
 
  # Courses
