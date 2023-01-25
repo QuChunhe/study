@@ -97,15 +97,18 @@ Lp，L代表语言，p代表proposition
 * 完备性定理：凡是在非形式的推理中成立的前提和结论之间的关系，形式可推演性都是能反映的。形式可以推演性对于反映非形式的推理是完备的
 
 
+Logical Implication(逻辑推论)
 
+(形式推演)
 
-* 项(term)
+* 项(term)：The terms of L play the role of the nouns of the language.
 * 原子公式(atomic forumla)
 * 公式(formula)
 * 语句(sentence)
 * 论域  L-structure(结构) universe of L-structure
 * model
 
+If the terms are the nouns of the language, the formulas will be the statement. Statements can be either true of false. Nouns cannot.
 
 赋值  解释 assignment function
 
