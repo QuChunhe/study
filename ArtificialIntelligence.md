@@ -1,4 +1,6 @@
 
+ David Kelley, The Art of Reasoning: An Introduction to Logic and Critical Thinking 4th edition, 2014
+
 
 [国科大高级AI](https://www.bilibili.com/video/BV17y4y1U7wW/?spm_id_from=333.788.recommend_more_video.0)
 

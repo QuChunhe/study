@@ -142,7 +142,7 @@ argc表示参数个数（argument count），而argc表示参数向量（argumen
 
 
 
-优先级
+操作符的优先级
 > ++ -- postfix increment and decrement
 > () function call operator
 > [] array subscript
@@ -167,13 +167,13 @@ argc表示参数个数（argument count），而argc表示参数向量（argumen
 > += -= compound assignments
 
 
-&  *
-* definition
+&和*
+* definition：用于定义数据类型
   * 指针: *
   * 引用: & 
-* operator
-  * 取zhi(解引用): *
-  * 取址: &
+* operator：用于运算符
+  * 取值(解引用): *，当变量所代表内存空间存储的是一个内存地址时，通过取值符获得这个内存地址所存储的值。
+  * 取址: &，当变量代表一个变量时，通过取址符获得这个变量数据所在的内存地址。
 
 [var arg](https://www.tutorialspoint.com/c_standard_library/c_macro_va_arg.htm)
 

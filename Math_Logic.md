@@ -108,6 +108,8 @@ Logical Implication(逻辑推论)
 * 论域  L-structure(结构) universe of L-structure
 * model
 
+结构：论域和指定的个体、关系和函数
+
 If the terms are the nouns of the language, the formulas will be the statement. Statements can be either true of false. Nouns cannot.
 
 赋值  解释 assignment function
