@@ -1,6 +1,6 @@
 
 ```
- zip file.pdf.zip --out file.zip -s 45m
+ zip file.pdf.zip --out file.zip -s 40m
 
  cat file.z* > newFile.zip
  unzip -q newFile.zip
