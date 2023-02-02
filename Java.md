@@ -1122,19 +1122,28 @@ Plain-Vanilla Recursion
 # 范型(Generics)
 
 A type with type parameters in its declaration is called a generic type.
+在声明中存在类型参数的类型被称为范型。
 
 They let you specify a type parameter with a type (class or interface). Such a type is called a generic type (more specifically generic class or generic interface). The type parameter value could be specified when you declare a variable of the generic type and create an object of your generic type.
 
 
 The purpose of using generics is to have compiletime type-safety. As long as the compiler is satisfied that the operation will not produce any surprising results at runtime, it allows the operation on the wildcard generic type reference.
 
+
 Using only a question mark as a parameter type (<?>) is known as an unbounded wildcard. It places no bounds as to what type it can refer. You can also place an upper bound or a lower bound with a wildcard. 
+如果仅使用问号作为参数类型（<？>），就被称为无边界通配符，其不限制能够引用什么类型。此外，还可以在通配符上设置上限或下限。
 
-Unbounded Wildcards
+\<? extends T>和<? super T>是Java泛型中的"通配符（Wildcards）"和"边界（Bounds）"的概念。
+* \<?> ：是无边界通配符（Unbounded Wildcards），表示任何类型。
+* \<? extends T>：是上界通配符（Upper Bounds Wildcards），表示T或者T的子类
+* \<? super T>：是指“下界通配符（Lower Bounds Wildcards），表示T或者T的父类。
 
-Upper-Bounded Wildcards
 
-Lower-Bounded Wildcards
+
+型类型继承规则
+* 对于泛型参数是继承关系的泛型类之间是没有继承关系的
+* 泛型类可以继承其它泛型类，例如: public class ArrayList<E> extends AbstractList<E>
+* 泛型类的继承关系在使用中同样会受到泛型类型的影响
 
 Type parameters defined for a generic type are not available in static methods of that type. Therefore, if a static method needs to be generic, it must define its own type parameters. If a method needs to be generic, define just that method as generic rather than defining the entire type as generic.
 
@@ -1157,14 +1166,13 @@ Heap pollution is a situation that occurs when a variable of a parameterized typ
 
 一些常用的泛型类型变量：
 * E：元素（Element），多用于java集合框架
-* K：关键字（Key）
+* K：键（Key），多用于Java Map中的key
 * N：数字（Number）
 * T：类型（Type）
-* V：值（Value）
+* V：值（Value），用于Java Map中的value
+* R：结果（Result），方法的返回值
 
-\<? extends T>和<? super T>是Java泛型中的"通配符（Wildcards）"和"边界（Bounds）"的概念。
-* \<? extends T>：是指 “上界通配符（Upper Bounds Wildcards）”
-* \<? super T>：是指 “下界通配符（Lower Bounds Wildcards）
+
 
 泛型，即参数化类型
 * 泛型类
@@ -1226,9 +1234,16 @@ PECS（Producer Extends Consumer Super）原则，已经很好理解了：
 
 ```
 The principles behind this in computer science is called
-* Covariance: \<? extends T> MyClass,
-* Contravariance: \<? super T> MyClass and
-* Invariance/non-variance: MyClass
+* 协变(Covariance): \<? extends T> MyClass,
+* 逆变(Contravariance): \<? super T> MyClass and
+* 抗变(Invariance/non-variance): MyClass
+
+```java
+    List<String> stringList = new ArrayList<>();
+    List<Object> objectList = stringList;
+```
+上述代码会抛出如下错误
+>>java: 不兼容的类型: java.util.List<java.lang.String>无法转换为java.util.List<java.lang.Object>
 
 * Read-only data types (sources) can be covariant;
 * write-only data types (sinks) can be contravariant.
@@ -1239,24 +1254,32 @@ The principles behind this in computer science is called
 泛型中的约束和局限性
 * 不能实例化泛型类
 * 静态变量或方法不能引用泛型类型变量，但是静态泛型方法是可以的
-* 基本类型无法作为泛型类型
+* primitive type无法作为泛型类型
 * 无法使用instanceof关键字或==判断泛型类的类型
 * 泛型类的原生类型与所传递的泛型无关，无论传递什么类型，原生类是一样的
 * 泛型数组可以声明但无法实例化
 * 泛型类不能继承Exception或者Throwable
 * 不能捕获泛型类型限定的异常但可以将泛型限定的异常抛出
 
-型类型继承规则
-* 对于泛型参数是继承关系的泛型类之间是没有继承关系的
-* 泛型类可以继承其它泛型类，例如: public class ArrayList<E> extends AbstractList<E>
-* 泛型类的继承关系在使用中同样会受到泛型类型的影响
+通过反射获取范型中的参数类型
+```java
+public abstract class AbstractRepository<T> implements Repository<T> {
+  protected final Class<T> entityClass;
+
+  public AbstractRepository() {
+    entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
+          .getActualTypeArguments()[0];
+  }
+```
+
+
 
 这里的Type指java.lang.reflect.Type, 是Java中所有类型的公共高级接口, 代表了Java中的所有类型. Type体系中类型的包括：数组类型(GenericArrayType)、参数化类型(ParameterizedType)、类型变量(TypeVariable)、通配符类型(WildcardType)、原始类型(Class)、基本类型(Class), 以上这些类型都实现Type接口.
 * 参数化类型,就是我们平常所用到的泛型List、Map；
 * 数组类型,并不是我们工作中所使用的数组String[] 、byte[]，而是带有泛型的数组，即T[] ；
 * 通配符类型, 指的是<?>, <? extends T>等等
 * 原始类型, 不仅仅包含我们平常所指的类，还包括枚举、数组、注解等；
-* 基本类型, 也就是我们所说的java的基本类型，即int,float,double等
+* 基本类型(primitive type), 也就是我们所说的java的基本类型，即int,float,double等
 
 The capture-helper trick depends on several things: type inference and capture conversion. The Java compiler doesn't perform type inference in very many places, but one place it does is in inferring the type parameter for generic methods. 
 
@@ -1455,5 +1478,20 @@ Jackson有三种方式处理Json：
 
 
 
+## SerialVersionUID
+
+[SerialVersionUID in Java](https://www.geeksforgeeks.org/serialversionuid-in-java/)
+
+Serialization at the time of serialization, with every object sender side JVM will save a Unique Identifier. JVM is responsible to generate that unique ID based on the corresponding .class file which is present in the sender system. Deserialization at the time of deserialization, receiver side JVM will compare the unique ID associated with the Object with local class Unique ID i.e. JVM will also create a Unique ID based on the corresponding .class file which is present in the receiver system. If both unique ID matched then only deserialization will be performed. Otherwise, we will get Runtime Exception saying InvalidClassException. This unique Identifier is nothing but SerialVersionUID.
 
 
+There are also certain problem associations depending on the default SerialVersionUID generated by JVM as listed below: 
+1. Both sender and receiver should use the same JVM with respect to platform and version also. Otherwise, the receiver is unable to deserialize because of different SerialVersionUID.
+2. Both sender and receiver should use the same ‘.class’ file version. After serialization, if there is any change in the ‘.class’ file at the receiver side then the receiver is unable to deserialize.
+3. To generate SerialVersionUID internally JVM may use complex algorithms which may create performance problems.
+
+
+We can solve the above problem by configuring our own SerialVersionUID.
+```java
+private static final long serialVersionUID = -6849794470754667710L;
+```
