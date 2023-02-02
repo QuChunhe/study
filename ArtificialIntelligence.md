@@ -1,6 +1,7 @@
 
  David Kelley, The Art of Reasoning: An Introduction to Logic and Critical Thinking 4th edition, 2014
 
+[我们犯的那些“错误”，或许才是创造力的关键](https://www.huxiu.com/article/782841.html)
 
 [国科大高级AI](https://www.bilibili.com/video/BV17y4y1U7wW/?spm_id_from=333.788.recommend_more_video.0)
 

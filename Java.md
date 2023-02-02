@@ -1242,14 +1242,26 @@ The principles behind this in computer science is called
     List<String> stringList = new ArrayList<>();
     List<Object> objectList = stringList;
 ```
-上述代码会抛出如下错误
+上述代码中stringList的类型List\<String>是Invariance的，在赋值给objectList时编译器会抛出如下错误
 >>java: 不兼容的类型: java.util.List<java.lang.String>无法转换为java.util.List<java.lang.Object>
+
+Java中的数组是协变的，因此可以将stringArray赋值给objectArray，编译可以正常通过。
+```java
+    String[] stringArray = new String[]{"1"};
+    Object[] objectArray= stringArray;
+    objectArray[0] = 1;
+```
+对于objectArray的元素进行赋值会在运行时抛出如下异常
+>>Exception in thread "main" java.lang.ArrayStoreException: java.lang.Integer
+
+
 
 * Read-only data types (sources) can be covariant;
 * write-only data types (sinks) can be contravariant.
 * Mutable data types which act as both sources and sinks should be invarian
 
 [Java Generics PECS – Producer Extends Consumer Super](https://howtodoinjava.com/java/generics/java-generics-what-is-pecs-producer-extends-consumer-super/)
+[你懂协变(Covariance)逆变(Contravariance)与抗变(Invariant)吗？](https://zhuanlan.zhihu.com/p/268523581)
 
 泛型中的约束和局限性
 * 不能实例化泛型类
@@ -1288,6 +1300,19 @@ There's a simple rule, called the get-put principle, which tells us which kind o
 [Java Generics Interview](https://www.baeldung.com/java-generics-interview-questions)
 
 [Type Erasure](https://docs.oracle.com/javase/tutorial/java/generics/erasure.html)
+
+
+
+Generics were introduced to the Java language to provide tighter type checks at compile time and to support generic programming. To implement generics, the Java compiler applies type erasure to:在Java语言中引入泛型，用于在编译过程中提供更加严格的类型检查，并支持泛型编程。为了实现泛型，Java编译器将类型擦除应用于：
+* Replace all type parameters in generic types with their bounds or Object if the type parameters are unbounded. The produced bytecode, therefore, contains only ordinary classes, interfaces, and methods. 如果类型参数是无边界的，则将泛型类型中的所有类型参数替换为其Object，否则替换为其边界。因此，生成的字节码只包含普通类、接口和方法。
+* Insert type casts if necessary to preserve type safety. 如果需要保持类型的安全性，则插入类型转换
+* Generate bridge methods to preserve polymorphism in extended generic types.为了保持在扩展的泛型类型中保持多态性，生成桥方法。
+
+Type erasure ensures that no new classes are created for parameterized types; consequently, generics incur no runtime overhead
+类型擦除确保不会为参数化的类型创建新类。因此，泛型不会产生运行时开销。
+
+javap -l -p -v -c可以看方法参数类型的签名。
+
 
 # 杂项
 
