@@ -132,6 +132,8 @@ man 3 printf
 ```
 
 
+
+
 ```c
 int main(int argc, char *argv[])
 ```
@@ -140,7 +142,24 @@ argc表示参数个数（argument count），而argc表示参数向量（argumen
 第一个参数argc是传递的参数数量加1，包括了执行程序的名字。因此，args总是大于0，而argv[0]是正在持续程序的名字（包括了路径）
 
 
+printf format
+* %hu、%u、%lu 以十进制、无符号的形式输出 short、int、long 类型的整数
+* %hd、%d、%ld 以十进制、有符号的形式输出 short、int、long 类型的整数
+* %ho、%o、%lo  以八进制、不带前缀、无符号的形式输出 short、int、long 类型的整数
+* %#ho、%#o、%#lo 以八进制、带前缀、无符号的形式输出 short、int、long 类型的整数
+* %hx、%x、%lx, %hX、%X、%lX 以十六进制、不带前缀、无符号的形式输出 short、int、long 类型的整数。如果 x 小写，那么输出的十六进制数字也小写；如果 X 大写，那么输出的十六进制数字也大写。
+* %#hx、%#x、%#lx, %#hX、%#X、%#lX 以十六进制、带前缀、无符号的形式输出 short、int、long 类型的整数。如果 x 小写，那么输出的十六进制数字和前缀都小写；如果 X 大写，那么输出的十六进制数字和前缀都大写。
+* %f、%lf 以十进制的形式输出 float、double 类型的小数
+* %e、%le, %E、%lE 以指数的形式输出 float、double 类型的小数。如果 e 小写，那么输出结果中的 e 也小写；如果 E 大写，那么输出结果中的 E 也大写。
+* %s   字符串 
+* %c   单个字符 
+* %p  指针的值 
+* %g、%lg, %G、%lG   以十进制和指数中较短的形式输出 float、double 类型的小数，并且小数部分的最后不会添加多余的 0。如果 g 小写，那么当以指数形式输出时 e 也小写；如果 G 大写，那么当以指数形式输出时 E 也大写。
 
+
+* %3d   表示输出3位整型数, 不够3位右对齐。 
+* %9.2f 表示输出场宽为9的浮点数, 其中小数位为2, 整数位为6, 小数点占一位, 不够9位右对齐。 
+* %8s   表示输出8个字符的字符串, 不够8个字符右对齐。
 
 操作符的优先级
 > ++ -- postfix increment and decrement
@@ -206,6 +225,18 @@ But the pointer of type void* can point to any type. All pointer types are impli
 When a pointer has a value of NULL, it does not point to any other object.
 
 The p[i] expression is equivalent to *(p+i). Using a subscript operator with an index on a pointer as in p[i] means increment a pointer by i places and dereference it.
+
+
+
+
+每个特定平台上的编译器都有自己的默认“对齐系数”（也叫对齐模数）。gcc中默认#pragma pack(4)，可以通过预编译命令#pragma pack(n)，n = 1,2,4,8,16来改变这一系数。
+内存对齐主要遵循下面三个原则:
+
+1. 结构体变量的起始地址能够被其最宽的成员大小整除
+2. 结构体每个成员相对于起始地址的偏移能够被其自身大小整除，如果不能则在前一个成员后面补充字节
+3. 结构体总体大小能够被最宽的成员的大小整除，如不能则在后面补充字节
+
+
 
 
  # Courses
