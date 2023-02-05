@@ -8,6 +8,8 @@
 
 [Measures of Shape: Skewness and Kurtosis](https://brownmath.com/stat/shape.htm)
 
+卡尔·皮尔逊（Karl Pearson，1857年3月27日～1936年4月27日）是英国 数学家 ，生物统计学家， 数理统计学 的创立者.
+
 
  Multivariate Statistics
  

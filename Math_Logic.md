@@ -12,6 +12,10 @@ Completeness Compactness consistency
 
  形式语义（formal semantics）以及可靠（sound）和完备（完备）的推理规则。
 
+ 一阶逻辑则引入了两个量词, 即universal quantifier(倒A)和existential quantifier(倒E), 并且加入了一阶谓词和individual variables和individual constants. 这些导致一阶逻辑可以量化individuals in the domain. 比如经典的三段论就可以被一阶逻辑表达
+
+ a Henkin structure
+
 [陆钟万 数理逻辑](https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819)　
 
 数理逻辑的四个分支
