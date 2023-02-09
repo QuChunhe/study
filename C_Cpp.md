@@ -227,7 +227,9 @@ When a pointer has a value of NULL, it does not point to any other object.
 The p[i] expression is equivalent to *(p+i). Using a subscript operator with an index on a pointer as in p[i] means increment a pointer by i places and dereference it.
 
 
-
+之所以struct和union需要对齐，是为了
+* 内存访问效率。内存和cache以块（2^n字节）为单位进行读写，因此对齐member的访问地址，可以一次读写就能过操作member
+* 数据一致性。如果一次读写，需要访问多次内存，则可能造成数据的不不一致。
 
 每个特定平台上的编译器都有自己的默认“对齐系数”（也叫对齐模数）。gcc中默认#pragma pack(4)，可以通过预编译命令#pragma pack(n)，n = 1,2,4,8,16来改变这一系数。
 内存对齐主要遵循下面三个原则:
