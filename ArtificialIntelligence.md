@@ -8,8 +8,8 @@
 
 
 搜索问题
-* 无信息搜索（Uninformed Search）:
-* 启发式搜索（Informed Search）
+* 无信息搜索/盲目搜索（Uninformed Search）:
+* 启发搜索（Informed Search）
 * 局部搜索（Local Search）
 
 搜索问题构成

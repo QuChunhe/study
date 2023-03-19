@@ -213,16 +213,28 @@ Design mehtods of parallel algorithms
     * Dynamic Scheduling (Run time scheduling)
 * Load balance
     * Definition: processors have roughly the same amount of workload, so that no one processor holds up the entire solution.
-    * Static load balancing
-    * Dynamic load balancing
+    * Static load balancing: to divide the task and communications evently before the execution of the algorithm.
+    * Dynamic load balancing: if the task size is unknown until run time, we have to use dynamic load balancing.
+
+
 分解到各个线程：以数据为中心的的数据域分解和以功能为中心的功能性分解
 
 调度：1）将线程映射到处理器，优先级；2）平衡负载
 
 Performance Evaluation of Parallel Algorithms
 * Speedup
-    * Amdahl's Law: the computational workload is fixed. If f is fraction of a sequential calculation, then the maximum speedup is 1/f.
-    * Gustafson's Law: the execution time is fixed. Gustafson said, the speedup is the linear function of the number of processors.
+    * Amdahl's Law: the computational workload is fixed as the number of processors increases, the computational time decreased. Amdahl said, if f is fraction of a sequential calculation, then the maximum speedup is 1/f. It is a negative argument against massively parallel processing.
+    * Gustafson's Law: the execution time is fixed, as the number of processors increases, correspondingly computational workload increases. Gustafson said, the speedup is the linear function of the number of processors.
+
+Paralle Programming Models
+* shared variable model
+  * Originality: it is the native model for shared memory machines
+  * Characters: in this model, tasks share a common address space (implicit data distribution), tasks exchange data through reading/writing the shared variables (impplict communication), tasks access to shared variable controlled by locks/semaphores etc. (explicit synchronization).
+  * Comments: it is easy to develop programs, but the portability of programs is problematic.
+* message passing model
+  * Originality: it is the native model for distribute memory machines
+  * Characters: In this model, tasks reside in different address space (explicit data allocation), tasks exchange data through sending/receiving message (explicit communication), task asynchronously operate need to use barrier/event etc. (explicit synchronization).
+  * Comments: the portablity of programs is enhanced, but it is rather difficult to develop the programs.
 
 计算执行时间
   * 运算操作： Computational Steps

@@ -6,22 +6,18 @@ https://www.itcodemonkey.com/article/15901.html
 
 智能
 * 抽象
-
 * 演绎，学习已有经验和知识，并进一步的应用
-
 * 归纳，通过特例，分析和总结经验
-
 * 联想：将不相关的事件关联起来、
-
 * 关联，
-
-* 尝试
-
+* 推理
 * 类比，相关的事件和经验，能够进行关联和对比
+
+人类的其他能力
 
 * 本能，天生的或者经过反复训练具有的一些条件反射或者直觉。
 * 记忆
-
+* 尝试
 
 [李沐的深度学习笔记来了](https://mp.weixin.qq.com/s?__biz=MzIyNjM2MzQyNg==&mid=2247623390&idx=1&sn=8b1df80bf7bc63ef240c5d8ba6ce9ba8&chksm=e87d3393df0aba858deafe2928d3fd5f95485e1d2d45485876efaf2a958aa5bd9e6a936fb98b&mpshare=1&scene=1&srcid=0804HXDZngMv97BJEXM5ZT6f&sharer_sharetime=1659585056484&sharer_shareid=6cf5f9bc7b3d07e703236236e2df3f84&exportkey=AXWqPjhZ3DQRsKl5A7mGi7I%3D&acctmode=0&pass_ticket=%2FfY4TB26JPF8DDrzCX37H4I3CK8FdSGChE92J%2FG34sOU5b6P4nl6JQ9TvfPeGuI0&wx_header=0#rd)
 
