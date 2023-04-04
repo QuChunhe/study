@@ -1520,3 +1520,8 @@ We can solve the above problem by configuring our own SerialVersionUID.
 ```java
 private static final long serialVersionUID = -6849794470754667710L;
 ```
+
+
+# 调度系统
+
+[xxl-job](https://github.com/xuxueli/xxl-job) 
