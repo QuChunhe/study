@@ -110,13 +110,21 @@ Logical Implication(逻辑推论)
 * 公式(formula)
 * 语句(sentence)
 * 论域  L-structure(结构) universe of L-structure
-* model
+* 模型 model
 
 结构：论域和指定的个体、关系和函数
 
 If the terms are the nouns of the language, the formulas will be the statement. Statements can be either true of false. Nouns cannot.
 
 赋值  解释 assignment function
+
+全称量词消除的规则，就叫 Universal Instantiation ,缩写为 UI 。全称实例化
+
+第二种量词规则是 UG，Universal Generalization。全称泛化
+
+第三种量词规则， EI ， Existentiation Instantiation ，就叫“存在实例
+
+第四种量词规则当然是 EG，即 Existentiation Generalization。我们可以译为“存在泛指”或“存在量词推广”。张建军他们这些中国的逻辑学家译为“存在概括规则”
 
 
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
