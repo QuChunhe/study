@@ -8,7 +8,7 @@
 
 
 搜索问题
-* 无信息搜索/盲目搜索（Uninformed Search）:
+* 无信息搜索/盲目搜索（Uninformed Search/blind search）:
 * 启发搜索（Informed Search）
 * 局部搜索（Local Search）
 
@@ -17,6 +17,17 @@
 * 后继函数
 * 初始状态
 * 目标测试
+
+ state-space graphs
+
+generate-and-test search paradigm.
+
+greedy algorithm and backtracking
+
+blind search algorithms 
+* breadth irst search (bfs) 
+* depth irstsearch (dfs)
+
 
 [北京大学《人工智能原理](https://www.bilibili.com/video/BV154411874o?p=2)
 

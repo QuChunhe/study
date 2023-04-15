@@ -133,6 +133,11 @@ If the terms are the nouns of the language, the formulas will be the statement. 
 第四种量词规则当然是 EG，即 Existentiation Generalization。我们可以译为“存在泛指”或“存在量词推广”。张建军他们这些中国的逻辑学家译为“存在概括规则”
 
 
+the logical axioms ，nonlogical axioms
+
+rule modus ponens
+
+
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 [Insights into Mathematics](https://www.youtube.com/user/njwildberger)  -->A Grief history of Logic
