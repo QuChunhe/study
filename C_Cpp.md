@@ -248,6 +248,16 @@ The p[i] expression is equivalent to *(p+i). Using a subscript operator with an 
 可以使用offsetof宏来得到一个数据成员在结构体中的位置
 
 
+built-in macros
+>> __LINE__
+>> __FILE__
+>> __TIME__ 
+>> __DATE__
+>> __STDC_VERSION__
+>> __func__
+
+function-like macro
+
  # Courses
 
  [南科大课堂原版 - C/C++：从基础语法到优化策略（2021年秋季版本）](https://www.bilibili.com/video/BV1Vf4y1P7pq?p=1)
