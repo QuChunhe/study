@@ -9,6 +9,8 @@
 ```shell
  docker pull flink:1.12.1
 
+ ./mvnw clean package -DskipTests -Drat.skip=true
+
 ```
 
 https://zhuanlan.zhihu.com/p/176855301
@@ -97,3 +99,7 @@ TimestampsAndWatermarks
 * 数据乱序、延迟到达
 * 何时触发窗口计算
 * 计算状态的存储和过期
+
+* keyed state 
+* operator state.
+

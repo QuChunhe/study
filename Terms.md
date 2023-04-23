@@ -1,4 +1,22 @@
 
+
+
+ASCII(American Standard Code for Information Interchange)
+
+UNIVERSAL CHARACTER SET (UCS) - 
+
+Universal Multiple-Octet Coded Character Set 通用多八位编码字符集
+
+Unicode 只是一个符号集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储.
+
+UTF-8、UTF-16、UTF-32 中的 "UTF" 是 "Unicode Transformation Format" 的缩写，意思是"Unicode 转换格式"，后面的数 字表明至少使用多少个比特位来存储字符, 比如：UTF-8 最少需要8个比特位也就是一个字节来存储
+
+Little endian 和 Big endian
+
+bps（bit per second），也就是bit/s
+
+“KBps”（ 千 字 节/ 秒）  或“MBps” （ 兆 字 节/ 秒） 
+
 *[Write Amplification](https://en.wikipedia.org/wiki/Write_amplification) -
 
 [Object-Oriented Programming vs. Procedural Programming](https://study.com/academy/lesson/object-oriented-programming-vs-procedural-programming.html)   

@@ -23,6 +23,15 @@ analysis of variance (ANOVA) and regression,
 
 Gelman A., and Vehtari A. What are the most important statistical ideas of the past 50 years? [J]. Journal of the American Statistical Association, 2021, ahead-of-print, 1-11.
 
+
+
+* a,b的算术平均数： （Arithmetic mean）
+* a,b的几何平均数： （Geometric mean）
+
+指数增长是指函数值呈等比数列的增长，又名几何增长，故等比数列叫做geometric sequence, 然而还是没有解释清楚这个geometric是哪里来的。然后有一个geometric mean的概念，在x1, x2, x3, ...... xn 里，geometric mean定义为(x1*x2*x3*......xn)^(1/n)，其几何意义是，在一个n维的长方体，边长为x1,x2,x3,......xn，其体积与边长为原长方体的边长的geometric mean的n维的立方体的体积相等。
+。
+
+
 [概率论与数理统计讲义](http://staff.ustc.edu.cn/%7Ezwp/teach/Prob-Stat/probstat.htm)
 
 # Probability
