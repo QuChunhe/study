@@ -103,6 +103,9 @@ Lp，L代表语言，p代表proposition
 
 Logical Implication(逻辑推论)
 
+
+propositional consequence of Γ
+
 (形式推演)
 
  recursion递归定义
@@ -275,5 +278,3 @@ all propositions in PROP
 * Associativity rules
 * Commutativity rules:
 * Distributivity rules:
-
-BeiJing21

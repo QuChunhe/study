@@ -9,7 +9,7 @@
 
 搜索问题
 * 无信息搜索/盲目搜索（Uninformed Search/blind search）:
-* 启发搜索（Informed Search）
+* 启发搜索（Informed Search/Heuristic Search.）
 * 局部搜索（Local Search）
 
 搜索问题构成
@@ -28,6 +28,18 @@ blind search algorithms
 * breadth irst search (bfs) 
 * depth irstsearch (dfs)
 
+[Uninformed Search](https://zhuanlan.zhihu.com/p/42699056)
+* Breadth-first Search(BFS) 广度优先
+* Uniform-cost Search
+* Depth-first Search(DFS) 深度优先
+* Depth-limited SearchIteration-deepening Search
+* Branch and Bound
+
+启发式搜索
+* Greedy Search
+* A* Search
+* AO* Search
+* Hill Climbing Algorithm
 
 [北京大学《人工智能原理](https://www.bilibili.com/video/BV154411874o?p=2)
 
