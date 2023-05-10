@@ -13,7 +13,22 @@ MySQL操作的主要瓶颈
 * 磁盘读取和吸入
 * 内存计算
 
+[](https://docs.aws.amazon.com/athena/latest/ug/alter-table-drop-partition.html#:~:text=ALTER%20TABLE%20DROP%20%20PARTITION%201%20Synopsis%20ALTER,a%20range%20of%20%20partitions%20to%20drop.%20)
+```sql
 
+ALTER TABLE table_name DROP [IF EXISTS] PARTITION (partition_spec) [, PARTITION (partition_spec)]
+
+SHOW PARTITIONS impressions
+
+SELECT * FROM "flight_delays_csv$partitions" ORDER BY year
+
+ALTER TABLE members
+    REORGANIZE PARTITION p0 INTO (
+        PARTITION n0 VALUES LESS THAN (1970),
+        PARTITION n1 VALUES LESS THAN (1980)
+);
+
+```
 
 
 # Ideal(想法) 
