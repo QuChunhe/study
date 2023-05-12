@@ -689,3 +689,33 @@ https://khalilstemmler.com/articles/software-design-architecture/full-stack-soft
 
 
 The situation where the number of classes increases to an unmanageable extent is called a class explosion and the java.io package is a good example of that.
+
+
+
+[9 Key Metrics for Businesses to Measure the Success of DevOps](https://www.zentao.pm/blog/9-key-metrics-for-businesses-to-measure-the-success-of-devops-1366.html)
+
+1. Deployment Frequency(部署频率). The deployment frequency measures how often teams successfully release to production environments.
+2. Mean Lead Time for Changes(变更的平均交付时间). The lead time for changes is how long it takes a team to go from code committed to code successfully running in production.
+3. Change Failure Rate(变更失败率). Change Failure Rate measures the percentage of deployments that result in production failures that require repair or rollback.
+4. Time to Recovery(恢复时间). The Mean Time to Recovery (MTTR) service measures the time it takes for an organization to recover from a production failure.
+5. Defect escape rate(缺陷逃逸率). Defect escape rate measures the number of errors that "escape" the test and are released to the production environment.
+6. Mean Time to Detect(MTTD：平均检出时间). Mean Time to Detect (MTTD) measures the average time between the start of an event and its discovery.
+7. Percentage of Code Covered by Automated Tests(被自动测试所覆盖的代码百分比). The percentage of code covered by automated tests measures the proportion of code that receives automated tests.
+8. Application Availability(应用可用性).Application availability measures the proportion of time an application is fully operational and accessible to meet the needs of end users.
+9. Application Traffic Management (ATM：应用流量管理).Application usage and management monitor the number of users accessing your system and inform many other metrics, including system uptime.
+
+
+ JUnit, AssertJ, Selenium, and jqwik
+
+
+# Domain-driven design
+
+ 领域驱动设计（英语：Domain-driven design，缩写 DDD）是一种通过将实现连接到持续进化的模型[1]来满足复杂需求的软件开发方法。领域驱动设计的前提是：
+
+把项目的主要重点放在核心领域（core domain）和域逻辑
+把复杂的设计放在有界域（bounded context）的模型上
+发起一个创造性的合作之间的技术和域界专家以迭代地完善的概念模式，解决特定领域的问题
+
+Subdomain
+
+Domain-driven design distinguishes between three types of subdomains: core, generic, and supporting.

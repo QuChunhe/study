@@ -17,6 +17,8 @@ bps（bit per second），也就是bit/s
 
 “KBps”（ 千 字 节/ 秒）  或“MBps” （ 兆 字 节/ 秒） 
 
+重载 (overload)覆盖 (override)
+
 *[Write Amplification](https://en.wikipedia.org/wiki/Write_amplification) -
 
 [Object-Oriented Programming vs. Procedural Programming](https://study.com/academy/lesson/object-oriented-programming-vs-procedural-programming.html)   
