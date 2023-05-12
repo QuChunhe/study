@@ -1728,3 +1728,47 @@ MySQL 8.0 默认的是 utf8mb4_0900_ai_ci，属于 utf8mb4_unicode_ci 中的一�
 
 
 ai表示accent insensitivity，也就是“不区分音调”，排序时 e，è，é，ê 和 ë 之间没有区别,而ci表示case insensitivity，也就是“不区分大小写”,排序时a和A之间没有区别。
+
+@是用户变量，@@是系统变量。
+
+```sql
+select @@wait_timeout  from dual;
+
+select date_add("2023-05-12", interval @i:=@i-1 day) as date
+from  (select @i:=1) t
+where @i>-7;
+
+WITH t1 AS (
+      SELECT SUBDATE(DATE(NOW()), t2*100 + t1*10 + t0) AS date 
+      FROM
+        (SELECT 0 t0 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t0,  
+        (SELECT 0 t1 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t1,  
+        (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2
+```
+
+mysql with recursive
+```sql
+WITH recursive 表名 AS (
+初始语句（非递归部分）
+UNION ALL
+递归部分语句
+)
+
+WITH recursive t AS(
+SELECT 1 AS d
+UNION ALL
+SELECT n+1 FROM t WHERE n<10
+)
+SELECT * FROM t;
+
+
+WITH recursive t (date) AS(
+SELECT "2023-05-12"
+UNION ALL
+SELECT date_add(date, interval -1 day) as date FROM t WHERE date>='2023-04-28'
+)
+SELECT date FROM t
+order by date desc;
+
+
+```
