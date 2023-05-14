@@ -7,6 +7,8 @@ https://akfpartners.com/growth-blog
 
 [从事分布式系统、计算、hadoop 等方面工作需要哪些基础](https://www.zhihu.com/question/19868791/answer/88873783l)
 
+[分布式系统(Distributed System)资料](https://zhuanlan.zhihu.com/p/91431718)
+
 * Horizontal scaling(水平扩展):scale out 向外伸缩，通过添加服务器，实现可扩展性
 * Vertical scaling(垂直扩展):Scale up 向上伸缩，通过升级硬件，实现可扩展。
 

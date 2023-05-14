@@ -64,3 +64,11 @@ Object-oriented  programming
   multi-layer architecture　多层架构
 
 认证 (authentication) 和授权 (authorization)
+
+第一性原理（First principle thinking）
+第一性原理指的是，回归事物最基本的条件，将其拆分成各要素进行解构分析，从而找到实现目标最优路径的方法。
+该原理源于古希腊哲学家亚里士多德提出的一个哲学观点：“每个系统中存在一个最基本的命题，它不能被违背或删除。” 
+
+Bayes’ rule or the Bayes–Price–Laplace rule
+>>‘causes and effects are discoverable, not by reason, but by
+>>experience’
