@@ -785,6 +785,10 @@ Bradley Efron and Trevor Hastie, Computer Age Statistical Inference: Algorithms,
 
 [Bayesian Inference](http://www.stat.cmu.edu/~larry/=sml/Bayes.pdf)
 
+* 贝叶斯学派：系统的参数会发生变化，但是给定的数据不变
+* 频率学派：对于系统不可见的部分，概率模型的参数是固定的，系统已知的，数据，是变化的。
+
+Prior + data --model--> posterior
 
 # Statistical Inference
 
