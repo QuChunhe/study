@@ -1,6 +1,8 @@
 
 Michael Huth and Mark Ryan, Logic in Computer Science: Modelling and Reasoning about Systems 2ed, Cambridge University Press, 2004.
 
+[Mathematical Logic and Proofs](https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof)
+
 数理逻辑17.flv
 
 Completeness Compactness consistency  
