@@ -207,6 +207,43 @@ The specific features are as follows:
 
 The component that fills the shipping container role is called an image.
 
+# CI/CD
+
+ software development life cycle (SDLC)
+
+ functional tests
+
+Happy path testing
+
+edge- case testing
+
+corner-case testing
+
+unhappy path testing
+
+* user tests: test large, user-facing features
+* integration test: test functions working together
+* unit tests: test individual functions
+
+
+performance test
+
+ load tests
+
+ soak tests
+
+ Fuzz tests
+
+
+  static code analysis
+
+Security-testing code manually
+
+Dynamic analysis
+
+测试左移（Shift-Left testing）
+
+
 
 # Books
 Pipeline as Code Continuous Delivery with Jenkins, Kubernetes, and Terraform
