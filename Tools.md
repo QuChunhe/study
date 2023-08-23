@@ -83,6 +83,8 @@ git status
 
 git remote add origin git@github.com:QuChunhe/blogs.git
 git push -u origin master
+
+git log
 ```
 
 
@@ -107,6 +109,15 @@ git commit -m 'initial commit'
 git add forgotten_file
  git commit --amend
 ```
+
+
+There are several ways 
+to do this. Many people find dedicated Git GUI tools such as Sourcetree (macOS and Windows) or 
+Sublime Merge (Linux, macOS, and Windows) to be the easiest and most intuitive way to handle merge 
+conflicts. Other people prefer to resolve merge conflicts manually, using Git terminal commands and 
+a text editor. GitLab users have another option: you can use GitLab’s built-in graphical merge conflict 
+resolution tool.
+
 # Maven
 
 ```
