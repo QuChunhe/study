@@ -23,3 +23,6 @@ OLAP的基本多维分析操作包括
 * DWS：data warehouse service 数据服务层，基于DWB上的基础数据，整合汇总成分析某一个主题域的服务数据层，一般是宽表。用于提供后续的业务查询，OLAP分析，数据分发等。
 
 ODD：Operation Data Store 数据准备区，也称为贴源层。
+
+
+https://www.snowflake.com/en/
