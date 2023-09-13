@@ -1951,3 +1951,6 @@ MapReduce pattern
 [CSE 552: Distributed Systems](https://courses.cs.washington.edu/courses/cse552/19au/schedule/)
 
 [Consensus: Bridging Theory and Practice](https://github.com/ongardie/dissertation)
+
+
+[分布式块存储之调优方法论-1 综述](https://zhuanlan.zhihu.com/p/645673037)

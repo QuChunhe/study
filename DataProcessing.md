@@ -70,8 +70,8 @@ Data Warehouse 所有的主题 , Data Mart特定的主题
 * OLTP – Online Transactional Processing
 
 There are two types of schemas:
-* Predefined。Traditional Model – “Schema on Write”
-* Dynamic。Big data Model -  Schema on read.  With the Big Data and NoSQL paradigm, “Schema-on-Read” means you do not need to know how you will use your data when you are storing it. 
+* Predefined。Traditional Model – "Schema on Write"。Schema是预先定义好的，数据在写入表时校验数据是否符合schema定义，只有符合的情况下，才能写入表。
+* Dynamic。Big data Model -  "Schema on read".  With the Big Data and NoSQL paradigm, “Schema-on-Read” means you do not need to know how you will use your data when you are storing it. 写入数据时不检查,而是在读取时根据需求采用一个schema来解析数据。
 
 
 Relational model vs Aggregate model
@@ -97,6 +97,26 @@ In addition to making updates and reads very fast, normalization eliminates the 
 [NoSQL Data Modeling Techniques](https://www.cnblogs.com/balaamwe/archive/2012/05/02/2478699.html)
 
 [NoSQL Data Modeling Techniques](https://www.idc-online.com/technical_references/pdfs/information_technology/NoSQL_Data_Modeling_Techniques.pdf)
+
+NoSQL data modeling often starts from the application-specific queries as opposed to relational modeling:
+* Relational modeling is typically driven by structure of available data, the main design theme is ”What answers do I have?”
+* NoSQL data modeling is typically driven by application-specific access patterns, i.e. types of queries to be supported. The main design theme is ”What questions do I have?”
+
+
+the basic principles of NoSQL data modeling
+* Denormalization. Denormalization can be defined as copying of the same data into multiple documents or tables in order to simplify/optimize query processing or to fit user’s data into particular data model.
+* Aggregates.Soft schema allows to form classes of entities with complex internal structure (nested entities) and vary structure of particular entities.
+* Application Side Joins
+* Atomic Aggregates
+* Enumerable Keys
+* Dimensionality Reduction
+* Index Table
+* Composite Key Index
+* Inverted Search – Direct Aggregation
+* Tree Aggregation
+* Materialized Paths
+
+
 
 Modern Data Warehouse
 1. Ingest: Data orchestration and monitoring

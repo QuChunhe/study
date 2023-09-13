@@ -1,5 +1,14 @@
+指标
+* 性能指标
+  * 响应时间：串行执行路径的优化，优化热点步骤或者耗时步骤
+  * 吞吐量：减小响应时间和/或提高并发度
+  * 并发度： 并行执行的优化，通过合理利用资源，增加系统的负载能力
+* 资源指标
+  * 资源饱和度
+  * 资源利用率
 
 
+平均响应时间、90%响应时间、99%响应时间。百分位数
 
 # 线程(Thread)
 
@@ -250,7 +259,13 @@ CompletionStage
 CompletableFuture
 
 
-
+ExecutorService停止
+1. awaitTermination(long timeOut, TimeUnit unit)：当前调用线程阻塞，直到：
+  * 等所有已提交的任务（包括正在跑的和队列中等待的）执行完；
+  * 等超时时间到了（timeout 和 TimeUnit设定的时间）；
+  * 线程被中断，抛出InterruptedException
+2. shutdown()：停止接收新任务，原来的任务继续执行
+3. shutdownNow()：停止接收新任务，原来的任务停止执行
 
 
 # Locks
