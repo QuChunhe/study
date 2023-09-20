@@ -257,7 +257,7 @@ Thread 1 remain blocked indefinately waiting for the signal from
  
  [Nested Monitor Lockout](http://tutorials.jenkov.com/java-concurrency/nested-monitor-lockout.html)
 
-所谓Slipped conditions，就是说， 从一个线程检查某一特定条件到该线程操作此条件期间，这个条件已经被其它线程改变，导致第一个线程在该条件上执行了错误的操作。
+所谓Slipped conditions（已滑动的条件），就是说， 从一个线程检查某一特定条件到该线程操作此条件期间，这个条件已经被其它线程改变，导致第一个线程在该条件上执行了错误的操作。
 
 [Slipped Conditions](http://tutorials.jenkov.com/java-concurrency/slipped-conditions.html)
 
@@ -309,7 +309,7 @@ read-modify-write
        }
    }
 ```
-争取的用法
+正确的用法
 ```java
    private Parameter parameter = new Parameter();
    private final Ojbect lock = new Object();
@@ -332,8 +332,9 @@ public void lockLeak() {
    try {
       // access the shared resource
       accessResource();
-   } catch (Exception e) {}
-   finally {
+   } catch (Exception e) {
+
+   } finally {
       lock.unlock();
    }
  
@@ -382,8 +383,37 @@ public void workOn(List<Operand> operands) {
 
 5)多阶段访问
 
-6) 对称锁死锁
+```java
+public class Employees {
+   private final ConcurrentHashMap<String,Integer> nameToNumber;
+   private final ConcurrentHashMap<Integer,Salary> numberToSalary;
 
+   ... various methods for adding, removing, getting, etc...
+
+   public int geBonusFor(String name) {
+      Integer serialNum = nameToNumber.get(name);
+      Salary salary = numberToSalary.get(serialNum);
+      return salary.getBonus();
+   }
+}
+```
+
+
+6) 对称锁死锁
+```java
+public <E> class ConcurrentHeap {
+   private E[] elements;
+   private final Object lock = new Object(); //protects elements
+
+   public void addAll(ConcurrentHeap other) {
+     synchronized(other.lock) {
+       synchronized(this.lock) {
+         ... //manipulate other.elements and this.elements
+       }
+     }
+  }
+}
+```
 
 
 ## Concurrent Collections
@@ -466,6 +496,24 @@ Non-Blocking Primitives
 
 
 # Performance
+
+两种优化方式
+* 业务优化：业务流程、业务处理上的优化
+* 技术优化
+
+
+池化技术
+
+并行
+* 多服务器
+* 多进程
+* 多线程
+
+变同步为异步
+
+缓存（cache）
+
+精简处理和数据：1）不必要的计算；2）不必要的传输
 
 提高性能的三个方面
 * 减小服务时延，能够更快的得到服务的响应或者输出
@@ -682,6 +730,11 @@ jcmd
 jmap
 
 [【JVM进阶之路】十：JVM调优总结](https://www.cnblogs.com/three-fighter/p/14644152.html)
+
+
+Async-profiler
+
+[超好用的自带火焰图的 Java 性能分析工具 Async-profiler 了解一下](https://cloud.tencent.com/developer/article/1554194)
 
 # Date Time
 [Java Date Time](https://www.joda.org/joda-time/)
@@ -1124,7 +1177,7 @@ Plain-Vanilla Recursion
 A type with type parameters in its declaration is called a generic type.
 在声明中存在类型参数的类型被称为范型。
 
-They let you specify a type parameter with a type (class or interface). Such a type is called a generic type (more specifically generic class or generic interface). The type parameter value could be specified when you declare a variable of the generic type and create an object of your generic type.
+They let you specify a type parameter with a type (class or interface). Such a type is called a generic type (more specifically generic class or generic interface). The type parameter value could be specified when you declare a variable of the generic type and create an object of your generic type.泛型许可指定一个具有类型参数的类型（类或接口）。这样的类型被称为泛型类型（更确切地称为是泛型类或泛型接口）。在声明一个泛型类型的变量并创建泛型类型的对象时，可以指定类型参数的值。
 
 
 The purpose of using generics is to have compiletime type-safety. As long as the compiler is satisfied that the operation will not produce any surprising results at runtime, it allows the operation on the wildcard generic type reference.
@@ -1145,14 +1198,14 @@ Using only a question mark as a parameter type (<?>) is known as an unbounded wi
 * 泛型类可以继承其它泛型类，例如: public class ArrayList<E> extends AbstractList<E>
 * 泛型类的继承关系在使用中同样会受到泛型类型的影响
 
-Type parameters defined for a generic type are not available in static methods of that type. Therefore, if a static method needs to be generic, it must define its own type parameters. If a method needs to be generic, define just that method as generic rather than defining the entire type as generic.
+Type parameters defined for a generic type are not available in static methods of that type. Therefore, if a static method needs to be generic, it must define its own type parameters. If a method needs to be generic, define just that method as generic rather than defining the entire type as generic.在泛型类型中定义的类型参数在该泛型的静态方法中无法使用。为此，如果一个静态方法需要被泛型化，其必须定义自己的类型参数。如果一个方法需被泛型化，只需将该方法定义为泛型即可，而无需将整个类型定义为泛型。
 
 
 type inference step
 1. First, it tries to infer the type parameter from the static type of the constructorarguments. Note that constructor-arguments may be empty, for example, new ArrayList<>(). If the type parameter is inferred in this step, the process continues to the next step.
 2. It uses the left side of the assignment operator to infer the type. In the previous statement, it will infer T2 as the type if the constructor-arguments are empty. Note that an object-creation expression may not be part of an assignment statement. In such cases, it will use the next step.
-3.If the object-creation expression is used as an actual parameter for a method call, the compiler tries to infer the type by looking at the type of the formal parameter for the method being called.
-4.If all else fails and it cannot infer the type using these steps, it infers Object as the type parameter.
+3. If the object-creation expression is used as an actual parameter for a method call, the compiler tries to infer the type by looking at the type of the formal parameter for the method being called.
+4. If all else fails and it cannot infer the type using these steps, it infers Object as the type parameter.
 
 No Generic Exception Classes
 
@@ -1255,7 +1308,7 @@ Java中的数组是协变的，因此可以将stringArray赋值给objectArray，
 >>Exception in thread "main" java.lang.ArrayStoreException: java.lang.Integer
 
 
-
+协变与逆变
 * Read-only data types (sources) can be covariant;
 * write-only data types (sinks) can be contravariant.
 * Mutable data types which act as both sources and sinks should be invarian
@@ -1496,6 +1549,17 @@ Jackson有三种方式处理Json：
 1. 使用底层的基于Stream的方式对Json的每一个小的组成部分进行控制
 2. 使用Tree Model，通过JsonNode处理单个Json节点
 3. 使用databind模块，直接对Java对象进行序列化和反序列化
+
+# XML
+
+XML
+①DOM：在现在的Java JDK里都自带了，在xml-apis.jar包里
+
+②SAX：http://sourceforge.net/projects/sax/
+
+③JDOM：http://jdom.org/downloads/index.html
+
+④DOM4J
 
 # 杂项
 

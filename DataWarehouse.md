@@ -1,4 +1,11 @@
-
+优化策略
+* 空间换时间：固定查询，可提前处理
+  * 索引
+  * 物化视图
+  * 缓存
+* 数据裁剪：所有查询，包括ad hoc查询。减小数据量：1）从磁盘读取尽可能少的数据；2）在节点之前传输尽可能少的数据
+  * 谓词下推
+  * Join-Reorder  
 
 
 ：FACT（事实表）和 DIM（维度表）
@@ -30,13 +37,13 @@ ODD：Operation Data Store 数据准备区，也称为贴源层。
 
 个人划分
 * 源数据层
-* 临时数据层
 * 服务数据层（）
 * 应用数据层
 
 https://www.snowflake.com/en/
 
 https://delta.io/
+
 
 
 
@@ -49,3 +56,14 @@ https://delta.io/
 * 分页
 * 加载更多
 * 无限滚动
+
+[数据模型例子与范式](https://mongoing.com/docs/applications/data-models.html)
+
+
+
+# Doris
+
+Doris 的数据模型主要分为3类:
+* Aggregate
+* Unique
+* Duplicate

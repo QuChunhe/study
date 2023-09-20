@@ -1,4 +1,12 @@
 
+阻塞/非阻塞
+* 阻塞：调用者caller，停止运行，放弃cpu
+* 非阻塞：调用者caller继续执行
+
+同步/异步
+* 同步：调用者caller来处理调用结果
+* 异步：非调用者处理返回的结果
+
 
 Concurrency vs Parallelism
 
@@ -1333,3 +1341,16 @@ For look-aside cache, client will query cache first before querying the data sto
 
 
 
+# 网络编程
+
+三种多路复用模型
+* select 有限制，最多1024个，poll、epoll没有这个限制。此外，对socket扫描时是线性扫描，采用轮询的方法
+* poll 对数据结构有优化，没有 1024 个的限制。  每次调用poll，都需要把fd集合从用户态拷贝到内核态，这个开销在fd很多时会很大。对socket扫描时是线性扫描，采用轮询的方法，效率较低（高并发时）。
+* epoll 对遍历有优化，不会遍历所有socket，只会遍历那些可读的socket，所以效率有所提升。
+
+
+epoll 有 EPOLLLT 和 EPOLLET 两种触发模式，LT是默认的模式，ET是“高速”模式。
+* LT（水平触发）模式下，只要这个文件描述符还有数据可读，每次 epoll_wait都会返回它的事件，提醒用户程序去操作；
+* ET（边缘触发）模式下，在它检测到有 I/O 事件时，通过 epoll_wait 调用会得到有事件通知的文件描述符，对于每一个被通知的文件描述符，如可读，则必须将该文件描述符一直读到空，让 errno 返回 EAGAIN 为止，否则下次的 epoll_wait 不会返回余下的数据，会丢掉事件。如果ET模式不是非阻塞的，那这个一直读或一直写势必会在最后一次阻塞。
+
+https://mp.weixin.qq.com/s/PzOF9lFYVacPIRx0JakTjA

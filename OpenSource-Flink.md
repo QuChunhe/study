@@ -103,3 +103,90 @@ TimestampsAndWatermarks
 * keyed state 
 * operator state.
 
+Fink的窗口（Window）可以分成两类：
+* CountWindow：按照指定的数据条数生成一个 Window，与时间无关。
+* TimeWindow：按照时间生成 Window。
+
+TimeWindow，可以根据窗口实现原理的不同分成三类：
+* 滚动窗口（Tumbling Window）
+* 滑动窗口（Sliding Window）
+* 会话窗口（Session Window）。
+
+
+客户端
+
+集群：
+flink Master
+* JobManager:Scheduler
+* Dispatcher
+* ResourceManager
+
+TaskManager
+* Task Slot: container
+
+数据倾斜的定位
+
+1. 步骤1：定位反压
+定位反压有2种方式：Flink Web UI 自带的反压监控（直接方式）、Flink Task Metrics（间接方式）。通过监控反压的信息，可以获取到数据处理瓶颈的 Subtask。
+
+2. 步骤2：确定数据倾斜
+Flink Web UI 自带Subtask 接收和发送的数据量。当 Subtasks 之间处理的数据量有较大的差距，则该 Subtask 出现数据倾斜。
+
+
+第一种：数据源source消费不均匀。调整并发度的原则：KafkaSource 并发度与 kafka 分区数是一样的，或者 kafka 分区数是KafkaSource 并发度的整数倍。
+
+第二种：key分布不均匀并且无统计场景，可以通过添加随机前缀打散它们的分布，使得数据不会集中在几个 Task 中。
+
+第三种 可以分布不均匀并有统计场景。两阶段聚会：1）预聚合：加盐局部聚合，在原来的 key 上加随机的前缀或者后缀。2）聚合：去盐全局聚合，删除预聚合添加的前缀或者后缀，然后进行聚合统计。
+
+
+
+
+numberOfTaskSlots
+
+每个任务节点的并行子任务占据不同的 slot；不同的任务节点的子任务可以共享 slot。
+
+slot 共享：将资源密集型和非密集型的任务同时放到一个 slot 中，它们就可以自行分配对资源占用的比例，从而保证最重的活平均分配给所有的TaskManager。slotSharingGroup
+
+task slot 是静态的概念 ， 是指TaskManager 具有的并发执行能力 ， 可以通过参数taskmanager.numberOfTaskSlots 进行配置；
+
+
+一个特定算子的 子任务（subtask）的个数被称之为其并行度（parallelism）。    
+一般情况下，一个 stream 的并行度，可以认为就是其所有算子中最大的并行度
+
+
+三个位置可以配置并行度
+* flink配置文件中
+* 代码里
+* flink任务提交时
+
+优先级
+> 代码>提交>配置文件
+
+
+算子链：将算了链接成task。Flink默认会将算子尽可能地链接。OperatorChain的优点
+* 减少线程切换
+* 减少序列化与反序列化
+* 减少延迟并且提高吞吐能力。
+```java
+.flatMap(_.split(" ")).disableChaining()
+
+.startNewChain()
+
+env.disableOperatorChaining()
+```
+
+ Per-Job模式
+
+考虑到集群的资源隔离情况，一般生产上的任务都会选择per job模式，也就是每个任务启动一个flink集群，各个集群之间独立运行，互不影响,且每个集群可以设置独立的配置。
+
+```shell
+bin/flink run -m yarn-cluster ./examples/batch/WordCount.jar
+```
+
+
+applcation模式
+
+ ```shell
+ flink run-application -p $p -Dtaskmanager.numberOfTaskSlots=$3 -Djobmanager.memory.process.size=$4 -Dtaskmanager.memory.process.size=$5 -t yarn-application -Dyarn.application.name=$1 -c $2 ~/robot-stream/robot-stream.jar
+ ```

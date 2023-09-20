@@ -117,6 +117,9 @@ yield()方法是停止当前线程，让同等优先权的线程运行。如果�
 join()方法使当前调用线程停止运行进入WAITING状态，直至被调用线程终止后才继续运行。换言之，如果当前线程调用进程t的join()方法，则当前线程会停止运行直到进程t终止。join()是通过调用wait() 来实现，如果isAlive()，则一直wait(delay)
 
 
+A thread can wake up without being notified, interrupted, or timing out, a so-called spurious wakeup. While this will rarely occur in practice, applications must guard against it by testing for the condition that should have caused the thread to be awakened, and continuing to wait if the condition is not satisfied. 
+在没有被通知、没有被中断、也没有超时的情况下，一个线程也可能被唤醒，这种情况被称为虚假唤醒。虽然这种情况在实践中很少发生，但应用程序必须通过检测唤醒该线程的条件来防止虚假唤醒，并且如果条件不满足，则继续等待。
+
 wait()方法将会使得调用对象所在的线程进入WAITING状态，并释放被调用对象的内置锁。如果当前线程不是被调用对象内置锁的拥有者，则会抛出IllegalMonitorStateException异常。在调用wait()后，可以被中断并抛出InterruptedException，因此如果依赖于特定条件才能继续执行，在
 
 ```java
@@ -302,3 +305,19 @@ MCS也是人名简写：John M. Mellor-Crummey and Michael L. Scott
 
 
 Lock Convoy（锁封护）与Priority Inversion（优先级反转）
+
+
+
+
+限流
+
+限流方式
+* 计数器：固定窗口
+* 滑动窗口（Sliding window）
+* 漏桶（Leaky Bucket）
+* 令牌桶限流（Token Bucket）
+
+熔断
+
+
+降级

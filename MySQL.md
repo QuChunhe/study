@@ -9,8 +9,8 @@ MySQL性能优化，包括如下三个方面
 * 配置设置
 
 MySQL操作的主要瓶颈
-* Disk寻址
-* 磁盘读取和吸入
+* Disk寻址：随着数据量的增加，读取数据会逐渐变慢
+* 磁盘读取和写入
 * 内存计算
 
 [](https://docs.aws.amazon.com/athena/latest/ug/alter-table-drop-partition.html#:~:text=ALTER%20TABLE%20DROP%20%20PARTITION%201%20Synopsis%20ALTER,a%20range%20of%20%20partitions%20to%20drop.%20)
@@ -44,6 +44,11 @@ ALTER TABLE members
 * 数据库访问优化
 
 
+如下三个方面需要相互匹配
+* 数据存储方式
+* schema设计
+* 数据查询模式
+
 三类不同的表
 * 业务型
 * 日志型
@@ -57,7 +62,7 @@ ALTER TABLE members
 
 数据库规模扩大
 * 单个MySQL。MySQL数据库足够强大，通过选择适当的硬件和设计合理的表结构，单个数据库就能够支持几百G，甚至T级，的数据规模
-  * 针对三种不同类型的表，差异化处理。例如对于业务表尽量避免列数过多，而对于日志表和汇总表可以采用基于时间范围的partition
+  * 针对三种不同类型的表，差异化处理。例如对于业务表尽量避免列数过多，而对于日志表和汇总表可以采用基于时间范围的partition以及采用非varchar类型
   * 采用固态硬盘，如果数据规模庞大，可以根据访问频率，将数据表分别存在在固态硬盘和机械硬盘上
 * 采用repication机制组合的集群
   *  针对三种不同类型的表和两类不同的处理，分别采用不同的数据库，以分担负载
@@ -237,7 +242,7 @@ Rule 2: Break your data into logical pieces, make life simpler
 
 规则２：将你的数据分解为逻辑字段，使得生活更加简单
 
-该规则实际是来自第一范式的第一个规则。违反此规则的一个迹象是你的查询中使用太多的字符串解析汉书，例如substring、charindex等，大概需要一个用此规则。
+该规则实际是来自第一范式的第一个规则。违反此规则的一个迹象是你的查询中使用太多的字符串解析函数，例如substring、charindex等，大概需要一个用此规则。
 
 Rule 3: Do not get overdosed with rule 2
 
@@ -297,7 +302,7 @@ What is good database design?
 第一条原则是重复信息（也被称之为冗余数据）是有害的，因为其不仅浪费存储空间，而且增加了错误和不一致的可能性。第二条原则是信息的正确性和完整性非常重要。
 
 一个好的数据库设计应该满足如下条件
-* Divides your information into subject-based tables to reduce redundant data.将信息划分到基于主题的表中，以减小冗余书记
+* Divides your information into subject-based tables to reduce redundant data.将信息划分到基于主题的表中，以减小冗余数据
 * Provides Access with the information it requires to join the information in the tables together as needed.通过按需将表关联在一起，从而提供访问所需要信息的能力。
 * Helps support and ensure the accuracy and integrity of your information.辅助支持和确保信息精确性和完整性
 * Accommodates your data processing and reporting needs.满足数据处理和报表需求。
@@ -624,7 +629,7 @@ KEY DIFFERENCE
 
 通常，聚簇索引是主键索引的同义词。聚簇索引等同于主键索引。
 
-除了空间索引（Spatial index）之外，InnoDB索引采用B树数据结构。空间索引使用R束，其是一种专门用于索引多维数据的数据结构。
+除了空间索引（Spatial index）之外，InnoDB索引采用B树数据结构。空间索引使用R树，其是一种专门用于索引多维数据的数据结构。
 
 Every I
 Database Internals： A Deep Dive into How Distributed Data Systems WorknnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key.
@@ -639,6 +644,26 @@ All indexes other than the clustered index are known as secondary indexes. In In
 
 [EXPLAIN Output Format](https://dev.mysql.com/doc/refman/8.0/en/explain-output.html)
 
+输出
+1. id：表示查询中执行select子句或者操作表的顺序，id的值越大，代表优先级越高，越先执行。
+2. select_type：select_type：表示 select 查询的类型，主要是用于区分各种复杂的查询，例如：普通查询、联合查询、子查询等
+3. table：查询的表名，并不一定是真实存在的表，有别名显示别名，也可能为临时表
+4. partitions：查询时匹配到的分区信息，对于非分区表值为NULL，当查询的是分区表时，partitions显示分区表命中的分区情况。
+5. type：查询使用了何种类型，它在 SQL优化中是一个非常重要的指标，以下性能从好到坏依次是：system  > const > eq_ref > ref  > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL
+6. possible_keys：这个索引并不定一会是最终查询数据时所被用到的索引
+7. key：区别于possible_keys，key是查询中实际使用到的索引，若没有使用索引，显示为NULL
+8. key_len：表示查询用到的索引长度（字节数），原则上长度越短越好 。
+9. ref：表示将哪个字段或常量与key列所使用的字段进行比较
+10. rows：全表扫描时表示需要扫描表的行数估计值；索引扫描时表示扫描索引的函数估计值。
+11. filtered 表示符合条件的记录数的百分比. rows*filtered/100估算与explain前一个表进行连接的函数
+12. Extra ：不适合在其他列中显示的信息
+  * Using index：使用非主键索引，并且不需要回表查询
+  * Using where：不通过索引查询所需要的数据
+  * Using index condition：查询列不被索引覆盖，where条件中是一个索引范围查找，过滤完毕后回表找到符合条件的数据行。
+  * Using temporary：使用临时表来处理查询
+  * Using filesort
+  * Using join buffer
+  * Select table optimized away:使用某些聚合函数（min和max）来访问某个索引值。
 
  select_type 
 * SIMPLE: Simple SELECT (not using UNION or subqueries)
@@ -668,6 +693,21 @@ type
 * range
 * index
 * all
+
+key_len
+* 字符串
+  * char(n): n个字节
+  * varchar(n)：如果是utf-8，则3n+2字节，加的2个字节存储字符串长度。如果是utf8mb4，则4n+2字节
+* 数值类型
+  * tinyint：1字节
+  * smallint：2字节
+  * int：4字节
+  * bigint ：8字节
+* 时间类型
+  * date：3字节
+  * timestamp 4字节
+  * datetime 8字节
+
 
 
 * Using temporary; 
@@ -1492,12 +1532,20 @@ innodb_autoinc_lock_mode
 * 间隙锁（gap locking）
 * 临键锁（next-key locking），其中临键锁=记录锁+间隙锁
 
+
 加锁粒度
 * 行锁（row-level locking）
 * 表锁（table-level locking）
 
 * 共享锁（share locking，S锁）,读锁
 * 排他锁（exclusive locking，X锁），写锁
+
+```sql
+select ... for update;
+select ... lock in share mode;
+select * from performance_schema.data_lock;
+```
+
 
 
 意向锁（intention locking）
@@ -1548,6 +1596,9 @@ RR级别中一旦建立了快照版本，则在该事务的后续查询中均采
 1. 读取：事务将数据读入缓存，这时系统会给事务分派一个时间戳。
 2. 校验：事务执行完毕后，进行提交。这时同步校验所有事务，如果事务所读取的数据在读取之后又被其他事务修改，则产生冲突，事务被中断回滚。
 3. 写入：通过校验阶段后，将更新的数据写入数据库。
+
+
+Metadata Locking 元数据上锁。 table metadata lock（DML）不仅适用于表，还适用于模式和存储程序(过程、函数、触发器和计划的事件)
 
 # JDBC
 
