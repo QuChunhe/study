@@ -607,6 +607,10 @@ Terminology definitions:
 * saturation: the degree to which the resource has extra work which it can't service, often queued
 * errors: the count of error events
 
+USE 是使用率（Utilization）、饱和度（Saturation）和错误（Error）的缩写
+* CPU
+* memory
+* thread
 
 ### Monitoring
 

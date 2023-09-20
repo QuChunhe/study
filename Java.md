@@ -581,6 +581,14 @@ Perfromance Requirements/SLAs
 [分布式系统](https://www.jdon.com/DistributedSystems.html)
 
 
+
+
+```shell
+jcmd <pid> JFR.start
+jcmd <pid> JFR.dump filename=recording.jfr
+jcmd <pid> JFR.stop
+```
+
 [Continuous Monitoring with JDK Flight Recorder (JFR) ](https://www.slideshare.net/InfoQ/continuous-monitoring-with-jdk-flight-recorder-jfr)
 
 黑匣子（Flight Recorder 飞行记录仪），在飞机运行期间，不间断记录各种信息，用于飞机发生事故后的调查
@@ -735,6 +743,12 @@ jmap
 Async-profiler
 
 [超好用的自带火焰图的 Java 性能分析工具 Async-profiler 了解一下](https://cloud.tencent.com/developer/article/1554194)
+
+
+
+Arthas
+
+wrk
 
 # Date Time
 [Java Date Time](https://www.joda.org/joda-time/)

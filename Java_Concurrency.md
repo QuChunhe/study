@@ -321,3 +321,12 @@ Lock Convoy（锁封护）与Priority Inversion（优先级反转）
 
 
 降级
+
+
+
+JDK8 -XX:-RestrictContended   
+> @sun.misc.Contended
+
+Huge page 4Kb
+
+> -XX:+AlwaysPreTouch
