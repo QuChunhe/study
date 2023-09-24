@@ -1,5 +1,23 @@
 
 
+[Who Needs an Architect?](https://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf)
+
+系统思维（System thinking）
+
+* 系统：A system is a set of entities and their relationships, whose functionality is greater than the sum of the individual entities.
+* 涌现（emergence）
+
+>“A system is not the sum of its parts, but the product of the interactions of those >parts.”   -- russell ackoff
+> “The whole is more than the sum of the parts.” -- aristotle, Metaphysics
+
+* 涌现原则（Principle of Emergence）
+
+从如下两个方面入手新系统
+* 用户：哪些用户？如何使用和操作系统？
+* 业务：业务流程也业务过程
+* 数据：有哪些数据？这些数据的生产、使用和销毁过程？
+
+
 软件架构由多个不同的架构组成，每个架构是软件的一个视图，用于刻画软件系统的一个方面
 * 业务架构
 * 功能架构
@@ -7,12 +25,48 @@
 * 数据架构
 * 集成架构
 * 部署架构
-* a
+* 安全架构
+上述架构既相互关联和相互影响，又有侧重，共同构建了一个系统的架构全貌。
+
+
+架构师
+* 在一定条件的约束下（成本投入、系统性能和开发周期等约束）
+* 设计上述多个架构（文档、接口或者定义）
+* 从而支持业务需求
+* 并简化代码开发和部署
+
+In most successful software projects, the expert developers working on that project have a shared understanding of the system design. This shared understanding is called ‘architecture.’ This understanding includes how the system is divided into components and how the components interact through interfaces. These components are usually composed of smaller components, but the architecture only includes the components and interfaces that are understood by all the developers.
+
+上述架构的用户
+* 开发人员
+* 运维人员
+
+架构的难点是粒度，要使得开发人员
+* 对于系统有一个清晰的和简单的共同理解。
+* 既无需陷入细节，增加认知负担，又能相对独立地开发
+
+把握方向，在满足约束和需求的同时，发挥开发人员的才智，不要使得架构师成为瓶颈。
+* 太粗：缺乏指导意义，无法规范开发
+* 太细：1）增加架构师负担，增加开发人员认知成本；2）不能实现变化
+
+例如，数据架构
+* schema层次，详细表定义
+* 电信eTOM 三户模型
 
 
 eTOM，是enhanced Telecom Operations Map的英文首字母缩写，英文全称为enhanced Telecom Operations MapTM(eTOM)，即增强的电信运营图(eTOM)，是信息和通信服务行业的业务流程框架。客户（Customer）、用户（User）和账户(Account)。eTOM 引入是电信行业营销模型转向“以客户为中心”的理念而产生的成果。围绕客户建立用户和账户。这三个是相互关联的实体，这种关联只是一个归属和映射的关系，而三个实体本身是相互独立的，分别是体现完全不同的几个域的信息。
 
-<<Patterns of Enterprise Application Architecture>>
+
+这种理解包括系统如何被划分为组件，以及组件如何通过接口进行交互。这些组件通常是由更小的组件组成的，但架构只包括所有开发人员都理解的组件和接口。
+
+
+确保架构能够实时的主要手段
+* 规约：行业和企业的规范，开发和命名的规范。
+* 保障：编码规范的自动检查、自动化的测试、各个配置模板和脚本等
+
+
+
+“Patterns of Enterprise Application Architecture”
 
 * Usually, there are two common elements:
   * One is the highest-level breakdown of a system into its parts;
@@ -57,6 +111,12 @@ Work smarter not harder
 
 # Architecural Pattern
 
+
+缺乏内聚
+
+高内聚：清洗良好的定义
+松耦合：依赖简单
+
 Categories of Pattern
 * Application Landscape pattern
   * Monolith
@@ -76,6 +136,21 @@ Categories of Pattern
   * Model-view-presenter (MVP)
   * Model-view-viewmodel (MVVM)
 
+
+
+Monolith
+
+
+N-Tier
+* Multiple tier
+* Tier performs specific task
+* Tier can be physically separated
+* Tiers arent't layer
+
+3-Tier
+* Presentation tier
+* Business logic tier
+* Data tier
 
 As I think about MVC I see two principal separations: separating the presentation from the model and separating the controller from the view.
 
@@ -130,3 +205,6 @@ Creational design patterns abstract the instantiation process.
 JDBC连接数据库的两种方式：DriverManager及DataSource（DBCP,C3P0,druid）
 
 XMLReaderFactory
+
+
+Structural patterns are concerned with how classes and objects are composed to form larger structures.
