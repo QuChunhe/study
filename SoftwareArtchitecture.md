@@ -7,6 +7,10 @@
 * 数据架构
 * 集成架构
 * 部署架构
+* a
+
+
+eTOM，是enhanced Telecom Operations Map的英文首字母缩写，英文全称为enhanced Telecom Operations MapTM(eTOM)，即增强的电信运营图(eTOM)，是信息和通信服务行业的业务流程框架。客户（Customer）、用户（User）和账户(Account)。eTOM 引入是电信行业营销模型转向“以客户为中心”的理念而产生的成果。围绕客户建立用户和账户。这三个是相互关联的实体，这种关联只是一个归属和映射的关系，而三个实体本身是相互独立的，分别是体现完全不同的几个域的信息。
 
 <<Patterns of Enterprise Application Architecture>>
 
