@@ -86,3 +86,13 @@ Bayes’ rule or the Bayes–Price–Laplace rule
 * 多时区：UTC、多时区协同应用、多时区业务处理
 * 多会计制度：多账簿机制、支持中国、GAAP多会计制度
 * 多支持本地化：分层设计机制：客户级、伙伴级、行业级、本地化级、领域级
+
+
+
+
+Headroom is available usable resources. 余量可剩余可用的资源。
+* Total Capacity minus Peak Utilization and Margin
+
+Utilization
+* Utilization is the proportion of busy time
+* Always defined over a time interval

@@ -12,6 +12,19 @@ https://akfpartners.com/growth-blog
 * Horizontal scaling(水平扩展):scale out 向外伸缩，通过添加服务器，实现可扩展性
 * Vertical scaling(垂直扩展):Scale up 向上伸缩，通过升级硬件，实现可扩展。
 
+
+为什么需要分布式系统
+
+遇到的问题
+* 更大的数据量
+* 更大的计算量
+* 更多的请求数
+
+分布式解决的问题
+* 提高吞吐和容量
+* 提高可靠性
+* 降低系统成本：分布式系统不能解决所有问题，很多还需要超算来解决
+
 可扩展性描述了一个系统在确保服务质量（例如响应时间或者可靠性等）的前提下，通过添加服务器资源能够处理更多任务的能力，包括处理更多服务请求、更大的数据规模以及更高的计算精度等。
 
 分布式系统的定义：一组独立的并通过网络连接的计算机，能够相互协作完成特定的任务，就像一台计算机一样向外提供服务。
@@ -191,6 +204,8 @@ The 8 fallacies of distributed computing
 7. Transport cost is zero.
 8. The network is homogeneous.
 
+Fault tolerance: we want the system as a whole to continue working, event when some parts are faulty.
+容错性：我们希望系统作为一个整体能够持续工作，即使其某些某些部分出现故障。
 
 Network messages may take a long time to arrive
 * Synchronous network model

@@ -208,3 +208,16 @@ XMLReaderFactory
 
 
 Structural patterns are concerned with how classes and objects are composed to form larger structures.
+* Adapter
+  * Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+  * Overload方法
+* Composite 组合模式
+  * Compose objects into tree structures to represent part-whole hierarchies.  
+* Decorator 装饰器模式
+  * Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.  
+  * JDK IO
+* Facade 外观模式
+  * Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
+* Flyweight
+  * Use sharing to support large numbers of fine-grained objects efficiently.
+  
