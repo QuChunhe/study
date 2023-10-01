@@ -1,34 +1,4 @@
 
-MySQL性能优化，包括如下三个方面
-* schema设置，
-  * 存储引擎的选择
-  * 表的划分和关联
-  * 列类型的定义
-  * 主键和索引的设计以及partition和sharding的设置
-* 查询优化，充分利用索引和查询条件，避免无效数据扫描
-* 配置设置
-
-MySQL操作的主要瓶颈
-* Disk寻址：随着数据量的增加，读取数据会逐渐变慢
-* 磁盘读取和写入
-* 内存计算
-
-[](https://docs.aws.amazon.com/athena/latest/ug/alter-table-drop-partition.html#:~:text=ALTER%20TABLE%20DROP%20%20PARTITION%201%20Synopsis%20ALTER,a%20range%20of%20%20partitions%20to%20drop.%20)
-```sql
-
-ALTER TABLE table_name DROP [IF EXISTS] PARTITION (partition_spec) [, PARTITION (partition_spec)]
-
-SHOW PARTITIONS impressions
-
-SELECT * FROM "flight_delays_csv$partitions" ORDER BY year
-
-ALTER TABLE members
-    REORGANIZE PARTITION p0 INTO (
-        PARTITION n0 VALUES LESS THAN (1970),
-        PARTITION n1 VALUES LESS THAN (1980)
-);
-
-```
 
 
 # Ideal(想法) 
@@ -49,7 +19,7 @@ ALTER TABLE members
 * schema设计
 * 数据查询模式
 
-三类不同的表
+MySQL中存在三类不同的表
 * 业务型
 * 日志型
 * 汇总型
@@ -58,7 +28,41 @@ ALTER TABLE members
 * 统计分析
 * 事务处理
 
-如果数据规模比较庞大，为了优化性能，建议将上述三类表和两种处理分置到不同数据库中
+如果数据规模比较庞大，为了优化性能，建议将上述三类表和两种处理分置到不同数据库中。
+
+
+MySQL性能优化，包括如下三个方面
+* schema设置，
+  * 存储引擎的选择
+  * 表的划分和关联
+  * 列类型的定义
+  * 主键和索引的设计以及partition和sharding的设置
+* 查询优化，充分利用索引和查询条件，避免无效数据扫描
+* 配置设置
+
+MySQL操作的主要瓶颈
+* Disk寻址：B+树，随着数据量的增加，层数和叶子节点增加，需要更多的寻址次数。
+* Disk读取和写入：1）尽量不要全表扫描
+* 内存计算
+
+[](https://docs.aws.amazon.com/athena/latest/ug/alter-table-drop-partition.html#:~:text=ALTER%20TABLE%20DROP%20%20PARTITION%201%20Synopsis%20ALTER,a%20range%20of%20%20partitions%20to%20drop.%20)
+
+Partition需要手工维护
+```sql
+
+ALTER TABLE table_name DROP [IF EXISTS] PARTITION (partition_spec) [, PARTITION (partition_spec)]
+
+SHOW PARTITIONS impressions
+
+SELECT * FROM "flight_delays_csv$partitions" ORDER BY year
+
+ALTER TABLE members
+    REORGANIZE PARTITION p0 INTO (
+        PARTITION n0 VALUES LESS THAN (1970),
+        PARTITION n1 VALUES LESS THAN (1980)
+);
+
+```
 
 数据库规模扩大
 * 单个MySQL。MySQL数据库足够强大，通过选择适当的硬件和设计合理的表结构，单个数据库就能够支持几百G，甚至T级，的数据规模
@@ -145,7 +149,11 @@ SQL not equal 关系模型
 
 数值原子性和第一范式。 Codd将原子性定义为“不能被DBMS分解为更小个体的数据”
 
-原子性并不是绝对的，1）是否作为一个整体看待；2）是否需要整体更新；3）是否需要复杂的解析；4）是否针对于部分进行处理
+原子性并不是绝对的，
+1. 是否作为一个整体看待；
+2. 是否需要整体更新；
+3. 是否需要复杂的解析；
+4. 是否针对于部分进行处理
 
 
 
@@ -201,7 +209,7 @@ normal form 范式
 在如下情况中发生了部分依赖
 * 采用复合主健（composite primary key）
 * 一个非健属性依赖于部分主健，而不是全部主健
-* 如果一个满足第一范式的表，不保护任何部分依赖，则称其满足第二范式
+* 如果一个满足第一范式的表，不包含任何部分依赖，则称其满足第二范式
 
 当一个非健属性依赖于其他一个非健属性并且所依赖的属性不能用于作为一个候选主健时，就发生了传递依赖于。如果一个满足第二范式并且不包含任何可依赖的转递依赖，则称其满足第三范式。
 
@@ -224,7 +232,7 @@ Rule 1: What is the nature of the application (OLTP or OLAP)?
 
 分析型：面向分析、报表、预测等，较少的插入和更新，尽可能快的取出和分析数据。
 
-如果认为插入、更新和删除占主导，那么需要正规化表设计。反之，需要创建扁平的、非正规化的数据库结构。
+**如果认为插入、更新和删除占主导，那么需要正规化表设计。反之，需要创建扁平的、非正规化的数据库结构。**
 
 
 OnLine Transaction Processing 联机事务处理过程(OLTP)，也称为面向交易的处理过程，

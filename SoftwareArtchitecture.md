@@ -14,7 +14,7 @@
 
 从如下两个方面入手新系统
 * 用户：哪些用户？如何使用和操作系统？
-* 业务：业务流程也业务过程
+* 业务：业务规则、业务流程和业务处理
 * 数据：有哪些数据？这些数据的生产、使用和销毁过程？
 
 
@@ -34,6 +34,17 @@
 * 设计上述多个架构（文档、接口或者定义）
 * 从而支持业务需求
 * 并简化代码开发和部署
+
+架构的几个关键
+* 满足业务需求
+* 满足客观约束:比如成本成本
+* 简化代码开发和部署
+* 指标
+  * Availability
+  * Performance
+  * Reliality
+  * Scalaility
+  * Manageability
 
 In most successful software projects, the expert developers working on that project have a shared understanding of the system design. This shared understanding is called ‘architecture.’ This understanding includes how the system is divided into components and how the components interact through interfaces. These components are usually composed of smaller components, but the architecture only includes the components and interfaces that are understood by all the developers.
 
@@ -55,7 +66,13 @@ In most successful software projects, the expert developers working on that proj
 
 
 eTOM，是enhanced Telecom Operations Map的英文首字母缩写，英文全称为enhanced Telecom Operations MapTM(eTOM)，即增强的电信运营图(eTOM)，是信息和通信服务行业的业务流程框架。客户（Customer）、用户（User）和账户(Account)。eTOM 引入是电信行业营销模型转向“以客户为中心”的理念而产生的成果。围绕客户建立用户和账户。这三个是相互关联的实体，这种关联只是一个归属和映射的关系，而三个实体本身是相互独立的，分别是体现完全不同的几个域的信息。
-
+* Market & Sales Domain
+* Customer Domain
+* Product Domain
+* Service Domain
+* Resource Domain
+* Business Partner Domain
+* Enterprise Domain
 
 这种理解包括系统如何被划分为组件，以及组件如何通过接口进行交互。这些组件通常是由更小的组件组成的，但架构只包括所有开发人员都理解的组件和接口。
 

@@ -228,6 +228,29 @@ Messages may take an unpredictable amount of time
 
 You know you have a distributed system when the crash of a computer you’ve never heard of stops you from getting any work done. — Leslie Lamport
 
+No common knowledge:the only way of knowning something is to communicate it
+
+Models of Distributed System
+* two generals problem:网络模型
+* the Byzantine generals problem: Need 3f+1 generals in total to tolerat f malicious generals (i.e. < 1/3 may by malicious)。节点行为模型。
+
+a system model consisting of 
+* Network behaviou (e.g. message loss)
+* Node behavious (e.g. crashes)
+* Time behavious (e.g. latency)
+
+network behaviour
+* point-to-point communication
+  * Reliale (perfect) link
+  * Fair-loss links
+  * Arbitrary links (active adversary)
+* Network partition  
+
+node behavious
+* Crash-stop (fail-stop)
+* Crash-recovery (fail-recovery)
+* Byzantine (fail-arbitrary)
+
 Failure is a fact of life in distributed systems!
 * In local systems, failure is usually total (all-or-nothing)
 * In distributed systems, we get partial failure
@@ -398,13 +421,18 @@ Front-End (FE) + Back-End (BE) Architecture
 Strategies --> design -> implement -> deployment -> operation(monitor, log)
 
 
-在用户向WEb服务器请求服务时，Web服务器
+在用户向Web服务器请求服务时，Web服务器
 用户与服务器之间的异步操作
 * 增加交互，例如返回确认界面，
 * 后台操作
    * 基于WebSocket的站内消息
    * 基于定时Ajax的消息
-   
+
+
+Remote Procedure Call（RPC）
+* Location transparency：System hides where a resource is located.
+
+
    
 异步调用的好处
 * 降低调用耦合性,更容易扩展
