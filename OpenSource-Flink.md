@@ -6,6 +6,9 @@
 [](https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1337172142412169216&__biz=MzIxMTE0ODU5NQ==&scene=21#wechat_redirect)
 
 
+
+
+
 ```shell
  docker pull flink:1.12.1
 
