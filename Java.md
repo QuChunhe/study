@@ -721,7 +721,7 @@ Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Poin
 
 
 
-jps
+jps:java process status
 
 jinfo
 
