@@ -1,5 +1,26 @@
 
 
+# Time
+
+Coordinated Universal Time (UTC)
+
+Greenwich Mean TIM (GMT)
+
+Internaltional Atomic Time (TAI)
+
+UTC is TAI with corrections to account for Earch rotation.
+
+Time zones and daylight saving time are offsets to UTC.
+
+Two most common representationi
+* Unix time
+* ISO 8601: 2020-11-09T09:05:00+08:00
+
+leap second: A leap second is a second added to Coordinated Universal Time (UTC) in order to keep it synchronized with astronomical time. 
+
+闰秒，是指为保持协调世界时接近于世界时时刻，由国际计量局统一规定在年底或年中（也可能在季末）对协调世界时增加或减少1秒的调整。由于地球自转的不均匀性和长期变慢性（主要由潮汐摩擦引起的），会使世界时（民用时）和原子时之间相差超过到±0.9秒时，就把协调世界时向前拨1秒（负闰秒，最后一分钟为59秒）或向后拨1秒（正闰秒，最后一分钟为61秒）； 闰秒一般加在公历年末或公历六月末。
+
+# Code
 
 ASCII(American Standard Code for Information Interchange)
 

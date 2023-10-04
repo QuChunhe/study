@@ -423,12 +423,12 @@ Rule 5: The comprehensive data sublanguage rule:
 
 A relational system may support several languages and various modes of terminal use (for example, the fill-in-the-blanks mode). However, there must be at least one language whose statements are expressible, per some well-defined syntax, as character strings and that is comprehensive in supporting all of the following items:
 
-            Data definition.
-            View definition.
-            Data manipulation (interactive and by program).
-            Integrity constraints.
-            Authorization.
-            Transaction boundaries (begin, commit and rollback).
+* Data definition.
+* View definition.
+* Data manipulation (interactive and by program).
+* Integrity constraints.
+* Authorization.
+* Transaction boundaries (begin, commit and rollback).
 
 Rule 6: The view updating rule:
 
@@ -513,7 +513,7 @@ Put simply, a relation is in 2NF if it is in 1NF and every non-prime attribute o
 简单而言，如果一个关系是第一范式，并且关系的每个非主属性都依赖于每个候选键的整体，而不是一部分，则这个关系是2NF。注意，它没有限制从非主属性到非主属性的依赖关系。
 
 A functional dependency on part of any candidate key is a violation of 2NF. In addition to the primary key, the relation may contain other candidate keys; it is necessary to establish that no non-prime attributes have part-key dependencies on any of these candidate keys. 
-对候选键的一部分的函数依赖是违反2NF的。除了主键之外，关系还可能包含其他候选键；必须确定非主属性对这些候选键中的任何一个具有部分键不具有依赖性。 
+对候选键的一部分的函数依赖是违反2NF的。除了主键之外，关系还可能包含其他候选键；必须确定非主属性对这些候选键中的任何一个不具有部分依赖性。 
 
 
 [Third normal form](https://en.wikipedia.org/wiki/Third_normal_form)
@@ -531,7 +531,10 @@ Codd's definition states that a table is in 3NF if and only if both of the follo
 * The relation R (table) is in second normal form (2NF).
 * Every non-prime attribute of R is non-transitively dependent on every key of R.
 
-A non-prime attribute of R is an attribute that does not belong to any candidate key of R.[3] A transitive dependency is a functional dependency in which X → Z (X determines Z) indirectly, by virtue of X → Y and Y → Z (where it is not the case that Y → X).
+
+传递依赖
+
+A non-prime attribute of R is an attribute that does not belong to any candidate key of R. A transitive dependency is a functional dependency in which X → Z (X determines Z) indirectly, by virtue of X → Y and Y → Z (where it is not the case that Y → X).
 
 A 3NF definition that is equivalent to Codd's, but expressed differently, was given by Carlo Zaniolo in 1982. This definition states that a table is in 3NF if and only if for each of its functional dependencies X → A, at least one of the following conditions holds:
 * X contains A (that is, A is a subset of X, meaning X → A is trivial functional dependency),

@@ -1110,3 +1110,23 @@ cluster.shutdown()
 
 
 DolphinScheduler
+
+# Designing Data-Intensive Applications
+
+Hash Indexes
+* The hash table must fit in memory
+* Range queries are not efficient.
+
+
+ Sorted String Table（SSTable）
+
+merging and compaction process
+
+Log-Structured Merge-Tree (or LSM-Tree)日志结构合并树
+
+size-tiered and leveled compaction
+
+In size-tiered compaction, newer and smaller SSTables are successively merged into older and larger SSTables. In leveled compaction, the key range is split up into smaller SSTables and older data is moved into separate “levels,” which allows the compaction to proceed more incrementally and use less disk space.
+
+
+ a write-ahead log (WAL, also known as a redo log)

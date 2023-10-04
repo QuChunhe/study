@@ -305,10 +305,15 @@ Network & System Failure Types
   * Instead of stopping, a component produces faulty data
   * Due to bad hardware, software, network problems, or malicious interference
 
-We deal with failures by adding redundancy： Replicated components
-But this means we need to keep the state of those components replicated.
+We deal with failures by adding redundancy： Replicated components But this means we need to keep the state of those components replicated.
 
 Nobody has the true global state of a system
+
+fault tolerance
+* Failure: System as a shole isn't working.
+* Fault: Some part of the system isn't working.
+
+Failure detector
 
 [Fallacies of Distributed Computing Explained](http://rgoarchitects.com/Files/fallacies.pdf)
 
@@ -553,8 +558,9 @@ Andreas Meier, Michael Kaufmann,SQL & NoSQL Databases: Models, Languages, Consis
 
 
 
+# 时间（Time）
 
-# 逻辑时间（Logical Time)
+## 逻辑时间（Logical Time)
 
 [Clock Synchronization：Getting the right time](https://www.cs.rutgers.edu/%7Epxk/417/notes/clocks.html)
 
@@ -637,7 +643,7 @@ To make this work, Lamport timestamp generation has an extra step. If an event i
 ![Lamport Clock Assignment](pics/clocks-lamport.png)
 
 With Lamport timestamps, we are assured that two causally-related events will have timestamps that reflect the order of events. For example, event h happened before event m in the Lamport causal sense. The chain of causal events is h→c, c→d, and d→m. Since the happened-before relationship is transitive, we know that h→m (h happened before m). Lamport timestamps reflect this. The timestamp for h (1) is less than the timestamp for m (7). However, just by looking at timestamps we cannot conclude that there is a causal happened-before relation. For instance, because the timestamp for k (1) is less than the timestamp for i (3) does not mean that k happened before i. Those events happen to be concurrent but we cannot discern that by looking at Lamport timestamps. We need need to employ a different technique to be able to make that determination. That technique is the use of vector timestamps.
-通过Lamport时间戳，我们可以确定对于两个因果相关的事件，其时间戳会反映事件的顺序。例如，在Lamport因果意义上，事件h在事件m之前发生。因为存在因果关系事件链 h→c、c→d和 d→m。又因为happened-before关系是可传递的，所以我们可以得到 h→m（事件h在事件m之前发生）。Lamport时间戳反映了这个。h的时间戳1小于事件m的时间戳7。但是，仅仅通过查看时间戳，我们无法得出这是一个因果happerned-before关系的结论。例如k的时间戳1小于事件i的时间戳3，但是不意味着k先于i发生。这些事件碰巧是并发的，但我们无法通过查看Lamport时间戳来辨别。我们需要采用一种不同的技术来确定。这种技术就是使用向量时间戳。
+通过Lamport时间戳，我们可以确定对于两个因果相关的事件，其时间戳会反映事件的顺序。例如，在Lamport因果意义上，事件h在事件m之前发生。因为存在因果关系事件链 h→c、c→d和 d→m。又因为happened-before关系是可传递的，所以我们可以得到 h→m（事件h在事件m之前发生）。Lamport时间戳反映了这个。h的时间戳1小于事件m的时间戳7。但是，仅仅通过查看时间戳，我们无法得出这是一个因果happened-before关系的结论。例如k的时间戳1小于事件i的时间戳3，但是不意味着k先于i发生。这些事件碰巧是并发的，但我们无法通过查看Lamport时间戳来辨别。我们需要采用一种不同的技术来确定。这种技术就是使用向量时间戳。
 
 Lamport timestamps allow us to maintain time ordering among related events： Partial ordering
 * 第一个问题在不同进程上的多个事件可能标记相同的时间戳
@@ -660,6 +666,10 @@ The rules for updating vector clocks are as follows:更新向量时钟的规则�
 
 To determine if two events, V and W, are concurrent, do an element-by-element comparison of the corresponding timestamps. If each element of timestamp V is less than or equal to the corresponding element of timestamp W then V causally precedes W and the events are not concurrent. If each element of timestamp V is greater than or equal to the corresponding element of timestamp W then W causally precedes V and the events are not concurrent. If, on the other hand, neither of those conditions apply and some elements in V are greater than while others are less than the corresponding element in W then the events are concurrent. 
 为了确定两个事件V和W是否并发，只要逐个元素地比较对应的时间戳。如果V中时间戳的每个元素小于或者等于W中时间戳的对应元素，那么V就因果地先于W，两个事件不是并发的。如果V中时间戳的每个元素大于或者等于W中时间戳的对应元素，则W逻辑地先于V，两个事件不是并发的。另一个方面，如果上面两个条件都不适用，也就是，V中的一些元素大于而另外一些则小于W中的对应元素，则两个事件是并发的。
+
+
+## Virtual Time
+
 
 # Patterns
 

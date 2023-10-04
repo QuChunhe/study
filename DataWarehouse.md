@@ -107,7 +107,19 @@ ETL：Extract Transformation and Load
 * 从原子级别的粒度开始设计
 * 性能或者资源无法满足需求，上卷汇总粒度
 
+维度主键尽量采用整数
+* Natural keys（自然主键）
+* durable key （持久主键）
+* durable supernatural key 持久超自然主键
 
+维度类型
+* Calendar Date Dimensions
+* Role-Playing Dimensions
+* Junk Dimensions (transaction profile dimension)
+* Snowflaked Dimensions
+* Outrigger Dimensions
+
+Integration via Conformed Dimensions通过一致维度集成
 
 
 

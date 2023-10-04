@@ -1,4 +1,15 @@
 
+存储选型问题
+
+采用何种数仓建模
+
+数据规范化问题：1）
+
+数据应用价值问题
+
+
+
+
 * 数据分层问题：ODS (Operational Data Store) DWD：data warehouse details，DWB：data warehouse base，DWS：data warehouse servic
 * 数据规约，1）名称的问题；2）数据范围问题
   * 缺失：应该有，但是没有。

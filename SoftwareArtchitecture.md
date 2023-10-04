@@ -174,7 +174,7 @@ As I think about MVC I see two principal separations: separating the presentatio
 
 Reactor： 
 The Reactor architectural pattern allows event-driven applications to demultiplex and dispatch service requests that are delivered to an application from one or more clients.
-*  'thread-per-connection' model
+* 'thread-per-connection' model
 * event-drived model
 
 a process or thread-based model to handle connections。
@@ -186,6 +186,14 @@ The Proactor architectural pattern allows event-driven applications to efficient
 
 
 Asynchronous Completion Token：
+The Asynchronous Completion Token design pattern allows an application to demultiplex and process efficiently the responses of asynchronous operations it invokes on services.
+
+
+Acceptor-Connector：
+The Acceptor-Connector design pattern decouples the connection and initialization of 
+cooperating peer services in a networked system from the processing performed by the peer 
+services after they are connected and initialized.
+
 
 The C10K problem (Concurrently handle 10,000 connections.)
 1. Event-Driven Programming: This involves organizing the server so that it reacts to events (like the arrival of a new connection or the receipt of data) instead of maintaining a thread for each connection. The server essentially “waits” for events and reacts as they occur.
@@ -238,3 +246,10 @@ Structural patterns are concerned with how classes and objects are composed to f
 * Flyweight
   * Use sharing to support large numbers of fine-grained objects efficiently.
   
+
+Behavioral patterns are concerned with algorithms and the assignment of responsibilities between objects.
+* Chain of Responsibility 责任链
+  * Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
+  * servlet
+* Command
+  * Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.    

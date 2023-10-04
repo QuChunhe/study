@@ -100,6 +100,7 @@ TimestampsAndWatermarks
 * 何时触发窗口计算
 * 计算状态的存储和过期
 
+状态
 * keyed state 
 * operator state.
 
@@ -190,3 +191,16 @@ applcation模式
  ```shell
  flink run-application -p $p -Dtaskmanager.numberOfTaskSlots=$3 -Djobmanager.memory.process.size=$4 -Dtaskmanager.memory.process.size=$5 -t yarn-application -Dyarn.application.name=$1 -c $2 ~/robot-stream/robot-stream.jar
  ```
+
+Time
+* Event-time Mode:
+* Watermark Support: 
+* Late Data Handling
+* Processing-time Mode
+
+
+Monitor and Control Your Applications
+* Web UI:
+* Logging: slf4j logging interface and integrates with the logging frameworks log4j or logback.
+* Metrics: JMX, Ganglia, Graphite, Prometheus, StatsD, Datadog, and Slf4j.
+* REST API:
