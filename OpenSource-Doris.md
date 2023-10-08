@@ -1,6 +1,11 @@
 
 数据模型
 
+Doris 的数据模型主要分为3类:
+* Aggregate
+* Unique
+* Duplicate
+
 分区分桶
 * 分桶避免数据倾斜
 

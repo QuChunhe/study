@@ -252,6 +252,21 @@ Callable, Future, and FutureTask ...
 LockSupport.
 
 
+ThreadPoolExecutor
+* corePoolSize: the number of threads to keep in the pool, even if they are idle, unless {@code allowCoreThreadTimeOut} is set
+* maximumPoolSize: the maximum number of threads to allow in the pool
+* keepAliveTime: when the number of threads is greater than the core, this is the maximum time that excess idle threads will wait for new tasks before terminating.
+* unit: the time unit for the {@code keepAliveTime} argument
+* workQueue: the queue to use for holding tasks before they are executed.  This queue will hold only the {@code Runnable} tasks submitted by the {@code execute} method.
+* threadFactor:y the factory to use when the executor creates a new thread
+* handler the handler to use when execution is blocked because the thread bounds and queue capacities are reached
+  * ThreadPoolExecutor.CallerRunsPolic
+  * ThreadPoolExecutor.DiscardPolicy
+  * ThreadPoolExecutor.DiscardOldestPolicy
+  * ThreadPoolExecutor.DiscardOldestPolicy
+
+
+
 CompletionService-->ExecutorCompletionService
 
 通过线程池ThreadPoolExecutor，实现了任务（Runnable/Callable）创建和任务执行之间的去耦合，而使用ExecutorCompletionService，又能够进一步实现任务执行（生产结果）和结果处理（消费结果）之间的去耦合，非常适合于非阻塞调用（在Caller一方）和异步调用（在Callee一方）。ExecutorCompletionService有一个内部类QueueingFuture，其是FutureTask的子类，在任务执行完毕后自动加入阻塞队列，而结果处理一方可以通过take或者poll方法（本质上是take和poll这个阻塞独立）获得执行完毕的Future，并进行后续处理过程，从而避免自己编写定时轮训Future的过程。

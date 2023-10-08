@@ -23,9 +23,9 @@ Inmon模型
 * EDW Enterprise Data Warehouse
 
 设计
-* 尽可能多的过滤数据
-* 尽可能少的移动数据
-* 尽可能地使用变化：需求的变化、数据的变化在近可能少的开发情况下
+* 尽可能多得过滤数据
+* 尽可能少得移动数据
+* 尽可能快得适应变化：需求的变化、数据的变化在近可能少的开发情况下
 
 数据的一致性：公告标识和定义在不同数据来源共用。
 
@@ -44,7 +44,8 @@ Einstein “Everything should be made as simple as possible, but no simpler.” 
 
 
 ETL：Extract Transformation and Load
-上钻下钻
+
+上卷下钻
 
 
 * 事实表：用于度量
@@ -121,6 +122,22 @@ ETL：Extract Transformation and Load
 
 Integration via Conformed Dimensions通过一致维度集成
 
+缓慢变化维的处理
+* 业务：数据的业务特性，应用的业务要求
+* 技术：存储方式（是否存在主键，schema预先定义或者动态的），同步方式（增量同步，全量同步）
+
+缓慢变化维的
+* 如何处理历史数据
+* 如何排除重复数据
+* 如何关联维度数据
+
+缓慢变化维度（Slowling Changing Dimension）
+* 类型0：原样保留（Retain Original）。维度属性值不会发生变化，因此事实总是以原始值分组。类型0适合于被标记为“original”的属性。
+* 类型1：重写（Overwrite）。维度行中原来的属性值被覆盖。类型1属性总是反映最新的工作。重写会破坏了历史情况，会造成汇总数据的变化。
+* 类型2：增加新行（Add New Row）。在维度表中增加新行，新行存储被修改后的属性值。至少增加三个额外列：1）行生效的日期或者日期/时间戳；2）行过期的日期或者日期/时间戳；3）当前行的标识符。
+* 类型3：增加新属性（Add New Attribute）。对类型3，将在维度表中增加新属性以保留旧的属性值。
+* 类型4：增加微型维度（Add Mini-Dimension）。当维度中的一组属性快速变化时，将其划分为微型维度。包含几百万行的维度表中，将变化维度划分为微型维度。
+* 类型5：增加微型维度及类型1支架（ Add Mini-Dimension and Type 1 Outrigger）。对类型5，用于精确保存历史属性值，同时根据当前属性值，可以报告历史事实。The type 5 technique is used to accurately preserve historical attribute values, plus report historical facts according to current attribute values. Type 5 builds on the type 4 mini-dimension by also embedding a current type 1 reference to the mini-dimension in the base dimension. This enables the currently-assigned mini-dimension attributes to be accessed along with the others in the base dimension without linking through a fact table. Logically, you’d represent the base dimension and mini-dimension outrigger as a single table in the presentation area. The ETL team must overwrite this type 1 mini-dimension reference whenever the current mini-dimension assignment changes.
 
 
 实时数仓是相对于传统的离线数仓而言，其实时包含两层含义
@@ -182,7 +199,7 @@ https://delta.io/
 
 
 
-缓慢变化维、也就是 SCD（Slowly Changing Dimensions）
+
 
 
 数据展示方式
@@ -193,6 +210,26 @@ https://delta.io/
 [数据模型例子与范式](https://mongoing.com/docs/applications/data-models.html)
 
 
+数据模型
+* 内嵌式数据模型
+* 规范化数据模型：规范化数据模型指的是通过使用“引用”来表达对象之间的关系
+
+
+内嵌式数据模型
+* 数据对象之间有 “contains” (包含) 关系
+* 数据对象之间有一对多的关系
+
+关联关系
+* 一对一关系建模：内嵌式
+* 一对多关系建模：内嵌式
+* 一对多关系建模：引用
+
+树结构建模
+* 父文档引用
+* 子文档应用
+* 祖先数组
+* 物化路径
+* 嵌套机会
 
 # Doris
 
@@ -200,3 +237,15 @@ Doris 的数据模型主要分为3类:
 * Aggregate
 * Unique
 * Duplicate
+
+# Hive
+
+Hive包含四种数据模型
+* 表 Table
+* 外部表 External Table
+* 分区 Partition
+* 桶 Bucket
+
+Hive支持的主要数据格式？
+
+文本文件、序列化文件(行)、parquet文件（列）、RCFile（列）、ORC（列）、Avro File（行）
