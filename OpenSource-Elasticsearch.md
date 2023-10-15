@@ -26,6 +26,9 @@ RBM算法（Roaring Bit Map）
 2. 通过Term Dictionary找到对应的Posting List
 
 
+term index是一个抽象的数据结构，为了加速当前词项检索的，底层是用的FST(Finite State Transducer)数据结构。
+
+
 ES针对还额外做了两点优化：
 1. Term Dictionary 在磁盘上面是分 block 保存的，一个 block 内部利用公共前缀压缩，比如都是 Ab 开头的单词就可以把 Ab 省去
 2. Term Index 在内存中是以 FST（finite state transducers）的数据结构保存的

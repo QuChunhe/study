@@ -1131,4 +1131,23 @@ size-tiered and leveled compaction
 In size-tiered compaction, newer and smaller SSTables are successively merged into older and larger SSTables. In leveled compaction, the key range is split up into smaller SSTables and older data is moved into separate “levels,” which allows the compaction to proceed more incrementally and use less disk space.
 
 
- a write-ahead log (WAL, also known as a redo log)
+size-tiered策略保证每层SSTable的大小相近，同时限制每一层SSTable的数量。如上图，每层限制SSTable为N，当每层SSTable达到N后，则触发Compact操作合并这些SSTable，并将合并后的结果写入到下一层成为一个更大的sstable。
+
+
+leveled策略也是采用分层的思想，每一层限制总文件的大小。
+
+ a write-ahead log (WAL, also known as a redo log)先写日志
+
+
+ LSM树的核心特点是将原本随机写操作，转化为顺序写操作，来提高写性能。LSM分树采用分层思想，将数据分为内存和文件两部分，显然会降低读性能，但是可以换来高性能写，使得LSM树成为非常流行的存储结构。
+
+
+
+
+1. MemTable：MemTable是在内存中的数据结构，用于保存最近更新的数据，会按照Key有序地组织这些数据，LSM树对于具体如何组织有序地组织数据并没有明确的数据结构定义，例如Hbase使跳跃表来保证内存中key的有序。因为数据暂时保存在内存中，内存并不是可靠存储，如果断电会丢失数据，因此通常会通过WAL(Write-ahead logging，预写式日志)的方式来保证数据的可靠性。
+
+2. Immutable MemTable：当 MemTable达到一定大小后，会转化成Immutable MemTable。Immutable MemTable是将转MemTable变为SSTable的一种中间状态。写操作由新的MemTable处理，在转存过程中不阻塞数据更新操作。
+
+3. SSTable(Sorted String Table)：有序键值对集合，是LSM树组在磁盘中的数据结构。
+
+冗余存储，对于某个key，实际上除了最新的那条记录外，其他的记录都是冗余无用的，但是仍然占用了存储空间。因此需要进行Compact操作(合并多个SSTable)来清除冗余的记录。

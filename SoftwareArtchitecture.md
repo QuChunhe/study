@@ -35,6 +35,8 @@
 * 从而支持业务需求
 * 并简化代码开发和部署
 
+为用户解决实际问题，为用户创造额外价值
+
 架构的几个关键
 * 满足业务需求
 * 满足客观约束:比如成本成本
@@ -58,7 +60,7 @@ In most successful software projects, the expert developers working on that proj
 
 把握方向，在满足约束和需求的同时，发挥开发人员的才智，不要使得架构师成为瓶颈。
 * 太粗：缺乏指导意义，无法规范开发
-* 太细：1）增加架构师负担，增加开发人员认知成本；2）不能实现变化
+* 太细：1）增加架构师负担，增加开发人员认知成本；2）不能支持变化
 
 例如，数据架构
 * schema层次，详细表定义
@@ -183,6 +185,7 @@ a process or thread-based model to handle connections。
 Proactor： 
 The Proactor architectural pattern allows event-driven applications to efficiently demultiplex and dispatch service requests triggered by the completion of asynchronous operations, to achieve the performance benefits of concurrency without incurring certain of its liabilities.
 
+The proactor is a completion dispatcher that calls back to the designated concrete completion handler in an application after the corresponding asynchronous operation has finished executing.
 
 
 Asynchronous Completion Token：

@@ -396,3 +396,13 @@ What do we do with writes?
 * update the cache first, then update the database 
 * synchronously (write-through): safe but slow 
 * asynchronously (write-back): fast but not crash-safe
+
+
+
+# 哨兵
+
+哨兵节点由两部分组成，哨兵节点和数据节点：
+* 哨兵节点：哨兵系统由一个或多个哨兵节点组成，哨兵节点是特殊的redis节点，不存储数据。
+* 数据节点：主节点和从节点都是数据节点。
+
+访问redis集群的数据都是通过哨兵集群的，哨兵监控整个redis集群

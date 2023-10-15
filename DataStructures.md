@@ -3,6 +3,8 @@ Gakhov, Andrii, Probabilistic data structures and algorithms for big data applic
 
 Marcello La Rocca, Advanced Algorithms and Data Structures, Manning Publications, 2021
 
+[repo](https://github.com/mlarocca/AlgorithmsAndDataStructuresInAction#trie)
+
 Sequential and Parallel Algorithms and Data Structures: The Basic Toolbox
 
 Peter Brass, Advanced Data Structures, Cambridge University Press,2008
