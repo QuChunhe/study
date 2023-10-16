@@ -26,14 +26,15 @@
 * 集成架构
 * 部署架构
 * 安全架构
+
 上述架构既相互关联和相互影响，又有侧重，共同构建了一个系统的架构全貌。
 
 
 架构师
-* 在一定条件的约束下（成本投入、系统性能和开发周期等约束）
+* 在一定条件的约束下（成本投入和开发周期等约束）
 * 设计上述多个架构（文档、接口或者定义）
-* 从而支持业务需求
-* 并简化代码开发和部署
+* 从而满足业务需求和性能指标
+* 并简化代码开发、测试、部署和运维
 
 为用户解决实际问题，为用户创造额外价值
 
@@ -49,6 +50,9 @@
   * Manageability
 
 In most successful software projects, the expert developers working on that project have a shared understanding of the system design. This shared understanding is called ‘architecture.’ This understanding includes how the system is divided into components and how the components interact through interfaces. These components are usually composed of smaller components, but the architecture only includes the components and interfaces that are understood by all the developers.
+
+
+架构服务于业务，模块遵循架构要求。
 
 上述架构的用户
 * 开发人员
