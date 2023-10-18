@@ -262,7 +262,13 @@ visibility, scope, storage, and lifetime.
 
 
 
+宏调用 
 
+inline
+
+static inline
+
+extern inline
 
 
 

@@ -174,7 +174,7 @@ However, when garbage collection is the principal bottleneck, it's useful to und
 **Generational Garbage Collection**分代垃圾回收
 
 An object is considered garbage and its memory can be reused by the VM when it can no longer be reached from any reference of any other live object in the running program.
-在一个正在运行的程序中当一个对象不能通过任何其他活动对象的任何应用被访问到时，这个对象就被认为是垃圾并且其内部能够被VM再次使用。
+在一个正在运行的程序中当一个对象不能通过任何其他活动对象的任何应用被访问到时，这个对象就被认为是垃圾并且其内存能够被VM再次使用。
 
 
 A theoretical, most straightforward garbage collection algorithm iterates over every reachable object every time it runs. Any leftover objects are considered garbage. The time this approach takes is proportional to the number of live objects, which is prohibitive for large applications maintaining lots of live data.

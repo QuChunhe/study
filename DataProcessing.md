@@ -1151,3 +1151,17 @@ leveled策略也是采用分层的思想，每一层限制总文件的大小。
 3. SSTable(Sorted String Table)：有序键值对集合，是LSM树组在磁盘中的数据结构。
 
 冗余存储，对于某个key，实际上除了最新的那条记录外，其他的记录都是冗余无用的，但是仍然占用了存储空间。因此需要进行Compact操作(合并多个SSTable)来清除冗余的记录。
+
+compact有多种策略，
+
+
+Size-Tiered-Compaction Strategy
+
+STCS策略保证每个level内的SSTable大小相近，当某一个level的SSTable数量达到一定阈值的时候，将这些SSTable合成一个更大的SSTable，放入下一个level。且在合并的过程中会清理掉重复的，被删除的数据，与此同时，新生成的大SSTable也是按key排序的。你可以将其理解成是一个多路归并排序。
+* 空间放大问题：使用这种策略，仅仅能保证每个SSTable内不存在重复的数据，但是同一层的多个SSTable之间依然可能存在重复的数据，即空间放大的问题依然存在。
+* 读放大问题：当需要查找某一个数据时，因为我并不知道这个key存在于哪个SSTable内，故需要从新到旧，依次遍历所有SSTable。即读放大也较严重。
+* 写放大问题：当我们写入数据，如果此时恰好触发了compact，则会有一定写放大问题
+
+Leveled Compaction Strategy
+
+LCS策略保证磁盘中所有层的SSTable大小都一致。每一层会限制总文件大小，

@@ -260,7 +260,7 @@ ThreadPoolExecutor
 * workQueue: the queue to use for holding tasks before they are executed.  This queue will hold only the {@code Runnable} tasks submitted by the {@code execute} method.
 * threadFactor:y the factory to use when the executor creates a new thread
 * handler the handler to use when execution is blocked because the thread bounds and queue capacities are reached
-  * ThreadPoolExecutor.CallerRunsPolic
+  * ThreadPoolExecutor.CallerRunsPolicy
   * ThreadPoolExecutor.DiscardPolicy
   * ThreadPoolExecutor.DiscardOldestPolicy
   * ThreadPoolExecutor.DiscardOldestPolicy
