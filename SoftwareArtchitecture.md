@@ -126,6 +126,20 @@ Layering（分层）
 [《微服务架构设计模式》之二：服务的拆分策略](http://www.uml.org.cn/wfw/202004242.asp?artid=23208)
 
 
+architecture styles (架构风格)
+
+Roy Thomas Fielding博士，在他的REST论文中，对架构风格做出了定义：
+>An architectural style is a coordinated set of architectural constraints that restricts the roles/features of architectural >elements and the allowed relationships among those elements within any architecture that conforms to that style.
+>一种架构风格是一组协作的架构约束，这些约束限制了架构元素的角色和功能，以及在任何一个遵循该风格的架构中允许存在的元素之间的关系。
+
+架构模式
+
+架构模式描述了一组组件之间的关系，用以解决特定上下文内的某个常见的架构问题！
+
+Wiki上也给架构模式做了类似的定义：
+>An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a >given context
+>架构模式是一个通用的、可重用的解决方案，用以解决特定上下文内的某个常见的架构问题！
+
 
 Work smarter not harder
 

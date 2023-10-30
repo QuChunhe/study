@@ -891,31 +891,37 @@ Active-Active vs. Active-Passive High-Availability Clustering
 
 Availability ≔ MTTF /(MTTF + MTTR)
 
-* MTTF: Mean Time To Failure
-* MTTR: Mean Time To Recovery
+* MTTF: Mean Time To Failure 平均无故障时间
+* MTTR: Mean Time To Recovery 平均修复时间
 
 
-Traditional stability approach: Maximize MTTF
+Traditional stability approach: Maximize MTTF。传统的稳定方法是使得平均无故障时间最大化
 
 
 Failures in todays complex, distributed and interconnected systems are not the exception.
 
 
-Do not try to avoid failures. Embrace them.
+Do not try to avoid failures. Embrace them. 既然无法避免故障，那么就拥抱故障
 
-Resilience approach: Minimize MTTR
+Resilience approach: Minimize MTTR 弹性方法：使得平均修复时间最小化
 
 the ability of a system to handle unexpected situations
-* without the user noticing it (best case)
-* with a graceful degradation of service (worst case)
+* without the user noticing it (best case) 没有用户注意到故障（最好的情况）
+* with a graceful degradation of service (worst case) 优雅的降级服务（最坏的情况）
 
-Isolation
-* System must not fail as a whole
+Isolation 隔离
+* System must not fail as a whole 
 * Split system in parts and isolate parts against each other
-* Avoid cascading failures
+* Avoid cascading failures 防止级联故障
 * Requires set of measures to implement
 
 **Bulkheads Pattern（隔舱模式）**
+
+
+* Core isolation pattern
+* a.k.a. “failure units” or “units of mitigation”
+* Used as units of redundancy (and thus, also as units of scalability)
+* Pure design issue
 
 Bulkhead 模式是一种容错能力的应用程序设计。 在 bulkhead 体系结构中，应用程序的元素隔离到池中，这样，如果一个应用程序发生故障，其他元素将继续工作。 该名称在分段的分区 (隔舱的) ，并按发货的球面进行命名。 如果船体受到破坏，只有受损的分段才会进水，从而可以防止船只下沉。
 
@@ -928,6 +934,14 @@ Bulkhead 模式是一种容错能力的应用程序设计。 在 bulkhead 体系
 [隔舱模式](https://docs.microsoft.com/zh-cn/azure/architecture/patterns/bulkhead)
 
 **Complete Parameter Checking**
+
+完全参数检查
+
+* As obvious as it sounds, yet often neglected
+* Protection from broken/malicious calls (and return values)
+* Pay attention to Postel’s law
+* Consider specific data types
+
 
 
 

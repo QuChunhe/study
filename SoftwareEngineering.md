@@ -739,10 +739,66 @@ The situation where the number of classes increases to an unmanageable extent is
 
 # Domain-Driven Design
 
+需求复杂度
+* 技术复杂度：安全、高性能、高并发和高可用
+* 业务复杂度
+
+从模块、结构和变化三个主要因素去控制
+1. 分而治之，控制规模
+  * KISS原则、单一职责原则
+2. 保持结构得清晰和一致
+  * 整洁架构
+3. 拥抱变化
+  * 敏捷、快速迭代、可进化、可扩展和可定制
+
+
 方法论(methodology)是关于方法(method)的学问(-ology=a field of study)。
 
 领域驱动设计（Domain-Driven Design：DDD）是一种设计理念或者设计方法论。
 
+DDD 提供了一些应对复杂度的具体方法：
+* 通过架构设计来分离业务复杂度和技术复杂度。
+* 通过限界上下文将一个大系统切分为若干高内聚低耦合的子领域。
+* 通过领域模型对业务领域的知识进行抽象。
+
+DDD remains as relevant today as it did when Evans published his blue book because it directly confronts the root causes of why software design is hard: creating a shared understanding of the problem and modularizing the architecture in a way that communicates that understanding in code. 即使在今天，DDD与Evans出版他的蓝皮书时一样重要，因为它直接面对了软件设计之所以困难的根本原因：创建对问题的共同理解，并以一种在代码中对架构进行模块化
+
+
+DDD
+* 分层架构
+* 洋葱架构
+* 六边形架构
+
+UL（Ubiquitous Language，通用语言）是团队共享的语言，是DDD中最具威力的特性之一。DDD在战略设计上提出了模式BC（Bounded Context，限界上下文）
+
+Eric Evans在《领域驱动设计－软件核心复杂性应对之道》这本书中提出了传统的四层架构模式
+* User Interface为用户界面层（或表示层），负责向用户显示信息和解释用户命令。这里指的用户可以是另一个计算机系统，不一定是使用用户界面的人。
+* Application为应用层，定义软件要完成的任务，并且指挥表达领域概念的对象来解决问题。这一层所负责的工作对业务来说意义重大，也是与其它系统的应用层进行交互的必要渠道。应用层要尽量简单，不包含业务规则或者知识，而只为下一层中的领域对象协调任务，分配工作，使它们互相协作。它没有反映业务情况的状态，但是却可以具有另外一种状态，为用户或程序显示某个任务的进度。
+* Domain为领域层（或模型层），负责表达业务概念，业务状态信息以及业务规则。尽管保存业务状态的技术细节是由基础设施层实现的，但是反映业务情况的状态是由本层控制并且使用的。领域层是业务软件的核心，领域模型位于这一层。
+* Infrastructure层为基础实施层，向其他层提供通用的技术能力：为应用层传递消息，为领域层提供持久化机制，为用户界面层绘制屏幕组件，等等。基础设施层还能够通过架构框架来支持四个层次间的交互模式。
+
+六边形体系结构是围绕领域逻辑设计软件应用程序以将其与外部因素隔离的模型。
+
+
+Karthik and Prem share important updates on both fronts: techniques like Wardley mapping, EventStorming, and domain storytelling to create a shared understanding, and an updated view of how DDD patterns apply with modern architectural approaches.
+
+
+软件项目失败的主要原因
+* Inaccurate requirements
+* Too much architecture
+* Too little architecture
+* Excessive incidental complexity
+* Uncontrolled technical debt
+* Ignoring non-functional requirements
+
+* the  delivery pipeline
+ * Build
+ * Test
+ * Release
+* the feedback pipeline
+ * Replan
+ * Adjust
+ * Monitor
 
 构建领域知识：对于需求进行总结、抽象和概况
 * 划分领域：部门、角色和职责进行划分
@@ -815,9 +871,31 @@ Domain-driven design distinguishes between three types of subdomains: core, gene
 11. 最好的架构、要求和设计，来自团队内部自发的认识。
 12. 团队要定期反思如何更有效，并相应地进行调整。
 
+12条原则
+1. 最优先要做的是通过尽早的、持续的交付有价值的软件来使客户满意
+2. 即使到了开发的后期，也欢迎改变需求。敏捷过程利用变化来帮助客户创造竞争优势。
+3. 不断地交付可用的软件，虽然交付的周期可以从几周到几个月，但是交付的实际间隔越短越好。
+4. 在整个项目开过程间，业务人员和开发人员必须在一起工作。
+5. 项目必须围绕那些有内在动力的个人而建立。给他们提供所需要的环境和支持，并且信任他们能够完成工作。
+6. 在团队内部，面对面的交谈是最具有效果和最富有效率的信息传递方法。
+7. 可用性是衡量进度的主要指标。
+8. 敏捷过程提倡可持续的开发速度。责任人、开发者和用户应该保持一个长期的、恒定的开发速度
+9. 不断地关注优秀的技能和好的设计会增强敏捷能力
+10. 简单--使未完成的工作最大化的艺术--是根本。
+11. 最好的架构、需求和设计出自于自组织的团队
+12. 每隔一定时间，团队会在如何才能更有效地工作方面进行反省，然后相应得对自己得行为进行调整。
+
 
 “MVP”是 “Minimum Viable Product”的首字母缩写，即“最小可行性产品”。
 
 MVP理念最早由Eric Ries提出。在其所著的《精益创业》一书中，Eric Ries对MVP进行了系统化讲解：MVP指的是企业用最小的成本开发出可用且能表达出核心理念的产品版本，使其功能极简但能够帮助企业快速验证对产品的构思，以便于企业在获取用户反馈后持续迭代优化产品、不断适应市场环境。
 
 很多企业会通过"构建（Build）-测量（Measure）-迭代（Learn）“的操作流程，设计最小可行性产品，来验证产品设想。
+
+
+敏捷软件开发宣言
+* 个体和交互  胜过 过程和工具
+* 可以工作的软件 胜过 面面俱到的文档
+* 客户合作 胜过 合同谈判
+* 响应变化 胜过 遵循计划
+

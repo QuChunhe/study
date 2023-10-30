@@ -10,6 +10,10 @@ Sequential and Parallel Algorithms and Data Structures: The Basic Toolbox
 Peter Brass, Advanced Data Structures, Cambridge University Press,2008
 
 
+* O-notation characterizes an upper bound on the asymptotic behavior of a function.
+* \Omega-notation characterizes a lower bound on the asymptotic behavior of a function
+* \Theta-notation characterizes a tight bound on the asymptotic behavior of a function.
+
 # Hash Tables（散列表）
 
 slots/buckets/segement(槽/桶/段)
@@ -25,7 +29,7 @@ SHA（Secure Hash Algorithm），安全哈希算法，包括SHA-1、SHA-256、SH
 
 * SHA-3。之前名为Keccak算法，是一个加密杂凑算法
 
-
+Typically, an ordered set is implemented with a binary search tree or a btree, and an unordered set is implemented with a hash table.
 
 # Tree（树）
 
@@ -48,7 +52,14 @@ SHA（Secure Hash Algorithm），安全哈希算法，包括SHA-1、SHA-256、SH
 
 B-tree/B+-tree/ B*-tree (B~Tree)。B 树是为了磁盘或其它存储设备而设计的一种多叉平衡查找树
 
+# Finite State Machine (FSM)
 
+[Index 1,600,000,000 Keys with Automata and Rust](https://blog.burntsushi.net/transducers/)
+
+* Finite State Acceptor (abbreviated FSA).
+* FST(Finite state transducer)
+
+The only difference between a trie and the FSAs shown in this article is that a trie permits the sharing of prefixes between keys while an FSA permits the sharing of both prefixes and suffixes.
 
 # Slides
 

@@ -1120,11 +1120,16 @@ Hash Indexes
 * Range queries are not efficient.
 
 
- Sorted String Table（SSTable）
+三个数据结构
+* Sorted String Table（SSTable）
+* Log-Structured Merge-Tree (or LSM-Tree)日志结构合并树
+* Sparse index in memory
+
+
 
 merging and compaction process
 
-Log-Structured Merge-Tree (or LSM-Tree)日志结构合并树
+
 
 size-tiered and leveled compaction
 

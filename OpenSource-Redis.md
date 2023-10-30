@@ -1,6 +1,10 @@
 
 
 
+
+* Simple Dymic String SDS
+* IntSet
+
 渐进式 rehash
 
 扩展或收缩哈希表需要将 ht[0]里面的所有键值对 rehash 到 ht[1]里面， 但是， 这个 rehash 动作并不是一次性、集中式地完成的， 而是分多次、渐进式地完成的。
@@ -17,6 +21,56 @@ redis-cli --cluster info 192.168.1.102:6380
 
 
 ````
+
+# 哨兵
+
+哨兵节点由两部分组成，哨兵节点和数据节点：
+* 哨兵节点：哨兵系统由一个或多个哨兵节点组成，哨兵节点是特殊的redis节点，不存储数据。
+* 数据节点：主节点和从节点都是数据节点。
+
+访问redis集群的数据都是通过哨兵集群的，哨兵监控整个redis集群
+
+
+RDB ： Redis Database
+
+dump.rdb
+
+Usually a portable and safe pattern to overwrite existing files would be like:
+1. create a new temp file (on the same file system!)
+2. write data to the temp file
+3. fsync() the temp file
+4. rename the temp file to the appropriate name
+5. fsync() the containing directory
+
+SAVE 保存是阻塞主进程，客户端无法连接redis，等SAVE完成后，主进程才开始工作，客户端可以连接
+
+BGSAVE 命令执行之后立即返回 OK ，然后 Redis fork 出一个新子进程，原来的 Redis 进程(父进程)继续处理客户端请求，而子进程则负责将数据保存到磁盘，然后退出。
+
+
+
+客户端可以通过 LASTSAVE 命令查看相关信息，判断 BGSAVE 命令是否执行成功。
+
+
+aof 和rewrite机制
+
+
+通知配置rdb和aof，优先加载aof
+
+
+过期键如何删除？
+* 惰性过期：当访问一个key时，才会判断一个key是否过期，如果过期则删除。
+* 定期过期：每隔一定时间，扫描一定数量的key
+
+过期键的定期删除策略由activeExpireCycle函数实现，每当Redis服务器的周期性操作serverCron函数执行时，activeExpireCycle函数就会被调用，它在规定的时间内，分多次遍历服务器中的各个数据库，从数据库的expires字典中随机检查一部分键的过期时间，并删除其中的过期键。
+
+
+ redis内存淘汰机制有以下几个：
+* noeviction：当内存不足以容纳新写入数据时，新写入操作会报错。这个一般很少用。
+* allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的key，这个是最常用的。
+* allkeys-random：当内存不足以容纳新写入数据时，在键空间中，随机移除某个key。
+* volatile-lru：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的key。
+* volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个key。
+* volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的key优先移除。
 
 
 # Configuration
@@ -399,10 +453,3 @@ What do we do with writes?
 
 
 
-# 哨兵
-
-哨兵节点由两部分组成，哨兵节点和数据节点：
-* 哨兵节点：哨兵系统由一个或多个哨兵节点组成，哨兵节点是特殊的redis节点，不存储数据。
-* 数据节点：主节点和从节点都是数据节点。
-
-访问redis集群的数据都是通过哨兵集群的，哨兵监控整个redis集群

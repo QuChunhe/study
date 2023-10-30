@@ -271,8 +271,13 @@ static inline
 extern inline
 
 
+# Memory Model
 
- # Courses
+在 C11/C++11 中，引入了六种不同的 memory order，可以让程序员在并发编程中根据自己需求尽可能降低同步的粒度，以获得更好的程序性能。这六种 order 分别是：
+>> relaxed, acquire, release, consume, acq_rel, seq_cst
+
+
+# Courses
 
  [南科大课堂原版 - C/C++：从基础语法到优化策略（2021年秋季版本）](https://www.bilibili.com/video/BV1Vf4y1P7pq?p=1)
 

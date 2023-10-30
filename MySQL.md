@@ -1389,6 +1389,8 @@ https://mariadb.com/kb/en/innodb-system-tablespaces/
 数据文件
 * ibdata1: 如果不指定innodb_file_per_table=ON参数单独保存每个表的数据，MySQL的数据都会存放在ibdata1文件里. InnoDB使用这个系统表空间存储数据目录、更改换成和undo日志。
   
+
+
   
   
   
@@ -1539,10 +1541,6 @@ innodb_autoinc_lock_mode
 * 乐观锁(optimistic locking)
 * 悲观锁(pessimistic locking)
 
-* 记录锁(record locking)
-* 间隙锁（gap locking）
-* 临键锁（next-key locking），其中临键锁=记录锁+间隙锁
-
 
 加锁粒度
 * 行锁（row-level locking）
@@ -1558,6 +1556,11 @@ select * from performance_schema.data_lock;
 ```
 
 
+行锁可以划分为
+* 记录锁(record locking)
+* 间隙锁（gap locking）
+* 临键锁（next-key locking），其中临键锁=记录锁+间隙锁
+
 
 意向锁（intention locking）
 
@@ -1565,8 +1568,12 @@ select * from performance_schema.data_lock;
 
 insert、update和delete都会自动加锁，而且加的是排他锁（X锁）
 
-* MVCC（multi-version concurrency control，即多版本并发控制）
-* LBCC（locking-based concurrency control）
+* MVCC（multi-version concurrency control，多版本并发控制，是一种乐观锁的实现。MVCC最大的特点是：读可不加锁，读写不冲突。并发性能很高。
+  * MVCC中默认的读是非锁定的一致性读，也称快照读。读取的是记录的可见版本，当读取的的记录正在被别的事务并发修改时，会读取记录的历史版本。读取过程中不对记录加锁
+* LBCC（locking-based concurrency control）基于锁的并发控制，是一种悲观锁的实现。
+  * LBCC中，对读会加S锁（共享锁），对写会加X锁（排它锁），即读读之间不阻塞，读写、写写之间会阻塞。
+  * LBCC中的读是一致性锁定读，也称当前读：读取的是记录的最新版本，并且会对记录加锁。
+
 
 四大隔离等级
 * 读未提交（Read Uncommitted，RU）
@@ -1575,7 +1582,7 @@ insert、update和delete都会自动加锁，而且加的是排他锁（X锁）
 * 串行化（Serializable， SE）
 
 read phenomena，主要是指数据库中三种"错误"的读取结果：
-* 脏读：dirty read，即A事务读取了B事务更改但未提交的信息，主要发生在RU隔离级别
+* 脏读：dirty read，即A事务读取了B事务更改但未提交的信息，也就是说由于B事物回滚，A事物所读到的事物可能最终不会存到数据库中，也就是说，读到了并不一定最终存在的数据，主要发生在RU隔离级别
 * 不可重复读，non-repeatable read，即由于B事务在A事务期间对数据更改并已提交，导致A事务前后读取到不一致的结果
 * 幻读，phantom read，即A事务在之后的查询中出现了前期未出现的记录。顾名思义，是指读到了之前未曾发现的记录，当然，从某种意义上将之前未曾发觉肯定也属于不可重复读，这样理解本身是没错的，只是二者侧重点不一样。幻读侧重于在本事务执行期间，其他事务插入（insert）了新的记录，造成本事务之后读取到了前期不曾发现的事务，好似发生幻觉一样，是谓幻读。
 
@@ -1860,3 +1867,10 @@ SELECT
 FROM information_schema.tables
 WHERE table_name='';
 ```
+
+
+
+MySQL不同参数对应ResultSet实现
+* RowDataStatic 静态结果集，普通查询，读取全部数据到客户端内存中
+* RowDataDynamic 动态结果集，流失查询，每次 IO 调用读取一条数据
+* RowDataCursor 游标结果集，一次读取 fetchSize 行，消费完成再发起请求调用

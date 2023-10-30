@@ -222,7 +222,26 @@ static class ThreadLocalMap {
 }
 ```
 
-VarHandle是在JDK 9中引入的一个工具 
+VarHandle是在JDK 9中引入的一个工具。VarHandle的定位是：
+1. this will allow you to use Java constructs to arrange atomic or ordered operations on fields of individual classes
+2. VarHandle intends to abstract the safe access to a memory location. It has methods for atomic operations, and a method descriptor type for each operation
+3. VarHandle API aims to be as least as usable as sun.misc.Unsafe with comparable performance results, and better performance results than Atomic classe
+
+VarHandles should be declared as static final fields and explicitly initialized in static blocks. 
+
+获取Varhandle方式汇总
+* MethodHandles.privateLookupIn(class, MethodHandles.lookup())获取访问私有变量的Lookup
+* MethodHandles.lookup() 获取访问protected、public的Lookup
+* findVarHandle：用于创建对象中非静态字段的VarHandle。接收参数有三个，第一个为接收者的class对象，第二个是字段名称，第三个是字段类型。
+* findStaticVarHandle：用于创建对象中静态字段的VarHandle，接收参数与findVarHandle一致。
+* unreflectVarHandle：通过反射字段Field创建VarHandle。
+* MethodHandles.arrayElementVarHandle(int[].class) 获取管理数组的 Varhandle
+
+
+访问模式
+* plain read/write access
+* volatile read/write access
+* compare-and-set
 
 FutureTask的代码片段
 ```java
