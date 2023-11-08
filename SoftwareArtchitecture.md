@@ -275,3 +275,19 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
   * servlet
 * Command
   * Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.    
+
+
+
+  事件驱动架构
+
+
+  CQRS(Command-Query Responsibility Segregation) 是一种读写分离的模式，从字面意思上理解Command是命令的意思，其代表写入操作；Query是查询的意思，代表的查询操作，这种模式的主要思想是将数据的写入操作和查询操作分开。
+
+
+Event Sourcing也叫事件溯源，是这些年另一个越来越流行的概念，是大神Martin Fowler提出的一种架构模式。简单来说，它有几个特点：
+* 整个系统以事件为驱动，所有业务都由事件驱动来完成。
+* 事件是一等公民，系统的数据以事件为基础，事件要保存在某种存储上。
+* 业务数据只是一些由事件产生的视图，不一定要保存到数据库中。
+
+
+管道 - 过滤器（pipe-filter）模式

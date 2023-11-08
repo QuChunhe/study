@@ -25,6 +25,12 @@ ApplicationContext继承了BeanFactory
 > @Repository DAO
 > @Component 把普通的POJO实例化到Spring容器，相当于配置文件中been
 
+
+
+@import
+@CompoentScan
+
+
 ConfigurableListableBeanFactory
 
  * 接口  能力，。自上向下

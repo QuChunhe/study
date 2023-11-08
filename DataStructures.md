@@ -48,9 +48,23 @@ Typically, an ordered set is implemented with a binary search tree or a btree, a
 * B树和B+树
 
 
+
+
 二叉查找树（Binary Search Tree），平衡二叉查找树（Balanced Binary Search Tree），红黑树(Red-Black Tree )是典型的二叉查找树结构，其查找的时间复杂度O(log2N)与树的深度相关
 
 B-tree/B+-tree/ B*-tree (B~Tree)。B 树是为了磁盘或其它存储设备而设计的一种多叉平衡查找树
+
+
+
+平衡二叉树balanced binary tree
+
+AVL 树得名于它的发明者 G. M. Adelson-Velsky 和 Evgenii Landis，他们在1962年的论文《An algorithm for the organization of information》中公开了这一数据结构
+
+
+* 节点的层次：从根开始定义，根为第一层，根的子节点为第二层，以此类推。
+* 深度：对于任意节点n，n的深度为从根到n的唯一路径长，根的深度为0（从上往下看）
+* 高度：对于任意节点n，n的高度为从n到一片树叶的最长路径长，所有树叶的高度为0；（从下往上看）
+
 
 # Finite State Machine (FSM)
 

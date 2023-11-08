@@ -81,6 +81,23 @@ sudo flink run -s s3://bigdata-staging-cn-northwest-1-s3-statistics-escargot/too
 ```
 
 
+Session模式：先启动一个集群，保持一个会话。集群启动时所有资源都已经确定，所有提交的作业会竞争集群中的资源。
+
+Per-Job模式：每提交一个作业就启动一个集群，实现资源的隔离。
+
+考虑到集群的资源隔离情况，一般生产上的任务都会选择per job模式，也就是每个任务启动一个flink集群，各个集群之间独立运行，互不影响,且每个集群可以设置独立的配置。
+
+```shell
+bin/flink run -m yarn-cluster ./examples/batch/WordCount.jar
+```
+
+
+applcation模式：上面两种模式，应用代码都是在客户端上执行的，然后有客户端提交给JobManager。每个提交单独启动一个JobMananger。
+
+ ```shell
+ flink run-application -p $p -Dtaskmanager.numberOfTaskSlots=$3 -Djobmanager.memory.process.size=$4 -Dtaskmanager.memory.process.size=$5 -t yarn-application -Dyarn.application.name=$1 -c $2 ~/robot-stream/robot-stream.jar
+ ```
+
 
 Flink DataStream API 为用户提供了3个算子来实现双流 join，分别是：
 * join()
@@ -128,6 +145,8 @@ flink Master
 TaskManager
 * Task Slot: container
 
+> taskmanager.numberOfTaskSlots: 1
+
 数据倾斜的定位
 
 1. 步骤1：定位反压
@@ -152,23 +171,25 @@ numberOfTaskSlots
 
 slot 共享：将资源密集型和非密集型的任务同时放到一个 slot 中，它们就可以自行分配对资源占用的比例，从而保证最重的活平均分配给所有的TaskManager。slotSharingGroup
 
-task slot 是静态的概念 ， 是指TaskManager 具有的并发执行能力 ， 可以通过参数taskmanager.numberOfTaskSlots 进行配置；
+task slot是静态的概念 ， 是指TaskManager 具有的并发执行能力 ， 可以通过参数taskmanager.numberOfTaskSlots 进行配置；
+
+每个task slow表示TaskManager所拥有计算资源的一个固定大小的子集，主要针对于内存而已。
 
 
-一个特定算子的 子任务（subtask）的个数被称之为其并行度（parallelism）。    
-一般情况下，一个 stream 的并行度，可以认为就是其所有算子中最大的并行度
+一个特定算子的子任务（subtask）的个数被称之为其并行度（parallelism）。    
+一般情况下，一个stream 的并行度，可以认为就是其所有算子中最大的并行度
 
 
 三个位置可以配置并行度
 * flink配置文件中
-* 代码里
+* 代码里包括算子和env
 * flink任务提交时
 
 优先级
-> 代码>提交>配置文件
+> 代码算子> 代码env > 提交 > 配置文件
 
 
-算子链：将算了链接成task。Flink默认会将算子尽可能地链接。OperatorChain的优点
+算子链：将算了链接成task。Flink默认会将算子尽可能地链接。Operator Chain的优点
 * 减少线程切换
 * 减少序列化与反序列化
 * 减少延迟并且提高吞吐能力。
@@ -180,26 +201,35 @@ task slot 是静态的概念 ， 是指TaskManager 具有的并发执行能力 �
 env.disableOperatorChaining()
 ```
 
- Per-Job模式
+数据传输形式
+* 一对一 （one-to-one, forwarding)
+* 重分区 （Redistributing）
 
-考虑到集群的资源隔离情况，一般生产上的任务都会选择per job模式，也就是每个任务启动一个flink集群，各个集群之间独立运行，互不影响,且每个集群可以设置独立的配置。
+并行度相同的one-to-one模式，就合并在一起称为Operator Chain
 
-```shell
-bin/flink run -m yarn-cluster ./examples/batch/WordCount.jar
-```
+什么时候禁用Operator chain
+* 每个算子的计算量比较大
+* 需要排查问题
 
 
-applcation模式
+时间
+* 事件时间
+* 处理时间
 
- ```shell
- flink run-application -p $p -Dtaskmanager.numberOfTaskSlots=$3 -Djobmanager.memory.process.size=$4 -Dtaskmanager.memory.process.size=$5 -t yarn-application -Dyarn.application.name=$1 -c $2 ~/robot-stream/robot-stream.jar
- ```
+用来衡量时间进展的标记，被称为“水位线”（Watermark）
+
+每隔一段时间审查一个水位线
+
 
 Time
 * Event-time Mode:
 * Watermark Support: 
 * Late Data Handling
 * Processing-time Mode
+
+
+
+
 
 
 Monitor and Control Your Applications
