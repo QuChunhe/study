@@ -24,6 +24,14 @@ https://www.itcodemonkey.com/article/15901.html
 [TensorFlow Examples](https://github.com/aymericdamien/TensorFlow-Examples)
 
 
+
+* 监督学习 Supervised Learning
+* 无监督学习 Unsupervised Learning
+* 强化学习 Reinforcement Learning
+
+多数机器学习方法：human-designed representations and input features;
+机器学习算法的作用主要是optimize weights，以便改善最终预测结果
+
 **中科院-统计学习基础**
 
 All of Statistics - A Concise Course in Statistical Inference

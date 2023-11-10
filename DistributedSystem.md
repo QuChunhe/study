@@ -318,6 +318,15 @@ Failure detector
 [Fallacies of Distributed Computing Explained](http://rgoarchitects.com/Files/fallacies.pdf)
 
 
+ 常见的六种容错机制
+* Fail-Over：故障转移。它的主要思路是：主要组件出现异常时，将其功能转移到具有同样功能的备份组件上。通常用于读操作；不足：重试会带来更长的延迟。
+* Fail-Fast：快速失败。快速识别，就是只发起一次调用，失败后立即报错。通常用于非幂等性的写操作；不足：如果有服务正在重启，可能会出现调用失败。
+* Fail-Back：失效自动恢复。就是在故障转移（Fail-Over）之后，发生故障的服务/机器 能够自动恢复。通常用于消息通知操作；不足：不可靠，重启会丢失；可用于生产环境注册（Registry）。
+* Fail-Safe：失效安全。出现异常时，直接忽略。可以认为，即使发生了故障，也不会对系统/服务造成伤害，或尽量减少伤害。
+* Forking：并行调用多个服务
+* Broadcast：广播调用
+
+
 
 请求分解为多个请求：请求数据，检查数据是否准备完成，下载数据
 
