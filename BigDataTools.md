@@ -16,9 +16,11 @@ mysql-connector-java-5.1.42-bin.jar --> libexec/lib/
 ‘系统偏好设置’->‘共享’->‘远程登录’，打开远程登录选项
 
 ```shell
+useradd -m hadoop  -s /bin/bash
 
 ssh-keygen -t ed25519 
 
+service ssh start
 
 ssh-copy-id [-i [identity_file]] [user@]machine
 
@@ -34,14 +36,86 @@ hadoop dfsadmin -safemode leave
 
 ./hive --service metastore &
 
+```
 
+core-site.xml
+```xml
+<configuration>     
+  <property>
+     <name>fs.defaultFS</name>
+     <value>hdfs://localhost:9000</value>
+  </property>
+  <property> 
+    <name>hadoop.tmp.dir</name>
+    <value>/home/hadoop/tmp</value>
+  </property> 
+</configuration>
+```
 
+hdfs-site.xml
+```xml
+<configuration> 
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property> 
+   <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>/home/hadoop/dfs/namenode</value>
+  </property> 
+   <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>/home/hadoop/dfs/datanade</value>
+  </property> 
+
+</configuration> 
 ```
 
 
-[HDFS 3](http://localhost:9870/)
+mapred-site.xml
+```xml
+<configuration>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
 
-[HDFS 2](http://127.0.0.1:50070/dfshealth.html#tab-overview)
+  <!-- 历史服务器端地址 -->
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>hadoop:10020</value>
+  </property>
+  <!-- 历史服务器web端地址 -->
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>hadoop:19888</value>
+  </property>
+  <property>
+    <name>yarn.log.server.url</name>
+    <value>http://hadoop:19888/jobhistory/logs</value>
+  </property>
+</configuration> 
+```
+
+yarn-site.xml
+```xml
+<configuration>
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value> 
+  </property>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>localhost</value>
+  </property>
+</configuration>
+```
+
+
+[HDFS 3 web](http://localhost:9870/)
+
+[HDFS 2 web ](http://127.0.0.1:50070/dfshealth.html#tab-overview)
+[Yarn web](http://localhost:8088/)
 
 ```sql
 set execution.result-mode=tableau;

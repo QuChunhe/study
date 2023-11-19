@@ -81,7 +81,7 @@ https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-in
  alpha to beta to GA (general availability) and from V1 to V2, and so on.
 
 
-[](https://docs.docker.com/engine/install/ubuntu/)
+[docker engine install](https://docs.docker.com/engine/install/ubuntu/)
 
 https://chinese.freecodecamp.org/news/the-docker-handbook/
 
@@ -108,7 +108,25 @@ https://docs.docker.com/engine/reference/run/
 
 
 ```
+sudo service docker start
+sudo service docker restart
+sudo service docker stop
+sudo service docker status
+
+sudo systemctl start docker
+sudo systemctl stop docker
+sudo systemctl restart docker
+sudo systemctl status docker
+
 docker info
+docker --help
+
+docker images -a
+docker ps -a
+
+docker rmi -f  ....
+
+docker system df
 
 
 docker container rm -f $(docker container ls -aq)
@@ -137,7 +155,7 @@ docker container stats
 
 docker container rm --force $(docker container ls --all --quiet)
 
-docker ps -a
+
 
 ```
 

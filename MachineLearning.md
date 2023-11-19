@@ -143,3 +143,7 @@ sample mean（样本的均值），sample variance（样本的方差），确保
 
 协方差(Covariance)和相关系数
 
+
+
+
+KL散度(Kullback-Leibler Divergence)是用来度量两个概率分布相似度的指标，
