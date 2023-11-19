@@ -92,7 +92,18 @@ bin/flink run -m yarn-cluster ./examples/batch/WordCount.jar
 ```
 
 
+Flink 应用的执行包含两个阶段：
+*  pre-flight: 在main()方法调用之后开始。 
+* runtime: 一旦用户代码调用 execute() 就会触发该阶段。
+
+main()方法使用Flink的API（DataStream API，Table API，DataSet API）之一构造用户程序。当main()方法调用env.execute()时，用户定义的pipeline将转换为Flink运行时可以理解的形式，称为job graph，并将其传送到集群中。
+
+尽管有一些不同，但是 对于 Session 模式 和 Per-Job模式 ， pre-flight 阶段都是在客户端完成的。
+
+
 applcation模式：上面两种模式，应用代码都是在客户端上执行的，然后有客户端提交给JobManager。每个提交单独启动一个JobMananger。
+
+在Application 模式下，与其他模式不一样的是，main() 方法在集群上而不是在客户端执行。这可能会对您的代码产生影响，例如，您必须使用应用程序的JobManager可以访问使用registerCachedFile()在环境中注册的任何路径。
 
  ```shell
  flink run-application -p $p -Dtaskmanager.numberOfTaskSlots=$3 -Djobmanager.memory.process.size=$4 -Dtaskmanager.memory.process.size=$5 -t yarn-application -Dyarn.application.name=$1 -c $2 ~/robot-stream/robot-stream.jar
