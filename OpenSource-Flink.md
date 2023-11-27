@@ -8,11 +8,14 @@
 
 
 
+[编译问题](https://juejin.cn/post/6935308393603137549)
 
 ```shell
- docker pull flink:1.12.1
+mvn clean -Drat.skip=true install -DskipTests -Dhadoop.version=3.3.6 
 
- ./mvnw clean package -DskipTests -Drat.skip=true
+docker pull flink:1.12.1
+
+./mvnw clean package -DskipTests -Drat.skip=true
 
 ```
 
@@ -242,6 +245,9 @@ Time
 
 
 
+flink exactly-once
+* 不是所有的source和sink都支持exactly-once
+* 支持exactly-once，比如MySQL,会大大降低写入性能
 
 Monitor and Control Your Applications
 * Web UI:

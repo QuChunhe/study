@@ -83,6 +83,17 @@ busy waiting is a technique in which a process repeatedly checks to see if a con
 
 [Fail-Fast Vs Fail-Safe Iterator in Java](https://netjs.blogspot.com/2015/05/fail-fast-vs-fail-safe-iterator-in-java.html)
 
+fail-fast 机制是Java集合(Collection)中的一种错误机制。 在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的结构进行了修改（增加、删除），则会抛出Concurrent Modification Exception（并发修改异常）。
+
+Fail-Safe iterators favor lack of failures over the inconvenience of exception handling.
+
+Those iterators create a clone of the actual Collection and iterate over it. If any modification happens after the iterator is created, the copy still remains untouched. Hence, these Iterators continue looping over the Collection even if it’s modified.
+
+However, it’s important to remember that there’s no such thing as a truly Fail-Safe iterator. The correct term is Weakly Consistent.
+
+That means, if a Collection is modified while being iterated over, what the Iterator sees is weakly guaranteed. This behavior may be different for different Collections and is documented in Javadocs of each such Collection.
+
+
 
 Let It Crash principles
 

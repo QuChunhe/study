@@ -1,5 +1,17 @@
 [神经网络与深度学习 邱锡鹏](https://nndl.github.io/)
 
+
+Conda (Anaconda)
+
+numpy PyTorch  TensorRT mpi4py TensorFlow
+
+
+```
+conda list
+conda -version
+python --version
+```
+
 [Leo Breiman, Statistical Modeling: The Two Cultures](http://cda.psych.uiuc.edu/statistical_learning_course/breiman_two_cultures.pdf) 
 
 https://www.itcodemonkey.com/article/15901.html
@@ -31,6 +43,12 @@ https://www.itcodemonkey.com/article/15901.html
 
 多数机器学习方法：human-designed representations and input features;
 机器学习算法的作用主要是optimize weights，以便改善最终预测结果
+
+
+
+
+
+
 
 **中科院-统计学习基础**
 

@@ -597,6 +597,9 @@ The term "repeating group" originally meant the concept in CODASYL and COBOL bas
 
 # Index & Performancey
 
+索引顺序访问方法（ISAM, Indexed Sequential Access Method）
+
+
 Clustered Index Accessing a row through the clustered index is fast because the row data is on the same page (on disk) where the index search leads. 
 * If in the table is set PRIMARY KEY – this is it. 
 * Otherwise, if the table has UNIQUE indexes - this is the first of them. 
@@ -1874,3 +1877,20 @@ MySQL不同参数对应ResultSet实现
 * RowDataStatic 静态结果集，普通查询，读取全部数据到客户端内存中
 * RowDataDynamic 动态结果集，流失查询，每次 IO 调用读取一条数据
 * RowDataCursor 游标结果集，一次读取 fetchSize 行，消费完成再发起请求调用
+
+# 事务
+
+XA（eXtended Architecture）是指由X/Open 组织提出的分布式交易处理的规范。
+
+
+
+seata 是阿里推出的一款开源分布式事务解决方案，目前有 AT、TCC、SAGA、XA 四种模式。
+
+```shell
+service mysql start
+```
+
+```sql
+show variables like 'innodb_page_size';
+```
+

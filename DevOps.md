@@ -122,6 +122,7 @@ docker info
 docker --help
 
 docker images -a
+docker pull imageName[:TAG]
 docker ps -a
 
 docker rmi -f  ....
