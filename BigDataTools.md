@@ -226,6 +226,6 @@ hadoop fs -df -h
 “Elasticsearch Lucene”
 
 
-1、Spark、Presto、Flink 
-2、HUDI、DeltaLake、Iceberg
-3、rising wave, materialize等stream database技术；
+1. Spark、Presto、Flink 
+2. HUDI、DeltaLake、Iceberg
+3. rising wave, materialize等stream database技术；

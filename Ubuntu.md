@@ -12,3 +12,11 @@ dpkg -i ***.deb
 ```
 
 
+
+https://wiki.archlinux.org/title/Display_Power_Management_Signaling
+
+```
+xset -q
+xset s 600
+
+```

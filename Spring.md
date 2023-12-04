@@ -44,4 +44,11 @@ Spring支持如下5种作用域：
 * globalsession：每个全局的HTTP Session，使用session定义的Bean都将产生一个新实例。典型情况下，仅在使用portlet context的时候有效。同样只有在Web应用中使用Spring时，该作用域才有效
 
 
- 1.  
+ 1. 实例化:在堆空间中申请空间，并通过反射中创建对象。createBeanInstance
+ 2. 初始化：
+ 　自定义属性赋值 populateBeanset
+ 　容器对象属性赋值 invokeAwareMethods()
+ 
+ 　两类对象：自定义对象和容器对象
+ 3. 
+ 4. 
