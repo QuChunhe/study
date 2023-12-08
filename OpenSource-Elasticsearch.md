@@ -80,3 +80,19 @@ score
 * 召回率
 
 
+```
+export ES_JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
+/usr/local/elasticsearch-7.17.15/bin/elasticsearch  -E path.data=/home/hadoop/elasticsearch/data1   -E path.logs=/home/hadoop/elasticsearch/logs1 -E node.name=node1 -E cluster.name=qu_es -E http.port=9201 -q
+
+/usr/local/elasticsearch-7.17.15/bin/elasticsearch  -E path.data=/home/hadoop/elasticsearch/data2   -E path.logs=/home/hadoop/elasticsearch/logs2 -E node.name=node2 -E cluster.name=qu_es -E http.port=9202 -q 
+
+/usr/local/elasticsearch-7.17.15/bin/elasticsearch  -E path.data=/home/hadoop/elasticsearch/data3   -E path.logs=/home/hadoop/elasticsearch/logs3 -E node.name=node3 -E cluster.name=qu_es -E http.port=9203 -q
+
+http://127.0.0.1:9200/
+
+
+```
+
+Kibana
+

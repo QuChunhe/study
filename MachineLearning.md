@@ -165,3 +165,24 @@ sample mean（样本的均值），sample variance（样本的方差），确保
 
 
 KL散度(Kullback-Leibler Divergence)是用来度量两个概率分布相似度的指标，
+
+# 0804深度学习
+
+激活函数（activation functions）的目标是，将神经网络非线性化。激活函数是连续的（continuous），且可导的（differential）。
+
+常见的激活函数：sigmoid，tanh，relu。
+
+
+sigmoid是平滑（smoothened）的阶梯函数（step function），可导（differentiable）。sigmoid可以将任何值转换为0~1概率，用于二分类
+
+
+tanh
+tanh，即双曲正切（hyperbolic tangent），类似于幅度增大sigmoid，将输入值转换为-1至1之间。tanh的导数取值范围在0至1之间，优于sigmoid的0至1/4，在一定程度上，减轻了梯度消失的问题。tanh的输出和输入能够保持非线性单调上升和下降关系，符合BP（back propagation）网络的梯度求解，容错性好，有界。
+
+
+relu
+relu，即Rectified Linear Unit，整流线性单元，激活部分神经元，增加稀疏性，当x小于0时，输出值为0，当x大于0时，输出值为x.
+
+
+
+https://www.jianshu.com/p/857d5859d2cc
