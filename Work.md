@@ -47,7 +47,7 @@ pdf中坐标原点时以页面左下角为坐标原点，向右为x轴正方向�
 
 页面空间规定页面的左上角为原点,X 轴向右增长,Y 轴向下增长,以毫米为单位。整个页面空间的大小由 PageArea节点(见7.5文档根节点)中的 PhysicalBox确定
 
-
+https://blog.csdn.net/li_tengfei/article/details/6098093
 
 
 1. Designer 
