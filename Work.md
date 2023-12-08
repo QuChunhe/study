@@ -26,6 +26,29 @@ In addition to basic data types such as integer, fixed, and Boolean values, Cos 
 * String
 * Stream
 
+一个简单有效的PDF文件按顺序包含四个部分:
+* header，提供PDF版本号
+* body 包含页面，图形内容和大部分辅助信息的主体，全部编码为一系列对象。
+* 交叉引用表，列出文件中每个对象的位置便于随机访问。
+* trailer包括trailer字典，它有助于找到文件的每个部分， 并列出可以在不处理整个文件的情况下读取的各种元数据。
+
+
+流用于存储二进制数据。它们由字典和一大块二进制数据组成。 字典根据流所放置的特定用途列出数据的长度，以及可选的其他参数。
+
+从语法上讲，流由字典组成，后跟stream关键字， 换行符（<LF>或<CR> <LF>），零个或多个字节的数据， 另一个换行符，最后是endstream关键字。
+
+内容流由一系列运算符组成，每个运算符前面都有零个或多个操作数
+
+
+依照顺序，根据操作符和操作数，来渲染。
+
+pdf中坐标原点时以页面左下角为坐标原点，向右为x轴正方向，向上为y轴正方向 pdf中的时像素密度。
+
+
+页面空间规定页面的左上角为原点,X 轴向右增长,Y 轴向下增长,以毫米为单位。整个页面空间的大小由 PageArea节点(见7.5文档根节点)中的 PhysicalBox确定
+
+
+
 
 1. Designer 
 https://designer.microsoft.com
@@ -35,3 +58,114 @@ https://github.com/features/copilot/
 https://azure.microsoft.com/zh-cn/free/cognitive-services/
 4. VALL-E (目前尚未开放，GitHub已开源)
 https://valle-demo.github.io/
+
+
+# OFD
+
+文件OFD.xml
+OFD.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<ofd:OFD Version="1.0" DocType="OFD" xmlns:ofd="http://www.ofdspec.org/2016">
+  <ofd:DocBody>
+    <ofd:DocInfo>
+      <ofd:DocID>f5f666fd1be2459587a66a237783c86c</ofd:DocID>
+      <ofd:Author>SoWise</ofd:Author>
+      <ofd:CreationDate>11/29/2023 9:30:20 AM</ofd:CreationDate>
+      <ofd:Creator>SoWise</ofd:Creator>
+      <ofd:Keywords>
+        <ofd:Keyword>
+        </ofd:Keyword>
+      </ofd:Keywords>
+      <ofd:Subject>
+      </ofd:Subject>
+      <ofd:ModDate>1/1/0001 12:00:00 AM</ofd:ModDate>
+      <ofd:Title>
+      </ofd:Title>
+    </ofd:DocInfo>
+    <ofd:DocRoot>Doc_0/Document.xml</ofd:DocRoot>
+  </ofd:DocBody>
+</ofd:OFD>
+```
+
+Doc_0/Document.xml
+
+
+Page 表 11 创建参数 ST_ID ST_Loc  保存位置 "Pages/Page_%d/Content.xml"
+
+ofd页面区域
+* BleedBox： 出血区域
+* PhysicalBox：页面物理区域
+* ApplicationBox：显示区域
+* ContentBox：版心区域
+
+pdf页面区域
+* Media Box
+* Bleed Box
+* Trim Box
+* Art Box
+
+
+pdf两种方式
+* PDFGraphicsStreamEngine
+* PageDrawer
+
+CT_Layer的type
+* Body 正文层
+* Foreground 前景层
+* Background 背景层
+
+
+graphics2d为中介实现到ofd的转换
+
+借助标准Graphics2D接口可以复用现有的各类格式文件转换库的转换代码，实现其他类型文件或格式转换为OFD文件.
+
+
+* Path2D Shape 故名思意就是无数个点连接起来形成的轨迹，这个路径中还包括起点信息、终点信息，方向信息，构造2D图形的一个路径，即一个构造过程
+* Graphics2D
+
+
+三类操作
+* Shape operations
+* Text Operations
+* Image operations
+
+ofd
+* 图形
+* 图像
+* 文字
+* 视频
+* 符合对象
+
+
+
+
+OFDPageDrawer -> drawImage
+
+GeneralPath
+
+
+字体Type1、TrueType和Type3
+
+在PDF中，字体由字体字典组成， 字体字典定义度量，字符集和编码（将文本字符串中的字符代码映射到字体中的字符）， 以及字体程序（实际的字体文件），以各种格式（Type 1，TrueType等）。
+
+
+font 是指一个成套的字体，而 glyph 则是文字中字母 (character) 的视觉表现。
+
+
+Glyph（字形）和 font（字型）
+
+
+ 
+
+221  QDCOYR+txexa
+
+No Unicode mapping for iintegdisplay (34) in font QDCOYR+txexa
+
+showFontGlyph  showGlyph
+
+
+dash 
+
+As you’re defining your dash and gap sizes, Illustrator will also decide what is a corner.
