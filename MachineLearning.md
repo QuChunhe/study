@@ -2,6 +2,10 @@
 
 
 Conda (Anaconda)
+```
+source deactivate base
+source activate base
+```
 
 numpy PyTorch  TensorRT mpi4py TensorFlow
 
@@ -44,11 +48,22 @@ https://www.itcodemonkey.com/article/15901.html
 多数机器学习方法：human-designed representations and input features;
 机器学习算法的作用主要是optimize weights，以便改善最终预测结果
 
+[台湾大学教授李宏毅机器学习](https://www.bilibili.com/video/BV13B4y1E7yz?p=2&vd_source=3402e0cf5abe6a9fa6abe9997ddc0341)
+
+Machine Learning = Looking for function
 
 
+different types of functions
+* Repression: the function outputs a scalar
+* Classfication: Given options (classes), the function outputs the correct one.
+* Structured Learning: create something with structure (image, document) 
 
 
+1. Function with Unknown Parameters
+2. Define Loss from Training Data. Loss is a function of parameters.
+3. Optimization: 使得损失函数最小化的参数
 
+gradient descent
 
 **中科院-统计学习基础**
 
@@ -166,7 +181,9 @@ sample mean（样本的均值），sample variance（样本的方差），确保
 
 KL散度(Kullback-Leibler Divergence)是用来度量两个概率分布相似度的指标，
 
-# 0804深度学习
+# 深度学习
+
+人工神经元网络(ANN),简称神经网络.
 
 激活函数（activation functions）的目标是，将神经网络非线性化。激活函数是连续的（continuous），且可导的（differential）。
 

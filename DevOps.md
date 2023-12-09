@@ -129,6 +129,7 @@ docker rmi -f  ....
 
 docker system df
 
+docker run [OPTIONS] IMAGE [COMMAND] {ARG...}
 
 docker container rm -f $(docker container ls -aq)
 
@@ -160,6 +161,15 @@ docker container rm --force $(docker container ls --all --quiet)
 
 ```
 
+--name="容器新名称"
+
+-d 后台运行容器并返回容器id
+
+-i 以交互模式运行容器,通常与-t同时使用
+
+-t 为容器重新分配一个伪输入终端
+
+-P 随即端口映射
 
 -p（小写）则可以指定要映射的IP和端口，但是在一个指定端口上只可以绑定一个容器。支持的格式有 hostPort:containerPort、ip:hostPort:containerPort、 ip::containerPort
 

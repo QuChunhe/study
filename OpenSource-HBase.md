@@ -41,6 +41,11 @@ meta表存储表和region　server信息　Ｚookeeper
 ```sql
 status
 version
+list_namespace
+create_namespace 'test'
+drop_namespace 'test'
+list_namespace_tables 'hbase'
+
 
 create_namespace 'database'
 
@@ -49,5 +54,7 @@ create 'student', 'info', 'address'
 put 'student','1', 'info:name', 'Qu Chunhe'
 
 flush 'student'
+
+desc 'default:student'
 
 ```

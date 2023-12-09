@@ -6,3 +6,6 @@
 ffmpeg
 
 Numpy、Matplotlib 和 OpenCV。
+
+
+GCD TBB Concurrency

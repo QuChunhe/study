@@ -270,6 +270,14 @@ static inline
 
 extern inline
 
+visibility用于设置动态链接库中函数的可见性，将变量或函数设置为hidden，则该符号仅在本so中可见，在其他库中则不可见
+```c++
+__attribute__((visibility("default")))  //默认，设置为：default之后就可以让外面的类看见了。
+__attribute__((visibility("hideen")))  //隐藏
+```
+
+__attribute__ ((visibility ("default")))
+
 
 # Memory Model
 
