@@ -41,6 +41,8 @@ https://www.itcodemonkey.com/article/15901.html
 
 
 
+
+
 * 监督学习 Supervised Learning
 * 无监督学习 Unsupervised Learning
 * 强化学习 Reinforcement Learning
@@ -58,13 +60,36 @@ different types of functions
 * Classfication: Given options (classes), the function outputs the correct one.
 * Structured Learning: create something with structure (image, document) 
 
+训练过程training
+1. Function with Unknown Parameters 写出具有未知参数的汉书
+2. Define Loss from Training Data. 从训练数据定义损失函数 Loss is a function of parameters.
+3. Optimization: 使用优化方法,使得损失函数最小化的参数
 
-1. Function with Unknown Parameters
-2. Define Loss from Training Data. Loss is a function of parameters.
-3. Optimization: 使得损失函数最小化的参数
 
-gradient descent
 
+gradient descent: 
+
+learning rate: hyperparameters 自己的定义的参数
+
+* global minima
+* local minima
+
+# PyTorch
+
+如何表示字符串
+* One-hot [0,1,0,...]
+* Embeding
+   * word2vec
+   * glove
+
+
+```python
+import torch
+import numpy as np
+
+torch.set_default_tensor_type(torch.DoubleTensor)
+
+```
 **中科院-统计学习基础**
 
 All of Statistics - A Concise Course in Statistical Inference

@@ -6,6 +6,10 @@
  unzip -q newFile.zip
 ```
 
+
+[广告拦截](https://github.com/gorhill/uBlock/releases)
+
+
 # Git
 
 
