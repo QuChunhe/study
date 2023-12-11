@@ -74,6 +74,31 @@ learning rate: hyperparameters 自己的定义的参数
 * global minima
 * local minima
 
+
+
+All piecewise linear curves = constant + sum of a set of _/~
+
+sigmoid function替换线性/
+
+y= b + w*x1 (hard sigmoid)
+
+y=b+\sum{ci * sigmoid(bi+wi*xi)}
+
+
+batch
+* 1 epoch = see all the batches once
+
+
+Epoch（时期）：当一个完整的数据集通过了神经网络一次并且返回了一次，这个过程称为一次>epoch。（也就是说，所有训练样本在神经网络中都 进行了一次正向传播 和一次反向传播 ）再通俗一点，一个Epoch就是将所有训练样本训练一次的过程。
+
+Batch（批 / 一批样本）：将整个训练样本分成若干个Batch。
+
+Batch_Size（批大小）：每批样本的大小。
+
+Iteration（一次迭代）：
+
+
+
 # PyTorch
 
 如何表示字符串
@@ -81,6 +106,9 @@ learning rate: hyperparameters 自己的定义的参数
 * Embeding
    * word2vec
    * glove
+
+
+
 
 
 ```python
@@ -210,7 +238,7 @@ KL散度(Kullback-Leibler Divergence)是用来度量两个概率分布相似度�
 
 人工神经元网络(ANN),简称神经网络.
 
-激活函数（activation functions）的目标是，将神经网络非线性化。激活函数是连续的（continuous），且可导的（differential）。
+激活函数（Activation Functions）的目标是，将神经网络非线性化。激活函数是连续的（continuous），且可导的（differential）。
 
 常见的激活函数：sigmoid，tanh，relu。
 
@@ -218,12 +246,10 @@ KL散度(Kullback-Leibler Divergence)是用来度量两个概率分布相似度�
 sigmoid是平滑（smoothened）的阶梯函数（step function），可导（differentiable）。sigmoid可以将任何值转换为0~1概率，用于二分类
 
 
-tanh
-tanh，即双曲正切（hyperbolic tangent），类似于幅度增大sigmoid，将输入值转换为-1至1之间。tanh的导数取值范围在0至1之间，优于sigmoid的0至1/4，在一定程度上，减轻了梯度消失的问题。tanh的输出和输入能够保持非线性单调上升和下降关系，符合BP（back propagation）网络的梯度求解，容错性好，有界。
+tanh,即双曲正切（hyperbolic tangent），类似于幅度增大sigmoid，将输入值转换为-1至1之间。tanh的导数取值范围在0至1之间，优于sigmoid的0至1/4，在一定程度上，减轻了梯度消失的问题。tanh的输出和输入能够保持非线性单调上升和下降关系，符合BP（back propagation）网络的梯度求解，容错性好，有界。
 
 
-relu
-relu，即Rectified Linear Unit，整流线性单元，激活部分神经元，增加稀疏性，当x小于0时，输出值为0，当x大于0时，输出值为x.
+ReLU :即Rectified Linear Unit，整流线性单元，激活部分神经元，增加稀疏性，当x小于0时，输出值为0，当x大于0时，输出值为x.
 
 
 
