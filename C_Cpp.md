@@ -117,6 +117,12 @@ $ strace ./hello
 
 
 
+
+为了避免同一个文件被 #include 多次，或者避免头文件嵌套包含（参照前置声明的笔记）。需要特别注意的是：
+* #pragma once 并不是C++的原生语法，而是编译器的一种支持，所以并不是所有的编译器都能够支持。#ifndef 则为C++的标准。
+* #ifndef 依赖于不重复的宏名称，保证了包含在 #endif 的内容不会被重复包含，这个内容可以是一个文件的所有内容，或者仅仅是一段代码。
+
+
 # C
 
 declarations, definitions, and statements.

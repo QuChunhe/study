@@ -3,6 +3,8 @@
 
 Conda (Anaconda)
 ```
+conda config --set auto_activate_base false
+
 source deactivate base
 source activate base
 ```
