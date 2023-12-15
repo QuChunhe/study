@@ -9,7 +9,7 @@ source deactivate base
 source activate base
 ```
 
-numpy PyTorch  TensorRT mpi4py TensorFlow
+numpy PyTorch  TensorRT mpi4py TensorFlow pandas
 
 
 ```
