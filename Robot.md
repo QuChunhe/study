@@ -6,6 +6,9 @@
 
 [Apollo Auto](https://github.com/ApolloAuto)
 
+
+
+
 SLAM (simultaneous localization and mapping) is a method used for autonomous vehicles that lets you build a map and localize your vehicle in that map at the same time. SLAM algorithms allow the vehicle to map out unknown environments. Engineers use the map information to carry out tasks such as path planning and obstacle avoidance.
 
 
@@ -25,6 +28,8 @@ ORB_SLAM3
 [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3)
 
 OpenBLAS
+
+在国际开源的自动驾驶系统中，Autoware和Apollo是用得比较多的，其中Autoware是基于ROS框架，Apollo是基于Cyber信号传输机制，这两者各有优缺点：
 
 
 https://www.bilibili.com/video/BV1U741127nE?from=search&seid=592216274058532678&spm_id_from=333.337.0.0

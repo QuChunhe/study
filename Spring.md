@@ -1,6 +1,12 @@
 
 
- ApplicationContext
+ 
+
+ The org.springframework.context.ApplicationContext interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans.
+
+ApplicationContext
+* ClassPathXmlApplicationContext 
+* FileSystemXmlApplicationContext.
 
 
 BeanEntry
