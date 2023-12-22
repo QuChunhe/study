@@ -235,7 +235,7 @@ Models of Distributed System
 * the Byzantine generals problem: Need 3f+1 generals in total to tolerat f malicious generals (i.e. < 1/3 may by malicious)。节点行为模型。
 
 a system model consisting of 
-* Network behaviou (e.g. message loss)
+* Network behavious (e.g. message loss)
 * Node behavious (e.g. crashes)
 * Time behavious (e.g. latency)
 

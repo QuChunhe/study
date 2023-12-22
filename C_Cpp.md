@@ -123,6 +123,10 @@ $ strace ./hello
 * #ifndef 依赖于不重复的宏名称，保证了包含在 #endif 的内容不会被重复包含，这个内容可以是一个文件的所有内容，或者仅仅是一段代码。
 
 
+类型 char、wchar_t、char8_t、char16_t 和 char32_t 是内置类型，可表示字母数字字符，非字母数字字形和非打印字符。char8_t 是 C++20 中的新增功能，需要 /std:c++20 或 /std:c++latest 编译器选项。
+
+1.ANSI C 提供了3种字符类型，分别是char、signed char、unsigned char。
+
 # C
 
 declarations, definitions, and statements.

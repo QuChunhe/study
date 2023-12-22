@@ -1,6 +1,51 @@
 
 translation lookaside buffer TLB 旁路转换缓冲，或称为页表缓冲
 
+
+现代CPU的架构和性能优化
+* 流水线 Pipelining
+* 分支预测 Branch Prediction
+* 超标量 Superscalar
+* 乱序执行 Out-of-Order (OoO) Execution
+* 存储器层次 Memory Hierarchy
+* 矢量操作 Vector Operations
+* 多核处理 Multi-Cor
+
+
+cycles/seconds * instruction/cycle
+
+* CPI (每条指令的时钟数)
+* 时钟周期
+
+superScalar
+* IPC为N,N路超标量
+
+
+ 
+CPU内部的并行性
+* 指令级并行 Instruction-Level Parallelism(ILP) 
+  * 超标量 superscalar
+  * 乱序执行 Out-of-order
+* 数据级并行 Data-Level Parallelism (DLP)
+  * 矢量计算 Vectors
+* 线程级并行 Thread-Level Parallelism (TLP)
+   * 同步多线程 Simutaneous Multithreading (SMT)
+   * 多核 Multicore
+
+
+* 问题: 多线程读写同一块数据
+* 解决方法: 加锁
+
+* 问题: 谁的数据是正确的？
+* 解决方法: 缓存一致性协议 Coherence
+
+* 问题: 什么样的数据是正确的 Consistency
+* 解决方法: 存储器同一性模型
+
+
+“Power Wall + Memory Wall + ILP Wall = Brick Wall”
+
+
 [45-year CPU evolution: one law and two equations](https://arxiv.org/ftp/arxiv/papers/1803/1803.00254.pdf)
 
 John L. Hennessy, David A. Patterson, A New Golden Age for Computer Architecture, Communications of the ACM, February 2019, Vol. 62 No. 2, Pages 48-6

@@ -1,6 +1,10 @@
 [神经网络与深度学习 邱锡鹏](https://nndl.github.io/)
 
 
+
+Mistral AI直接开源了自己最新的MoE（Mixture of Experts）大模型Mixtral 8x7B
+
+
 Conda (Anaconda)
 ```
 conda config --set auto_activate_base false
