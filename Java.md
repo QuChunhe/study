@@ -1603,3 +1603,10 @@ private static final long serialVersionUID = -6849794470754667710L;
 # 调度系统
 
 [xxl-job](https://github.com/xuxueli/xxl-job) 
+
+# Collection
+
+* 是否有序
+* 是否许可重复元素
+* 是否许可null元素
+* 

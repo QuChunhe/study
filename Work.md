@@ -352,3 +352,74 @@ PDF文件设计的是可以将字形和字符对应分离；
 
 
 CMEX10
+
+
+https://issues.apache.org/jira/browse/PDFBOX-3879
+
+```
+float shearX = startPosition.getTextMatrix().getShearX();
+if(shearX > 0 && !font.contains("Italic")) {
+    font += "-Italic";
+}
+```
+
+
+
+PDF包含了Object，例如annotation和超链接等，其不是页面内容的一部分。
+
+内容流（content stream），流对象的数据是由一系列指令组成，用于描述在一个页面中需要绘制的图元。
+
+
+指令（operator）
+状态（图形状态 graphic state）以栈的方式存储用于operator所使用的当前全局的图形控制参数
+操作数
+
+元素
+属性
+元素值
+
+PDF由四部分组成：
+* Objects
+* File Structure
+* Document Structure
+* Content Streams
+
+"character code"字符码（可能有四个字节）   "Unicode character"unicode字符
+
+
+平移、旋转、放缩、剪切
+
+a,b,c,d,e,f Tm Sets the text matrix and text line matrix to [a b 0 c d 0 e f 1]. Unlike the graphics matrix
+operator cm, the matrix replaces the current matrix, rather than being concatenated with it.
+
+void addOperator(OperatorProcessor op)
+void processPage(PDPage page)
+void processOperator(String operation, List<COSBase> arguments)
+
+
+0. 嵌入全文xml
+
+1. odf 大小的压缩
+
+2. 书签要保留
+
+3. 内连和外链
+
+4. ofd阅读器
+
+
+性能 智能化 自动化 ：排版的效率
+
+页面性能 ，操作方便性  智能化
+
+
+https://cloud.tencent.com/developer/ask/sof/1372190
+
+
+ofd:PageBlock ID="526">
+            <ofd:TextObject ID="527" Boundary="177.4825 157.6938 1.3547 6.4360" Size="0.35280001163482666" CTM="10.3629 0 0 17.6562 0 0" Fill="true" Font="84">
+              <ofd:FillColor Value="0 0 0" Alpha="255" />
+              <ofd:CGTransform GlyphCount="1" CodeCount="1" CodePosition="0">
+                <ofd:Glyphs>10</ofd:Glyphs>
+              </ofd:CGTransform>
+              <ofd:TextCode X="0" Y="0.2925">}</ofd:TextCode>
