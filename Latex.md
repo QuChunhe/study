@@ -4,7 +4,11 @@ LaTex的数学公式中插入中文
 $$ P\{\mbox{拒绝} \mid H_{0} \mbox{为真}\} = \alpha $$
 ```
 
-[latexstudio](https://www.latexstudio.net/)
+textstudio + MiKTex
+
+https://www.ctan.org/pkg/newtx
+
+https://zhuanlan.zhihu.com/p/138586028
 
 https://github.com/xiaohanyu/awesome-tikz
 

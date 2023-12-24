@@ -24,6 +24,7 @@ CPU称为Host,GPU称为Device,两者通过PCIe总线连接
 ```shell
 nvcc -V
 
+
 nvidia-smi
 nvidia-smi -h
 nvidia-smi -q
@@ -68,3 +69,28 @@ __global__ 核函数(Kernel function)
 __device__ 函数是在GPU中调用,并在GPU上执行
 
 __host__ 在CPU上调用和执行的函数
+
+
+线程模型
+* grid 网格 
+  * gridDim.x:2^31 -1
+  * gridDim.y: 2^16 -1
+  * gridDim.z: 2^16 -1
+* block 线程块  :总的大小最大为1024
+  * blockDim.x: 1024
+  * blockDim.y: 1024
+  * blockDim.z: 64
+
+
+
+<<<grid_size, block_size>>>
+
+线程分块是逻辑的划分,物理上线程不分块
+
+gridDim.x: 为grid_size的值
+blockDim.x: 为block_size的值
+
+blockIdx.x:范围为0~gridDim.x
+
+threadIdx.x:范围为哦0~blockDim.x
+

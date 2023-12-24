@@ -365,6 +365,48 @@ Program Structures
   * Shared Queue. Fundamental part of Master/Worker.
 
 
+
+Flynn矩阵
+* SISD
+* SIMD
+* MISD
+* MIMD
+
+概念
+* Task 任务
+* Parallel Task 并行认为
+* Serial Execution 串行执行
+* Parallel Execution 并行执行
+* Shared Memory 共享存储
+* Distributed Memory 分布式存储 
+* Communication 通信
+* Synchronization 同步
+* Granulariy 粒度
+* Observed Speedup 加速比
+* Parallel Overhead 并行开销
+* Scalability 可扩展性
+
+
+并行编程模型
+* 共享存储模型 Shared Memory Model: OpenMP
+* 线程模型 Threads Model
+* 消息传递模型 Message Passing Model:MPI
+* 数据并行模型 Data Parallel Model
+
+
+设计并行处理
+* 自动和手工并行
+* 理解问题和程序
+* 分块分割:数据分块,任务分割
+* 通信
+* 同步
+* 数据依赖
+* 负载均衡
+* 粒度
+* I/O
+* 成本
+* 性能分析和优化
+
 # Concurrency
 
 CAS(Compare-and-Swap),Mamory Barriers, Cache Line, False Sharing, Cache line padding
