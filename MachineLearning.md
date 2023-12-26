@@ -1,8 +1,10 @@
-[神经网络与深度学习 邱锡鹏](https://nndl.github.io/)
+
 
 
 
 Mistral AI直接开源了自己最新的MoE（Mixture of Experts）大模型Mixtral 8x7B
+
+[神经网络与深度学习 邱锡鹏](https://nndl.github.io/)
 
 
 Conda (Anaconda)
@@ -242,6 +244,13 @@ KL散度(Kullback-Leibler Divergence)是用来度量两个概率分布相似度�
 
 # 深度学习
 
+
+
+设计决策
+* 需要选择优化器,损失函数和输出形式
+* 选择激活函数
+* 结构设计(网络层数等)
+
 人工神经元网络(ANN),简称神经网络.
 
 激活函数（Activation Functions）的目标是，将神经网络非线性化。激活函数是连续的（continuous），且可导的（differential）。
@@ -257,6 +266,27 @@ tanh,即双曲正切（hyperbolic tangent），类似于幅度增大sigmoid，�
 
 ReLU :即Rectified Linear Unit，整流线性单元，激活部分神经元，增加稀疏性，当x小于0时，输出值为0，当x大于0时，输出值为x.
 
+output unis
+* Linear units: produce the mean of a conditional Gaussian distribution
+* Sigmoid Units: predict a binary  variable y
+* Softmax Unixt: applied to the classification task
+
+
+Hidden Unit: 激活函数
+
 
 
 https://www.jianshu.com/p/857d5859d2cc
+
+
+MLP (Multi-Layer Perceptron,MLP)多层感知器,也叫人工神经网络(Artificial Neural Network,ANN),
+
+
+You Don’t Understand Neural Networks Until You Understand the Universal Approximation Theorem
+
+
+前馈神经网络:有向无环图
+* 输入层
+* 隐藏层
+* 输出层
+
