@@ -105,6 +105,9 @@ Batch_Size（批大小）：每批样本的大小。
 
 Iteration（一次迭代）：
 
+Full Connect Feedforward Network
+
+Feature extractor replacing feature engineering
 
 
 # PyTorch
@@ -286,7 +289,8 @@ You Don’t Understand Neural Networks Until You Understand the Universal Approx
 
 
 前馈神经网络:有向无环图
-* 输入层
-* 隐藏层
-* 输出层
+* 输入层 input vector
+* 隐藏层 hidden layers
+* 输出层 outputs
 
+反向传播 (back-properage errors signal to git derivatives for learning)
