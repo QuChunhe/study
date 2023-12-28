@@ -680,6 +680,18 @@ To determine if two events, V and W, are concurrent, do an element-by-element co
 ## Virtual Time
 
 
+
+
+而通常解决方案有两种：
+* 中心化的时钟方案，如Timestamp oracle(TSO)
+* 无中心化的时钟方案，如google True Time，Hybrid Logic Time
+
+[Why Logical Clocks are Easy](https://queue.acm.org/detail.cfm?id=2917756)
+
+[Vector Clocks Revisited](https://riak.com/posts/technical/vector-clocks-revisited/)
+
+[Version Vectors are not Vector Clocks](https://haslab.wordpress.com/2011/07/08/version-vectors-are-not-vector-clocks/)
+
 # Patterns
 
 [稳定性模式大全（Stability Patterns）](https://mp.weixin.qq.com/s?__biz=MzIxMzEzMjM5NQ==&mid=2651036295&idx=2&sn=84c81f52fd1d915e7a8a70985d3e9d16&chksm=8c4c4f83bb3bc695cad976bbafc7e977995b548e5545c319ec1487fb32bd25dbf554702e7eff&mpshare=1&scene=1&srcid=0504wRpYm31npqZ7x6azDg5r&sharer_sharetime=1588554674432&sharer_shareid=fc937fe50a97e6c10553c542abe0a39b&exportkey=Aa9aSiFEz46Dkrw1Lg%2Be0T8%3D&pass_ticket=a43aJERQMX9BbF%2FHWomrWkZFBaA3Ze0Kb4Lh0aokJrwblRbybCbiYCDvafpfxaWM#rd)

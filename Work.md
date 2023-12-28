@@ -416,10 +416,80 @@ void processOperator(String operation, List<COSBase> arguments)
 https://cloud.tencent.com/developer/ask/sof/1372190
 
 
-ofd:PageBlock ID="526">
-            <ofd:TextObject ID="527" Boundary="177.4825 157.6938 1.3547 6.4360" Size="0.35280001163482666" CTM="10.3629 0 0 17.6562 0 0" Fill="true" Font="84">
-              <ofd:FillColor Value="0 0 0" Alpha="255" />
-              <ofd:CGTransform GlyphCount="1" CodeCount="1" CodePosition="0">
-                <ofd:Glyphs>10</ofd:Glyphs>
-              </ofd:CGTransform>
-              <ofd:TextCode X="0" Y="0.2925">}</ofd:TextCode>
+
+
+Text rendering models
+
+Shading Dictonaires
+
+Shading type 映射到CT_color属性
+
+
+```
+12月 24, 2023 9:37:20 下午 org.apache.pdfbox.pdmodel.font.PDCIDFontType2 findFontOrSubstitute
+警告: Using fallback font MicrosoftYaHei for CID-keyed TrueType font STSong-Light,Italic
+12月 24, 2023 9:37:21 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
+警告: No Unicode mapping for _g_175 (204) in font cajcd-fntae
+```
+
+
+logger.error(font.getName() + "  " + font.isEmbedded() + "  ");
+
+
+那么完全兼容 S3 的对象存储服务开源替代 MinIO 可以说是开箱即用了 —— 一个没有额外依赖的纯二进制，不需要几个配置参数就可以快速拉起，把服务器上的磁盘阵列转变为一个标准的本地 S3 兼容服务，甚至还集成了 AWS 的 AK/SK/IAM 兼容实现。
+
+```
+  logger.error("before: " + ctm);
+        ctm.setValue(0, 1, -ctm.getShearY());
+        ctm.setValue(1, 0, -ctm.getShearX());
+        logger.error("after: " + ctm);
+
+
+```
+
+
+
+
+Font 是从 character 到 glyph 的桥梁。Font 根据 character 这一抽象输入提供 glyph 这一具象输出。Font 的本质是个存储了 character 与 glyph 的映射方式（程序的一面）以及 glyph 图形（设计的一面）的数据库。
+
+font 是指一个成套的字体，而 glyph 则是文字中字母 (character) 的视觉表现。
+
+
+[设计师必看的字体与排版指南（上）字体基础知识](https://zhuanlan.zhihu.com/p/203561341)
+
+[设计师必看的字体与排版指南（下）文字排版与开发应用](https://zhuanlan.zhihu.com/p/207951692)
+
+Font 中文翻译为“字型”，是指字的粗细、宽度和样式，是一套具有同样风格和尺寸的字形。例如“Regular_16pt_SF-UI”。
+
+Typeface 中文翻译为“字体”，是指一整套的字形，一个或多个字型的多尺寸的集合，例如“SF-UI”里有不同粗细（Regular、Blod、Light）和不同宽度（12pt、14pt、20pt）。
+
+Glyph 中文翻译为“字形”，是指单个字的形体或是字体的骨骼。 同一字可以有不同的字形，而不影响其表达的意思，例如汉字中的「令」字，第三笔可以是一点或一撇， 最末两笔可以作「ㄗ」或「マ」。
+
+在西方国家罗马字母阵营中，字体分为两大种类：Sans Serif和Serif，打字机体虽然也属于Sans Serif，但由于是等宽字体，所以另外独立出Monospace这一种类，例如在Web中，表示代码时常常要使用等宽字体
+
+基本字族包括细体、标准、粗体、斜体.
+
+字号就是字体大小，通常在网页端使用px作为字号的单位。移动端兴起后，ios字体单位是pt，Android是sp。
+
+
+dpi和ppi这两个是密度单位，不是度量单位，而这两个恰恰是我们换算中重要的分母。简单理解一下：
+
+ppi (pixels per inch)：图像分辨率 （在图像中，每英寸所包含的像素数目）
+
+dpi (dots per inch)： 打印分辨率 （每英寸所能打印的点数，即打印精度）
+
+dpi主要应用于输出，重点是打印设备上。
+
+全角是指一个字符占用两个标准字符的位置。中文字符、全角的英文字符、国标GB2312-1980中的图形符号、特殊符号都是全角字符。半角是指一个字符占用一个标准字符的位置。
+
+通常情况下，英文字母、数字、符号等都是半角字符。
+
+CRAP原则。这四个原则分别是对比、重复、对齐、亲密性。
+* 对比 Contrast （增强效果、组织信息）对比的基本作用是突出重点，增加可读性。附加作用是有效增强视觉效果，打破平淡，吸引读者注意。
+* 重复 Repeated （统一有秩序）。重复是保持整齐的重要准则。既包括字体、字号的重复，也包括颜色、风格的重复。对于新人来说，要时刻牢记，尽量统一字体、字号、颜色等一系列元素，在统一的基础上，找出需要强调的部分，进行更改，通过对比原则进行强化。
+* 对齐 Alignment （统一而有条理）。在页面设计上每一元素都应该与页面上的另一个元素存在某种视觉联系，这样才能建立清晰的结构。
+* 亲密性 Proximity （实现组织性）。亲密性是实现视觉逻辑化的第一步，它是指关系越近的内容，在视觉上应该靠得越近，反之，关系越疏远的内容，在视觉上应该越远
+
+CMYK:一种颜色空间,采用四个分量(Cyan青,Magenta品红,Yellow 黄,blacK 黑)表示颜色
+
+RGB:一种颜色空间,采用红、绿、蓝三个分量类表示颜色(Red,Green,Blue)
