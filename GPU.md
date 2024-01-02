@@ -14,8 +14,22 @@ CPU
 GPU 性能指标
 * 核心数
 * GPU显存容量
-* GPU计算峰值
+* GPU计算峰值 每秒浮点数操作FLOPS(floating-point operation per second)
 * 显存带宽
+
+GPU开发工具
+* CUDA
+* OpenCL
+* OpenACC
+
+
+Nvidia
+* Tesla：采用ECC内存(Error-correcting code momery)，科学计算
+* Quadro：支持OpenGL(Open Graphics Library)渲染，专业绘图设计
+* GeForce：游戏和娱乐
+* Jetson：嵌入式
+
+CPU和GPU各自都有DRAM(Dynamic random access memory),并且通过PCIe(Peripheral component interconnect express bus)总线连接
 
 CPU称为Host,GPU称为Device,两者通过PCIe总线连接
 * 驱动(driver)API
@@ -30,6 +44,8 @@ nvidia-smi -h
 nvidia-smi -q
 nvidia-smi -q -i 0
 nvidia-smi -q -i 0 -d MEMORY
+nvidia-smi -i GPU_ID -c 0 # 默认模式
+nvidia-smi -i GPU_ID -c 1 # 独占模式
 ```
 
 smi(System Management Interface )
@@ -50,7 +66,9 @@ Volatile GPU-UTil: GPU使用率
 
 ECC:是否开启错误检查和纠错技术
 
-Compute M:计算模式
+Compute M:计算模式(compute mode)
+* default：一个GPU许可存在多个计算进程
+* E. Process (Exclusive process mode)：独占进程模式
 
 
 __global__ 核函数(Kernel function)

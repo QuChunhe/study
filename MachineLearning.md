@@ -111,6 +111,7 @@ Feature extractor replacing feature engineering
 
 
 # PyTorch
+[ PyTorch官方教程中文版](https://pytorch123.com/)
 
 如何表示字符串
 * One-hot [0,1,0,...]
