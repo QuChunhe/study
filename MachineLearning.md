@@ -4,6 +4,23 @@
 
 Mistral AI直接开源了自己最新的MoE（Mixture of Experts）大模型Mixtral 8x7B
 
+
+
+
+T. Mitchell. Machine Learning. McGraw Hill, 1997.
+
+>>A computer program is said to learn from experience E with respect to some class of tasks T,and performance measure P, if its performance at tasks in T, >as measured by P, improves with experience E.
+
+
+supervised learning
+* features, covariates, or predictors;
+* label, target, or response
+* training set
+
+
+classification: pattern recognition.
+
+
 [神经网络与深度学习 邱锡鹏](https://nndl.github.io/)
 
 
