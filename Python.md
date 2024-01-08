@@ -6,3 +6,9 @@
 Jax是一个用于高性能数值计算的Python库
 
 TensorFlow或PyTorch
+
+优先级由高到低
+* <, <=, ==, >=, >
+* not
+* and
+* or
