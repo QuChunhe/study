@@ -29,6 +29,20 @@ C -std
 * C17 (ISO/IEC 9899:2018)
 * The upcoming standard informally named C2x
 
+C哲学
+* 结构化编成　structured programming
+* 自顶向下设计　Top-down design
+
+Unlike procedural programming, which emphasizes algorithms, OOP emphasizes the data.
+
+Class Object
+
+面向对象编成的三个特征
+* encapsulation
+* Polymorphism lets you create multiple definitions for operators and functions, with the programming context determining which definition is used. 
+* Inheritance lets you derive new classes from old ones.
+
+OOP emphasizes the data aspect of programming, generic programming emphasizes independence from a particular data type.
 
 # GCC
 

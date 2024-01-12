@@ -17,6 +17,8 @@ vboxuser
 ```
 dpkg -i ***.deb 
 
+sudo apt-get install ntfs-3g //读取win硬盘
+
 ```
 
 

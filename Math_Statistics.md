@@ -1,6 +1,45 @@
 
 ![数量统计的理论框架](http://latex.codecogs.com/gif.latex?\\sigma=\sqrt{\frac{1}{n}{\sum_{k=1}^n(x_i-\bar{x})^2}})
 
+
+[统计学-新竹清华大学-郑少为](https://www.bilibili.com/video/BV1Zb41157jp)
+
+[统计学2-新竹清华大学-郑少为](https://www.bilibili.com/video/av49812739)
+
+Rice, John A. (2007), Mathematical Statistics and Data Analysis
+
+
+aim of statistics: provide insignth by means of data.
+统计学的目标:通过数据提供洞察
+
+four step
+1. Data Collection
+2. Statistical Modeling
+3. Data Analysis
+4. Decision Making
+
+Data collection: producing representative data for drawing correct infomation 有代表性的数据
+* design of experiment (controllable) 试验设计
+* survey sampling (controllable) 抽样调查
+* observational data (uncontrollable)
+
+
+Statistical  modeling: a statistical model is a desciption of the join distribution of data
+* systematic part: 规律-parameters (unknown)
+* random part: 随机
+
+
+Data Analysis: mining information from data (about parameters)
+* graphical methods
+* numerical methods
+  * estimation: 估计(point estimation and interval estimation)
+  * hypothesis testing: 假设检验
+
+Decision Making: drawing conlusions & answering questions 
+
+
+
+
 矩母函数　　特征函数
 
 特征函数与分布函数是一一对应的

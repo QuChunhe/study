@@ -1492,7 +1492,7 @@ Overriding means having two methods with the same method name and parameters (i.
 
 # 异常（Exception）
 
-Java的异常机制包括Error和Exception两个部分，二者都继承了共同的基类Throwable。 只有实例化Throwable或者其子类的对象才能被Java 虚拟机和Java throw 声明抛出。类似地，Throwable 或者其子类才能作为catch子句的参数类型。
+Java的异常机制包括Error和Exception两个部分，二者都继承了共同的基类Throwable。 只有实例化Throwable或者其子类的对象才能被Java虚拟机和Java throw 声明抛出。类似地，Throwable 或者其子类才能作为catch子句的参数类型。
 
 作为Throwable的两个直接子类，Error和Exception按照常规被用于表明异常出现的不同位置。Error 通常属于JVM 运行中发生的系统级错误，虽然并不属于开发人员的范畴，但是有些Error还是由代码引起的，例如StackOverflowError 经常由递归操作超过栈的容量限制所引起。这类错误开发者一般无法挽救，只能靠JVM。Exception往往是应用级的，并假设程序员会去处理这些异常。Exception被进一步划分为两类：检查类型（checked）和未检查类型（unchecked）。检查类型的异常需要在编译时通过try..catch..语句来进行处理，如果Java 编译器发现没有所编译的代码没用使用try..catch.. 语句处理检查类型的异常，就会抛出一个编译异常。非检查类型的异常无法在编译时间进行验证，其大部分产生自变成错误，例如空对象、越界访问数组的元素或使用非法参数调用方法等。非检查类型的类型是RuntimeException的直接子类。
 
@@ -1552,6 +1552,9 @@ float  BigDecimal: float不能精确比较，只能比较位于一定范围，Ma
 
 
 serialVersionUID和Serializable：serialVersionUID必须在序列化和反序列化过程中匹配。
+
+
+chained exception:应用程序通常会通过抛出另一个异常来响应异常。实际上，第一个异常 导致 第二个异常。知道一个异常何时导致另一个异常非常有用。Chained Exceptions (链式异常) 帮助程序员执行此操作
 
 
 # JSON
