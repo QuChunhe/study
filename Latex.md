@@ -6,6 +6,9 @@ $$ P\{\mbox{拒绝} \mid H_{0} \mbox{为真}\} = \alpha $$
 
 textstudio + MiKTex
 
+[LaTeX org](https://latex.org)
+
+
 https://www.ctan.org/pkg/newtx
 
 https://zhuanlan.zhihu.com/p/138586028
@@ -40,3 +43,7 @@ vim ~/Library/Application\ Support/MiKTeX/texmfs/config/fontconfig/config/localf
 ```
 
 [MikTex+TexStudio配置论文写作环境](https://zhuanlan.zhihu.com/p/42844087)
+
+
+
+Separation of form and content
