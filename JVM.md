@@ -234,7 +234,7 @@ The most important factor affecting garbage collection performance is total avai
 
 **Heap Options Affecting Generation Size**影响代大小的堆选项
 
-[Heap Option"](pics/JVMHeapOptions.png)
+![Heap Option](pics/JVMHeapOptions.png)
 
 
 
