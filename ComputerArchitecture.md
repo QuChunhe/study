@@ -1,6 +1,8 @@
 
 translation lookaside buffer TLB 旁路转换缓冲，或称为页表缓冲
 
+一切都是围绕着PPA（Power、Performace、Area）而行动
+
 
 现代CPU的架构和性能优化
 * 流水线 Pipelining

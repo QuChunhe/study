@@ -318,12 +318,45 @@ double cos = Math.cos(angle / Math.PI);
                     0,
                     0));  
 
+ double theta = angle / 180 * Math.PI;
+            double cos = Math.cos(theta);
+            double sin = Math.sin(theta);
+            $textObj.setCTM(new ST_Array(
+                    cos / scaleX,
+                    sin,
+                    -sin,
+                    cos / scaleY,
+                    0,
+                    0));
+
+ if (Math.abs(angle) >= DELTA && Math.abs(angle - 360) >= DELTA) {
+            if (!ctm.equals(prevCtm)) {logger.error("not equal " + ctm + " " + prevCtm);
+                prevCtm = ctm;
+                double[][] data = new double[3][3];
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        data[i][j] = ctm.getValue(i, j);
+                    }
+                }
+                RealMatrix rm = MatrixUtils.inverse(new Array2DRowRealMatrix(data, false));
+                Matrix m1 = new Matrix((float) rm.getEntry(0, 0), (float) rm.getEntry(0, 1),
+                        (float) rm.getEntry(1, 0), (float) rm.getEntry(1, 1),
+                        (float) rm.getEntry(2, 0), (float) rm.getEntry(2, 1));
+                Matrix m2 = ctm.clone();
+                m2.rotate(theta);
+                prevInverseCtm = m1.multiply(m2);
+            }
+            textRenderingMatrix = textRenderingMatrix.multiply(prevInverseCtm);
+        }
+                   
 ```
 
 
 ```
 pdftk.exe wlxb_23-20231313.pdf output wlxb_23-20231313_output.pdf uncompress
 ```
+
+https://www.baeldung.com/java-images
 
 
 
@@ -493,3 +526,47 @@ CRAP原则。这四个原则分别是对比、重复、对齐、亲密性。
 CMYK:一种颜色空间,采用四个分量(Cyan青,Magenta品红,Yellow 黄,blacK 黑)表示颜色
 
 RGB:一种颜色空间,采用红、绿、蓝三个分量类表示颜色(Red,Green,Blue)
+
+
+NimbusRomNo9L-MediItal
+
+6 
+true  org.apache.pdfbox.pdmodel.font.PDType1Font
+
+8
+true  org.apache.pdfbox.pdmodel.font.PDType0Font
+
+https://www.baeldung.com/java-getting-pixel-array-from-image
+
+
+https://gitee.com/gblfy/ofd-pdf/tree/master
+
+
+
+OFD版 可以作为报销入账归档的电子凭证，通过增值税电子发票版式文件阅读器能够验证发票监制章和电子签名的有效性。
+
+PDF版 仅供预览使用，不支持对发票监制章和电子签名的有效性的查验功能，也不能作为报销入账归档的电子凭证。
+
+OFD版电子发票包括开票和验票。
+
+OFD版电子发票是由税务部门开具，在电子发票文档中包含了电子签章和数字签名，用于验证有效性。
+
+两种开票方式
+* 采用UKey和开票软件。从 https://inv-veri.chinatax.gov.cn/xgxz.html 下载增值税发票开票软件，在本地安装这个软件，使用税务UKey登录，并使用开票
+
+在线开局 登录国家税务总局北京市电子税务局
+
+
+两种验票方式
+
+在线验票，1.登录税务部门的网站 https://inv-veri.chinatax.gov.cn/ 2.扫描或者导入xml、ofd、pdf格式的发票
+
+阅读器验票 1. 从网站 https://inv-veri.chinatax.gov.cn/xgxz.html 下载增值税电子发票版式文件阅读器 2.在本地安装文件阅读器 3.通过此文件阅读器打开ofd电子发票，点击能够验证发票
+
+
+odf 发票阅读器，可以验证发票真伪 
+
+电子发票专用章  https://baijiahao.baidu.com/s?id=1772355947569424867&wfr=spider&for=pc
+
+
+https://coderanch.com/t/333495/java/ImageIO-write-JPG-doesn-work
