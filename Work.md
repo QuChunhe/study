@@ -5,6 +5,14 @@ https://gitee.com/gblfy/ofd-pdf/tree/master
 
 https://sspai.com/post/61716
 
+[字体下载](https://www.fontke.com)
+
+[Decomposition of a nonsquare affine matrix](https://math.stackexchange.com/questions/78137/decomposition-of-a-nonsquare-affine-matrix)
+
+[Decomposition of 2D-transform matrices](https://frederic-wang.fr/decomposition-of-2d-transform-matrices.html)
+
+[extracting rotation, scale values from 2d transformation matrix](https://math.stackexchange.com/questions/13150/extracting-rotation-scale-values-from-2d-transformation-matrix)
+
 此外，在印刷流程中，最终页面通常是从更大的印张中切割得来的。由于切割工序不可能完全精确，设计版面时一般都会作「出血」处理，即有意让底色、背景图片等元素向实际尺寸外「溢出」几毫米，以确保经过切割后，背景元素能延伸到纸张边缘而不留下白边。上述流程中，页面内容向外延伸到的边界就是 「出血框」（bleed box），而经过裁切后的预期尺寸就是 「裁切框」（trim box）了
 
 
@@ -305,50 +313,13 @@ OFDPageDrawer.showGlyph
 ST_Box矩形区域,以空格分割,前两个值代表了该矩形的左上角的坐标,后两个值依次表示该矩形的宽和高,可以是整数或者浮点数,后两个值应大于0 “10 10 50 50"
 
 ```java
-double cos = Math.cos(angle / Math.PI);
-                double sin = Math.sin(angle / Math.PI);
-                logger.error((textPosition.getX() / PX2MM) + "   " + ((double)textPosition.getY() / PX2MM));
-                $textObj.setCTM(new ST_Array(cos, sin, -sin, cos, 0, 0));
 
-  $textObj.setCTM(new ST_Array(
-                    ctm.getScaleX(),
-                    -1 * ctm.getShearY(),
-                    -1 * ctm.getShearX(),
-                    ctm.getScaleY(),
-                    0,
-                    0));  
 
- double theta = angle / 180 * Math.PI;
-            double cos = Math.cos(theta);
-            double sin = Math.sin(theta);
-            $textObj.setCTM(new ST_Array(
-                    cos / scaleX,
-                    sin,
-                    -sin,
-                    cos / scaleY,
-                    0,
-                    0));
+0.75 g % 将填充颜色更改为浅灰色
 
- if (Math.abs(angle) >= DELTA && Math.abs(angle - 360) >= DELTA) {
-            if (!ctm.equals(prevCtm)) {logger.error("not equal " + ctm + " " + prevCtm);
-                prevCtm = ctm;
-                double[][] data = new double[3][3];
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                        data[i][j] = ctm.getValue(i, j);
-                    }
-                }
-                RealMatrix rm = MatrixUtils.inverse(new Array2DRowRealMatrix(data, false));
-                Matrix m1 = new Matrix((float) rm.getEntry(0, 0), (float) rm.getEntry(0, 1),
-                        (float) rm.getEntry(1, 0), (float) rm.getEntry(1, 1),
-                        (float) rm.getEntry(2, 0), (float) rm.getEntry(2, 1));
-                Matrix m2 = ctm.clone();
-                m2.rotate(theta);
-                prevInverseCtm = m1.multiply(m2);
-            }
-            textRenderingMatrix = textRenderingMatrix.multiply(prevInverseCtm);
-        }
-                   
+G 	1 	将笔触颜色空间更改为/DeviceGray并设置颜色
+g 	1 	将填充颜色空间更改为/DeviceGray并设置颜色
+
 ```
 
 

@@ -112,3 +112,43 @@ Typeface—— a design of the letterform. (song)Font——a delivery system of 
 
 
 [字体术语集](https://zhuanlan.zhihu.com/p/136840798)
+
+[字形的度量](https://zhuanlan.zhihu.com/p/364605349)
+
+
+Raster Image即光栅图像，也叫位图、点阵图、像素图。raster display则是通过二维像素数组展示图像。像素即pixel，它是“picture element”的缩写。举个例子就是平常的电视，他们含有二维数组的小像素点，这些像素点可以独立地设置不同颜色以创造任何图像。很多打印机，比如激光打印机、喷墨打印机等也是光栅设备（raster devices）。
+
+
+# PDF
+
+五种图元
+* Path object: straight lines, rectangles, and cubic Bezier
+* Text object: character strings
+* external object (XObject):在内容流之外定义的一个对象，通过命名资源引用。
+   * form XObject:完整的内容流，被当作一个单一的图元
+   * transparency groups
+* inline image object
+* shading object
+
+transparency group
+
+table 147
+* S: subtype
+* CS: colour space
+* I: isolated. Isolated Groups
+* K: knockout groups
+
+
+blend model
+
+
+小写表示标量，大写表示向量
+* C： color
+* f： form factor
+* q： opaqueness
+
+result colour是source colour和backdrop colour的函数。
+
+两个参数 alpha（其控制背景颜色和原始颜色的相对贡献）和blend function
+
+包含在一个组中的图元被看作相互分离的透明栈，被称为组栈。
