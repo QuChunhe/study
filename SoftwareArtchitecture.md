@@ -230,6 +230,11 @@ C10M Problem
 * minimum context-switches
 * low-memory footprint,
 
+
+filter pattern被称为转换器模式更好一些
+* 过滤表示清除一些数据
+* 转换表示将数据转换为另一种格式
+
 # Design Pattern
 
 Creational design patterns abstract the instantiation process.

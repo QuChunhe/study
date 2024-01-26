@@ -17,6 +17,8 @@ How to Measure Anything_
 
 https://zh.z-library.se/
 
+https://zlibrary-hk.se/
+
 https://www.letmeread.net/category/computers-technology/
   
 https://zh.u1lib.org

@@ -541,3 +541,6 @@ odf 发票阅读器，可以验证发票真伪
 
 
 https://coderanch.com/t/333495/java/ImageIO-write-JPG-doesn-work
+
+
+ artificial

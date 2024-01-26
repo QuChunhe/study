@@ -152,3 +152,72 @@ result colour是source colour和backdrop colour的函数。
 两个参数 alpha（其控制背景颜色和原始颜色的相对贡献）和blend function
 
 包含在一个组中的图元被看作相互分离的透明栈，被称为组栈。
+
+
+** 坐标系统
+
+PDF 1.6中引入了3D坐标系统。
+
+坐标系统的三个属性
+* 原点的位置
+* x和y轴的方向
+* 每个坐标轴的单位长度
+
+
+device space:设备空间
+
+
+* 72-pixel-per-inch display
+* 600-dot-inch printer
+
+
+user space: 独立于设备的坐标系统，称为用户空间
+
+通过CropBox指定了在用户空间中可见的、用于输出媒体的长方形区域， 
+
+默认的用户空间
+*左下角，
+* x向右，y向上
+* 单位是1/72 inch
+
+
+Current Transformation Matrix：CTM， cm操作符
+
+Text space： text matrix
+
+glyph space： font matrix
+
+image space:宽为w，高为h的图像，定义左上角为坐标原点，并且x和y坐标分别向左从0到我和向下从0到h。图像空间与用户空间之前的对应关系是恒定的，用户空间对应于用户坐标(0,0)和(1，1)的一个单位正方形，对应于上面的图像空间图像边界。在用户空间种坐标(0,0)位于正方形的左下角，对应于图像空间的坐标(0,h)
+
+XObject： form matrix
+
+Patter： pattern matrix
+
+仿射变换满足结合律，不满足交换律，不能改变操作的顺序
+
+为了理解坐标变化的数学，非常关键的是需要记下如下两点
+* 变换更改的是坐标系统，而不是图元对象。
+* 变换矩阵定义了从新坐标系统到原始坐标系统的变换。在等式种x和y表示在变换坐标系统种的坐标值，而x'和y'表示在未变换坐标系统种的坐标。
+
+
+* marked-content point: MP  DP
+* marked-contend sequence : MBC  BDC EMC
+
+将被标记的内容视为一个相关的对象集合，作为一组被当作一个单一的对象被处理。
+
+
+marked clipping sequence
+
+Marked-content Sequences as content items
+
+ marked content ID (MCID)
+
+https://blog.idrsolutions.com/what-is-marked-content/
+
+https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_pdf_scan/dq_pdf_scan.html
+
+# OFD
+
+页面中的所有图元都在坐标空间内进行描述,一个坐标空间包括坐标原点、坐标轴方向、坐标单位长度三个要素。坐标空间根据用途不同分为设备空间、页面空间、对象空间三类。不同的坐标空间之间通过平移、缩放、旋转、切变进行变换。
+
+图元对象使用其外接矩形属性确定在页面或其他容器中的绘制位置。图元对象的内部数据,包括路径数据和裁剪区数据,都以外接矩形的左上角为坐标原点,X 轴向右增长,Y 轴向下增长,并采用毫米为单位,这样的局部坐标空间就称为对象空间。绘制图元时,应首先通过外接矩形参数平移到对象空间内,在对象空间内根据变换矩阵和裁剪设置进行相应绘制。
