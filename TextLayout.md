@@ -216,6 +216,32 @@ https://blog.idrsolutions.com/what-is-marked-content/
 
 https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_pdf_scan/dq_pdf_scan.html
 
+Optional Content Groups (OCG)
+
+
+Optional Content Membership Dictionalries (OCMD)
+
+## Text
+
+typography 排版/排印
+* character
+* glyph : 
+* font: 
+
+Glyphs are organized into fonts. A font defines glyphs for a particular character set.
+
+类型
+Type 0：A composite font, a font composed of glyphs from a descendant CIDFont. 
+
+A font is a container for glyphs.
+
+
+ligature
+
+
+
+
+
 # OFD
 
 页面中的所有图元都在坐标空间内进行描述,一个坐标空间包括坐标原点、坐标轴方向、坐标单位长度三个要素。坐标空间根据用途不同分为设备空间、页面空间、对象空间三类。不同的坐标空间之间通过平移、缩放、旋转、切变进行变换。
