@@ -49,6 +49,8 @@ typeface 和 font 分别被翻译为 “字体” 和 “字型”
 ![字体排印的术语](pics/LayoutTerms.png)
 
 
+There are two basic ones: the height of the type, called the body size, and the width of the metal type sort for each character, called its set-width.
+
 字型术语
 
 Baseline基线:字体排印学中，基线（英语：Baseline）指的是多数字母排列的基准线。如上图所示，大多字母都沿着红色基线排列，唯有“p”向下延伸超过基线，超过的部分称为降部。
