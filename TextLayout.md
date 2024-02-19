@@ -1,4 +1,6 @@
 
+[字体基础知识](https://www.jianshu.com/p/b788f7b188f8)
+
 [字面到底是什么？曝光字体设计中那些鲜为人知的细节！](https://zhuanlan.zhihu.com/p/28959063)
 字体
 
@@ -199,7 +201,7 @@ Patter： pattern matrix
 
 为了理解坐标变化的数学，非常关键的是需要记下如下两点
 * 变换更改的是坐标系统，而不是图元对象。
-* 变换矩阵定义了从新坐标系统到原始坐标系统的变换。在等式种x和y表示在变换坐标系统种的坐标值，而x'和y'表示在未变换坐标系统种的坐标。
+* 变换矩阵定义了从新坐标系统到原始坐标系统的变换。在等式中x和y表示在变换坐标系统种的坐标值，而x'和y'表示在未变换坐标系统种的坐标。
 
 
 * marked-content point: MP  DP
@@ -241,7 +243,12 @@ A font is a container for glyphs.
 ligature
 
 
+text matrix -- text space
 
+glyph space：从glyph空间到text空间的变换是通过font矩阵来定义的。 对于大多数类型的字体。，这个矩阵应该预先定义，将glyph空间的1000单元映射到text空间的1个单位。对于Type 3字体，font matrix应该明确在font字典中给出。
+
+Tm： 文本矩阵（text matrix
+Tlm：文本行矩阵
 
 
 # OFD
