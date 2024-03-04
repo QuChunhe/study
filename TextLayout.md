@@ -1,4 +1,17 @@
 
+Type 0 fonts : composite fonts, 其他类型被称为simple fonts。
+
+pdf支持两类字体相关的对象，分别成为CIDFonts和CMaps。
+
+P
+cell  =
+1 ∫ d3
+rrρ r
+r
+()
+
+[字形的度量](https://zhuanlan.zhihu.com/p/364605349)
+
 [字体基础知识](https://www.jianshu.com/p/b788f7b188f8)
 
 [字面到底是什么？曝光字体设计中那些鲜为人知的细节！](https://zhuanlan.zhihu.com/p/28959063)
