@@ -256,3 +256,86 @@ Tlm：文本行矩阵
 页面中的所有图元都在坐标空间内进行描述,一个坐标空间包括坐标原点、坐标轴方向、坐标单位长度三个要素。坐标空间根据用途不同分为设备空间、页面空间、对象空间三类。不同的坐标空间之间通过平移、缩放、旋转、切变进行变换。
 
 图元对象使用其外接矩形属性确定在页面或其他容器中的绘制位置。图元对象的内部数据,包括路径数据和裁剪区数据,都以外接矩形的左上角为坐标原点,X 轴向右增长,Y 轴向下增长,并采用毫米为单位,这样的局部坐标空间就称为对象空间。绘制图元时,应首先通过外接矩形参数平移到对象空间内,在对象空间内根据变换矩阵和裁剪设置进行相应绘制。
+
+# PDFBox
+
+是否Italic
+```java
+if (!doesRotate && !fontDescriptor.isItalic()
+                        && (textMatrix.getShearX() > 0 || fontName.contains("italic"))) {
+                    $textObj.setItalic(true);
+                }
+```
+
+```java
+private double computeWidth(PDFont font, int code) throws IOException {
+        if (font instanceof PDType0Font) {
+            PDCIDFont cidFont = ((PDType0Font) font).getDescendantFont();
+            Rectangle bbox = cidFont.getNormalizedPath(code).getBounds();
+            return bbox.getMaxX();
+        } else if (font instanceof PDType1CFont) {
+            PDType1CFont pdType1CFont = (PDType1CFont)font;
+            if (pdType1CFont.hasGlyph(code)) {
+                Rectangle bbox = pdType1CFont.getPath(code).getBounds();
+                return bbox.getMaxX();
+            }
+        } else if (font instanceof PDType3Font) {
+            PDType3Font pdType3Font = (PDType3Font) font;
+            PDType3CharProc charProc = pdType3Font.getCharProc(code);
+            if (charProc != null) {
+                BoundingBox fontBBox = pdType3Font.getBoundingBox();
+                PDRectangle glyphBBox = charProc.getGlyphBBox();
+                if (glyphBBox != null) {
+                    // PDFBOX-3850: glyph bbox could be larger than the font bbox
+                    return min(fontBBox.getWidth(), glyphBBox.getWidth());
+                }
+            }
+        }
+        return font.getWidth(code);
+    }
+```
+
+
+```java
+    private Pair<Double, Double> computeAscentAndDescent(PDFont font, int code) throws IOException {
+        if (font instanceof PDType0Font) {
+            PDCIDFont cidFont = ((PDType0Font) font).getDescendantFont();
+            Rectangle bbox = cidFont.getNormalizedPath(code).getBounds();
+            return Pair.of(bbox.getMinY(), bbox.getMaxY());
+        } else if (font instanceof PDType1CFont) {
+            PDType1CFont pdType1CFont = (PDType1CFont)font;
+            if (pdType1CFont.hasGlyph(code)) {
+                Rectangle bbox = pdType1CFont.getPath(code).getBounds();
+                return Pair.of(bbox.getMinY(), bbox.getMaxY());
+            }
+        } else if (font instanceof PDType3Font) {
+            PDType3Font pdType3Font = (PDType3Font) font;
+            PDType3CharProc charProc = pdType3Font.getCharProc(code);
+            if (charProc != null) {
+                BoundingBox fontBBox = pdType3Font.getBoundingBox();
+                PDRectangle glyphBBox = charProc.getGlyphBBox();
+                if (glyphBBox != null) {
+                    // PDFBOX-3850: glyph bbox could be larger than the font bbox
+                    return Pair.of(
+                            max(fontBBox.getLowerLeftY(), glyphBBox.getLowerLeftY()),
+                            min(fontBBox.getUpperRightY(), glyphBBox.getUpperRightY()));
+                }
+            }
+        }
+        PDFontDescriptor fontDescriptor = font.getFontDescriptor();
+        double ascent = fontDescriptor.getAscent();
+        double descent = fontDescriptor.getDescent();
+        if (isZero(ascent) && isZero(descent)) {
+            BoundingBox bbox = font.getBoundingBox();
+            return Pair.of((double) bbox.getLowerLeftY(), (double) bbox.getUpperRightY());
+        }
+        TrueTypeFont ttf = getTrueTypeFont(font);
+        if (ttf != null) {
+            return Pair.of(
+                    1000d * ttf.getHorizontalHeader().getDescender() / ttf.getUnitsPerEm(),
+                    1000d * ttf.getHorizontalHeader().getAscender() / ttf.getUnitsPerEm());
+        }
+        return Pair.of(descent, ascent);
+    }
+
+```
