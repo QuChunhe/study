@@ -11,6 +11,9 @@ https://sspai.com/post/61716
 
 [Decomposition of 2D-transform matrices](https://frederic-wang.fr/decomposition-of-2d-transform-matrices.html)
 
+
+texlive、ghostscript、Imagick
+
 [extracting rotation, scale values from 2d transformation matrix](https://math.stackexchange.com/questions/13150/extracting-rotation-scale-values-from-2d-transformation-matrix)
 
 此外，在印刷流程中，最终页面通常是从更大的印张中切割得来的。由于切割工序不可能完全精确，设计版面时一般都会作「出血」处理，即有意让底色、背景图片等元素向实际尺寸外「溢出」几毫米，以确保经过切割后，背景元素能延伸到纸张边缘而不留下白边。上述流程中，页面内容向外延伸到的边界就是 「出血框」（bleed box），而经过裁切后的预期尺寸就是 「裁切框」（trim box）了
@@ -443,12 +446,65 @@ logger.error(font.getName() + "  " + font.isEmbedded() + "  ");
 那么完全兼容 S3 的对象存储服务开源替代 MinIO 可以说是开箱即用了 —— 一个没有额外依赖的纯二进制，不需要几个配置参数就可以快速拉起，把服务器上的磁盘阵列转变为一个标准的本地 S3 兼容服务，甚至还集成了 AWS 的 AK/SK/IAM 兼容实现。
 
 ```
-  logger.error("before: " + ctm);
-        ctm.setValue(0, 1, -ctm.getShearY());
-        ctm.setValue(1, 0, -ctm.getShearX());
-        logger.error("after: " + ctm);
+((PDType1CFont)font).getHeight(code));
 
 
+ private double computeAscentAndDescent(PDFont font) throws IOException {
+        double ascent;
+        double descent;
+        TrueTypeFont ttf = getTrueTypeFont(font);
+        if (ttf != null) {
+            ascent = 1000d * ttf.getHorizontalHeader().getAscender() / ttf.getUnitsPerEm();
+            descent= 1000d * ttf.getHorizontalHeader().getDescender() / ttf.getUnitsPerEm();
+            return ascent;
+        }
+
+        PDFontDescriptor fontDescriptor = font.getFontDescriptor();
+        ascent = fontDescriptor.getAscent();
+        descent = fontDescriptor.getDescent();
+        BoundingBox bbox = font.getBoundingBox();
+        if (isZero(ascent) && isZero(descent)) {
+            return bbox.getUpperRightY();
+        }
+        double glyphHeight = bbox.getHeight() / 2;
+        double capHeight = fontDescriptor.getCapHeight();
+        if (!isZero(capHeight) && (capHeight < glyphHeight || isZero(glyphHeight))) {
+            glyphHeight = capHeight;
+        }
+        if ((ascent - descent) / 2 < glyphHeight) {
+            return bbox.getUpperRightY();
+        }
+        return ascent;
+
+    }
+
+
+      coordinates = cosArray.toFloatArray();
+                            Matrix ctm = getGraphicsState().getCurrentTransformationMatrix();
+                            double coorX0 = ctm.getScaleX() * coordinates[0]
+                                    + ctm.getShearX() * coordinates[1] + ctm.getTranslateX();
+                            double coorY0 = ctm.getShearY() * coordinates[0]
+                                    + ctm.getScaleY() *  coordinates[1] + ctm.getTranslateY();
+                            double coorX1 = ctm.getScaleX() * coordinates[2]
+                                    + ctm.getShearX() * coordinates[3] + ctm.getTranslateX();
+                            double coorY1 = ctm.getShearY() * coordinates[2]
+                                    + ctm.getScaleY() *  coordinates[3] + ctm.getTranslateY();
+                            double pageHigh = page.getCropBox().getHeight();
+                            double x0 = coorX0 * scale - boundaryX;
+                            double y0 = (pageHigh - coorY0) * scale - boundaryY;
+                            double x1 = coorX1 * scale - boundaryX;
+                            double y1 = (pageHigh - coorY1) * scale - boundaryY;
+                            ctAxialShd.setStartPoint(new ST_Pos(x0, y0));
+                            ctAxialShd.setEndPoint(new ST_Pos(x1, y1));
+
+
+/**
+         * 7.10 Functions
+         * 0 Sampled function
+         * 2 Exponential interpolation function
+         * 3 Stitching function
+         * 4 PostScript calculator function
+         */
 ```
 
 

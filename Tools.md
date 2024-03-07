@@ -135,6 +135,11 @@ pdftocairo -r 300 -png \\infile % 将生成的pdf文件转换为png图像
 
 [Gradle](https://gradle.org/releases/)
 
+~/.gradle/gradle.properties
+```
+org.gradle.java.home=C:\\Program Files\\corretto-1.8.0_402
+```
+
 ```
 vim 
 GRADLE_HOME=/usr/local/gradle-6.7
