@@ -27,6 +27,8 @@ https://zh.u1lib.org
 
 https://zh.book4you.org
 
+[搬书匠](http://www.banshujiang.cn/)
+
 [git-lfs](https://git-lfs.github.com)
 
 

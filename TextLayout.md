@@ -156,6 +156,14 @@ table 147
 * K: knockout groups
 
 
+绘制对象（paints objects）
+* 填充（fills）
+* 画笔（strokes）
+* 文本（text）
+* 图像（images）
+
+采集路径和透明度
+
 blend model
 
 
@@ -237,6 +245,9 @@ Optional Content Groups (OCG)
 
 
 Optional Content Membership Dictionalries (OCMD)
+
+
+
 
 ## Text
 

@@ -81,3 +81,23 @@ JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
 
 JavaCC全称为Java Compiler Compiler，它是一个生成器，用于生成词法分析器（lexical analysers）和语法分析器（parsers）。
 
+# Java Cryptography Architecture (JCA)
+
+[Java加密体系（JCA](https://www.xuanyuanli.cn/pages/5c445e/)
+
+消息摘要（Message Digest）消息摘要可以用于验证数据完整性
+
+数字签名（Digital Signature）
+
+ 对称加密（Symmetric Encryption）
+
+非对称加密（Asymmetric Encryption）
+
+密钥交换（Key Exchange）
+
+密钥存储（KeyStore）
+
+
+公钥基础设施(Public Key Infrastructure, PKI)是典型的密码应用技术。在 PKI 系统中， 由证书认证机构(Certification Authority, CA)签发数字证书、绑定 PKI 用户的身份信息和公钥。 PKI 依赖方(Relying Party)预先存储有自己所信任的根 CA 自签名证书,，用来验证与之通信的 PKI 用户的证书链,，从而可信地获得该用户的公钥、用于各种安全服务。
+
+1978 年， L. Kohnfelder 首次提出证书的概念；1988 年，第一版本的 X.509 标准推出，发展至 2005 年的版本 3 标准；1995 年，IETF 成立 PKIX 工作组，将 X.509 标准用于 Internet， 2013 年,，IETF PKIX 工作组结束工作任务。
