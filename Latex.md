@@ -8,6 +8,15 @@ textstudio + MiKTex
 
 [LaTeX org](https://latex.org)
 
+中文 TEX 排版
+* CCT → 最早支持简体中文的 TEX 扩展, 由张林波教授开发, 比较符合中国人的习惯和中国印刷界标准
+* TY → 由华东师范大学肖刚、陈志杰等教授开发
+* CJK → 由德国 Lemberg 开发，可以同时处理中、日、韩三国文字
+
+
+CTEX 宏集 面向中文排版的通用 LATEX 排版框架, 中文排版首选!
+* 英文排版建议: PDFLATEX 或 XeLATEX
+* 中文排版建议: XeLATEX + CTEX 宏集 宏
 
 https://www.ctan.org/pkg/newtx
 

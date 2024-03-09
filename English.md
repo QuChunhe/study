@@ -3,6 +3,8 @@
 Carol E. Friend, Laura D. Knight, Teresa Ferster Glazier, The Least You Should Know about Vocabulary Building: Word Roots Eighth Edition, 2014, Cengage Learning)
 
 
+[趣词](https://www.quword.com)
+
 A root may change its spelling slightly according to the word it is in.
 
 Sometimes the last letter of a root changes to be like the first letter of the root that follows:
