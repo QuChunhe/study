@@ -3,12 +3,25 @@ Type 0 fonts : composite fonts, 其他类型被称为simple fonts。
 
 pdf支持两类字体相关的对象，分别成为CIDFonts和CMaps。
 
-P
-cell  =
-1 ∫ d3
-rrρ r
-r
-()
+1. Fonts & Encodings by Yannis Haralambous, 1039页。这本书涵盖的是编码和字体技术，对于前者，其实还是漏了几种较为罕见的编码，但无所谓了。对于字体技术的，文后涉及了大量工具的使用，包括写PostScript代码。但是值得说的一点是，这书要想完全消化是很难的事。
+
+2. CJKV Information Processing by Ken Lunde, 899页。这个书讲了大量汉字处理的技术细节，不过值得注意的是这本书有一些内容已经算是过时了。对于这些技术细节，在现有的一些软件里面实现的其实也不是很好，很多西方的程序员没有汉字的使用经验，所以这本书对于这些程序员来说，有价值，但是很低。
+
+3. PostScript Language Reference, third edition, 913页。PostScript这种语言呢，是制作字体的基础，所有的曲线都是要画出来的，所以这种语言是肯定要懂的。就一般的开发来讲，手写PostScript是很痛苦的，一般都是通过C/Python生成的。
+
+4. PDF Reference, sixth edition, 1310页。这个PDF呢，写过Quartz程序的，应该会了解，写界面就是在写PDF。PDF本身是作为PostScript的一个子集存在的，但是现如今的PDF和PostScript的关联度就不是太大了。PDF技术，涉及到的是字体的拆分、解析。而排版，则需要控制坐标。所以，如果觉得字体技术和排版技术足够的话，可以写一个PDF试试，这里面有足够的东西检验你的技能。
+
+5. The TeXbook by D. E. Knuth, 494页。这个是我们TeX圈子里面一定要看的一本书。但是这本书能够启发的，并不仅限于TeX。关注点应该在：排版模型，断行模型和切词模型。
+
+6. The METAFONT book，374页。和PostScript不同，METAFONT的编程语言是Algol系，所以在写东西的时候是比较舒服的。这本书面向的是做字体制作支持的人，因为设计师不懂编程是一个大概率事件。如果说METAFONT过时，它的shiping out模块是过时的，将这个模块换成PostScript输出模块，这可以说是个革命了。
+
+
+* typesetting 　排版
+* layout 布局/版式
+* typography 印刷术，字体排印
+* manuscript 手稿，原稿
+* typewriter 打字机
+
 
 [字形的度量](https://zhuanlan.zhihu.com/p/364605349)
 
