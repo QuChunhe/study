@@ -23,6 +23,9 @@ pdf支持两类字体相关的对象，分别成为CIDFonts和CMaps。
 * typewriter 打字机
 
 
+>> LaTeX is usually pronounced /ˈlɑːtɛk/ or /ˈleɪtɛk/ in English (that is, not with the /ks/ pronunciation English speakers normally associate with X, but with a /k/). The characters T, E, X in the name come from capital Greek letters tau, epsilon, and chi, as the name of TeX derives from the Greek: τέχνη (skill, art, technique); for this reason, TeX's creator Donald Knuth promotes a pronunciation of /ˈtɛx/ (tekh) (that is, with a voiceless velar fricative as in Modern Greek, similar to the last sound of the German word "Bach", the Spanish "j" sound, or as ch in loch). Lamport, on the other hand, has said he does not favor or discourage any pronunciation for LaTeX.
+
+
 [字形的度量](https://zhuanlan.zhihu.com/p/364605349)
 
 [字体基础知识](https://www.jianshu.com/p/b788f7b188f8)
