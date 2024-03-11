@@ -174,3 +174,81 @@ public class DigitalSignatureExample {
 }
 
 ```
+
+
+
+ASN.1（Abstract Syntax Notation One) 是 ISO 和 ITU-T 的联合标准，是描述数据的表示、编码、传输、解码的灵活的记法。它提供了一套正式、无歧义和精确的规则以描述独立于特定计算机硬件的对象结构。
+
+
+PKCS 协议组和 X.509 协议均采用 ASN.1 来定义密钥或证书的数据结构。
+
+
+常见证书后缀
+
+作为文件形式存在的证书一般有这几种后缀：(证书中包含公钥，以及公钥颁发机构、版本号、算法等信息，可以以X.509为例看一下证书内容)
+
+1.带有私钥的证书：（一般都有密码保护，使用的是DER编码）
+* .pfx 常用于Windows上的 IIS服务器
+* .p12 常用于MAC OS、iOS中(PKCS#12由PFX进化而来的用于交换公共的和私有的对象的标准格式)
+* .jks Java Key Storage，这是Java的专利，JAVA的专属格式，一般用于 Tomcat 服务器。
+
+2.不带私钥的证书：
+* .cer/crt 编码方式不一定，可能是DER也可能是PEM
+* .pem 都是PEM编码格式
+* .der 都是DER编码格式
+* .p7b 以树状展示证书链(certificate chain)，同时也支持单个证书，不含私钥
+
+3.补充
+* .der文件一般只放证书，不含私钥
+* .pem文件中可以放证书或者私钥，或者两者都有，pem如果只含私钥的话，一般用.key扩展名，而且可以有密码保护
+* .csr - Certificate Signing Request，即证书签名请求，这个并不是证书，而是向权威证书颁发机构获得签名证书的申请，其核心内容是一个公钥(当然还附带了一些别的信息)，在生成这个申请的时候，同时也会生成一个私钥key，私钥要自己保管好。
+
+
+Privacy-Enhanced Mail (PEM) 
+
+
+PKCS stands for "Public Key Cryptography Standards"
+
+
+
+DSA全称Digital Signature Algorithm，DSA只是一种算法，和RSA不同之处在于它不能用作加密和解密，也不能进行密钥交换，只用于签名，所以它比RSA要快很多，其安全性与RSA相比差不多。
+
+
+ECDSA是用于数字签名，是ECC与DSA的结合，整个签名过程与DSA类似，所不一样的是签名中采取的算法为ECC，最后签名出来的值也是分为r,s。而ECC（全称Elliptic Curves Cryptography）是一种椭圆曲线密码编码学。
+
+
+PKI（Public Key Infrastructure，公钥基础设施）是一种安全框架，用于创建、管理、分发、使用、存储和撤销数字证书。PKI建立了一种基于公钥加密的可信任关系，使得实体（如用户、组织或设备）能够相互验证和加密通信。PKI中的核心组件包括：
+* 证书颁发机构（CA，Certificate Authority）：负责颁发、签署和撤销数字证书。
+* 证书（Certificate）：包含实体的公钥、实体标识符、颁发者信息等，由CA数字签名。
+* 证书库（Certificate Store）：存储和管理证书。
+* 密钥对（Key Pair）：由公钥和私钥组成，用于加密和解密信
+
+
+推荐使用的算法
+* 256 位的 AES 算法
+* SHA-256、SHA-512 单向散列函数
+* RSASSA-PSS 签名算法
+* X25519/X448 密钥交换算法
+* EdDSA 签名算法
+
+
+JCA与其他加密库的对比
+1. Bouncy Castle
+
+Bouncy Castle是一个流行的开源加密库，提供了许多Java未提供的加密算法。它可以作为JCA的一个提供者使用，但在某些场景下，Bouncy Castle的性能可能不如Java的内置加密库。
+
+2. OpenSSL
+
+OpenSSL是一个广泛使用的开源加密库，它主要针对C和C++应用程序。尽管可以在Java项目中使用JNI（Java Native Interface）调用OpenSSL，但与JCA相比，集成和使用相对更复杂。
+
+3. LibreSSL
+
+LibreSSL是一个OpenSSL的分支，致力于提供更安全和稳定的加密实现。与OpenSSL类似，它也主要针对C和C++应用程序，使用JNI调用的方式与Java集成。
+
+
+* CN : Common Name 通用名，对于 SSL 证书，一般为网站域名；而对于代码签名证书则为申请单位名称；而对于客户端证书则为证书申请者的姓名；
+* OU: organizationUnit 组织部门名
+* O: Organization Name 组织名 对于 SSL 证书，一般为网站域名；而对于代码签名证书则为申请单位名称；而对于客户端单位证书则为证书申请者所在单位名称；
+* L: Locality 城市
+* S: State/Provice  省份
+* C: country 只能是国家字母缩写，如中国：CN 

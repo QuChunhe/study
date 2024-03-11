@@ -433,10 +433,7 @@ Shading type 映射到CT_color属性
 
 
 ```
-12月 24, 2023 9:37:20 下午 org.apache.pdfbox.pdmodel.font.PDCIDFontType2 findFontOrSubstitute
-警告: Using fallback font MicrosoftYaHei for CID-keyed TrueType font STSong-Light,Italic
-12月 24, 2023 9:37:21 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
-警告: No Unicode mapping for _g_175 (204) in font cajcd-fntae
+org.ofdrw.gm.ses.v4.SESealTest
 ```
 
 
