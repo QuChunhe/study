@@ -15,13 +15,44 @@ pdf支持两类字体相关的对象，分别成为CIDFonts和CMaps。
 
 6. The METAFONT book，374页。和PostScript不同，METAFONT的编程语言是Algol系，所以在写东西的时候是比较舒服的。这本书面向的是做字体制作支持的人，因为设计师不懂编程是一个大概率事件。如果说METAFONT过时，它的shiping out模块是过时的，将这个模块换成PostScript输出模块，这可以说是个革命了。
 
+GB/T 15834—2011《标点符号用法》
 
-* typesetting 　排版
+
+* typesetting/typeset 　排版
 * layout 布局/版式
-* typography 印刷术，字体排印
+* typography 字体排印
 * manuscript 手稿，原稿
 * typewriter 打字机
+* typeface
+* type
+* font
 
+英文的“Typeface”实际就是指“Font Family”(字体家族)，例如：“HanaMinB”；而“Font”则是“Typeface”的子集，也就是某个“Subfamily”（风格或字重）的单一“Font”
+
+中国大陆地区，“Typeface”翻译成“书体”；“Font”成翻译“字体”；
+
+港澳台地区，“Typeface”翻译成“書體”；“Font”成翻译“字型”。
+
+glyph 字形，character 字符
+
+Typeface—— a design of the letterform. (song)Font——a delivery system of the design. (MP3/cell phone)我的理解是，把typeface作为一个初始设计，而font作为一个承载设计的载体（上面也有人说到了，font最初来源应该和punches压膜倒模字体有关），就像是有一首歌，这首歌本身是typeface，也就是原始数据，而如果你想要听歌的话，就需要把歌放到MP3或者手机里面来听，那这时候typeface就变成了font
+
+
+
+Typography字体排印学，或字体排印，又称“文字设计”，是一种涉及对字体、字号、缩进、行间距、字符间距进行设计、安排等方法来进行排版的一种工艺。
+
+Typography(字体排印学)不仅包括“字体设计”，同时也涉及其它与“字”相关的设计，个人认为可以分为三大块
+* 字体 (typeface)
+* 排版
+* 大小
+
+typeface 和 font 分别被翻译为 “字体” 和 “字型”.
+
+ligatures 连字 是叫“合字”，有些字体里面当 字母f 和 字母i 连在一起的时候， f 的一横会跟 i 的一点撞上，导致不好排版。 所以为了方便、美观，有些字体直接会有 fi 连字的字模。在 OpenType 字体格式出现后，字体开发者可以在字体中定义连字。OpenType 格式的字体可以设置一个 字符替换表（GSUB - The Glyph Substitution Table） 来指定哪些字符的组合会被替换成其它字符。
+
+escape character 逃逸字符
+* control word
+* control symbol
 
 >> LaTeX is usually pronounced /ˈlɑːtɛk/ or /ˈleɪtɛk/ in English (that is, not with the /ks/ pronunciation English speakers normally associate with X, but with a /k/). The characters T, E, X in the name come from capital Greek letters tau, epsilon, and chi, as the name of TeX derives from the Greek: τέχνη (skill, art, technique); for this reason, TeX's creator Donald Knuth promotes a pronunciation of /ˈtɛx/ (tekh) (that is, with a voiceless velar fricative as in Modern Greek, similar to the last sound of the German word "Bach", the Spanish "j" sound, or as ch in loch). Lamport, on the other hand, has said he does not favor or discourage any pronunciation for LaTeX.
 
@@ -68,14 +99,6 @@ pdf支持两类字体相关的对象，分别成为CIDFonts和CMaps。
 常见到了这样的字重等级：Thin、Light、Regular、Book、Bold、Black、Heavy，通常的简写就用各自英文的首字母。
 
 
-Typography字体排印学，或字体排印，又称“文字设计”，是一种涉及对字体、字号、缩进、行间距、字符间距进行设计、安排等方法来进行排版的一种工艺。
-
-Typography(字体排印学)不仅包括“字体设计”，同时也涉及其它与“字”相关的设计，个人认为可以分为三大块
-* 字体 (typeface)
-* 排版
-* 大小
-
-typeface 和 font 分别被翻译为 “字体” 和 “字型”
 
 ![字体排印的术语](pics/LayoutTerms.png)
 
@@ -124,20 +147,13 @@ Bowl碗状曲线
 * Leading行距:字体连续行的基线间的距离。这个词起源于手工排版的年代，铅字之间通过插入铅块来增加垂直距离。
 
 * GLYPH（字形）:字型中对于同一个字母可能提供多种字形
-* Kerning字距，字间距:就是具体的字符与字符之间的空隙。和字宽不同，因为每个字母之间都有不同的间距，所以最终排印出来的单词，会有多种不同的效果。
+
+* Kerning字距，字间距:就是具体的字符与字符之间的空隙。和字宽不同，因为每个字母之间都有不同的间距，所以最终排印出来的单词，会有多种不同的效果。理論上kerning在fixed-width font上並不需要
 
 * TRACKING字宽，字宽距离，就是一个单词所有字符占用的整体空间，有时候也称作字宽。大多数的程序都允许你缩小或加大字宽，这就取决于你的项目需求。
 
 
-英文的“Typeface”实际就是指“Font Family”(字体家族)，例如：“HanaMinB”；而“Font”则是“Typeface”的子集，也就是某个“Subfamily”（风格或字重）的单一“Font”
 
-中国大陆地区，“Typeface”翻译成“书体”；“Font”成翻译“字体”；
-
-港澳台地区，“Typeface”翻译成“書體”；“Font”成翻译“字型”。
-
-glyph 字形，character 字符
-
-Typeface—— a design of the letterform. (song)Font——a delivery system of the design. (MP3/cell phone)我的理解是，把typeface作为一个初始设计，而font作为一个承载设计的载体（上面也有人说到了，font最初来源应该和punches压膜倒模字体有关），就像是有一首歌，这首歌本身是typeface，也就是原始数据，而如果你想要听歌的话，就需要把歌放到MP3或者手机里面来听，那这时候typeface就变成了font
 
 [关于字体、排版设计，有什么好的书籍推荐？](https://www.zhihu.com/question/23778954/answer/2603926735)
 
