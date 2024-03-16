@@ -30,6 +30,8 @@ https://zh.book4you.org
 
 [搬书匠](http://www.banshujiang.cn/)
 
+https://www.wxscn.com/nav/lishi.html
+
 [git-lfs](https://git-lfs.github.com)
 
 

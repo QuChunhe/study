@@ -58,3 +58,15 @@ vim ~/Library/Application\ Support/MiKTeX/texmfs/config/fontconfig/config/localf
 
 
 Separation of form and content
+
+The benefits in separation are many. Such as, by automating the formatting process, technical writers can spend more time on the words and phrasing rather than on the fonts, alignment and numbering. This leads to better writing quality, and more consistent presentation.
+
+book printing 书面印刷
+
+Ordinary Typing　普通打印
+
+命令
+* 原语primitive
+* 组合
+
+Hyphens are used for compound words like ‘daughter-in-law’ and ‘X-rated’. En-dashes are used for number ranges like ‘pages 13–34’, and also in contexts like　‘exercise 1.2.6–52’. Em-dashes are used for punctuation in sentences—they are　what we often call simply dashes. And minus signs are used in formulas.
