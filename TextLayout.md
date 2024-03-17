@@ -109,6 +109,13 @@ There are two basic ones: the height of the type, called the body size, and the 
 
 Baseline基线:字体排印学中，基线（英语：Baseline）指的是多数字母排列的基准线。如上图所示，大多字母都沿着红色基线排列，唯有“p”向下延伸超过基线，超过的部分称为降部。
 
+ascent升部高： ascender升部是字形位于基线之上部分，其高度被称为升部高，通常用正数表示
+
+descent降部高：descenter降部是字形位于基线以下部分的高度，其高度被称为升部高，通常用负数表示
+
+height 高度，ascent - descent
+
+advance是基线上最左边的idan到最由边点直接的距离
 
 Meanline主线:英语为Mean Line，也称英语：Waist Line，指的是决定无升部的小写字母字体大小的一条线，其与基线的距离称为x字高。
 
@@ -116,9 +123,7 @@ Cap-Height大写高度:大写字高（英语：Cap height）是指某种字体�
 
 X-Height（x 字高）:是指字母的基本高度，精确地说，就是基线（英语：baseline）和主线之间的距离。特别的，它指称一个字体中小写字母x的高度（这也是这个词的语源），而实际上这也和字母a、c、e、m、n、o、r、s、u、v、w和z的高度是一样的。尽管如此，在现代字体设计领域里，x字高代表了一个字体的设计因素，因此在一些场合，字母x本身并不完全等于x字高。
 
-Ascender上伸笔画:上伸超出x字高的部分
 
-Descender下伸笔画:下伸超出基线的部分
 
 Serif衬线:衬线体指的是有衬线的字体，又称为有衬线体、衬线字、曲线描边字，俗称白体字；而与之相对的，没有衬线的称为无衬线体、无描边字，俗称黑体字。衬线指的是字形笔画末端的装饰细节部分。无衬线字体在西文中习惯称sans-serif，其中sans为法语的“无”的意思；而另外一些人习惯把无衬线体称grotesque（德语作grotesk）或“哥特体”，把衬线体称为“罗马体”，但是这些词已经不是很常用了，只保留于字体名称中。
 
@@ -143,6 +148,8 @@ Aperture可以理解为圆的一部分，不封闭的圈（强行解释）
 Bowl碗状曲线
 
 排版术语
+
+line gap（
 
 * Leading行距:字体连续行的基线间的距离。这个词起源于手工排版的年代，铅字之间通过插入铅块来增加垂直距离。
 
@@ -169,6 +176,10 @@ Raster Image即光栅图像，也叫位图、点阵图、像素图。raster disp
 
 
 # PDF
+
+
+PDF is used wherever the exact presentation of the content is important (for examplefor a print advertisement or book). It isn’t normally suitable when the content is to be layed out or reflowed at the last moment, such as in a variable width web page—languages like HTML and CSS which separate content from presentation are more suitable in those circumstances.
+PDF被用于那些内容的精确呈现至关重要的场合（例如广告或书籍的印刷）。它通常不适合在最后一刻进行内容布局或重新布局的情况，例如，在可变宽度的网页中——像HTML和CSS将内容与呈现分离的语言更为适用这些情况。
 
 五种图元
 * Path object: straight lines, rectangles, and cubic Bezier
