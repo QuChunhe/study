@@ -70,3 +70,30 @@ Ordinary Typing　普通打印
 * 组合
 
 Hyphens are used for compound words like ‘daughter-in-law’ and ‘X-rated’. En-dashes are used for number ranges like ‘pages 13–34’, and also in contexts like　‘exercise 1.2.6–52’. Em-dashes are used for punctuation in sentences—they are　what we often call simply dashes. And minus signs are used in formulas.
+
+
+总结为六个原则：对齐，聚拢，重复，对比，强调，留白。我是这样理解的：
+
+一、对齐原则
+
+　　相关内容必须对齐，次级标题必须缩进，方便读者视线快速移动，一眼看到最重要的信息。
+
+二、聚拢原则
+
+　　将内容分成几个区域，相关内容都聚在一个区域中。段间距应该大于段内的行距。
+
+三、留白原则
+
+　　千万不要把页面排得密密麻麻，要留出一定的空白，这本身就是对页面的分隔。这样既减少了页面的压迫感，又可以引导读者视线，突出重点内容。
+
+四、降噪原则
+
+　　颜色过多、字数过多、图形过繁，都是分散读者注意力的"噪音"。
+
+五、重复原则
+
+　　多页面排版时，注意各个页面设计上的一致性和连贯性。另外，在内容上，重要信息值得重复出现。
+
+六、对比原则
+
+　　加大不同元素的视觉差异。这样既增加了页面的活泼，又方便读者集中注意力阅读某一个子区域。
