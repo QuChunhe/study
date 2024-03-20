@@ -97,3 +97,6 @@ Hyphens are used for compound words like ‘daughter-in-law’ and ‘X-rated’
 六、对比原则
 
 　　加大不同元素的视觉差异。这样既增加了页面的活泼，又方便读者集中注意力阅读某一个子区域。
+
+
+C:\Program Files\MiKTeX\miktex\bin\x64\
