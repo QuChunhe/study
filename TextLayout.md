@@ -23,9 +23,13 @@ GB/T 15834—2011《标点符号用法》
 * typography 字体排印
 * manuscript 手稿，原稿
 * typewriter 打字机
-* typeface
+* typeface    。 A typeface is a particular set of glyphs or sorts (an alphabet and its corresponding accessories such as numerals and punctuation) that share a common design. 所谓Typeface指的是一组具有相同设计风格的字形的集合，通常这个集合可以是一套字母表和一些符号、数字。也就是说typeface 得是一套文字，而且这一套字都是用同一种风格或者艺术形式写出来的，微软的“华文行楷”就是一个typeface, 里面的所有字都是看起来“笔走龙蛇”的风格。Helvetica (黑体)也是很有名的typeface。
 * type
-* font
+* glyph 字形。字形是可识别的具体图形符号，用于代表一个或者多个字符，即字形是代表字符的可视化图形，用于展示和印刷等用途，而字符是字形所代表的抽象含义。
+* font。字型，指某套具有同样样式、尺寸的字形
+* character 字符。 numeric code representing an abstract symbol according to some defined character encoding rule. 根据某种预先定义的对应规则，通过数字来表示抽象的、具有特定含义的符号。在计算机科学中，字符是文本的基本单位，每个字符在计算机内部都是用数字来表示，字符与数字之间的对应关系被称为字符编码（Character Encoding）。字符集（Character Set）是指字符的集合，在同一个字符集中不同的字符对应不同的数字。
+
+码点（Code Point）：有些地方翻译为码值或内码。是指在某个字符集中，根据某种编码规则将字符编码后得到的值。比如在ASCII字符集中，字母A经过ASCII编码得到的值是65，那么65就是字符A在ASCII字符集中的码点。
 
 英文的“Typeface”实际就是指“Font Family”(字体家族)，例如：“HanaMinB”；而“Font”则是“Typeface”的子集，也就是某个“Subfamily”（风格或字重）的单一“Font”
 
