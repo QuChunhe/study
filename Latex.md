@@ -100,3 +100,5 @@ Hyphens are used for compound words like ‘daughter-in-law’ and ‘X-rated’
 
 
 C:\Program Files\MiKTeX\miktex\bin\x64\
+
+C:\Users\QuChunhe\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
