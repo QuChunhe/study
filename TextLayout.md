@@ -61,6 +61,12 @@ escape character 逃逸字符
 >> LaTeX is usually pronounced /ˈlɑːtɛk/ or /ˈleɪtɛk/ in English (that is, not with the /ks/ pronunciation English speakers normally associate with X, but with a /k/). The characters T, E, X in the name come from capital Greek letters tau, epsilon, and chi, as the name of TeX derives from the Greek: τέχνη (skill, art, technique); for this reason, TeX's creator Donald Knuth promotes a pronunciation of /ˈtɛx/ (tekh) (that is, with a voiceless velar fricative as in Modern Greek, similar to the last sound of the German word "Bach", the Spanish "j" sound, or as ch in loch). Lamport, on the other hand, has said he does not favor or discourage any pronunciation for LaTeX.
 
 
+点单位是一种度量单位，通常用于设计和字体大小设置。
+
+我们知道 1 英寸 = 96 像素，1 英寸 = 72 点，所以 96 像素 = 72 点！由此，我们有这个等式：
+
+1 点 = 0.75 * 像素
+
 [字形的度量](https://zhuanlan.zhihu.com/p/364605349)
 
 [字体基础知识](https://www.jianshu.com/p/b788f7b188f8)
@@ -242,6 +248,7 @@ device space:设备空间
 * 72-pixel-per-inch display
 * 600-dot-inch printer
 
+点单位是一种度量单位，通常用于设计和字体大小设置。一张图片的打印出来的实际尺寸是由电子图片的像素和分辨率共同决定的，像素（Pixel）是指构成图片的小色点，分辨率（单位 DPI）是指每英寸（Inch）上的像素数量，可以看做是这些小色点的分布密度。像素相同时，分辨率越高则像素密度越大，实际打印尺寸越小，图像也越清晰。
 
 user space: 独立于设备的坐标系统，称为用户空间
 

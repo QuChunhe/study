@@ -102,3 +102,25 @@ Hyphens are used for compound words like ‘daughter-in-law’ and ‘X-rated’
 C:\Program Files\MiKTeX\miktex\bin\x64\
 
 C:\Users\QuChunhe\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
+
+
+(Measure-Command {xelatex -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+(Measure-Command {xelatex -initialize -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+
+(Measure-Command {latexmk -xelatex -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+(Measure-Command {xelatex -initialize -interaction=batchmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+(Measure-Command { etex -initialize -jobname="hello" "&xelatex" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+(Measure-Command { etex -initialize -jobname="hello" "&pdflatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+(Measure-Command { etex -initialize -jobname="hello" "&xelatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
