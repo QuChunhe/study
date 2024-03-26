@@ -124,3 +124,59 @@ C:\Users\QuChunhe\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
 
 
 (Measure-Command { etex -initialize -jobname="hello" "&xelatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+fc-cache -fv
+
+(Measure-Command {xelatex -interaction=batchmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+(Measure-Command {xelatex -interaction=batchmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+xetex -initialize  "&xelatex" mylatexformat.ltx
+
+(Measure-Command {xetex -initialize   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula.tex" }).ToString()
+
+xetex -initialize   -jobname="hello"  "&pdflatex" "mylatexformat.ltx" "allformula2.tex"
+
+pdflatex -shell-escape "&hello" test1.tex
+
+
+time xetex -initialize   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "test1.tex"
+
+ xelatex -shell-escape "&hello" test1.tex
+
+
+time xetex -ini   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula2.tex"
+
+ https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
+
+
+ time xetex -ini  -jobname="hello" -interaction=batchmode "&xelatex" mylatexformat.ltx allformula.tex
+
+ time xelatex -interaction=batchmode -shell-escape  "&hello" allformula.tex
+
+
+ https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
+
+ \RequirePackage{etoolbox}
+\AtEndPreamble{
+    \usepackage{fontspec}
+    \setmainfont[Ligatures=TeX]{STIXGeneral}
+}
+
+\usepackage{fontspec,unicode-math}
+\endofdump
+
+
+0.59 0.87
+
+1.37 
+
+(Measure-Command {xetex -ini  -jobname="hello" -interaction=batchmode "&xelatex" mylatexformat.ltx allformula.tex }).ToString()
+
+(Measure-Command {xelatex -interaction=batchmode -shell-escape  "&hello" allformula2.tex}).ToString()
+
+1.49 2.51
+
+2.97
