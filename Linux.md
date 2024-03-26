@@ -1,11 +1,15 @@
  Secure Shell (SSH) 
 
 
- ```shell
+```shell
 autoreconf -i
 ./configure
 make
- ```
+
+
+killall snap-store
+sudo snap refresh snap-store
+```
 
 
  Let's Encrypt

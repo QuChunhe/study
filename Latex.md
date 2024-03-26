@@ -156,6 +156,9 @@ time xetex -ini   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula2.
 
  time xelatex -interaction=batchmode -shell-escape  "&hello" allformula.tex
 
+ time xelatex -interaction=batchmode  allformula.tex
+
+
 
  https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
 
