@@ -6,9 +6,6 @@ autoreconf -i
 ./configure
 make
 
-
-killall snap-store
-sudo snap refresh snap-store
 ```
 
 

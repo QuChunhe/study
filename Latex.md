@@ -152,11 +152,7 @@ time xetex -ini   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula2.
  https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
 
 
- time xetex -ini  -jobname="hello" -interaction=batchmode "&xelatex" mylatexformat.ltx allformula.tex
 
- time xelatex -interaction=batchmode -shell-escape  "&hello" allformula.tex
-
- time xelatex -interaction=batchmode  allformula.tex
 
 
 
@@ -180,6 +176,36 @@ time xetex -ini   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula2.
 
 (Measure-Command {xelatex -interaction=batchmode -shell-escape  "&hello" allformula2.tex}).ToString()
 
-1.49 2.51
 
-2.97
+ time xetex -ini  -jobname="hello" -interaction=nonstopmode "&xelatex" mylatexformat.ltx allformula.tex
+
+ time xelatex -interaction=nonstopmode -shell-escape  "&hello" allformula.tex
+
+ time xelatex -interaction=nonstopmode  allformula.tex
+
+\newcommand{\simfont}{\fontspec{Dialekt Uni}}
+kpathsea:make_tex: Invalid fontname `Dialekt Uni', contains ' '
+
+\csname endofdump\endcsname
+
+\RequirePackage[OT1]{fontenc}
+
+
+https://github.com/kpym/latex-fast-compile
+
+xelatex -ini  \&xelatex allformula.tex \dump
+
+Unknown CJK family `\CJKsfdefault' is being ignored.
+
+
+\font\l_fontspec_font=SimSun/OT
+! Can't \dump a format with native fonts or font-mappings.
+<*> &xelatex mylatexformat.ltx header.tex
+
+\font\l_fontspec_font=Euclid
+! Can't \dump a format with native fonts or font-mappings.
+<*> &xelatex mylatexformat.ltx header.tex
+
+\font\l_fontspec_font=Euclid/OT
+! Can't \dump a format with native fonts or font-mappings.
+<*> &xelatex mylatexformat.ltx header.tex
