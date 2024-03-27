@@ -209,3 +209,6 @@ Unknown CJK family `\CJKsfdefault' is being ignored.
 \font\l_fontspec_font=Euclid/OT
 ! Can't \dump a format with native fonts or font-mappings.
 <*> &xelatex mylatexformat.ltx header.tex
+
+
+xetex -initialize -jobname="hello" -interaction=nonstopmode  "&xelatex" mylatexformat.ltx """allformula.tex"""
