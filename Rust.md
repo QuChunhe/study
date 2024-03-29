@@ -1,0 +1,1 @@
+[快速配置 Rust 开发环](https://www.rust-lang.org/zh-CN/learn/get-started)

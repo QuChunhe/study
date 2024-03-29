@@ -2,6 +2,9 @@ OFD 全称叫做 Open Fixed-layout Document
 
 https://gitee.com/gblfy/ofd-pdf/tree/master
 
+https://github.com/typst/typst
+
+https://github.com/let-def/texpresso
 
 https://sspai.com/post/61716
 

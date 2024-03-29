@@ -19,6 +19,14 @@ CTEX 宏集 面向中文排版的通用 LATEX 排版框架, 中文排版首选!
 * 中文排版建议: XeLATEX + CTEX 宏集 宏
 
 
+[Linux-下TeXLive-2016的中文字体](https://www.jianshu.com/p/9f0ea66d7234)
+
+[LaTeX And TrueType Font](https://xpt.sourceforge.net/techdocs/language/latex/latex33-LaTeXAndTrueTypeFont/)
+
+[latex-fonts](http://comdyn.hy.tsinghua.edu.cn/from-web/latex/375-latex-fonts)
+
+
+https://blog.yfei.page/en/2019/05/how-to-install-fonts-in-texlive/
 
 https://www.ctan.org/pkg/newtx
 
@@ -31,6 +39,13 @@ https://www.tug.org/mactex/
 
 http://tug.ctan.org/info/visualtikz/VisualTikZ.pdf
 
+```
+\the<font>
+where
+  <font> −→ \font | <fontdef token> | <family member>
+  <family member> −→ <font range><4-bit number>
+  <font range> −→ \textfont | \scriptfont | \scriptscriptfont
+```
 
 ```
 /System/Library/Fonts
@@ -55,6 +70,11 @@ vim ~/Library/Application\ Support/MiKTeX/texmfs/config/fontconfig/config/localf
 
 [MikTex+TexStudio配置论文写作环境](https://zhuanlan.zhihu.com/p/42844087)
 
+
+
+Computer Modern fonts
+
+sudo apt-get install cm-super
 
 
 Separation of form and content
@@ -104,73 +124,28 @@ C:\Program Files\MiKTeX\miktex\bin\x64\
 C:\Users\QuChunhe\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
 
 
-(Measure-Command {xelatex -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
 
-
-(Measure-Command {xelatex -initialize -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-
-(Measure-Command {latexmk -xelatex -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-(Measure-Command {xelatex -initialize -interaction=batchmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-(Measure-Command { etex -initialize -jobname="hello" "&xelatex" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-(Measure-Command { etex -initialize -jobname="hello" "&pdflatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-(Measure-Command { etex -initialize -jobname="hello" "&xelatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-fc-cache -fv
-
-(Measure-Command {xelatex -interaction=batchmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-(Measure-Command {xelatex -interaction=batchmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-xetex -initialize  "&xelatex" mylatexformat.ltx
-
-(Measure-Command {xetex -initialize   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula.tex" }).ToString()
-
-xetex -initialize   -jobname="hello"  "&pdflatex" "mylatexformat.ltx" "allformula2.tex"
-
-pdflatex -shell-escape "&hello" test1.tex
-
-
-time xetex -initialize   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "test1.tex"
-
- xelatex -shell-escape "&hello" test1.tex
-
-
-time xetex -ini   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula2.tex"
-
- https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
+https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
 
 
 
-
-
-
- https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
-
- \RequirePackage{etoolbox}
+```
+\RequirePackage{etoolbox}
 \AtEndPreamble{
     \usepackage{fontspec}
     \setmainfont[Ligatures=TeX]{STIXGeneral}
 }
+```
 
+```
 \usepackage{fontspec,unicode-math}
 \endofdump
+```
 
-
-0.59 0.87
-
-1.37 
+```
+\usepackage{fontspec,unicode-math}
+\csname endofdump\endcsname
+```
 
 (Measure-Command {xetex -ini  -jobname="hello" -interaction=batchmode "&xelatex" mylatexformat.ltx allformula.tex }).ToString()
 
@@ -183,32 +158,23 @@ time xetex -ini   -jobname="hello"  "&xelatex" "mylatexformat.ltx" "allformula2.
 
  time xelatex -interaction=nonstopmode  allformula.tex
 
-\newcommand{\simfont}{\fontspec{Dialekt Uni}}
-kpathsea:make_tex: Invalid fontname `Dialekt Uni', contains ' '
-
-\csname endofdump\endcsname
-
-\RequirePackage[OT1]{fontenc}
 
 
 https://github.com/kpym/latex-fast-compile
 
 xelatex -ini  \&xelatex allformula.tex \dump
 
-Unknown CJK family `\CJKsfdefault' is being ignored.
+使用系统字体：尽可能使用LaTeX发行版中已包含的字体，这样就不需要额外加载字体文件。例如，使用Computer Modern字体（LaTeX默认字体）通常比使用外部字体更快。
+
+使用字体缓存：某些LaTeX发行版（如TeX Live和MikTeX）提供了字体缓存功能。这可以加速字体的加载过程。确保你的LaTeX发行版启用了字体缓存，并定期更新缓存。
 
 
-\font\l_fontspec_font=SimSun/OT
-! Can't \dump a format with native fonts or font-mappings.
-<*> &xelatex mylatexformat.ltx header.tex
+优化LaTeX编辑器：使用支持增量编译或按需编译的LaTeX编辑器，如TeXstudio、TeXmaker或VSCode的LaTeX插件。这些编辑器通常只重新编译文档中已更改的部分，而不是整个文档，从而加快编译速度。
 
-\font\l_fontspec_font=Euclid
-! Can't \dump a format with native fonts or font-mappings.
-<*> &xelatex mylatexformat.ltx header.tex
+132公式
+2.3s
+2.1s
 
-\font\l_fontspec_font=Euclid/OT
-! Can't \dump a format with native fonts or font-mappings.
-<*> &xelatex mylatexformat.ltx header.tex
+0.67
 
-
-xetex -initialize -jobname="hello" -interaction=nonstopmode  "&xelatex" mylatexformat.ltx """allformula.tex"""
+0.45
