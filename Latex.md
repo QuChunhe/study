@@ -124,3 +124,6 @@ C:\Users\QuChunhe\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
 
 
 (Measure-Command { etex -initialize -jobname="hello" "&xelatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+
+(Measure-Command {xelatex  D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()

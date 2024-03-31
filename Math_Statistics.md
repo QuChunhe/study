@@ -37,7 +37,7 @@ Data Analysis: mining information from data (about parameters)
 
 Decision Making: drawing conlusions & answering questions 
 
-
+[无数人误解的P值：统计上显著不代表一定正确](https://www.huxiu.com/article/2519870.html)
 
 
 矩母函数　　特征函数
