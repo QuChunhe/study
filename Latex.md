@@ -19,6 +19,9 @@ CTEX 宏集 面向中文排版的通用 LATEX 排版框架, 中文排版首选!
 * 中文排版建议: XeLATEX + CTEX 宏集 宏
 
 
+Flexible Typesetting (Tim Brown) (Z-Library).
+
+
 [Linux-下TeXLive-2016的中文字体](https://www.jianshu.com/p/9f0ea66d7234)
 
 [LaTeX And TrueType Font](https://xpt.sourceforge.net/techdocs/language/latex/latex33-LaTeXAndTrueTypeFont/)

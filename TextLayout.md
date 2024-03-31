@@ -67,6 +67,14 @@ escape character 逃逸字符
 
 1 点 = 0.75 * 像素
 
+
+incremental parsing
+
+incremental layouting
+
+a comprehensive caching scheme that aims to retain and reuse results at every layer of a layout tree is proposed
+
+
 [字形的度量](https://zhuanlan.zhihu.com/p/364605349)
 
 [字体基础知识](https://www.jianshu.com/p/b788f7b188f8)
