@@ -117,3 +117,7 @@ Headroom is available usable resources. 余量可剩余可用的资源。
 Utilization
 * Utilization is the proportion of busy time
 * Always defined over a time interval
+
+# 时间
+
+https://www.huxiu.com/article/2744458.html

@@ -19,6 +19,14 @@ CTEX 宏集 面向中文排版的通用 LATEX 排版框架, 中文排版首选!
 * 中文排版建议: XeLATEX + CTEX 宏集 宏
 
 
+[Linux-下TeXLive-2016的中文字体](https://www.jianshu.com/p/9f0ea66d7234)
+
+[LaTeX And TrueType Font](https://xpt.sourceforge.net/techdocs/language/latex/latex33-LaTeXAndTrueTypeFont/)
+
+[latex-fonts](http://comdyn.hy.tsinghua.edu.cn/from-web/latex/375-latex-fonts)
+
+
+https://blog.yfei.page/en/2019/05/how-to-install-fonts-in-texlive/
 
 https://www.ctan.org/pkg/newtx
 
@@ -31,6 +39,13 @@ https://www.tug.org/mactex/
 
 http://tug.ctan.org/info/visualtikz/VisualTikZ.pdf
 
+```
+\the<font>
+where
+  <font> −→ \font | <fontdef token> | <family member>
+  <family member> −→ <font range><4-bit number>
+  <font range> −→ \textfont | \scriptfont | \scriptscriptfont
+```
 
 ```
 /System/Library/Fonts
@@ -55,6 +70,11 @@ vim ~/Library/Application\ Support/MiKTeX/texmfs/config/fontconfig/config/localf
 
 [MikTex+TexStudio配置论文写作环境](https://zhuanlan.zhihu.com/p/42844087)
 
+
+
+Computer Modern fonts
+
+sudo apt-get install cm-super
 
 
 Separation of form and content
@@ -104,15 +124,30 @@ C:\Program Files\MiKTeX\miktex\bin\x64\
 C:\Users\QuChunhe\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
 
 
-(Measure-Command {xelatex -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
 
-
-(Measure-Command {xelatex -initialize -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
 
 
 
-(Measure-Command {latexmk -xelatex -interaction=nonstopmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+```
+\RequirePackage{etoolbox}
+\AtEndPreamble{
+    \usepackage{fontspec}
+    \setmainfont[Ligatures=TeX]{STIXGeneral}
+}
+```
 
+```
+\usepackage{fontspec,unicode-math}
+\endofdump
+```
+
+```
+\usepackage{fontspec,unicode-math}
+\csname endofdump\endcsname
+```
+
+(Measure-Command {xetex -ini  -jobname="hello" -interaction=batchmode "&xelatex" mylatexformat.ltx allformula.tex }).ToString()
 
 (Measure-Command {xelatex -initialize -interaction=batchmode D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
 
@@ -124,6 +159,3 @@ C:\Users\QuChunhe\AppData\Local\Programs\MiKTeX\miktex\bin\x64\
 
 
 (Measure-Command { etex -initialize -jobname="hello" "&xelatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
-
-
-(Measure-Command {xelatex  D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()

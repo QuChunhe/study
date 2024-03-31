@@ -122,6 +122,10 @@ conflicts. Other people prefer to resolve merge conflicts manually, using Git te
 a text editor. GitLab users have another option: you can use GitLab’s built-in graphical merge conflict 
 resolution tool.
 
+
+```
+git submodule update --init
+```
 # Maven
 
 ```
