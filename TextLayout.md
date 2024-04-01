@@ -1,22 +1,5 @@
 
-Type 0 fonts : composite fonts, 其他类型被称为simple fonts。
-
-pdf支持两类字体相关的对象，分别成为CIDFonts和CMaps。
-
-1. Fonts & Encodings by Yannis Haralambous, 1039页。这本书涵盖的是编码和字体技术，对于前者，其实还是漏了几种较为罕见的编码，但无所谓了。对于字体技术的，文后涉及了大量工具的使用，包括写PostScript代码。但是值得说的一点是，这书要想完全消化是很难的事。
-
-2. CJKV Information Processing by Ken Lunde, 899页。这个书讲了大量汉字处理的技术细节，不过值得注意的是这本书有一些内容已经算是过时了。对于这些技术细节，在现有的一些软件里面实现的其实也不是很好，很多西方的程序员没有汉字的使用经验，所以这本书对于这些程序员来说，有价值，但是很低。
-
-3. PostScript Language Reference, third edition, 913页。PostScript这种语言呢，是制作字体的基础，所有的曲线都是要画出来的，所以这种语言是肯定要懂的。就一般的开发来讲，手写PostScript是很痛苦的，一般都是通过C/Python生成的。
-
-4. PDF Reference, sixth edition, 1310页。这个PDF呢，写过Quartz程序的，应该会了解，写界面就是在写PDF。PDF本身是作为PostScript的一个子集存在的，但是现如今的PDF和PostScript的关联度就不是太大了。PDF技术，涉及到的是字体的拆分、解析。而排版，则需要控制坐标。所以，如果觉得字体技术和排版技术足够的话，可以写一个PDF试试，这里面有足够的东西检验你的技能。
-
-5. The TeXbook by D. E. Knuth, 494页。这个是我们TeX圈子里面一定要看的一本书。但是这本书能够启发的，并不仅限于TeX。关注点应该在：排版模型，断行模型和切词模型。
-
-6. The METAFONT book，374页。和PostScript不同，METAFONT的编程语言是Algol系，所以在写东西的时候是比较舒服的。这本书面向的是做字体制作支持的人，因为设计师不懂编程是一个大概率事件。如果说METAFONT过时，它的shiping out模块是过时的，将这个模块换成PostScript输出模块，这可以说是个革命了。
-
-GB/T 15834—2011《标点符号用法》
-
+# Terms
 
 * typesetting/typeset 　排版
 * layout 布局/版式
@@ -30,6 +13,10 @@ GB/T 15834—2011《标点符号用法》
 * character 字符。 numeric code representing an abstract symbol according to some defined character encoding rule. 根据某种预先定义的对应规则，通过数字来表示抽象的、具有特定含义的符号。在计算机科学中，字符是文本的基本单位，每个字符在计算机内部都是用数字来表示，字符与数字之间的对应关系被称为字符编码（Character Encoding）。字符集（Character Set）是指字符的集合，在同一个字符集中不同的字符对应不同的数字。
 
 码点（Code Point）：有些地方翻译为码值或内码。是指在某个字符集中，根据某种编码规则将字符编码后得到的值。比如在ASCII字符集中，字母A经过ASCII编码得到的值是65，那么65就是字符A在ASCII字符集中的码点。
+
+Unicode引入了码点的概念。这个标准为每个字符分配一个码点，共计1114112个码点。针对于Unicode最流行的编码是UTF-8，其将每个码点编码为一到四个字节。
+
+伴随着Unicode，OpenType字体被引入。针对于选出的Unicode码点，一个OpenType字体包含字形
 
 英文的“Typeface”实际就是指“Font Family”(字体家族)，例如：“HanaMinB”；而“Font”则是“Typeface”的子集，也就是某个“Subfamily”（风格或字重）的单一“Font”
 
@@ -59,6 +46,9 @@ escape character 逃逸字符
 * control symbol
 
 >> LaTeX is usually pronounced /ˈlɑːtɛk/ or /ˈleɪtɛk/ in English (that is, not with the /ks/ pronunciation English speakers normally associate with X, but with a /k/). The characters T, E, X in the name come from capital Greek letters tau, epsilon, and chi, as the name of TeX derives from the Greek: τέχνη (skill, art, technique); for this reason, TeX's creator Donald Knuth promotes a pronunciation of /ˈtɛx/ (tekh) (that is, with a voiceless velar fricative as in Modern Greek, similar to the last sound of the German word "Bach", the Spanish "j" sound, or as ch in loch). Lamport, on the other hand, has said he does not favor or discourage any pronunciation for LaTeX.
+
+
+
 
 
 点单位是一种度量单位，通常用于设计和字体大小设置。
@@ -191,6 +181,29 @@ line gap（
 
 
 Raster Image即光栅图像，也叫位图、点阵图、像素图。raster display则是通过二维像素数组展示图像。像素即pixel，它是“picture element”的缩写。举个例子就是平常的电视，他们含有二维数组的小像素点，这些像素点可以独立地设置不同颜色以创造任何图像。很多打印机，比如激光打印机、喷墨打印机等也是光栅设备（raster devices）。
+
+
+
+Type 0 fonts : composite fonts, 其他类型被称为simple fonts。
+
+pdf支持两类字体相关的对象，分别成为CIDFonts和CMaps。
+
+# Books
+
+
+1. Fonts & Encodings by Yannis Haralambous, 1039页。这本书涵盖的是编码和字体技术，对于前者，其实还是漏了几种较为罕见的编码，但无所谓了。对于字体技术的，文后涉及了大量工具的使用，包括写PostScript代码。但是值得说的一点是，这书要想完全消化是很难的事。
+
+2. CJKV Information Processing by Ken Lunde, 899页。这个书讲了大量汉字处理的技术细节，不过值得注意的是这本书有一些内容已经算是过时了。对于这些技术细节，在现有的一些软件里面实现的其实也不是很好，很多西方的程序员没有汉字的使用经验，所以这本书对于这些程序员来说，有价值，但是很低。
+
+3. PostScript Language Reference, third edition, 913页。PostScript这种语言呢，是制作字体的基础，所有的曲线都是要画出来的，所以这种语言是肯定要懂的。就一般的开发来讲，手写PostScript是很痛苦的，一般都是通过C/Python生成的。
+
+4. PDF Reference, sixth edition, 1310页。这个PDF呢，写过Quartz程序的，应该会了解，写界面就是在写PDF。PDF本身是作为PostScript的一个子集存在的，但是现如今的PDF和PostScript的关联度就不是太大了。PDF技术，涉及到的是字体的拆分、解析。而排版，则需要控制坐标。所以，如果觉得字体技术和排版技术足够的话，可以写一个PDF试试，这里面有足够的东西检验你的技能。
+
+5. The TeXbook by D. E. Knuth, 494页。这个是我们TeX圈子里面一定要看的一本书。但是这本书能够启发的，并不仅限于TeX。关注点应该在：排版模型，断行模型和切词模型。
+
+6. The METAFONT book，374页。和PostScript不同，METAFONT的编程语言是Algol系，所以在写东西的时候是比较舒服的。这本书面向的是做字体制作支持的人，因为设计师不懂编程是一个大概率事件。如果说METAFONT过时，它的shiping out模块是过时的，将这个模块换成PostScript输出模块，这可以说是个革命了。
+
+GB/T 15834—2011《标点符号用法》
 
 
 # PDF
@@ -425,3 +438,7 @@ private double computeWidth(PDFont font, int code) throws IOException {
     }
 
 ```
+
+
+typesetting
+* Arraging Content on a Page: a）文字 页->段->句->行；b）图表

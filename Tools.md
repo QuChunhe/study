@@ -124,6 +124,7 @@ resolution tool.
 
 
 ```
+git clone --recursive git://
 git submodule update --init
 ```
 # Maven
