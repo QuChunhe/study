@@ -9,6 +9,10 @@ cargo run
 
 cargo run
 cargo help command
+
+cargo run --quiet --bin true
+
+cargo test -- --test-threads=1
 ```
 
 https://zhuanlan.zhihu.com/p/218098514
