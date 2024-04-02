@@ -4,6 +4,8 @@
 
 https://akfpartners.com/growth-blog
 
+http://duanple.com/?p=1066
+
 
 [从事分布式系统、计算、hadoop 等方面工作需要哪些基础](https://www.zhihu.com/question/19868791/answer/88873783l)
 
