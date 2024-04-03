@@ -1,4 +1,6 @@
 
+https://adobe-type-tools.github.io/font-tech-notes/
+
 # Terms
 
 * typesetting/typeset 　排版
@@ -57,6 +59,20 @@ escape character 逃逸字符
 
 1 点 = 0.75 * 像素
 
+字号就是字体大小，通常在网页端使用px作为字号的单位。移动端兴起后，ios字体单位是pt，Android是sp。
+
+
+dpi和ppi这两个是密度单位，不是度量单位，而这两个恰恰是我们换算中重要的分母。简单理解一下：
+
+ppi (pixels per inch)：图像分辨率 （在图像中，每英寸所包含的像素数目）
+
+dpi (dots per inch)： 打印分辨率 （每英寸所能打印的点数，即打印精度）
+
+dpi主要应用于输出，重点是打印设备上。
+
+全角是指一个字符占用两个标准字符的位置。中文字符、全角的英文字符、国标GB2312-1980中的图形符号、特殊符号都是全角字符。半角是指一个字符占用一个标准字符的位置。
+
+
 
 incremental parsing
 
@@ -64,6 +80,9 @@ incremental layouting
 
 a comprehensive caching scheme that aims to retain and reuse results at every layer of a layout tree is proposed
 
+[CID vs GID](https://ccjktype.fonts.adobe.com/2012/04/cid-vs-gid.html)
+
+[Adobe CMap and CIDFont Files Specification](https://pdfa.org/wp-content/uploads/2020/07/5014.CIDFont_Spec.pdf)
 
 [字形的度量](https://zhuanlan.zhihu.com/p/364605349)
 
