@@ -26,7 +26,7 @@ https://blog.csdn.net/qq_42679415/article/details/122510120
 
 git pull origin master
 
-\bootstrap-vcpkg.bat
+.\bootstrap-vcpkg.bat
 
 .\vcpkg update
 .\vcpkg upgrade
@@ -36,3 +36,10 @@ git pull origin master
 
 vcpkg install fontconfig freetype "harfbuzz[graphite2]" icu --triplet=x64-windows
 ```
+
+
+https://zhuanlan.zhihu.com/p/649819420
+
+https://blog.csdn.net/m0_63230155/article/details/132216971
+
+https://packages.msys2.org/search
