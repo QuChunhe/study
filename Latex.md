@@ -74,7 +74,6 @@ vim ~/Library/Application\ Support/MiKTeX/texmfs/config/fontconfig/config/localf
 [MikTex+TexStudio配置论文写作环境](https://zhuanlan.zhihu.com/p/42844087)
 
 
-
 Computer Modern fonts
 
 sudo apt-get install cm-super

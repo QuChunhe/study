@@ -338,14 +338,11 @@ https://www.baeldung.com/java-images
 
 
 https://stackoverflow.com/questions/37862159/pdf-reading-via-pdfbox-in-java
-```
-12月 14, 2023 1:33:36 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
-警告: No Unicode mapping for hatwide (98) in font HETNVE+CMEX10
-12月 14, 2023 1:33:37 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
-警告: No Unicode mapping for vextendsingle (12) in font HETNVE+CMEX10
-12月 14, 2023 1:33:37 下午 org.apache.pdfbox.pdmodel.font.PDSimpleFont toUnicode
-警告: No Unicode mapping for hatwide (98) in font EPJCTB+CMEX7
-```
+
+
+衬线与非衬线（Serif vs. Sans-Serif）
+
+衬线，是指笔画末端的装饰线，是否有衬线是区分不同英文字体最显著的特征。有衬线的字体叫做衬线字体（Serif），而没有的则是非衬线（Sans-Serif）。（「Serif」意为「衬线」，「Sans」在法文中意为「没有」）
 
 Current Transformation Matrix
 
