@@ -21,6 +21,14 @@ CTEX 宏集 面向中文排版的通用 LATEX 排版框架, 中文排版首选!
 
 Flexible Typesetting (Tim Brown) (Z-Library).
 
+LaTeX Web Companion, The: Integrating TeX, HTML, and XML 
+
+看看TeX的几个基础算法：
+1. Donald E. Knuth, Michael F. Plass. Breaking Paragraphs into Lines. 1981
+2. Franklin Mark Liang. Word Hy-phen-a-tion by Com-put-er. 1983
+3. Michael F. Plass. Optimal Pagination Techniques for Automatic Typesetting Systems. 1981
+
+
 
 [Linux-下TeXLive-2016的中文字体](https://www.jianshu.com/p/9f0ea66d7234)
 
