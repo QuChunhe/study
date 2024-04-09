@@ -30,3 +30,7 @@ xset -q
 xset s 600
 
 ```
+
+```shell
+sudo apt install build-essential cmake software-properties-common g++ gcc
+```

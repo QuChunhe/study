@@ -89,6 +89,9 @@ a comprehensive caching scheme that aims to retain and reuse results at every la
 [字体基础知识](https://www.jianshu.com/p/b788f7b188f8)
 
 [字面到底是什么？曝光字体设计中那些鲜为人知的细节！](https://zhuanlan.zhihu.com/p/28959063)
+
+[Different Font File Types Explained (OTF, TTF, WOFF)](https://design.tutsplus.com/articles/different-font-file-types-explained-ott-ttf-woff--cms-39047)
+
 字体
 
 字号
@@ -124,6 +127,11 @@ a comprehensive caching scheme that aims to retain and reuse results at every la
 * W9: Ultra bold. 特粗　(highest ratio of glyph stem width to font height)
 
 常见到了这样的字重等级：Thin、Light、Regular、Book、Bold、Black、Heavy，通常的简写就用各自英文的首字母。
+
+
+These font format types are essential for designers to know: 
+* Bitmapped or raster fonts 位图字体: each character is made out of pixels. While these fonts are faster for computers to display, they are not scalable. This means that a separate font is needed for each size and style. 
+* Vector fonts or scalable fonts 矢量字体: each character is made out of an outline, and this allows for the font to be scalable. This means that a single font file can be used for any point size. It only needs additional code to render the font to a desired size. 
 
 
 

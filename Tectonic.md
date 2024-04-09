@@ -11,6 +11,10 @@ windows
 ```
 set TECTONIC_DEP_BACKEND vcpkg
 set RUSTFLAGS "-Ctarget-feature=+crt-static"
+
+
+sudo apt-get install libfontconfig1-dev libgraphite2-dev libharfbuzz-dev libicu-dev libssl-dev zlib1g-dev
+
 cargo build --release
 ```
 
