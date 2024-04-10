@@ -30,3 +30,8 @@ Rust libraries are called crates, and they are expected to use semantic version 
 
 
 clap (command-line argument parser) crate
+
+
+shadowed and overwritten
+
+In Rust jargon, such an abort operation is named panic, and the action of aborting the current thread is named panicking.
