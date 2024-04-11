@@ -26,6 +26,8 @@ cargo test -- --test-threads=1
 https://zhuanlan.zhihu.com/p/218098514
 
 
+https://rustwiki.org/zh-CN/rust-by-example/attribute/crate.html
+
 Rust libraries are called crates, and they are expected to use semantic version numbers in the form major.minor.patch
 
 
