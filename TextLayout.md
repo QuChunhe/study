@@ -1,5 +1,8 @@
 
-https://adobe-type-tools.github.io/font-tech-notes/
+https://adobe-type-tools.github.io/font-tech-notes
+
+
+
 
 # Terms
 
