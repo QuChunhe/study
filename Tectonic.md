@@ -59,3 +59,19 @@ https://zhuanlan.zhihu.com/p/649819420
 https://blog.csdn.net/m0_63230155/article/details/132216971
 
 https://packages.msys2.org/search
+
+
+```
+\input xelatex.ini
+\documentclass[10pt]{article}
+
+....
+
+%\@dump
+\dump
+\begin{document} 
+```
+
+```shell
+time ~/Bin/tectonic -r 0 ./allformula2.tex
+```
