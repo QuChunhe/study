@@ -34,3 +34,8 @@ xset s 600
 ```shell
 sudo apt install build-essential cmake software-properties-common g++ gcc
 ```
+
+
+```shell
+sudo apt install linux-tools-common linux-tools-generic 
+```
