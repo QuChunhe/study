@@ -65,7 +65,13 @@ https://packages.msys2.org/search
 \input xelatex.ini
 \documentclass[10pt]{article}
 
-....
+```
+
+```shell
+tectonic allformula2.tex --outfmt fmt
+```
+
+```
 
 %\@dump
 \dump
@@ -73,5 +79,15 @@ https://packages.msys2.org/search
 ```
 
 ```shell
-time ~/Bin/tectonic -r 0 ./allformula2.tex
+time tectonic -r 0 ./allformula2.tex
+
+/usr/share/fonts/myfonts/
 ```
+
+
+```
+sudo fmtutil-sys --all
+```
+
+
+https://docs.rs/tectonic_xetex_format/latest/tectonic_xetex_format/
