@@ -91,3 +91,6 @@ sudo fmtutil-sys --all
 
 
 https://docs.rs/tectonic_xetex_format/latest/tectonic_xetex_format/
+
+
+https://docs.rs/releases/search?query=tectonic

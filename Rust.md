@@ -50,3 +50,5 @@ cargo install flamegraph
 
 cargo flamegraph --bin tectonic -- texfile.tex
 ```
+
+[The Little Book of Rust Macros](https://danielkeep.github.io/tlborm/book/README.html)
