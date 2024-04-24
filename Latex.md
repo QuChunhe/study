@@ -169,3 +169,5 @@ https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
 
 
 (Measure-Command { etex -initialize -jobname="hello" "&xelatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
+
+[不一样的 LaTeX 教程：使用 listings 宏包美化代码](https://zhuanlan.zhihu.com/p/464141424)

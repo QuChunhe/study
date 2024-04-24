@@ -52,3 +52,10 @@ cargo flamegraph --bin tectonic -- texfile.tex
 ```
 
 [The Little Book of Rust Macros](https://danielkeep.github.io/tlborm/book/README.html)
+
+[Using Rust's foreign function interface](https://alastairreid.github.io/using-ffi/)
+
+闭包
+* 定义
+* 声明
+* 调用
