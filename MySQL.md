@@ -1427,7 +1427,7 @@ https://dev.mysql.com/doc/refman/8.0/en/grant.html#:~:text=Privileges%20Supporte
 
   ```
 ALTER USER 'metabase'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;
-alter user 'metabase'@'%' identified with mysql_native_password by 'quchunhe';
+alter user 'metabase'@'%' identified with caching_sha2_password by 'quchunhe';
 
   SET GLOBAL validate_password.policy=LOW;
 -- 创建用户
@@ -1894,3 +1894,48 @@ service mysql start
 show variables like 'innodb_page_size';
 ```
 
+[MySQL Performance Parameters](https://releem.com/docs/mysql-performance-parameters)
+
+
+```
+#清除缓冲池
+RESET QUERY CACHE;
+```
+
+
+```
+# MyISAM
+key_buffer_size = 32M
+read_buffer_size = 8M
+read_rnd_buffer_size = 4M
+bulk_insert_buffer_size = 128M
+myisam_sort_buffer_size = 128M
+myisam_max_sort_file_size = 5G
+myisam_repair_threads = 1
+
+net_buffer_length 调大，但是小于 max_allowed_packet
+
+```
+# MyISAM
+bulk_insert_buffer_size = 128M
+key_buffer_size = 32M
+delay_key_write=ALL
+
+```
+read_buffer_size = 8M
+read_rnd_buffer_size = 4M
+
+myisam_sort_buffer_size = 128M
+myisam_max_sort_file_size = 5G
+myisam_repair_threads = 1
+
+net_buffer_length 调大，但是小于 max_allowed_packet
+```
+
+```
+flush = OFF
+
+
+innodb_flush_log_at_timeout=10
+innodb_flush_log_at_trx_commit=2
+```

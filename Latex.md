@@ -171,3 +171,32 @@ https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
 (Measure-Command { etex -initialize -jobname="hello" "&xelatex" "mylatexformat.ltx" D:\xml\zdhxb\accepted\AAS-CN-2023-0585\current\allformula.tex }).ToString()
 
 [不一样的 LaTeX 教程：使用 listings 宏包美化代码](https://zhuanlan.zhihu.com/p/464141424)
+
+
+
+
+TeX Live:
+* WWW: https://www.tug.org/texlive/
+* SVN: svn://tug.org/texlive/
+* SVN web interface (ViewVC): https://tug.org/svn/texlive/
+* Mirror: https://github.com/TeX-Live/texlive-source
+
+XeTeX:
+* WWW: https://xetex.sourceforge.net/
+* Git: https://git.code.sf.net/p/xetex/code
+* Git web interface: https://sourceforge.net/p/xetex/code
+
+LuaTeX
+* WWW: http://www.luatex.org
+* Main Git repo: https://gitlab.lisn.upsaclay.fr/texlive/luatex
+* Git mirror: https://github.com/TeX-Live/luatex
+
+MetaPost
+* WWW: https://www.tug.org/metapost.html
+* SVN: https://serveur-svn.lri.fr/svn/modhel/metapost (anonsvn / anonsvn)
+
+pdfTeX
+* WWW: https://www.tug.org/applications/pdftex/
+* SVN: svn://tug.org/pdftex
+* SVN web interface (ViewVC): https://tug.org/svn/pdftex/
+
