@@ -102,32 +102,6 @@ Ordinary Typing　普通打印
 Hyphens are used for compound words like ‘daughter-in-law’ and ‘X-rated’. En-dashes are used for number ranges like ‘pages 13–34’, and also in contexts like　‘exercise 1.2.6–52’. Em-dashes are used for punctuation in sentences—they are　what we often call simply dashes. And minus signs are used in formulas.
 
 
-总结为六个原则：对齐，聚拢，重复，对比，强调，留白。我是这样理解的：
-
-一、对齐原则
-
-　　相关内容必须对齐，次级标题必须缩进，方便读者视线快速移动，一眼看到最重要的信息。
-
-二、聚拢原则
-
-　　将内容分成几个区域，相关内容都聚在一个区域中。段间距应该大于段内的行距。
-
-三、留白原则
-
-　　千万不要把页面排得密密麻麻，要留出一定的空白，这本身就是对页面的分隔。这样既减少了页面的压迫感，又可以引导读者视线，突出重点内容。
-
-四、降噪原则
-
-　　颜色过多、字数过多、图形过繁，都是分散读者注意力的"噪音"。
-
-五、重复原则
-
-　　多页面排版时，注意各个页面设计上的一致性和连贯性。另外，在内容上，重要信息值得重复出现。
-
-六、对比原则
-
-　　加大不同元素的视觉差异。这样既增加了页面的活泼，又方便读者集中注意力阅读某一个子区域。
-
 
 C:\Program Files\MiKTeX\miktex\bin\x64\
 
@@ -173,7 +147,7 @@ https://tex.stackexchange.com/questions/49295/precompile-header-with-xelatex
 [不一样的 LaTeX 教程：使用 listings 宏包美化代码](https://zhuanlan.zhihu.com/p/464141424)
 
 
-
+# Latex学习
 
 TeX Live:
 * WWW: https://www.tug.org/texlive/
@@ -200,3 +174,72 @@ pdfTeX
 * SVN: svn://tug.org/pdftex
 * SVN web interface (ViewVC): https://tug.org/svn/pdftex/
 
+
+There are two types of packages; styles (.sty) and classes (.cls). 
+
+
+\newcommand 或者 \newenvironment 这样一两个特殊命令。
+使用的方式就是 \input{mydef.tex}；而如果保存成文件名 mydef.sty，就可以用 \usepackage{mydef} 使用了.
+
+一些专用于写宏包的命令，也就是 \ProvidesPackage、\NeedsTeXFormat 这些驼峰式命名的命令。这些命令在 clsguide 文档 [1] 中描述，用来提供宏包信息、设置宏包选项、控制代码使用、处理错误信息等等。而一个 LaTeX2e 的宏包的标准格式是怎么样的，标准的示例是什么样的，也可以在 [1] 中找到。
+
+
+https://blog.csdn.net/qq_39926919/article/details/85097925
+
+document class or a package
+
+If the commands could be used with any document class, then make them a package; and if not, then make them a class.
+
+L3 programming layer but also often called expl3. interface3
+
+category codes, tokens/tokenization and “expansion” of commands or macros
+
+[How TeX macros actually work: Part 1](https://www.overleaf.com/learn/latex/How_TeX_macros_actually_work%3A_Part_1)
+
+不要用\input加载文件
+* 不能被\listfiles
+* 加载多次
+
+book
+* LATEX:A Document Preparation System, 
+* The LATEX Companion 
+* LATEX 2ε for Authors
+
+[LaTeX3: Programming in LaTeX with Ease](https://www.alanshawn.com/latex3-tutorial/)
+
+
+[clsguide – Documentation of LaTeX class and package writing](https://ctan.org/pkg/clsguide)
+
+[The LaTeX3 Interfaces](https://mirrors.cqu.edu.cn/CTAN/macros/latex/contrib/l3kernel/interface3.pdf)
+
+
+expansion
+* text
+* primitive
+
+# 设计
+总结为六个原则：对齐，聚拢，重复，对比，强调，留白。我是这样理解的：
+
+一、对齐原则
+
+　　相关内容必须对齐，次级标题必须缩进，方便读者视线快速移动，一眼看到最重要的信息。
+
+二、聚拢原则
+
+　　将内容分成几个区域，相关内容都聚在一个区域中。段间距应该大于段内的行距。
+
+三、留白原则
+
+　　千万不要把页面排得密密麻麻，要留出一定的空白，这本身就是对页面的分隔。这样既减少了页面的压迫感，又可以引导读者视线，突出重点内容。
+
+四、降噪原则
+
+　　颜色过多、字数过多、图形过繁，都是分散读者注意力的"噪音"。
+
+五、重复原则
+
+　　多页面排版时，注意各个页面设计上的一致性和连贯性。另外，在内容上，重要信息值得重复出现。
+
+六、对比原则
+
+　　加大不同元素的视觉差异。这样既增加了页面的活泼，又方便读者集中注意力阅读某一个子区域。
