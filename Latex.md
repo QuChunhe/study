@@ -212,10 +212,32 @@ book
 
 [The LaTeX3 Interfaces](https://mirrors.cqu.edu.cn/CTAN/macros/latex/contrib/l3kernel/interface3.pdf)
 
+The two modes of TeX engines: INI mode and production mode
 
 expansion
 * text
 * primitive
+
+概念
+* character code
+* category code
+* TeX token
+
+“tokenization process”, “token lists” and related concepts such as “macro expansion” and “expandable commands”. 
+
+
+ primitives, command codes and command modifiers. 
+
+ command codes is split into two main sets:
+* non-expandable commands: have command codes less than or equal to 100;
+* expandable commands: have command codes greater than 100, up to a maximum value of 120. 
+
+all commands that TeX reads from your input, whether they are primitives or user-defined macros, are eventually converted into a numeric representation called a token. 
+
+[What is a "TeX token"?](https://www.overleaf.com/learn/latex/Articles/What_is_a_%22TeX_token%22%3F)
+
+[A New Series of Articles: TeX Tokens and Related Concepts—But Why (and How)?](https://www.overleaf.com/learn/latex/Articles/A_New_Series_of_Articles%3A_TeX_Tokens_and_Related_Concepts%E2%80%94But_Why_(and_How)%3F)
+
 
 # 设计
 总结为六个原则：对齐，聚拢，重复，对比，强调，留白。我是这样理解的：
