@@ -225,14 +225,38 @@ expansion
 
 “tokenization process”, “token lists” and related concepts such as “macro expansion” and “expandable commands”. 
 
-
- primitives, command codes and command modifiers. 
+三个概念
+* primitives： 引擎的内置命令
+* command codes ：内部处理机制，Tex用户不可访问
+* command modifiers. 
 
  command codes is split into two main sets:
 * non-expandable commands: have command codes less than or equal to 100;
 * expandable commands: have command codes greater than 100, up to a maximum value of 120. 
 
 all commands that TeX reads from your input, whether they are primitives or user-defined macros, are eventually converted into a numeric representation called a token. 
+
+
+Strictly speaking, the term control sequence has two sub-categories: control word and control symbol:
+
+
+string pool
+
+TeX’s internal “filing cabinet” is called the equivalents table and is the topic of the next section.
+
+
+The integer (calculated hash value) is referred to as the current control sequence, but TeX gives it the shorter name of curcs.
+
+TeX stores the value of the current token (most recently calculated) in a variable called curtok. 
+
+a character token is calculated from 256*catcode + (ASCII value) whereas a control sequence token is calculated from 4095 + curcs where curcs is the hash value of the control word
+
+
+TeX engines have three sources of input—two that you may know:
+* physical text files stored on disk;
+* text that a user types into the terminal (command line);
+but it also has a third way of reading/obtaining input: token lists!
+
 
 [What is a "TeX token"?](https://www.overleaf.com/learn/latex/Articles/What_is_a_%22TeX_token%22%3F)
 
