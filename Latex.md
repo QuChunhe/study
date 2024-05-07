@@ -289,3 +289,7 @@ but it also has a third way of reading/obtaining input: token lists!
 六、对比原则
 
 　　加大不同元素的视觉差异。这样既增加了页面的活泼，又方便读者集中注意力阅读某一个子区域。
+
+# package conflicts
+
+[Latex Package Conflicts: Detection And Resolution Strategies](https://latexum.com/latex-package-conflicts-detection-and-resolution-strategies/)

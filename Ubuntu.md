@@ -39,3 +39,11 @@ sudo apt install build-essential cmake software-properties-common g++ gcc
 ```shell
 sudo apt install linux-tools-common linux-tools-generic 
 ```
+
+
+```
+.\VBoxManage.exe modifymedium  --resize 81920 "D:\VirtualBox\Ubuntu22.04.4\Ubuntu22.04.4.vdi"
+
+apt install gparted
+gparted
+```
