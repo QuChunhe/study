@@ -293,3 +293,6 @@ but it also has a third way of reading/obtaining input: token lists!
 # package conflicts
 
 [Latex Package Conflicts: Detection And Resolution Strategies](https://latexum.com/latex-package-conflicts-detection-and-resolution-strategies/)
+
+
+\newcommand will flag an error if the macro already exists. providecommand will create your definition of the macro, provided that there was no previous definition; otherwise it will leave the original definition alone.
