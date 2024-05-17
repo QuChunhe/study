@@ -278,6 +278,16 @@ hash值
 * command code
 * command modifier:
 
+
+ TeX primitive command \def: we won’t use the, perhaps more familiar, LaTeX command \newcommand.
+
+
+macro parameters and macro arguments
+
+
+Macros as token lists
+
+
 [What is a "TeX token"?](https://www.overleaf.com/learn/latex/Articles/What_is_a_%22TeX_token%22%3F)
 
 [A New Series of Articles: TeX Tokens and Related Concepts—But Why (and How)?](https://www.overleaf.com/learn/latex/Articles/A_New_Series_of_Articles%3A_TeX_Tokens_and_Related_Concepts%E2%80%94But_Why_(and_How)%3F)
