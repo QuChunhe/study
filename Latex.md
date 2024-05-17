@@ -214,6 +214,8 @@ book
 
 The two modes of TeX engines: INI mode and production mode
 
+category codes, tokens/tokenization and “expansion” of commands or macros.
+
 expansion
 * text
 * primitive
@@ -221,7 +223,7 @@ expansion
 概念
 * character code
 * category code
-* TeX token
+* character token
 
 “tokenization process”, “token lists” and related concepts such as “macro expansion” and “expandable commands”. 
 
@@ -240,6 +242,8 @@ all commands that TeX reads from your input, whether they are primitives or user
 Strictly speaking, the term control sequence has two sub-categories: control word and control symbol:
 
 
+character token  && command token
+
 string pool
 
 TeX’s internal “filing cabinet” is called the equivalents table and is the topic of the next section.
@@ -257,6 +261,22 @@ TeX engines have three sources of input—two that you may know:
 * text that a user types into the terminal (command line);
 but it also has a third way of reading/obtaining input: token lists!
 
+
+two types of command:
+* multi-letter commands called control words: 
+* single-letter commands called control symbols:
+
+
+hash值
+ curcs (current control sequence)
+* curcmd: (current command)
+* curchr: (current character) 
+* curcs: (current control sequence) 
+* curtok: (current token) 
+
+区分功能差不多但名字不同的命令
+* command code
+* command modifier:
 
 [What is a "TeX token"?](https://www.overleaf.com/learn/latex/Articles/What_is_a_%22TeX_token%22%3F)
 
