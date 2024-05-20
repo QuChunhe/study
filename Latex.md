@@ -212,7 +212,7 @@ book
 
 [The LaTeX3 Interfaces](https://mirrors.cqu.edu.cn/CTAN/macros/latex/contrib/l3kernel/interface3.pdf)
 
-The two modes of TeX engines: INI mode and production mode
+The two modes of TeX engines: INI mode and production mode； 初始模式和生产模式
 
 category codes, tokens/tokenization and “expansion” of commands or macros.
 
@@ -259,7 +259,7 @@ a character token is calculated from 256*catcode + (ASCII value) whereas a contr
 TeX engines have three sources of input—two that you may know:
 * physical text files stored on disk;
 * text that a user types into the terminal (command line);
-but it also has a third way of reading/obtaining input: token lists!
+* but it also has a third way of reading/obtaining input: token lists!
 
 
 two types of command:
@@ -275,8 +275,10 @@ hash值
 * curtok: (current token) 
 
 区分功能差不多但名字不同的命令
-* command code
-* command modifier:
+* command code：the command codes vary from 0 to 120
+* command modifier: 两种类型
+   * Type 1：标识符
+   * Type 2：指针，内存位置。command codes between 111 and 114 with a command modifier that is a pointer into memory telling TeX where its replacement text (the macro definition) is stored. 
 
 
  TeX primitive command \def: we won’t use the, perhaps more familiar, LaTeX command \newcommand.
@@ -285,8 +287,12 @@ hash值
 macro parameters and macro arguments
 
 
-Macros as token lists
+Macros as token lists, token register 
 
+
+TeX’s internal “filing cabinet” is called the equivalents table.
+
+[](http://www.readytext.co.uk/?p=3590)
 
 [What is a "TeX token"?](https://www.overleaf.com/learn/latex/Articles/What_is_a_%22TeX_token%22%3F)
 

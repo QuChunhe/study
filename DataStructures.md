@@ -143,6 +143,11 @@ Module &: Bloom Filters
 
 [CMPSCI 711: More Advanced Algorithms](https://people.cs.umass.edu/~mcgregor/courses/CS711S12/index.html)
 
+#  
+
+Nearest neighbor search
+
+GEOHASH
 
 # common method
 
@@ -157,3 +162,4 @@ Backtracking can be defined as a general algorithmic technique that considers se
 
 
 ## Greedy Algorithm
+
