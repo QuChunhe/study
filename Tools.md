@@ -12,6 +12,16 @@
 
 # Git
 
+```
+feat:
+fix:
+docs:
+style:
+refactor:
+perf:
+test:
+chore
+```
 
 Git 中所有数据在存储前都计算校验和，然后以校验和来引用。
 
