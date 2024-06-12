@@ -5,6 +5,8 @@
 
 [国科大高级AI](https://www.bilibili.com/video/BV17y4y1U7wW/?spm_id_from=333.788.recommend_more_video.0)
 
+[Information Theory, Inference, and Learning Algorithms](http://www.inference.org.uk/itila/book.html)
+
 
 
 所罗门诺夫在1964年发表了所罗门诺夫归纳法（Solomonoff Induction）。今年是这项工作诞生60周年。本文旨在说明所罗门诺夫归纳法是大语言模型的理论基础，它可以解释GPT的核心机制next token prediction。本文也描述了苏联数学家柯尔莫哥罗夫和列文以及美国理论计算机科学家蔡廷等的独立贡献
