@@ -1,4 +1,11 @@
 
+Terms
+* Graphics processing units (GPUs) 
+* central processing unit (CPU)
+* Compute Uniﬁed Device Architecture (CUDA)
+* Message Passing Interface (MPI)
+* high-performance computing (HPC)
+
 
 CPU
 * 执行指令
@@ -29,7 +36,7 @@ Nvidia
 * GeForce：游戏和娱乐
 * Jetson：嵌入式
 
-CPU和GPU各自都有DRAM(Dynamic random access memory),并且通过PCIe(Peripheral component interconnect express bus)总线连接
+CPU和GPU各自都有DRAM(Dynamic random access memory),并且通过PCIe(Peripheral component interconnect express)总线连接
 
 CPU称为Host,GPU称为Device,两者通过PCIe总线连接
 * 驱动(driver)API
@@ -112,3 +119,11 @@ blockIdx.x:范围为0~gridDim.x
 
 threadIdx.x:范围为哦0~blockDim.x
 
+
+
+
+An additional advantage of the GPU is that its internal memory is about 10 times faster than that of a typical PC, which is extremely helpful for problems limited by memory bandwidth rather than CPU power.
+
+NVIDIA Software Development Kit (SDK)
+
+CUDA
