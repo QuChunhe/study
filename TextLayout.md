@@ -6,6 +6,8 @@ https://adobe-type-tools.github.io/font-tech-notes
 
 # Terms
 
+Bézier [bezje]
+
 * typesetting/typeset 　排版
 * layout 布局/版式
 * typography 字体排印

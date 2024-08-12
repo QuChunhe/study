@@ -8,6 +8,10 @@
 
 Rice, John A. (2007), Mathematical Statistics and Data Analysis
 
+数据分析
+* 先后关系
+* 相关关系
+* 因果关系
 
 aim of statistics: provide insignth by means of data.
 统计学的目标:通过数据提供洞察
