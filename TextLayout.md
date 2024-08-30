@@ -88,6 +88,14 @@ incremental layouting
 
 a comprehensive caching scheme that aims to retain and reuse results at every layer of a layout tree is proposed
 
+full justification： 两端对齐
+
+indent 缩进
+
+kerning
+
+ragged right 左对齐
+
 [CID vs GID](https://ccjktype.fonts.adobe.com/2012/04/cid-vs-gid.html)
 
 [Adobe CMap and CIDFont Files Specification](https://pdfa.org/wp-content/uploads/2020/07/5014.CIDFont_Spec.pdf)

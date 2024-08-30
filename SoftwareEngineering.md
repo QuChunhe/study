@@ -821,6 +821,14 @@ Domain-driven design distinguishes between three types of subdomains: core, gene
 
 
 
+统一建模语言（UML）
+
+模型驱动架构（Model Driven Architecture，MDA）
+* 概念
+* 术语
+* 流程
+
+
 瀑布模型（Waterfall Model） 是一个软件生命周期模型，开发过程是通过设计一系列阶段顺序展开的，从系统需求分析开始直到产品发布和维护，项目开发进程从一个阶段“流动”到下一个阶段，这也是瀑布模型名称的由来。
 
 1970年温斯顿·罗伊斯（Winston Royce）提出了著名的“瀑布模型”，直到80年代早期，它一直是唯一被广泛采用的软件开发模型。
