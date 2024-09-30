@@ -17,6 +17,8 @@ Completeness Compactness consistency
  一阶逻辑则引入了两个量词, 即universal quantifier(倒A)和existential quantifier(倒E), 并且加入了一阶谓词和individual variables和individual constants. 这些导致一阶逻辑可以量化individuals in the domain. 比如经典的三段论就可以被一阶逻辑表达
 
 
+[Mathematical Logic, Part I](https://math.berkeley.edu/~antonio/math125A/)
+
 [北京大学数理逻辑](https://www.math.pku.edu.cn/teachers/linzq/teaching/ml/list.html)
 
  a Henkin structure
