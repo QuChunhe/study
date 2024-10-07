@@ -8,6 +8,10 @@
 
 Rice, John A. (2007), Mathematical Statistics and Data Analysis
 
+
+[Probability and Statistics - The Science of Uncertainty, Second Edition](https://www.utstat.toronto.edu/mikevans/jeffrosenthal/?continueFlag=091c48747b5a77239df1ab4e742ada94)
+
+
 数据分析
 * 先后关系
 * 相关关系

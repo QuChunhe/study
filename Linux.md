@@ -20,6 +20,9 @@ make
 
 [Resource Management Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/resource_management_guide/index)
 
+
+[Linux and UNIX programming training and consulting by Michael Kerrisk](https://man7.org/training/index.html?continueFlag=091c48747b5a77239df1ab4e742ada94)
+
 需要关注的系统层面的信息可以划分位如下三类
 * 属性信息。依赖于硬件，为只读信息，不能更改。
 * 配置信息。除非手工更改，否则不会随着时间和应用而发生改变。
