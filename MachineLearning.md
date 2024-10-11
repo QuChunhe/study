@@ -5,7 +5,7 @@
 Mistral AI直接开源了自己最新的MoE（Mixture of Experts）大模型Mixtral 8x7B
 
 
-
+[MindSpore](https://gitee.com/mindspore/mindspore)
 
 T. Mitchell. Machine Learning. McGraw Hill, 1997.
 
