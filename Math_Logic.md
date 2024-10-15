@@ -217,6 +217,10 @@ rule modus ponens
 * Compactness(紧致性）： 有限次执行 --> 程序执行全正确
 
 
+* 完全行：一切有效语句都是可证的
+* 有效性：逻辑定理应当“在一切可能的世界是真的”
+* 紧致行：如果A的每一个有穷子集有模型，那么A有模型
+
 字母表 ： PS
 * 命题符
 * 连接符
@@ -314,3 +318,5 @@ all propositions in PROP
 
 
 形式系统P是完全的，即一切有效语句在P中是可证的。
+
+Hilbert Systems: The Hilbert proof systemsare based on a language with implication and contain a Modus Ponens rule as a rule of inference
