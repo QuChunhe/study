@@ -130,3 +130,36 @@ State 和 Status 的核心区别，就是它们的枚举值之间是否有依赖
 “state”通常指的是系统或程序在某一特定时刻的内部状态。这个状态包括了程序运行时的所有变量值、内存使用情况、文件状态等。它是一个更为宽泛且深入的概念，用于描述系统或程序在整体上或某个具体功能点上的当前状况。例如，在一个用户登录的系统中，“state”可能指的是用户当前是否已登录、用户的权限级别等。此外，“state”还常用于描述对象的状态，如一个对象可能处于“可用”或“不可用”的状态。
 
 而“status”则更侧重于描述某个操作、请求或事件的结果或状态。它通常是一个更为具体的、用于表示某个特定操作是否成功、失败或处于其他某种特定状态的标识。例如，在网络通信中，一个HTTP请求可能返回一个状态码（status code），如200表示成功，404表示未找到资源。在这个语境下，“status”提供了一个关于请求结果的明确信息。
+
+
+
+>> ! 叹号 exclamation mark/bang  /ˌekskləˈmeɪʃn mɑːk/
+>>  ? 问号 question mark
+>>  , 逗号 comma英 /ˈkɒmə/ 美 /ˈkɑːmə/ 
+        . 点号 dot/period/point
+        : 冒号 colon英 /ˈkəʊlən; ˈkəʊlɒn/
+        ; 分号 semicolon 英 /ˌsemiˈkəʊlən; ˌsemiˈkəʊlɒn/
+        ” 双引号 quotation marks/double quote 英 /kwəʊˈteɪʃn mɑːks/ 
+        ‘ 单引号/撇号 apostrophe/single quote 英 /əˈpɒstrəfi/
+        ` 重音号 backquote/grave accent美 /ɡreɪv ˈæksent/
+        * 星号 asterisk/star英 /ˈæstərɪsk/ 
+        + 加号 plus sign
+        - 减号/横线 hyphen/dash/minus sign/ 英 /ˈhaɪfn/
+        = 等号 equal sign
+        / 斜线 slash
+        \ 反斜线 backslash/escape英 /ɪˈskeɪp/
+        | 竖线 bar/pipe/vertical bar
+        _ 下划线 underline/underscore
+        $ 美元符号 dollar sign
+        @ at at sign
+        # 井号 crosshatch/sharp/hash
+        % 百分号 percent sign/mod英 /mɒd/ 
+        & and/和/兼 and/ampersand英 /ˈæmpəsænd/ 
+        ^ 折音号 circumflex/caret 英 /ˈsɜːkəmfleks/  英 /ˈkærət/
+        ~ 波浪号 tilde 英 /ˈtɪldə/ 
+        {} （左右）花括号/大括号 (left/right|open/close) braces英 /ˈbreɪsɪz/
+        [] （左右）方括号/中括号 (left/right|open/close) brackets 美 /ˈbrækɪts/ 
+        () （左右）圆括号/小括号 (left/right|open/close) parentheses英 /pəˈrenθəsiːz/
+        <> 尖括号 angle brackets
+        < 大于号 less than
+        > 小于号 greater than
