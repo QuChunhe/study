@@ -273,6 +273,8 @@ inference rules:premises,conclusion
 Falsifiable and Valid Sequents
 
 
+universal instantiation
+
 
 
 
@@ -289,7 +291,7 @@ Rules for natural deduction
    * double negation-introduction
    * double negative-elimination
 * The rule for eliminating implication
-   * modus ponens肯定前件式；假言推理, implies-elimination (sometimes also referred to as arrow-elimination)
+   * modus ponens肯定前件式；假言推理, implies-elimination (sometimes also referred to as arrow-elimination) 分离规则
    * modus tollens, or MT否定后件律
 * The rule implies introduction
    * implies-introduction
