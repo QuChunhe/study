@@ -28,8 +28,23 @@ rational number翻译为“有理数”并不恰当，不能表示英文rational
 
 传统上，数域与具体的事物和应用相互联系，每次数域的扩展都会遇到大量的问题。近代发现，数可以通过公理系统抽象出来，而不必局限于具体的事物和应用。
 
+
+* 确界存在原理
+* 单调有界原理
+* 闭区间套定理
+* 凝聚定理/致密性定理/Bolzano-Weierstrass 定理
+* 聚点原理
+* 有限覆盖定理/Heine Borel 定理
+* Cauchy 收敛准则
+
+
+
+[七大基本实数理论的证明及互推](https://zhuanlan.zhihu.com/p/435626158)
+
 [《数学分析》5. 确界原理 的几种证明方式](https://zhuanlan.zhihu.com/p/335888107)
 任何一个有上界的非空数集必有上确界，有下界的非空数集必有下确界
+
+[数学分析中上极限与下极限的理解](https://www.cnblogs.com/Tri-StateTraveler/p/17671898.html)
 
 [Dedekind切割定理与实数连续性](https://zhuanlan.zhihu.com/p/43168454)
 
