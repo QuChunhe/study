@@ -163,7 +163,8 @@ If the terms are the nouns of the language, the formulas will be the statement. 
 
 the logical axioms ，nonlogical axioms
 
-rule modus ponens
+* rule modus ponens 分离规则/肯定前件
+* Modus Tollens（否定后件）
 
 
 [数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
