@@ -18,11 +18,8 @@ How to Measure Anything_
 [非常好的数学网站3blue1brown](https://www.3blue1brown.com/)
 
 [数据](https://zh.tradingeconomics.com/)
-https://zlibrary-801314.se
 
-https://zh.z-library.se/
-
-https://zlibrary-hk.se/
+https://lib.intl.su/
 
 https://www.letmeread.net/category/computers-technology/
   
