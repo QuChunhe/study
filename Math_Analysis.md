@@ -5,6 +5,10 @@ Lebesgue is a French name. According to wikipedia it is prononced [ləˈbɛg].
 Riemann [ree-mahn; English ree-mahn, -muhn]
 
 
+* 公理化定义
+* 构造行定义
+* 递归定义
+
 避免循环论证，用来证明命题的论据本身的真实性要依靠这个命题来证明。
 
 构造性证明（英语：Constructive proof）是数学证明方法的一种，通过直接或间接构造出具有命题所要求的性质的实例来完成证明
