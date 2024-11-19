@@ -1392,7 +1392,11 @@ For look-aside cache, client will query cache first before querying the data sto
 
 [Quantitative System Performance: Computer System Analysis Using Queueing Network Models](https://homes.cs.washington.edu/~lazowska/qsp/)
 
+# CS149 2023并行计算
 
+[主页](https://gfxcourses.stanford.edu/cs149/fall23/)
+
+https://www.bilibili.com/video/BV1du17YfE5G/
 
 # 网络编程
 
