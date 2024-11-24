@@ -458,6 +458,8 @@ Efficiency and performance optimization will get more, not less, importan
  
 # Books
 
+[Programming on Parallel Machines](http://heather.cs.ucdavis.edu/matloff/public_html/158/PLN/ParProcBook.pdf)
+
 [Allen B. Downey. The Little Book of Semaphores. Second Edition. 2007](http://linuxinsight.com/files/downey05semaphores.pdf)
  
 
