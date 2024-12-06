@@ -2,6 +2,8 @@
 
 Power of 2 sized allocation
 
+[Java中的命名规范](https://www.cnblogs.com/liqiangchn/p/12000361.html)
+
 https://jdk.java.net/java-se-ri/22
 
 [Date and Time on the Internet: Timestamps](https://www.ietf.org/rfc/rfc3339.txt)
