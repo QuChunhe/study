@@ -10,6 +10,14 @@ https://github.com/openjdk/jdk21
 
 [Java Platform, Standard Edition 8 Reference Implementations](http://jdk.java.net/java-se-ri/8-MR3)
 
+# codebype
+
+jclasslib插件
+
+```
+javap -c ***.class
+```
+
 # GC
 
 [JVM Tuning: How to Prepare Your Environment for Performance Tuning](https://sematext.com/blog/jvm-performance-tuning/)
