@@ -9,6 +9,12 @@ Michael Huth and Mark Ryan, Logic in Computer Science: Modelling and Reasoning a
 
 [Mathematical Logic and Proofs](https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof)
 
+
+[An Introduction to Proof Theory](https://mathweb.ucsd.edu/%7Esbuss/ResearchWeb/handbookI/ChapterI.pdf)
+
+
+[Logic for Computer Science](https://www3.cs.stonybrook.edu/~cse541/)
+
 数理逻辑17.flv
 
 Completeness Compactness consistency  
