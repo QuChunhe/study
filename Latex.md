@@ -36,6 +36,8 @@ LaTeX Web Companion, The: Integrating TeX, HTML, and XML
 
 [latex-fonts](http://comdyn.hy.tsinghua.edu.cn/from-web/latex/375-latex-fonts)
 
+[Page size and margins](https://www.overleaf.com/learn/latex/Page_size_and_margins)
+
 
 https://blog.yfei.page/en/2019/05/how-to-install-fonts-in-texlive/
 
