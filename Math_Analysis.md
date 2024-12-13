@@ -33,6 +33,9 @@ rational number翻译为“有理数”并不恰当，不能表示英文rational
 
 传统上，数域与具体的事物和应用相互联系，每次数域的扩展都会遇到大量的问题。近代发现，数可以通过公理系统抽象出来，而不必局限于具体的事物和应用。
 
+
+Definition: complete: Let S be an ordered field. Then S is said to be complete if for any nonempty subset A of S that is bounded above, the least upper bound of A is in S.
+
 等价的7个定理
 * 确界存在原理
 * 单调有界原理
