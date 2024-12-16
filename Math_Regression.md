@@ -21,3 +21,11 @@ Three basic methods for collecting data are as follows:
 * An observational study 
 * A designed experiment
 
+
+regression coeffificients 回归系数
+
+a population regression model
+
+a sample regression model
+
+
