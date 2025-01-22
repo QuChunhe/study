@@ -8,7 +8,33 @@ gradle
 
 [Commons Configuration](https://commons.apache.org/proper/commons-configuration/userguide/user_guide.html)
 
+# 性能分析工具
 
+开源 Java 性能分析器比较：VisualVM、JMC 和 async-profiler
+
+
+JDK Flight Recorder（JFR）
+
+
+```shell
+jcmd PID ManagementAgent.start \
+
+    jmxremote.authenticate=false \
+
+    jmxremote.ssl=false \
+
+    jmxremote.port=5555
+
+#加上以下的这两个参数即可开启对应的JFR功能
+java -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
+
+#解锁JFR记录功能权限
+java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,maxsize=1024m,maxage=1d,settings=profile,path-to-gc-roots=true test.Main
+
+jcmd process_id JFR.start duration=10s filename=flight.jfr 
+```
+
+[深度探索JFR - JFR详细介绍与生产问题定位落地 - 1. JFR说明与启动配置](https://zhuanlan.zhihu.com/p/122247741)
 # Command-Line Interfaces
 
 [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/usage.html)
