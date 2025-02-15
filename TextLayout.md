@@ -81,6 +81,19 @@ PPI是图像分辨率，DPI是打印分辨率
 全角是指一个字符占用两个标准字符的位置。中文字符、全角的英文字符、国标GB2312-1980中的图形符号、特殊符号都是全角字符。半角是指一个字符占用一个标准字符的位置。
 
 
+[探究fontsize与字体height关系](https://juejin.cn/post/7065705281640103966)
+
+line-height行高=fontsize+行距
+
+
+* 顶线： 文字顶部对齐的线 Ascender
+* 中线： 文字中部的画线 
+* 基线： 英文字母下端沿线 baseline
+* 底线： 文字底部对齐的线 descender
+
+
+
+
 
 incremental parsing
 
