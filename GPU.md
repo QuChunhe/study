@@ -127,3 +127,7 @@ An additional advantage of the GPU is that its internal memory is about 10 times
 NVIDIA Software Development Kit (SDK)
 
 CUDA
+
+Streaming Multiprocessors (SMs)
+
+[vectorAdd CUDA sample](https://github.com/nvidia/cuda-samples)
