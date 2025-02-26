@@ -1,0 +1,4 @@
+
+```
+ powercfg /hibernate on
+```
