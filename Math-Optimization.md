@@ -1,6 +1,7 @@
 
 最速下降法和牛顿法
 
+方向导数（Directional Derivative）
 
 梯度（Gradient）是一个多变量函数的向量，表示该函数在某一点的最大变化方向和变化率。
 
