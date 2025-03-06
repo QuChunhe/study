@@ -100,6 +100,8 @@ learning rate: hyperparameters 自己的定义的参数
 * local minima
 
 
+learning-rate parameter η
+* fixed-increment adaptation rule
 
 All piecewise linear curves = constant + sum of a set of _/~
 
@@ -126,6 +128,10 @@ Full Connect Feedforward Network
 
 Feature extractor replacing feature engineering
 
+
+perceptron convergence algorithm 感知器收敛算法
+
+[MIT Machine Learning](https://ocw.mit.edu/courses/6-867-machine-learning-fall-2006/pages/lecture-notes/)
 
 # PyTorch
 [ PyTorch官方教程中文版](https://pytorch123.com/)
