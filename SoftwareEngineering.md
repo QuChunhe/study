@@ -907,3 +907,11 @@ MVP理念最早由Eric Ries提出。在其所著的《精益创业》一书中�
 * 客户合作 胜过 合同谈判
 * 响应变化 胜过 遵循计划
 
+
+
+11 key Agile metrics to ensure effective measurement
+* Lead time:Lead time measures the duration from when a customer requests a feature to its delivery.
+* Feature cycle time:Feature cycle time (FCT) tracks the time it takes for a team to complete an individual feature. 
+   * Discovery
+   * development
+   * deployment
