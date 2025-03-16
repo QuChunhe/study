@@ -41,6 +41,25 @@ conda -version
 python --version
 ```
 
+```shell
+
+~/.bashrc 或 .profile
+source .profile
+
+conda config --set auto_activate_base false
+
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+conda install pytorch torchvision torchaudio pytorch-cuda=12 -c pytorch -c nvidia
+
+nvcc --version
+```
+
+```python
+import torch
+print(torch.__version__)
+```
+
 [Leo Breiman, Statistical Modeling: The Two Cultures](http://cda.psych.uiuc.edu/statistical_learning_course/breiman_two_cultures.pdf) 
 
 https://www.itcodemonkey.com/article/15901.html

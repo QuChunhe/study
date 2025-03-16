@@ -7,6 +7,22 @@ Terms
 * high-performance computing (HPC)
 
 
+[NVIDIA CUDA初级教程视频](https://www.iqiyi.com/v_19rrmjuw98.html)
+
+
+SIMD（Single Instruction Multiple Data）和 SIMT（Single Instruction Multiple Threads）
+* 粒度差异：
+  * SIMD以数据元素为单位，一条指令同时作用于多个数据元素。
+  * SIMT以线程为单位，每个线程独立执行相同的指令，但可能处理不同的数据。
+* 硬件实现：
+  * SIMD通常由硬件的向量处理单元（例如SSE，AVX指令集）支持。
+  * SIMT通常在GPU中实现，由硬件管理大量线程。
+* 应用场景：
+  * SIMD适用于数据级并行性较高的任务，如科学计算。
+  * SIMT适用于大规模数据并行计算，尤其是在深度学习等领域
+
+
+
 CPU
 * 执行指令
 * 处理数据
@@ -132,7 +148,45 @@ blockIdx.x:范围为0~gridDim.x
 
 threadIdx.x:范围为哦0~blockDim.x
 
+kernels是基于GPU的函数，由host（CPU）发起，并且在device（GPU）上运行。
 
+The CUDA architecture is based on a scalable array of multithreaded Streaming Multiprocessors (SM). Each SM contains many CUDA cores.
+
+Here is a high-level overview of the CUDA architecture:
+* Host (CPU)
+* Device (GPU): The graphics processor that executes the kernels.
+* Global Memory
+* Shared Memory
+* Registers
+* Streaming Multiprocessors (SMs)
+
+每个流式多处理器包括
+* CUDA Cores
+* Warp Scheduler
+* Instruction Cache
+* Registration
+* Shared Memory
+
+Thread blocks and grids
+1. Kernel Launch: When you launch a kernel, you define how many blocks there are in the grid and how many threads each block has.
+2. Block Execution: Each block is performed individually, enabling scalable parallelism. Threads inside a block can interact and synchronize via shared memory and barrier synchronization.
+3. Thread execution: Warps are formed by grouping threads within each block. Each warp performs the same command at the same time, which is required for optimal GPU efficiency.
+
+ 线程的层次
+ * Threads
+ * Blocks
+ * Grids
+
+一个warp包含32个并行thread，这些thread以不同数据资源执行相同的指令。
+* 一个 Warp 由 32 个线程组成（对于大多数 NVIDIA 架构）。
+* Warp 内的所有线程同步执行相同的指令（SIMT 模式）。
+* Warp 是 GPU 执行的最小调度单位，GPU 不能单独调度一个线程，而是以 warp 为单位执行。
+* 一个线程块（block）由多个 warp 组成，但 warp 内部线程的执行是同步的。
+
+
+All threads in a warp execute the same instruction at the same time, therefore divergence (where threads in the same warp use separate execution pathways) can degrade performance.
+
+Threads inside the same block can synchronize their execution by calling the '__syncthreads()' function.
 
 
 An additional advantage of the GPU is that its internal memory is about 10 times faster than that of a typical PC, which is extremely helpful for problems limited by memory bandwidth rather than CPU power.
@@ -142,5 +196,11 @@ NVIDIA Software Development Kit (SDK)
 CUDA
 
 Streaming Multiprocessors (SMs)
+
+CUDA Memory Model
+* Global memory
+* Shared memory:Shared memory is fast on-chip memory that is shared by threads inside the same block.
+* Local Memory:Accessible only to the thread that owns it.
+* Constant memory:Constant memory is a read-only, cached memory region. It is optimized for scenarios in which all threads read the same data.
 
 [vectorAdd CUDA sample](https://github.com/nvidia/cuda-samples)
