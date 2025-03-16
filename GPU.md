@@ -15,14 +15,27 @@ CPU
 * CPI(Clock cycles Per Instruction) 每条指令的时钟数
 * 时钟周期
 
+CPU和GPU
+* 优化执行具有复杂控制和数据流机制的顺序任务
+* 优先高吞吐的数据并行
+
 
 指令级并行 ILP(instruction-level parallelism)
+
+GPU用于并行地处理简单的数值计算任务。
+
 
 GPU 性能指标
 * 核心数
 * GPU显存容量
 * GPU计算峰值 每秒浮点数操作FLOPS(floating-point operation per second)
 * 显存带宽
+
+处理能力(processing power)
+
+P = C * F * IPC 
+
+C为时钟频率，IPC（Instrctions per cycle）为每个时钟周期能够执行的指令数码，C为一个GPU中
 
 GPU开发工具
 * CUDA

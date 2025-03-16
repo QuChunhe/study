@@ -20,6 +20,7 @@
 [李浩: 再谈 volatile 关键字](https://blog.csdn.net/21cnbao/article/details/114362308?spm=1001.2014.3001.5501)
 
 
+[Linux and UNIX programming training and consulting by Michael Kerrisk](https://man7.org/training/index.html?continueFlag=091c48747b5a77239df1ab4e742ada94)
 
 C -std
 * ANSI C Standard (referred to as ANSI C and C89)
