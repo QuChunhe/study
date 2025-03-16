@@ -184,6 +184,12 @@ Thread blocks and grids
 * 一个线程块（block）由多个 warp 组成，但 warp 内部线程的执行是同步的。
 
 
+硬件的层次
+* Core
+* “32-coreprocessing blocks”，曲速引擎(warp engine)
+* symmetric multiprocessors or SMs.
+* GPU
+
 All threads in a warp execute the same instruction at the same time, therefore divergence (where threads in the same warp use separate execution pathways) can degrade performance.
 
 Threads inside the same block can synchronize their execution by calling the '__syncthreads()' function.
