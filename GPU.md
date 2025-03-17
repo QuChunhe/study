@@ -172,7 +172,7 @@ Thread blocks and grids
 2. Block Execution: Each block is performed individually, enabling scalable parallelism. Threads inside a block can interact and synchronize via shared memory and barrier synchronization.
 3. Thread execution: Warps are formed by grouping threads within each block. Each warp performs the same command at the same time, which is required for optimal GPU efficiency.
 
- 线程的层次
+ 线程按照如下的层次进行组织
  * Threads
  * Blocks
  * Grids
@@ -186,7 +186,7 @@ Thread blocks and grids
 
 硬件的层次
 * Core
-* “32-coreprocessing blocks”，曲速引擎(warp engine)
+* “32-core processing blocks”，曲速引擎(warp engine)
 * symmetric multiprocessors or SMs.
 * GPU
 
@@ -207,6 +207,6 @@ CUDA Memory Model
 * Global memory
 * Shared memory:Shared memory is fast on-chip memory that is shared by threads inside the same block.
 * Local Memory:Accessible only to the thread that owns it.
-* Constant memory:Constant memory is a read-only, cached memory region. It is optimized for scenarios in which all threads read the same data.
+* Constant memory: Constant memory is a read-only, cached memory region. It is optimized for scenarios in which all threads read the same data.
 
 [vectorAdd CUDA sample](https://github.com/nvidia/cuda-samples)
