@@ -3,15 +3,23 @@ translation lookaside buffer TLB 旁路转换缓冲，或称为页表缓冲
 
 一切都是围绕着PPA（Power、Performace、Area）而行动
 
+CPU：Central Processing Unit
+
+cycles per instruction * seconds per cycle
+
+(PCIe)
+Peripheral Component Interconnect Express)
 
 现代CPU的架构和性能优化
 * 流水线 Pipelining
+* 旁路 Bypassing
 * 分支预测 Branch Prediction
 * 超标量 Superscalar
+* 寄存器重命名 Register Renaming
 * 乱序执行 Out-of-Order (OoO) Execution
 * 存储器层次 Memory Hierarchy
 * 矢量操作 Vector Operations
-* 多核处理 Multi-Cor
+* 多核处理 Multi-Core
 
 
 cycles/seconds * instruction/cycle
