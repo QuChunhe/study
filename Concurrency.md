@@ -374,7 +374,7 @@ Flynn矩阵
 
 概念
 * Task 任务
-* Parallel Task 并行认为
+* Parallel Task 并行任务
 * Serial Execution 串行执行
 * Parallel Execution 并行执行
 * Shared Memory 共享存储
@@ -386,6 +386,9 @@ Flynn矩阵
 * Parallel Overhead 并行开销
 * Scalability 可扩展性
 
+通信指的是在并行任务之间的数据交互
+
+同步指的是并行任务之间的等待
 
 并行编程模型
 * 共享存储模型 Shared Memory Model: OpenMP
