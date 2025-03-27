@@ -5,6 +5,7 @@ Terms
 * Compute Uniﬁed Device Architecture (CUDA)
 * Message Passing Interface (MPI)
 * high-performance computing (HPC)
+* FLoating-point OPerations per Second (FLOPS) 
 
 
 [NVIDIA CUDA初级教程视频](https://www.iqiyi.com/v_19rrmjuw98.html)
@@ -59,6 +60,15 @@ GPU开发工具
 * OpenACC
 
 
+
+* 指令流共享，多个程序片元共享指令流 Instruction stream sharing
+* SIMD
+
+
+
+算术逻辑单元(ALU, Arithmetic Logic Unit)
+
+
 Nvidia
 * Tesla：采用ECC内存(Error-correcting code momery)，科学计算
 * Quadro：支持OpenGL(Open Graphics Library)渲染，专业绘图设计
@@ -82,6 +92,9 @@ nvidia-smi -q -i 0
 nvidia-smi -q -i 0 -d MEMORY
 nvidia-smi -i GPU_ID -c 0 # 默认模式
 nvidia-smi -i GPU_ID -c 1 # 独占模式
+
+
+sudo apt install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa-dev
 ```
 
 smi(System Management Interface )
