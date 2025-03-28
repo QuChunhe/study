@@ -3,6 +3,8 @@
 
 [我们犯的那些“错误”，或许才是创造力的关键](https://www.huxiu.com/article/782841.html)
 
+[Learning Theory from First Principles](https://www.di.ens.fr/~fbach/ltfp_book.pdf)
+
 [国科大高级AI](https://www.bilibili.com/video/BV17y4y1U7wW/?spm_id_from=333.788.recommend_more_video.0)
 
 [Information Theory, Inference, and Learning Algorithms](http://www.inference.org.uk/itila/book.html)

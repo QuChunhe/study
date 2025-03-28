@@ -2,6 +2,8 @@
 
 [Who Needs an Architect?](https://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf)
 
+[The Architect’s Blueprint: Understanding Software Styles and Patterns with Cheatsheet](https://readmedium.com/the-architects-blueprint-understanding-software-styles-and-patterns-with-cheatsheet-5c1f5fd55bbd)
+
 系统思维（System thinking）
 
 * 系统：A system is a set of entities and their relationships, whose functionality is greater than the sum of the individual entities.
