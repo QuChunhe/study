@@ -8,6 +8,8 @@ Terms
 * FLoating-point OPerations per Second (FLOPS) 
 
 
+[CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
+
 [NVIDIA CUDA初级教程视频](https://www.iqiyi.com/v_19rrmjuw98.html)
 
 
@@ -197,6 +199,10 @@ Thread blocks and grids
 * 一个线程块（block）由多个 warp 组成，但 warp 内部线程的执行是同步的。
 
 
+thread warp 线程束
+
+warpSize大小为32
+
 硬件的层次
 * Core
 * “32-core processing blocks”，曲速引擎(warp engine)
@@ -221,5 +227,8 @@ CUDA Memory Model
 * Shared memory:Shared memory is fast on-chip memory that is shared by threads inside the same block.
 * Local Memory:Accessible only to the thread that owns it.
 * Constant memory: Constant memory is a read-only, cached memory region. It is optimized for scenarios in which all threads read the same data.
+
+
+
 
 [vectorAdd CUDA sample](https://github.com/nvidia/cuda-samples)
