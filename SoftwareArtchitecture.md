@@ -298,3 +298,18 @@ Event Sourcing也叫事件溯源，是这些年另一个越来越流行的概念
 
 
 管道 - 过滤器（pipe-filter）模式
+
+[The Onion Architecture : part 1](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
+
+Onion Architecture
+1. The application is built around an independent object model
+2. Inner layers define interfaces, while the outer layers implement those interfaces
+3. The direction of coupling is toward the center
+4. All application core code can be compiled and can run separately from the infrastructure
+
+
+ The big drawback to this top-down layered architecture is the coupling that it creates.  Each layer is coupled to the layers below it, and each layer is often coupled to various infrastructure concerns.  However, without coupling, our systems wouldn’t do anything useful, but this architecture creates unnecessary coupling.
+
+ The Onion Architecture relies heavily on the Dependency Inversion principle.
+
+ Let’s review Onion Architecture.  The object model is in the center with supporting business logic around it.  The direction of coupling is toward the center.  The big difference is that any outer layer can directly call any inner layer.   With traditionally layered architecture, a layer can only call the layer directly beneath it.  This is one of the key points that makes Onion Architecture different from traditional layered architecture.
