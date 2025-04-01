@@ -10,6 +10,7 @@ Terms
 
 [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
 
+
 [NVIDIA CUDA初级教程视频](https://www.iqiyi.com/v_19rrmjuw98.html)
 
 
@@ -132,13 +133,22 @@ __global__ 核函数(Kernel function)
 * 具有异步性
 * 不支持C++的iostream
 
-定义了一个异步函数,表示这个函数在CPU中调用,并在GPU上并行执行
+入口函数，定义了一个异步函数,表示这个函数在CPU中调用,并在GPU上并行执行
 
 
 __device__ 函数是在GPU中调用,并在GPU上执行
 
 __host__ 在CPU上调用和执行的函数
 
+|:-------|-------:|:-------:|
+|        | 执行位置 | 调用位置 |
+|:-------|-------:|:-------:|
+| __device__ float deviceFunc() | device | device |
+|:-------|-------:|:-------:|
+| __global__ void kernelFunc() | device | host |
+|:-------|-------:|:------- |
+| __host__ float hostFunc() | host | host |
+|:-------|-------:|:------- |
 
 线程模型
 * grid 网格 
@@ -201,6 +211,7 @@ Thread blocks and grids
 
 thread warp 线程束
 
+
 warpSize大小为32
 
 硬件的层次
@@ -229,6 +240,18 @@ CUDA Memory Model
 * Constant memory: Constant memory is a read-only, cached memory region. It is optimized for scenarios in which all threads read the same data.
 
 
+一个block内部的线程共享‘ Shared Memory’。可以同步‘_syncthreads()’
 
+Kernel启动一个‘grid’，包含若干线程块。
+
+线程和线程块具有唯一的标识。
+
+There is a limit to the number of threads per block, since all threads of a block are expected to reside on the same streaming multiprocessor core and must share the limited memory resources of that core. On current GPUs, a thread block may contain up to 1024 threads.
+
+GPU Processing Cluster (GPC)
+
+The number of thread blocks in a cluster can be user-defined, and a maximum of 8 thread blocks in a cluster is supported as a portable cluster size in CUDA. 
+
+cudaOccupancyMaxPotentialClusterSize
 
 [vectorAdd CUDA sample](https://github.com/nvidia/cuda-samples)
