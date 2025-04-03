@@ -103,6 +103,8 @@ modular programming,
 * 抽象，分解后的子功能或者子模块具有较少的对外接口
 
 
+软件的复杂性随着代码规模超线性增长。 Complexity grows super-linearly with size。
+
 一些软件设计原则：
 * Don’t Repeat Yourself (DRY)。
   DRY 系统的每一个功能都应该有唯一的实现，即不能重复开发相同的功能。因此，也被称为"一次且仅一次原则"(Once and Only Once)。《The Pragmatic Programmer》首次提出，在遇到相似或者相同的代码时，需要抽象出公共的解决方案，避免相同的或相似的代码。

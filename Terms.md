@@ -1,4 +1,17 @@
 
+# 同步
+
+术语
+* Cache Coherence Protocals: 缓存一致性协议
+* Memory Consistency Models: 存储器同一性模型
+
+
+: 
+
+
+词根
+*  co- 加强意义 + -her- 粘着 , 粘附 + -ence 名词词尾，表示"一物粘附或依附于另一物的行为或状态"，
+*  con- 共同 + -sist- 站立 + -ency 名词词尾
 
 # Time
 
