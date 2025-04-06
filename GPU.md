@@ -36,8 +36,8 @@ CPU
 * 时钟周期
 
 CPU和GPU
-* 优化执行具有复杂控制和数据流机制的顺序任务
-* 优先高吞吐的数据并行
+* CPU优化执行具有复杂控制和数据流机制的顺序任务
+* GPU优先高吞吐的数据并行
 
 
 指令级并行 ILP(instruction-level parallelism)
@@ -123,8 +123,8 @@ Compute M:计算模式(compute mode)
 * E. Process (Exclusive process mode)：独占进程模式
 
 
-__global__ 核函数(Kernel function)
-* 限定词__global__ 修饰
+\_\_global\_\_ 核函数(Kernel function)
+* 限定词\_\_global\_\_ 修饰
 * 返回值必须是void
 * 只能访问GPU内存
 * 不能使用变长参数
@@ -136,19 +136,16 @@ __global__ 核函数(Kernel function)
 入口函数，定义了一个异步函数,表示这个函数在CPU中调用,并在GPU上并行执行
 
 
-__device__ 函数是在GPU中调用,并在GPU上执行
+\_\_device\_\_ 函数是在GPU中调用,并在GPU上执行
 
-__host__ 在CPU上调用和执行的函数
+\_\_host\_\_ 在CPU上调用和执行的函数
 
+|    关键词    | 执行位置 | 调用位置 |
 |:-------|-------:|:-------:|
-|        | 执行位置 | 调用位置 |
-|:-------|-------:|:-------:|
-| __device__ float deviceFunc() | device | device |
-|:-------|-------:|:-------:|
-| __global__ void kernelFunc() | device | host |
-|:-------|-------:|:------- |
-| __host__ float hostFunc() | host | host |
-|:-------|-------:|:------- |
+| \_\_device\_\_ float deviceFunc() | device | device |
+| \_\_global\_\_ void kernelFunc() | device | host |
+| \_\_host\_\_ float hostFunc() | host | host |
+
 
 线程模型
 * grid 网格 

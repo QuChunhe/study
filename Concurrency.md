@@ -1,4 +1,13 @@
 
+硬件组织
+* cluster
+* ...
+* Processing Element (UE)：例如ALU
+
+软件
+* Task
+* Unit of Execution: 例如Thread
+
 阻塞/非阻塞
 * 阻塞：调用者caller，停止运行，放弃cpu
 * 非阻塞：调用者caller继续执行
@@ -244,16 +253,69 @@ Performance Evaluation of Parallel Algorithms
 * Speedup
     * Amdahl's Law: the computational workload is fixed as the number of processors increases, the computational time decreased. Amdahl said, if f is fraction of a sequential calculation, then the maximum speedup is 1/f. It is a negative argument against massively parallel processing.
     * Gustafson's Law: the execution time is fixed, as the number of processors increases, correspondingly computational workload increases. Gustafson said, the speedup is the linear function of the number of processors.
+* Efficiency
+    * Definition: it is defined as the ratio of speed up to the number of processors which is between zero and one.
+    * Meaning: it describes the fraction of the time that is usefully employed by the processors.
+* Scalability
+    * Definition:  the algorithm is thought to be scalable if larger parallel system can solve proportionally larger problem in the same running time as smaller problem on smaller parallel system. In fact, the scalability of parallel algorithm is a measure of its capacity to increase speed up in proportion to the number of processors.
+    * Metrics: iso-efficiency, iso-speed and average latency are three popular scalability metrics of parallel algorithms.  
+
 
 Paralle Programming Models
 * shared variable model
-  * Originality: it is the native model for shared memory machines
+  * Originality: it is the native model for shared memory machines.
   * Characters: in this model, tasks share a common address space (implicit data distribution), tasks exchange data through reading/writing the shared variables (impplict communication), tasks access to shared variable controlled by locks/semaphores etc. (explicit synchronization).
   * Comments: it is easy to develop programs, but the portability of programs is problematic.
 * message passing model
   * Originality: it is the native model for distribute memory machines
   * Characters: In this model, tasks reside in different address space (explicit data allocation), tasks exchange data through sending/receiving message (explicit communication), task asynchronously operate need to use barrier/event etc. (explicit synchronization).
   * Comments: the portablity of programs is enhanced, but it is rather difficult to develop the programs.
+* Data parallel model
+  * Originality: this programming model originates from vector programming.
+  * Characters: in this model, each task performs similar operations on different data. Data parallel programming emphasis local computation and data routing to minimize interaction overheads.
+  * Implementation: data parallel model can be implemented in both shared address space (shared memory machines) and multiple address space (distributed memory machines). The former can easy programming, the latter may offer a bettery locality.
+* Unified programming model
+  * High abstraction level: suitable for various distributed and shared memory paralle architectures; hiding implementation details of message passing or synchronization; supporting height abstraction level parallel algorithm design and description.
+  * Height productivity: support fast and intuitive mapping from parallel algorithm to parallel programs; support high-performance implementation of paralleled programs; highly readable parallel programs.
+  * High extensibility: can be customized or extended conveniently; can accommodate the needs of various application areas.  
+
+Parallel Programming Languages and Parallelization Methodologies
+* Auto-parallelization compilers
+   * Fully automatic: the compiler analyzes the source code and identifies opportunities for parallelism. Loops (do, for) statements are the most frequenct target for automatic parallelization.
+   * Programmer directed: using compiler directives or possibly compiler flags, the programmer explicity tells the compiler how to parallelize the code and distribute the data.
+   * Comments: researchesrs finally found out that the automatic parallelization is not always effective.
+* Library extension of sequential Programming language
+   * Callable parallel programming library: in a sequential programming languages, a callable parallel programming library is embedded, such that the users can easily realize parallel programming.
+   * MPI is a message passing library standard. It is now the "de facto" industry standard.MPICH and LAM/MPI are two popular and freely available MPI packages.
+   * OpenMP is an Application Program Interface (API) that my be used to explicitly direct multi-threaded, shared memory parallelism. It consist of thress primary API components: compiler directives, runtime library routines, enviroment variables.   
+
+
+
+|  前缀 | 缩写 | 基幂 | 含意    | 数值  |
+|:-----|-----:|:----:|--------:|-----:|
+| Kilo | K    | 10^3 | Thousand | 千  |
+| Mega | M    | 10^6 | Million  | 百万，兆  |
+| Giga | G    | 10^9 | Billion  | 十亿，千兆  |
+| Tera | T    | 10^12 | Trillion | 万亿  |
+| Peta | K    | 10^15 | Quadrillion | 千万亿  |
+| Exa| E    | 10^18 | Quitillion | 百亿亿  |
+
+
+并行计算的应用需求
+* 计算密集型（Computing-insensive）
+* 数据密集型（Data-intensive）
+* 通信密集型（Network-intensive）
+
+
+系统互联
+
+
+网络性能指标
+* 节点度（Node Degree）
+* 网络之间（Network Diameter）
+* 对剖宽带（Bisection Width）：对分网络各半所必须移去的最少边数
+* 对剖带宽（Bisection Bandwidth）：每秒钟内，在最小的对剖平面上通过所有连线的最大信息为（或字节）书。
+* 如果从任意节点观看网络都一样，则称网络为对称的 （Symmetry）
 
 计算执行时间
   * 运算操作： Computational Steps
