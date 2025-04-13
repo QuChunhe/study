@@ -50,6 +50,26 @@ Definition: complete: Let S be an ordered field. Then S is said to be complete i
 * 一致有界
 * 一致连续
 
+trigonometry
+$$
+\begin{align}
+&\sin \theta &&\text{sine [of] theta} \\
+&\cos \theta &&\text{co sine [of] theta} \\
+&\tan \theta &&\text{tangent [of] theta} \\
+&\csc \theta &&\text{co secant [of] theta} \\
+&\sec \theta &&\text{secant [of] theta} \\
+&\cot \theta &&\text{co tangent [of] theta} \\\\
+&\sinh \theta &&\text{hyperbolic sine theta –OR– sinch theta} \\
+&\cosh \theta &&\text{hyperbolic co sine theta –OR– cosh theta} \\
+&\tanh \theta &&\text{hyperbolic tangent theta –OR– tange theta} \\
+&\operatorname{csch} \theta &&\text{hyperbolic co secant theta} \\
+&\operatorname{sech} \theta &&\text{hyperbolic secant theta} \\
+&\coth \theta &&\text{hyperbolic co tangent theta} \\\\
+&\operatorname{arc\langle trig\rangle} x && \}\qquad\text{arc $\langle$trig$\rangle$ [of] eks} \\
+&\ \ \ \ \text{OR} && \}\qquad\text{inverse $\langle$trig$\rangle$ [of] eks}\\
+&\operatorname{\langle trig\rangle}^{-1} x && \}\qquad\text{anti $\langle$trig$\rangle$ [of] eks} && (\ast)
+\end{align}
+$$
 
 实数域的构造方法
 * 公理化：三套公理：1）存在性：存在一个结构满足如下公理；2）唯一性：满足如下公理的仅仅有一个
