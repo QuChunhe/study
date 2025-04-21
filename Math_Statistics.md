@@ -12,6 +12,17 @@ Rice, John A. (2007), Mathematical Statistics and Data Analysis
 [Probability and Statistics - The Science of Uncertainty, Second Edition](https://www.utstat.toronto.edu/mikevans/jeffrosenthal/?continueFlag=091c48747b5a77239df1ab4e742ada94)
 
 
+推理
+
+（reasoning）的维基百科解释：使用若干合理的思维与认知步骤，从已有的知识中外推产生新知识。（Reasoning involves using more-or-less rational processes of thinking and cognition to extrapolate from one's existing knowledge to generate new knowledge, and involves the use of one's intellect.）
+
+推断
+
+（inference）的维基百科解释：从多次观察中推断出结论的过程，结论可能是正确的，也可能是错误的，或在一定程度是正确的，或在某种情况下是正确的。（The process by which a conclusion is inferred from multiple observations is called inductive reasoning. The conclusion may be correct or incorrect, or correct to within a certain degree of accuracy, or correct in certain situations. ）
+
+总结: 推理强调从已知推导未知的过程，而推断强调从观测中总结的结论。
+
+
 数据分析
 * 先后关系
 * 相关关系
