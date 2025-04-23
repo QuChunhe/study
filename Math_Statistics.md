@@ -23,6 +23,35 @@ Rice, John A. (2007), Mathematical Statistics and Data Analysis
 总结: 推理强调从已知推导未知的过程，而推断强调从观测中总结的结论。
 
 
+
+归纳（induction）与演绎（deduction）是科学推理的两大基本手段。归纳是从“具体到一般”的过程。而演绎是从“一般到特殊”的过程，也就是说基础原理推演出具体情况。
+
+先假定存在这几个条件：
+* 一个大的集合/群体 B，它可以是符合某个条件的一群人，一类事物。
+* 一个小的特例/样本 A，它可以是某一个或者某小部分具体的人或者事物。样本A是隶属于大群B的。
+* 同时，还存在着一个结果/结论C。
+
+这些假设对于两者都是一致的，它们的关键区别在于，如何从A和B，推导出C。
+
+![Deductive Reasoning](pics/deductive_reasoning.jpeg)
+
+
+在Deductive Reasoning中，我们的推导过程是：
+1. 大群 B 可以推导出结论C （同时，样本A属于大群B）
+2. 所以从样本A也可以推导出结论C。
+
+Deductive Reasoning是“由大到小”的推导,应用理论的过程
+
+
+Inductive Reasoning。与Deductive Reasoning相反，它的推导过程是：
+1. 样本A 可以推导出结论C （同时，样本A属于大群B）
+2. 所以从大群B也可以推导出结论C。
+
+Inductive Reasoning是“由小到大”的推导，总结和提炼理论的过程。
+
+
+![Inductive Reasoning](pics/inductive_reasoning.jpeg)
+
 数据分析
 * 先后关系
 * 相关关系

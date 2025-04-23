@@ -1,6 +1,6 @@
 
 
-
+[Learning Theory from First Principles](https://www.di.ens.fr/~fbach/ltfp_book.pdf)
 
 Mistral AI直接开源了自己最新的MoE（Mixture of Experts）大模型Mixtral 8x7B
 
