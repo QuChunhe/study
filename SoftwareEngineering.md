@@ -925,3 +925,36 @@ Kanban VS 看板
 Kanban起源于日语单词かんばん的英语写法，字面意思是“信号卡”。早期被运用在生产制造环境中，这种卡片作为一种信号，用来通知生产过程中的上游工序继续生产，在下游工序没有发出Kanban信号前，每个工序中的工人不准进行额外的生产。
 
 而易与Kanban混为一谈的看板，实际上是一种工具，它也可以叫看板视图，是一块人人可见的物理或电子形式的“板子”，核心作用是将信息可视化。看板的视觉特性能够让使用者一眼区别：未开始的工作、正在进行的工作以及已经完成的工作。
+
+
+# UML (Unified Modeling Language)统一建模语言
+
+There are two types of UML diagrams—behavioral and structural.
+
+Behavioral diagrams illustrate how system components interact to form a system.
+* Activity diagrams
+* Interaction diagrams
+* State machine diagrams
+* Use case diagrams
+
+
+Activity diagrams（活动图）illustrate the flow of processes in a system. This type of diagram is used to visually document activities within a system, also referred to as a system's procedures or dynamic components.
+
+
+Interaction diagrams（交互图） visually document how system components interact with each other.
+
+Interaction UML diagrams 
+* Sequence diagram（序列图）: Sequence diagrams are used to show a specific use case scenario. 
+* Communication diagram （通信图）: Communication diagrams are a special type of interaction diagrams. They focus on how system participants are linked to one another.
+* Timing diagram (计时图): sTiming UML diagrams provide a visual representation of a system's time constraints.
+
+
+State machine diagrams（状态机图） are used to visually describe a system's behavior. The key
+components of these diagrams include states and transitions. 
+
+
+Use case diagrams （用例图）document the interactions between your users and your system.
+* Actor
+* Relationship
+* System
+* Use Case Item
