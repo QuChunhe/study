@@ -946,7 +946,7 @@ Interaction diagrams（交互图） visually document how system components inte
 Interaction UML diagrams 
 * Sequence diagram（序列图）: Sequence diagrams are used to show a specific use case scenario. 
 * Communication diagram （通信图）: Communication diagrams are a special type of interaction diagrams. They focus on how system participants are linked to one another.
-* Timing diagram (计时图): sTiming UML diagrams provide a visual representation of a system's time constraints.
+* Timing diagram (计时图): Timing UML diagrams provide a visual representation of a system's time constraints.
 
 
 State machine diagrams（状态机图） are used to visually describe a system's behavior. The key
@@ -958,3 +958,30 @@ Use case diagrams （用例图）document the interactions between your users an
 * Relationship
 * System
 * Use Case Item
+
+
+Structural diagrams illustrate components of a system. T
+* Class diagrams 类图
+* Component diagrams 组件图
+* Composite structure diagrams 复合结构图
+* Deployment diagrams 部署图
+* Object diagrams 对象图
+* Package diagrams 封装图
+
+
+Class diagrams do more than just display objects—they visually depict their construction and relationships with other classes.
+
+Component diagrams provide a visual representation of a system's physical components.
+
+
+The Composite structure UML diagram shows the runtime structure of a system. This diagram can be used to show the internal components of a class. 
+
+
+Deployment diagrams provide a visual representation of a system's hardware and software.
+
+The object diagram visually communicates a set of class instances. Therefore, a more apt name for this diagram might be a loosely defined instance UML diagram.
+
+
+Package diagrams are used to provide a high-level visual depiction of large systems. These diagrams are simplistic and simply show how a system's components are grouped.
+
+UML 2.0 in Action: A project-based tutorial
