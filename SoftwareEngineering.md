@@ -985,3 +985,10 @@ The object diagram visually communicates a set of class instances. Therefore, a 
 Package diagrams are used to provide a high-level visual depiction of large systems. These diagrams are simplistic and simply show how a system's components are grouped.
 
 UML 2.0 in Action: A project-based tutorial
+
+
+Primary benefits of OOP
+* Modularity
+* Inheritance
+* Encapsulation
+* Polymorphism
