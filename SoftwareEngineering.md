@@ -992,3 +992,18 @@ Primary benefits of OOP
 * Inheritance
 * Encapsulation
 * Polymorphism
+
+over + load 多次加载
+
+Overload（重载）:重载的概念最好理解，在同一个类声明范围中，定义了多个名称完全相同、参数（类型或者个数）不相同的函数，就称之为Overload（重载）。重载的特征如下：
+* 相同的范围（在同一个类中）；
+* 函数名字相同；
+* 参数不同；
+
+over + ride 推翻
+
+Override（覆盖）: 覆盖的概念其实是用来实现C++多态性的，即子类重新改写父类声明为virtual的函数。Override（覆盖）的特征如下：
+* 不同的范围（分别位于派生类与基类）；
+* 函数名字相同；
+* 参数列表完全相同；
+* 基类函数必须有virtual 关键字。
