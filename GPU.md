@@ -168,7 +168,7 @@ blockDim.x: 为block_size的值
 
 blockIdx.x:范围为0~gridDim.x
 
-threadIdx.x:范围为哦0~blockDim.x
+threadIdx.x:范围为0~blockDim.x
 
 kernels是基于GPU的函数，由host（CPU）发起，并且在device（GPU）上运行。
 
@@ -245,10 +245,73 @@ Kernel启动一个‘grid’，包含若干线程块。
 
 There is a limit to the number of threads per block, since all threads of a block are expected to reside on the same streaming multiprocessor core and must share the limited memory resources of that core. On current GPUs, a thread block may contain up to 1024 threads.
 
-GPU Processing Cluster (GPC)
+
+* GPU Processing Cluster (GPC)
+* Thread Block Clusters
 
 The number of thread blocks in a cluster can be user-defined, and a maximum of 8 thread blocks in a cluster is supported as a portable cluster size in CUDA. 
 
+
+```cpp
+// Kernel definition
+// Compile time cluster size 2 in X-dimension and 1 in Y and Z dimension
+__global__ void __cluster_dims__(2, 1, 1) cluster_kernel(float *input, float* output)
+{
+
+}
+
+int main()
+{
+    float *input, *output;
+    // Kernel invocation with compile time cluster size
+    dim3 threadsPerBlock(16, 16);
+    dim3 numBlocks(N / threadsPerBlock.x, N / threadsPerBlock.y);
+
+    // The grid dimension is not affected by cluster launch, and is still enumerated
+    // using number of blocks.
+    // The grid dimension must be a multiple of cluster size.
+    cluster_kernel<<<numBlocks, threadsPerBlock>>>(input, output);
+}
+```
+
 cudaOccupancyMaxPotentialClusterSize
+
+```cpp
+// Kernel definition
+// No compile time attribute attached to the kernel
+__global__ void cluster_kernel(float *input, float* output)
+{
+
+}
+
+int main()
+{
+    float *input, *output;
+    dim3 threadsPerBlock(16, 16);
+    dim3 numBlocks(N / threadsPerBlock.x, N / threadsPerBlock.y);
+
+    // Kernel invocation with runtime cluster size
+    {
+        cudaLaunchConfig_t config = {0};
+        // The grid dimension is not affected by cluster launch, and is still enumerated
+        // using number of blocks.
+        // The grid dimension should be a multiple of cluster size.
+        config.gridDim = numBlocks;
+        config.blockDim = threadsPerBlock;
+
+        cudaLaunchAttribute attribute[1];
+        attribute[0].id = cudaLaunchAttributeClusterDimension;
+        attribute[0].val.clusterDim.x = 2; // Cluster size in X-dimension
+        attribute[0].val.clusterDim.y = 1;
+        attribute[0].val.clusterDim.z = 1;
+        config.attrs = attribute;
+        config.numAttrs = 1;
+
+        cudaLaunchKernelEx(&config, cluster_kernel, input, output);
+    }
+}
+```
+
+PTX(Parallel Thread Execution)
 
 [vectorAdd CUDA sample](https://github.com/nvidia/cuda-samples)
