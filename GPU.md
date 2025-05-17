@@ -8,10 +8,21 @@ Terms
 * FLoating-point OPerations per Second (FLOPS) 
 
 
+pixel-fragment processor
+
+vertex processor
+
+
 [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
 
 
 [NVIDIA CUDA初级教程视频](https://www.iqiyi.com/v_19rrmjuw98.html)
+
+[GPU Glossary](https://modal.com/gpu-glossary/readme)
+
+[CMU 15-869Graphics and Imaging Architectures](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/)
+
+[NVIDIA Tesla: A Unified Graphics and Computing Architecture](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
 
 
 SIMD（Single Instruction Multiple Data）和 SIMT（Single Instruction Multiple Threads）
@@ -228,7 +239,13 @@ NVIDIA Software Development Kit (SDK)
 
 CUDA
 
+streaming processor (SP)
+
 Streaming Multiprocessors (SMs)
+
+streaming processor array (SPA)
+
+raster operation processors (ROPs)
 
 CUDA Memory Model
 * Global memory
