@@ -945,7 +945,7 @@ Interaction diagrams（交互图） visually document how system components inte
 
 Interaction UML diagrams 
 * Sequence diagram（序列图）: Sequence diagrams are used to show a specific use case scenario. 
-* Communication diagram （通信图）: Communication diagrams are a special type of interaction diagrams. They focus on how system participants are linked to one another.
+* Communication diagram （通信图）: Communication diagrams are a special type of interaction diagrams. They focus on how system participants are linked to one another.通信图叫协作图(Collaboration Diagram)
 * Timing diagram (计时图): Timing UML diagrams provide a visual representation of a system's time constraints.
 
 

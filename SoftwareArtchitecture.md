@@ -313,3 +313,7 @@ Onion Architecture
  The Onion Architecture relies heavily on the Dependency Inversion principle.
 
  Let’s review Onion Architecture.  The object model is in the center with supporting business logic around it.  The direction of coupling is toward the center.  The big difference is that any outer layer can directly call any inner layer.   With traditionally layered architecture, a layer can only call the layer directly beneath it.  This is one of the key points that makes Onion Architecture different from traditional layered architecture.
+
+
+
+ 4+1 View Model
