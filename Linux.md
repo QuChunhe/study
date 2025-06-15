@@ -11,6 +11,8 @@ make
 
  Let's Encrypt
 
+[The Linux Kernel Module Programming Guide](https://sysprog21.github.io/lkmpg/) 
+
 [Linux Performance](http://www.brendangregg.com/linuxperf.html)
 
 [Linux Performance Analysis in 60,000 Milliseconds](https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55)
