@@ -15,6 +15,8 @@ vertex processor
 
 [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
 
+[CUDA C++ Best Practices Guide](https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html)
+
 
 [NVIDIA CUDA初级教程视频](https://www.iqiyi.com/v_19rrmjuw98.html)
 
@@ -66,7 +68,7 @@ GPU 性能指标
 
 P = C * F * IPC 
 
-C为时钟频率，IPC（Instrctions per cycle）为每个时钟周期能够执行的指令数码，C为一个GPU中
+C为时钟频率，IPC（Instrctions per cycle）为每个时钟周期能够执行的指令数，C为一个GPU中
 
 GPU开发工具
 * CUDA
