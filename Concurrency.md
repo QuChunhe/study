@@ -349,11 +349,19 @@ https://www.cs.rice.edu/~vs3/comp422/lecture-notes/comp422-lec20-s08-v1.pdf
   * Algorithms
 * Provides a way of estimating how well a program will perform.Cost in model should be roughly same as cost of executing program
 
+并行计算模型的分类
+* 共享存储器的SIMD模型，即PRAM模型
+* 共享存储的MIMD模型，集APRAM模型
+* 分布存储器的并行计算模型，包括固定互联网络两家SIMD模型以及大同步的MIMD模型（BSP模型）和异步MIMD模型（即LogP模型）
+* 层次存储的并行计算模型，包括均匀层次存储模型UMH和分布层次模型DRAM
 
+
+异步PRAM模型（Asynchronization PRAM：APRAM）。同步路障（Synchronization Barrier）
 
 1. The Random Access Machine Model
   * Memory is a sequence of words, each  capable of containing an integer.
   * Each memory access takes one unit of time
+
 
 
 PRAM [Parallel Random Access Machine] 
@@ -364,6 +372,7 @@ A program isn’t allowed to have two processors access the same memory location
 Needs protocol for arbitrating write conflicts
 * CROW – concurrent read, owner write
 Each memory location has an official “owner”
+
 
 
 Parallel Memory Hierarchy (PMH) model
