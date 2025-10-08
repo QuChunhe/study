@@ -4,6 +4,8 @@
 
 [Stanford CoreNLP – Natural language software](https://stanfordnlp.github.io/CoreNLP/)
 
+[Speech and Language Processing (3rd ed. draft)](https://web.stanford.edu/~jurafsky/slp3/)
+
 
 The Part-Of-Sp eech Tagging Guidelines for the Penn Chinese Treebank (3.0)
 
@@ -20,6 +22,9 @@ mvn install:install-file -Dfile=/location/of/stanford-spanish-corenlp-models-cur
 
 
 # 术语
+[句法分析树标注集](https://www.cnblogs.com/Patrick-L/p/6500639.html)
+
+https://www.cs.cornell.edu/courses/cs474/2004fa/lec1.pdf
 
 分词手册（segmentation guidelines），词性标注手册（POS guidelines）和句法分析手册（bracketing guidelines）。
 

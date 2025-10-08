@@ -1197,7 +1197,7 @@ A type with type parameters in its declaration is called a generic type.
 They let you specify a type parameter with a type (class or interface). Such a type is called a generic type (more specifically generic class or generic interface). The type parameter value could be specified when you declare a variable of the generic type and create an object of your generic type.泛型许可指定一个具有类型参数的类型（类或接口）。这样的类型被称为泛型类型（更确切地称为是泛型类或泛型接口）。在声明一个泛型类型的变量并创建泛型类型的对象时，可以指定类型参数的值。
 
 
-The purpose of using generics is to have compiletime type-safety. As long as the compiler is satisfied that the operation will not produce any surprising results at runtime, it allows the operation on the wildcard generic type reference.
+The purpose of using generics is to have compile time type-safety. As long as the compiler is satisfied that the operation will not produce any surprising results at runtime, it allows the operation on the wildcard generic type reference.
 
 
 Using only a question mark as a parameter type (<?>) is known as an unbounded wildcard. It places no bounds as to what type it can refer. You can also place an upper bound or a lower bound with a wildcard. 

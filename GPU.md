@@ -22,6 +22,8 @@ vertex processor
 
 [GPU Glossary](https://modal.com/gpu-glossary/readme)
 
+
+[GPU 术语表](https://sodakeyeatsmush.notion.site/Smth-Smth-GPU-Related-27bf1129214e804ba217e8d5d08fc8b5)
 [CMU 15-869Graphics and Imaging Architectures](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/)
 
 [NVIDIA Tesla: A Unified Graphics and Computing Architecture](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
