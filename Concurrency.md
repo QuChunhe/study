@@ -384,6 +384,7 @@ BSP (Bulk Synchronous Parallel) Model
 
 LogP Model
 
+[15-852: Parallel and Concurrent Algorithms Carnegie Mellon University, Computer Science Department Spring 2024 ](https://www.cs.cmu.edu/~guyb/paralg/)
 
 [Is Parallel Programming Hard, And, If So, What Can You Do About It?](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html)
 
