@@ -4,6 +4,7 @@
 
 Mistral AI直接开源了自己最新的MoE（Mixture of Experts）大模型Mixtral 8x7B
 
+[【伯克利大学】《深度学习》（全66讲）深度神经网络设计、可视化与理解!](https://www.bilibili.com/video/BV16RkBBjEtj/)
 
 [MindSpore](https://gitee.com/mindspore/mindspore)
 
