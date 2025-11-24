@@ -358,6 +358,11 @@ IT行业技术演进快，新技术、新概念和新方法层出不穷。知识
 * 客户端软件系统
 
 
+
+
+好代码
+* 易于理解
+* 能够安全修改
 ### John Ousterhout, A Philosophy of Software Design
 
 松耦合低内聚的手段就是模块化，目标是隔离复杂性。分层模式，流水线和过滤器模式，Pipes and Filters

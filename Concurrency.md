@@ -17,6 +17,8 @@
 * 异步：非调用者处理返回的结果
 
 
+[Introduction to Parallel Algorithms](https://www.cs.cmu.edu/~guyb/paralg/paralg/parallel.pdf)
+
 Concurrency vs Parallelism
 
 
