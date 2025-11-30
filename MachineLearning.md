@@ -97,6 +97,8 @@ https://www.itcodemonkey.com/article/15901.html
 
 [台湾大学教授李宏毅机器学习](https://www.bilibili.com/video/BV13B4y1E7yz?p=2&vd_source=3402e0cf5abe6a9fa6abe9997ddc0341)
 
+[李宏毅深度学习教程LeeDL-Tutorial](https://github.com/datawhalechina/leedl-tutorial/releases)
+
 Machine Learning = Looking for function
 
 
