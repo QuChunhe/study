@@ -1,4 +1,5 @@
 
+[自然语言处理导论 张奇](https://intro-nlp.github.io/)
 
 [Natural Language Processing with Python](https://www.nltk.org/book/)
 
