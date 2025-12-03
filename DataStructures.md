@@ -14,6 +14,11 @@ Peter Brass, Advanced Data Structures, Cambridge University Press,2008
 * \Omega-notation characterizes a lower bound on the asymptotic behavior of a function
 * \Theta-notation characterizes a tight bound on the asymptotic behavior of a function.
 
+
+
+迭代和递归
+* 递归：recursion， re-,再，重新。-cur,跑，
+* 迭代： iteration，重复的
 # Hash Tables（散列表）
 
 slots/buckets/segement(槽/桶/段)
