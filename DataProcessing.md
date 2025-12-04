@@ -1175,3 +1175,8 @@ STCS策略保证每个level内的SSTable大小相近，当某一个level的SSTab
 Leveled Compaction Strategy
 
 LCS策略保证磁盘中所有层的SSTable大小都一致。每一层会限制总文件大小，
+
+
+# Data Science
+
+Veridical Data Science: The Practice of Responsible Data Analysis and Decision Making](https://vdsbook.com/)
