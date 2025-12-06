@@ -771,6 +771,14 @@ DDD 提供了一些应对复杂度的具体方法：
 DDD remains as relevant today as it did when Evans published his blue book because it directly confronts the root causes of why software design is hard: creating a shared understanding of the problem and modularizing the architecture in a way that communicates that understanding in code. 即使在今天，DDD与Evans出版他的蓝皮书时一样重要，因为它直接面对了软件设计之所以困难的根本原因：创建对问题的共同理解，并以一种在代码中对架构进行模块化
 
 
+eTOM(enhanced Telecom Operations MapTM(eTOM)，即增强的电信运营图，是信息和通信服务行业的业务流程框架。电信企业中的BOSS（Business & Operation Support System）系统都会参考eTOM。
+
+DDD系统的特点
+* 整个项目投资巨大：一个100亿的项目，
+* 业务流程相对稳定：具有行业或企业的流程和规范
+* 业务出错代价高昂：涉及钱，会造成巨大经济损失和社会影响
+* 避免被供应商绑定
+
 DDD
 * 分层架构
 * 洋葱架构
