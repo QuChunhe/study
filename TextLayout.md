@@ -29,6 +29,8 @@ https://www.editage.cn/insights/xie-lun-wen-zhe-san-ge-duan-heng-yong-dui-le-ma-
 
 # Terms
 
+[Knuth-Plass算法的大致原理（LaTeX的底层排版机制](https://zhuanlan.zhihu.com/p/654737928)
+
 标点悬挂
 
 「连字处理和两端对齐」（Hyphenation and Justification，常简称为 H&J 处理）

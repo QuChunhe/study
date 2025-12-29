@@ -34,6 +34,7 @@ https://www.wxscn.com/nav/lishi.html
 https://gitee.com/if-the-wind/github-hosts/raw/main/hosts 
 ```shell
 ipconfig /flushdns
+C:\Windows\System32\drivers\etc
 ```
 
 [Computer Science courses with video lectures]{https://github.com/Developer-Y/cs-video-courses}
