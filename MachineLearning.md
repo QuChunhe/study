@@ -1,4 +1,9 @@
 
+[人工智能经典课程【MIT】从推理到深度学习](https://www.bilibili.com/video/BV1Q3ByBTENy/)
+
+[李宏毅深度学习教程LeeDL-Tutorial（苹果书）](https://github.com/datawhalechina/leedl-tutorial)
+
+[【2026新版】斯坦福李飞飞](https://www.bilibili.com/video/BV1MCBLBXEda)
 
 [Learning Theory from First Principles](https://www.di.ens.fr/~fbach/ltfp_book.pdf)
 
