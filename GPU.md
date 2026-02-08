@@ -338,3 +338,12 @@ int main()
 PTX(Parallel Thread Execution)
 
 [vectorAdd CUDA sample](https://github.com/nvidia/cuda-samples)
+
+
+```
+-gencode arch=compute_60,code=sm60
+
+-arch=sm_60
+```
+
+[NVIDIA CUDA Compiler Driver NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html)
