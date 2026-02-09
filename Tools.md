@@ -141,6 +141,8 @@ git submodule update --init
 
 ```
  mvn dependency:tree
+
+ mvn dependency:resolve -Dclassifier=sources
 ```
 
 ```
