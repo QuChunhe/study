@@ -12,6 +12,10 @@ Rice, John A. (2007), Mathematical Statistics and Data Analysis
 [Probability and Statistics - The Science of Uncertainty, Second Edition](https://www.utstat.toronto.edu/mikevans/jeffrosenthal/?continueFlag=091c48747b5a77239df1ab4e742ada94)
 
 
+Bayesian Statistics for Beginners A Step-by-Step Approach
+
+Bayesian Statistics The Basics
+
 推理
 
 （reasoning）的维基百科解释：使用若干合理的思维与认知步骤，从已有的知识中外推产生新知识。（Reasoning involves using more-or-less rational processes of thinking and cognition to extrapolate from one's existing knowledge to generate new knowledge, and involves the use of one's intellect.）
