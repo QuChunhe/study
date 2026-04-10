@@ -11,6 +11,13 @@ Rice, John A. (2007), Mathematical Statistics and Data Analysis
 
 [Probability and Statistics - The Science of Uncertainty, Second Edition](https://www.utstat.toronto.edu/mikevans/jeffrosenthal/?continueFlag=091c48747b5a77239df1ab4e742ada94)
 
+全概率公式
+* 化繁为简，化整为零
+
+贝叶斯公式
+* 由因推果
+* 由果寻因
+
 
 Bayesian Statistics for Beginners A Step-by-Step Approach
 
@@ -880,6 +887,11 @@ Bradley Efron and Trevor Hastie, Computer Age Statistical Inference: Algorithms,
 * 频率学派：对于系统不可见的部分，概率模型的参数是固定的，系统已知的，数据，是变化的。
 
 Prior + data --model--> posterior
+
+三种信息
+* 总体信息，总体分布 $f(x |  \boldsymbol\theta)$ 
+* 样本信息， 样本分布 $\boldsymbol x=(x_1,\cdots, x_n)$, $f(\boldsymbol x|\theta)=\prod_{i=1}^{n}f(x_i|\boldsymbol \theta)$
+* 先验信息， 先验分布， $\pi(\boldsymbol \theta)$
 
 # Statistical Inference
 
