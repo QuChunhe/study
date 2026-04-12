@@ -363,6 +363,7 @@ F(x)连续不一定是连续型随机变量，只有f(x)连续才行
 * 不放回有序抽样
 * 不放回无序抽样
 
+
 [放回无序样本](https://zhuanlan.zhihu.com/p/48248142)
 
 
@@ -414,6 +415,9 @@ F(x)连续不一定是连续型随机变量，只有f(x)连续才行
 波利亚罐子模型（传染模型）
 
 [【数学系专业课】 概率论与数理统计 讲解视频](https://www.bilibili.com/video/BV1cb411j7Mm?from=search&seid=15835382154082768770)
+
+
+风险函数hazard function
 
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
