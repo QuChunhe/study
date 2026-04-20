@@ -1,5 +1,5 @@
 
-![数量统计的理论框架](http://latex.codecogs.com/gif.latex?\\sigma=\sqrt{\frac{1}{n}{\sum_{k=1}^n(x_i-\bar{x})^2}})
+![数理统计的理论框架](http://latex.codecogs.com/gif.latex?\\sigma=\sqrt{\frac{1}{n}{\sum_{k=1}^n(x_i-\bar{x})^2}})
 
 
 [统计学-新竹清华大学-郑少为](https://www.bilibili.com/video/BV1Zb41157jp)
@@ -10,6 +10,10 @@ Rice, John A. (2007), Mathematical Statistics and Data Analysis
 
 
 [Probability and Statistics - The Science of Uncertainty, Second Edition](https://www.utstat.toronto.edu/mikevans/jeffrosenthal/?continueFlag=091c48747b5a77239df1ab4e742ada94)
+
+
+[Introduction to Probability for Computing](https://www.cs.cmu.edu/~harchol/Probability/book.html)
+
 
 全概率公式
 * 化繁为简，化整为零
