@@ -173,7 +173,7 @@ the logical axioms ，nonlogical axioms
 * Modus Tollens（否定后件）
 
 
-[数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
+[秦逸 数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 [Insights into Mathematics](https://www.youtube.com/user/njwildberger)  -->A Grief history of Logic
 
