@@ -37,6 +37,8 @@ Completeness Compactness consistency
 
  [Mathematical Logic through Python](https://www.logicthrupython.org/)
 
+ [LOGIC for COMPUTER SCIENCE](https://www3.cs.stonybrook.edu/~cse541/)
+
 [陆钟万 数理逻辑](https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819)　
 
 形式系统是一种特殊的公理系统
