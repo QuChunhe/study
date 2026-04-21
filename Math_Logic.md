@@ -2,6 +2,8 @@
 Michael Huth and Mark Ryan, Logic in Computer Science: Modelling and Reasoning about Systems 2ed, Cambridge University Press, 2004.
 
 
+Temporal Logic 时序逻辑
+
 * 强归纳法
 * 普通归纳法
 
