@@ -23,6 +23,8 @@ measure twice and cut once 三思而后行
 
 阿尔伯特 爱因斯坦说：凡事应该尽量简单，直到不能再简单为止。
  
+[A collection of principles and patterns that shape software systems, teams, and decisions](https://lawsofsoftwareengineering.com/)
+
 需求分析过程：访谈+实际带入
 * 点：用户提出的一个个需求点，这些需求点往往是零碎的和孤立的
 * 线：归纳、总结和扩展一个个需求点，并结合当前的业务问题和痛点，将需求点串联成线，从而形成一类或者一组需求线。
