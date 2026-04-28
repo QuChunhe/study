@@ -7,6 +7,11 @@ Temporal Logic 时序逻辑
 * 强归纳法
 * 普通归纳法
 
+
+[Lean](https://leanprover-community.github.io/)
+
+[Learning Lean 4](https://leanprover-community.github.io/learn.html)
+
 递归定义（Recursive definition）
 
 [Mathematical Logic and Proofs](https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof)
