@@ -8,6 +8,9 @@ Temporal Logic 时序逻辑
 * 普通归纳法
 
 
+Python中可通过PyKnow库快速构建专家系统
+
+
 [](https://github.com/leanprover/elan)
 
 DeepSeek-Prover-V2
@@ -18,6 +21,8 @@ DeepSeek-Prover-V2
 
 递归定义（Recursive definition）
 
+Curry-Howard Correspondence
+
 [Mathematical Logic and Proofs](https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof)
 
 
@@ -25,6 +30,13 @@ DeepSeek-Prover-V2
 
 
 [Logic for Computer Science](https://www3.cs.stonybrook.edu/~cse541/)
+
+
+
+https://www.bohrium.com/sciencepedia/feynman/keyword/gerhard_gentzen
+
+
+https://zhuanlan.zhihu.com/p/673133730
 
 数理逻辑17.flv
 
