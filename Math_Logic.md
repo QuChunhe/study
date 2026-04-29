@@ -8,6 +8,10 @@ Temporal Logic 时序逻辑
 * 普通归纳法
 
 
+[](https://github.com/leanprover/elan)
+
+DeepSeek-Prover-V2
+
 [Lean](https://leanprover-community.github.io/)
 
 [Learning Lean 4](https://leanprover-community.github.io/learn.html)
