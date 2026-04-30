@@ -10,6 +10,8 @@ Temporal Logic 时序逻辑
 
 Python中可通过PyKnow库快速构建专家系统
 
+[pyreason](https://pypi.org/project/pyreason/)： An explainable inference software supporting annotated, real valued, graph based and temporal logic
+
 
 [](https://github.com/leanprover/elan)
 
@@ -37,6 +39,8 @@ https://www.bohrium.com/sciencepedia/feynman/keyword/gerhard_gentzen
 
 
 https://zhuanlan.zhihu.com/p/673133730
+
+propositional calculus 
 
 数理逻辑17.flv
 
