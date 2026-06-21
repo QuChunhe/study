@@ -5,6 +5,13 @@ Lebesgue is a French name. According to wikipedia it is prononced [ləˈbɛg].
 
 Riemann [ree-mahn; English ree-mahn, -muhn]
 
+Darboux [daʁbu]
+
+Cauchy [koʃi]
+
+Hôpital [loʊpiˈtæl] 或 [loʊpiˈtɑːl]
+
+Lagrange [ləˈɡrɑːndʒ] 或 [ləˈɡrændʒ]
 
 * 公理化定义
 * 构造行定义
