@@ -13,6 +13,10 @@ Hôpital [loʊpiˈtæl] 或 [loʊpiˈtɑːl]
 
 Lagrange [ləˈɡrɑːndʒ] 或 [ləˈɡrændʒ]
 
+Taylor [ˈteɪlər]
+
+Peano [peˈaːno]
+
 * 公理化定义
 * 构造行定义
 * 递归定义

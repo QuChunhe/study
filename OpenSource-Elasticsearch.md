@@ -1,4 +1,10 @@
 
+* Recall（召回率
+* Precision（精确率）
+
+
+stemming词干提取 lemmatization 词形还原
+
 
 1. 切词 word segmentation
 2. 规范化 normalization
