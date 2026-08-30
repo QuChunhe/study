@@ -5,3 +5,5 @@ Galois  gael-wah
 更加一般化、更加抽象化的
 
  代数不外是符号的几何，而几何不外是图形的代数。 ——索菲·戈尔曼
+
+ 视觉群论  http://www.math.clemson.edu/~macaule/math4120-online.html

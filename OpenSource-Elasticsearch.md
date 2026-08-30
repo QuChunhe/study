@@ -5,6 +5,7 @@
 
 stemming词干提取 lemmatization 词形还原
 
+Lucene /luːˈsiːn/
 
 1. 切词 word segmentation
 2. 规范化 normalization
