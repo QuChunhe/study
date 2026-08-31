@@ -21,6 +21,10 @@ DeepSeek-Prover-V2
 
 [Learning Lean 4](https://leanprover-community.github.io/learn.html)
 
+[安装 lean 4](http://www.mmrc.iss.ac.cn/~lzhi/Course/Lean_Install.pdf)
+
+[Lean 4 定理证明](https://www.leanprover.cn/tp-lean-zh/)
+
 递归定义（Recursive definition）
 
 Curry-Howard Correspondence
