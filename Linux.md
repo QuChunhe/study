@@ -683,6 +683,8 @@ display information about the CPU architecture
 lscpu
 
 more /proc/cpuinfo
+
+nproc
 ```
 
 dmidecode is a tool for dumping a computer's DMI (some say SMBIOS) table contents in a human-readable format.
