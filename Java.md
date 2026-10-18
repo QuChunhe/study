@@ -722,7 +722,9 @@ Last Known Java Stack Pointer | [0x000000b82a9ff000] | The last known Stack Poin
 
 [Java命令行工具之 jstat ](https://mp.weixin.qq.com/s?__biz=MzU3Mjc5NjAzMw==&mid=2247484257&idx=1&sn=555158f962cfa2fad3fd9b5ee43d3f5d&exportkey=AWVZr0rfIXoe7A%2F4RS39IA4%3D&pass_ticket=E6xf44phJMVDAosPSXbBiREJLPMNAecAB%2FfhyIbrCbLED1COVgSeTl9cLBpSwz1u)
 
-
+```shell
+jhsdb jmap --heap --pid 27511
+```
 
 jps:java process status
 

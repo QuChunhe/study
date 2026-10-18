@@ -2,10 +2,32 @@
 Michael Huth and Mark Ryan, Logic in Computer Science: Modelling and Reasoning about Systems 2ed, Cambridge University Press, 2004.
 
 
+Temporal Logic 时序逻辑
+
 * 强归纳法
 * 普通归纳法
 
+
+Python中可通过PyKnow库快速构建专家系统
+
+[pyreason](https://pypi.org/project/pyreason/)： An explainable inference software supporting annotated, real valued, graph based and temporal logic
+
+
+[](https://github.com/leanprover/elan)
+
+DeepSeek-Prover-V2
+
+[Lean](https://leanprover-community.github.io/)
+
+[Learning Lean 4](https://leanprover-community.github.io/learn.html)
+
+[安装 lean 4](http://www.mmrc.iss.ac.cn/~lzhi/Course/Lean_Install.pdf)
+
+[Lean 4 定理证明](https://www.leanprover.cn/tp-lean-zh/)
+
 递归定义（Recursive definition）
+
+Curry-Howard Correspondence
 
 [Mathematical Logic and Proofs](https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof)
 
@@ -14,6 +36,15 @@ Michael Huth and Mark Ryan, Logic in Computer Science: Modelling and Reasoning a
 
 
 [Logic for Computer Science](https://www3.cs.stonybrook.edu/~cse541/)
+
+
+
+https://www.bohrium.com/sciencepedia/feynman/keyword/gerhard_gentzen
+
+
+https://zhuanlan.zhihu.com/p/673133730
+
+propositional calculus 
 
 数理逻辑17.flv
 
@@ -28,6 +59,7 @@ Completeness Compactness consistency
 
  一阶逻辑则引入了两个量词, 即universal quantifier(倒A)和existential quantifier(倒E), 并且加入了一阶谓词和individual variables和individual constants. 这些导致一阶逻辑可以量化individuals in the domain. 比如经典的三段论就可以被一阶逻辑表达
 
+[秦逸 数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 [Mathematical Logic, Part I](https://math.berkeley.edu/~antonio/math125A/)
 
@@ -36,6 +68,8 @@ Completeness Compactness consistency
  a Henkin structure
 
  [Mathematical Logic through Python](https://www.logicthrupython.org/)
+
+ [LOGIC for COMPUTER SCIENCE](https://www3.cs.stonybrook.edu/~cse541/)
 
 [陆钟万 数理逻辑](https://www.bilibili.com/video/av9936866?from=search&seid=14344028886371409819)　
 
@@ -128,8 +162,10 @@ Lp，L代表语言，p代表proposition
 
 
 可靠性和完备性
-* 可靠性定理：凡是形式可推演性所反映的前提和结论之间的关系，在非形式的推理中都是成立的。形式可推演性对于反映非形式的推理是可靠的
-* 完备性定理：凡是在非形式的推理中成立的前提和结论之间的关系，形式可推演性都是能反映的。形式可以推演性对于反映非形式的推理是完备的
+* 可靠性定理：凡是形式可推演性所反映的前提和结论之间的关系，在非形式的推理中都是成立的。形式可推演性对于反映非形式的推理是可靠的。 设$T$是$\Omega$上的一个理论，称T是可靠的，如果：若$T\vdash \phi$ 则 $T\models \phi$
+* 完备性定理或完全性定理：凡是在非形式的推理中成立的前提和结论之间的关系，形式可推演性都是能反映的。形式可以推演性对于反映非形式的推理是完备的。一切逻辑有效语句都是形式可证的。
+
+一致的（consistent），也比成为协调性或相容性。一个形式公理系统/理论是协调的，就是在这个系统里推不出矛盾
 
 
 Logical Implication(逻辑推论)
@@ -173,7 +209,6 @@ the logical axioms ，nonlogical axioms
 * Modus Tollens（否定后件）
 
 
-[数理逻辑（Mathematical Logic）](https://yiqinnju.github.io/course/MathLogic/MathLogic.html)
 
 [Insights into Mathematics](https://www.youtube.com/user/njwildberger)  -->A Grief history of Logic
 

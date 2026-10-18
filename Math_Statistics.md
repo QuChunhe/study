@@ -1,5 +1,5 @@
 
-![数量统计的理论框架](http://latex.codecogs.com/gif.latex?\\sigma=\sqrt{\frac{1}{n}{\sum_{k=1}^n(x_i-\bar{x})^2}})
+![数理统计的理论框架](http://latex.codecogs.com/gif.latex?\\sigma=\sqrt{\frac{1}{n}{\sum_{k=1}^n(x_i-\bar{x})^2}})
 
 
 [统计学-新竹清华大学-郑少为](https://www.bilibili.com/video/BV1Zb41157jp)
@@ -11,6 +11,21 @@ Rice, John A. (2007), Mathematical Statistics and Data Analysis
 
 [Probability and Statistics - The Science of Uncertainty, Second Edition](https://www.utstat.toronto.edu/mikevans/jeffrosenthal/?continueFlag=091c48747b5a77239df1ab4e742ada94)
 
+
+[Introduction to Probability for Computing](https://www.cs.cmu.edu/~harchol/Probability/book.html)
+
+
+全概率公式
+* 化繁为简，化整为零
+
+贝叶斯公式
+* 由因推果
+* 由果寻因
+
+
+Bayesian Statistics for Beginners A Step-by-Step Approach
+
+Bayesian Statistics The Basics
 
 推理
 
@@ -352,6 +367,7 @@ F(x)连续不一定是连续型随机变量，只有f(x)连续才行
 * 不放回有序抽样
 * 不放回无序抽样
 
+
 [放回无序样本](https://zhuanlan.zhihu.com/p/48248142)
 
 
@@ -403,6 +419,9 @@ F(x)连续不一定是连续型随机变量，只有f(x)连续才行
 波利亚罐子模型（传染模型）
 
 [【数学系专业课】 概率论与数理统计 讲解视频](https://www.bilibili.com/video/BV1cb411j7Mm?from=search&seid=15835382154082768770)
+
+
+风险函数hazard function
 
 
 [統計學 陳鄰安](https://04.phf-site.com/2015/06/blog-post_119.html)
@@ -876,6 +895,11 @@ Bradley Efron and Trevor Hastie, Computer Age Statistical Inference: Algorithms,
 * 频率学派：对于系统不可见的部分，概率模型的参数是固定的，系统已知的，数据，是变化的。
 
 Prior + data --model--> posterior
+
+三种信息
+* 总体信息，总体分布 $f(x |  \boldsymbol\theta)$ 
+* 样本信息， 样本分布 $\boldsymbol x=(x_1,\cdots, x_n)$, $f(\boldsymbol x|\theta)=\prod_{i=1}^{n}f(x_i|\boldsymbol \theta)$
+* 先验信息， 先验分布， $\pi(\boldsymbol \theta)$
 
 # Statistical Inference
 

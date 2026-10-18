@@ -25,3 +25,6 @@ conda init
 conda activate python313
 conda deactivate
 ```
+
+
+[pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html)
