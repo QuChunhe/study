@@ -61,4 +61,4 @@ Instruction Parallelism
 * vector instructions 
     * Streaming SIMD Extension (SSE)
     * Advanced Vector Extensions (AVX)
->>>>>>> 5e734711c7b4f878d75da2cd96ee0ca4de749e9e
+

@@ -1,5 +1,7 @@
 
 
+[Python基础](https://liaoxuefeng.com/books/python/basic/index.html)
+
 性能优化涉及
 * 减小响应时间
 * 增加系统吞吐量
