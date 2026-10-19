@@ -1,6 +1,8 @@
 
  David Kelley, The Art of Reasoning: An Introduction to Logic and Critical Thinking 4th edition, 2014
 
+[蒲公英书系列](https://nndl.ai/)
+
 [我们犯的那些“错误”，或许才是创造力的关键](https://www.huxiu.com/article/782841.html)
 
 [Learning Theory from First Principles](https://www.di.ens.fr/~fbach/ltfp_book.pdf)
