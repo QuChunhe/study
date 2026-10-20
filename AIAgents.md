@@ -23,3 +23,6 @@ knowledge into the model (improving efficiency for specialized tasks).
 Instruction models  reasoning models
 
  Chain of Thought (CoT)
+
+
+[](https://github.com/Dante-dan/pi-agent-book#1)
