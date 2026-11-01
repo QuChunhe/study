@@ -26,3 +26,35 @@ Instruction models  reasoning models
 
 
 [](https://github.com/Dante-dan/pi-agent-book#1)
+
+https://learn.shareai.run/en/  https://github.com/shareAI-lab/learn-claude-code
+
+OpenClaude
+
+OpenSpec
+
+opencode
+
+https://github.com/cordiverse/cordis
+
+https://github.com/deepseek-ai/deepseek-harness
+
+标准循环（也是它内部的工作方式）：
+1. 探查：glob/grep/read 摸清项目结构和现有约定
+2. 计划：多步任务会先列 todo
+3. 实现：write/edit 改文件
+4. 验证：pwsh 跑构建/测试/lint，失败了读报错再改
+5. 交付：给你 diff 和验证结果
+
+```
+目标：在 <项目路径> 里加 <功能>。
+验收：`<测试/构建命令>` 通过；<具体行为，如 接口返回 200 且含字段 x>。
+约束：先读 <目录> 再动手；不要改 <某文件>；沿用现有代码风格。
+```
+
+```
+~/.dsh/profiles/desktop/
+├── package.json        # 声明 bundles：dsh-base + dsh-web-app
+├── cordis.yml          # 根层，空的，别动
+└── cordis.patch.yml    # ← 你的层：改模型、改 UI、开关插件都写这里
+```

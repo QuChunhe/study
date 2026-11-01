@@ -19,11 +19,13 @@ pandas这个名字源于panel data（面板数据，这是多维结构化数据�
 
 Anaconda3
 ```shell
-conda create --name python313
+conda create --name python315
 conda init
 
-conda activate python313
+conda activate python315
 conda deactivate
+
+conda env list
 ```
 
 
