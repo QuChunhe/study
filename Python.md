@@ -26,7 +26,15 @@ conda activate python315
 conda deactivate
 
 conda env list
+
+
 ```
 
 
+
+```
+python -m venv env_ch02
+.\env_ch02\Scripts\activate
+```
 [pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html)
+

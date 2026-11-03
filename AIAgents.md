@@ -1,4 +1,6 @@
 
+AI.Agents.and.Harnesses.Foundations.2026.9.pdf
+
 
 成熟智能体，指的是拥有完整开箱即用能力的智能体，例如多智能体协作、Skill 与 MCP 接入、Agent Loop 等各种功能。大家常见的 Claude Code、Codex、Hermes，以及国内的 Qoder、Trae 等，都属于这一类。
 
