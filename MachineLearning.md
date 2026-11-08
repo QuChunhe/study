@@ -9,6 +9,8 @@
 
 Mistral AI直接开源了自己最新的MoE（Mixture of Experts）大模型Mixtral 8x7B
 
+
+
 [【伯克利大学】《深度学习》（全66讲）深度神经网络设计、可视化与理解!](https://www.bilibili.com/video/BV16RkBBjEtj/)
 
 [MindSpore](https://gitee.com/mindspore/mindspore)
@@ -345,3 +347,18 @@ You Don’t Understand Neural Networks Until You Understand the Universal Approx
 * 输出层 outputs
 
 反向传播 (back-properage errors signal to git derivatives for learning)
+
+
+## Neural Networks and Learning Machines (3rd Edition)
+
+Kolmogorov complexity: minimum-description-length (MDL) principle
+>The algorithmic (descriptive) complexity of a data sequence is the length of the shortest binary computer program that prints out the sequence and then halts.
+
+
+simplistic two-part code MDL principle
+
+MDL 的基本思想是：学习就是找规律，找规律就是压缩数据。
+
+In other words, the MDL principle implements
+a precise form of Occam’s razor, which states a preference for simple theories:
+>Accept the simplest explanation that fits the data.
