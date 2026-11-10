@@ -93,3 +93,14 @@ Spec 不需要一次性完美，可以逐步细化。
 原则五：Context is King（上下文为王）
 
 Spec 必须包含足够的上下文，使 AI 无需猜测。
+
+
+OpenSpec
+
+```
+### Scenario: 有效凭据
+- GIVEN 用户具有有效凭据
+- WHEN 用户提交登录表单
+- THEN 返回 JWT 令牌
+- AND 用户被重定向到仪表板
+```

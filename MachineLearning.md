@@ -362,3 +362,11 @@ MDL 的基本思想是：学习就是找规律，找规律就是压缩数据。
 In other words, the MDL principle implements
 a precise form of Occam’s razor, which states a preference for simple theories:
 >Accept the simplest explanation that fits the data.
+
+
+## [](https://zh-v2.d2l.ai/chapter_introduction/index.html)
+
+NumPy
+
+
+
