@@ -11,4 +11,8 @@ mvn clean package '-Dfile.encoding=UTF-8'
 
 wsl --install -d Ubuntu-24.04
 wsl.exe -d Ubuntu-24.04
+
+wsl -l -v
+wsl --manage Ubuntu-24.04 --move "D:\Program Files\WSL\Ubuntu-24.04"
+
 ```
