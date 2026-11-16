@@ -12,7 +12,17 @@
 
 
 
+Observability vs Monitoring
+* Observability（可观测性）
+   * Metrics（指标）
+   * Tracing（追踪）
+   * Logs（日志）。
+* Monitoring（监控）
+   * Availability（可用性）
+   * Performance（性能）
+   * Capacity（容量）
 
+未知的未知（Unknown Unknowns）
 
 CI/CD 
 

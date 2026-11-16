@@ -2,6 +2,39 @@
 AI.Agents.and.Harnesses.Foundations.2026.9.pdf
 
 
+
+Key Components
+* Planning & Reasoing
+* Memory
+* LLM Core
+* Tools
+* Agent actions
+
+
+ReAct: Reason + act
+
+
+Differrent Types of Memory
+* Episodic Memory: Stores Experience
+* Semantic Memory: Stores Knowledge
+* Procedural Memory: Stores skills
+
+
+Agents: Thress Layers
+* The System (Artchitecture Design etc.)
+* The data (training excamples, demonstrations, context)
+* The evals (+ the metric)
+
+
+Tool Use: Anatomy of A Call
+* Select: which tool. from the schemas in context
+* Arguments: typed fields, filled from the task
+* Validate: schema check, constrained decoding
+* Execute: sandboxed result returns to  context
+
+
+Model Context Protocol (MCP)
+
 成熟智能体，指的是拥有完整开箱即用能力的智能体，例如多智能体协作、Skill 与 MCP 接入、Agent Loop 等各种功能。大家常见的 Claude Code、Codex、Hermes，以及国内的 Qoder、Trae 等，都属于这一类。
 
 eepSeek Harness的底座是Cordis微内核。
@@ -104,3 +137,16 @@ OpenSpec
 - THEN 返回 JWT 令牌
 - AND 用户被重定向到仪表板
 ```
+
+
+代价有低到高
+* Codebase -> 代码库（良好的 API 设计、架构、重构）。
+* Static analysis -> 静态分析（lints, types, compilers, tests, CI）。
+* Verification -> 验证（形式化验证、运行时验证）。
+* Prose -> 文字/提示词（规则、技能、AGENTS.md）。
+* Human review -> 人工审查
+
+
+形式化验证
+* TLA+：对状态机进行建模。检查其规则是否成立。
+* Lean：编写关于代码的证明。检查每一个逻辑步骤。
