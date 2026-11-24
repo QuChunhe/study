@@ -1,4 +1,26 @@
 
+
+描绘了一个清晰的演进路线：
+* 人主导，AI辅助 (Craft)
+* 人拆解，AI执行，人验证 (Manufactory)
+* 人设计系统，AI自主流转 (Factory)
+* 系统自我进化，系统自我修复 (Compound Factory)
+
+“Agentic engineering”（智能体工程）
+
+core design principles
+* Modularity
+* Height cohersion
+* Low  coupling
+* clear abstractions
+
+
+Vibe coding在生产失败的原因
+* 输出不稳定（Output variance）
+* 上下文崩塌（Context collapse）
+* 缺乏验证关卡（No verification gate）
+* 没有学习闭环（No learning loop）
+
 AI.Agents.and.Harnesses.Foundations.2026.9.pdf
 
 
