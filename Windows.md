@@ -15,4 +15,7 @@ wsl.exe -d Ubuntu-24.04
 wsl -l -v
 wsl --manage Ubuntu-24.04 --move "D:\Program Files\WSL\Ubuntu-24.04"
 
+
+Start-Process powershell -Verb RunAs -ArgumentList "-Command", "icacls 'D:\Program Files\WSL\Ubuntu-24.04\ext4.vhdx' /grant 'QuChunhe:(F)'; icacls 'D:\Program Files\WSL\Ubuntu-24.04' /grant 'QuChunhe:(OI)(CI)(F)'; pause"
+
 ```
