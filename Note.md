@@ -1,5 +1,6 @@
 《中国企业家》：垂直场景具体指哪些？
 
+https://leanprover.github.io/theorem_proving_in_lean4/
 
 朱啸虎：第一，要有垂直行业数据，大模型公司很难自己获取。第二，要能实现数据闭环，用以持续提升自己的垂直模型。第三，要能持续保持和客户的连接，因为大厂不可能自己去一个个磕客户。这三点特别重要。
 
@@ -22,6 +23,42 @@ LLM是由一系列阶段组成的流水线构建而成：数据收集与过滤�
 # 人工智能与机器学习
 
 
+深度学习的经典教材《动手学深度学习》刚更新到第二版了！
+地址还是那个：d2l.ai/
+通过从零构建深度学习模型，全面掌握深度学习的理论、设计与工程实践。每一节都将直观理解、数学原理、可运行代码和实际应用有机结合，同时也是一个交互式 Notebook，你可以直接运行、修改代码并开展实验。
+
+第二版涵盖了 Transformer、状态空间模型（SSM）、强化学习、深度强化学习、扩散模型、现代并行计算技术，并在附录中大幅扩充了数学基础内容。
+
+注意：网站里面的中文版虽然也写的是第二版，但内容还没跟上英文版的。还得等等翻译~ 因为第二版主要更新者是Alexander J. Smola了，李沐等中文作者参与不多。
+
+
+波士顿大学2026年秋季高级自然语言处理课程 CS599 B1: Advanced Natural Language Processing
+地址：aaronmueller.github.io/teaching/cs599b1_fall26/home.html
+
+要求具备 Python、概率论、线性代数、微积分及机器学习基础。与传统 NLP 课程不同，该课程以 Transformer 和现代 LLM 为核心，教你理解前沿论文、实现核心算法以及开展原创性研究。
+
+课程覆盖 Tokenization、RoPE、Transformer、AdamW、Scaling Laws、知识蒸馏、LoRA、RLHF、DPO、RLVR、GRPO、Agent Harness、长上下文推理、MoE、量化、置信度校准、思维链监控、机制可解释性（Mechanistic Interpretability）、训练动力学、扩散语言模型及 Mamba 等技术。
+
+
+从字节到训练完成的 Transformer：从零构建语言模型
+地址：tokenlab.fyi/en/frontier/language-model-from-scratch/
+
+一个可在普通 CPU 上完成的完整实践项目，涵盖字节编码、因果注意力机制、损失函数、AdamW 优化器、模型检查点（Checkpoint）以及文本生成，同时提供可直接运行的 Python 代码，并明确说明模型的能力边界。
+作者：Token Lab
+
+本文目录
+1. 我们要构建什么——以及语言模型究竟学到了什么
+2. 准备开发环境与项目文件
+3. 从原始文档到监督学习样本对
+4. 注意力机制的本质：带有因果约束的加权读取
+5. 逐步追踪解码器中每个张量的流转过程
+6. 损失函数、梯度与参数更新循环
+7. 从模型检查点到文本生成
+8. 动手实践、实验验证与面试练习
+9. 进阶教程、研究论文与实现参考资料
+
+
+
 datawhale和sglang团队合作的《从零手搓SGLang》项目完结啦~~~  配套视频差不多这个月底也都能上线
 项目地址：github.com/datawhalechina/zero-to-sglang/
 这个项目带你从推理的本质出发，手搓一个 mini-sglang，再吃透真实 SGLang 的源码。
@@ -29,6 +66,8 @@ datawhale和sglang团队合作的《从零手搓SGLang》项目完结啦~~~  配
 大模型已经从「训练」卷到「推理」了。应用爆发之后，推理成本和延迟成了真正的瓶颈：同样一块卡，好的推理引擎能多扛好几倍的请求。但市面上讲推理引擎的教程不多，要么只讲概念不动手，要么直接让你啃 SGLang 源码，从哪儿下手都不知道。
 
 这门课想补上这个缺口。前半部分，我们从推理最核心的问题讲起：KV Cache 为什么要有、prefill 和 decode 差在哪、compute-bound 和 memory-bound 到底是什么意思。中间部分，带着你从零手搓一个 mini-sglang：前向、生成、KV Cache、HTTP 服务、Continuous Batching、Paged KV Cache、RadixAttention，一样一样加上去。后半部分，回到真实的 SGLang，讲清楚它那些前沿优化具体是怎么做的，最后教你怎么给 SGLang 提第一个像样的 PR
+
+
 
 
 
